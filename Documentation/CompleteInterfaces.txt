@@ -1,0 +1,9 @@
+Complete interfaces
+
+Repository
+Credentials
+NodeIterator
+PropertyIterator
+RangeIterator
+Value
+ValueFactory

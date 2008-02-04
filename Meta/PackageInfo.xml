@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<packageInfo>
+	<packageKey>phpcr</packageKey>
+	<version>0.0.1</version>
+	<title>phpCR Factory</title>
+	<description>The phpCR factory and interface classes.</description>
+	<category>system</category>
+	<authorName>Robert Lemke</authorName>
+	<authorEmail>robert@typo3.org</authorEmail>
+	<authorCompany/>
+	<constraints>
+		<depends>
+			<package atLeastVersion="5.1.0">php</package>
+			<package atLeastVersion="5.0.0">typo3</package>
+		</depends>
+		<conflicts/>
+		<suggests/>
+	</constraints>
+</packageInfo>	
