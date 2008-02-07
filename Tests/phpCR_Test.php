@@ -196,7 +196,7 @@ class phpCR_Test extends T3_Testing_BaseTestCase {
 	 * @todo remove hardcoded dependency on phpCRJackrabbit
 	 */
 	protected function setUp() {
-		$TYPO3 = new T3_Framework;
+		$TYPO3 = new T3_FLOW3;
 		$TYPO3->initialize();
 
 		$this->repository = $TYPO3->getComponentManager()->getComponent('T3_phpCR_Repository');
