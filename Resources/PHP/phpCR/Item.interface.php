@@ -1,5 +1,5 @@
 <?php
-declare(encoding = 'utf-8');
+declare(ENCODING = 'utf-8');
 
 // $Id: Item.interface.php 399 2005-08-13 19:38:08Z tswicegood $
 
