@@ -23,7 +23,7 @@ declare(ENCODING = 'utf-8');
  * @copyright	Copyright belongs to the respective authors
  * @license		http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class T3_phpCR_AutoLoader {
+class F3_phpCR_AutoLoader {
 
 	/**
 	 * @var array Names and relative paths (to phpCR package directory) of files containing classes
@@ -39,14 +39,14 @@ class T3_phpCR_AutoLoader {
 	 * @author	Karsten Dambekalns <karsten@typo3.org>
 	 */
 	public function loadClass($className) {
-		if(T3_PHP6_Functions::substr($className,0,5) !== 'phpCR') return FALSE;
+		if(F3_PHP6_Functions::substr($className,0,5) !== 'phpCR') return FALSE;
 
 		$path = dirname(__FILE__) . '/../';
 		if(!defined('PHPCR_PATH')) {
 			define('PHPCR_PATH', $path . 'Resources/PHP/phpCR/');
 		}
 
-		$className = ($className !== 'phpCR' ? T3_PHP6_Functions::substr($className,6) : $className);
+		$className = ($className !== 'phpCR' ? F3_PHP6_Functions::substr($className,6) : $className);
 		$this->getClassFiles($path);
 
 		if (isset($this->classFiles[$className])) {
@@ -68,7 +68,7 @@ class T3_phpCR_AutoLoader {
 
 	/**
 	 * Builds and returns an array of class names => file names of all
-	 * T3_*.php files in the package's Classes directory and its sub-
+	 * F3_*.php files in the package's Classes directory and its sub-
 	 * directories.
 	 *
 	 * @return  array
@@ -88,8 +88,8 @@ class T3_phpCR_AutoLoader {
 					if (is_dir($currentPath . $filename)) {
 						$classFiles = array_merge($classFiles, $this->buildArrayOfClassFiles($path, $filename . '/'));
 					} else {
-						if (T3_PHP6_Functions::substr($filename, -4, 4) == '.php') {
-							$className = str_replace(array('.interface','.exception','.class'),array('','',''),T3_PHP6_Functions::substr($filename, 0, -4));
+						if (F3_PHP6_Functions::substr($filename, -4, 4) == '.php') {
+							$className = str_replace(array('.interface','.exception','.class'),array('','',''),F3_PHP6_Functions::substr($filename, 0, -4));
 							$classFiles[$className] = $subDirectory . $filename;
 						}
 					}

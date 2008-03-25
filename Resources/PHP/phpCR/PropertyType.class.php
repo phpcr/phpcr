@@ -161,7 +161,7 @@ abstract class phpCR_PropertyType
 	{
 		assert('is_string($name)');
 		
-		$name = ucwords(T3_PHP6_Functions::strtolower($name));
+		$name = ucwords(F3_PHP6_Functions::strtolower($name));
 		switch ($name) {
 		case self::TYPENAME_STRING :
 			return self::STRING;

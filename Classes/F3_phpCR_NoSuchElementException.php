@@ -15,14 +15,14 @@ declare(ENCODING = 'utf-8');
  *                                                                        */
 
 /**
- * A NamespaceException
+ * A F3_phpCR_NoSuchElementException
  *
  * @package		phpCR
- * @version 	$Id: T3_phpCR_NameSpaceException.php 328 2007-09-04 13:44:34Z robert $
+ * @version 	$Id: $
  * @copyright	Copyright belongs to the respective authors
  * @license		http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class T3_phpCR_NamespaceException extends T3_phpCR_RepositoryException {
+class F3_phpCR_NoSuchElementException extends F3_phpCR_RepositoryException {
 }
 
 ?>

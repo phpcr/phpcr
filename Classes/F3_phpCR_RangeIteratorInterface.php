@@ -22,13 +22,13 @@ declare(ENCODING = 'utf-8');
  * @copyright	Copyright belongs to the respective authors
  * @license		http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface T3_phpCR_RangeIteratorInterface extends T3_phpCR_IteratorInterface {
+interface F3_phpCR_RangeIteratorInterface extends F3_phpCR_IteratorInterface {
 
 	/**
 	 * Skip a number of elements in the iterator.
 	 *
 	 * @param integer $skipNum the non-negative number of elements to skip
-	 * @throws T3_phpCR_NoSuchElementException if skipped past the last element in the iterator.
+	 * @throws F3_phpCR_NoSuchElementException if skipped past the last element in the iterator.
 	 */
 	public function skip($skipNum);
 

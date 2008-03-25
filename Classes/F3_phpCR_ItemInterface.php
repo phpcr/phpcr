@@ -18,11 +18,11 @@ declare(ENCODING = 'utf-8');
  * A Node interface
  *
  * @package		phpCR
- * @version 	$Id: T3_phpCR_NodeInterface.php 234 2007-06-06 01:28:26Z karsten $
+ * @version 	$Id: F3_phpCR_NodeInterface.php 234 2007-06-06 01:28:26Z karsten $
  * @copyright	Copyright belongs to the respective authors
  * @license		http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface T3_phpCR_ItemInterface {
+interface F3_phpCR_ItemInterface {
 
 	/**
 	 * Returns the name of this Item. The name of an item is the
@@ -31,7 +31,7 @@ interface T3_phpCR_ItemInterface {
 	 * $this->getDepth() == 0), an empty string will be returned.
 	 *
 	 * @return 	string	the (or a) name of this Item or an empty string if this Item is the root node.
-	 * @throws 	T3_phpCR_RepositoryException if an error occurs.
+	 * @throws 	F3_phpCR_RepositoryException if an error occurs.
 	 */
 	public function getName();
 
@@ -49,10 +49,10 @@ interface T3_phpCR_ItemInterface {
 	 * If depth > n is specified then a ItemNotFoundException is thrown.
 	 * 
 	 * @param 	integer		$depth
-	 * @return 	T3_phpCR_Item	The ancestor of this Item at the specified depth.
-	 * @throws 	T3_phpCR_ItemNotFoundException if depth &lt; 0 or depth &gt; n where n is the depth of this item.
-	 * @throws 	T3_phpCR_AccessDeniedException if the current session does not have sufficient access rights to retrieve the specified node.
-	 * @throws 	T3_phpCR_RepositoryException if another error occurs.
+	 * @return 	F3_phpCR_Item	The ancestor of this Item at the specified depth.
+	 * @throws 	F3_phpCR_ItemNotFoundException if depth &lt; 0 or depth &gt; n where n is the depth of this item.
+	 * @throws 	F3_phpCR_AccessDeniedException if the current session does not have sufficient access rights to retrieve the specified node.
+	 * @throws 	F3_phpCR_RepositoryException if another error occurs.
 	 */
 	public function getAncestor($depth);
 
@@ -67,15 +67,15 @@ interface T3_phpCR_ItemInterface {
 	 * - And so on to this Item.
 	 *
 	 * @return	integer	The depth of this Item in the workspace hierarchy.
-	 * @throws 	T3_phpCR_RepositoryException if an error occurs.
+	 * @throws 	F3_phpCR_RepositoryException if an error occurs.
 	 */
 	public function getDepth();
 
 	/**
 	 * Returns the Session through which this Item was acquired.
 	 *
-	 * @return 	T3_phpCR_Session the Session through which this Item was acquired.
-	 * @throws 	T3_phpCR_RepositoryException if an error occurs.
+	 * @return 	F3_phpCR_Session the Session through which this Item was acquired.
+	 * @throws 	F3_phpCR_RepositoryException if an error occurs.
 	 */
 	public function getSession();
 
@@ -104,10 +104,10 @@ interface T3_phpCR_ItemInterface {
 	 * same state (see section 5.1.3 Reflecting Item State in the JSR 283 specification
 	 * document) so comparing state is not an issue.
 	 *
-	 * @param 	T3_phpCR_Item	$otherItem: the Item object to be tested for identity with this Item.
+	 * @param 	F3_phpCR_Item	$otherItem: the Item object to be tested for identity with this Item.
 	 * @return 	boolean	true if this Item object and otherItem represent the same actual repository item; false otherwise.
-	 * @throws 	T3_phpCR_RepositoryException if an error occurs.
+	 * @throws 	F3_phpCR_RepositoryException if an error occurs.
 	 */
-	public function isSame(T3_phpCR_ItemInterface $otherItem);
+	public function isSame(F3_phpCR_ItemInterface $otherItem);
 }
 ?>

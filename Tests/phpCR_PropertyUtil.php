@@ -125,7 +125,7 @@ abstract class phpCR_PropertyUtil {
     public static function searchProp($session, $node, $type) {
 
         $prop = null;
-        $propType = T3_phpCRJackrabbit_PropertyType::UNDEFINED;
+        $propType = F3_phpCRJackrabbit_PropertyType::UNDEFINED;
         if ($prop == null) {
             for ($props = $node->getProperties(); $props->hasNext(); ) {
                 $property = $props->nextProperty();
@@ -139,7 +139,7 @@ abstract class phpCR_PropertyUtil {
         if ($prop == null) {
             for ($nodes = $node->getNodes(); $nodes->hasNext(); ) {
                 $n = $nodes->nextNode();
-                $prop = T3_phpCRJackrabbit_PropertyUtil::searchProp($session, $n, $type);
+                $prop = F3_phpCRJackrabbit_PropertyUtil::searchProp($session, $n, $type);
                 if ($prop != null) {
                     break;
                 }

@@ -15,14 +15,23 @@ declare(ENCODING = 'utf-8');
  *                                                                        */
 
 /**
- * A PathNotFoundException
+ * A NodeIterator interface
  *
  * @package		phpCR
- * @version 	$Id:T3_phpCR_ItemNotFoundException.php 254 2007-07-09 06:34:07Z robert $
+ * @version 	$Id$
  * @copyright	Copyright belongs to the respective authors
  * @license		http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class T3_phpCR_PathNotFoundException extends T3_phpCR_RepositoryException {
+interface F3_phpCR_NodeIteratorInterface extends F3_phpCR_RangeIteratorInterface {
+
+	/**
+	 * Returns the next Node in the iteration.
+	 * 
+	 * @return F3_phpCR_NodeInterface
+	 * @throws F3_phpCR_NoSuchElementException if the iterator contains no more elements.
+	 */
+	public function nextNode();
+	
 }
 
 ?>

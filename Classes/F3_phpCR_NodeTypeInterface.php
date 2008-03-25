@@ -15,14 +15,15 @@ declare(ENCODING = 'utf-8');
  *                                                                        */
 
 /**
- * A T3_phpCR_NoSuchElementException
+ * A NodeType interface
  *
  * @package		phpCR
- * @version 	$Id: $
+ * @version 	$Id$
  * @copyright	Copyright belongs to the respective authors
  * @license		http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class T3_phpCR_NoSuchElementException extends T3_phpCR_RepositoryException {
+interface F3_phpCR_NodeTypeInterface extends F3_phpCR_NodeTypeDefinitionInterface {
+
 }
 
 ?>

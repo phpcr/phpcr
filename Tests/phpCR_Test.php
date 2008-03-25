@@ -25,7 +25,7 @@ declare(ENCODING = 'utf-8');
  * @copyright	Copyright belongs to the respective authors
  * @license		http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class phpCR_Test extends T3_Testing_BaseTestCase {
+class phpCR_Test extends F3_Testing_BaseTestCase {
 	/**
 	 * String encoding in a stream
 	 */
@@ -196,13 +196,13 @@ class phpCR_Test extends T3_Testing_BaseTestCase {
 	 * @todo remove hardcoded dependency on phpCRJackrabbit
 	 */
 	protected function setUp() {
-		$TYPO3 = new T3_FLOW3;
+		$TYPO3 = new F3_FLOW3;
 		$TYPO3->initialize();
 
-		$this->repository = $TYPO3->getComponentManager()->getComponent('T3_phpCR_Repository');
+		$this->repository = $TYPO3->getComponentManager()->getComponent('F3_phpCR_Repository');
 
-		$this->readOnlyCredentials = new T3_phpCRJackrabbit_SimpleCredentials('anonymous', '');
-		$this->superUserCredentials = new T3_phpCRJackrabbit_SimpleCredentials('typo3', 'password');
+		$this->readOnlyCredentials = new F3_phpCRJackrabbit_SimpleCredentials('anonymous', '');
+		$this->superUserCredentials = new F3_phpCRJackrabbit_SimpleCredentials('typo3', 'password');
 
 		if (!isset($GLOBALS['session'])) {
 			$this->session 		= $this->getSuperUserSession();
@@ -243,7 +243,7 @@ class phpCR_Test extends T3_Testing_BaseTestCase {
 		$this->ntQuery 				= $this->session->getNamespacePrefix($this->NS_NT_URI) . ":query";
 
 		// setup custom namespaces
-		if ($this->isSupported(T3_phpCRJackrabbit_Repository::LEVEL_2_SUPPORTED)) {
+		if ($this->isSupported(F3_phpCRJackrabbit_Repository::LEVEL_2_SUPPORTED)) {
 			$nsReg = $this->session->getWorkspace()->getNamespaceRegistry();
 			$uri = 'http://www.apache.org/jackrabbit/test';
 
@@ -262,7 +262,7 @@ class phpCR_Test extends T3_Testing_BaseTestCase {
 	 */
 	protected function tearDown() {
 		try {
-			if ($this->isSupported(T3_phpCRJackrabbit_Repository::LEVEL_2_SUPPORTED)) {
+			if ($this->isSupported(F3_phpCRJackrabbit_Repository::LEVEL_2_SUPPORTED)) {
 				$this->cleanUpTestRoot($this->session);
 			}
 		} catch (Exception $e) {

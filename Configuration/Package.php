@@ -14,6 +14,6 @@ declare(ENCODING = 'utf-8');
  * Public License for more details.                                       *
  *                                                                        */
 
-require_once($this->getClassesPath() . 'T3_phpCR_AutoLoader.php');
-spl_autoload_register(array(new T3_phpCR_AutoLoader, 'loadClass'));
+require_once($this->getClassesPath() . 'F3_phpCR_AutoLoader.php');
+spl_autoload_register(array(new F3_phpCR_AutoLoader, 'loadClass'));
 ?>

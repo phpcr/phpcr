@@ -15,14 +15,14 @@ declare(ENCODING = 'utf-8');
  *                                                                        */
 
 /**
- * A ValueFormat exception
+ * A LoginException
  *
  * @package		phpCR
- * @version 	$Id:T3_phpCR_RepositoryException.php 254 2007-07-09 06:34:07Z robert $
+ * @version 	$Id:F3_phpCR_LoginException.php 254 2007-07-09 06:34:07Z robert $
  * @copyright	Copyright belongs to the respective authors
  * @license		http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class T3_phpCR_ValueFormatException extends T3_phpCR_RepositoryException {
+class F3_phpCR_LoginException extends F3_phpCR_RepositoryException {
 }
 
 ?>

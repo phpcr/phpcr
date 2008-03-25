@@ -15,14 +15,22 @@ declare(ENCODING = 'utf-8');
  *                                                                        */
 
 /**
- * A NamespaceRegistry interface
+ * A NodeTypeIterator interface
  *
  * @package		phpCR
  * @version 	$Id$
  * @copyright	Copyright belongs to the respective authors
  * @license		http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface T3_phpCR_NamespaceRegistryInterface {
+interface F3_phpCR_NodeTypeIteratorInterface extends F3_phpCR_RangeIteratorInterface {
+
+	/**
+	 * Returns the next NodeType in the iteration.
+	 *
+	 * @return F3_phpCR_NodeTypeInterface
+	 * @throws F3_phpCR_NoSuchElementException if the iterator contains no more elements.
+	 */
+	public function nextNodeType();
 
 }
 

@@ -15,23 +15,14 @@ declare(ENCODING = 'utf-8');
  *                                                                        */
 
 /**
- * A NodeIterator interface
+ * A NamespaceException
  *
  * @package		phpCR
- * @version 	$Id$
+ * @version 	$Id: F3_phpCR_NameSpaceException.php 328 2007-09-04 13:44:34Z robert $
  * @copyright	Copyright belongs to the respective authors
  * @license		http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface T3_phpCR_NodeIteratorInterface extends T3_phpCR_RangeIteratorInterface {
-
-	/**
-	 * Returns the next Node in the iteration.
-	 * 
-	 * @return T3_phpCR_NodeInterface
-	 * @throws T3_phpCR_NoSuchElementException if the iterator contains no more elements.
-	 */
-	public function nextNode();
-	
+class F3_phpCR_NamespaceException extends F3_phpCR_RepositoryException {
 }
 
 ?>

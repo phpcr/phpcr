@@ -58,7 +58,7 @@ class phpCR_NodeCanAddMixinTest extends phpCR_Test {
         }
 
         // remove first slash of path to get rel path to root
-        $pathRelToRoot = T3_PHP6_Functions::substr($node->getPath(), 1);
+        $pathRelToRoot = F3_PHP6_Functions::substr($node->getPath(), 1);
 
         // access node through another session to lock it
         $session2 = $this->getSuperuserSession();

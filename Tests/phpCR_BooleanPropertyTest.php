@@ -160,7 +160,7 @@ class phpCR_BooleanPropertyTest extends phpCR_Test {
 	public function testGetLength() {
 		$length = $this->testProp->getLength();
 		if ($length > -1) {
-			$this->assertEquals($length, T3_PHP6_Functions::strlen($this->testProp->getString()), "Property->getLength() returns wrong number of bytes.");
+			$this->assertEquals($length, F3_PHP6_Functions::strlen($this->testProp->getString()), "Property->getLength() returns wrong number of bytes.");
 		}
 	}
 }

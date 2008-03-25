@@ -15,22 +15,14 @@ declare(ENCODING = 'utf-8');
  *                                                                        */
 
 /**
- * A NodeTypeIterator interface
+ * A Property interface
  *
  * @package		phpCR
  * @version 	$Id$
  * @copyright	Copyright belongs to the respective authors
  * @license		http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface T3_phpCR_NodeTypeIteratorInterface extends T3_phpCR_RangeIteratorInterface {
-
-	/**
-	 * Returns the next NodeType in the iteration.
-	 *
-	 * @return T3_phpCR_NodeTypeInterface
-	 * @throws T3_phpCR_NoSuchElementException if the iterator contains no more elements.
-	 */
-	public function nextNodeType();
+interface F3_phpCR_PropertyInterface {
 
 }
 

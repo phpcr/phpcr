@@ -15,14 +15,14 @@ declare(ENCODING = 'utf-8');
  *                                                                        */
 
 /**
- * A NodeType interface
+ * A Node interface
  *
  * @package		phpCR
  * @version 	$Id$
  * @copyright	Copyright belongs to the respective authors
  * @license		http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface T3_phpCR_NodeTypeDefinitionInterface {
+interface F3_phpCR_NodeInterface {
 
 }
 

@@ -21,6 +21,6 @@ declare(ENCODING = 'utf-8');
  * @copyright	Copyright belongs to the respective authors
  * @license		http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface T3_phpCR_CredentialsInterface {}
+interface F3_phpCR_CredentialsInterface {}
 
 ?>

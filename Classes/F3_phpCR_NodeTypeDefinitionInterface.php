@@ -15,14 +15,15 @@ declare(ENCODING = 'utf-8');
  *                                                                        */
 
 /**
- * A LoginException
+ * A NodeType interface
  *
  * @package		phpCR
- * @version 	$Id:T3_phpCR_LoginException.php 254 2007-07-09 06:34:07Z robert $
+ * @version 	$Id$
  * @copyright	Copyright belongs to the respective authors
  * @license		http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class T3_phpCR_LoginException extends T3_phpCR_RepositoryException {
+interface F3_phpCR_NodeTypeDefinitionInterface {
+
 }
 
 ?>

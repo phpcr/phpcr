@@ -120,7 +120,7 @@ class phpCR_NodeAddMixinTest extends phpCR_Test {
         }
 
         // remove first slash of path to get rel path to root
-        $pathRelToRoot = T3_PHP6_Functions::substr($node->getPath(), 1);
+        $pathRelToRoot = F3_PHP6_Functions::substr($node->getPath(), 1);
 
         // access node through another session to lock it
         $session2 = $this->getSuperUserSession();
@@ -208,7 +208,7 @@ class phpCR_NodeAddMixinTest extends phpCR_Test {
             // default value is null so check for null
             $this->assertNotNull($uuid, 'Acessing jcr:uuid after assginment of mix:referencable returned null');
             // check if it was not set to an empty string
-            $this->assertTrue(T3_PHP6_Functions::strlen($uuid) > 0, 'Acessing jcr:uuid after assginment of mix:referencable returned an empty String!');
+            $this->assertTrue(F3_PHP6_Functions::strlen($uuid) > 0, 'Acessing jcr:uuid after assginment of mix:referencable returned an empty String!');
         } catch (phpCR_ValueFormatException $e) {
             // trying to access the uuid caused an exception
             $this->fail('Acessing jcr:uuid after assginment of mix:referencable caused an ValueFormatException!');

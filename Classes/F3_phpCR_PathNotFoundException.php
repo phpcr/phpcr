@@ -15,15 +15,14 @@ declare(ENCODING = 'utf-8');
  *                                                                        */
 
 /**
- * A NodeType interface
+ * A PathNotFoundException
  *
  * @package		phpCR
- * @version 	$Id$
+ * @version 	$Id:F3_phpCR_ItemNotFoundException.php 254 2007-07-09 06:34:07Z robert $
  * @copyright	Copyright belongs to the respective authors
  * @license		http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface T3_phpCR_NodeTypeInterface extends T3_phpCR_NodeTypeDefinitionInterface {
-
+class F3_phpCR_PathNotFoundException extends F3_phpCR_RepositoryException {
 }
 
 ?>

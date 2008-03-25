@@ -58,8 +58,8 @@ class phpCR_ValueStream
         $registry = ValueStreamRegistry::getInstance();
         $valueName = $this->_varname;
         
-        $ret = T3_PHP6_Functions::substr($registry->$valueName, $this->_position, $count);
-        $this->_position += T3_PHP6_Functions::strlen($ret);
+        $ret = F3_PHP6_Functions::substr($registry->$valueName, $this->_position, $count);
+        $this->_position += F3_PHP6_Functions::strlen($ret);
         return $ret;
     }
     
@@ -68,11 +68,11 @@ class phpCR_ValueStream
         $registry = ValueStreamRegistry::getInstance();
         $valueName = $this->_varname;
         
-        $left = T3_PHP6_Functions::substr($registry->$valueName, 0, $this->_position);
-        $right = T3_PHP6_Functions::substr($registry->$valueName, $this->_position + T3_PHP6_Functions::strlen($data));
+        $left = F3_PHP6_Functions::substr($registry->$valueName, 0, $this->_position);
+        $right = F3_PHP6_Functions::substr($registry->$valueName, $this->_position + F3_PHP6_Functions::strlen($data));
         $registry->$valueName = $left . $data . $right;
-        $this->_position += T3_PHP6_Functions::strlen($data);
-        return T3_PHP6_Functions::strlen($data);
+        $this->_position += F3_PHP6_Functions::strlen($data);
+        return F3_PHP6_Functions::strlen($data);
     }
     
     public function stream_tell()
@@ -85,7 +85,7 @@ class phpCR_ValueStream
         $registry = ValueStreamRegistry::getInstance();
         $valueName = $this->_varname;
         
-        return $this->_position >= T3_PHP6_Functions::strlen($registry->$valueName);
+        return $this->_position >= F3_PHP6_Functions::strlen($registry->$valueName);
     }
     
     
@@ -96,7 +96,7 @@ class phpCR_ValueStream
         
         switch ($whence) {
         case SEEK_SET:
-           if ($offset < T3_PHP6_Functions::strlen($registry->$valueName) && $offset >= 0) {
+           if ($offset < F3_PHP6_Functions::strlen($registry->$valueName) && $offset >= 0) {
                $this->_position = $offset;
                return true;
            } else {
@@ -114,8 +114,8 @@ class phpCR_ValueStream
            break;
           
         case SEEK_END:
-            if (T3_PHP6_Functions::strlen($registry->$valueName) + $offset >= 0) {
-                $this->_position = T3_PHP6_Functions::strlen($registry->$valueName) + $offset;
+            if (F3_PHP6_Functions::strlen($registry->$valueName) + $offset >= 0) {
+                $this->_position = F3_PHP6_Functions::strlen($registry->$valueName) + $offset;
                 return true;
             } else {
                 return false;
