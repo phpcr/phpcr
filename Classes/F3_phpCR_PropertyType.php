@@ -18,7 +18,7 @@ declare(ENCODING = 'utf-8');
  * The property type definitions
  *
  * @package		phpCR
- * @version 	$Id: F3_TYPO3CR_Property.php 353 2007-09-14 11:52:33Z karsten $
+ * @version 	$Id$
  * @copyright	Copyright belongs to the respective authors
  * @license		http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */

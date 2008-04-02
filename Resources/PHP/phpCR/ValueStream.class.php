@@ -1,5 +1,5 @@
 <?php
-// $Id: ValueStream.class.php 399 2005-08-13 19:38:08Z tswicegood $
+// $Id$
 
 /**
  * This file contains {@link ValueStream} which has been designed to be used 

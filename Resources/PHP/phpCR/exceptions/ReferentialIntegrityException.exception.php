@@ -1,5 +1,5 @@
 <?php
-// $Id: ReferentialIntegrityExcepton.exception.php 549 2005-08-26 02:06:01Z tswicegood $
+// $Id$
 
 /**
  * This file contains {@link ReferentialIntegrityException} which is part of the PHP

@@ -1,5 +1,5 @@
 <?php
-// $Id: Value.interface.php 717 2005-09-16 18:33:19Z tswicegood $
+// $Id$
 
 /**
  * This file contains {@link Value} which is part of the PHP Content Repository 

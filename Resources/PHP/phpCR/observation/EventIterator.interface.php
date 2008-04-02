@@ -1,5 +1,5 @@
 <?php
-// $Id: EventIterator.interface.php 399 2005-08-13 19:38:08Z tswicegood $
+// $Id$
 
 /**
  * This file contains {@link EventIterator} which is part of the PHP

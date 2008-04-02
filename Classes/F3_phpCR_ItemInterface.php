@@ -18,7 +18,7 @@ declare(ENCODING = 'utf-8');
  * A Node interface
  *
  * @package		phpCR
- * @version 	$Id: F3_phpCR_NodeInterface.php 234 2007-06-06 01:28:26Z karsten $
+ * @version 	$Id$
  * @copyright	Copyright belongs to the respective authors
  * @license		http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */

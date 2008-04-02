@@ -1,5 +1,5 @@
 <?php
-// $Id: ImportUUIDBehavior.class.php 549 2005-08-26 02:06:01Z tswicegood $
+// $Id$
 
 /**
  * This file contains {@link Credentials} which is part of the PHP Content Repository

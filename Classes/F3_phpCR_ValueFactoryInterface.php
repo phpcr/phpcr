@@ -21,7 +21,7 @@ declare(ENCODING = 'utf-8');
  * then be used to set properties.
  *
  * @package		phpCR
- * @version 	$Id: F3_phpCR_ValueInterface.php 328 2007-09-04 13:44:34Z robert $
+ * @version 	$Id$
  * @copyright	Copyright belongs to the respective authors
  * @license		http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */

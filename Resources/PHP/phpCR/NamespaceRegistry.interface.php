@@ -1,5 +1,5 @@
 <?php
-// $Id: NamespaceRegistry.interface.php 453 2005-08-20 02:56:48Z tswicegood $
+// $Id$
 /**
  * This file contains {@link NodeIterator} which is part of the PHP Content 
  * Repository (phpCR), a derivative of the Java Content Repository JSR-170, and 

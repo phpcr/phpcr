@@ -1,5 +1,5 @@
 <?php
-// $Id: QueryResult.interface.php 412 2005-08-16 01:19:58Z tswicegood $
+// $Id$
 
 /**
  * This file contains {@link QueryResult} which is part of the PHP Content 

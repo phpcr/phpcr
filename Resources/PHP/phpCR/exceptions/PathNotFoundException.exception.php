@@ -1,5 +1,5 @@
 <?php
-// $Id: PathNotFoundException.exception.php 399 2005-08-13 19:38:08Z tswicegood $
+// $Id$
 
 /**
  * This file contains {@link PathNotFoundException} which is part of the PHP

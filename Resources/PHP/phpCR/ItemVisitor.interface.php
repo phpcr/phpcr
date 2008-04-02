@@ -1,5 +1,5 @@
 <?php
-// $Id: ItemVisitor.interface.php 399 2005-08-13 19:38:08Z tswicegood $
+// $Id$
 
 /**
  * This file contains {@link ItemVisitor} which is part of the PHP Content 

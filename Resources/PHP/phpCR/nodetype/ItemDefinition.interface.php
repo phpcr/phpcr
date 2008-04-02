@@ -1,5 +1,5 @@
 <?php
-// $Id: ItemDefinition.interface.php 464 2005-08-20 19:41:57Z tswicegood $
+// $Id$
 
 /**
  * This file contains {@link ItemDefinition} which is part of the PHP

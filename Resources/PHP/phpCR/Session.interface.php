@@ -1,5 +1,5 @@
 <?php
-// $Id: Session.interface.php 550 2005-08-26 02:44:12Z tswicegood $
+// $Id$
 
 /**
  * This file contains {@link Ticket} which is part of the PHP Content Repository

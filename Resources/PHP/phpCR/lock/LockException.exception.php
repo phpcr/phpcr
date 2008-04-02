@@ -1,5 +1,5 @@
 <?php
-// $Id: LockException.exception.php 399 2005-08-13 19:38:08Z tswicegood $
+// $Id$
 /**
  * This file contains {@link LockException} which is part of the PHP
  * Content Repository (phpCR), a derivative of the Java Content Repository 

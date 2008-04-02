@@ -1,5 +1,5 @@
 <?php
-// $Id: PropertyType.class.php 578 2005-08-29 00:51:26Z tswicegood $
+// $Id$
 /**
  * This file contains {@link PropertyType} which is part of the PHP Content Repository 
  * (phpCR), a derivative of the Java Content Repository JSR-170, and is

@@ -1,5 +1,5 @@
 <?php
-// $Id: ValueStreamRegistry.class.php 399 2005-08-13 19:38:08Z tswicegood $
+// $Id$
 
 /**
  * This file contains {@link ValueStreamRegistry} which has been designed to be used 

@@ -1,5 +1,5 @@
 <?php
-// $Id: ValueFactory.interface.php 399 2005-08-13 19:38:08Z tswicegood $
+// $Id$
 
 /**
  * This file contains {@link ValueFactory} which is part of the PHP Content Repository 
