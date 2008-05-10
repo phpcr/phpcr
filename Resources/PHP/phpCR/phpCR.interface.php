@@ -8,7 +8,6 @@
  * @package			phpCR
  * @version 	$Id$
  * @author		Robert Lemke <robert@typo3.org>
- * @copyright	Copyright belongs to the respective authors
  */
 interface phpCR {
 

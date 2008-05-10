@@ -108,7 +108,6 @@ define('PATTERN_DATE', '#'.PATTERNSTRING_DATE.'#');
  * @version 	$Id$
  * @author		Ronny Unger <ru@php-workx.de>
  * @author		Karsten Dambekalns <karsten@typo3.org>
- * @copyright	Copyright belongs to the respective authors
  * @license		http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
 abstract class phpCR_PropertyUtil {

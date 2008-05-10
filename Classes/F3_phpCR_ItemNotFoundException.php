@@ -19,7 +19,6 @@ declare(ENCODING = 'utf-8');
  *
  * @package		phpCR
  * @version 	$Id:F3_phpCR_ItemNotFoundException.php 254 2007-07-09 06:34:07Z robert $
- * @copyright	Copyright belongs to the respective authors
  * @license		http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
 class F3_phpCR_ItemNotFoundException extends F3_phpCR_RepositoryException {

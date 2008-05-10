@@ -20,7 +20,6 @@ declare(ENCODING = 'utf-8');
  * @package		phpCR
  * @version 	$Id$
  * @author		Karsten Dambekalns <karsten@typo3.org>
- * @copyright	Copyright belongs to the respective authors
  * @license		http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
 class F3_phpCR_AutoLoader {

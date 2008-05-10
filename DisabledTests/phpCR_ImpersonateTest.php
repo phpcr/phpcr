@@ -24,7 +24,6 @@ require_once('phpCR_Test.php');
  * @version 	$Id$
  * @author		Ronny Unger <ru@php-workx.de>
  * @author		Karsten Dambekalns <karsten@typo3.org>
- * @copyright	Copyright belongs to the respective authors
  * @license		http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
 class phpCR_ImpersonateTest extends phpCR_Test {

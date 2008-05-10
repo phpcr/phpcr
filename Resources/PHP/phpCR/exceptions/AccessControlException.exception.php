@@ -19,7 +19,6 @@ declare(ENCODING = 'utf-8');
  *
  * @package		phpCR
  * @version 	$Id$
- * @copyright	Copyright belongs to the respective authors
  * @license		http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
 

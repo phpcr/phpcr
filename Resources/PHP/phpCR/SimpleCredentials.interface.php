@@ -21,7 +21,6 @@ declare(ENCODING = 'utf-8');
  * @package		phpCR
  * @version 	$Id$
  * @author		Karsten Dambekalns <karsten@typo3.org>
- * @copyright	Copyright belongs to the respective authors
  * @license		http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
 interface phpCR_SimpleCredentials extends phpCR_Credentials {
