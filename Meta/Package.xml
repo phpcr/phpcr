@@ -2,18 +2,17 @@
 <packageInfo>
 	<packageKey>phpcr</packageKey>
 	<version>0.0.1</version>
-	<title>phpCR Factory</title>
-	<description>The phpCR factory and interface classes.</description>
+	<title>phpCR Interfaces</title>
+	<description>The phpCR JSR-283 interfaces.</description>
 	<category>system</category>
-	<authorName>Robert Lemke</authorName>
-	<authorEmail>robert@typo3.org</authorEmail>
+	<authorName>Karsten Dambekalns</authorName>
+	<authorEmail>karsten@typo3.org</authorEmail>
 	<authorCompany/>
 	<constraints>
 		<depends>
-			<package atLeastVersion="5.1.0">php</package>
-			<package atLeastVersion="5.0.0">typo3</package>
+			<package atLeastVersion="5.2.0">php</package>
 		</depends>
 		<conflicts/>
 		<suggests/>
 	</constraints>
-</packageInfo>	
+</packageInfo>
