@@ -20,6 +20,6 @@ declare(ENCODING = 'utf-8');
  * @version		$Id$
  * @license		http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface F3_phpCR_CredentialsInterface {}
+interface F3_PHPCR_CredentialsInterface {}
 
 ?>

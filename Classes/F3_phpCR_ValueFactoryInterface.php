@@ -24,7 +24,7 @@ declare(ENCODING = 'utf-8');
  * @version 	$Id$
  * @license		http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface F3_phpCR_ValueFactoryInterface {
+interface F3_PHPCR_ValueFactoryInterface {
 
 	/**
 	 * Returns a Value object with the specified value. If $type is given,
@@ -41,9 +41,9 @@ interface F3_phpCR_ValueFactoryInterface {
 	 * 
 	 * @param mixed $value
 	 * @param integer $type
-	 * @return F3_phpCR_ValueInterface
-	 * @throws F3_phpCR_ValueFormatException is thrown if the specified value cannot be converted to the specified type.
-	 * @throws F3_phpCR_RepositoryException if the specified Node is not referenceable, the current Session is no longer active, or another error occurs.
+	 * @return F3_PHPCR_ValueInterface
+	 * @throws F3_PHPCR_ValueFormatException is thrown if the specified value cannot be converted to the specified type.
+	 * @throws F3_PHPCR_RepositoryException if the specified Node is not referenceable, the current Session is no longer active, or another error occurs.
 	 */
 	public function createValue($value, $type = NULL);
 

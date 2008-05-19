@@ -24,13 +24,13 @@ declare(ENCODING = 'utf-8');
  * @version 	$Id$
  * @license		http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface F3_phpCR_IteratorInterface extends Iterator {
+interface F3_PHPCR_IteratorInterface extends Iterator {
 
 	/**
 	 * Returns the next element. Commented as PHP dows not allow overriding methods from extended interfaces...
 	 * 
 	 * @return mixed
-	 * @throws F3_phpCR_NoSuchElementException if no next element exists
+	 * @throws F3_PHPCR_NoSuchElementException if no next element exists
 	 */
 	//public function next();
 

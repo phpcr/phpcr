@@ -15,13 +15,13 @@ declare(ENCODING = 'utf-8');
  *                                                                        */
 
 /**
- * A F3_phpCR_NoSuchElementException
+ * A F3_PHPCR_NoSuchElementException
  *
  * @package		phpCR
  * @version 	$Id$
  * @license		http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class F3_phpCR_NoSuchElementException extends F3_phpCR_RepositoryException {
+class F3_PHPCR_NoSuchElementException extends F3_PHPCR_RepositoryException {
 }
 
 ?>

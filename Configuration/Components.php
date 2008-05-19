@@ -23,12 +23,12 @@ declare(ENCODING = 'utf-8');
  * @version $Id$
  */
 
-$c->F3_phpCR_ItemInterface->scope = 'prototype';
-$c->F3_phpCR_NodeInterface->scope = 'prototype';
-$c->F3_phpCR_NodeIteratorInterface->scope = 'prototype';
-$c->F3_phpCR_PropertyInterface->scope = 'prototype';
-$c->F3_phpCR_PropertyIteratorInterface->scope = 'prototype';
-$c->F3_phpCR_ValueInterface->scope = 'prototype';
-$c->F3_phpCR_NodeTypeInterface->scope = 'prototype';
+$c->F3_PHPCR_ItemInterface->scope = 'prototype';
+$c->F3_PHPCR_NodeInterface->scope = 'prototype';
+$c->F3_PHPCR_NodeIteratorInterface->scope = 'prototype';
+$c->F3_PHPCR_PropertyInterface->scope = 'prototype';
+$c->F3_PHPCR_PropertyIteratorInterface->scope = 'prototype';
+$c->F3_PHPCR_ValueInterface->scope = 'prototype';
+$c->F3_PHPCR_NodeTypeInterface->scope = 'prototype';
 
 ?>

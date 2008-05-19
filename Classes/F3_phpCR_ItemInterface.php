@@ -21,7 +21,7 @@ declare(ENCODING = 'utf-8');
  * @version 	$Id$
  * @license		http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface F3_phpCR_ItemInterface {
+interface F3_PHPCR_ItemInterface {
 
 	/**
 	 * Returns the name of this Item. The name of an item is the
@@ -30,7 +30,7 @@ interface F3_phpCR_ItemInterface {
 	 * $this->getDepth() == 0), an empty string will be returned.
 	 *
 	 * @return 	string	the (or a) name of this Item or an empty string if this Item is the root node.
-	 * @throws 	F3_phpCR_RepositoryException if an error occurs.
+	 * @throws 	F3_PHPCR_RepositoryException if an error occurs.
 	 */
 	public function getName();
 
@@ -48,10 +48,10 @@ interface F3_phpCR_ItemInterface {
 	 * If depth > n is specified then a ItemNotFoundException is thrown.
 	 * 
 	 * @param 	integer		$depth
-	 * @return 	F3_phpCR_Item	The ancestor of this Item at the specified depth.
-	 * @throws 	F3_phpCR_ItemNotFoundException if depth &lt; 0 or depth &gt; n where n is the depth of this item.
-	 * @throws 	F3_phpCR_AccessDeniedException if the current session does not have sufficient access rights to retrieve the specified node.
-	 * @throws 	F3_phpCR_RepositoryException if another error occurs.
+	 * @return 	F3_PHPCR_Item	The ancestor of this Item at the specified depth.
+	 * @throws 	F3_PHPCR_ItemNotFoundException if depth &lt; 0 or depth &gt; n where n is the depth of this item.
+	 * @throws 	F3_PHPCR_AccessDeniedException if the current session does not have sufficient access rights to retrieve the specified node.
+	 * @throws 	F3_PHPCR_RepositoryException if another error occurs.
 	 */
 	public function getAncestor($depth);
 
@@ -66,15 +66,15 @@ interface F3_phpCR_ItemInterface {
 	 * - And so on to this Item.
 	 *
 	 * @return	integer	The depth of this Item in the workspace hierarchy.
-	 * @throws 	F3_phpCR_RepositoryException if an error occurs.
+	 * @throws 	F3_PHPCR_RepositoryException if an error occurs.
 	 */
 	public function getDepth();
 
 	/**
 	 * Returns the Session through which this Item was acquired.
 	 *
-	 * @return 	F3_phpCR_Session the Session through which this Item was acquired.
-	 * @throws 	F3_phpCR_RepositoryException if an error occurs.
+	 * @return 	F3_PHPCR_Session the Session through which this Item was acquired.
+	 * @throws 	F3_PHPCR_RepositoryException if an error occurs.
 	 */
 	public function getSession();
 
@@ -103,10 +103,10 @@ interface F3_phpCR_ItemInterface {
 	 * same state (see section 5.1.3 Reflecting Item State in the JSR 283 specification
 	 * document) so comparing state is not an issue.
 	 *
-	 * @param 	F3_phpCR_Item	$otherItem: the Item object to be tested for identity with this Item.
+	 * @param 	F3_PHPCR_Item	$otherItem: the Item object to be tested for identity with this Item.
 	 * @return 	boolean	true if this Item object and otherItem represent the same actual repository item; false otherwise.
-	 * @throws 	F3_phpCR_RepositoryException if an error occurs.
+	 * @throws 	F3_PHPCR_RepositoryException if an error occurs.
 	 */
-	public function isSame(F3_phpCR_ItemInterface $otherItem);
+	public function isSame(F3_PHPCR_ItemInterface $otherItem);
 }
 ?>

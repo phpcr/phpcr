@@ -21,7 +21,7 @@ declare(ENCODING = 'utf-8');
  * @version 	$Id$
  * @license		http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface F3_phpCR_NodeInterface {
+interface F3_PHPCR_NodeInterface {
 
 }
 

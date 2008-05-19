@@ -21,13 +21,13 @@ declare(ENCODING = 'utf-8');
  * @version 	$Id$
  * @license		http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface F3_phpCR_PropertyIteratorInterface extends F3_phpCR_RangeIteratorInterface {
+interface F3_PHPCR_PropertyIteratorInterface extends F3_PHPCR_RangeIteratorInterface {
 
 	/**
 	 * Returns the next Property from the iterator.
 	 * 
-	 * @return F3_phpCR_PropertyInterface
-	 * @throws F3_phpCR_NoSuchElementException if the iterator contains no more elements.
+	 * @return F3_PHPCR_PropertyInterface
+	 * @throws F3_PHPCR_NoSuchElementException if the iterator contains no more elements.
 	 */
 	public function nextProperty();
 

@@ -18,10 +18,10 @@ declare(ENCODING = 'utf-8');
  * A RepositoryException
  *
  * @package		phpCR
- * @version 	$Id:F3_phpCR_RepositoryException.php 254 2007-07-09 06:34:07Z robert $
+ * @version 	$Id:F3_PHPCR_RepositoryException.php 254 2007-07-09 06:34:07Z robert $
  * @license		http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class F3_phpCR_RepositoryException extends RuntimeException {
+class F3_PHPCR_RepositoryException extends RuntimeException {
 }
 
 ?>

@@ -21,7 +21,7 @@ declare(ENCODING = 'utf-8');
  * @version 	$Id$
  * @license		http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface F3_phpCR_RepositoryInterface {
+interface F3_PHPCR_RepositoryInterface {
 
 	const SPEC_VERSION_DESC = '2.0';
 	const SPEC_NAME_DESC = 'Content Repository for Java Technology API';
@@ -49,12 +49,12 @@ interface F3_phpCR_RepositoryInterface {
 	 * Workspace.getAccessibleWorkspaceNames, allowing the client to select
 	 * from among available "real" workspaces.
 	 * 
-	 * @param F3_phpCR_CredentialsInterface|null $credentials
+	 * @param F3_PHPCR_CredentialsInterface|null $credentials
 	 * @param string|null $workspaceName
-	 * @return F3_phpCR_SessionInterface
-	 * @throws F3_phpCR_LoginException if authentication or authorization for the specified workspace fails
-	 * @throws F3_phpCR_NoSuchWorkspaceException if workspaceName is not recognized
-	 * @throws F3_phpCR_RepositoryException if another error occurs
+	 * @return F3_PHPCR_SessionInterface
+	 * @throws F3_PHPCR_LoginException if authentication or authorization for the specified workspace fails
+	 * @throws F3_PHPCR_NoSuchWorkspaceException if workspaceName is not recognized
+	 * @throws F3_PHPCR_RepositoryException if another error occurs
 	 */
 	public function login($credentials = NULL, $workspaceName = NULL);
 

@@ -21,7 +21,7 @@ declare(ENCODING = 'utf-8');
  * @version 	$Id$
  * @license		http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class F3_phpCR_NamespaceException extends F3_phpCR_RepositoryException {
+class F3_PHPCR_NamespaceException extends F3_PHPCR_RepositoryException {
 }
 
 ?>

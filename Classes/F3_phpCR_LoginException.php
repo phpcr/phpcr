@@ -18,10 +18,10 @@ declare(ENCODING = 'utf-8');
  * A LoginException
  *
  * @package		phpCR
- * @version 	$Id:F3_phpCR_LoginException.php 254 2007-07-09 06:34:07Z robert $
+ * @version 	$Id:F3_PHPCR_LoginException.php 254 2007-07-09 06:34:07Z robert $
  * @license		http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class F3_phpCR_LoginException extends F3_phpCR_RepositoryException {
+class F3_PHPCR_LoginException extends F3_PHPCR_RepositoryException {
 }
 
 ?>

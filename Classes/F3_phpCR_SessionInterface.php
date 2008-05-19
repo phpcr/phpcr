@@ -21,12 +21,12 @@ declare(ENCODING = 'utf-8');
  * @version 	$Id$
  * @license		http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface F3_phpCR_SessionInterface {
+interface F3_PHPCR_SessionInterface {
 
 	/**
 	 * Returns the Repository object through which this session was acquired.
 	 * 
-	 * @return F3_phpCR_RepositoryInterface a Repository object.
+	 * @return F3_PHPCR_RepositoryInterface a Repository object.
 	 */
 	public function getRepository();
 
@@ -63,7 +63,7 @@ interface F3_phpCR_SessionInterface {
 	/**
 	 * Returns the Workspace attached to this Session.
 	 * 
-	 * @return F3_phpCR_WorkspaceInterface a Workspace object.
+	 * @return F3_PHPCR_WorkspaceInterface a Workspace object.
 	 */
 	public function getWorkspace();
 
@@ -71,7 +71,7 @@ interface F3_phpCR_SessionInterface {
 	 * Returns the root node of the workspace. The root node, "/", is the main access point
 	 * to the content of the workspace.
 	 * 
-	 * @return F3_phpCR_NodeInterface The root node of the workspace: a Node object.
+	 * @return F3_PHPCR_NodeInterface The root node of the workspace: a Node object.
 	 * @throws RepositoryException if an error occurs.
 	 */
 	public function getRootNode();
@@ -81,9 +81,9 @@ interface F3_phpCR_SessionInterface {
 	 * in other words, those of mixin node type mix:referenceable
 	 * 
 	 * @param string $uuid A universally unique identifier.
-	 * @return F3_phpCR_NodeInterface A Node.
-	 * @throws F3_phpCR_ItemNotFoundException if the specified UUID is not found.
-	 * @throws F3_phpCR_RepositoryException if another error occurs.
+	 * @return F3_PHPCR_NodeInterface A Node.
+	 * @throws F3_PHPCR_ItemNotFoundException if the specified UUID is not found.
+	 * @throws F3_PHPCR_RepositoryException if another error occurs.
 	 */
 	public function getNodeByUUID($uuid);
 
@@ -93,9 +93,9 @@ interface F3_phpCR_SessionInterface {
 	 * If writing to the repository is not supported (because this is a level 1-only
 	 * implementation, for example) an UnsupportedRepositoryOperationException will be thrown.
 	 * 
-	 * @return F3_phpCR_ValueFactoryInterface
-	 * @throws F3_phpCR_UnsupportedRepositoryOperationException if writing to the repository is not supported.
-	 * @throws F3_phpCR_RepositoryException if another error occurs.
+	 * @return F3_PHPCR_ValueFactoryInterface
+	 * @throws F3_PHPCR_UnsupportedRepositoryOperationException if writing to the repository is not supported.
+	 * @throws F3_PHPCR_RepositoryException if another error occurs.
 	 */
 	public function getValueFactory();
 
@@ -145,16 +145,16 @@ interface F3_phpCR_SessionInterface {
 	 * storage as Node.update(java.lang.String) does to match nodes between two workspaces.
 	 * 
 	 * @return void
-	 * @throws F3_phpCR_AccessDeniedException if any of the changes to be persisted would violate the access privileges of the this Session. Also thrown if any of the changes to be persisted would cause the removal of a node that is currently referenced by a REFERENCE property that this Session does not have read access to.
-	 * @throws F3_phpCR_ItemExistsException if any of the changes to be persisted would be prevented by the presence of an already existing item in the workspace.
-	 * @throws F3_phpCR_LockException if any of the changes to be persisted would violate a lock.
-	 * @throws F3_phpCR_ConstraintViolationException if any of the changes to be persisted would violate a node type or restriction. Additionally, a repository may use this exception to enforce implementation- or configuration-dependent restrictions.
-	 * @throws F3_phpCR_InvalidItemStateException if any of the changes to be persisted conflicts with a change already persisted through another session and the implementation is such that this conflict can only be detected at save-time and therefore was not detected earlier, at change-time.
-	 * @throws F3_phpCR_ReferentialIntegrityException if any of the changes to be persisted would cause the removal of a node that is currently referenced by a REFERENCE property that this Session has read access to.
-	 * @throws F3_phpCR_VersionException if the save would make a result in a change to persistent storage that would violate the read-only status of a checked-in node.
-	 * @throws F3_phpCR_LockException if the save would result in a change to persistent storage that would violate a lock.
-	 * @throws F3_phpCR_NoSuchNodeTypeException if the save would result in the addition of a node with an unrecognized node type.
-	 * @throws F3_phpCR_RepositoryException if another error occurs.
+	 * @throws F3_PHPCR_AccessDeniedException if any of the changes to be persisted would violate the access privileges of the this Session. Also thrown if any of the changes to be persisted would cause the removal of a node that is currently referenced by a REFERENCE property that this Session does not have read access to.
+	 * @throws F3_PHPCR_ItemExistsException if any of the changes to be persisted would be prevented by the presence of an already existing item in the workspace.
+	 * @throws F3_PHPCR_LockException if any of the changes to be persisted would violate a lock.
+	 * @throws F3_PHPCR_ConstraintViolationException if any of the changes to be persisted would violate a node type or restriction. Additionally, a repository may use this exception to enforce implementation- or configuration-dependent restrictions.
+	 * @throws F3_PHPCR_InvalidItemStateException if any of the changes to be persisted conflicts with a change already persisted through another session and the implementation is such that this conflict can only be detected at save-time and therefore was not detected earlier, at change-time.
+	 * @throws F3_PHPCR_ReferentialIntegrityException if any of the changes to be persisted would cause the removal of a node that is currently referenced by a REFERENCE property that this Session has read access to.
+	 * @throws F3_PHPCR_VersionException if the save would make a result in a change to persistent storage that would violate the read-only status of a checked-in node.
+	 * @throws F3_PHPCR_LockException if the save would result in a change to persistent storage that would violate a lock.
+	 * @throws F3_PHPCR_NoSuchNodeTypeException if the save would result in the addition of a node with an unrecognized node type.
+	 * @throws F3_PHPCR_RepositoryException if another error occurs.
 	 */
 	public function save();
 
@@ -164,9 +164,9 @@ interface F3_phpCR_SessionInterface {
 	 * PathNotFoundException is thrown.
 	 * 
 	 * @param string $absPath An absolute path.
-	 * @return F3_phpCR_ItemInterface
-	 * @throws F3_phpCR_PathNotFoundException if the specified path cannot be found.
-	 * @throws F3_phpCR_RepositoryException if another error occurs.
+	 * @return F3_PHPCR_ItemInterface
+	 * @throws F3_PHPCR_PathNotFoundException if the specified path cannot be found.
+	 * @throws F3_PHPCR_RepositoryException if another error occurs.
 	 */
 	public function getItem($absPath);
 
@@ -175,9 +175,9 @@ interface F3_phpCR_SessionInterface {
 	 * then a PathNotFoundException is thrown.
 	 * 
 	 * @param string $absPath An absolute path.
-	 * @return F3_phpCR_NodeInterface A node
-	 * @throws F3_phpCR_PathNotFoundException If no node exists.
-	 * @throws F3_phpCR_RepositoryException if another error occurs.
+	 * @return F3_PHPCR_NodeInterface A node
+	 * @throws F3_PHPCR_PathNotFoundException If no node exists.
+	 * @throws F3_PHPCR_RepositoryException if another error occurs.
 	 */
 	public function getNode($absPath);
 
@@ -186,9 +186,9 @@ interface F3_phpCR_SessionInterface {
 	 * exists, then a PathNotFoundException is thrown.
 	 * 
 	 * @param string $absPath An absolute path.
-	 * @return F3_phpCR_PropertyInterface A property
-	 * @throws F3_phpCR_PathNotFoundException If no property exists.
-	 * @throws F3_phpCR_RepositoryException if another error occurs.
+	 * @return F3_PHPCR_PropertyInterface A property
+	 * @throws F3_PHPCR_PathNotFoundException If no property exists.
+	 * @throws F3_PHPCR_RepositoryException if another error occurs.
 	*/
 	public function getProperty($absPath);
 }
