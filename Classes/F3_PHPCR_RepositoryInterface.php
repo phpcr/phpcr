@@ -15,11 +15,16 @@ declare(ENCODING = 'utf-8');
  *                                                                        */
 
 /**
+ * @package PHPCR
+ * @version $Id$
+ */
+
+/**
  * A Repository interface
  *
- * @package		phpCR
- * @version 	$Id$
- * @license		http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
+ * @package PHPCR
+ * @version $Id$
+ * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
 interface F3_PHPCR_RepositoryInterface {
 
@@ -28,19 +33,19 @@ interface F3_PHPCR_RepositoryInterface {
 
 	/**
 	 * Authenticates the user using the supplied credentials.
-	 * 
+	 *
 	 * If workspaceName is recognized as the name of an existing workspace in the
 	 * repository and authorization to access that workspace is granted, then a new
 	 * Session object is returned. The format of the string workspaceName depends
 	 * upon the implementation.
-	 * 
+	 *
 	 * If credentials is null, it is assumed that authentication is handled by a
 	 * mechanism external to the repository itself (for example, through the JAAS
 	 * framework) and that the repository implementation exists within a context
 	 * (for example, an application server) that allows it to handle authorization of
 	 * the request for access to the specified workspace. See 6.7 Access Control for
 	 * more details.
-	 * 
+	 *
 	 * If workspaceName is null, a default workspace is automatically selected by
 	 * the repository implementation. This may, for example, be the "home
 	 * workspace" of the user whose credentials were passed, though this is entirely
@@ -48,7 +53,7 @@ interface F3_PHPCR_RepositoryInterface {
 	 * this may be a "null workspace" that serves only to provide the method
 	 * Workspace.getAccessibleWorkspaceNames, allowing the client to select
 	 * from among available "real" workspaces.
-	 * 
+	 *
 	 * @param F3_PHPCR_CredentialsInterface|null $credentials
 	 * @param string|null $workspaceName
 	 * @return F3_PHPCR_SessionInterface

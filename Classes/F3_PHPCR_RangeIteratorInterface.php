@@ -15,11 +15,16 @@ declare(ENCODING = 'utf-8');
  *                                                                        */
 
 /**
+ * @package PHPCR
+ * @version $Id$
+ */
+
+/**
  * A RangeIterator interface
  *
- * @package		phpCR
- * @version 	$Id$
- * @license		http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
+ * @package PHPCR
+ * @version $Id$
+ * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
 interface F3_PHPCR_RangeIteratorInterface extends F3_PHPCR_IteratorInterface {
 
@@ -33,13 +38,13 @@ interface F3_PHPCR_RangeIteratorInterface extends F3_PHPCR_IteratorInterface {
 
 	/**
 	 * Returns the total number of of items available through this iterator.
-	 * 
-	 * For example, for some node $n, $n->getNodes()->getSize() returns the 
-	 * number of child nodes of $n visible through the current Session. 
-	 * 
-	 * In some implementations precise information about the number of elements may 
-	 * not be available. In such cases this method must return -1. API clients will 
-	 * then be able to use RangeIterator->getNumberRemaining() to get an 
+	 *
+	 * For example, for some node $n, $n->getNodes()->getSize() returns the
+	 * number of child nodes of $n visible through the current Session.
+	 *
+	 * In some implementations precise information about the number of elements may
+	 * not be available. In such cases this method must return -1. API clients will
+	 * then be able to use RangeIterator->getNumberRemaining() to get an
 	 * estimate on the number of elements.
 	 *
 	 * @return integer
@@ -50,7 +55,7 @@ interface F3_PHPCR_RangeIteratorInterface extends F3_PHPCR_IteratorInterface {
 	 * Returns the current position within the iterator. The number
 	 * returned is the 0-based index of the next element in the iterator,
 	 * i.e. the one that will be returned on the subsequent next() call.
-	 * 
+	 *
 	 * Note that this method does not check if there is a next element,
 	 * i.e. an empty iterator will always return 0.
 	 *
@@ -60,13 +65,13 @@ interface F3_PHPCR_RangeIteratorInterface extends F3_PHPCR_IteratorInterface {
 
 	/**
 	 * Returns the number of subsequent next() calls that can be
-	 * successfully performed on this iterator. 
-	 * 
-	 * This is the  number of items still available through this iterator. For 
-	 * example, for some node $n, $n->getNodes()->getSize() returns the number 
-	 * of child nodes of $n visible through the current Session that have not 
-	 * yet been returned. 
-	 * 
+	 * successfully performed on this iterator.
+	 *
+	 * This is the  number of items still available through this iterator. For
+	 * example, for some node $n, $n->getNodes()->getSize() returns the number
+	 * of child nodes of $n visible through the current Session that have not
+	 * yet been returned.
+	 *
 	 * In some implementations precise information about the number of remaining
 	 * elements may not be available. In such cases this method should return
 	 * a reasonable upper bound on the number if such an estimate is available

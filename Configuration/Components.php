@@ -15,11 +15,11 @@ declare(ENCODING = 'utf-8');
  *                                                                        */
 
 /*                                                                        *
- * Components configuration for the phpCR package                         *
+ * Components configuration for the PHPCR package                         *
  *                                                                        */
 
 /**
- * @package phpCR
+ * @package PHPCR
  * @version $Id$
  */
 

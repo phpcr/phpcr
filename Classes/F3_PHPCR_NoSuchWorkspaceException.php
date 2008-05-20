@@ -15,11 +15,16 @@ declare(ENCODING = 'utf-8');
  *                                                                        */
 
 /**
+ * @package PHPCR
+ * @version $Id$
+ */
+
+/**
  * A NoSuchWorkspaceException
  *
- * @package		phpCR
- * @version 	$Id:F3_PHPCR_NoSuchWorkspaceException.php 254 2007-07-09 06:34:07Z robert $
- * @license		http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
+ * @package PHPCR
+ * @version $Id:F3_PHPCR_NoSuchWorkspaceException.php 254 2007-07-09 06:34:07Z robert $
+ * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
 class F3_PHPCR_NoSuchWorkspaceException extends F3_PHPCR_RepositoryException {
 }

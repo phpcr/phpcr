@@ -15,11 +15,16 @@ declare(ENCODING = 'utf-8');
  *                                                                        */
 
 /**
+ * @package PHPCR
+ * @version $Id$
+ */
+
+/**
  * The property type definitions
  *
- * @package		phpCR
- * @version 	$Id$
- * @license		http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
+ * @package PHPCR
+ * @version $Id$
+ * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
 class F3_PHPCR_PropertyType {
 	/**
@@ -64,7 +69,7 @@ class F3_PHPCR_PropertyType {
 	 * @author Sebastian Kurfuerst <sebastian@typo3.org>
 	 * @author Karsten Dambekalns <karsten@typo3.org>
 	 */
-	static public function nameFromValue($type) {		
+	static public function nameFromValue($type) {
 		switch (intval($type)) {
 			case self::UNDEFINED :
 				return self::TYPENAME_UNDEFINED;
@@ -104,8 +109,8 @@ class F3_PHPCR_PropertyType {
 				break;
 		}
 	}
-	
-	
+
+
 	/**
 	 * Returns the numeric constant value of the type with the specified name.
 	 *

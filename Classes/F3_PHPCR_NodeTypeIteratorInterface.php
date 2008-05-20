@@ -17,9 +17,9 @@ declare(ENCODING = 'utf-8');
 /**
  * A NodeTypeIterator interface
  *
- * @package		phpCR
- * @version 	$Id$
- * @license		http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
+ * @package PHPCR
+ * @version $Id$
+ * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
 interface F3_PHPCR_NodeTypeIteratorInterface extends F3_PHPCR_RangeIteratorInterface {
 

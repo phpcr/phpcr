@@ -15,11 +15,16 @@ declare(ENCODING = 'utf-8');
  *                                                                        */
 
 /**
+ * @package PHPCR
+ * @version $Id$
+ */
+
+/**
  * A Node interface
  *
- * @package		phpCR
- * @version 	$Id$
- * @license		http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
+ * @package PHPCR
+ * @version $Id$
+ * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
 interface F3_PHPCR_ItemInterface {
 
@@ -36,17 +41,17 @@ interface F3_PHPCR_ItemInterface {
 
 	/**
 	 * Returns the ancestor of the specified depth.
-	 * 
-	 * An ancestor of depth x is the Item that is x levels down along the path from 
+	 *
+	 * An ancestor of depth x is the Item that is x levels down along the path from
 	 * the root node to this Item.
 	 *
 	 * - depth = 0 returns the root node.
 	 * - depth = 1 returns the child of the root node along the path to this Item.
 	 * - depth = 2 returns the grandchild of the root node along the path to this Item.
 	 * - And so on to depth = n, where n is the depth of this Item, which returns this Item itself.
-	 * 
+	 *
 	 * If depth > n is specified then a ItemNotFoundException is thrown.
-	 * 
+	 *
 	 * @param 	integer		$depth
 	 * @return 	F3_PHPCR_Item	The ancestor of this Item at the specified depth.
 	 * @throws 	F3_PHPCR_ItemNotFoundException if depth &lt; 0 or depth &gt; n where n is the depth of this item.
@@ -57,9 +62,9 @@ interface F3_PHPCR_ItemInterface {
 
 	/**
 	 * Returns the depth of this Item in the workspace tree.
-	 * 
+	 *
 	 * Returns the depth below the root node of this Item (counting this Item itself).
-	 * 
+	 *
 	 * - The root node returns 0.
 	 * - A property or child node of the root node returns 1.
 	 * - A property or child node of a child node of the root returns 2.
@@ -79,12 +84,12 @@ interface F3_PHPCR_ItemInterface {
 	public function getSession();
 
 	/**
-	 * Returns true if this Item object represents the same actual workspace 
+	 * Returns true if this Item object represents the same actual workspace
 	 * item as the object otherItem.
-	 * 
+	 *
 	 * Two Item objects represent the same workspace item if all the following
 	 * are true:
-	 * 
+	 *
 	 * - Both objects were acquired through Session objects that were created
 	 *	 by the same Repository object.
 	 * - Both objects were acquired through Session objects bound to the same
@@ -93,7 +98,7 @@ interface F3_PHPCR_ItemInterface {
 	 *	 objects.
 	 * - If they are Property objects they have identical names and
 	 *	 isSame is true of their parent nodes.
-	 * 
+	 *
 	 * This method does not compare the states of the two items. For example, if two
 	 * Item objects representing the same actual workspace item have been
 	 * retrieved through two different sessions and one has been modified, then this method

@@ -15,17 +15,22 @@ declare(ENCODING = 'utf-8');
  *                                                                        */
 
 /**
+ * @package PHPCR
+ * @version $Id$
+ */
+
+/**
  * A Session interface
  *
- * @package		phpCR
- * @version 	$Id$
- * @license		http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
+ * @package PHPCR
+ * @version $Id$
+ * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
 interface F3_PHPCR_SessionInterface {
 
 	/**
 	 * Returns the Repository object through which this session was acquired.
-	 * 
+	 *
 	 * @return F3_PHPCR_RepositoryInterface a Repository object.
 	 */
 	public function getRepository();
@@ -35,7 +40,7 @@ interface F3_PHPCR_SessionInterface {
 	 * return an "anonymous user id" or null if the Credentials used to acquire this
 	 * session happens not to have provided a real user ID (for example, if instead
 	 * of SimpleCredentials some other implementation of Credentials was used).
-	 * 
+	 *
 	 * @return string The user id from the credentials used to acquire this session.
 	 */
 	public function getUserID();
@@ -55,14 +60,14 @@ interface F3_PHPCR_SessionInterface {
 	 * (though, for example, SimpleCredentials does allow for them). This method returns an
 	 * empty array if the Credentials instance used to acquire this Session did not provide
 	 * attributes.
-	 * 
+	 *
 	 * @return string[] Array containing the names of all attributes passed in the credentials used to acquire this session.
 	 */
 	public function getAttributeNames();
 
 	/**
 	 * Returns the Workspace attached to this Session.
-	 * 
+	 *
 	 * @return F3_PHPCR_WorkspaceInterface a Workspace object.
 	 */
 	public function getWorkspace();
@@ -70,7 +75,7 @@ interface F3_PHPCR_SessionInterface {
 	/**
 	 * Returns the root node of the workspace. The root node, "/", is the main access point
 	 * to the content of the workspace.
-	 * 
+	 *
 	 * @return F3_PHPCR_NodeInterface The root node of the workspace: a Node object.
 	 * @throws RepositoryException if an error occurs.
 	 */
@@ -79,7 +84,7 @@ interface F3_PHPCR_SessionInterface {
 	/**
 	 * Returns the node specifed by the given UUID. Only applies to nodes that expose a UUID,
 	 * in other words, those of mixin node type mix:referenceable
-	 * 
+	 *
 	 * @param string $uuid A universally unique identifier.
 	 * @return F3_PHPCR_NodeInterface A Node.
 	 * @throws F3_PHPCR_ItemNotFoundException if the specified UUID is not found.
@@ -92,7 +97,7 @@ interface F3_PHPCR_SessionInterface {
 	 * setting repository properties.
 	 * If writing to the repository is not supported (because this is a level 1-only
 	 * implementation, for example) an UnsupportedRepositoryOperationException will be thrown.
-	 * 
+	 *
 	 * @return F3_PHPCR_ValueFactoryInterface
 	 * @throws F3_PHPCR_UnsupportedRepositoryOperationException if writing to the repository is not supported.
 	 * @throws F3_PHPCR_RepositoryException if another error occurs.
@@ -101,7 +106,7 @@ interface F3_PHPCR_SessionInterface {
 
 	/**Releases all resources associated with this Session. This method should be called when
 	 * a Session is no longer needed.
-	 * 
+	 *
 	 * @return void
 	 */
 	public function logout();
@@ -110,7 +115,7 @@ interface F3_PHPCR_SessionInterface {
 	 * Returns true if this Session object is usable by the client. Otherwise, returns false.
 	 * A usable Session is one that is neither logged-out, timed-out nor in any other way
 	 * disconnected from the repository.
-	 * 
+	 *
 	 * @return boolean true if this Session is usable, false otherwise.
 	 */
 	public function isLive();
@@ -121,10 +126,10 @@ interface F3_PHPCR_SessionInterface {
 	 * the save occurs outside a transaction, the changes are persisted and thus made visible
 	 * to other Sessions. If the save occurs within a transaction, the changes are not persisted
 	 * until the transaction is committed.
-	 * 
+	 *
 	 * If validation fails, then no pending changes are saved and they remain recorded on the
 	 * Session. There is no best-effort or partial save.
-	 * 
+	 *
 	 * When an item is saved the item in persistent storage to which pending changes are written
 	 * is determined as follows:
 	 * * If the transient item has a UUID, then the changes are written to the persistent item
@@ -133,17 +138,17 @@ interface F3_PHPCR_SessionInterface {
 	 *   the root node (whichever occurs first) is found, and the relative path from the node
 	 *   in persistent node with that UUID is used to determine the item in persistent storage
 	 *   to which the changes are to be written.
-	 * 
+	 *
 	 * As a result of these rules, a save of an item that has a UUID will succeed even if that item
 	 * has, in the meantime, been moved in persistent storage to a new location (that is, its path
 	 * has changed). However, a save of a non-UUID item will fail (throwing an InvalidItemStateException)
 	 * if it has, in the meantime, been moved in persistent storage to a new location. A save of a
 	 * non-UUID item will also fail if it has, in addition to being moved, been replaced in its
 	 * original position by a UUID-bearing item.
-	 * 
+	 *
 	 * Note that save uses the same rules to match items between transient storage and persistent
 	 * storage as Node.update(java.lang.String) does to match nodes between two workspaces.
-	 * 
+	 *
 	 * @return void
 	 * @throws F3_PHPCR_AccessDeniedException if any of the changes to be persisted would violate the access privileges of the this Session. Also thrown if any of the changes to be persisted would cause the removal of a node that is currently referenced by a REFERENCE property that this Session does not have read access to.
 	 * @throws F3_PHPCR_ItemExistsException if any of the changes to be persisted would be prevented by the presence of an already existing item in the workspace.
@@ -162,7 +167,7 @@ interface F3_PHPCR_SessionInterface {
 	 * Returns the node at the specified absolute path in the workspace. If no such node exists,
 	 * then it returns the property at the specified path. If no such property exisits a
 	 * PathNotFoundException is thrown.
-	 * 
+	 *
 	 * @param string $absPath An absolute path.
 	 * @return F3_PHPCR_ItemInterface
 	 * @throws F3_PHPCR_PathNotFoundException if the specified path cannot be found.
@@ -173,7 +178,7 @@ interface F3_PHPCR_SessionInterface {
 	/**
 	 * Returns the node at the specified absolute path in the workspace. If no node exists,
 	 * then a PathNotFoundException is thrown.
-	 * 
+	 *
 	 * @param string $absPath An absolute path.
 	 * @return F3_PHPCR_NodeInterface A node
 	 * @throws F3_PHPCR_PathNotFoundException If no node exists.
@@ -184,7 +189,7 @@ interface F3_PHPCR_SessionInterface {
 	/**
 	 * Returns the property at the specified absolute path in the workspace. If no property
 	 * exists, then a PathNotFoundException is thrown.
-	 * 
+	 *
 	 * @param string $absPath An absolute path.
 	 * @return F3_PHPCR_PropertyInterface A property
 	 * @throws F3_PHPCR_PathNotFoundException If no property exists.

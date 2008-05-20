@@ -15,17 +15,22 @@ declare(ENCODING = 'utf-8');
  *                                                                        */
 
 /**
+ * @package PHPCR
+ * @version $Id$
+ */
+
+/**
  * A PropertyIterator interface
  *
- * @package		phpCR
- * @version 	$Id$
- * @license		http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
+ * @package PHPCR
+ * @version $Id$
+ * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
 interface F3_PHPCR_PropertyIteratorInterface extends F3_PHPCR_RangeIteratorInterface {
 
 	/**
 	 * Returns the next Property from the iterator.
-	 * 
+	 *
 	 * @return F3_PHPCR_PropertyInterface
 	 * @throws F3_PHPCR_NoSuchElementException if the iterator contains no more elements.
 	 */

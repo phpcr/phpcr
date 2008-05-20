@@ -15,21 +15,26 @@ declare(ENCODING = 'utf-8');
  *                                                                        */
 
 /**
+ * @package PHPCR
+ * @version $Id$
+ */
+
+/**
  * A ValueFactory interface
  *
  * The ValueFactory object provides methods for the creation Value objects that can
  * then be used to set properties.
  *
- * @package		phpCR
- * @version 	$Id$
- * @license		http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
+ * @package PHPCR
+ * @version $Id$
+ * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
 interface F3_PHPCR_ValueFactoryInterface {
 
 	/**
 	 * Returns a Value object with the specified value. If $type is given,
 	 * conversion is attempted before creating the Value object.
-	 * 
+	 *
 	 * If no type is given, the value is stored as is, i.e. it's type is
 	 * preserved. Exceptions are:
 	 * * if the given $value is a Node object, it's UUID is fetched for the
@@ -38,7 +43,7 @@ interface F3_PHPCR_ValueFactoryInterface {
 	 *   fetched for the Value object. The file pointer will be closed before
 	 *   returning the Value object. The Value object will be of type BINARY.
 	 * * if the given $Value is a DateTime object, the Value type will be DATE.
-	 * 
+	 *
 	 * @param mixed $value
 	 * @param integer $type
 	 * @return F3_PHPCR_ValueInterface

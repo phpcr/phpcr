@@ -15,11 +15,16 @@ declare(ENCODING = 'utf-8');
  *                                                                        */
 
 /**
+ * @package PHPCR
+ * @version $Id$
+ */
+
+/**
  * An UnsupportedRepositoryOperationException
  *
- * @package		phpCR
- * @version 	$Id:F3_PHPCR_UnsupportedRepositoryOperationException.php 254 2007-07-09 06:34:07Z robert $
- * @license		http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
+ * @package PHPCR
+ * @version $Id:F3_PHPCR_UnsupportedRepositoryOperationException.php 254 2007-07-09 06:34:07Z robert $
+ * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
 class F3_PHPCR_UnsupportedRepositoryOperationException extends F3_PHPCR_RepositoryException {
 }
