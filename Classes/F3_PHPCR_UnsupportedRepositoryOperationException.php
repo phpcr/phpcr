@@ -20,7 +20,7 @@ declare(ENCODING = 'utf-8');
  */
 
 /**
- * An UnsupportedRepositoryOperationException
+ * Thrown by methods that are not supported by a particular implementation
  *
  * @package PHPCR
  * @version $Id:F3_PHPCR_UnsupportedRepositoryOperationException.php 254 2007-07-09 06:34:07Z robert $

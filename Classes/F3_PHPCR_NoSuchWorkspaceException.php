@@ -20,7 +20,8 @@ declare(ENCODING = 'utf-8');
  */
 
 /**
- * A NoSuchWorkspaceException
+ * Exception thrown by Repository.login(Credentials, string) when a specific
+ * workspace is not found.
  *
  * @package PHPCR
  * @version $Id:F3_PHPCR_NoSuchWorkspaceException.php 254 2007-07-09 06:34:07Z robert $

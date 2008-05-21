@@ -20,13 +20,27 @@ declare(ENCODING = 'utf-8');
  */
 
 /**
- * The property type definitions
+ * The property types supported by the JCR standard.
+ *
+ * The STRING property type is used to store strings.
+ * BINARY properties are used to store binary data.
+ * The LONG property type is used to store integers.
+ * The DECIMAL property type is used to store precise decimal numbers.
+ * The DOUBLE property type is used to store floating point numbers.
+ * The DATE property type is used to store time and date information. See 4.2.6.1 Date in the specification.
+ * The BOOLEAN property type is used to store boolean values.
+ * A NAME is a pairing of a namespace and a local name. When read, the namespace is mapped to the current prefix. See 4.2.6.2 Name in the specification.
+ * A PATH property is an ordered list of path elements. A path element is a NAME with an optional index. When read, the NAMEs within the path are mapped to their current prefix. A path may be absolute or relative. See 4.2.6.3 Path in the specification.
+ * A REFERENCE property stores the identifier of a referenceable node (one having type mix:referenceable), which must exist within the same workspace or session as the REFERENCE property. A REFERENCE property enforces this referential integrity by preventing (in level 2 implementations) the removal of its target node. See 4.2.6.4 Reference in the specification.
+ * A WEAKREFERENCE property stores the identifier of a referenceable node (one having type mix:referenceable). A WEAKREFERENCE property does not enforce referential integrity. See 4.2.6.5 Weak Reference in the specification.
+ * A URI property is identical to STRING property except that it only accepts values that conform to the syntax of a URI-reference as defined in RFC 3986. See also 4.2.6.6 URI in the specification.
+ * UNDEFINED can be used within a property definition (see 4.7.5 Property Definitions) to specify that the property in question may be of any type. However, it cannot be the actual type of any property instance. For example it will never be returned by Property.getType() and (in level 2 implementations) it cannot be assigned as the type when creating a new property.
  *
  * @package PHPCR
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class F3_PHPCR_PropertyType {
+final class F3_PHPCR_PropertyType {
 	/**
 	 * The supported property types.
 	 */
@@ -35,6 +49,7 @@ class F3_PHPCR_PropertyType {
 	const BINARY    = 2;
 	const LONG      = 3;
 	const DOUBLE    = 4;
+	const DECIMAL   = 12;
 	const DATE      = 5;
 	const BOOLEAN   = 6;
 	const NAME      = 7;
@@ -52,6 +67,7 @@ class F3_PHPCR_PropertyType {
 	const TYPENAME_BINARY = 'Binary';
 	const TYPENAME_LONG = 'Long';
 	const TYPENAME_DOUBLE = 'Double';
+	const TYPENAME_DECIMAL = 'Decimal';
 	const TYPENAME_DATE = 'Date';
 	const TYPENAME_BOOLEAN = 'Boolean';
 	const TYPENAME_NAME = 'Name';
@@ -88,6 +104,9 @@ class F3_PHPCR_PropertyType {
 				break;
 			case self::DOUBLE :
 				return self::TYPENAME_DOUBLE;
+				break;
+			case self::DECIMAL :
+				return self::TYPENAME_DECIMAL;
 				break;
 			case self::DATE :
 				return self::TYPENAME_DATE;
@@ -136,6 +155,9 @@ class F3_PHPCR_PropertyType {
 				break;
 			case self::TYPENAME_DOUBLE :
 				return self::DOUBLE;
+				break;
+			case self::TYPENAME_DECIMAL :
+				return self::DECIMAL;
 				break;
 			case self::TYPENAME_DATE :
 				return self::DATE;

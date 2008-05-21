@@ -20,7 +20,8 @@ declare(ENCODING = 'utf-8');
  */
 
 /**
- * A NamespaceException
+ * Exception thrown by Session.setNamespacePrefix(String prefix, String uri)
+ * if the specified uri is not registered in the NamespaceRegistry.
  *
  * @package PHPCR
  * @version $Id$

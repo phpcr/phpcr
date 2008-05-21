@@ -20,7 +20,8 @@ declare(ENCODING = 'utf-8');
  */
 
 /**
- * A RepositoryException
+ * Main exception thrown by classes in this package. May contain an error
+ * message and/or another nested exception.
  *
  * @package PHPCR
  * @version $Id:F3_PHPCR_RepositoryException.php 254 2007-07-09 06:34:07Z robert $

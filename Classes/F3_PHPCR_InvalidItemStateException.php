@@ -20,16 +20,16 @@ declare(ENCODING = 'utf-8');
  */
 
 /**
- * Exception thrown when an attempt is made to assign a value to a property
- * that has an invalid format, given the type of the property. Also thrown
- * if an attempt is made to read the value of a property using a type-specific
- * read method of a type into which it is not convertible.
+ * Exception thrown by the write methods of Node and Property and by save and
+ * refresh if an attempted change would conflict with a change to the persistent
+ * workspace made through another Session. Also thrown by methods of Node and
+ * Property if that object represents an item that has been removed from the workspace.
  *
  * @package PHPCR
- * @version $Id:F3_PHPCR_RepositoryException.php 254 2007-07-09 06:34:07Z robert $
+ * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class F3_PHPCR_ValueFormatException extends F3_PHPCR_RepositoryException {
+class F3_PHPCR_InvalidItemStateException extends F3_PHPCR_RepositoryException {
 }
 
 ?>

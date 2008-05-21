@@ -20,7 +20,8 @@ declare(ENCODING = 'utf-8');
  */
 
 /**
- * A RangeIterator interface
+ * Extends Iterator with the skip, getSize and getPosition methods. The base
+ * interface of all type-specific iterators in the JCR and its sub packages.
  *
  * @package PHPCR
  * @version $Id$
@@ -32,7 +33,7 @@ interface F3_PHPCR_RangeIteratorInterface extends F3_PHPCR_IteratorInterface {
 	 * Skip a number of elements in the iterator.
 	 *
 	 * @param integer $skipNum the non-negative number of elements to skip
-	 * @throws F3_PHPCR_NoSuchElementException if skipped past the last element in the iterator.
+	 * @throws OutOfBoundsException if skipped past the last element in the iterator.
 	 */
 	public function skip($skipNum);
 

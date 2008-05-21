@@ -20,7 +20,8 @@ declare(ENCODING = 'utf-8');
  */
 
 /**
- * A NodeIterator interface
+ * Allows easy iteration through a list of Nodes with nextNode as well as a skip method
+ * inherited from RangeIterator.
  *
  * @package PHPCR
  * @version $Id$
@@ -32,7 +33,7 @@ interface F3_PHPCR_NodeIteratorInterface extends F3_PHPCR_RangeIteratorInterface
 	 * Returns the next Node in the iteration.
 	 *
 	 * @return F3_PHPCR_NodeInterface
-	 * @throws F3_PHPCR_NoSuchElementException if the iterator contains no more elements.
+	 * @throws OutOfBoundsException if the iterator contains no more elements.
 	 */
 	public function nextNode();
 

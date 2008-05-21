@@ -20,16 +20,14 @@ declare(ENCODING = 'utf-8');
  */
 
 /**
- * Exception thrown when an attempt is made to assign a value to a property
- * that has an invalid format, given the type of the property. Also thrown
- * if an attempt is made to read the value of a property using a type-specific
- * read method of a type into which it is not convertible.
+ * Exception thrown by the deserialization methods of Session if the serialized
+ * data being input has an invalid format.
  *
  * @package PHPCR
- * @version $Id:F3_PHPCR_RepositoryException.php 254 2007-07-09 06:34:07Z robert $
+ * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class F3_PHPCR_ValueFormatException extends F3_PHPCR_RepositoryException {
+class F3_PHPCR_InvalidSerializedDataException extends F3_PHPCR_RepositoryException {
 }
 
 ?>

@@ -20,30 +20,10 @@ declare(ENCODING = 'utf-8');
  */
 
 /**
- * A Value interface
- *
  * A generic holder for the value of a property. A Value object can be used
  * without knowing the actual property type (STRING, DOUBLE, BINARY etc.).
  *
  * Any implementation of this interface must adhere to the following behavior:
- * * A Value object can be read using type-specific get methods. These methods
- *   are divided into two groups:
- *   * The non-stream get methods getString(), getDate(), getLong(), getDouble()
- *     and getBoolean().
- *   * getStream().
- * * Once a Value object has been read once using getStream(), all subsequent
- *   calls to getStream() will return the same Stream object. This may mean,
- *   for example, that the stream returned is fully or partially consumed.
- *   In order to get a fresh stream the Value object must be reacquired via
- *   Property.getValue() or Property.getValues().
- * * Once a Value object has been read once using getStream(), any subsequent
- *   call to any of the non-stream get methods will throw an IllegalStateException.
- *   In order to successfully invoke a non-stream get method, the Value must be
- *   reacquired via Property.getValue() or Property.getValues().
- * * Once a Value object has been read once using a non-stream get method, any
- *   subsequent call to getStream() will throw an IllegalStateException. In
- *   order to successfully invoke getStream(), the Value must be reacquired via
- *   Property.getValue() or Property.getValues().
  *
  * Two Value instances, v1 and v2, are considered equal if and only if:
  * * v1.getType() == v2.getType(), and,
@@ -60,49 +40,58 @@ declare(ENCODING = 'utf-8');
  * instances even though the getString() method in the above definition implies a
  * state change.
  *
+ * The deprecated getStream() method and it's related exceptions and rules have been
+ * omitted in this PHP port of the API.
+ *
  * @package PHPCR
  * @version  $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
 interface F3_PHPCR_ValueInterface {
 
+
+	/**
+	 * Returns a Binary representation of this value. The Binary object in turn provides
+	 * methods to access the binary data itself. Uses the standard conversion to binary
+	 * (see JCR specification).
+	 *
+	 * @return F3_PHPCR_BinaryInterface A Binary representation of this value.
+	 * @throws F3_PHPCR_RepositoryException if another error occurs.
+	 */
+	public function getBinary();
+
 	/**
 	 * Returns a string representation of this value.
 	 *
-	 * @return string A String representation of the value of this property.
+	 * @return string A string representation of the value of this property.
 	 * @throws F3_PHPCR_ValueFormatException if conversion to a String is not possible.
-	 * @throws BadMethodCallException if getStream has previously been called on this Value instance.
 	 * @throws F3_PHPCR_RepositoryException if another error occurs.
 	 */
 	public function getString();
-
-	/**
-	 * Returns an InputStream representation of this value. Uses the standard
-	 * conversion to binary (see JCR specification).
-	 * It is the responsibility of the caller to close the returned InputStream.
-	 *
-	 * @return InputStream An InputStream representation of this value.
-	 * @throws BadMethodCallException if a non-stream get method has previously been called on this Value instance.
-	 * @throws F3_PHPCR_RepositoryException if another error occurs.
-	 */
-	public function getStream();
 
 	/**
 	 * Returns a long representation of this value.
 	 *
 	 * @return string A long representation of the value of this property.
 	 * @throws F3_PHPCR_ValueFormatException if conversion to a long is not possible.
-	 * @throws BadMethodCallException if getStream has previously been called on this Value instance.
 	 * @throws F3_PHPCR_RepositoryException if another error occurs.
 	 */
 	public function getLong();
+
+	/**
+	 * Returns a BigDecimal representation of this value.
+	 *
+	 * @return string A double representation of the value of this property.
+	 * @throws F3_PHPCR_ValueFormatException if conversion is not possible.
+	 * @throws F3_PHPCR_RepositoryException if another error occurs.
+	 */
+	public function getDecimal();
 
 	/**
 	 * Returns a double representation of this value.
 	 *
 	 * @return string A double representation of the value of this property.
 	 * @throws F3_PHPCR_ValueFormatException if conversion to a double is not possible.
-	 * @throws BadMethodCallException if getStream has previously been called on this Value instance.
 	 * @throws F3_PHPCR_RepositoryException if another error occurs.
 	 */
 	public function getDouble();
@@ -115,7 +104,6 @@ interface F3_PHPCR_ValueInterface {
 	 *
 	 * @return DateTime A DateTime representation of the value of this property.
 	 * @throws F3_PHPCR_ValueFormatException if conversion to a DateTime is not possible.
-	 * @throws BadMethodCallException if getStream has previously been called on this Value instance.
 	 * @throws F3_PHPCR_RepositoryException if another error occurs.
 	 */
 	public function getDate();
@@ -125,7 +113,6 @@ interface F3_PHPCR_ValueInterface {
 	 *
 	 * @return string A boolean representation of the value of this property.
 	 * @throws F3_PHPCR_ValueFormatException if conversion to a boolean is not possible.
-	 * @throws BadMethodCallException if getStream has previously been called on this Value instance.
 	 * @throws F3_PHPCR_RepositoryException if another error occurs.
 	 */
 	public function getBoolean();

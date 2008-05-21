@@ -20,7 +20,8 @@ declare(ENCODING = 'utf-8');
  */
 
 /**
- * A PropertyIterator interface
+ * Allows easy iteration through a list of Propertys with nextProperty as
+ * well as a skip method.
  *
  * @package PHPCR
  * @version $Id$
@@ -32,7 +33,7 @@ interface F3_PHPCR_PropertyIteratorInterface extends F3_PHPCR_RangeIteratorInter
 	 * Returns the next Property from the iterator.
 	 *
 	 * @return F3_PHPCR_PropertyInterface
-	 * @throws F3_PHPCR_NoSuchElementException if the iterator contains no more elements.
+	 * @throws OutOfBoundsException if the iterator contains no more elements.
 	 */
 	public function nextProperty();
 

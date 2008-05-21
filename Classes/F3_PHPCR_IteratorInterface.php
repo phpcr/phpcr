@@ -35,7 +35,7 @@ interface F3_PHPCR_IteratorInterface extends Iterator {
 	 * Returns the next element. Commented as PHP dows not allow overriding methods from extended interfaces...
 	 *
 	 * @return mixed
-	 * @throws F3_PHPCR_NoSuchElementException if no next element exists
+	 * @throws OutOfBoundsException if no next element exists
 	 */
 	//public function next();
 

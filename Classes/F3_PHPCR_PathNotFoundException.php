@@ -20,7 +20,8 @@ declare(ENCODING = 'utf-8');
  */
 
 /**
- * A PathNotFoundException
+ * Exception thrown when no Item exists at the specified path or when the
+ * specified path implies intermediary Nodes that do not exist.
  *
  * @package PHPCR
  * @version $Id:F3_PHPCR_ItemNotFoundException.php 254 2007-07-09 06:34:07Z robert $

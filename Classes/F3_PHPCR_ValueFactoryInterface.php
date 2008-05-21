@@ -20,8 +20,6 @@ declare(ENCODING = 'utf-8');
  */
 
 /**
- * A ValueFactory interface
- *
  * The ValueFactory object provides methods for the creation Value objects that can
  * then be used to set properties.
  *
@@ -32,6 +30,18 @@ declare(ENCODING = 'utf-8');
 interface F3_PHPCR_ValueFactoryInterface {
 
 	/**
+	 * Returns a F3_PHPCR_Binary object with a value consisting of the content of
+	 * the specified resource handle.
+	 * The passed resource handle is closed before this method returns either normally
+	 * or because of an exception.
+	 *
+	 * @param resource $handle
+	 * @return F3_PHPCR_BinaryInterface
+	 * @throws F3_PHPCR_RepositoryException if an error occurs.
+	 */
+	public function createBinary($handle);
+
+	/**
 	 * Returns a Value object with the specified value. If $type is given,
 	 * conversion is attempted before creating the Value object.
 	 *
@@ -39,9 +49,6 @@ interface F3_PHPCR_ValueFactoryInterface {
 	 * preserved. Exceptions are:
 	 * * if the given $value is a Node object, it's UUID is fetched for the
 	 *   Value object and the type of that object will be REFERENCE
-	 * * if the given $value is a file pointer, the file's content will be
-	 *   fetched for the Value object. The file pointer will be closed before
-	 *   returning the Value object. The Value object will be of type BINARY.
 	 * * if the given $Value is a DateTime object, the Value type will be DATE.
 	 *
 	 * @param mixed $value
@@ -51,7 +58,6 @@ interface F3_PHPCR_ValueFactoryInterface {
 	 * @throws F3_PHPCR_RepositoryException if the specified Node is not referenceable, the current Session is no longer active, or another error occurs.
 	 */
 	public function createValue($value, $type = NULL);
-
 }
 
 ?>

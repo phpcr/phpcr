@@ -20,7 +20,7 @@ declare(ENCODING = 'utf-8');
  */
 
 /**
- * An ItemNotFoundException
+ * Exception thrown by methods of Item, Node and Workspace when an item is not found.
  *
  * @package PHPCR
  * @version $Id:F3_PHPCR_ItemNotFoundException.php 254 2007-07-09 06:34:07Z robert $

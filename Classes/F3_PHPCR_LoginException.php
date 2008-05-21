@@ -20,7 +20,8 @@ declare(ENCODING = 'utf-8');
  */
 
 /**
- * A LoginException
+ * Exception thrown by Repository.login(Credentials, String) and
+ * Session.impersonate(Credentials) if the specified credentials are invalid.
  *
  * @package PHPCR
  * @version $Id:F3_PHPCR_LoginException.php 254 2007-07-09 06:34:07Z robert $

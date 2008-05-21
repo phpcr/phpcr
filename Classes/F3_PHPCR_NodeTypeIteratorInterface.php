@@ -27,7 +27,7 @@ interface F3_PHPCR_NodeTypeIteratorInterface extends F3_PHPCR_RangeIteratorInter
 	 * Returns the next NodeType in the iteration.
 	 *
 	 * @return F3_PHPCR_NodeTypeInterface
-	 * @throws F3_PHPCR_NoSuchElementException if the iterator contains no more elements.
+	 * @throws OutOfBoundsException if the iterator contains no more elements.
 	 */
 	public function nextNodeType();
 

@@ -20,13 +20,13 @@ declare(ENCODING = 'utf-8');
  */
 
 /**
- * A F3_PHPCR_NoSuchElementException
+ * Exception thrown by access-related methods.
  *
  * @package PHPCR
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class F3_PHPCR_NoSuchElementException extends F3_PHPCR_RepositoryException {
+class F3_PHPCR_AccessDeniedException extends RuntimeException {
 }
 
 ?>

@@ -1,9 +1,10 @@
 Complete interfaces
 
-Repository
+Binary
 Credentials
 NodeIterator
 PropertyIterator
 RangeIterator
+- Repository
 Value
 ValueFactory
