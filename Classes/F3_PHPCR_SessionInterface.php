@@ -82,15 +82,15 @@ interface F3_PHPCR_SessionInterface {
 	public function getRootNode();
 
 	/**
-	 * Returns the node specifed by the given UUID. Only applies to nodes that expose a UUID,
-	 * in other words, those of mixin node type mix:referenceable
+	 * Returns the node specified by the given identifier. Applies to both referenceable
+	 * and non-referenceable nodes.
 	 *
-	 * @param string $uuid A universally unique identifier.
+	 * @param string $id An identifier.
 	 * @return F3_PHPCR_NodeInterface A Node.
-	 * @throws F3_PHPCR_ItemNotFoundException if the specified UUID is not found.
+	 * @throws F3_PHPCR_ItemNotFoundException if the specified identifier is not found. This exception is also thrown if this Session does not have read access to the node with the specified identifier.
 	 * @throws F3_PHPCR_RepositoryException if another error occurs.
 	 */
-	public function getNodeByUUID($uuid);
+	public function getNodeByIdentifier($id);
 
 	/**
 	 * This method returns a ValueFactory that is used to create Value objects for use when

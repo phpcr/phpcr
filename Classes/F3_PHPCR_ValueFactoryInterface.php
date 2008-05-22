@@ -47,7 +47,7 @@ interface F3_PHPCR_ValueFactoryInterface {
 	 *
 	 * If no type is given, the value is stored as is, i.e. it's type is
 	 * preserved. Exceptions are:
-	 * * if the given $value is a Node object, it's UUID is fetched for the
+	 * * if the given $value is a Node object, it's Identifier is fetched for the
 	 *   Value object and the type of that object will be REFERENCE
 	 * * if the given $Value is a DateTime object, the Value type will be DATE.
 	 *
