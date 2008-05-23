@@ -20,7 +20,17 @@ declare(ENCODING = 'utf-8');
  */
 
 /**
- * A Session interface
+ * The Session object provides read and (in level 2) write access to the
+ * content of a particular workspace in the repository.
+ *
+ * The Session object is returned by Repository.login(). It encapsulates both
+ * the authorization settings of a particular user (as specified by the passed
+ * Credentials) and a binding to the workspace specified by the workspaceName
+ * passed on login.
+ *
+ * Each Session object is associated one-to-one with a Workspace object. The
+ * Workspace object represents a "view" of an actual repository workspace
+ * entity as seen through the authorization settings of its associated Session.
  *
  * @package PHPCR
  * @version $Id$
@@ -36,34 +46,34 @@ interface F3_PHPCR_SessionInterface {
 	public function getRepository();
 
 	/**
-	 * Gets the user ID that was used to acquire this session. This method is free to
-	 * return an "anonymous user id" or null if the Credentials used to acquire this
-	 * session happens not to have provided a real user ID (for example, if instead
-	 * of SimpleCredentials some other implementation of Credentials was used).
+	 * Gets the user ID associated with this Session. How the user ID is set is
+	 * up to the implementation, it may be a string passed in as part of the
+	 * credentials or it may be a string acquired in some other way. This method
+	 * is free to return an "anonymous user ID" or null.
 	 *
-	 * @return string The user id from the credentials used to acquire this session.
+	 * @return string The user id associated with this Session.
 	 */
 	public function getUserID();
 
 	/**
-	 * Returns the value of the named attribute as an Object, or null if no attribute
-	 * of the given name exists. See getAttributeNames().
+	 * Returns the names of the attributes set in this session as a result of
+	 * the Credentials that were used to acquire it. Not all Credentials
+	 * implementations will contain attributes (though, for example,
+	 * SimpleCredentials does allow for them). This method returns an empty
+	 * array if the Credentials instance did not provide attributes.
 	 *
-	 * @param string $name - the name of an attribute passed in the credentials used to acquire this session.
-	 * @return object The value of the attribute.
-	 */
-	public function getAttribute($name);
-
-	/**
-	 * Returns the names of the attributes set in this session as a result of the Credentials
-	 * that were used to acquire it. Not all Credentials implementations will contain attributes
-	 * (though, for example, SimpleCredentials does allow for them). This method returns an
-	 * empty array if the Credentials instance used to acquire this Session did not provide
-	 * attributes.
-	 *
-	 * @return string[] Array containing the names of all attributes passed in the credentials used to acquire this session.
+	 * @return array A string array containing the names of all attributes passed in the credentials used to acquire this session.
 	 */
 	public function getAttributeNames();
+
+	/**
+	 * Returns the value of the named attribute as an Object, or null if no
+	 * attribute of the given name exists. See getAttributeNames().
+	 *
+	 * @param string $name The name of an attribute passed in the credentials used to acquire this session.
+	 * @return object The value of the attribute or null if no attribute of the given name exists.
+	 */
+	public function getAttribute($name);
 
 	/**
 	 * Returns the Workspace attached to this Session.
@@ -73,8 +83,8 @@ interface F3_PHPCR_SessionInterface {
 	public function getWorkspace();
 
 	/**
-	 * Returns the root node of the workspace. The root node, "/", is the main access point
-	 * to the content of the workspace.
+	 * Returns the root node of the workspace, "/". This node is the main access
+	 * point to the content of the workspace.
 	 *
 	 * @return F3_PHPCR_NodeInterface The root node of the workspace: a Node object.
 	 * @throws RepositoryException if an error occurs.
@@ -93,66 +103,60 @@ interface F3_PHPCR_SessionInterface {
 	public function getNodeByIdentifier($id);
 
 	/**
-	 * This method returns a ValueFactory that is used to create Value objects for use when
-	 * setting repository properties.
-	 * If writing to the repository is not supported (because this is a level 1-only
-	 * implementation, for example) an UnsupportedRepositoryOperationException will be thrown.
+	 * Returns the node at the specified absolute path in the workspace. If no such
+	 * node exists, then it returns the property at the specified path. If no such
+	 * property exists a PathNotFoundException is thrown.
 	 *
-	 * @return F3_PHPCR_ValueFactoryInterface
-	 * @throws F3_PHPCR_UnsupportedRepositoryOperationException if writing to the repository is not supported.
+	 * This method should only be used if the application does not know whether the
+	 * item at the indicated path is property or node. In cases where the application
+	 * has this information, either getNode(java.lang.String) or
+	 * getProperty(java.lang.String) should be used, as appropriate. In many repository
+	 * implementations the node and property-specific methods are likely to be more
+	 * efficient than getItem.
+	 *
+	 * @param string $absPath An absolute path.
+	 * @return F3_PHPCR_ItemInterface
+	 * @throws F3_PHPCR_PathNotFoundException if the specified path cannot be found.
 	 * @throws F3_PHPCR_RepositoryException if another error occurs.
 	 */
-	public function getValueFactory();
-
-	/**Releases all resources associated with this Session. This method should be called when
-	 * a Session is no longer needed.
-	 *
-	 * @return void
-	 */
-	public function logout();
+	public function getItem($absPath);
 
 	/**
-	 * Returns true if this Session object is usable by the client. Otherwise, returns false.
-	 * A usable Session is one that is neither logged-out, timed-out nor in any other way
-	 * disconnected from the repository.
+	 * Returns the node at the specified absolute path in the workspace.
 	 *
-	 * @return boolean true if this Session is usable, false otherwise.
+	 * @param string $absPath An absolute path.
+	 * @return F3_PHPCR_NodeInterface A node
+	 * @throws F3_PHPCR_PathNotFoundException If no node exists.
+	 * @throws F3_PHPCR_RepositoryException if another error occurs.
 	 */
-	public function isLive();
+	public function getNode($absPath);
 
 	/**
-	 * Validates all pending changes currently recorded in this Session. If validation of all
-	 * pending changes succeeds, then this change information is cleared from the Session. If
-	 * the save occurs outside a transaction, the changes are persisted and thus made visible
-	 * to other Sessions. If the save occurs within a transaction, the changes are not persisted
-	 * until the transaction is committed.
+	 * Returns the property at the specified absolute path in the workspace.
 	 *
-	 * If validation fails, then no pending changes are saved and they remain recorded on the
-	 * Session. There is no best-effort or partial save.
+	 * @param string $absPath An absolute path.
+	 * @return F3_PHPCR_PropertyInterface A property
+	 * @throws F3_PHPCR_PathNotFoundException If no property exists.
+	 * @throws F3_PHPCR_RepositoryException if another error occurs.
+	*/
+	public function getProperty($absPath);
+
+	/**
+	 * Validates all pending changes currently recorded in this Session. If validation
+	 * of all pending changes succeeds, then this change information is cleared from
+	 * the Session. If the save occurs outside a transaction, the changes are persisted
+	 * and thus made visible to other Sessions. If the save occurs within a transaction,
+	 * the changes are not persisted until the transaction is committed.
 	 *
-	 * When an item is saved the item in persistent storage to which pending changes are written
-	 * is determined as follows:
-	 * * If the transient item has a UUID, then the changes are written to the persistent item
-	 *   with the same UUID.
-	 * * If the transient item does not have a UUID then its nearest ancestor with a UUID, or
-	 *   the root node (whichever occurs first) is found, and the relative path from the node
-	 *   in persistent node with that UUID is used to determine the item in persistent storage
-	 *   to which the changes are to be written.
+	 * If validation fails, then no pending changes are saved and they remain recorded
+	 * on the Session. There is no best-effort or partial save.
 	 *
-	 * As a result of these rules, a save of an item that has a UUID will succeed even if that item
-	 * has, in the meantime, been moved in persistent storage to a new location (that is, its path
-	 * has changed). However, a save of a non-UUID item will fail (throwing an InvalidItemStateException)
-	 * if it has, in the meantime, been moved in persistent storage to a new location. A save of a
-	 * non-UUID item will also fail if it has, in addition to being moved, been replaced in its
-	 * original position by a UUID-bearing item.
-	 *
-	 * Note that save uses the same rules to match items between transient storage and persistent
-	 * storage as Node.update(java.lang.String) does to match nodes between two workspaces.
+	 * The item in persistent storage to which a transient item is saved is determined
+	 * by matching identifiers and paths.
 	 *
 	 * @return void
 	 * @throws F3_PHPCR_AccessDeniedException if any of the changes to be persisted would violate the access privileges of the this Session. Also thrown if any of the changes to be persisted would cause the removal of a node that is currently referenced by a REFERENCE property that this Session does not have read access to.
 	 * @throws F3_PHPCR_ItemExistsException if any of the changes to be persisted would be prevented by the presence of an already existing item in the workspace.
-	 * @throws F3_PHPCR_LockException if any of the changes to be persisted would violate a lock.
 	 * @throws F3_PHPCR_ConstraintViolationException if any of the changes to be persisted would violate a node type or restriction. Additionally, a repository may use this exception to enforce implementation- or configuration-dependent restrictions.
 	 * @throws F3_PHPCR_InvalidItemStateException if any of the changes to be persisted conflicts with a change already persisted through another session and the implementation is such that this conflict can only be detected at save-time and therefore was not detected earlier, at change-time.
 	 * @throws F3_PHPCR_ReferentialIntegrityException if any of the changes to be persisted would cause the removal of a node that is currently referenced by a REFERENCE property that this Session has read access to.
@@ -164,38 +168,31 @@ interface F3_PHPCR_SessionInterface {
 	public function save();
 
 	/**
-	 * Returns the node at the specified absolute path in the workspace. If no such node exists,
-	 * then it returns the property at the specified path. If no such property exisits a
-	 * PathNotFoundException is thrown.
+	 * This method returns a ValueFactory that is used to create Value objects for use when
+	 * setting repository properties.
 	 *
-	 * @param string $absPath An absolute path.
-	 * @return F3_PHPCR_ItemInterface
-	 * @throws F3_PHPCR_PathNotFoundException if the specified path cannot be found.
+	 * @return F3_PHPCR_ValueFactoryInterface
+	 * @throws F3_PHPCR_UnsupportedRepositoryOperationException if writing to the repository is not supported.
 	 * @throws F3_PHPCR_RepositoryException if another error occurs.
 	 */
-	public function getItem($absPath);
+	public function getValueFactory();
 
 	/**
-	 * Returns the node at the specified absolute path in the workspace. If no node exists,
-	 * then a PathNotFoundException is thrown.
+	 * Releases all resources associated with this Session. This method should be called when
+	 * a Session is no longer needed.
 	 *
-	 * @param string $absPath An absolute path.
-	 * @return F3_PHPCR_NodeInterface A node
-	 * @throws F3_PHPCR_PathNotFoundException If no node exists.
-	 * @throws F3_PHPCR_RepositoryException if another error occurs.
+	 * @return void
 	 */
-	public function getNode($absPath);
+	public function logout();
 
 	/**
-	 * Returns the property at the specified absolute path in the workspace. If no property
-	 * exists, then a PathNotFoundException is thrown.
+	 * eturns true if this Session object is usable by the client. Otherwise, returns false.
+	 * A usable Session is one that is neither logged-out, timed-out nor in any other way
+	 * disconnected from the repository.
 	 *
-	 * @param string $absPath An absolute path.
-	 * @return F3_PHPCR_PropertyInterface A property
-	 * @throws F3_PHPCR_PathNotFoundException If no property exists.
-	 * @throws F3_PHPCR_RepositoryException if another error occurs.
-	*/
-	public function getProperty($absPath);
+	 * @return boolean true if this Session is usable, false otherwise.
+	 */
+	public function isLive();
 }
 
 ?>

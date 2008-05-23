@@ -77,11 +77,18 @@ final class F3_PHPCR_PropertyType {
 	const TYPENAME_URI= 'URI';
 
 	/**
+	 * Make instantiation impossible...
+	 *
+	 * @return void
+	 * @author Karsten Dambekalns <karsten@typo3.org>
+	 */
+	private function __construct() {}
+
+	/**
 	 * Returns the name of the specified type, as used in serialization.
 	 *
-	 * @param  int  $type: type the property type
+	 * @param int $type type the property type
 	 * @return string  name of the specified type
-	 * @author Travis Swicegood <development@domain51.com>
 	 * @author Sebastian Kurfuerst <sebastian@typo3.org>
 	 * @author Karsten Dambekalns <karsten@typo3.org>
 	 */
@@ -133,9 +140,8 @@ final class F3_PHPCR_PropertyType {
 	/**
 	 * Returns the numeric constant value of the type with the specified name.
 	 *
-	 * @param  string $name: The name of the property type
+	 * @param string $name The name of the property type
 	 * @return int The numeric constant value
-	 * @author Travis Swicegood <development@domain51.com>
 	 * @author Sebastian Kurfuerst <sebastian@typo3.org>
 	 * @author Karsten Dambekalns <karsten@typo3.org>
 	 */
