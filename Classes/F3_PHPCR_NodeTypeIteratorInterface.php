@@ -15,6 +15,11 @@ declare(ENCODING = 'utf-8');
  *                                                                        */
 
 /**
+ * @package PHPCR
+ * @version $Id$
+ */
+
+/**
  * A NodeTypeIterator interface
  *
  * @package PHPCR

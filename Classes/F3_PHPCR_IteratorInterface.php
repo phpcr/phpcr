@@ -23,7 +23,7 @@ declare(ENCODING = 'utf-8');
  * An Iterator interface
  *
  * The methods next(), hasNext() and remove() as in java.util.Iterator
- * append() is something we though would be nice...
+ * append() is something we thought would be nice...
  *
  * @package PHPCR
  * @version $Id$
