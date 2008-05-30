@@ -2,18 +2,28 @@ Complete exceptions
 
 As of 2008-05-20 those are all JSR-283 exceptions, i.e. we are done.
 
+AccessControlException
 AccessDeniedException
+ConstraintViolationException
 InvalidItemStateException
 InvalidLifecycleTransitionException
+InvalidNodeTypeDefinitionException
 InvalidSerializedDataException
+InvalidQueryException
 ItemExistsException
 ItemNotFoundException
+LabelExistsVersionException
+LockException
 LoginException
 MergeException
 NamespaceException
+NodeTypeExistsException
+NoSuchNodeTypeException
 NoSuchWorkspaceException
 PathNotFoundException
 ReferentialIntegrityException
 RepositoryException
+SearchNotSupportedException
 UnsupportedRepositoryOperationException
 ValueFormatException
+VersionException
