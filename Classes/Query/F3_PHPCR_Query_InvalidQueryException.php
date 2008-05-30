@@ -16,18 +16,19 @@ declare(ENCODING = 'utf-8');
 
 /**
  * @package PHPCR
+ * @subpackage Query
  * @version $Id$
  */
 
 /**
- * A NodeType interface
+ * Thrown by methods of Query.
  *
  * @package PHPCR
+ * @subpackage Query
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface F3_PHPCR_NodeTypeDefinitionInterface {
-
+class F3_PHPCR_Query_InvalidQueryException extends F3_PHPCR_RepositoryException {
 }
 
 ?>

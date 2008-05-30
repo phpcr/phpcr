@@ -16,18 +16,29 @@ declare(ENCODING = 'utf-8');
 
 /**
  * @package PHPCR
+ * @subpackage Version
  * @version $Id$
  */
 
 /**
- * Exception thrown when an attempt is made to register an invalid node
- * type definition template.
+ * Allows easy iteration through a list of Versions objects with nextVersion
+ * as well as a skip method inherited from RangeIterator.
  *
  * @package PHPCR
+ * @subpackage Version
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class F3_PHPCR_InvalidNodeTypeDefinitionException extends F3_PHPCR_RepositoryException {
+interface F3_PHPCR_Version_VersionIteratorInterface extends F3_PHPCR_RangeIteratorInterface {
+
+	/**
+	 * Returns the next Version in the iteration.
+	 *
+	 * @return F3_PHPCR_Version_VersionInterface the next Version in the iteration
+	 * @throws OutOfBoundsException if iteration has no more Versions.
+	 */
+	public function nextVersion();
+
 }
 
 ?>

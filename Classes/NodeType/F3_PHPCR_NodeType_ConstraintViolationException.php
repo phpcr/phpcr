@@ -16,17 +16,21 @@ declare(ENCODING = 'utf-8');
 
 /**
  * @package PHPCR
+ * @subpackage NodeType
  * @version $Id$
  */
 
 /**
- * Exception thrown by access control related methods of AccessControlManager.
+ * Exception thrown when an action would violate a constraint on repository
+ * structure. For example, when an attempt is made to persistently add an
+ * item to a node that would violate that node's node type.
  *
  * @package PHPCR
+ * @subpackage NodeType
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class F3_PHPCR_AccessControlException extends F3_PHPCR_RepositoryException {
+class F3_PHPCR_NodeType_ConstraintViolationException extends F3_PHPCR_RepositoryException {
 }
 
 ?>

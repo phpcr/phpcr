@@ -16,18 +16,19 @@ declare(ENCODING = 'utf-8');
 
 /**
  * @package PHPCR
+ * @subpackage Query
  * @version $Id$
  */
 
 /**
- * The Node interface represents a node in the hierarchy that makes up the repository.
+ * Exception thrown by Query->execute().
  *
  * @package PHPCR
+ * @subpackage Query
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
-
+class F3_PHPCR_Query_SearchNotSupportedException extends F3_PHPCR_RepositoryException {
 }
 
 ?>

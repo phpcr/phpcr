@@ -16,19 +16,20 @@ declare(ENCODING = 'utf-8');
 
 /**
  * @package PHPCR
+ * @subpackage Lock
  * @version $Id$
  */
 
 /**
- * Exception thrown when an action would violate a constraint on repository
- * structure. For example, when an attempt is made to persistently add an
- * item to a node that would violate that node's node type.
+ * Exception thrown by Item.save() and Session.save() when persisting a
+ * change would conflict with a lock.
  *
  * @package PHPCR
+ * @subpackage Lock
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class F3_PHPCR_ConstraintViolationException extends F3_PHPCR_RepositoryException {
+class F3_PHPCR_Lock_LockException extends F3_PHPCR_RepositoryException {
 }
 
 ?>

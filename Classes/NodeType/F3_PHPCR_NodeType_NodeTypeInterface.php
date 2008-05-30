@@ -16,18 +16,20 @@ declare(ENCODING = 'utf-8');
 
 /**
  * @package PHPCR
+ * @subpackage NodeType
  * @version $Id$
  */
 
 /**
- * Exception thrown when an attempt is made to register a node type that
- * already exists, and allowUpdate has not been set to true.
+ * A NodeType interface
  *
  * @package PHPCR
+ * @subpackage NodeType
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class F3_PHPCR_NodeTypeExistsException extends F3_PHPCR_RepositoryException {
+interface F3_PHPCR_NodeType_NodeTypeInterface extends F3_PHPCR_NodeType_NodeTypeDefinitionInterface {
+
 }
 
 ?>

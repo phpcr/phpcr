@@ -20,13 +20,16 @@ declare(ENCODING = 'utf-8');
  */
 
 /**
- * A Property interface
+ * A Property object represents the smallest granularity of content storage.
+ * It has a single parent node and no children. A property consists of a name
+ * and a value, or in the case of multi-value properties, a set of values all
+ * of the same type. See Value.
  *
  * @package PHPCR
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface F3_PHPCR_PropertyInterface {
+interface F3_PHPCR_PropertyInterface extends F3_PHPCR_ItemInterface {
 
 }
 

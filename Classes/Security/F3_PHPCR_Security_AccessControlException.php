@@ -16,18 +16,19 @@ declare(ENCODING = 'utf-8');
 
 /**
  * @package PHPCR
+ * @subpackage Security
  * @version $Id$
  */
 
 /**
- * Exception thrown by Version.addSuccessor if an invalid version graph
- * operation is attempted.
+ * Exception thrown by access control related methods of AccessControlManager.
  *
  * @package PHPCR
+ * @subpackage Security
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class F3_PHPCR_VersionException extends F3_PHPCR_RepositoryException {
+class F3_PHPCR_Security_AccessControlException extends F3_PHPCR_RepositoryException {
 }
 
 ?>

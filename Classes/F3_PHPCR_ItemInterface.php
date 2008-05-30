@@ -20,7 +20,7 @@ declare(ENCODING = 'utf-8');
  */
 
 /**
- * A Node interface
+ * The Item is the base interface of Node and Property.
  *
  * @package PHPCR
  * @version $Id$

@@ -2,9 +2,21 @@ Complete interfaces
 
 Binary
 Credentials
+Lock
 NodeIterator
 PropertyIterator
 RangeIterator
-- Repository
 Value
 ValueFactory
+Version
+VersionHistory
+VersionIterator
+
+
+Started interfaces
+
+Repository
+
+
+To be done
+

@@ -16,19 +16,19 @@ declare(ENCODING = 'utf-8');
 
 /**
  * @package PHPCR
+ * @subpackage NodeType
  * @version $Id$
  */
 
 /**
- * Exception thrown by VersionHistory.addVersionLabel if moveLabel is set to
- * false and an attempt is made to add a label that already exists in the
- * VersionHistory.
+ * Exception thrown by node type-related methods.
  *
  * @package PHPCR
+ * @subpackage NodeType
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class F3_PHPCR_LabelExistsVersionException extends F3_PHPCR_RepositoryException {
+class F3_PHPCR_NodeType_NoSuchNodeTypeException extends F3_PHPCR_RepositoryException {
 }
 
 ?>

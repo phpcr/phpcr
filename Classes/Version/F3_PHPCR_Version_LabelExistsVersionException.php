@@ -16,26 +16,21 @@ declare(ENCODING = 'utf-8');
 
 /**
  * @package PHPCR
+ * @subpackage Version
  * @version $Id$
  */
 
 /**
- * A NodeTypeIterator interface
+ * Exception thrown by VersionHistory.addVersionLabel if moveLabel is set to
+ * false and an attempt is made to add a label that already exists in the
+ * VersionHistory.
  *
  * @package PHPCR
+ * @subpackage Version
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface F3_PHPCR_NodeTypeIteratorInterface extends F3_PHPCR_RangeIteratorInterface {
-
-	/**
-	 * Returns the next NodeType in the iteration.
-	 *
-	 * @return F3_PHPCR_NodeTypeInterface
-	 * @throws OutOfBoundsException if the iterator contains no more elements.
-	 */
-	public function nextNodeType();
-
+class F3_PHPCR_Version_LabelExistsVersionException extends F3_PHPCR_RepositoryException {
 }
 
 ?>

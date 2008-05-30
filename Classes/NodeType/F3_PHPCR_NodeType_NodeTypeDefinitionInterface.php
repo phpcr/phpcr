@@ -16,17 +16,20 @@ declare(ENCODING = 'utf-8');
 
 /**
  * @package PHPCR
+ * @subpackage NodeType
  * @version $Id$
  */
 
 /**
- * Exception thrown by node type-related methods.
+ * A NodeTypeDefinition interface
  *
  * @package PHPCR
+ * @subpackage NodeType
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class F3_PHPCR_NoSuchNodeTypeException extends F3_PHPCR_RepositoryException {
+interface F3_PHPCR_NodeType_NodeTypeDefinitionInterface {
+
 }
 
 ?>

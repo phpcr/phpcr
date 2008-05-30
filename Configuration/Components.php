@@ -29,6 +29,6 @@ $c->F3_PHPCR_NodeIteratorInterface->scope = 'prototype';
 $c->F3_PHPCR_PropertyInterface->scope = 'prototype';
 $c->F3_PHPCR_PropertyIteratorInterface->scope = 'prototype';
 $c->F3_PHPCR_ValueInterface->scope = 'prototype';
-$c->F3_PHPCR_NodeTypeInterface->scope = 'prototype';
+$c->F3_PHPCR_NodeType_NodeTypeInterface->scope = 'prototype';
 
 ?>

@@ -20,7 +20,8 @@ declare(ENCODING = 'utf-8');
  */
 
 /**
- * A Repository interface
+ * The entry point into the content repository. The Repository object is
+ * usually acquired through the RepositoryFactory.
  *
  * @package PHPCR
  * @version $Id$

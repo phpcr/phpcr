@@ -16,17 +16,20 @@ declare(ENCODING = 'utf-8');
 
 /**
  * @package PHPCR
+ * @subpackage Version
  * @version $Id$
  */
 
 /**
- * Thrown by methods of Query.
+ * Exception thrown by Version.addSuccessor if an invalid version graph
+ * operation is attempted.
  *
  * @package PHPCR
+ * @subpackage Version
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class F3_PHPCR_InvalidQueryException extends F3_PHPCR_RepositoryException {
+class F3_PHPCR_Version_VersionException extends F3_PHPCR_RepositoryException {
 }
 
 ?>

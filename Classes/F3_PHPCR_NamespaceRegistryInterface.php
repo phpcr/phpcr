@@ -20,7 +20,12 @@ declare(ENCODING = 'utf-8');
  */
 
 /**
- * A NamespaceRegistry interface
+ * Each repository has a single, persistent namespace registry represented by
+ * the NamespaceRegistry object, accessed via Workspace.getNamespaceRegistry().
+ * The namespace registry contains the default prefixes of the registered
+ * namespaces. The namespace registry may contain namespaces that are not used
+ * in repository content, and there may be repository content with namespaces
+ * that are not included n the registry.
  *
  * @package PHPCR
  * @version $Id$

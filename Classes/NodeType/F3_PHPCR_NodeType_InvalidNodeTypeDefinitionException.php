@@ -16,18 +16,20 @@ declare(ENCODING = 'utf-8');
 
 /**
  * @package PHPCR
+ * @subpackage NodeType
  * @version $Id$
  */
 
 /**
- * A NodeType interface
+ * Exception thrown when an attempt is made to register an invalid node
+ * type definition template.
  *
  * @package PHPCR
+ * @subpackage NodeType
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface F3_PHPCR_NodeTypeInterface extends F3_PHPCR_NodeTypeDefinitionInterface {
-
+class F3_PHPCR_NodeType_InvalidNodeTypeDefinitionException extends F3_PHPCR_RepositoryException {
 }
 
 ?>

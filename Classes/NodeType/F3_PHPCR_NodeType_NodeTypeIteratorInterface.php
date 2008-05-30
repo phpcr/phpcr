@@ -16,17 +16,28 @@ declare(ENCODING = 'utf-8');
 
 /**
  * @package PHPCR
+ * @subpackage NodeType
  * @version $Id$
  */
 
 /**
- * Exception thrown by Query->execute().
+ * A NodeTypeIterator interface
  *
  * @package PHPCR
+ * @subpackage NodeType
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class F3_PHPCR_SearchNotSupportedException extends F3_PHPCR_RepositoryException {
+interface F3_PHPCR_NodeType_NodeTypeIteratorInterface extends F3_PHPCR_RangeIteratorInterface {
+
+	/**
+	 * Returns the next NodeType in the iteration.
+	 *
+	 * @return F3_PHPCR_NodeTypeInterface
+	 * @throws OutOfBoundsException if the iterator contains no more elements.
+	 */
+	public function nextNodeType();
+
 }
 
 ?>

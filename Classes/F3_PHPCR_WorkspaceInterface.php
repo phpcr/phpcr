@@ -20,11 +20,15 @@ declare(ENCODING = 'utf-8');
  */
 
 /**
- * A Workspace interface
+ * The Workspace object represents a "view" of an actual repository workspace
+ * entity as seen through the authorization settings of its associated Session.
+ * Each Workspace object is associated one-to-one with a Session object. The
+ * Workspace object can be acquired by calling Session.getWorkspace() on the
+ * associated Session object.
  *
- * @package		PHPCR
- * @version 	$Id$
- * @license		http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
+ * @package PHPCR
+ * @version $Id$
+ * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
 interface F3_PHPCR_WorkspaceInterface {
 
