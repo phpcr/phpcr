@@ -21,7 +21,7 @@ declare(ENCODING = 'utf-8');
  */
 
 /**
- * A NodeTypeIterator interface
+ * An iterator for NodeType objects.
  *
  * @package PHPCR
  * @subpackage NodeType
@@ -33,8 +33,8 @@ interface F3_PHPCR_NodeType_NodeTypeIteratorInterface extends F3_PHPCR_RangeIter
 	/**
 	 * Returns the next NodeType in the iteration.
 	 *
-	 * @return F3_PHPCR_NodeTypeInterface
-	 * @throws OutOfBoundsException if the iterator contains no more elements.
+	 * @return F3_PHPCR_NodeTypeInterface the next NodeType in the iteration
+	 * @throws OutOfBoundsException if iteration has no more NodeTypes
 	 */
 	public function nextNodeType();
 

@@ -1,0 +1,156 @@
+JSR-283 API porting status
+
+The listings below are structured by packages, marked with #[name]. Files in
+a package are indented below the parent package.
+
+The WIP section lists interfaces/classes that exist as files but are not yet
+completely ported. It should be empty (in an ideal world)...
+The OPEN section lists interfaces/classes that are missing completely
+The DONE section lists what has been done already.
+
+
+== WIP ==
+
+# NodeType
+# Observation
+# Query
+	## QOM
+# Security
+# Util
+Item
+Node
+Property
+RepositoryFactory
+
+
+== OPEN ==
+
+# NodeType
+	ItemDefinition
+	NodeDefinition
+	NodeDefinitionTemplate
+	NodeTypeManager
+	NodeTypeTemplate
+	PropertyDefinition
+	PropertyDefinitionTemplate
+# Observation
+	Event
+	EventIterator
+	EventJournal
+	EventListener
+	EventListenerIterator
+	ObservationManager
+# Query
+	PreparedQuery
+	Query
+	QueryManager
+	QueryResult
+	Row
+	RowIterator
+	## QOM
+		And
+		BindVariableValue
+		ChildNode
+		ChildNodeJoinCondition
+		Column
+		Comparison
+		Constraint
+		DescendantNode
+		DescendantNodeJoinCondition
+		DynamicOperand
+		EquiJoinCondition
+		FullTextSearch
+		FullTextSearchScore
+		Join
+		JoinCondition
+		Length
+		LowerCase
+		NodeLocalName
+		NodeName
+		Not
+		Operand
+		Or
+		Ordering
+		PropertyExistence
+		PropertyValue
+		QueryObjectModel
+		QueryObjectModelConstants
+		QueryObjectModelFactory
+		SameNode
+		SameNodeJoinCondition
+		Selector
+		Source
+		StaticOperand
+		UpperCase
+# Security
+	AccessControlEntry
+	AccessControlManager
+	AccessControlPolicy
+	AccessControlPolicyIterator
+	Hold
+	Privilege
+	RetentionPolicy
+# Util
+	TraversingItemVisitor
+	TraversingItemVisitor.Default
+ImportUUIDBehavior
+ItemVisitor
+SimpleCredentials
+
+
+
+== DONE ==
+
+# Lock
+	Lock
+	LockException
+# NodeType
+	ConstraintViolationException
+	InvalidNodeTypeDefinitionException
+	NodeType
+	NodeTypeDefinition
+	NodeTypeExistsException
+	NodeTypeIterator
+	NoSuchNodeTypeException
+# Observation
+# Query
+	InvalidQueryException
+	SearchNotSupportedException
+	## QOM
+# Security
+	AccessControlException
+# Util
+# Version
+	LabelExistsVersionException
+	OnParentVersionAction
+	Version
+	VersionException
+	VersionHistory
+	VersionIterator
+AccessDeniedException
+Binary
+Credentials
+InvalidItemStateException
+InvalidLifecycleTransitionException
+InvalidSerializedDataException
+ItemExistsException
+ItemNotFoundException
+LoginException
+MergeException
+NamespaceException
+NamespaceRegistry
+NodeIterator
+NoSuchWorkspaceException
+PathNotFoundException
+PropertyIterator
+PropertyType
+RangeIterator
+ReferentialIntegrityException
+Repository
+RepositoryException
+Session
+UnsupportedRepositoryOperationException
+Value
+ValueFactory
+ValueFormatException
+Workspace
