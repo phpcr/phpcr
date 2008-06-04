@@ -17,11 +17,8 @@ The DONE section lists what has been done already.
 	## QOM
 # Security
 # Util
-Item
 Node
-Property
 RepositoryFactory
-
 
 == OPEN ==
 
@@ -93,9 +90,6 @@ RepositoryFactory
 # Util
 	TraversingItemVisitor
 	TraversingItemVisitor.Default
-ImportUUIDBehavior
-ItemVisitor
-SimpleCredentials
 
 
 
@@ -130,11 +124,14 @@ SimpleCredentials
 AccessDeniedException
 Binary
 Credentials
+ImportUUIDBehavior
 InvalidItemStateException
 InvalidLifecycleTransitionException
 InvalidSerializedDataException
+Item
 ItemExistsException
 ItemNotFoundException
+ItemVisitor
 LoginException
 MergeException
 NamespaceException
@@ -142,6 +139,7 @@ NamespaceRegistry
 NodeIterator
 NoSuchWorkspaceException
 PathNotFoundException
+Property
 PropertyIterator
 PropertyType
 RangeIterator
@@ -149,6 +147,7 @@ ReferentialIntegrityException
 Repository
 RepositoryException
 Session
+SimpleCredentials
 UnsupportedRepositoryOperationException
 Value
 ValueFactory
