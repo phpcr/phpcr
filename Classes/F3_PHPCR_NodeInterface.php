@@ -646,7 +646,7 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 * @throws F3_PHPCR_UnsupportedRepositoryOperationException if this node is not versionable.
 	 * @throws F3_PHPCR_RepositoryException if another error occurs.
 	 */
-	public function doneMerge($version);
+	public function doneMerge(F3_PHPCR_Version_VersionInterface $version);
 
 	/**
 	 * Cancels the merge process with respect to this node and specified version.
@@ -665,7 +665,7 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 * @throws F3_PHPCR_UnsupportedRepositoryOperationException if this node is not versionable.
 	 * @throws F3_PHPCR_RepositoryException  if another error occurs.
 	 */
-	public function cancelMerge($version);
+	public function cancelMerge(F3_PHPCR_Version_VersionInterface $version);
 
 	/**
 	 * If this node does have a corresponding node in the workspace srcWorkspace,
@@ -755,7 +755,7 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 * @throws F3_PHPCR_UnsupportedRepositoryOperationException if N is not versionable.
 	 * @throws F3_PHPCR_RepositoryException if another error occurs.
 	 */
-	public function createConfiguration($baseline);
+	public function createConfiguration(F3_PHPCR_Version_VersionInterface $baseline);
 
 	/**
 	 * Returns the absolute path of the node in the specified workspace that

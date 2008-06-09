@@ -26,11 +26,23 @@ declare(ENCODING = 'utf-8');
  * @package PHPCR
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
+ * @scope prototype
  */
 final class F3_PHPCR_SimpleCredentials implements F3_PHPCR_CredentialsInterface {
 
+	/**
+	 * @var string
+	 */
 	private $userID;
+
+	/**
+	 * @var string
+	 */
 	private $password;
+
+	/**
+	 * @var array
+	 */
 	private $attributes = array();
 
 	/**
@@ -96,7 +108,7 @@ final class F3_PHPCR_SimpleCredentials implements F3_PHPCR_CredentialsInterface 
 	 * @author Karsten Dambekalns <karsten@typo3.org>
 	 */
 	public function getAttribute($name) {
-		if(isset($this->attributes[$name])) {
+		if (isset($this->attributes[$name])) {
 			return $this->attributes[$name];
 		} else {
 			return NULL;
@@ -111,7 +123,7 @@ final class F3_PHPCR_SimpleCredentials implements F3_PHPCR_CredentialsInterface 
 	 * @author Karsten Dambekalns <karsten@typo3.org>
 	 */
 	public function removeAttribute($name) {
-		if(isset($this->attributes[$name])) {
+		if (isset($this->attributes[$name])) {
 			unset($this->attributes[$name]);
 		}
 	}
