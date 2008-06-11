@@ -151,6 +151,7 @@ interface F3_PHPCR_NodeType_NodeTypeManagerInterface {
 	 * Unregisters the specified node type.
 	 *
 	 * @param string $name a String.
+	 * @return void
 	 * @throws F3_PHPCR_UnsupportedRepositoryOperationException if this implementation does not support node type registration.
 	 * @throws F3_PHPCR_NodeType_NoSuchNodeTypeException if no registered node type exists with the specified name.
 	 * @throws F3_PHPCR_RepositoryException if another error occurs.

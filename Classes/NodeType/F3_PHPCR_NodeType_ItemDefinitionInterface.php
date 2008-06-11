@@ -134,7 +134,7 @@ interface F3_PHPCR_NodeType_ItemDefinitionInterface {
 	 *
 	 * @return booleana boolean.
 	 */
-	 public function isProtected();
+	public function isProtected();
 
 }
 
