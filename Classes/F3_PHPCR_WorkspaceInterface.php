@@ -35,7 +35,7 @@ interface F3_PHPCR_WorkspaceInterface {
 	/**
 	 * Returns the Session object through which this Workspace object was acquired.
 	 *
-	 * @return Session a Session object.
+	 * @return F3_PHPCR_SessionInterface a Session object.
 	 */
 	public function getSession();
 
@@ -238,7 +238,7 @@ interface F3_PHPCR_WorkspaceInterface {
 	/**
 	 * Returns the QueryManager object, through search methods are accessed.
 	 *
-	 * @return F3_PHPCR_Query_QueryManager the QueryManager object.
+	 * @return F3_PHPCR_Query_QueryManagerInterface the QueryManager object.
 	 * @throws F3_PHPCR_RepositoryException if an error occurs.
 	 */
 	public function getQueryManager();
@@ -248,7 +248,7 @@ interface F3_PHPCR_WorkspaceInterface {
 	 * between prefixes and namespaces. In level 2 repositories the NamespaceRegistry
 	 * can also be used to change the namespace mappings.
 	 *
-	 * @return F3_PHPCR_NamespaceRegistry the NamespaceRegistry.
+	 * @return F3_PHPCR_NamespaceRegistryInterface the NamespaceRegistry.
 	 * @throws F3_PHPCR_RepositoryException if an error occurs.
 	 */
 	public function getNamespaceRegistry();
@@ -260,7 +260,7 @@ interface F3_PHPCR_WorkspaceInterface {
 	 * repository-wide set of available node types. In repositories that support it,
 	 * the NodeTypeManager can also be used to register new node types.
 	 *
-	 * @return F3_PHPCR_NodeType_NodeTypeManager a NodeTypeManager object.
+	 * @return F3_PHPCR_NodeType_NodeTypeManagerInterface a NodeTypeManager object.
 	 * @throws F3_PHPCR_RepositoryException if an error occurs.
 	 */
 	public function getNodeTypeManager();
@@ -268,7 +268,7 @@ interface F3_PHPCR_WorkspaceInterface {
 	/**
 	 * Returns the ObservationManager object.
 	 *
-	 * @return F3_PHPCR_Observation_ObservationManager an ObservationManager object.
+	 * @return F3_PHPCR_Observation_ObservationManagerInterface an ObservationManager object.
 	 * @throws F3_PHPCR_F3_PHPCR_UnsupportedRepositoryOperationException if the implementation does not support observation.
 	 * @throws F3_PHPCR_F3_PHPCR_RepositoryException if an error occurs.
 	 */
@@ -459,7 +459,7 @@ interface F3_PHPCR_WorkspaceInterface {
 	 * The new node is persisted immediately and does not require a save.
 	 *
 	 * @param string $title a String
-	 * @return F3_PHPCR_Node the new activity Node.
+	 * @return F3_PHPCR_NodeInterface the new activity Node.
 	 * @throws F3_PHPCR_UnsupportedRepositoryOperationException if the repository does not support activities.
 	 * @throws F3_PHPCR_RepositoryException if another error occurs.
 	 */
@@ -490,7 +490,7 @@ interface F3_PHPCR_WorkspaceInterface {
 	 * subtree that received a merge result of fail.
 	 *
 	 * @param F3_PHPCR_NodeInterface $activityNode an nt:activity node
-	 * @return F3_PHPCR_NodeIterator a NodeIterator
+	 * @return F3_PHPCR_NodeIteratorInterface a NodeIterator
 	 * @throws F3_PHPCR_AccessDeniedException if the current session does not have sufficient rights to perform the operation.
 	 * @throws F3_PHPCR_Version_VersionException if the specified node is not an nt:activity node.
 	 * @throws F3_PHPCR_MergeException in the same cases as in a regular shallow merge (see Node.merge(String, boolean, boolean)).
