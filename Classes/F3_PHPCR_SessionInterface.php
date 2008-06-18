@@ -671,36 +671,6 @@ interface F3_PHPCR_SessionInterface {
 	public function isLive();
 
 	/**
-	 * Adds the specified lock tokens to this Session. Holding a lock token
-	 * makes this Session the owner of the lock specified by that particular
-	 * lock token.
-	 *
-	 * @param array $lockTokens an array of lock tokens.
-	 * @return void
-	 * @throws F3_PHPCR_Lock_LockException if any of the specified lock tokens are already held by another Session and the implementation does not support simultaneous ownership of open-scoped locks.
-	 * @throws F3_PHPCR_RepositoryException if another error occurs.
-	 */
-	public function addLockTokens(array $lockTokens);
-
-	/**
-	 * Returns an array containing all lock tokens currently held by this
-	 * Session. Note that any such tokens will represent open-scoped locks,
-	 * since session-scoped locks do not have tokens.
-	 *
-	 * @return array an array of lock tokens (strings)
-	 */
-	public function getLockTokens();
-
-	/**
-	 * Removes the specified lock tokens from this Session.
-	 *
-	 * @param array $lockTokens an array of lock tokens.
-	 * @throws F3_PHPCR_Lock_LockException if this Session does not hold all of the specified lock tokens.
-	 * @throws F3_PHPCR_RepositoryException if another error occurs.
-	 */
-	public function removeLockTokens(array $lockTokens);
-
-	/**
 	 * This method is called by the client to set the current activity on the
 	 * session. Changing the current activity is done by calling setActivity
 	 * again. Cancelling the current activity (so that the session has no
@@ -724,6 +694,15 @@ interface F3_PHPCR_SessionInterface {
 	 * @throws F3_PHPCR_RepositoryException if another error occurs.
 	 */
 	public function getAccessControlManager();
+
+	/**
+	 * Returns the retention and hold manager for this Session.
+	 *
+	 * @return F3_PHPCR_Retention_RetentionManagerInterface the retention manager for this Session.
+	 * @throws F3_PHPCR_UnsupportedRepositoryOperationException if retention and hold are not supported.
+	 * @throws F3_PHPCR_RepositoryException if another error occurs.
+	 */
+	public function getRetentionManager();
 
 }
 

@@ -20,6 +20,8 @@ RepositoryFactory
 
 == OPEN ==
 
+# Lock
+	LockManager
 # Observation
 	Event
 	EventIterator
@@ -28,7 +30,6 @@ RepositoryFactory
 	EventListenerIterator
 	ObservationManager
 # Query
-	PreparedQuery
 	Query
 	QueryManager
 	QueryResult
@@ -51,6 +52,7 @@ RepositoryFactory
 		Join
 		JoinCondition
 		Length
+		Literal
 		LowerCase
 		NodeLocalName
 		NodeName
@@ -71,16 +73,15 @@ RepositoryFactory
 		UpperCase
 # Security
 	AccessControlEntry
+	AccessControlList
 	AccessControlManager
 	AccessControlPolicy
 	AccessControlPolicyIterator
-	Hold
+	NamedAccessControlPolicy
 	Privilege
-	RetentionPolicy
 # Util
 	TraversingItemVisitor
 	TraversingItemVisitor.Default
-
 
 
 == DONE ==
@@ -112,6 +113,7 @@ RepositoryFactory
 	AccessControlException
 # Util
 # Version
+	ActivityViolationException
 	LabelExistsVersionException
 	OnParentVersionAction
 	Version
@@ -121,6 +123,7 @@ RepositoryFactory
 AccessDeniedException
 Binary
 Credentials
+GuestCredentials
 ImportUUIDBehavior
 InvalidItemStateException
 InvalidLifecycleTransitionException

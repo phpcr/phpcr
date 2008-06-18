@@ -31,12 +31,15 @@ declare(ENCODING = 'utf-8');
 interface F3_PHPCR_Lock_LockInterface {
 
 	/**
-	 * Returns the value of the jcr:lockOwner property. This is the user ID
-	 * bound to the Session that holds the lock or another implementation-
-	 * dependent string identifying the user. The lock owner's identity is
-	 * only provided for informational purposes. It does not govern who can
-	 * perform an unlock or make changes to the locked nodes; that depends
-	 * entirely upon who the token holder is.
+	 * Returns the value of the jcr:lockOwner property. This is either the
+	 * client supplied owner information (see LockManager->lock()),
+	 * an implementation-dependent string identifying the user who either
+	 * created the lock or who is bound to the session holding the lock, or
+	 * NULL if none of these are available.
+	 *
+	 * The lock owner's identity is only provided for informational purposes.
+	 * It does not govern who can perform an unlock or make changes to the
+	 * locked nodes; that depends entirely upon who the token holder is.
 	 *
 	 * @return string a user ID
 	 */
@@ -60,12 +63,21 @@ interface F3_PHPCR_Lock_LockInterface {
 
 	/**
 	 * May return the lock token for this lock. If this lock is open-scoped and
-	 * the current session holds the lock token for this lock, then this method
-	 * will return that lock token. Otherwise this method will return null.
+	 * the current session either holds the lock token for this lock, or the
+	 * repository chooses to expose the lock token to the current session,
+	 * then this method will return that lock token. Otherwise this method will
+	 * return null.
 	 *
 	 * @return string
 	 */
 	public function getLockToken();
+
+	/**
+	 * Returns the seconds remaining until this locks times out
+	 * (PHP_INT_MAX if the timeout is unknown or infinite).
+	 * @return integer
+	 */
+	public function getSecondsRemaining();
 
 	/**
 	 * Returns true if this Lock object represents a lock that is currently in
@@ -85,8 +97,7 @@ interface F3_PHPCR_Lock_LockInterface {
 
 	/**
 	 * Returns true if this is a session-scoped lock and the scope is bound to the
-	 * current session. Returns false if this is an open-scoped lock or is session-
-	 * scoped but the scope is bound to another session.
+	 * current session. Returns false otherwise.
 	 *
 	 * @return boolean
 	 */

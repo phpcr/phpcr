@@ -33,14 +33,14 @@ interface F3_PHPCR_RepositoryInterface {
 	const LEVEL_2_SUPPORTED = 'level.2.supported';
 	const OPTION_ACTIVITIES_SUPPORTED = 'option.activities.supported';
 	const OPTION_BASELINES_SUPPORTED = 'option.baselines.supported';
-	const OPTION_FULL_ACCESS_CONTROL_SUPPORTED = 'option.full.access.control.supported';
+	const OPTION_RETENTION_AND_HOLD_SUPPORTED = 'option.retention.and.hold.supported';
 	const OPTION_JOURNALED_OBSERVATION_SUPPORTED = 'option.journaled.observation.supported';
 	const OPTION_LIFECYCLE_SUPPORTED = 'option.lifecycle.supported';
 	const OPTION_LOCKING_SUPPORTED = 'option.locking.supported';
 	const OPTION_NODE_TYPE_REG_SUPPORTED = 'option.node.type.reg.supported';
 	const OPTION_OBSERVATION_SUPPORTED = 'option.observation.supported';
 	const OPTION_QUERY_SQL_SUPPORTED = 'option.query.sql.supported';
-	const OPTION_SIMPLE_ACCESS_CONTROL_SUPPORTED = 'option.simple.access.control.supported';
+	const OPTION_ACCESS_CONTROL_SUPPORTED = 'option.access.control.supported';
 	const OPTION_SIMPLE_VERSIONING_SUPPORTED = 'option.simple.versioning.supported';
 	const OPTION_TRANSACTIONS_SUPPORTED = 'option.transactions.supported';
 	const OPTION_VERSIONING_SUPPORTED = 'option.versioning.supported';

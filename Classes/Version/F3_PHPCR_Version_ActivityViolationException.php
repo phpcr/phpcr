@@ -21,16 +21,20 @@ declare(ENCODING = 'utf-8');
  */
 
 /**
- * Exception thrown by VersionHistory.addVersionLabel if moveLabel is set to
- * false and an attempt is made to add a label that already exists in the
- * VersionHistory.
+ * Exception will be thrown by Node.checkout and Node.checkpoint if an activity
+ * A is present on the current session and any of the following conditions is met:
+ *
+ *  * There already is a node in another workspace that has a checked-out node
+ *    for the version history of N whose jcr:activity references A.
+ *  * There is a version in the version history of N that is not a predecessor
+ *    of N but whose jcr:activity references A.
  *
  * @package PHPCR
  * @subpackage Version
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class F3_PHPCR_Version_LabelExistsVersionException extends F3_PHPCR_Version_VersionException {
+class F3_PHPCR_Version_ActivityViolationException extends F3_PHPCR_Version_VersionException {
 }
 
 ?>

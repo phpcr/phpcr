@@ -16,21 +16,22 @@ declare(ENCODING = 'utf-8');
 
 /**
  * @package PHPCR
- * @subpackage Version
  * @version $Id$
  */
 
 /**
- * Exception thrown by VersionHistory.addVersionLabel if moveLabel is set to
- * false and an attempt is made to add a label that already exists in the
- * VersionHistory.
+ * GuestCredentials implements the Credentials interface and is used to obtain
+ * a "guest", "public" or "anonymous" session.
+ * Note that the characteristics of the session created from the
+ * GuestCredentials remain implementation specific.
  *
  * @package PHPCR
- * @subpackage Version
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
+ * @scope prototype
  */
-class F3_PHPCR_Version_LabelExistsVersionException extends F3_PHPCR_Version_VersionException {
+final class F3_PHPCR_GuestCredentials implements F3_PHPCR_CredentialsInterface {
+
 }
 
 ?>

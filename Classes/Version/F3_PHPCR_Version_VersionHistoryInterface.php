@@ -119,7 +119,7 @@ interface F3_PHPCR_Version_VersionHistoryInterface extends F3_PHPCR_NodeInterfac
 	 * @param boolean $moveLabel if true, then if label is already assigned to a version in this version history, it is moved to the new version specified; if false, then attempting to assign an already used label will throw a VersionException.
 	 * @return void
 	 * @throws F3_PHPCR_Version_LabelExistsVersionException if moveLabel is false, and an attempt is made to add a label that already exists in this version history
-	 * @throws F3_PHPCR_Version_VersionException if an attempt is made to add an existing label to a version history and moveLabel is false or if the specified version does not exist in this version history or if the specified version is the root version (jcr:rootVersion).
+	 * @throws F3_PHPCR_Version_VersionException if the specified version does not exist in this version history or if the specified version is the root version (jcr:rootVersion).
 	 * @throws F3_PHPCR_RepositoryException if another error occurs.
 	 */
 	public function addVersionLabel($versionName, $label, $moveLabel);

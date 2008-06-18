@@ -23,8 +23,8 @@ declare(ENCODING = 'utf-8');
  * Interface for all credentials that may be passed to the
  * Repository.login(Credentials credentials, String workspaceName) method.
  * Serves as a marker interface that all repositories must implement when
- * providing a credentials class. See SimpleCredentials for one example of
- * such a class.
+ * providing a credentials class. See SimpleCredentials and GuestCredentials
+ * for examples of such a class.
  *
  * @package PHPCR
  * @version $Id$

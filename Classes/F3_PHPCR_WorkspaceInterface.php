@@ -236,6 +236,15 @@ interface F3_PHPCR_WorkspaceInterface {
 	public function restore(array $versions, $removeExisting);
 
 	/**
+	 * Returns the LockManager object, through which locking methods are accessed.
+	 *
+	 * @return F3_PHPCR_Lock_LockManagerInterface
+	 * @throws F3_PHPCR_UnsupportedRepositoryOperationException if the implementation does not support locking.
+	 * @throws F3_PHPCR_RepositoryException if an error occurs.
+	 */
+	public function getLockManager();
+
+	/**
 	 * Returns the QueryManager object, through search methods are accessed.
 	 *
 	 * @return F3_PHPCR_Query_QueryManagerInterface the QueryManager object.
