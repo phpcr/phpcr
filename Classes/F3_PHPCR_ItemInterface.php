@@ -178,33 +178,6 @@ interface F3_PHPCR_ItemInterface {
 	public function accept(F3_PHPCR_ItemVisitorInterface $visitor);
 
 	/**
-	 * Validates all pending changes currently recorded in this Session that
-	 * apply to this Item or any of its descendants (that is, the subtree
-	 * rooted at this Item). If validation of all pending changes succeeds,
-	 * then this change information is cleared from the Session. If the save
-	 * occurs outside a transaction, the changes are persisted and thus made
-	 * visible to other Sessions. If the save occurs within a transaction,
-	 * the changes are not persisted until the transaction is committed.
-	 * If validation fails, then no pending changes are saved and they remain
-	 * recorded on the Session. There is no best-effort or partial save.
-	 *
-	 * The item in persistent storage to which a transient item is saved is
-	 * determined by matching identifiers and paths.
-	 *
-	 * @return void
-	 * @throws F3_PHPCR_AccessDeniedException if any of the changes to be persisted would violate the access privileges of the this Session. Also thrown if any of the changes to be persisted would cause the removal of a node that is currently referenced by a REFERENCE property that this Session does not have read access to.
-	 * @throws F3_PHPCR_ItemExistsException if any of the changes to be persisted would be prevented by the presence of an already existing item in the workspace.
-	 * @throws F3_PHPCR_ConstraintViolationException if any of the changes to be persisted would violate a node type or restriction. Additionally, a repository may use this exception to enforce implementation- or configuration-dependent restrictions.
-	 * @throws F3_PHPCR_InvalidItemStateException if any of the changes to be persisted conflicts with a change already persisted through another session and the implementation is such that this conflict can only be detected at save-time and therefore was not detected earlier, at change-time.
-	 * @throws F3_PHPCR_ReferentialIntegrityException if any of the changes to be persisted would cause the removal of a node that is currently referenced by a REFERENCE property that this Session has read access to.
-	 * @throws F3_PHPCR_Version_VersionException if the save would make a result in a change to persistent storage that would violate the read-only status of a checked-in node.
-	 * @throws F3_PHPCR_Lock_LockException if the save would result in a change to persistent storage that would violate a lock.
-	 * @throws F3_PHPCR_NodeType_NoSuchNodeTypeException if the save would result in the addition of a node with an unrecognized node type.
-	 * @throws F3_PHPCR_RepositoryException if another error occurs.
-	*/
-	public function save();
-
-	/**
 	 * If keepChanges is false, this method discards all pending changes
 	 * currently recorded in this Session that apply to this Item or any
 	 * of its descendants (that is, the subtree rooted at this Item) and
