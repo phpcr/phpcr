@@ -30,11 +30,6 @@ RepositoryFactory
 	EventListenerIterator
 	ObservationManager
 # Query
-	Query
-	QueryManager
-	QueryResult
-	Row
-	RowIterator
 	## QOM
 		And
 		BindVariableValue
@@ -106,7 +101,13 @@ RepositoryFactory
 	PropertyDefinitionTemplate
 # Observation
 # Query
+	Query
+	QueryManager
+	QueryResult
+	PreparedQuery
 	InvalidQueryException
+	Row
+	RowIterator
 	SearchNotSupportedException
 	## QOM
 # Security
