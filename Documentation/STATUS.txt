@@ -37,10 +37,8 @@ RepositoryFactory
 		ChildNodeJoinCondition
 		Column
 		Comparison
-		Constraint
 		DescendantNode
 		DescendantNodeJoinCondition
-		DynamicOperand
 		EquiJoinCondition
 		FullTextSearch
 		FullTextSearchScore
@@ -52,18 +50,11 @@ RepositoryFactory
 		NodeLocalName
 		NodeName
 		Not
-		Operand
 		Or
 		Ordering
 		PropertyExistence
-		PropertyValue
-		QueryObjectModel
-		QueryObjectModelConstants
-		QueryObjectModelFactory
 		SameNode
 		SameNodeJoinCondition
-		Selector
-		Source
 		StaticOperand
 		UpperCase
 # Security
@@ -110,6 +101,15 @@ RepositoryFactory
 	RowIterator
 	SearchNotSupportedException
 	## QOM
+		Constraint
+		DynamicOperand
+		PropertyValue
+		Operand
+		QueryObjectModel
+		QueryObjectModelConstants
+		QueryObjectModelFactory
+		Selector
+		Source
 # Security
 	AccessControlException
 # Util
