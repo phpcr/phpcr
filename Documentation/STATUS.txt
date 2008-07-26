@@ -32,11 +32,9 @@ RepositoryFactory
 # Query
 	## QOM
 		And
-		BindVariableValue
 		ChildNode
 		ChildNodeJoinCondition
 		Column
-		Comparison
 		DescendantNode
 		DescendantNodeJoinCondition
 		EquiJoinCondition
@@ -101,6 +99,8 @@ RepositoryFactory
 	RowIterator
 	SearchNotSupportedException
 	## QOM
+		BindVariableValue
+		Comparison
 		Constraint
 		DynamicOperand
 		PropertyValue
