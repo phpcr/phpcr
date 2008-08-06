@@ -44,7 +44,7 @@ interface F3_PHPCR_Query_QOM_QueryObjectModelFactoryInterface extends F3_PHPCR_Q
 	 * @throws F3_PHPCR_Query_InvalidQueryException if the query is invalid
 	 * @throws F3_PHPCR_RepositoryException if the operation otherwise fails
 	 */
-	public function createQuery(F3_PHPCR_Query_QOM_SourceInterface $selectorOrSource, F3_PHPCR_Query_QOM_ConstraintInterface $constraint, array $orderings, array $columns);
+	public function createQuery(F3_PHPCR_Query_QOM_SourceInterface $selectorOrSource, $constraint, array $orderings, array $columns);
 
 	/**
 	 * Selects a subset of the nodes in the repository based on node type.
