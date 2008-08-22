@@ -53,15 +53,16 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 *
 	 * @param string $relPath The path of the new node to be created.
 	 * @param string $primaryNodeTypeName The name of the primary node type of the new node.
+	 * @param string $identifier The identifier to use for the new node, if not given an UUID will be created. Non-JCR-spec parameter!
 	 * @return F3_PHPCR_NodeInterface The node that was added.
-	 * @throws F3_PHPCR_ItemExistsException if an item at the specified path already exists, same-name siblings are not allowed and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws F3_PHPCR_ItemExistsException if the identifier is already used, if an item at the specified path already exists, same-name siblings are not allowed and this implementation performs this validation immediately instead of waiting until save.
 	 * @throws F3_PHPCR_PathNotFoundException if the specified path implies intermediary Nodes that do not exist or the last element of relPath has an index, and this implementation performs this validation immediately instead of waiting until save.
 	 * @throws F3_PHPCR_ConstraintViolationException if a node type or implementation-specific constraint is violated or if an attempt is made to add a node as the child of a property and this implementation performs this validation immediately instead of waiting until save.
 	 * @throws F3_PHPCR_Version_VersionException if the node to which the new child is being added is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in and this implementation performs this validation immediately instead of waiting until save.
 	 * @throws F3_PHPCR_Lock_LockException if a lock prevents the addition of the node and this implementation performs this validation immediately instead of waiting until save.
 	 * @throws F3_PHPCR_RepositoryException If the last element of relPath has an index or if another error occurs.
 	 */
-	public function addNode($relPath, $primaryNodeTypeName = NULL);
+	public function addNode($relPath, $primaryNodeTypeName = NULL, $identifier = NULL);
 
 	/**
 	 * If this node supports child node ordering, this method inserts the child
