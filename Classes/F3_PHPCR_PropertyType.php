@@ -188,6 +188,37 @@ final class F3_PHPCR_PropertyType {
 				break;
 		}
 	}
+
+	/**
+	 * Returns the numeric constant value of the type for the given PHP type
+	 * name as returned by gettype().
+	 *
+	 * @param string $type
+	 * @return integer
+	 * @author Karsten Dambekalns <karsten@typo3.org>
+	 */
+	public function valueFromType($type) {
+		switch (F3_PHP6_Functions::strtolower($type)) {
+			case 'string':
+				return F3_PHPCR_PropertyType::STRING;
+				break;
+			case 'boolean':
+				return F3_PHPCR_PropertyType::BOOLEAN;
+				break;
+			case 'integer':
+				return F3_PHPCR_PropertyType::LONG;
+				break;
+			case 'float':
+			case 'double':
+				return F3_PHPCR_PropertyType::DOUBLE;
+				break;
+			case 'datetime':
+				return F3_PHPCR_PropertyType::DATE;
+				break;
+			default:
+				return F3_PHPCR_PropertyType::UNDEFINED;
+		}
+	}
 }
 
 ?>
