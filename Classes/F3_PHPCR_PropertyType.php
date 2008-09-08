@@ -87,7 +87,7 @@ final class F3_PHPCR_PropertyType {
 	/**
 	 * Returns the name of the specified type, as used in serialization.
 	 *
-	 * @param int $type type the property type
+	 * @param integer $type type the property type
 	 * @return string  name of the specified type
 	 * @author Sebastian Kurfuerst <sebastian@typo3.org>
 	 * @author Karsten Dambekalns <karsten@typo3.org>

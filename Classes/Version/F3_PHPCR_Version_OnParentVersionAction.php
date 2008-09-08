@@ -76,7 +76,7 @@ final class F3_PHPCR_Version_OnParentVersionAction {
 	/**
 	 * Returns the name of the specified action, as used in serialization.
 	 *
-	 * @param int $action the on-version action
+	 * @param integer $action the on-version action
 	 * @return string the name of the specified action
 	 * @author Karsten Dambekalns <karsten@typo3.org>
 	 */
