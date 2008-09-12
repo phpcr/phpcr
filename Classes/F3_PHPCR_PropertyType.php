@@ -1,5 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
+namespace F3::PHPCR;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -40,7 +41,7 @@ declare(ENCODING = 'utf-8');
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-final class F3_PHPCR_PropertyType {
+final class PropertyType {
 	/**
 	 * The supported property types.
 	 */
@@ -198,25 +199,25 @@ final class F3_PHPCR_PropertyType {
 	 * @author Karsten Dambekalns <karsten@typo3.org>
 	 */
 	public function valueFromType($type) {
-		switch (F3_PHP6_Functions::strtolower($type)) {
+		switch (F3::PHP6::Functions::strtolower($type)) {
 			case 'string':
-				return F3_PHPCR_PropertyType::STRING;
+				return F3::PHPCR::PropertyType::STRING;
 				break;
 			case 'boolean':
-				return F3_PHPCR_PropertyType::BOOLEAN;
+				return F3::PHPCR::PropertyType::BOOLEAN;
 				break;
 			case 'integer':
-				return F3_PHPCR_PropertyType::LONG;
+				return F3::PHPCR::PropertyType::LONG;
 				break;
 			case 'float':
 			case 'double':
-				return F3_PHPCR_PropertyType::DOUBLE;
+				return F3::PHPCR::PropertyType::DOUBLE;
 				break;
 			case 'datetime':
-				return F3_PHPCR_PropertyType::DATE;
+				return F3::PHPCR::PropertyType::DATE;
 				break;
 			default:
-				return F3_PHPCR_PropertyType::UNDEFINED;
+				return F3::PHPCR::PropertyType::UNDEFINED;
 		}
 	}
 }

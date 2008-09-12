@@ -1,5 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
+namespace F3::PHPCR::NodeType;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -34,7 +35,7 @@ declare(ENCODING = 'utf-8');
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface F3_PHPCR_NodeType_NodeDefinitionTemplateInterface extends F3_PHPCR_NodeType_NodeDefinitionInterface {
+interface NodeDefinitionTemplateInterface extends F3::PHPCR::NodeType::NodeDefinitionInterface {
 
 	/**
 	 * Sets the name of the node.

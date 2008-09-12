@@ -1,5 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
+namespace F3::PHPCR::Query::QOM;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -81,27 +82,27 @@ declare(ENCODING = 'utf-8');
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface F3_PHPCR_Query_QOM_ComparisonInterface extends F3_PHPCR_Query_QOM_ConstraintInterface {
+interface ComparisonInterface extends F3::PHPCR::Query::QOM::ConstraintInterface {
 
 	/**
 	 *
 	 * Gets the first operand.
 	 *
-	 * @return F3_PHPCR_Query_QOM_DynamicOperandInterface the operand; non-null
+	 * @return F3::PHPCR::Query::QOM::DynamicOperandInterface the operand; non-null
 	 */
 	public function getOperand1();
 
 	/**
 	 * Gets the operator.
 	 *
-	 * @return integer one of F3_PHPCR_Query_QOM_QueryObjectModelConstantsInterface.OPERATOR_*
+	 * @return integer one of F3::PHPCR::Query::QOM::QueryObjectModelConstantsInterface.OPERATOR_*
 	 */
 	public function getOperator();
 
 	/**
 	 * Gets the second operand.
 	 *
-	 * @return F3_PHPCR_Query_QOM_StaticOperandInterface the operand; non-null
+	 * @return F3::PHPCR::Query::QOM::StaticOperandInterface the operand; non-null
 	 */
 	public function getOperand2();
 

@@ -1,5 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
+namespace F3::PHPCR;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -27,7 +28,7 @@ declare(ENCODING = 'utf-8');
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface F3_PHPCR_RepositoryInterface {
+interface RepositoryInterface {
 
 	const LEVEL_1_SUPPORTED = 'level.1.supported';
 	const LEVEL_2_SUPPORTED = 'level.2.supported';
@@ -68,12 +69,12 @@ interface F3_PHPCR_RepositoryInterface {
 	 * method Workspace.getAccessibleWorkspaceNames(), allowing the client to select from among
 	 * available "real" workspaces.
 	 *
-	 * @param F3_PHPCR_CredentialsInterface $credentials The credentials of the user
+	 * @param F3::PHPCR::CredentialsInterface $credentials The credentials of the user
 	 * @param string $workspaceName the name of a workspace
-	 * @return F3_PHPCR_SessionInterface a valid session for the user to access the repository
-	 * @throws F3_PHPCR_LoginException If the login fails
-	 * @throws F3_PHPCR_NoSuchWorkspacexception If the specified workspaceName is not recognized
-	 * @throws F3_PHPCR_RepositoryException if another error occurs
+	 * @return F3::PHPCR::SessionInterface a valid session for the user to access the repository
+	 * @throws F3::PHPCR::LoginException If the login fails
+	 * @throws F3::PHPCR::NoSuchWorkspacexception If the specified workspaceName is not recognized
+	 * @throws F3::PHPCR::RepositoryException if another error occurs
 	 */
 	public function login($credentials = NULL, $workspaceName = NULL);
 

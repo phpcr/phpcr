@@ -1,5 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
+namespace F3::PHPCR::Query;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -28,7 +29,7 @@ declare(ENCODING = 'utf-8');
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface F3_PHPCR_Query_QueryInterface {
+interface QueryInterface {
 
 	/**
 	 * Flags determining the language of the query
@@ -84,11 +85,11 @@ interface F3_PHPCR_Query_QueryInterface {
 	 * version history structure below /jcr:system/jcr:versionHistory.
 	 *
 	 * @param integer $searchSpace flag which determines the scope of the search
-	 * @return F3_PHPCR_Query_QueryInterface a QueryResult object
-	 * @throws F3_PHPCR_Query_SearchNotSupportedException if the QueryManager does not support the search mode.
-	 * @throws F3_PHPCR_RepositoryException if an error occurs
+	 * @return F3::PHPCR::Query::QueryInterface a QueryResult object
+	 * @throws F3::PHPCR::Query::SearchNotSupportedException if the QueryManager does not support the search mode.
+	 * @throws F3::PHPCR::RepositoryException if an error occurs
 	 */
-	public function execute($searchSpace = F3_PHPCR_Query_QueryInterface::SEARCH_WORKSPACE);
+	public function execute($searchSpace = F3::PHPCR::Query::QueryInterface::SEARCH_WORKSPACE);
 
 	/**
 	 * Sets the maximum size of the result set to limit.
@@ -136,8 +137,8 @@ interface F3_PHPCR_Query_QueryInterface {
 	 * of the nt:query node that stores the query.
 	 *
 	 * @return string path of the node representing this query.
-	 * @throws F3_PHPCR_ItemNotFoundException if this query is not a stored query.
-	 * @throws F3_PHPCR_RepositoryException if another error occurs.
+	 * @throws F3::PHPCR::ItemNotFoundException if this query is not a stored query.
+	 * @throws F3::PHPCR::RepositoryException if another error occurs.
 	 */
 	public function getStoredQueryPath();
 
@@ -159,14 +160,14 @@ interface F3_PHPCR_Query_QueryInterface {
 	 * then the new node is appended to the end of the child node list.
 	 *
 	 * @param string $absPath absolute path the query should be stored at
-	 * @return F3_PHPCR_NodeInterface the newly created node.
-	 * @throws F3_PHPCR_ItemExistsException if an item at the specified path already exists, same-name siblings are not allowed and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws F3_PHPCR_PathNotFoundException if the specified path implies intermediary Nodes that do not exist or the last element of relPath has an index, and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws F3_PHPCR_NodeType_ConstraintViolationException if a node type or implementation-specific constraint is violated or if an attempt is made to add a node as the child of a property and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws F3_PHPCR_Version_VersionException if the node to which the new child is being added is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws F3_PHPCR_Lock_LockException if a lock prevents the addition of the node and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws F3_PHPCR_UnsupportedRepositoryOperationException in a level 1 implementation.
-	 * @throws F3_PHPCR_RepositoryException if another error occurs or if the absPath provided has an index on its final element.
+	 * @return F3::PHPCR::NodeInterface the newly created node.
+	 * @throws F3::PHPCR::ItemExistsException if an item at the specified path already exists, same-name siblings are not allowed and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws F3::PHPCR::PathNotFoundException if the specified path implies intermediary Nodes that do not exist or the last element of relPath has an index, and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws F3::PHPCR::NodeType::ConstraintViolationException if a node type or implementation-specific constraint is violated or if an attempt is made to add a node as the child of a property and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws F3::PHPCR::Version::VersionException if the node to which the new child is being added is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws F3::PHPCR::Lock::LockException if a lock prevents the addition of the node and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws F3::PHPCR::UnsupportedRepositoryOperationException in a level 1 implementation.
+	 * @throws F3::PHPCR::RepositoryException if another error occurs or if the absPath provided has an index on its final element.
 	 */
 	public function storeAsNode($absPath);
 

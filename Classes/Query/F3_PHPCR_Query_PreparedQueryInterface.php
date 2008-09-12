@@ -1,5 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
+namespace F3::PHPCR::Query;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -29,18 +30,18 @@ declare(ENCODING = 'utf-8');
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface F3_PHPCR_Query_PreparedQueryInterface extends F3_PHPCR_Query_QueryInterface {
+interface PreparedQueryInterface extends F3::PHPCR::Query::QueryInterface {
 
 	/**
 	 * Binds the given value to the variable named $varName.
 	 *
 	 * @param string $varName name of variable in query
-	 * @param F3_PHPCR_ValueInterface $value value to bind
+	 * @param F3::PHPCR::ValueInterface $value value to bind
 	 * @return void
 	 * @throws InvalidArgumentException if $varName is not a valid variable in this query.
 	 * @throws RepositoryException if an error occurs.
 	 */
-	public function bindValue($varName, F3_PHPCR_ValueInterface $value);
+	public function bindValue($varName, F3::PHPCR::ValueInterface $value);
 
 }
 

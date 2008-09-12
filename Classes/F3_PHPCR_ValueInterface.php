@@ -1,5 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
+namespace F3::PHPCR;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -47,7 +48,7 @@ declare(ENCODING = 'utf-8');
  * @version  $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface F3_PHPCR_ValueInterface {
+interface ValueInterface {
 
 
 	/**
@@ -55,8 +56,8 @@ interface F3_PHPCR_ValueInterface {
 	 * methods to access the binary data itself. Uses the standard conversion to binary
 	 * (see JCR specification).
 	 *
-	 * @return F3_PHPCR_BinaryInterface A Binary representation of this value.
-	 * @throws F3_PHPCR_RepositoryException if another error occurs.
+	 * @return F3::PHPCR::BinaryInterface A Binary representation of this value.
+	 * @throws F3::PHPCR::RepositoryException if another error occurs.
 	 */
 	public function getBinary();
 
@@ -64,8 +65,8 @@ interface F3_PHPCR_ValueInterface {
 	 * Returns a string representation of this value.
 	 *
 	 * @return string A string representation of the value of this property.
-	 * @throws F3_PHPCR_ValueFormatException if conversion to a String is not possible.
-	 * @throws F3_PHPCR_RepositoryException if another error occurs.
+	 * @throws F3::PHPCR::ValueFormatException if conversion to a String is not possible.
+	 * @throws F3::PHPCR::RepositoryException if another error occurs.
 	 */
 	public function getString();
 
@@ -73,8 +74,8 @@ interface F3_PHPCR_ValueInterface {
 	 * Returns a long representation of this value.
 	 *
 	 * @return string A long representation of the value of this property.
-	 * @throws F3_PHPCR_ValueFormatException if conversion to a long is not possible.
-	 * @throws F3_PHPCR_RepositoryException if another error occurs.
+	 * @throws F3::PHPCR::ValueFormatException if conversion to a long is not possible.
+	 * @throws F3::PHPCR::RepositoryException if another error occurs.
 	 */
 	public function getLong();
 
@@ -82,8 +83,8 @@ interface F3_PHPCR_ValueInterface {
 	 * Returns a BigDecimal representation of this value.
 	 *
 	 * @return string A double representation of the value of this property.
-	 * @throws F3_PHPCR_ValueFormatException if conversion is not possible.
-	 * @throws F3_PHPCR_RepositoryException if another error occurs.
+	 * @throws F3::PHPCR::ValueFormatException if conversion is not possible.
+	 * @throws F3::PHPCR::RepositoryException if another error occurs.
 	 */
 	public function getDecimal();
 
@@ -91,8 +92,8 @@ interface F3_PHPCR_ValueInterface {
 	 * Returns a double representation of this value.
 	 *
 	 * @return string A double representation of the value of this property.
-	 * @throws F3_PHPCR_ValueFormatException if conversion to a double is not possible.
-	 * @throws F3_PHPCR_RepositoryException if another error occurs.
+	 * @throws F3::PHPCR::ValueFormatException if conversion to a double is not possible.
+	 * @throws F3::PHPCR::RepositoryException if another error occurs.
 	 */
 	public function getDouble();
 
@@ -103,8 +104,8 @@ interface F3_PHPCR_ValueInterface {
 	 * not reflected in internal storage.
 	 *
 	 * @return DateTime A DateTime representation of the value of this property.
-	 * @throws F3_PHPCR_ValueFormatException if conversion to a DateTime is not possible.
-	 * @throws F3_PHPCR_RepositoryException if another error occurs.
+	 * @throws F3::PHPCR::ValueFormatException if conversion to a DateTime is not possible.
+	 * @throws F3::PHPCR::RepositoryException if another error occurs.
 	 */
 	public function getDate();
 
@@ -112,8 +113,8 @@ interface F3_PHPCR_ValueInterface {
 	 * Returns a boolean representation of this value.
 	 *
 	 * @return string A boolean representation of the value of this property.
-	 * @throws F3_PHPCR_ValueFormatException if conversion to a boolean is not possible.
-	 * @throws F3_PHPCR_RepositoryException if another error occurs.
+	 * @throws F3::PHPCR::ValueFormatException if conversion to a boolean is not possible.
+	 * @throws F3::PHPCR::RepositoryException if another error occurs.
 	 */
 	public function getBoolean();
 

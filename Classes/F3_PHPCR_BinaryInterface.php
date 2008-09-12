@@ -1,5 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
+namespace F3::PHPCR;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -28,14 +29,14 @@ declare(ENCODING = 'utf-8');
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface F3_PHPCR_BinaryInterface {
+interface BinaryInterface {
 
 	/**
 	 * Returns a stream representation of this value.
 	 *
 	 * @return resource A stream representation of this value.
 	 * @throws BadMethodCallException if acquire() has not yet or release() has already been called on this Binary object instance.
-	 * @throws F3_PHPCR_RepositoryException if another error occurs.
+	 * @throws F3::PHPCR::RepositoryException if another error occurs.
 	 */
 	public function getStream();
 
@@ -44,7 +45,7 @@ interface F3_PHPCR_BinaryInterface {
 	 *
 	 * @return string A (native) string representation of this value.
 	 * @throws BadMethodCallException if acquire() has not yet or release() has already been called on this Binary object instance.
-	 * @throws F3_PHPCR_RepositoryException if another error occurs.
+	 * @throws F3::PHPCR::RepositoryException if another error occurs.
 	 */
 	public function getBytes();
 
@@ -53,7 +54,7 @@ interface F3_PHPCR_BinaryInterface {
 	 *
 	 * @return integer the size of this value in bytes.
 	 * @throws BadMethodCallException if acquire() has not yet or release() has already been called on this Binary object instance.
-	 * @throws F3_PHPCR_RepositoryException if another error occurs.
+	 * @throws F3::PHPCR::RepositoryException if another error occurs.
 	 */
 	public function getSize();
 
@@ -68,7 +69,7 @@ interface F3_PHPCR_BinaryInterface {
 	 *
 	 * @return void
 	 * @throws BadMethodCallException if release() has already been called on this Binary object instance.
-	 * @throws F3_PHPCR_RepositoryException if another error occurs.
+	 * @throws F3::PHPCR::RepositoryException if another error occurs.
 	 */
 	public function acquire();
 
@@ -81,7 +82,7 @@ interface F3_PHPCR_BinaryInterface {
 	 * called, though in a typical implementation this will have no effect.
 	 *
 	 * @return void
-	 * @throws F3_PHPCR_RepositoryException if an error occurs.
+	 * @throws F3::PHPCR::RepositoryException if an error occurs.
 	 */
 	public function release();
 

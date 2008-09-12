@@ -1,5 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
+namespace F3::PHPCR::NodeType;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -29,15 +30,15 @@ declare(ENCODING = 'utf-8');
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface F3_PHPCR_NodeType_NodeTypeManagerInterface {
+interface NodeTypeManagerInterface {
 
 	/**
 	 * Returns the named node type.
 	 *
 	 * @param string $nodeTypeName the name of an existing node type.
-	 * @return F3_PHPCR_NodeType_NodeTypeInterface A NodeType object.
-	 * @throws F3_PHPCR_NodeType_NoSuchNodeTypeException if no node type by the given name exists.
-	 * @throws F3_PHPCR_RepositoryException if another error occurs.
+	 * @return F3::PHPCR::NodeType::NodeTypeInterface A NodeType object.
+	 * @throws F3::PHPCR::NodeType::NoSuchNodeTypeException if no node type by the given name exists.
+	 * @throws F3::PHPCR::RepositoryException if another error occurs.
 	 */
 	public function getNodeType($nodeTypeName);
 
@@ -47,23 +48,23 @@ interface F3_PHPCR_NodeType_NodeTypeManagerInterface {
 	 *
 	 * @param string $name - a String.
 	 * @return boolean a boolean
-	 * @throws F3_PHPCR_RepositoryException if an error occurs.
+	 * @throws F3::PHPCR::RepositoryException if an error occurs.
 	 */
 	public function hasNodeType($name);
 
 	/**
 	 * Returns an iterator over all available node types (primary and mixin).
 	 *
-	 * @return F3_PHPCR_NodeType_NodeTypeInteratorInterface An NodeTypeIterator.
-	 * @throws F3_PHPCR_RepositoryException if an error occurs.
+	 * @return F3::PHPCR::NodeType::NodeTypeInteratorInterface An NodeTypeIterator.
+	 * @throws F3::PHPCR::RepositoryException if an error occurs.
 	 */
 	public function getAllNodeTypes();
 
 	/**
 	 * Returns an iterator over all available primary node types.
 	 *
-	 * @return F3_PHPCR_NodeType_NodeTypeIteratorInterface An NodeTypeIterator.
-	 * @throws F3_PHPCR_RepositoryException if an error occurs.
+	 * @return F3::PHPCR::NodeType::NodeTypeIteratorInterface An NodeTypeIterator.
+	 * @throws F3::PHPCR::RepositoryException if an error occurs.
 	 */
 	public function getPrimaryNodeTypes();
 
@@ -71,8 +72,8 @@ interface F3_PHPCR_NodeType_NodeTypeManagerInterface {
 	 * Returns an iterator over all available mixin node types. If none are available,
 	 * an empty iterator is returned.
 	 *
-	 * @return F3_PHPCR_NodeType_NodeTypeIteratorInterface An NodeTypeIterator.
-	 * @throws F3_PHPCR_RepositoryException if an error occurs.
+	 * @return F3::PHPCR::NodeType::NodeTypeIteratorInterface An NodeTypeIterator.
+	 * @throws F3::PHPCR::RepositoryException if an error occurs.
 	 */
 	public function getMixinNodeTypes();
 
@@ -84,10 +85,10 @@ interface F3_PHPCR_NodeType_NodeTypeManagerInterface {
 	 * Returns a NodeTypeTemplate holding the specified node type definition. This
 	 * template can then be altered and passed to NodeTypeManager.registerNodeType.
 	 *
-	 * @param F3_PHPCR_NodeType_NodeTypeDefinitionInterface $ntd a NodeTypeDefinition.
-	 * @return F3_PHPCR_NodeType_NodeTypeTemplateInterface A NodeTypeTemplate.
-	 * @throws F3_PHPCR_UnsupportedRepositoryOperationException if this implementation does not support node type registration.
-	 * @throws F3_PHPCR_RepositoryException if another error occurs.
+	 * @param F3::PHPCR::NodeType::NodeTypeDefinitionInterface $ntd a NodeTypeDefinition.
+	 * @return F3::PHPCR::NodeType::NodeTypeTemplateInterface A NodeTypeTemplate.
+	 * @throws F3::PHPCR::UnsupportedRepositoryOperationException if this implementation does not support node type registration.
+	 * @throws F3::PHPCR::RepositoryException if another error occurs.
 	 */
 	public function createNodeTypeTemplate($ntd = NULL);
 
@@ -97,9 +98,9 @@ interface F3_PHPCR_NodeType_NodeTypeManagerInterface {
 	 * Throws an UnsupportedRepositoryOperationException if this implementation does
 	 * not support node type registration.
 	 *
-	 * @return F3_PHPCR_NodeType_NodeDefinitionTemplateInterface A NodeDefinitionTemplate.
-	 * @throws F3_PHPCR_UnsupportedRepositoryOperationException if this implementation does not support node type registration.
-	 * @throws F3_PHPCR_RepositoryException if another error occurs.
+	 * @return F3::PHPCR::NodeType::NodeDefinitionTemplateInterface A NodeDefinitionTemplate.
+	 * @throws F3::PHPCR::UnsupportedRepositoryOperationException if this implementation does not support node type registration.
+	 * @throws F3::PHPCR::RepositoryException if another error occurs.
 	 */
 	public function createNodeDefinitionTemplate();
 
@@ -107,9 +108,9 @@ interface F3_PHPCR_NodeType_NodeTypeManagerInterface {
 	 * Returns an empty PropertyDefinitionTemplate which can then be used to create
 	 * a property definition and attached to a NodeTypeTemplate.
 	 *
-	 * @return F3_PHPCR_NodeType_PropertyDefinitionTemplateInterface A PropertyDefinitionTemplate.
-	 * @throws F3_PHPCR_UnsupportedRepositoryOperationException if this implementation does not support node type registration.
-	 * @throws F3_PHPCR_RepositoryException if another error occurs.
+	 * @return F3::PHPCR::NodeType::PropertyDefinitionTemplateInterface A PropertyDefinitionTemplate.
+	 * @throws F3::PHPCR::UnsupportedRepositoryOperationException if this implementation does not support node type registration.
+	 * @throws F3::PHPCR::RepositoryException if another error occurs.
 	 */
 	public function createPropertyDefinitionTemplate();
 
@@ -120,15 +121,15 @@ interface F3_PHPCR_NodeType_NodeTypeManagerInterface {
 	 * subclass of NodeTypeDefinition) acquired from NodeTypeManager.createNodeTypeTemplate
 	 * and then filled-in with definition information.
 	 *
-	 * @param F3_PHPCR_NodeType_NodeTypeDefinitionInterface $ntd an NodeTypeDefinition.
+	 * @param F3::PHPCR::NodeType::NodeTypeDefinitionInterface $ntd an NodeTypeDefinition.
 	 * @param boolean $allowUpdate a boolean
-	 * @return F3_PHPCR_NodeType_NodeTypeInterface the registered node type
-	 * @throws F3_PHPCR_InvalidNodeTypeDefinitionException if the NodeTypeDefinition is invalid.
-	 * @throws F3_PHPCR_NodeType_NodeTypeExistsException if allowUpdate is false and the NodeTypeDefinition specifies a node type name that is already registered.
-	 * @throws F3_PHPCR_UnsupportedRepositoryOperationException if this implementation does not support node type registration.
-	 * @throws F3_PHPCR_RepositoryException if another error occurs.
+	 * @return F3::PHPCR::NodeType::NodeTypeInterface the registered node type
+	 * @throws F3::PHPCR::InvalidNodeTypeDefinitionException if the NodeTypeDefinition is invalid.
+	 * @throws F3::PHPCR::NodeType::NodeTypeExistsException if allowUpdate is false and the NodeTypeDefinition specifies a node type name that is already registered.
+	 * @throws F3::PHPCR::UnsupportedRepositoryOperationException if this implementation does not support node type registration.
+	 * @throws F3::PHPCR::RepositoryException if another error occurs.
 	 */
-	public function registerNodeType(F3_PHPCR_NodeType_NodeTypeDefinitionInterface $ntd, $allowUpdate);
+	public function registerNodeType(F3::PHPCR::NodeType::NodeTypeDefinitionInterface $ntd, $allowUpdate);
 
 	/**
 	 * Registers or updates the specified Collection of NodeTypeDefinition objects.
@@ -139,11 +140,11 @@ interface F3_PHPCR_NodeType_NodeTypeManagerInterface {
 	 *
 	 * @param array $definitions a collection of NodeTypeDefinitions
 	 * @param boolean $allowUpdate a boolean
-	 * @return F3_PHPCR_NodeType_NodeTypeIteratorInterface the registered node types.
-	 * @throws F3_PHPCR_InvalidNodeTypeDefinitionException - if a NodeTypeDefinition within the Collection is invalid or if the Collection contains an object of a type other than NodeTypeDefinition.
-	 * @throws F3_PHPCR_NodeType_NodeTypeExistsException if allowUpdate is false and a NodeTypeDefinition within the Collection specifies a node type name that is already registered.
-	 * @throws F3_PHPCR_UnsupportedRepositoryOperationException if this implementation does not support node type registration.
-	 * @throws F3_PHPCR_RepositoryException if another error occurs.
+	 * @return F3::PHPCR::NodeType::NodeTypeIteratorInterface the registered node types.
+	 * @throws F3::PHPCR::InvalidNodeTypeDefinitionException - if a NodeTypeDefinition within the Collection is invalid or if the Collection contains an object of a type other than NodeTypeDefinition.
+	 * @throws F3::PHPCR::NodeType::NodeTypeExistsException if allowUpdate is false and a NodeTypeDefinition within the Collection specifies a node type name that is already registered.
+	 * @throws F3::PHPCR::UnsupportedRepositoryOperationException if this implementation does not support node type registration.
+	 * @throws F3::PHPCR::RepositoryException if another error occurs.
 	 */
 	public function registerNodeTypes(array $definitions, $allowUpdate);
 
@@ -152,9 +153,9 @@ interface F3_PHPCR_NodeType_NodeTypeManagerInterface {
 	 *
 	 * @param string $name a String.
 	 * @return void
-	 * @throws F3_PHPCR_UnsupportedRepositoryOperationException if this implementation does not support node type registration.
-	 * @throws F3_PHPCR_NodeType_NoSuchNodeTypeException if no registered node type exists with the specified name.
-	 * @throws F3_PHPCR_RepositoryException if another error occurs.
+	 * @throws F3::PHPCR::UnsupportedRepositoryOperationException if this implementation does not support node type registration.
+	 * @throws F3::PHPCR::NodeType::NoSuchNodeTypeException if no registered node type exists with the specified name.
+	 * @throws F3::PHPCR::RepositoryException if another error occurs.
 	 */
 	public function unregisterNodeType($name);
 
@@ -164,9 +165,9 @@ interface F3_PHPCR_NodeType_NodeTypeManagerInterface {
 	 *
 	 * @param array $names a String array
 	 * @return void
-	 * @throws F3_PHPCR_UnsupportedRepositoryOperationException if this implementation does not support node type registration.
-	 * @throws F3_PHPCR_NodeType_NoSuchNodeTypeException if one of the names listed is not a registered node type.
-	 * @throws F3_PHPCR_RepositoryException if another error occurs.
+	 * @throws F3::PHPCR::UnsupportedRepositoryOperationException if this implementation does not support node type registration.
+	 * @throws F3::PHPCR::NodeType::NoSuchNodeTypeException if one of the names listed is not a registered node type.
+	 * @throws F3::PHPCR::RepositoryException if another error occurs.
 	 */
 	public function unregisterNodeTypes(array $names);
 }

@@ -1,5 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
+namespace F3::PHPCR;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -34,17 +35,17 @@ declare(ENCODING = 'utf-8');
  * @copyright Copyright belongs to the respective authors
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface F3_PHPCR_ItemVisitorInterface {
+interface ItemVisitorInterface {
 
 	/**
 	 * This method is called when the ItemVisitor is passed to the accept method
 	 * of a Node or Property. If this method throws an exception the visiting
 	 * process is aborted.
 	 *
-	 * @param F3_PHPCR_NodeInterface|F3_PHPCR_PropertyInterface $item a node or property accepting this visitor
-	 * @throws F3_PHPCR_RepositoryException if an error occurs
+	 * @param F3::PHPCR::NodeInterface|F3::PHPCR::PropertyInterface $item a node or property accepting this visitor
+	 * @throws F3::PHPCR::RepositoryException if an error occurs
 	*/
-	public function visit(F3_PHPCR_ItemInterface $item);
+	public function visit(F3::PHPCR::ItemInterface $item);
 
 }
 

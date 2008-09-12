@@ -1,5 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
+namespace F3::PHPCR;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -49,21 +50,21 @@ declare(ENCODING = 'utf-8');
  *
  * Use repository factory based on parameters:
  *    $parameters = array('address' => 'vendor://localhost:9999/myrepo');
- *    $repo = F3_PHPCR_RepositoryFactory::getRepository($parameters);
+ *    $repo = F3::PHPCR::RepositoryFactory::getRepository($parameters);
  *
  * Get a default repository available in this environment:
- *    $repo = F3_PHPCR_RepositoryFactory::getRepository();
+ *    $repo = F3::PHPCR::RepositoryFactory::getRepository();
  *
  * Manually instantiate a specific repository factory and connect to the repository:
  *    $parameters = array('address' => 'vendor://localhost:9999/myrepo');
- *    $factory = new F3_TYPO3CR_RepositoryFactory();
+ *    $factory = new F3::TYPO3CR::RepositoryFactory();
  *    $repo = $factory->connect($parameters);
  *
  * @package PHPCR
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-abstract class F3_PHPCR_RepositoryFactory {
+abstract class RepositoryFactory {
 
 	/**
 	 * Attempts to establish a connection to a repository described by the given
@@ -73,8 +74,8 @@ abstract class F3_PHPCR_RepositoryFactory {
 	 * factory is not able to identify a default repository.
 	 *
 	 * @param array $parameters
-	 * @return F3_PHPCR_RepositoryInterface
-	 * @throws F3_PHPCR_RepositoryException If an implementation is the right factory but has trouble connecting to the repository.
+	 * @return F3::PHPCR::RepositoryInterface
+	 * @throws F3::PHPCR::RepositoryException If an implementation is the right factory but has trouble connecting to the repository.
 	 */
 	abstract public function connect(array $parameters);
 
@@ -83,8 +84,8 @@ abstract class F3_PHPCR_RepositoryFactory {
 	 * If no parameters are given, the first found default repository is returned.
 	 *
 	 * @param array|NULL $parameters string key/value pairs as repository arguments or null if none are provided and a client wishes to connect to a default repository.
-	 * @return F3_PHPCR_RepositoryInterface
-	 * @throws F3_PHPCR_RepositoryException if getRepository fails or if no suitable (default) repository is found.
+	 * @return F3::PHPCR::RepositoryInterface
+	 * @throws F3::PHPCR::RepositoryException if getRepository fails or if no suitable (default) repository is found.
 	 */
 	static public function getRepository($parameters = NULL) {
 

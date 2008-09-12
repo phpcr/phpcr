@@ -1,5 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
+namespace F3::PHPCR::Query;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -29,12 +30,12 @@ declare(ENCODING = 'utf-8');
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface F3_PHPCR_Query_RowIteratorInterface extends F3_PHPCR_RangeIteratorInterface {
+interface RowIteratorInterface extends F3::PHPCR::RangeIteratorInterface {
 
 	/**
 	 * Returns the next Row in the iteration.
 	 *
-	 * @return F3_PHPCR_Query_RowInterface
+	 * @return F3::PHPCR::Query::RowInterface
 	 * @throws OutOfBoundsException if the iterator contains no more elements.
 	 */
 	public function nextRow();

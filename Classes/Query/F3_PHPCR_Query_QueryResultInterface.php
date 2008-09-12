@@ -1,5 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
+namespace F3::PHPCR::Query;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -28,13 +29,13 @@ declare(ENCODING = 'utf-8');
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface F3_PHPCR_Query_QueryResultInterface {
+interface QueryResultInterface {
 
 	/**
 	 * Returns an array of all the column names in the table view of this result set.
 	 *
 	 * @return array
-	 * @throws F3_PHPCR_RepositoryException if an error occurs.
+	 * @throws F3::PHPCR::RepositoryException if an error occurs.
 	 */
 	public function getColumnNames();
 
@@ -42,8 +43,8 @@ interface F3_PHPCR_Query_QueryResultInterface {
 	 * Returns an iterator over the Rows of the result table. The rows are
 	 * returned according to the ordering specified in the query.
 	 *
-	 * @return F3_PHPCR_Query_RowIteratorInterface a RowIterator
-	 * @throws F3_PHPCR_RepositoryException if an error occurs.
+	 * @return F3::PHPCR::Query::RowIteratorInterface a RowIterator
+	 * @throws F3::PHPCR::RepositoryException if an error occurs.
 	*/
 	public function getRows();
 
@@ -51,8 +52,8 @@ interface F3_PHPCR_Query_QueryResultInterface {
 	 * Returns an iterator over all nodes that match the query. The rows are
 	 * returned according to the ordering specified in the query.
 	 *
-	 * @return F3_PHPCR_NodeIteratorInterface a NodeIterator
-	 * @throws F3_PHPCR_RepositoryException if the query contains more than one selector or if another error occurs.
+	 * @return F3::PHPCR::NodeIteratorInterface a NodeIterator
+	 * @throws F3::PHPCR::RepositoryException if the query contains more than one selector or if another error occurs.
 	 */
 	public function getNodes();
 

@@ -1,5 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
+namespace F3::PHPCR;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -26,7 +27,7 @@ declare(ENCODING = 'utf-8');
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
+interface NodeInterface extends F3::PHPCR::ItemInterface {
 
 	/**
 	 * Creates a new node at relPath. The new node will only be persisted on
@@ -54,13 +55,13 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 * @param string $relPath The path of the new node to be created.
 	 * @param string $primaryNodeTypeName The name of the primary node type of the new node.
 	 * @param string $identifier The identifier to use for the new node, if not given an UUID will be created. Non-JCR-spec parameter!
-	 * @return F3_PHPCR_NodeInterface The node that was added.
-	 * @throws F3_PHPCR_ItemExistsException if the identifier is already used, if an item at the specified path already exists, same-name siblings are not allowed and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws F3_PHPCR_PathNotFoundException if the specified path implies intermediary Nodes that do not exist or the last element of relPath has an index, and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws F3_PHPCR_ConstraintViolationException if a node type or implementation-specific constraint is violated or if an attempt is made to add a node as the child of a property and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws F3_PHPCR_Version_VersionException if the node to which the new child is being added is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws F3_PHPCR_Lock_LockException if a lock prevents the addition of the node and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws F3_PHPCR_RepositoryException If the last element of relPath has an index or if another error occurs.
+	 * @return F3::PHPCR::NodeInterface The node that was added.
+	 * @throws F3::PHPCR::ItemExistsException if the identifier is already used, if an item at the specified path already exists, same-name siblings are not allowed and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws F3::PHPCR::PathNotFoundException if the specified path implies intermediary Nodes that do not exist or the last element of relPath has an index, and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws F3::PHPCR::ConstraintViolationException if a node type or implementation-specific constraint is violated or if an attempt is made to add a node as the child of a property and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws F3::PHPCR::Version::VersionException if the node to which the new child is being added is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws F3::PHPCR::Lock::LockException if a lock prevents the addition of the node and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws F3::PHPCR::RepositoryException If the last element of relPath has an index or if another error occurs.
 	 */
 	public function addNode($relPath, $primaryNodeTypeName = NULL, $identifier = NULL);
 
@@ -84,12 +85,12 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 * @param string $srcChildRelPath the relative path to the child node (that is, name plus possible index) to be moved in the ordering
 	 * @param string $destChildRelPath the the relative path to the child node (that is, name plus possible index) before which the node srcChildRelPath will be placed.
 	 * @return void
-	 * @throws F3_PHPCR_UnsupportedRepositoryOperationException  if ordering is not supported.
-	 * @throws F3_PHPCR_ConstraintViolationException if an implementation-specific ordering restriction is violated and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws F3_PHPCR_ItemNotFoundException if either parameter is not the relative path of a child node of this node.
-	 * @throws F3_PHPCR_Version_VersionException if this node is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws F3_PHPCR_Lock_LockException if a lock prevents the re-ordering and this implementation performs this validation immediately instead of waiting until save..
-	 * @throws F3_PHPCR_RepositoryException if another error occurs.
+	 * @throws F3::PHPCR::UnsupportedRepositoryOperationException  if ordering is not supported.
+	 * @throws F3::PHPCR::ConstraintViolationException if an implementation-specific ordering restriction is violated and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws F3::PHPCR::ItemNotFoundException if either parameter is not the relative path of a child node of this node.
+	 * @throws F3::PHPCR::Version::VersionException if this node is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws F3::PHPCR::Lock::LockException if a lock prevents the re-ordering and this implementation performs this validation immediately instead of waiting until save..
+	 * @throws F3::PHPCR::RepositoryException if another error occurs.
 	 */
 	public function orderBefore($srcChildRelPath, $destChildRelPath);
 
@@ -133,12 +134,12 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 * @param string $name The name of a property of this node
 	 * @param mixed $value The value to be assigned
 	 * @param integer $type The type to set for the property
-	 * @return F3_PHPCR_PropertyInterface The updated Property object
-	 * @throws F3_PHPCR_ValueFormatException if value cannot be converted to the type of the specified property or if the property already exists and is multi-valued.
-	 * @throws F3_PHPCR_Version_VersionException if this node is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws F3_PHPCR_Lock_LockException  if a lock prevents the setting of the property and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws F3_PHPCR_ConstraintViolationException if the change would violate a node-type or other constraint and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws F3_PHPCR_RepositoryException if another error occurs.
+	 * @return F3::PHPCR::PropertyInterface The updated Property object
+	 * @throws F3::PHPCR::ValueFormatException if value cannot be converted to the type of the specified property or if the property already exists and is multi-valued.
+	 * @throws F3::PHPCR::Version::VersionException if this node is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws F3::PHPCR::Lock::LockException  if a lock prevents the setting of the property and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws F3::PHPCR::ConstraintViolationException if the change would violate a node-type or other constraint and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws F3::PHPCR::RepositoryException if another error occurs.
 	 */
 	public function setProperty($name, $value, $type = NULL);
 
@@ -156,9 +157,9 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 * wrapping the same state, is up to the implementation.
 	 *
 	 * @param string $relPath The relative path of the node to retrieve.
-	 * @return F3_PHPCR_NodeInterface The node at relPath.
-	 * @throws F3_PHPCR_PathNotFoundException If no node exists at the specified path or the current Session does not read access to the node at the specified path.
-	 * @throws F3_PHPCR_RepositoryException If another error occurs.
+	 * @return F3::PHPCR::NodeInterface The node at relPath.
+	 * @throws F3::PHPCR::PathNotFoundException If no node exists at the specified path or the current Session does not read access to the node at the specified path.
+	 * @throws F3::PHPCR::RepositoryException If another error occurs.
 	 */
 	public function getNode($relPath);
 
@@ -196,8 +197,8 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 * The same reacquisition semantics apply as with getNode(String).
 	 *
 	 * @param string $namePattern a name pattern
-	 * @return F3_PHPCR_NodeIteratorInterface a NodeIterator over all (matching) child Nodes
-	 * @throws F3_PHPCR_RepositoryException If an unexpected error occurs.
+	 * @return F3::PHPCR::NodeIteratorInterface a NodeIterator over all (matching) child Nodes
+	 * @throws F3::PHPCR::RepositoryException If an unexpected error occurs.
 	 */
 	public function getNodes($namePattern = NULL);
 
@@ -206,9 +207,9 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 * reacquisition semantics apply as with getNode(String).
 	 *
 	 * @param string $relPath The relative path of the property to retrieve.
-	 * @return F3_PHPCR_PropertyInterface The property at relPath.
-	 * @throws F3_PHPCR_PathNotFoundException If no property exists at the specified path.
-	 * @throws F3_PHPCR_RepositoryException If another error occurs.
+	 * @return F3::PHPCR::PropertyInterface The property at relPath.
+	 * @throws F3::PHPCR::PathNotFoundException If no property exists at the specified path.
+	 * @throws F3::PHPCR::RepositoryException If another error occurs.
 	 */
 	public function getProperty($relPath);
 
@@ -246,8 +247,8 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 * The same reacquisition semantics apply as with getNode(String).
 	 *
 	 * @param string $namePattern a name pattern
-	 * @return F3_PHPCR_PropertyIteratorInterface a PropertyIterator
-	 * @throws F3_PHPCR_RepositoryException If an unexpected error occurs.
+	 * @return F3::PHPCR::PropertyIteratorInterface a PropertyIterator
+	 * @throws F3::PHPCR::RepositoryException If an unexpected error occurs.
 	 */
 	public function getProperties($namePattern = NULL);
 
@@ -261,9 +262,9 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 *
 	 * The same reacquisition semantics apply as with getNode(String).
 	 *
-	 * @return F3_PHPCR_ItemInterface the primary child item.
-	 * @throws F3_PHPCR_ItemNotFoundException if this node does not have a primary child item, either because none is declared in the node type or because a declared primary item is not present on this node instance, or not accessible through the current Session
-	 * @throws F3_PHPCR_RepositoryException if another error occurs.
+	 * @return F3::PHPCR::ItemInterface the primary child item.
+	 * @throws F3::PHPCR::ItemNotFoundException if this node does not have a primary child item, either because none is declared in the node type or because a declared primary item is not present on this node instance, or not accessible through the current Session
+	 * @throws F3::PHPCR::RepositoryException if another error occurs.
 	 */
 	public function getPrimaryItem();
 
@@ -272,7 +273,7 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 * non-referenceable nodes.
 	 *
 	 * @return string the identifier of this node
-	 * @throws F3_PHPCR_RepositoryException If an error occurs.
+	 * @throws F3::PHPCR::RepositoryException If an error occurs.
 	 */
 	public function getIdentifier();
 
@@ -285,7 +286,7 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 * always return 1.
 	 *
 	 * @return integer The index of this node within the ordered set of its same-name sibling nodes.
-	 * @throws F3_PHPCR_RepositoryException if an error occurs.
+	 * @throws F3::PHPCR::RepositoryException if an error occurs.
 	 */
 	public function getIndex();
 
@@ -308,8 +309,8 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 * iterator is returned.
 	 *
 	 * @param string $name name of referring REFERENCE properties to be returned; if null then all referring REFERENCEs are returned
-	 * @return F3_PHPCR_PropertyIteratorInterface A PropertyIterator.
-	 * @throws F3_PHPCR_RepositoryException if an error occurs
+	 * @return F3::PHPCR::PropertyIteratorInterface A PropertyIterator.
+	 * @throws F3::PHPCR::RepositoryException if an error occurs
 	 */
 	public function getReferences($name = NULL);
 
@@ -333,8 +334,8 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 * iterator is returned.
 	 *
 	 * @param string $name name of referring WEAKREFERENCE properties to be returned; if null then all referring WEAKREFERENCEs are returned
-	 * @return F3_PHPCR_PropertyIteratorInterface A PropertyIterator.
-	 * @throws F3_PHPCR_RepositoryException if an error occurs
+	 * @return F3::PHPCR::PropertyIteratorInterface A PropertyIterator.
+	 * @throws F3::PHPCR::RepositoryException if an error occurs
 	 */
 	public function getWeakReferences($name = NULL);
 
@@ -344,7 +345,7 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 *
 	 * @param string $relPath The path of a (possible) node.
 	 * @return boolean true if a node exists at relPath; false otherwise.
-	 * @throws F3_PHPCR_RepositoryException If an unspecified error occurs.
+	 * @throws F3::PHPCR::RepositoryException If an unspecified error occurs.
 	 */
 	public function hasNode($relPath);
 
@@ -354,7 +355,7 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 *
 	 * @param string $relPath The path of a (possible) property.
 	 * @return boolean true if a property exists at relPath; false otherwise.
-	 * @throws F3_PHPCR_RepositoryException If an unspecified error occurs.
+	 * @throws F3::PHPCR::RepositoryException If an unspecified error occurs.
 	 */
 	public function hasProperty($relPath);
 
@@ -363,7 +364,7 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 * one or more child nodes accessible through the current Session; false otherwise.
 	 *
 	 * @return boolean true if this node has one or more child nodes; false otherwise.
-	 * @throws F3_PHPCR_RepositoryException If an unspecified error occurs.
+	 * @throws F3::PHPCR::RepositoryException If an unspecified error occurs.
 	 */
 	public function hasNodes();
 
@@ -372,7 +373,7 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 * one or more properties accessible through the current Session; false otherwise.
 	 *
 	 * @return boolean true if this node has one or more properties; false otherwise.
-	 * @throws F3_PHPCR_RepositoryException If an unspecified error occurs.
+	 * @throws F3::PHPCR::RepositoryException If an unspecified error occurs.
 	 */
 	public function hasProperties();
 
@@ -385,8 +386,8 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 * must, of course, be consistent with the child nodes and properties of the
 	 * root node.
 	 *
-	 * @return F3_PHPCR_NodeType_NodeTypeInterface a NodeType object.
-	 * @throws F3_PHPCR_RepositoryException if an error occurs
+	 * @return F3::PHPCR::NodeType::NodeTypeInterface a NodeType object.
+	 * @throws F3::PHPCR::RepositoryException if an error occurs
 	 */
 	public function getPrimaryNodeType();
 
@@ -400,8 +401,8 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 * jcr:mixinTypes property if that property has recently been created or
 	 * changed and has not yet been saved.
 	 *
-	 * @return array of F3_PHPCR_NodeType_NodeTypeInterface objects.
-	 * @throws F3_PHPCR_RepositoryException if an error occurs
+	 * @return array of F3::PHPCR::NodeType::NodeTypeInterface objects.
+	 * @throws F3::PHPCR::RepositoryException if an error occurs
 	 */
 	public function getMixinNodeTypes();
 
@@ -415,7 +416,7 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 *
 	 * @param string $nodeTypeName the name of a node type.
 	 * @return boolean true if this node is of the specified primary node type or mixin type, or a subtype thereof. Returns false otherwise.
-	 * @throws F3_PHPCR_RepositoryException If an error occurs.
+	 * @throws F3::PHPCR::RepositoryException If an error occurs.
 	 */
 	public function isNodeType($nodeTypeName);
 
@@ -432,11 +433,11 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 *
 	 * @param string $nodeTypeName the name of the new node type.
 	 * @return void
-	 * @throws F3_PHPCR_ConstraintViolationException If the specified primary node type is prevented from being assigned.
-	 * @throws F3_PHPCR_NodeType_NoSuchNodeTypeException If the specified nodeTypeName is not recognized and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws F3_PHPCR_Version_VersionException if this node is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws F3_PHPCR_Lock_LockException if a lock prevents the change of the primary node type and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws F3_PHPCR_RepositoryException if another error occurs.
+	 * @throws F3::PHPCR::ConstraintViolationException If the specified primary node type is prevented from being assigned.
+	 * @throws F3::PHPCR::NodeType::NoSuchNodeTypeException If the specified nodeTypeName is not recognized and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws F3::PHPCR::Version::VersionException if this node is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws F3::PHPCR::Lock::LockException if a lock prevents the change of the primary node type and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws F3::PHPCR::RepositoryException if another error occurs.
 	 */
 	public function setPrimaryType($nodeTypeName);
 
@@ -453,11 +454,11 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 *
 	 * @param string $mixinName the name of the mixin node type to be added
 	 * @return void
-	 * @throws F3_PHPCR_NodeType_NoSuchNodeTypeException If the specified mixinName is not recognized and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws F3_PHPCR_ConstraintViolationException If the specified mixin node type is prevented from being assigned.
-	 * @throws F3_PHPCR_Version_VersionException if this node is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in and this implementation performs this validation immediately instead of waiting until save..
-	 * @throws F3_PHPCR_Lock_LockException if a lock prevents the addition of the mixin and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws F3_PHPCR_RepositoryException if another error occurs.
+	 * @throws F3::PHPCR::NodeType::NoSuchNodeTypeException If the specified mixinName is not recognized and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws F3::PHPCR::ConstraintViolationException If the specified mixin node type is prevented from being assigned.
+	 * @throws F3::PHPCR::Version::VersionException if this node is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in and this implementation performs this validation immediately instead of waiting until save..
+	 * @throws F3::PHPCR::Lock::LockException if a lock prevents the addition of the mixin and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws F3::PHPCR::RepositoryException if another error occurs.
 	 */
 	public function addMixin($mixinName);
 
@@ -469,11 +470,11 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 *
 	 * @param string $mixinName the name of the mixin node type to be removed.
 	 * @return void
-	 * @throws F3_PHPCR_NodeType_NoSuchNodeTypeException if the specified mixinName is not currently assigned to this node and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws F3_PHPCR_ConstraintViolationException if the specified mixin node type is prevented from being removed and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws F3_PHPCR_Version_VersionException if this node is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws F3_PHPCR_Lock_LockException if a lock prevents the removal of the mixin and this implementation performs this validation immediately instead of waiting until save..
-	 * @throws F3_PHPCR_RepositoryException if another error occurs.
+	 * @throws F3::PHPCR::NodeType::NoSuchNodeTypeException if the specified mixinName is not currently assigned to this node and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws F3::PHPCR::ConstraintViolationException if the specified mixin node type is prevented from being removed and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws F3::PHPCR::Version::VersionException if this node is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws F3::PHPCR::Lock::LockException if a lock prevents the removal of the mixin and this implementation performs this validation immediately instead of waiting until save..
+	 * @throws F3::PHPCR::RepositoryException if another error occurs.
 	 */
 	public function removeMixin($mixinName);
 
@@ -493,8 +494,8 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 *
 	 * @param string $mixinName The name of the mixin to be tested.
 	 * @return boolean true if the specified mixin node type, mixinName, can be added to this node; false otherwise.
-	 * @throws F3_PHPCR_NodeType_NoSuchNodeTypeException if the specified mixin node type name is not recognized.
-	 * @throws F3_PHPCR_RepositoryException if another error occurs.
+	 * @throws F3::PHPCR::NodeType::NoSuchNodeTypeException if the specified mixin node type name is not recognized.
+	 * @throws F3::PHPCR::RepositoryException if another error occurs.
 	 */
 	public function canAddMixin($mixinName);
 
@@ -509,8 +510,8 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 * method is called on the root node of a workspace is also up to the
 	 * implementation.
 	 *
-	 * @return F3_PHPCR_NodeType_NodeDefinitionInterface a NodeDefinition object.
-	 * @throws F3_PHPCR_RepositoryException if an error occurs.
+	 * @return F3::PHPCR::NodeType::NodeDefinitionInterface a NodeDefinition object.
+	 * @throws F3::PHPCR::RepositoryException if an error occurs.
 	 */
 	public function getDefinition();
 
@@ -543,12 +544,12 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 * If checkin succeeds, the change to the jcr:isCheckedOut property is
 	 * automatically persisted (there is no need to do an additional save).
 	 *
-	 * @return F3_PHPCR_Version_VersionInterface the created version.
-	 * @throws F3_PHPCR_Verson_VersionException if jcr:predecessors does not contain at least one value or if a child item of this node has an OnParentVersion status of ABORT. This includes the case where an unresolved merge failure exists on this node, as indicated by the presence of a jcr:mergeFailed property.
-	 * @throws F3_PHPCR_UnsupportedRepositoryOperationException If this node is not versionable.
-	 * @throws F3_PHPCR_InvalidItemStateException If unsaved changes exist on this node.
-	 * @throws F3_PHPCR_Lock_LockException if a lock prevents the operation.
-	 * @throws F3_PHPCR_RepositoryException If another error occurs.
+	 * @return F3::PHPCR::Version::VersionInterface the created version.
+	 * @throws F3::PHPCR::Verson::VersionException if jcr:predecessors does not contain at least one value or if a child item of this node has an OnParentVersion status of ABORT. This includes the case where an unresolved merge failure exists on this node, as indicated by the presence of a jcr:mergeFailed property.
+	 * @throws F3::PHPCR::UnsupportedRepositoryOperationException If this node is not versionable.
+	 * @throws F3::PHPCR::InvalidItemStateException If unsaved changes exist on this node.
+	 * @throws F3::PHPCR::Lock::LockException if a lock prevents the operation.
+	 * @throws F3::PHPCR::RepositoryException If another error occurs.
 	 */
 	public function checkin();
 
@@ -567,10 +568,10 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 * If this node is already checked-out, this method has no effect.
 	 *
 	 * @return void
-	 * @throws F3_PHPCR_UnsupportedRepositoryOperationException If this node is not versionable.
-	 * @throws F3_PHPCR_Lock_LockException if a lock prevents the checkout.
-	 * @throws F3_PHPCR_Version_ActivityViolationException If the checkout conflicts with the activity present on the current session.
-	 * @throws F3_PHPCR_RepositoryException If another error occurs.
+	 * @throws F3::PHPCR::UnsupportedRepositoryOperationException If this node is not versionable.
+	 * @throws F3::PHPCR::Lock::LockException if a lock prevents the checkout.
+	 * @throws F3::PHPCR::Version::ActivityViolationException If the checkout conflicts with the activity present on the current session.
+	 * @throws F3::PHPCR::RepositoryException If another error occurs.
 	 */
 	public function checkout();
 
@@ -578,13 +579,13 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 * Performs a checkin() followed by a checkout().
 	 * If this node is already checked-in, this method is equivalent to checkout().
 	 *
-	 * @return F3_PHPCR_Version_VersionInterface the created version.
-	 * @throws F3_PHPCR_Version_VersionException if a child item of this node has an OnParentVersion of ABORT. This includes the case where an unresolved merge failure exists on this node, as indicated by the presence of the jcr:mergeFailed.
-	 * @throws F3_PHPCR_UnsupportedRepositoryOperationException if this node is not versionable.
-	 * @throws F3_PHPCR_InvalidItemStateException if there are unsaved changes pending on this node.
-	 * @throws F3_PHPCR_Lock_LockException if a lock prevents the operation.
-	 * @throws F3_PHPCR_Version_ActivityViolationException If the checkout conflicts with the activity present on the current session.
-	 * @throws F3_PHPCR_RepositoryException if another error occurs.
+	 * @return F3::PHPCR::Version::VersionInterface the created version.
+	 * @throws F3::PHPCR::Version::VersionException if a child item of this node has an OnParentVersion of ABORT. This includes the case where an unresolved merge failure exists on this node, as indicated by the presence of the jcr:mergeFailed.
+	 * @throws F3::PHPCR::UnsupportedRepositoryOperationException if this node is not versionable.
+	 * @throws F3::PHPCR::InvalidItemStateException if there are unsaved changes pending on this node.
+	 * @throws F3::PHPCR::Lock::LockException if a lock prevents the operation.
+	 * @throws F3::PHPCR::Version::ActivityViolationException If the checkout conflicts with the activity present on the current session.
+	 * @throws F3::PHPCR::RepositoryException if another error occurs.
 	 */
 	public function checkpoint();
 
@@ -642,14 +643,14 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 * If successful, these changes are persisted immediately, there is no need
 	 * to call save.
 	 *
-	 * @param F3_PHPCR_Version_VersionInterface $version a version referred to by this node's jcr:mergeFailed property.
+	 * @param F3::PHPCR::Version::VersionInterface $version a version referred to by this node's jcr:mergeFailed property.
 	 * @return void
-	 * @throws F3_PHPCR_Version_VersionException if the version specified is not among those referenced in this node's jcr:mergeFailed or if this node is currently checked-in.
-	 * @throws F3_PHPCR_InvalidItemStateException if there are unsaved changes pending on this node.
-	 * @throws F3_PHPCR_UnsupportedRepositoryOperationException if this node is not versionable.
-	 * @throws F3_PHPCR_RepositoryException if another error occurs.
+	 * @throws F3::PHPCR::Version::VersionException if the version specified is not among those referenced in this node's jcr:mergeFailed or if this node is currently checked-in.
+	 * @throws F3::PHPCR::InvalidItemStateException if there are unsaved changes pending on this node.
+	 * @throws F3::PHPCR::UnsupportedRepositoryOperationException if this node is not versionable.
+	 * @throws F3::PHPCR::RepositoryException if another error occurs.
 	 */
-	public function doneMerge(F3_PHPCR_Version_VersionInterface $version);
+	public function doneMerge(F3::PHPCR::Version::VersionInterface $version);
 
 	/**
 	 * Cancels the merge process with respect to this node and specified version.
@@ -661,14 +662,14 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 * If successful, these changes are persisted immediately, there is no need
 	 * to call save.
 	 *
-	 * @param F3_PHPCR_Version_VersionInterface $version a version referred to by this node's jcr:mergeFailed property.
+	 * @param F3::PHPCR::Version::VersionInterface $version a version referred to by this node's jcr:mergeFailed property.
 	 * @return void
-	 * @throws F3_PHPCR_Version_VersionException if the version specified is not among those referenced in this node's jcr:mergeFailed or if this node is currently checked-in.
-	 * @throws F3_PHPCR_InvalidItemStateException  if there are unsaved changes pending on this node.
-	 * @throws F3_PHPCR_UnsupportedRepositoryOperationException if this node is not versionable.
-	 * @throws F3_PHPCR_RepositoryException  if another error occurs.
+	 * @throws F3::PHPCR::Version::VersionException if the version specified is not among those referenced in this node's jcr:mergeFailed or if this node is currently checked-in.
+	 * @throws F3::PHPCR::InvalidItemStateException  if there are unsaved changes pending on this node.
+	 * @throws F3::PHPCR::UnsupportedRepositoryOperationException if this node is not versionable.
+	 * @throws F3::PHPCR::RepositoryException  if another error occurs.
 	 */
-	public function cancelMerge(F3_PHPCR_Version_VersionInterface $version);
+	public function cancelMerge(F3::PHPCR::Version::VersionInterface $version);
 
 	/**
 	 * If this node does have a corresponding node in the workspace srcWorkspace,
@@ -686,11 +687,11 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 *
 	 * @param string $srcWorkspace the name of the source workspace.
 	 * @return void
-	 * @throws F3_PHPCR_NoSuchWorkspaceException if srcWorkspace does not exist.
-	 * @throws F3_PHPCR_InvalidItemStateException if this Session (not necessarily this Node) has pending unsaved changes.
-	 * @throws F3_PHPCR_AccessDeniedException if the current session does not have sufficient rights to perform the operation.
-	 * @throws F3_PHPCR_Lock_LockException if a lock prevents the update.
-	 * @throws F3_PHPCR_RepositoryException if another error occurs.
+	 * @throws F3::PHPCR::NoSuchWorkspaceException if srcWorkspace does not exist.
+	 * @throws F3::PHPCR::InvalidItemStateException if this Session (not necessarily this Node) has pending unsaved changes.
+	 * @throws F3::PHPCR::AccessDeniedException if the current session does not have sufficient rights to perform the operation.
+	 * @throws F3::PHPCR::Lock::LockException if a lock prevents the update.
+	 * @throws F3::PHPCR::RepositoryException if another error occurs.
 	 */
 	public function update($srcWorkspace);
 
@@ -730,13 +731,13 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 * @param string $srcWorkspace the name of the source workspace.
 	 * @param boolean $bestEffort a boolean
 	 * @param boolean $isShallow a boolean
-	 * @return F3_PHPCR_NodeIteratorInterface iterator over all nodes that received a merge result of "fail" in the course of this operation.
-	 * @throws F3_PHPCR_MergeException if bestEffort is false and a failed merge result is encountered.
-	 * @throws F3_PHPCR_InvalidItemStateException  if this session (not necessarily this node) has pending unsaved changes.
-	 * @throws F3_PHPCR_NoSuchWorkspaceException if srcWorkspace does not exist.
-	 * @throws F3_PHPCR_AccessDeniedException  if the current session does not have sufficient rights to perform the operation.
-	 * @throws F3_PHPCR_Lock_LockException  if a lock prevents the merge.
-	 * @throws F3_PHPCR_RepositoryException  if another error occurs.
+	 * @return F3::PHPCR::NodeIteratorInterface iterator over all nodes that received a merge result of "fail" in the course of this operation.
+	 * @throws F3::PHPCR::MergeException if bestEffort is false and a failed merge result is encountered.
+	 * @throws F3::PHPCR::InvalidItemStateException  if this session (not necessarily this node) has pending unsaved changes.
+	 * @throws F3::PHPCR::NoSuchWorkspaceException if srcWorkspace does not exist.
+	 * @throws F3::PHPCR::AccessDeniedException  if the current session does not have sufficient rights to perform the operation.
+	 * @throws F3::PHPCR::Lock::LockException  if a lock prevents the merge.
+	 * @throws F3::PHPCR::RepositoryException  if another error occurs.
 	 */
 	public function merge($srcWorkspace, $bestEffort, $isShallow = NULL);
 
@@ -753,12 +754,12 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 *
 	 * The changes are persisted immediately, a save is not required.
 	 *
-	 * @param F3_PHPCR_Version_VersionInterface $baseline a Version
-	 * @return F3_PHPCR_NodeInterface a new nt:configuration node
-	 * @throws F3_PHPCR_UnsupportedRepositoryOperationException if N is not versionable.
-	 * @throws F3_PHPCR_RepositoryException if another error occurs.
+	 * @param F3::PHPCR::Version::VersionInterface $baseline a Version
+	 * @return F3::PHPCR::NodeInterface a new nt:configuration node
+	 * @throws F3::PHPCR::UnsupportedRepositoryOperationException if N is not versionable.
+	 * @throws F3::PHPCR::RepositoryException if another error occurs.
 	 */
-	public function createConfiguration(F3_PHPCR_Version_VersionInterface $baseline);
+	public function createConfiguration(F3::PHPCR::Version::VersionInterface $baseline);
 
 	/**
 	 * Returns the absolute path of the node in the specified workspace that
@@ -767,10 +768,10 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 *
 	 * @param string $workspaceName the name of the workspace.
 	 * @return string the absolute path to the corresponding node.
-	 * @throws F3_PHPCR_ItemNotFoundException if no corresponding node is found.
-	 * @throws F3_PHPCR_NoSuchWorkspaceException if the workspace is unknown.
-	 * @throws F3_PHPCR_AccessDeniedException if the current session has insufficient rights to perform this operation.
-	 * @throws F3_PHPCR_RepositoryException if another error occurs.
+	 * @throws F3::PHPCR::ItemNotFoundException if no corresponding node is found.
+	 * @throws F3::PHPCR::NoSuchWorkspaceException if the workspace is unknown.
+	 * @throws F3::PHPCR::AccessDeniedException if the current session has insufficient rights to perform this operation.
+	 * @throws F3::PHPCR::RepositoryException if another error occurs.
 	 */
 	public function getCorrespondingNodePath($workspaceName);
 
@@ -778,8 +779,8 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 * Returns an iterator over all nodes that are in the shared set of this node.
 	 * If this node is not shared then the returned iterator contains only this node.
 	 *
-	 * @return F3_PHPCR_NodeIteratorInterface a NodeIterator
-	 * @throws F3_PHPCR_RepositoryException if an error occurs.
+	 * @return F3::PHPCR::NodeIteratorInterface a NodeIterator
+	 * @throws F3::PHPCR::RepositoryException if an error occurs.
 	 */
 	public function getSharedSet();
 
@@ -793,10 +794,10 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 * If this node is not shared this method removes only this node.
 	 *
 	 * @return void
-	 * @throws F3_PHPCR_Version_VersionException
-	 * @throws F3_PHPCR_Lock_LockException
-	 * @throws F3_PHPCR_ConstraintViolationException
-	 * @throws F3_PHPCR_RepositoryException
+	 * @throws F3::PHPCR::Version::VersionException
+	 * @throws F3::PHPCR::Lock::LockException
+	 * @throws F3::PHPCR::ConstraintViolationException
+	 * @throws F3::PHPCR::RepositoryException
 	 */
 	public function removeSharedSet();
 
@@ -810,10 +811,10 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 * If this node is not shared this method removes only this node.
 	 *
 	 * @return void
-	 * @throws F3_PHPCR_Version_VersionException
-	 * @throws F3_PHPCR_Lock_LockException
-	 * @throws F3_PHPCR_ConstraintViolationException
-	 * @throws F3_PHPCR_RepositoryException
+	 * @throws F3::PHPCR::Version::VersionException
+	 * @throws F3::PHPCR::Lock::LockException
+	 * @throws F3::PHPCR::ConstraintViolationException
+	 * @throws F3::PHPCR::RepositoryException
 	 */
 	public function removeShare();
 
@@ -832,8 +833,8 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 * @param string $holdID a string
 	 * @param boolean $isDeep a boolean
 	 * @return void
-	 * @throws F3_PHPCR_UnsupportedRepositoryOperationException if this node is not of type mix:managedRetention.
-	 * @throws F3_PHPCR_RepositoryException if another error occurs.
+	 * @throws F3::PHPCR::UnsupportedRepositoryOperationException if this node is not of type mix:managedRetention.
+	 * @throws F3::PHPCR::RepositoryException if another error occurs.
 	 */
 	public function setHold($holdID, $isDeep);
 
@@ -846,8 +847,8 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 *
 	 * @param string $holdID a string
 	 * @return void
-	 * @throws F3_PHPCR_UnsupportedRepositoryOperationException if this node is not of type mix:managedRetention.
-	 * @throws F3_PHPCR_RepositoryException if another error occurs.
+	 * @throws F3::PHPCR::UnsupportedRepositoryOperationException if this node is not of type mix:managedRetention.
+	 * @throws F3::PHPCR::RepositoryException if another error occurs.
 	 */
 	public function removeHold($holdID);
 
@@ -859,13 +860,13 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 * The jcr:retentionPolicy property of this node is set to
 	 * refer to the policy node.
 	 *
-	 * @param F3_PHPCR_NodeInterface $policy a policy node
+	 * @param F3::PHPCR::NodeInterface $policy a policy node
 	 * @return void
-	 * @throws F3_PHPCR_NodeType_ConstraintViolationException if the specified node is not a valid retention policy node.
-	 * @throws F3_PHPCR_UnsupportedRepositoryOperationException if this node is not of type mix:managedRetention.
-	 * @throws F3_PHPCR_RepositoryException if another error occurs.
+	 * @throws F3::PHPCR::NodeType::ConstraintViolationException if the specified node is not a valid retention policy node.
+	 * @throws F3::PHPCR::UnsupportedRepositoryOperationException if this node is not of type mix:managedRetention.
+	 * @throws F3::PHPCR::RepositoryException if another error occurs.
 	 */
-	public function setRetentionPolicy(F3_PHPCR_NodeInterface $policy);
+	public function setRetentionPolicy(F3::PHPCR::NodeInterface $policy);
 
 	/**
 	 * Causes the current retention policy on this node to no longer apply.
@@ -873,9 +874,9 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 * Removes the jcr:retentionPolicy property from this node.
 	 *
 	 * @return void
-	 * @throws F3_PHPCR_NodeType_ConstraintViolationException if this node does not have a retention policy currently assigned.
-	 * @throws F3_PHPCR_UnsupportedRepositoryOperationException if this node is not of type mix:managedRetention.
-	 * @throws F3_PHPCR_RepositoryException if another error occurs.
+	 * @throws F3::PHPCR::NodeType::ConstraintViolationException if this node does not have a retention policy currently assigned.
+	 * @throws F3::PHPCR::UnsupportedRepositoryOperationException if this node is not of type mix:managedRetention.
+	 * @throws F3::PHPCR::RepositoryException if another error occurs.
 	 */
 	public function removeRetentionPolicy();
 
@@ -889,7 +890,7 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 * non-versionable and its nearest versionable ancestor is checked-in.
 	 *
 	 * @return boolean a boolean
-	 * @throws F3_PHPCR_RepositoryException If another error occurs.
+	 * @throws F3::PHPCR::RepositoryException If another error occurs.
 	 */
 	public function isCheckedOut();
 
@@ -935,18 +936,18 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 * If the restore succeeds, the changes made to this node are persisted
 	 * immediately, there is no need to call save.
 	 *
-	 * @param string|F3_PHPCR_Version_VersionInterface $version a version object or a version name
+	 * @param string|F3::PHPCR::Version::VersionInterface $version a version object or a version name
 	 * @param boolean $removeExisting covers what happens on identifier collision.
 	 * @param string $relPath the path to which the version is to be restored
 	 * @return void
-	 * @throws F3_PHPCR_PathNotFoundException if the parent of relPath does not exist.
-	 * @throws F3_PHPCR_ItemExistsException if removeExisting is false and an identifier collision occurs
-	 * @throws F3_PHPCR_ConstraintViolationException If the would-be parent of the location relPath is actually a property, or if a node type restriction would be violated
-	 * @throws F3_PHPCR_Version_VersionException if the parent node of relPath is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in or if a node exists at relPath that is not the node corresponding to the specified version or if an attempt is made to restore the root version (jcr:rootVersion).
-	 * @throws F3_PHPCR_UnsupportedRepositoryOperationException if versioning is not supported.
-	 * @throws F3_PHPCR_Lock_LockException  if a lock prevents the restore.
-	 * @throws F3_PHPCR_InvalidItemStateException  if this Session (not necessarily this Node) has pending unsaved changes.
-	 * @throws F3_PHPCR_RepositoryException if another error occurs
+	 * @throws F3::PHPCR::PathNotFoundException if the parent of relPath does not exist.
+	 * @throws F3::PHPCR::ItemExistsException if removeExisting is false and an identifier collision occurs
+	 * @throws F3::PHPCR::ConstraintViolationException If the would-be parent of the location relPath is actually a property, or if a node type restriction would be violated
+	 * @throws F3::PHPCR::Version::VersionException if the parent node of relPath is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in or if a node exists at relPath that is not the node corresponding to the specified version or if an attempt is made to restore the root version (jcr:rootVersion).
+	 * @throws F3::PHPCR::UnsupportedRepositoryOperationException if versioning is not supported.
+	 * @throws F3::PHPCR::Lock::LockException  if a lock prevents the restore.
+	 * @throws F3::PHPCR::InvalidItemStateException  if this Session (not necessarily this Node) has pending unsaved changes.
+	 * @throws F3::PHPCR::RepositoryException if another error occurs
 	 */
 	public function restore($version, $removeExisting, $relPath = NULL);
 
@@ -976,12 +977,12 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 * @param string $versionLabel a String
 	 * @param boolean $removeExisting a boolean flag that governs what happens in case of an identifier collision.
 	 * @return void
-	 * @throws F3_PHPCR_UnsupportedRepositoryOperationException if this node is not versionable.
-	 * @throws F3_PHPCR_Version_VersionException if the specified versionLabel does not exist in this node's version history.
-	 * @throws F3_PHPCR_ItemExistsException if removeExisting is false and an identifier collision occurs.
-	 * @throws F3_PHPCR_Lock_LockException if a lock prevents the restore.
-	 * @throws F3_PHPCR_InvalidItemStateException if this Session (not necessarily this Node) has pending unsaved changes.
-	 * @throws F3_PHPCR_RepositoryException If another error occurs.
+	 * @throws F3::PHPCR::UnsupportedRepositoryOperationException if this node is not versionable.
+	 * @throws F3::PHPCR::Version::VersionException if the specified versionLabel does not exist in this node's version history.
+	 * @throws F3::PHPCR::ItemExistsException if removeExisting is false and an identifier collision occurs.
+	 * @throws F3::PHPCR::Lock::LockException if a lock prevents the restore.
+	 * @throws F3::PHPCR::InvalidItemStateException if this Session (not necessarily this Node) has pending unsaved changes.
+	 * @throws F3::PHPCR::RepositoryException If another error occurs.
 	 */
 	public function restoreByLabel($versionLabel, $removeExisting);
 
@@ -989,18 +990,18 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 * Returns the VersionHistory object of this node. This object provides access
 	 * to the nt:versionHistory node holding this node's versions.
 	 *
-	 * @return F3_PHPCR_Version_VersionHistoryInterface a VersionHistory object
-	 * @throws F3_PHPCR_UnsupportedRepositoryOperationException if this node is not versionable.
-	 * @throws F3_PHPCR_RepositoryException If another error occurs.
+	 * @return F3::PHPCR::Version::VersionHistoryInterface a VersionHistory object
+	 * @throws F3::PHPCR::UnsupportedRepositoryOperationException if this node is not versionable.
+	 * @throws F3::PHPCR::RepositoryException If another error occurs.
 	 */
 	public function getVersionHistory();
 
 	/**
 	 * Returns the current base version of this versionable node.
 	 *
-	 * @return F3_PHPCR_Version_VersionInterface a Version object.
-	 * @throws F3_PHPCR_UnsupportedRepositoryOperationException if this node is not versionable.
-	 * @throws F3_PHPCR_RepositoryException if another error occurs.
+	 * @return F3::PHPCR::Version::VersionInterface a Version object.
+	 * @throws F3::PHPCR::UnsupportedRepositoryOperationException if this node is not versionable.
+	 * @throws F3::PHPCR::RepositoryException if another error occurs.
 	 */
 	public function getBaseVersion();
 
@@ -1015,9 +1016,9 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 *
 	 * @param string $transition a state transition
 	 * @return void
-	 * @throws F3_PHPCR_UnsupportedRepositoryOperationException  if this implementation does not support lifecycle actions or if this node does not have the mix:lifecycle mixin.
-	 * @throws F3_PHPCR_InvalidLifecycleTransitionException if the lifecycle transition is not successful.
-	 * @throws F3_PHPCR_RepositoryException if another error occurs.
+	 * @throws F3::PHPCR::UnsupportedRepositoryOperationException  if this implementation does not support lifecycle actions or if this node does not have the mix:lifecycle mixin.
+	 * @throws F3::PHPCR::InvalidLifecycleTransitionException if the lifecycle transition is not successful.
+	 * @throws F3::PHPCR::RepositoryException if another error occurs.
 	 */
 	public function followLifecycleTransition($transition);
 
@@ -1025,8 +1026,8 @@ interface F3_PHPCR_NodeInterface extends F3_PHPCR_ItemInterface {
 	 * Returns the list of valid state transitions for this node.
 	 *
 	 * @return array a string array.
-	 * @throws F3_PHPCR_UnsupportedRepositoryOperationException  if this implementation does not support lifecycle actions or if this node does not have the mix:lifecycle mixin.
-	 * @throws F3_PHPCR_RepositoryException if another error occurs.
+	 * @throws F3::PHPCR::UnsupportedRepositoryOperationException  if this implementation does not support lifecycle actions or if this node does not have the mix:lifecycle mixin.
+	 * @throws F3::PHPCR::RepositoryException if another error occurs.
 	 */
 	public function getAllowedLifecycleTransitions();
 }

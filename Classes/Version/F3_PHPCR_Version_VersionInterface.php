@@ -1,5 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
+namespace F3::PHPCR::Version;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -29,7 +30,7 @@ declare(ENCODING = 'utf-8');
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface F3_PHPCR_Version_VersionInterface extends F3_PHPCR_NodeInterface {
+interface VersionInterface extends F3::PHPCR::NodeInterface {
 
 	/**
 	 * Returns the VersionHistory that contains this Version
@@ -52,7 +53,7 @@ interface F3_PHPCR_Version_VersionInterface extends F3_PHPCR_NodeInterface {
 	/**
 	 * Returns the successor versions of this version. This corresponds to returning all the nt:version nodes referenced by the jcr:successors multi-value property in the nt:version node that represents this version.
 	 *
-	 * @return array of F3_PHPCR_Version_Version
+	 * @return array of F3::PHPCR::Version::Version
 	 * @throws RepositoryException if an error occurs
 	 */
 	public function getSuccessors();
@@ -62,7 +63,7 @@ interface F3_PHPCR_Version_VersionInterface extends F3_PHPCR_NodeInterface {
 	 * returning all the nt:version nodes whose jcr:successors property includes
 	 * a reference to the nt:version node that represents this version.
 	 *
-	 * @return array of F3_PHPCR_Version_Version
+	 * @return array of F3::PHPCR::Version::Version
 	 * @throws RepositoryException if an error occurs
 	 */
 	public function getPredecessors();
@@ -70,7 +71,7 @@ interface F3_PHPCR_Version_VersionInterface extends F3_PHPCR_NodeInterface {
 	/**
 	 * Returns the frozen node of this version.
 	 *
-	 * @return F3_PHPCR_NodeInterface a Node object
+	 * @return F3::PHPCR::NodeInterface a Node object
 	 * @throws RepositoryException if an error occurs
 	 */
 	public function getFrozenNode();

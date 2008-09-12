@@ -1,5 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
+namespace F3::PHPCR;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -27,17 +28,17 @@ declare(ENCODING = 'utf-8');
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface F3_PHPCR_ValueFactoryInterface {
+interface ValueFactoryInterface {
 
 	/**
-	 * Returns a F3_PHPCR_Binary object with a value consisting of the content of
+	 * Returns a F3::PHPCR::Binary object with a value consisting of the content of
 	 * the specified resource handle.
 	 * The passed resource handle is closed before this method returns either normally
 	 * or because of an exception.
 	 *
 	 * @param resource $handle
-	 * @return F3_PHPCR_BinaryInterface
-	 * @throws F3_PHPCR_RepositoryException if an error occurs.
+	 * @return F3::PHPCR::BinaryInterface
+	 * @throws F3::PHPCR::RepositoryException if an error occurs.
 	 */
 	public function createBinary($handle);
 
@@ -53,9 +54,9 @@ interface F3_PHPCR_ValueFactoryInterface {
 	 *
 	 * @param mixed $value
 	 * @param integer $type
-	 * @return F3_PHPCR_ValueInterface
-	 * @throws F3_PHPCR_ValueFormatException is thrown if the specified value cannot be converted to the specified type.
-	 * @throws F3_PHPCR_RepositoryException if the specified Node is not referenceable, the current Session is no longer active, or another error occurs.
+	 * @return F3::PHPCR::ValueInterface
+	 * @throws F3::PHPCR::ValueFormatException is thrown if the specified value cannot be converted to the specified type.
+	 * @throws F3::PHPCR::RepositoryException if the specified Node is not referenceable, the current Session is no longer active, or another error occurs.
 	 */
 	public function createValue($value, $type = NULL);
 }

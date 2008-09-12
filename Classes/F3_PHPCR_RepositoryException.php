@@ -1,5 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
+namespace F3::PHPCR;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -24,10 +25,10 @@ declare(ENCODING = 'utf-8');
  * message and/or another nested exception.
  *
  * @package PHPCR
- * @version $Id:F3_PHPCR_RepositoryException.php 254 2007-07-09 06:34:07Z robert $
+ * @version $Id:F3::PHPCR::RepositoryException.php 254 2007-07-09 06:34:07Z robert $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class F3_PHPCR_RepositoryException extends RuntimeException {
+class RepositoryException extends RuntimeException {
 }
 
 ?>
