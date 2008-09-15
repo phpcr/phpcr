@@ -90,7 +90,7 @@ final class PropertyType {
 	 *
 	 * @param integer $type type the property type
 	 * @return string  name of the specified type
-	 * @author Sebastian Kurfuerst <sebastian@typo3.org>
+	 * @author Sebastian Kurfürst <sebastian@typo3.org>
 	 * @author Karsten Dambekalns <karsten@typo3.org>
 	 */
 	static public function nameFromValue($type) {
@@ -143,7 +143,7 @@ final class PropertyType {
 	 *
 	 * @param string $name The name of the property type
 	 * @return int The numeric constant value
-	 * @author Sebastian Kurfuerst <sebastian@typo3.org>
+	 * @author Sebastian Kurfürst <sebastian@typo3.org>
 	 * @author Karsten Dambekalns <karsten@typo3.org>
 	 */
 	static public function valueFromName($name) {
