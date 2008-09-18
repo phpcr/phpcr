@@ -1,18 +1,22 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<packageInfo>
-	<packageKey>phpcr</packageKey>
-	<version>0.0.1</version>
-	<title>phpCR Interfaces</title>
-	<description>The phpCR JSR-283 interfaces.</description>
-	<category>system</category>
-	<authorName>Karsten Dambekalns</authorName>
-	<authorEmail>karsten@typo3.org</authorEmail>
-	<authorCompany/>
-	<constraints>
-		<depends>
-			<package atLeastVersion="5.2.0">php</package>
-		</depends>
-		<conflicts/>
-		<suggests/>
-	</constraints>
-</packageInfo>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<package xmlns="http://typo3.org/ns/2008/flow3/package">
+    <key>PHPCR</key>
+    <title>PHP Content Repository Interfaces</title>
+    <description>The JSR-283 interfaces ported to PHP.</description>
+    <version>2.0.0RC19</version>
+    <state>ReleaseCandidate</state>
+    <categories/>
+    <parties>
+        <person role="LeadDeveloper">
+            <name>Karsten Dambekalns</name>
+            <email>karsten@typo3.org</email>
+            <organisation>TYPO3 Association</organisation>
+            <repositoryUserName>k-fish</repositoryUserName>
+        </person>
+    </parties>
+    <constraints>
+        <depends/>
+        <conflicts/>
+        <suggests/>
+    </constraints>
+</package>
