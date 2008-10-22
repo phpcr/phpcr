@@ -33,6 +33,57 @@ namespace F3::PHPCR;
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
 interface NamespaceRegistryInterface {
+
+	/**
+	 * A constant for the predefined namespace prefix "jcr".
+	 */
+	const PREFIX_JCR = "jcr";
+
+	/**
+	 * A constant for the predefined namespace prefix "nt".
+	 */
+	const PREFIX_NT = "nt";
+
+	/**
+	 * A constant for the predefined namespace prefix "mix".
+	 */
+	const PREFIX_MIX = "mix";
+
+	/**
+	 * A constant for the predefined namespace prefix "xml".
+	 */
+	const PREFIX_XML = "xml";
+
+	/**
+	 * A constant for the predefined namespace prefix "" (the empty prefix).
+	 */
+	const PREFIX_EMPTY = "";
+
+	/**
+	 * A constant for the predefined namespace mapped by default to the prefix "jcr"
+	 */
+	const NAMESPACE_JCR = "http://www.jcp.org/jcr/1.0";
+
+	/**
+	 * A constant for the predefined namespace mapped by default to the prefix "nt"
+	 */
+	const NAMESPACE_NT = "http://www.jcp.org/jcr/nt/1.0";
+
+	/**
+	 * A constant for the predefined namespace mapped by default to the prefix "mix"
+	 */
+	const NAMESPACE_MIX = "http://www.jcp.org/jcr/mix/1.0";
+
+	/**
+	 * A constant for the predefined namespace mapped by default to the prefix "xml"
+	 */
+	const NAMESPACE_XML = "http://www.w3.org/XML/1998/namespace";
+
+	/**
+	 * A constant for the predefined namespace mapped by default to the prefix "" (the empty prefix)
+	 */
+	const NAMESPACE_EMPTY = "";
+
 	/**
 	 * Sets a one-to-one mapping between prefix and uri in the global namespace
 	 * registry of this repository.

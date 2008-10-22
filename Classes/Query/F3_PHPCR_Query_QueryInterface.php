@@ -38,58 +38,13 @@ interface QueryInterface {
 	const JCR_SQL2 = 'JCR-SQL2';
 
 	/**
-	 * Flags determining the scope of the query,
-	 * for details, see execute($searchSpace).
-	 */
-	const SEARCH_WORKSPACE = 1;
-	const SEARCH_WORKSPACE_NO_SYSTEM = 2;
-	const SEARCH_VERSIONS = 3;
-
-	/**
-	 * Executes this query and returns a QueryResult.
-	 * The flag searchSpace determines the scope of the search:
+	 * Executes this query and returns a QueryResult object.
 	 *
-	 * SEARCH_WORKSPACE: Search the current workspace. In repositories that support
-	 * full versioning, each workspace includes a subtree /jcr:system/jcr:versionStorage
-	 * which reflects the version information of the repository. In such repositories
-	 * this option will search the entire workspace including this version storage subtree.
-	 *
-	 * In repositories that support only simple versioning, repository version storage
-	 * is not reflected in workspace content and so this option will, by definition,
-	 * not search versions. In that case searching of versions can be done with the
-	 * SEARCH_VERSIONS option.
-	 *
-	 * In either of the above cases, if a repository supports other features that
-	 * mandate the storage of data under /jcr:system these substructures will be
-	 * searched under this option. To prevent search of the system node subtree
-	 * the option SEARCH_WORKSPACE_NO_SYSTEM can be used.
-	 *
-	 * This option is equivalent to the zero-parameter signature execute().
-	 *
-	 * SEARCH_WORKSPACE_NO_SYSTEM: Searches the current workspace except for the
-	 * /jcr:system subtree. If no /jcr:system subtree exists this option is equivalent
-	 * to SEARCH_WORKSPACE.
-	 *
-	 * SEARCH_VERSIONS: Search all versions of all nodes in the repository. This
-	 * option will search version storage regardless of whether it is reflected in
-	 * workspace content (as when full versioning is supported) or hidden within
-	 * the implementation (as when only simple versioning is supported). Queries
-	 * using this option will return results in the form of nt:version nodes even
-	 * in repositories that do not expose version storage as content in the the
-	 * workspace.
-	 *
-	 * In repositories that support only simple versioning, using this option is
-	 * the only way to search version information. In repositories that support
-	 * full versioning this option is also supported though queries involving
-	 * features unique to full versioning will still require direct search of the
-	 * version history structure below /jcr:system/jcr:versionHistory.
-	 *
-	 * @param integer $searchSpace flag which determines the scope of the search
 	 * @return F3::PHPCR::Query::QueryInterface a QueryResult object
-	 * @throws F3::PHPCR::Query::SearchNotSupportedException if the QueryManager does not support the search mode.
+	 * @throws F3::PHPCR::Query::InvalidQueryException if the query contains an unbound variable.
 	 * @throws F3::PHPCR::RepositoryException if an error occurs
 	 */
-	public function execute($searchSpace = F3::PHPCR::Query::QueryInterface::SEARCH_WORKSPACE);
+	public function execute();
 
 	/**
 	 * Sets the maximum size of the result set to limit.

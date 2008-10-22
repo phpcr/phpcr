@@ -33,58 +33,35 @@ interface BinaryInterface {
 
 	/**
 	 * Returns a stream representation of this value.
+	 * Each call to <code>getStream()</code> returns a new stream.
+	 * The API consumer is responsible for calling <code>close()</code>
+	 * on the returned stream.
 	 *
 	 * @return resource A stream representation of this value.
-	 * @throws BadMethodCallException if acquire() has not yet or release() has already been called on this Binary object instance.
 	 * @throws F3::PHPCR::RepositoryException if another error occurs.
 	 */
 	public function getStream();
 
 	/**
-	 * Returns a (native) string representation of this value.
+	 * Reads successive bytes from the specified position in this Binary into
+	 * the passed string until the end of the Binary is encountered.
 	 *
-	 * @return string A (native) string representation of this value.
-	 * @throws BadMethodCallException if acquire() has not yet or release() has already been called on this Binary object instance.
+	 * @param string $bytes the buffer into which the data is read.
+	 * @param integer $position the position in this Binary from which to start reading bytes.
+	 * @return integer the number of bytes read into the buffer
+	 * @throws ::RuntimeException if an I/O error occurs.
+	 * @throws ::InvalidArgumentException if offset is negative.
 	 * @throws F3::PHPCR::RepositoryException if another error occurs.
 	 */
-	public function getBytes();
+	public function read(&$bytes, $position);
 
 	/**
-	 * Returns the size of this value in bytes.
+	 * Returns the size of this Binary value in bytes.
 	 *
 	 * @return integer the size of this value in bytes.
-	 * @throws BadMethodCallException if acquire() has not yet or release() has already been called on this Binary object instance.
 	 * @throws F3::PHPCR::RepositoryException if another error occurs.
 	 */
 	public function getSize();
-
-	/**
-	 * Clients must call this method before using any of the other methods of
-	 * this interface, other than release().
-	 * This method is used by the implementation to track the usage of Binary
-	 * objects and perform any preparation that may be necessary for returning
-	 * the binary data (through either getStream() or getBytes()) or reporting
-	 * the size of the binary data (through getSize()). The details of any such
-	 * preparation will be specific to the implementation.
-	 *
-	 * @return void
-	 * @throws BadMethodCallException if release() has already been called on this Binary object instance.
-	 * @throws F3::PHPCR::RepositoryException if another error occurs.
-	 */
-	public function acquire();
-
-	/**
-	 * Clients must call this method when they are finished with a Binary object
-	 * instance in order to allow the implementation to release any resources used
-	 * during the lifetime of the object. The details of any such clean-up will be
-	 * specific to the implementation.
-	 * It is legal for this method to be called even if acquire() has not yet been
-	 * called, though in a typical implementation this will have no effect.
-	 *
-	 * @return void
-	 * @throws F3::PHPCR::RepositoryException if an error occurs.
-	 */
-	public function release();
 
 }
 

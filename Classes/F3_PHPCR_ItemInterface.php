@@ -225,6 +225,7 @@ interface ItemInterface {
 	 * @throws F3::PHPCR::Lock::LockException if a lock prevents the removal of this item and this implementation performs this validation immediately instead of waiting until save.
 	 * @throws F3::PHPCR::ConstraintViolationException if removing the specified item would violate a node type or implementation-specific constraint and this implementation performs this validation immediately instead of waiting until save.
 	 * @throws F3::PHPCR::RepositoryException if another error occurs.
+	 * @see Workspace::removeItem(String)
 	 */
 	public function remove();
 }

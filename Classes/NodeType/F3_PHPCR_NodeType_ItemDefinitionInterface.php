@@ -63,9 +63,14 @@ interface ItemDefinitionInterface {
 	 * be a residual set definition but will specify an actual item name (in
 	 * other words getName() will not return "*").
 	 *
-	 * An autocreated item is created immediately when its parent node is created
-	 * in the transient session space. Creation of autocreated items is never
-	 * delayed until save.
+	 * An autocreated item non-protected item must be created immediately when
+	 * its parent node is created in the transient session space. Creation of
+	 * autocreated non-protected items is never delayed until save.
+	 *
+	 * An autocreated protected item should be created immediately when its
+	 * parent node is created in the transient session space. Creation of
+	 * autocreated protected items should not be delayed until save, though
+	 * doing so does not violate JCR compliance.
 	 *
 	 * In implementations that support node type registration, if this
 	 * ItemDefinition object is actually a newly-created empty

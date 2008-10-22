@@ -33,6 +33,361 @@ namespace F3::PHPCR;
 interface PropertyInterface extends F3::PHPCR::ItemInterface {
 
 	/**
+	 * A constant for the property name jcr:primaryType (in extended form),
+	 * declared in node type nt:base.
+	 */
+	const JCR_PRIMARY_TYPE = "{http://www.jcp.org/jcr/1.0}primaryType";
+
+	/**
+	 * A constant for the property name jcr:mixinTypes (in extended form),
+	 * declared in node type nt:base.
+	 */
+	const JCR_MIXIN_TYPES = "{http://www.jcp.org/jcr/1.0}mixinTypes";
+
+	/**
+	 * A constant for the property name jcr:content (in extended form),
+	 * declared in node type nt:linkedFile.
+	 * Note, jcr:content is also the name of a child node declared in nt:file.
+	 */
+	const JCR_CONTENT = "{http://www.jcp.org/jcr/1.0}content";
+
+	/**
+	 * A constant for the property name jcr:data (in extended form),
+	 * declared in node type nt:resource.
+	 */
+	const JCR_DATA = "{http://www.jcp.org/jcr/1.0}data";
+
+	/**
+	 * A constant for the property name jcr:protocol (in extended form),
+	 * declared in node type nt:address.
+	 */
+	const JCR_PROTOCOL = "{http://www.jcp.org/jcr/1.0}protocol";
+
+	/**
+	 * A constant for the property name jcr:host (in extended form),
+	 * declared in node type nt:address.
+	 */
+	const JCR_HOST = "{http://www.jcp.org/jcr/1.0}host";
+
+	/**
+	 * A constant for the property name jcr:port (in extended form),
+	 * declared in node type nt:address.
+	 */
+	const JCR_PORT = "{http://www.jcp.org/jcr/1.0}port";
+
+	/**
+	 * A constant for the property name jcr:repository (in extended form),
+	 * declared in node type nt:address.
+	 */
+	const JCR_REPOSITORY = "{http://www.jcp.org/jcr/1.0repository";
+
+	/**
+	 * A constant for the property name jcr:workspace (in extended form),
+	 * declared in node type nt:address.
+	 */
+	const JCR_WORKSPACE = "{http://www.jcp.org/jcr/1.0}workspace";
+
+	/**
+	 * A constant for the property name jcr:path (in extended form),
+	 * declared in node type nt:address.
+	 */
+	const JCR_PATH = "{http://www.jcp.org/jcr/1.0}path";
+
+	/**
+	 * A constant for the property name jcr:id (in extended form),
+	 * declared in node type nt:address.
+	 */
+	const JCR_ID = "{http://www.jcp.org/jcr/1.0}id";
+
+	/**
+	 * A constant for the property name jcr:uuid (in extended form),
+	 * declared in node type mix:referenceable.
+	 */
+	const JCR_UUID = "{http://www.jcp.org/jcr/1.0}uuid";
+
+	/**
+	 * A constant for the property name jcr:title (in extended form),
+	 * declared in node types mix:title and nt:activity.
+	 */
+	const JCR_TITLE = "{http://www.jcp.org/jcr/1.0}title";
+
+	/**
+	 * A constant for the property name jcr:description (in extended form),
+	 * declared in node type mix:title.
+	 */
+	const JCR_DESCRIPTION = "{http://www.jcp.org/jcr/1.0}description";
+
+	/**
+	 * A constant for the property name jcr:created (in extended form),
+	 * declared in node types mix:created and nt:version.
+	 */
+	const JCR_CREATED = "{http://www.jcp.org/jcr/1.0}created";
+
+	/**
+	 * A constant for the property name jcr:createdBy (in extended form),
+	 * declared in node type mix:created.
+	 */
+	const JCR_CREATED_BY = "{http://www.jcp.org/jcr/1.0}createdBy";
+
+	/**
+	 * A constant for the property name jcr:lastModified (in extended form),
+	 * declared in node type mix:lastModified.
+	 */
+	const JCR_LAST_MODIFIED = "{http://www.jcp.org/jcr/1.0}lastModified";
+
+	/**
+	 * A constant for the property name jcr:lastModifiedBy (in extended form),
+	 * declared in node type mix:lastModified.
+	 */
+	const JCR_LAST_MODIFIED_BY = "{http://www.jcp.org/jcr/1.0}lastModifiedBy";
+
+	/**
+	 * A constant for the property name jcr:language (in extended form),
+	 * declared in node types mix:language and nt:query.
+	 */
+	const JCR_LANGUAGE = "{http://www.jcp.org/jcr/1.0}language";
+
+	/**
+	 * A constant for the property name jcr:mimetype (in extended form),
+	 * declared in node type mix:mimetype.
+	 */
+	const JCR_MIMETYPE = "{http://www.jcp.org/jcr/1.0}mimetype";
+
+	/**
+	 * A constant for the property name jcr:encoding (in extended form),
+	 * declared in node type mix:mimetype.
+	 */
+	const JCR_ENCODING = "{http://www.jcp.org/jcr/1.0}encoding";
+
+	/**
+	 * A constant for the property name jcr:nodeTypeName (in extended form),
+	 * declared in node type nt:nodeType.
+	 */
+	const JCR_NODE_TYPE_NAME = "{http://www.jcp.org/jcr/1.0}nodeTypeName";
+
+	/**
+	 * A constant for the property name jcr:supertypes (in extended form),
+	 * declared in node type nt:nodeType.
+	 */
+	const JCR_SUPERTYPES = "{http://www.jcp.org/jcr/1.0}supertypes";
+
+	/**
+	 * A constant for the property name jcr:isAbstract (in extended form),
+	 * declared in node type nt:nodeType.
+	 */
+	const JCR_IS_ABSTRACT = "{http://www.jcp.org/jcr/1.0}isAbstract";
+
+	/**
+	 * A constant for the property name jcr:isMixin (in extended form),
+	 * declared in node type nt:nodeType.
+	 */
+	const JCR_IS_MIXIN = "{http://www.jcp.org/jcr/1.0}isMixin";
+
+	/**
+	 * A constant for the property name jcr:hasOrderableChildNodes (in extended form),
+	 * declared in node type nt:nodeType.
+	 */
+	const JCR_HAS_ORDERABLE_CHILD_NODES = "{http://www.jcp.org/jcr/1.0}hasOrderableChildNodes";
+
+	/**
+	 * A constant for the property name jcr:primaryItemName (in extended form),
+	 * declared in node type nt:nodeType.
+	 */
+	const JCR_PRIMARY_ITEM_NAME = "{http://www.jcp.org/jcr/1.0}primaryItemName";
+
+	/**
+	 * A constant for the property name jcr:name (in extended form),
+	* declared in node types nt:propertyDefinition and nt:childNodeDefinition.
+	 */
+	const JCR_NAME = "{http://www.jcp.org/jcr/1.0}name";
+
+	/**
+	 * A constant for the property name jcr:autoCreated (in extended form),
+	* declared in node types nt:propertyDefinition and nt:childNodeDefinition.
+	 */
+	const JCR_AUTOCREATED = "{http://www.jcp.org/jcr/1.0}autoCreated";
+
+	/**
+	 * A constant for the property name jcr:mandatory (in extended form),
+	* declared in node types nt:propertyDefinition and nt:childNodeDefinition.
+	 */
+	const JCR_MANDATORY = "{http://www.jcp.org/jcr/1.0}mandatory";
+
+	/**
+	 * A constant for the property name jcr:protected (in extended form),
+	 * declared in node types nt:propertyDefinition and nt:childNodeDefinition.
+	 */
+	const JCR_PROTECTED = "{http://www.jcp.org/jcr/1.0}protected";
+
+	/**
+	 * A constant for the property name jcr:onParentVersion (in extended form),
+	 * declared in node types nt:propertyDefinition and nt:childNodeDefinition.
+	 */
+	const JCR_ON_PARENT_VERSION = "{http://www.jcp.org/jcr/1.0}onParentVersion";
+
+	/**
+	 * A constant for the property name jcr:requiredType (in extended form),
+	 * declared in node type nt:propertyDefinition.
+	 */
+	const JCR_REQUIRED_TYPE = "{http://www.jcp.org/jcr/1.0}requiredType";
+
+	/**
+	 * A constant for the property name jcr:valueConstraints (in extended form),
+	 * declared in node type nt:propertyDefinition.
+	 */
+	const JCR_VALUE_CONSTRAINTS = "{http://www.jcp.org/jcr/1.0}valueConstraints";
+
+	/**
+	 * A constant for the property name jcr:defaultValues (in extended form),
+	 * declared in node type nt:propertyDefinition.
+	 */
+	const JCR_DEFAULT_VALUES = "{http://www.jcp.org/jcr/1.0}defaultValues";
+
+	/**
+	 * A constant for the property name jcr:multiple (in extended form),
+	 * declared in node type nt:propertyDefinition.
+	 */
+	const JCR_MULTIPLE = "{http://www.jcp.org/jcr/1.0}multiple";
+
+	/**
+	 * A constant for the property name jcr:requiredPrimaryTypes (in extended form),
+	 * declared in node type nt:childNodeDefinition.
+	 */
+	const JCR_REQUIRED_PRIMARY_TYPES = "{http://www.jcp.org/jcr/1.0}requiredPrimaryTypes";
+
+	/**
+	 * A constant for the property name jcr:defaultPrimaryType (in extended form),
+	 * declared in node type nt:childNodeDefinition.
+	 */
+	const JCR_DEFAULT_PRIMARY_TYPE = "{http://www.jcp.org/jcr/1.0}defaultPrimaryType";
+
+	/**
+	 * A constant for the property name jcr:sameNameSiblings (in extended form),
+	 * declared in node type nt:childNodeDefinition.
+	 */
+	const JCR_SAME_NAME_SIBLINGS = "{http://www.jcp.org/jcr/1.0}sameNameSiblings";
+
+	/**
+	 * A constant for the property name jcr:lockOwner (in extended form),
+	 * declared in node type mix:lockable.
+	 */
+	const JCR_LOCK_OWNER = "{http://www.jcp.org/jcr/1.0}lockOwner";
+
+	/**
+	 * A constant for the property name jcr:lockIsDeep (in extended form),
+	 * declared in node type mix:lockable.
+	 */
+	const JCR_LOCK_IS_DEEP = "{http://www.jcp.org/jcr/1.0}lockIsDeep";
+
+	/**
+	 * A constant for the property name jcr:lifecyclePolicy (in extended form),
+	 * declared in node type mix:lifecycle.
+	 */
+	const JCR_LIFECYCLE_POLICY = "{http://www.jcp.org/jcr/1.0}lifecyclePolicy";
+
+	/**
+	 * A constant for the property name jcr:currentLifecycleState (in extended form),
+	 * declared in node type mix:lifecycle.
+	 */
+	const JCR_CURRENT_LIFECYCLE_STATE = "{http://www.jcp.org/jcr/1.0}currentLifecycleState";
+
+	/**
+	 * A constant for the property name jcr:isCheckedOut (in extended form),
+	 * declared in node type mix:simpleVersionable.
+	 */
+	const JCR_IS_CHECKED_OUT = "{http://www.jcp.org/jcr/1.0}isCheckedOut";
+
+	/**
+	 * A constant for the property name jcr:frozenPrimaryType (in extended form),
+	 * declared in node type nt:frozenNode.
+	 */
+	const JCR_FROZEN_PRIMARY_TYPE = "{http://www.jcp.org/jcr/1.0}frozenPrimaryType";
+
+	/**
+	 * A constant for the property name jcr:frozenMixinTypes (in extended form),
+	 * declared in node type nt:frozenNode.
+	 */
+	const JCR_FROZEN_MIXIN_TYPES = "{http://www.jcp.org/jcr/1.0}frozenMixinTypes";
+
+	/**
+	 * A constant for the property name jcr:frozenUuid (in extended form),
+	 * declared in node type nt:frozenNode.
+	 */
+	const JCR_FROZEN_UUID = "{http://www.jcp.org/jcr/1.0}frozenUuid";
+
+	/**
+	 * A constant for the property name jcr:versionHistory (in extended form),
+	 * declared in node type mix:versionable.
+	 */
+	const JCR_VERSION_HISTORY = "{http://www.jcp.org/jcr/1.0}versionHistory";
+
+	/**
+	 * A constant for the property name jcr:baseVersion (in extended form),
+	 * declared in node type mix:versionable.
+	 */
+	const JCR_BASE_VERSION = "{http://www.jcp.org/jcr/1.0}baseVersion";
+
+	/**
+	 * A constant for the property name jcr:predecessors (in extended form),
+	 * declared in node types mix:versionable and nt:version.
+	 */
+	const JCR_PREDECESSORS = "{http://www.jcp.org/jcr/1.0}predecessors";
+
+	/**
+	 * A constant for the property name jcr:mergeFailed (in extended form),
+	 * declared in node type mix:versionable.
+	 */
+	const JCR_MERGE_FAILED = "{http://www.jcp.org/jcr/1.0}mergeFailed";
+
+	/**
+	 * A constant for the property name jcr:activity (in extended form),
+	 * declared in node types mix:versionable and nt:version.
+	 */
+	const JCR_ACTIVITY = "{http://www.jcp.org/jcr/1.0}activity";
+
+	/**
+	 * A constant for the property name jcr:configuration (in extended form),
+	 * declared in node type mix:versionable.
+	 */
+	const JCR_CONFIGURATION = "{http://www.jcp.org/jcr/1.0}configuration";
+
+	/**
+	 * A constant for the property name jcr:versionableUuid (in extended form),
+	 * declared in node type nt:version.
+	 */
+	const JCR_VERSIONABLE_UUID = "{http://www.jcp.org/jcr/1.0}versionableUuid";
+
+	/**
+	 * A constant for the property name jcr:copiedFrom (in extended form),
+	 * declared in node type nt:version.
+	 */
+	const JCR_COPIED_FROM = "{http://www.jcp.org/jcr/1.0}copiedFrom";
+
+	/**
+	 * A constant for the property name jcr:successors (in extended form),
+	 * declared in node type nt:version.
+	 */
+	const JCR_SUCCESSORS = "{http://www.jcp.org/jcr/1.0}successors";
+
+	/**
+	 * A constant for the property name jcr:childVersionHistory (in extended form),
+	 * declared in node type nt:versionedChild.
+	 */
+	const JCR_CHILD_VERSION_HISTORY = "{http://www.jcp.org/jcr/1.0}childVersionHistory";
+
+	/**
+	 * A constant for the property name jcr:root (in extended form),
+	 * declared in node type nt:configuration.
+	 */
+	const JCR_ROOT = "{http://www.jcp.org/jcr/1.0}root";
+
+	/**
+	 * A constant for the property name jcr:statement (in extended form),
+	 * declared in node type nt:query.
+	 */
+	const JCR_STATEMENT = "{http://www.jcp.org/jcr/1.0}statement";
+
+	/**
 	 * Sets the value of this property to value. If this property's property
 	 * type is not constrained by the node type of its parent node, then the
 	 * property type is changed to that of the supplied value. If the property
@@ -188,9 +543,11 @@ interface PropertyInterface extends F3::PHPCR::ItemInterface {
 
 	/**
 	 * Returns the length of the value of this property.
-	 * Returns the length in bytes if the value is a BINARY, otherwise it
-	 * returns the number of characters needed to display the value in its
-	 * string form.
+	 *
+	 * For a BINARY property, getLength returns the number of bytes.
+	 * For other property types, getLength returns the same value that would be
+	 * returned by calling strlen() on the value when it has been converted to a
+	 * STRING according to standard JCR propety type conversion.
 	 *
 	 * Returns -1 if the implementation cannot determine the length.
 	 *
@@ -202,12 +559,8 @@ interface PropertyInterface extends F3::PHPCR::ItemInterface {
 
 	/**
 	 * Returns an array holding the lengths of the values of this (multi-value)
-	 * property in bytes if the values are PropertyType.BINARY, otherwise it
-	 * returns the number of characters needed to display the value in its
-	 * string form. The order of the length values corresponds to the order of
-	 * the values in the property.
-	 * Returns a -1 in the appropriate position if the implementation cannot
-	 * determine the length of a value.
+	 * property in bytes where each is individually calculated as described in
+	 * getLength().
 	 *
 	 * @return array an array of lengths
 	 * @throws F3::PHPCR::ValueFormatException if this property is single-valued.

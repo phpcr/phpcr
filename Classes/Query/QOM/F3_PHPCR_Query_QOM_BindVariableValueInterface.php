@@ -24,10 +24,6 @@ namespace F3::PHPCR::Query::QOM;
 /**
  * Evaluates to the value of a bind variable.
  *
- * The query is invalid if no value is bound to bindVariableName.
- *
- * The query is invalid if bindVariableName is not a valid JCR prefix.
- *
  * @package PHPCR
  * @subpackage Query
  * @version $Id$

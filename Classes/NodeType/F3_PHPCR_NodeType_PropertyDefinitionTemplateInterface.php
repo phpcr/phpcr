@@ -111,6 +111,30 @@ interface PropertyDefinitionTemplateInterface extends F3::PHPCR::NodeType::Prope
 	 */
 	public function setMultiple($multiple);
 
+	/**
+	 * Sets the queryable status of the property.
+	 *
+	 * @param boolean $queryable a boolean.
+	 * @return void
+	 */
+	public function setQueryable($queryable);
+
+	/**
+	 * Sets the full-text-searchable status of the property.
+	 *
+	 * @param boolean $fullTextSearchable a boolean.
+	 * @return void
+	 */
+	public function setFullTextSearchable($fullTextSearchable);
+
+	/**
+	 * Sets the query-orderable status of the property.
+	 *
+	 * @param boolean $queryOrderable a boolean.
+	 * @return void
+	 */
+	public function setQueryOrderable($queryOrderable);
+
 }
 
 ?>

@@ -34,6 +34,99 @@ namespace F3::PHPCR;
 interface WorkspaceInterface {
 
 	/**
+	 * A constant for the name of the workspace root node.
+	 */
+	const NAME_WORKSPACE_ROOT = '';
+
+	/**
+	 * A constant for the absolute path of the workspace root node.
+	 */
+	const PATH_WORKSPACE_ROOT = '/';
+
+	/**
+	 * A constant for the name of the system node.
+	 */
+	const NAME_SYSTEM_NODE = '{http://www.jcp.org/jcr/1.0}system';
+
+	/**
+	 * A constant for the absolute path of the system node.
+	 * This is '/' . NAME_SYSTEM_NODE
+	 */
+	const PATH_SYSTEM_NODE = '/{http://www.jcp.org/jcr/1.0}system';
+
+	/**
+	 * A constant for the name of the node type definition storage node.
+	 */
+	const NAME_NODE_TYPES_NODE = '{http://www.jcp.org/jcr/1.0}nodeTypes';
+
+	/**
+	 * A constant for the absolute path of the node type definition storage node.
+	 * This is PATH_SYSTEM_NODE . '/' . NAME_NODE_TYPES_NODE
+	 */
+	const PATH_NODE_TYPES_NODE = '/{http://www.jcp.org/jcr/1.0}system/{http://www.jcp.org/jcr/1.0}nodeTypes';
+
+	/**
+	 * A constant for the name of the version storage node.
+	 */
+	const NAME_VERSION_STORAGE_NODE = '{http://www.jcp.org/jcr/1.0}versionStorage';
+
+	/**
+	 * A constant for the absolute path of the version storage node.
+	 * This is PATH_SYSTEM_NODE . '/' . NAME_VERSION_STORAGE_NODE
+	 */
+	const PATH_VERSION_STORAGE_NODE = '/{http://www.jcp.org/jcr/1.0}system/{http://www.jcp.org/jcr/1.0}versionStorage';
+
+	/**
+	 * A constant for the name of the activities node.
+	 */
+	const NAME_ACTIVITIES_NODE = '{http://www.jcp.org/jcr/1.0}activities';
+
+	/**
+	 * A constant for the absolute path of the activities node.
+	 * This is PATH_SYSTEM_NODE . '/' . NAME_ACTIVITIES_NODE
+	 */
+	const PATH_ACTIVITIES_NODE = '/{http://www.jcp.org/jcr/1.0}system/{http://www.jcp.org/jcr/1.0}activities';
+
+	/**
+	 * A constant for the name of the configurations node.
+	 */
+	const NAME_CONFIGURATIONS_NODE = '{http://www.jcp.org/jcr/1.0}configurations';
+
+	/**
+	 * A constant for the absolute path of the configurations node.
+	 * This is PATH_SYSTEM_NODE . '/' . NAME_CONFIGURATIONS_NODE
+	 */
+	const PATH_CONFIGURATIONS_NODE = '/{http://www.jcp.org/jcr/1.0}system/{http://www.jcp.org/jcr/1.0}configurations';
+
+	/**
+	 * A constant for the name of the unfiled storage node.
+	 */
+	const NAME_UNFILED_NODE = '{http://www.jcp.org/jcr/1.0}unfiled';
+
+	/**
+	 * A constant for the absolute path of the unfiled storage node.
+	 * This is PATH_SYSTEM_NODE . '/' . NAME_UNFILED_NODE
+	 */
+	const PATH_UNFILED_NODE = '/{http://www.jcp.org/jcr/1.0}system/{http://www.jcp.org/jcr/1.0}unfiled';
+
+	/**
+	 * A constant for the name of the jcr:xmltext node produced on importXML().
+	 */
+	const NAME_JCR_XMLTEXT = '{http://www.jcp.org/jcr/1.0}xmltext';
+
+	/**
+	 * A constant for the name of the jcr:xmlcharacters property produced on importXML().
+	 */
+	const NAME_JCR_XMLCHARACTERS = '{http://www.jcp.org/jcr/1.0}xmlcharacters';
+
+	/**
+	 * A constant for the relative path from the node representing the imported XML element of
+	 * the jcr:xmlcharacters property produced on importXML().
+	 * This is NAME_JCR_XMLTEXT . '/' . NAME_JCR_XMLCHARACTERS
+	 */
+	const RELPATH_JCR_XMLCHARACTERS = '{http://www.jcp.org/jcr/1.0}xmltext/{http://www.jcp.org/jcr/1.0}xmlcharacters';
+
+	/**
 	 * Returns the Session object through which this Workspace object was acquired.
 	 *
 	 * @return F3::PHPCR::SessionInterface a Session object.
@@ -123,17 +216,13 @@ interface WorkspaceInterface {
 	 * to call save.
 	 *
 	 * The destAbsPath provided must not have an index on its final element.
-	 * If it does then a RepositoryException is thrown. Strictly speaking,
-	 * the destAbsPath parameter is actually an absolute path to the parent
-	 * node of the new location, appended with the new name desired for the
-	 * cloned node. It does not specify a position within the child node ordering.
+	 * If it does then a RepositoryException is thrown.
 	 * If ordering is supported by the node type of the parent node of the new
 	 * location, then the new clone of the node is appended to the end of the
 	 * child node list.
 	 *
-	 * This method cannot be used to clone just an individual property by itself.
-	 * It clones an entire node and its subtree (including, of course, any
-	 * properties contained therein).
+	 * This method cannot be used to clone just an individual property; it
+	 * clones a node and its subtree.
 	 *
 	 * @param string $srcWorkspace - The name of the workspace from which the node is to be copied.
 	 * @param string $srcAbsPath - the path of the node to be copied in srcWorkspace.
@@ -444,6 +533,7 @@ interface WorkspaceInterface {
 	 * @return void
 	 * @throws F3::PHPCR::AccessDeniedException if the session through which this Workspace object was acquired does not have permission to create the new workspace.
 	 * @throws F3::PHPCR::UnsupportedRepositoryOperationException if the repository does not support the creation of workspaces.
+	 * @throws F3::PHPCR::NoSuchWorkspaceException if $srcWorkspace does not exist.
 	 * @throws F3::PHPCR::RepositoryException if another error occurs.
 	 */
 	public function createWorkspace($name, $srcWorkspace = NULL);
@@ -456,6 +546,7 @@ interface WorkspaceInterface {
 	 * @return void
 	 * @throws F3::PHPCR::AccessDeniedException if the session through which this Workspace object was acquired does not have permission to remove the workspace.
 	 * @throws F3::PHPCR::UnsupportedRepositoryOperationException if the repository does not support the removal of workspaces.
+	 * @throws F3::PHPCR::NoSuchWorkspaceException if $name does not exist.
 	 * @throws F3::PHPCR::RepositoryException if another error occurs.
 	 */
 	public function deleteWorkspace($name);
@@ -474,6 +565,30 @@ interface WorkspaceInterface {
 	 * @throws F3::PHPCR::RepositoryException if another error occurs.
 	 */
 	public function createActivity($title);
+
+	/**
+	 * This method is called by the user to set the current activity.
+	 * Changing the current activity is done by calling setActivity() again.
+	 * Cancelling the current activity (so that there is no current activity)
+	 * is done by calling setActivity(NULL) which returns the current activity
+	 * node or NULL if there is no current activity.
+	 *
+	 * @param F3::PHPCR::NodeInterface $activity an activity node
+	 * @return F3::PHPCR::NodeInterface the activity node
+	 * @throws F3::PHPCR::UnsupportedRepositoryOperationException if the repository does not support activities or if activity is not a nt:activity node.
+	 * @throws F3::PHPCR::RepositoryException if another error occurs.
+	 */
+	public function setActivity(F3::PHPCR::NodeInterface $activity);
+
+	/**
+	 * Returns the node representing the current activity or NULL if there is no
+	 * current activity.
+	 *
+	 * @return F3::PHPCR::NodeInterface An nt:activity node or NULL.
+	 * @throws F3::PHPCR::UnsupportedRepositoryOperationException if the repository does not support activities.
+	 * @throws F3::PHPCR::RepositoryException if another error occurs.
+	 */
+	public function getActivity();
 
 	/**
 	 * This method merges the changes that were made under the specified activity
@@ -502,13 +617,35 @@ interface WorkspaceInterface {
 	 * @param F3::PHPCR::NodeInterface $activityNode an nt:activity node
 	 * @return F3::PHPCR::NodeIteratorInterface a NodeIterator
 	 * @throws F3::PHPCR::AccessDeniedException if the current session does not have sufficient rights to perform the operation.
-	 * @throws F3::PHPCR::Version::VersionException if the specified node is not an nt:activity node.
+	 * @throws F3::PHPCR::UnsupportedRepositoryOperationException if the repository does not support activities or if $activityNode is not a nt:activity node.if the specified node is not an nt:activity node.
 	 * @throws F3::PHPCR::MergeException in the same cases as in a regular shallow merge (see Node.merge(String, boolean, boolean)).
 	 * @throws F3::PHPCR::Lock::LockException if a lock prevents the merge.
 	 * @throws F3::PHPCR::InvalidItemStateException if this Session has pending unsaved changes.
 	 * @throws F3::PHPCR::RepositoryException if another error occurs.
 	 */
 	public function merge(F3::PHPCR::NodeInterface $activityNode);
+
+	/**
+	 * Removes the specified item (and its subtree).
+	 * To persist a removal, a save must be performed.
+	 *
+	 * If a node with same-name siblings is removed, this decrements by one the
+	 * indices of all the siblings with indices greater than that of the removed
+	 * node. In other words, a removal compacts the array of same-name siblings
+	 * and causes the minimal re-numbering required to maintain the original
+	 * order but leave no gaps in the numbering.
+	 *
+	 * @param string $absPath the absolute path of the item to be removed.
+	 * @return void
+	 * @throws F3::PHPCR::Version::VersionException if the parent node of the item at absPath is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws F3::PHPCR::Lock::LockException if a lock prevents the removal of the specified item and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws F3::PHPCR::ConstraintViolationException if removing the specified item would violate a node type or implementation-specific constraint and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws F3::PHPCR::ReferentialIntegrityException will be thrown on save if the specified item or an item in its subtree is currently the target of a REFERENCE property located in this workspace but outside the specified item's subtree and the current Session has read access to that REFERENCE property.
+	 * @throws F3::PHPCR::AccessDeniedException will be thrown on save if the specified item or an item in its subtree is currently the target of a REFERENCE property located in this workspace but outside the specified item's subtree and the current Session does not have read access to that REFERENCE property.
+	 * @throws F3::PHPCR::RepositoryException if another error occurs.
+	 * @see Item::remove()
+	 */
+	public function removeItem($absPath);
 
 }
 

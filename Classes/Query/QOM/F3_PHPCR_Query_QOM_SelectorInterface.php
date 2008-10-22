@@ -24,19 +24,14 @@ namespace F3::PHPCR::Query::QOM;
 /**
  * Selects a subset of the nodes in the repository based on node type.
 *
-* A selector selects every node in the repository, subject to access control constraints, that satisfies at least one of the following conditions:
+* A selector selects every node in the repository, subject to access control
+* constraints, that satisfies at least one of the following conditions:
 *
 * the node's primary node type is nodeType, or
 * the node's primary node type is a subtype of nodeType, or
 * the node has a mixin node type that is nodeType, or
 * the node has a mixin node type that is a subtype of nodeType.
 *
-* The query is invalid if nodeType or selectorName is not a syntactically valid JCR name.
-*
-* The query is invalid if selectorName is identical to the selectorName of another selector in the query.
-*
-* If nodeType is a valid JCR name but not the name of a node type available in the repository, the query is valid but the selector selects no nodes.
- *
  * @package PHPCR
  * @subpackage Query
  * @version $Id$

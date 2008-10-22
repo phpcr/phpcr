@@ -30,6 +30,37 @@ namespace F3::PHPCR;
 interface NodeInterface extends F3::PHPCR::ItemInterface {
 
 	/**
+	 * A constant for the node name jcr:content declared in NodeType nt:file.
+	 * Note, jcr:content is also the name of a property declared in nt:linkedFile.
+	 */
+	const JCR_CONTENT = "{http://www.jcp.org/jcr/1.0}content";
+
+	/**
+	 * A constant for the node name jcr:propertyDefinition declared in nt:nodeType.
+	 */
+	const JCR_PROPERTY_DEFINITION = "{http://www.jcp.org/jcr/1.0}propertyDefinition";
+
+	/**
+	 * A constant for the node name jcr:childNodeDefinition declared in nt:nodeType.
+	 */
+	const JCR_CHILD_NODE_DEFINITION = "{http://www.jcp.org/jcr/1.0}childNodeDefinition";
+
+	/**
+	 * A constant for the node name jcr:rootVersion declared in nt:versionHistory.
+	 */
+	const JCR_ROOT_VERSION = "{http://www.jcp.org/jcr/1.0}rootVersion";
+
+	/**
+	 * A constant for the node name jcr:versionLabels declared in nt:versionHistory.
+	 */
+	const JCR_VERSION_LABELS = "{http://www.jcp.org/jcr/1.0}versionLabels";
+
+	/**
+	 * A constant for the node name jcr:frozenNode declared in nt:version.
+	 */
+	const JCR_FROZEN_NODE = "{http://www.jcp.org/jcr/1.0}frozenNode";
+
+	/**
 	 * Creates a new node at relPath. The new node will only be persisted on
 	 * save() if it meets the constraint criteria of the parent node's node
 	 * type.
@@ -186,7 +217,7 @@ interface NodeInterface extends F3::PHPCR::ItemInterface {
 	 * fragment ::= char {char}
 	 * char ::= nonspace | ' '
 	 * nonspace ::= Any XML Char (See http://www.w3.org/TR/REC-xml/) except:
-	 *    '/', ':', '[', ']', '*', ''', '"', '|' or any whitespace character
+	 *    '/', ':', '[', ']', '*', '|' or any whitespace character
 	 *
 	 * The pattern is matched against the names (not the paths) of the immediate
 	 * child nodes of this node.
@@ -236,7 +267,7 @@ interface NodeInterface extends F3::PHPCR::ItemInterface {
 	 * fragment ::= char {char}
 	 * char ::= nonspace | ' '
 	 * nonspace ::= Any XML Char (See http://www.w3.org/TR/REC-xml/)
-	 *    except: '/', ':', '[', ']', '*', ''', '"', '|' or any whitespace character
+	 *    except: '/', ':', '[', ']', '*', '|' or any whitespace character
 	 *
 	 * The pattern is matched against the names (not the paths) of the immediate
 	 * child properties of this node.
@@ -442,11 +473,16 @@ interface NodeInterface extends F3::PHPCR::ItemInterface {
 	public function setPrimaryType($nodeTypeName);
 
 	/**
-	 * Adds the specified mixin node type to this node and adds mixinName to this
-	 * node's jcr:mixinTypes property. Semantically, the new node type may take
-	 * effect immediately and must take effect on save. Whichever behavior is adopted
-	 * it must be the same as the behavior adopted for setPrimaryType(java.lang.String)
-	 * and the behavior that occurs when a node is first created.
+	 * Adds the mixin node type $mixinName to this node. If this node is already
+	 * of type $mixinName (either due to a previously added mixin or due to its
+	 * primary type, through inheritance) then this method has no effect.
+	 * Otherwise $mixinName is added to this node's jcr:mixinTypes property.
+	 *
+	 * Semantically, the new node type may take effect immediately and must take
+	 * effect on save. Whichever behavior is adopted it must be the same as the
+	 * behavior adopted for setPrimaryType(java.lang.String) and the behavior
+	 * that occurs when a node is first created.
+	 *
 	 * A ConstraintViolationException is thrown either immediately or on save if
 	 * a conflict with another assigned mixin or the primary node type or for an
 	 * implementation-specific reason. Implementations may differ on when this
@@ -545,7 +581,7 @@ interface NodeInterface extends F3::PHPCR::ItemInterface {
 	 * automatically persisted (there is no need to do an additional save).
 	 *
 	 * @return F3::PHPCR::Version::VersionInterface the created version.
-	 * @throws F3::PHPCR::Verson::VersionException if jcr:predecessors does not contain at least one value or if a child item of this node has an OnParentVersion status of ABORT. This includes the case where an unresolved merge failure exists on this node, as indicated by the presence of a jcr:mergeFailed property.
+	 * @throws F3::PHPCR::Verson::VersionException if a child item of this node has an OnParentVersion status of ABORT. This includes the case (under full versioning) where an unresolved merge failure exists on this node, as indicated by the presence of a jcr:mergeFailed property.
 	 * @throws F3::PHPCR::UnsupportedRepositoryOperationException If this node is not versionable.
 	 * @throws F3::PHPCR::InvalidItemStateException If unsaved changes exist on this node.
 	 * @throws F3::PHPCR::Lock::LockException if a lock prevents the operation.
@@ -580,7 +616,7 @@ interface NodeInterface extends F3::PHPCR::ItemInterface {
 	 * If this node is already checked-in, this method is equivalent to checkout().
 	 *
 	 * @return F3::PHPCR::Version::VersionInterface the created version.
-	 * @throws F3::PHPCR::Version::VersionException if a child item of this node has an OnParentVersion of ABORT. This includes the case where an unresolved merge failure exists on this node, as indicated by the presence of the jcr:mergeFailed.
+	 * @throws F3::PHPCR::Version::VersionException if a child item of this node has an OnParentVersion of ABORT. This includes the case (under full versioning) where an unresolved merge failure exists on this node, as indicated by the presence of the jcr:mergeFailed. Under full versioning a VersionException is also thrown if the jcr:predecessors property of the node has no values set.
 	 * @throws F3::PHPCR::UnsupportedRepositoryOperationException if this node is not versionable.
 	 * @throws F3::PHPCR::InvalidItemStateException if there are unsaved changes pending on this node.
 	 * @throws F3::PHPCR::Lock::LockException if a lock prevents the operation.
@@ -784,20 +820,23 @@ interface NodeInterface extends F3::PHPCR::ItemInterface {
 	 */
 	public function getSharedSet();
 
-	/**
-	 * A special kind of remove() that removes this node and every other node in
-	 * the shared set of this node.
-	 * This removal must be done atomically, i.e., if one of the nodes cannot be
-	 * removed, the function throws the exception remove() would have thrown in
-	 * that case, and none of the nodes are removed.
+		/**
+	 * A special kind of remove() that removes this node, but does not remove any
+	 * other node in the shared set of this node.
+	 * All of the exceptions defined for remove() apply to this function. In
+	 * addition, a RepositoryException is thrown if this node cannot be removed
+	 * without removing another node in the shared set of this node.
 	 *
 	 * If this node is not shared this method removes only this node.
 	 *
 	 * @return void
-	 * @throws F3::PHPCR::Version::VersionException
-	 * @throws F3::PHPCR::Lock::LockException
-	 * @throws F3::PHPCR::ConstraintViolationException
-	 * @throws F3::PHPCR::RepositoryException
+	 * @throws F3::PHPCR::Version::VersionException if the parent node of this item is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws F3::PHPCR::Lock::LockException if a lock prevents the removal of this item and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws F3::PHPCR::NodeType::ConstraintViolationException if removing the specified item would violate a node type or implementation-specific constraint and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws F3::PHPCR::RepositoryException if another error occurs.
+	 * @see removeShare()
+	 * @see Item::remove()
+	 * @see Workspace::removeItem
 	 */
 	public function removeSharedSet();
 
@@ -811,74 +850,15 @@ interface NodeInterface extends F3::PHPCR::ItemInterface {
 	 * If this node is not shared this method removes only this node.
 	 *
 	 * @return void
-	 * @throws F3::PHPCR::Version::VersionException
-	 * @throws F3::PHPCR::Lock::LockException
-	 * @throws F3::PHPCR::ConstraintViolationException
-	 * @throws F3::PHPCR::RepositoryException
+	 * @throws F3::PHPCR::Version::VersionException if the parent node of this item is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws F3::PHPCR::Lock::LockException if a lock prevents the removal of this item and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws F3::PHPCR::NodeType::ConstraintViolationException if removing the specified item would violate a node type or implementation-specific constraint and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws F3::PHPCR::RepositoryException if another error occurs.
+	 * @see removeSharedSet()
+	 * @see Item::remove()
+	 * @see Workspace::removeItem
 	 */
 	public function removeShare();
-
-	/**
-	 * Places a hold on this node and its properties (if isDeep is false) or
-	 * this node and its subtree (if isDeep is true).
-	 *
-	 * The supplied holdID is added to the jcr:hold multi-value property and the
-	 * corresponding jcr:isDeep value is set accordingly. The corresponding
-	 * jcr:isDeep value is the one with the same index as the holdID value.
-	 *
-	 * The format and interpretation of the holdID is not specified.
-	 * It is expected to be an identifier associated with the application placing
-	 * the hold.
-	 *
-	 * @param string $holdID a string
-	 * @param boolean $isDeep a boolean
-	 * @return void
-	 * @throws F3::PHPCR::UnsupportedRepositoryOperationException if this node is not of type mix:managedRetention.
-	 * @throws F3::PHPCR::RepositoryException if another error occurs.
-	 */
-	public function setHold($holdID, $isDeep);
-
-	/**
-	 * Removes the specified holdID and the corresponding boolean flag from the
-	 * jcr:hold and jcr:isDeep properties of this node, respectively.
-	 *
-	 * If this is the last holdID in the property then the hold on this node is
-	 * lifted.
-	 *
-	 * @param string $holdID a string
-	 * @return void
-	 * @throws F3::PHPCR::UnsupportedRepositoryOperationException if this node is not of type mix:managedRetention.
-	 * @throws F3::PHPCR::RepositoryException if another error occurs.
-	 */
-	public function removeHold($holdID);
-
-	/**
-	 * Sets the retention policy of this node to that defined in the specified
-	 * policy node. Interpretation and enforcement of this policy is an
-	 * implementation issue.
-	 *
-	 * The jcr:retentionPolicy property of this node is set to
-	 * refer to the policy node.
-	 *
-	 * @param F3::PHPCR::NodeInterface $policy a policy node
-	 * @return void
-	 * @throws F3::PHPCR::NodeType::ConstraintViolationException if the specified node is not a valid retention policy node.
-	 * @throws F3::PHPCR::UnsupportedRepositoryOperationException if this node is not of type mix:managedRetention.
-	 * @throws F3::PHPCR::RepositoryException if another error occurs.
-	 */
-	public function setRetentionPolicy(F3::PHPCR::NodeInterface $policy);
-
-	/**
-	 * Causes the current retention policy on this node to no longer apply.
-	 *
-	 * Removes the jcr:retentionPolicy property from this node.
-	 *
-	 * @return void
-	 * @throws F3::PHPCR::NodeType::ConstraintViolationException if this node does not have a retention policy currently assigned.
-	 * @throws F3::PHPCR::UnsupportedRepositoryOperationException if this node is not of type mix:managedRetention.
-	 * @throws F3::PHPCR::RepositoryException if another error occurs.
-	 */
-	public function removeRetentionPolicy();
 
 	/**
 	 * Returns true if this node is either
@@ -973,6 +953,13 @@ interface NodeInterface extends F3::PHPCR::ItemInterface {
 	 * particular, conflicts involving subnodes of the restored node that have
 	 * OnParentVersion settings of COPY or VERSION are also governed by the
 	 * removeExisting flag.
+	 *
+	 * Note the special behavior in case of chained versions where a child node
+	 * of this node has an on OnParentVersion setting of VERSION and is
+	 * mix:versionable: If there is a version of the child node with the
+	 * specified label, then that version is restored; otherwise the
+	 * determination depends on the configuration of the workspace and is
+	 * defined by the implementation.
 	 *
 	 * @param string $versionLabel a String
 	 * @param boolean $removeExisting a boolean flag that governs what happens in case of an identifier collision.

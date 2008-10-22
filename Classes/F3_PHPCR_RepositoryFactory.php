@@ -46,17 +46,24 @@ namespace F3::PHPCR;
  * the same class loader that was initially queried to locate the configuration file; this is
  * not necessarily the class loader that loaded the file.
  *
+ * Parameters are passed to the connect() and getRepository() methods
+ * in an array of key/value pairs. The keys are not specified by JCR and will be
+ * implementation specific.
+ * However, vendors should use keys that are namespace qualified in the
+ * Java package style to distinguish their key names. For example
+ * an address parameter might be com.vendor.address.
+ *
  * Examples how to obtain repository instances
  *
- * Use repository factory based on parameters:
- *    $parameters = array('address' => 'vendor://localhost:9999/myrepo');
+ * Use repository factory based on parameters (the parameters below are examples):
+ *    $parameters = array('com.vendor.address' => 'vendor://localhost:9999/myrepo');
  *    $repo = F3::PHPCR::RepositoryFactory::getRepository($parameters);
  *
  * Get a default repository available in this environment:
  *    $repo = F3::PHPCR::RepositoryFactory::getRepository();
  *
  * Manually instantiate a specific repository factory and connect to the repository:
- *    $parameters = array('address' => 'vendor://localhost:9999/myrepo');
+ *    $parameters = array('com.vendor.address' => 'vendor://localhost:9999/myrepo');
  *    $factory = new F3::TYPO3CR::RepositoryFactory();
  *    $repo = $factory->connect($parameters);
  *
@@ -68,7 +75,15 @@ abstract class RepositoryFactory {
 
 	/**
 	 * Attempts to establish a connection to a repository described by the given
-	 * parameters. The implementation should return null if it does not understand
+	 * parameters.
+	 *
+	 * Parameters are passed in an array of key/value pairs. The keys are not
+	 * specified by JCR and will be implementation specific.
+	 * However, vendors should use keys that are namespace qualified in the
+	 * Java package style to distinguish their key names. For example
+	 * an address parameter might be com.vendor.address.
+	 *
+	 * The implementation should return null if it does not understand
 	 * the given parameters. The implementation may also return null if a default
 	 * repository instance is requested (indicated by null parameters) and this
 	 * factory is not able to identify a default repository.
@@ -83,13 +98,18 @@ abstract class RepositoryFactory {
 	 * Attempts to establish a connection to a repository using the given parameters.
 	 * If no parameters are given, the first found default repository is returned.
 	 *
-	 * @param array|NULL $parameters string key/value pairs as repository arguments or null if none are provided and a client wishes to connect to a default repository.
+	 * Parameters are passed in an array of key/value pairs. The keys are not
+	 * specified by JCR and will be implementation specific.
+	 * However, vendors should use keys that are namespace qualified in the
+	 * Java package style to distinguish their key names. For example
+	 * an address parameter might be com.vendor.address.
+	 *
+	 * @param array|NULL $parameters string key/value pairs as repository arguments or NULL if a client wishes to connect to a default repository.
 	 * @return F3::PHPCR::RepositoryInterface
 	 * @throws F3::PHPCR::RepositoryException if getRepository fails or if no suitable (default) repository is found.
 	 */
-	static public function getRepository($parameters = NULL) {
+	abstract public function getRepository(array $parameters = NULL);
 
-	}
 }
 
 ?>

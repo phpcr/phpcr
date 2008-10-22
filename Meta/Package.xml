@@ -3,13 +3,14 @@
     <key>PHPCR</key>
     <title>PHP Content Repository Interfaces</title>
     <description>The JSR-283 interfaces ported to PHP.</description>
-    <version>2.0.0RC19</version>
+    <version>2.0.0RC21</version>
     <state>ReleaseCandidate</state>
     <categories/>
     <parties>
         <person role="LeadDeveloper">
             <name>Karsten Dambekalns</name>
             <email>karsten@typo3.org</email>
+            <website></website>
             <organisation>TYPO3 Association</organisation>
             <repositoryUserName>k-fish</repositoryUserName>
         </person>

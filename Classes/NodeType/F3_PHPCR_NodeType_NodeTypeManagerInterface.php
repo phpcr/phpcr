@@ -132,13 +132,13 @@ interface NodeTypeManagerInterface {
 	public function registerNodeType(F3::PHPCR::NodeType::NodeTypeDefinitionInterface $ntd, $allowUpdate);
 
 	/**
-	 * Registers or updates the specified Collection of NodeTypeDefinition objects.
+	 * Registers or updates the specified array of NodeTypeDefinition objects.
 	 * This method is used to register or update a set of node types with mutual
 	 * dependencies. Returns an iterator over the resulting NodeType objects.
 	 * The effect of the method is "all or nothing"; if an error occurs, no node
 	 * types are registered or updated.
 	 *
-	 * @param array $definitions a collection of NodeTypeDefinitions
+	 * @param array $definitions an array of NodeTypeDefinitions
 	 * @param boolean $allowUpdate a boolean
 	 * @return F3::PHPCR::NodeType::NodeTypeIteratorInterface the registered node types.
 	 * @throws F3::PHPCR::InvalidNodeTypeDefinitionException - if a NodeTypeDefinition within the Collection is invalid or if the Collection contains an object of a type other than NodeTypeDefinition.

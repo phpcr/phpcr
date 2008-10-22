@@ -95,7 +95,13 @@ interface VersionHistoryInterface extends F3::PHPCR::NodeInterface {
 	public function getVersionByLabel($label);
 
 	/**
-	 * Adds the specified label to the specified version. This corresponds to
+	 * Adds the specified label to the specified version.
+	 * The label must be a JCR name in either qualified or extended form
+	 * and therefore must conform to the syntax restriction that apply to
+	 * such names. In particular a colon (:) should not be used unless
+	 * it is intended as a prefix delimiter in a qualified name.
+	 *
+	 * Adding a version label to a version corresponds to
 	 * adding a reference property with a name specified by the label parameter
 	 * to the jcr:versionLabels sub node of the nt:versionHistory node. The
 	 * reference property points to the nt:version node that represents the
@@ -116,7 +122,7 @@ interface VersionHistoryInterface extends F3::PHPCR::NodeInterface {
 	 * label specified is not a valid JCR NAME.
 	 *
 	 * @param string $versionName the name of the version to which the label is to be added.
-	 * @param string $label the label to be added.
+	 * @param string $label the label to be added, a JCR name in either extended or qualified form.
 	 * @param boolean $moveLabel if true, then if label is already assigned to a version in this version history, it is moved to the new version specified; if false, then attempting to assign an already used label will throw a VersionException.
 	 * @return void
 	 * @throws F3::PHPCR::Version::LabelExistsVersionException if moveLabel is false, and an attempt is made to add a label that already exists in this version history
@@ -127,13 +133,14 @@ interface VersionHistoryInterface extends F3::PHPCR::NodeInterface {
 
 	/**
 	 * Removes the specified label from among the labels of this version history.
+	 * The label must be a JCR name in either qualified or extended form.
 	 * This corresponds to removing a property from the jcr:versionLabels child node
 	 * of the nt:versionHistory node that represents this version history.
 	 * Note that this change is made immediately; there is no need to call save.
 	 * In fact, since the the version storage is read-only with respect to normal
 	 * repository methods, save does not even function in this context.
 	 *
-	 * @param string $label a version label
+	 * @param string $label a version label. A JCR name in either extended or qualified form.
 	 * @return void
 	 * @throws F3::PHPCR::Version::VersionException if the name label does not exist in this version history.
 	 * @throws F3::PHPCR::RepositoryException if another error occurs.
@@ -143,8 +150,9 @@ interface VersionHistoryInterface extends F3::PHPCR::NodeInterface {
 	/**
 	 * Returns true if the given version has the given label. If no $version is given
 	 * returns true if any version in the history has the given label.
+	 * The label must be a JCR name in either qualified or extended form.
 	 *
-	 * @param string $label a version label
+	 * @param string $label a version label. A JCR name in either extended or qualified form.
 	 * @param F3::PHPCR::Version::VersionInterface $version a Version object
 	 * @return boolean a boolean.
 	 * @throws F3::PHPCR::Version::VersionException if the specified version is not of this version history.
