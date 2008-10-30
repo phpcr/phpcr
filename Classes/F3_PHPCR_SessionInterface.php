@@ -266,6 +266,28 @@ interface SessionInterface {
 	public function move($srcAbsPath, $destAbsPath);
 
 	/**
+	 * Removes the specified item (and its subtree).
+	 * To persist a removal, a save must be performed.
+	 *
+	 * If a node with same-name siblings is removed, this decrements by one the
+	 * indices of all the siblings with indices greater than that of the removed
+	 * node. In other words, a removal compacts the array of same-name siblings
+	 * and causes the minimal re-numbering required to maintain the original
+	 * order but leave no gaps in the numbering.
+	 *
+	 * @param string $absPath the absolute path of the item to be removed.
+	 * @return void
+	 * @throws F3::PHPCR::Version::VersionException if the parent node of the item at absPath is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws F3::PHPCR::Lock::LockException if a lock prevents the removal of the specified item and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws F3::PHPCR::ConstraintViolationException if removing the specified item would violate a node type or implementation-specific constraint and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws F3::PHPCR::ReferentialIntegrityException will be thrown on save if the specified item or an item in its subtree is currently the target of a REFERENCE property located in this workspace but outside the specified item's subtree and the current Session has read access to that REFERENCE property.
+	 * @throws F3::PHPCR::AccessDeniedException will be thrown on save if the specified item or an item in its subtree is currently the target of a REFERENCE property located in this workspace but outside the specified item's subtree and the current Session does not have read access to that REFERENCE property.
+	 * @throws F3::PHPCR::RepositoryException if another error occurs.
+	 * @see Item::remove()
+	 */
+	public function removeItem($absPath);
+
+	/**
 	 * Validates all pending changes currently recorded in this Session. If validation
 	 * of all pending changes succeeds, then this change information is cleared from
 	 * the Session. If the save occurs outside a transaction, the changes are persisted

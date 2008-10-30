@@ -390,10 +390,11 @@ interface PropertyInterface extends F3::PHPCR::ItemInterface {
 	/**
 	 * Sets the value of this property to value. If this property's property
 	 * type is not constrained by the node type of its parent node, then the
-	 * property type is changed to that of the supplied value. If the property
-	 * type is constrained, then a best-effort conversion is attempted. If
-	 * conversion fails, a ValueFormatException is thrown immediately (not on
-	 * save). The change will be persisted (if valid) on save
+	 * property type may be changed. If the property type is constrained, then a
+	 * best-effort conversion is attempted, according to an
+	 * implemention-dependent definition of "best effort". If conversion fails,
+	 * a ValueFormatException is thrown immediately (not on save). The change
+	 * will be persisted (if valid) on save
 	 *
 	 * For Node objects as value:
 	 * Sets this REFERENCE property to refer to the specified node. If this

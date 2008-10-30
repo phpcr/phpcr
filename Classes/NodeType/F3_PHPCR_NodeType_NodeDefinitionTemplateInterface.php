@@ -78,20 +78,20 @@ interface NodeDefinitionTemplateInterface extends F3::PHPCR::NodeType::NodeDefin
 	public function setProtected($protectedStatus);
 
 	/**
-	 * Sets the required primary types of this node.
+	 * Sets the names of the required primary types of this node.
 	 *
-	 * @param array $requiredPrimaryTypes a String array.
+	 * @param array $requiredPrimaryTypeNames a String array.
 	 * @return void
 	 */
-	public function setRequiredPrimaryTypes(array $requiredPrimaryTypes);
+	public function setRequiredPrimaryTypeNames(array $requiredPrimaryTypeNames);
 
 	/**
-	 * Sets the default primary type of this node.
+	 * Sets the name of the default primary type of this node.
 	 *
-	 * @param string $defaultPrimaryType a String.
+	 * @param string $defaultPrimaryTypeName a String.
 	 * @return void
 	 */
-	public function setDefaultPrimaryType($defaultPrimaryType);
+	public function setDefaultPrimaryTypeName($defaultPrimaryTypeName);
 
 	/**
 	 * Sets the same-name sibling status of this node.
