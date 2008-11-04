@@ -82,14 +82,6 @@ interface SessionInterface {
 	public function getUserID();
 
 	/**
-	 * Returns a javax.security.auth.Subject representing the user of this Session.
-	 *
-	 * @return Subject a Subject representing the user of this Session.
-	 * @todo find replacement for javax.security.auth.Subject
-	 */
-	public function getSubject();
-
-	/**
 	 * Returns the names of the attributes set in this session as a result of
 	 * the Credentials that were used to acquire it. Not all Credentials
 	 * implementations will contain attributes (though, for example,

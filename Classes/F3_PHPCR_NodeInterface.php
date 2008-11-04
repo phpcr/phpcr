@@ -138,8 +138,8 @@ interface NodeInterface extends F3::PHPCR::ItemInterface {
 	 * new value being of a different type than the original value) while other
 	 * repositories may not allow such dynamic re-binding.
 	 *
-	 * If the property type of the supplied Value object is different from that
-	 * required, then a best-effort conversion is attempted.
+	 * If the property type one or more supplied Value objects is different from
+	 * that required, then a best-effort conversion is attempted.
 	 *
 	 * If the node type of this node does not indicate a specific property type,
 	 * then the property type of the supplied Value object is used and if the
@@ -782,18 +782,23 @@ interface NodeInterface extends F3::PHPCR::ItemInterface {
 	 * storage, a new nt:configuration node whose root is N. A reference to N is
 	 * recorded in the jcr:root property of the new configuration, and a reference
 	 * to the new configuration is recorded in the jcr:configuration property of N.
-	 * If the specified baseline is null, a new version history is created to store
+	 *
+	 * Changes made by a successful call to this method are persisted immediately,
+	 * a save() is not required.
+	 *
+	 * If the parameter $baseline is null, a new version history is created to store
 	 * baselines of the new configuration, and the jcr:baseVersion of the new
-	 * configuration references the root of the new version history. If the specified
-	 * baseline is not null, the jcr:baseVersion of the new configuration references
-	 * the specified baseline.
+	 * configuration references the root of the new version history.
 	 *
-	 * The changes are persisted immediately, a save is not required.
+	 * If the parameter $baseline is a Version object that represents a baseline,
+	 * the jcr:baseVersion property of the new configuration references that
+	 * Version.
 	 *
-	 * @param F3::PHPCR::Version::VersionInterface $baseline a Version
+	 * @param F3::PHPCR::Version::VersionInterface $baseline a Version object representing a baseline.
 	 * @return F3::PHPCR::NodeInterface a new nt:configuration node
 	 * @throws F3::PHPCR::UnsupportedRepositoryOperationException if N is not versionable.
-	 * @throws F3::PHPCR::RepositoryException if another error occurs.
+	 * @throws F3::PHPCR::Version::VersionException if N is already a configuration root or if the specified $baseline is already part of version history selected by another configuration.
+	 * @throws F3::PHPCR::RepositoryException if a non-null Version is passed that is not a baseline or if another error occurs.
 	 */
 	public function createConfiguration(F3::PHPCR::Version::VersionInterface $baseline);
 

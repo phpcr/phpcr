@@ -11,17 +11,10 @@ The DONE section lists what has been done already.
 
 == WIP ==
 
-# Observation
-# Query
-	## QOM
-# Security
-# Util
 RepositoryFactory
 
 == OPEN ==
 
-# Lock
-	LockManager
 # Observation
 	Event
 	EventIterator
@@ -55,14 +48,6 @@ RepositoryFactory
 		SameNodeJoinCondition
 		StaticOperand
 		UpperCase
-# Security
-	AccessControlEntry
-	AccessControlList
-	AccessControlManager
-	AccessControlPolicy
-	AccessControlPolicyIterator
-	NamedAccessControlPolicy
-	Privilege
 # Util
 	TraversingItemVisitor
 	TraversingItemVisitor.Default
@@ -73,6 +58,7 @@ RepositoryFactory
 # Lock
 	Lock
 	LockException
+	LockManager
 # NodeType
 	ConstraintViolationException
 	ItemDefinition
@@ -111,7 +97,14 @@ RepositoryFactory
 		Selector
 		Source
 # Security
+	AccessControlEntry
 	AccessControlException
+	AccessControlList
+	AccessControlManager
+	AccessControlPolicy
+	AccessControlPolicyIterator
+	NamedAccessControlPolicy
+	Privilege
 # Util
 # Version
 	ActivityViolationException
