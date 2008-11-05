@@ -15,13 +15,6 @@ RepositoryFactory
 
 == OPEN ==
 
-# Observation
-	Event
-	EventIterator
-	EventJournal
-	EventListener
-	EventListenerIterator
-	ObservationManager
 # Query
 	## QOM
 		And
@@ -75,6 +68,12 @@ RepositoryFactory
 	PropertyDefinition
 	PropertyDefinitionTemplate
 # Observation
+	Event
+	EventIterator
+	EventJournal
+	EventListener
+	EventListenerIterator
+	ObservationManager
 # Query
 	Query
 	QueryManager
