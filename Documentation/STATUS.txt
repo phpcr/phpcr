@@ -17,7 +17,6 @@ RepositoryFactory
 
 # Query
 	## QOM
-		And
 		ChildNode
 		ChildNodeJoinCondition
 		Column
@@ -28,19 +27,12 @@ RepositoryFactory
 		FullTextSearchScore
 		Join
 		JoinCondition
-		Length
-		Literal
-		LowerCase
 		NodeLocalName
 		NodeName
-		Not
-		Or
 		Ordering
 		PropertyExistence
 		SameNode
 		SameNodeJoinCondition
-		StaticOperand
-		UpperCase
 # Util
 	TraversingItemVisitor
 	TraversingItemVisitor.Default
@@ -84,10 +76,16 @@ RepositoryFactory
 	RowIterator
 	SearchNotSupportedException
 	## QOM
+		And
 		BindVariableValue
 		Comparison
 		Constraint
 		DynamicOperand
+		Length
+		Literal
+		LowerCase
+		Not
+		Or
 		PropertyValue
 		Operand
 		QueryObjectModel
@@ -95,6 +93,8 @@ RepositoryFactory
 		QueryObjectModelFactory
 		Selector
 		Source
+		StaticOperand
+		UpperCase
 # Security
 	AccessControlEntry
 	AccessControlException
