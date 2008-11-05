@@ -95,8 +95,6 @@ interface NodeTypeManagerInterface {
 	/**
 	 * Returns an empty NodeDefinitionTemplate which can then be used to create a
 	 * child node definition and attached to a NodeTypeTemplate.
-	 * Throws an UnsupportedRepositoryOperationException if this implementation does
-	 * not support node type registration.
 	 *
 	 * @return F3::PHPCR::NodeType::NodeDefinitionTemplateInterface A NodeDefinitionTemplate.
 	 * @throws F3::PHPCR::UnsupportedRepositoryOperationException if this implementation does not support node type registration.
