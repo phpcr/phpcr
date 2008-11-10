@@ -198,7 +198,7 @@ final class PropertyType {
 	 * @return integer
 	 * @author Karsten Dambekalns <karsten@typo3.org>
 	 */
-	public function valueFromType($type) {
+	static public function valueFromType($type) {
 		switch (F3::PHP6::Functions::strtolower($type)) {
 			case 'string':
 				return F3::PHPCR::PropertyType::STRING;
