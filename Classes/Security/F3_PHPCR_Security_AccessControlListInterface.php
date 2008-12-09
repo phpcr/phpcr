@@ -18,7 +18,7 @@ namespace F3::PHPCR::Security;
 /**
  * @package PHPCR
  * @subpackage Security
- * @version $Id:$
+ * @version $Id$
  */
 
 /**
@@ -29,7 +29,7 @@ namespace F3::PHPCR::Security;
  *
  * @package PHPCR
  * @subpackage Security
- * @version $Id:$
+ * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
 interface AccessControlListInterface extends F3::PHPCR::Security::AccessControlPolicyInterface {
@@ -75,12 +75,12 @@ interface AccessControlListInterface extends F3::PHPCR::Security::AccessControlP
 	 * to a node by calling AccessControlManager.setPolicy(String, AccessControlPolicy)
 	 * and save is performed.
 	 *
-	 * @param F3::PHPCR::Security::AccessControlEntry $ace - the access control entry to be removed.
+	 * @param F3::PHPCR::Security::AccessControlEntryInterface $ace - the access control entry to be removed.
 	 * @return void
 	 * @throws F3::PHPCR::Security::AccessControlException - if the specified entry is not present on the specified node.
 	 * @throws F3::PHPCR::RepositoryException - if another error occurs.
 	 * */
-	public function removeAccessControlEntry(F3::PHPCR::Security::AccessControlEntry $ace);
+	public function removeAccessControlEntry(F3::PHPCR::Security::AccessControlEntryInterface $ace);
 
 }
 

@@ -23,7 +23,7 @@ namespace F3::PHPCR::Observation;
 
 /**
  * An EventJournal is an extension of EventIterator that provides the additional
- * method skipTo(DateTime):.
+ * method skipTo(::DateTime):.
  *
  * @package PHPCR
  * @subpackage Observation
@@ -40,7 +40,7 @@ interface EventJournalInterface extends F3::PHPCR::Observation::EventIteratorInt
 	 * @param DateTime $date - a Calendar object
 	 * @return void
 	 */
-	public function skipTo(DateTime $date);
+	public function skipTo(::DateTime $date);
 
 }
 

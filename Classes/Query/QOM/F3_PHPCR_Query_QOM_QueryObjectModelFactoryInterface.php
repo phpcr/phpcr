@@ -86,7 +86,7 @@ interface QueryObjectModelFactoryInterface extends F3::PHPCR::Query::QOM::QueryO
 	 * @throws F3::PHPCR::Query::InvalidQueryException if a particular validity test is possible on this method, the implemention chooses to perform that test (and not leave it until later) on createQuery, and the parameters given fail that test
 	 * @throws F3::PHPCR::RepositoryException if the operation otherwise fails
 	 */
-	public function join(F3::PHPCR::Query::QOM::SourceInterface $left, F3::PHPCR::Query::QOM::SourceInterface $right, $joinType, F3::PHPCR::Query::QOM::JoinConditionInterface $joinCondition);
+	public function join(F3::PHPCR::Query::QOM::SourceInterface $left, F3::PHPCR::Query::QOM::SourceInterface $right, $joinType, $joinCondition);
 
 	/**
 	 * Tests whether the value of a property in a first selector is equal to the
