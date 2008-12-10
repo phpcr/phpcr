@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3::PHPCR::Query::QOM;
+namespace F3\PHPCR\Query\QOM;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -55,33 +55,33 @@ namespace F3::PHPCR::Query::QOM;
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface QueryObjectModelInterface extends F3::PHPCR::Query::PreparedQueryInterface {
+interface QueryObjectModelInterface extends \F3\PHPCR\Query\PreparedQueryInterface {
 
 	/**
 	 * Gets the node-tuple source for this query.
 	 *
-	 * @return F3::PHPCR::Query::QOM::SourceInterface the node-tuple source; non-null
+	 * @return \F3\PHPCR\Query\QOM\SourceInterface the node-tuple source; non-null
 	*/
 	public function getSource();
 
 	/**
 	 * Gets the constraint for this query.
 	 *
-	 * @return F3::PHPCR::Query::QOM::ConstraintInterface the constraint, or null if none
+	 * @return \F3\PHPCR\Query\QOM\ConstraintInterface the constraint, or null if none
 	*/
 	public function getConstraint();
 
 	/**
 	 * Gets the orderings for this query.
 	 *
-	 * @return array an array of zero or more F3::PHPCR::Query::QOM::OrderingInterface; non-null
+	 * @return array an array of zero or more \F3\PHPCR\Query\QOM\OrderingInterface; non-null
 	*/
 	public function getOrderings();
 
 	/**
 	 * Gets the columns for this query.
 	 *
-	 * @return array an array of zero or more F3::PHPCR::Query::QOM::ColumnInterface; non-null
+	 * @return array an array of zero or more \F3\PHPCR\Query\QOM\ColumnInterface; non-null
 	*/
 	public function getColumns();
 

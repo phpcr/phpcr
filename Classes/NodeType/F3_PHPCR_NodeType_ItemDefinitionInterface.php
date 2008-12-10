@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3::PHPCR::NodeType;
+namespace F3\PHPCR\NodeType;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -38,7 +38,7 @@ interface ItemDefinitionInterface {
 	 * PropertyDefinitionTemplate) that is not attached to a live NodeType. In
 	 * such cases this method returns null.
 	 *
-	 * @return F3::PHPCR::NodeType::NodeTypeInterface a NodeType object.
+	 * @return \F3\PHPCR\NodeType\NodeTypeInterface a NodeType object.
 	 */
 	public function getDeclaringNodeType();
 

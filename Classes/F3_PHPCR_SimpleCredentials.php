@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3::PHPCR;
+namespace F3\PHPCR;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -29,7 +29,7 @@ namespace F3::PHPCR;
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  * @scope prototype
  */
-final class SimpleCredentials implements F3::PHPCR::CredentialsInterface {
+final class SimpleCredentials implements \F3\PHPCR\CredentialsInterface {
 
 	/**
 	 * @var string
@@ -89,7 +89,7 @@ final class SimpleCredentials implements F3::PHPCR::CredentialsInterface {
 	 */
 	public function setAttribute($name, $value) {
 		if ($name === NULL) {
-			throw new InvalidArgumentException('$name cannot be null', 1212580046);
+			throw new \InvalidArgumentException('$name cannot be null', 1212580046);
 		}
 
 			// null value is the same as removeAttribute()

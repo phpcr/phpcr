@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3::PHPCR::Version;
+namespace F3\PHPCR\Version;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *

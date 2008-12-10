@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3::PHPCR::Query;
+namespace F3\PHPCR\Query;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -40,9 +40,9 @@ interface QueryInterface {
 	/**
 	 * Executes this query and returns a QueryResult object.
 	 *
-	 * @return F3::PHPCR::Query::QueryInterface a QueryResult object
-	 * @throws F3::PHPCR::Query::InvalidQueryException if the query contains an unbound variable.
-	 * @throws F3::PHPCR::RepositoryException if an error occurs
+	 * @return \F3\PHPCR\Query\QueryInterface a QueryResult object
+	 * @throws \F3\PHPCR\Query\InvalidQueryException if the query contains an unbound variable.
+	 * @throws \F3\PHPCR\RepositoryException if an error occurs
 	 */
 	public function execute();
 
@@ -92,8 +92,8 @@ interface QueryInterface {
 	 * of the nt:query node that stores the query.
 	 *
 	 * @return string path of the node representing this query.
-	 * @throws F3::PHPCR::ItemNotFoundException if this query is not a stored query.
-	 * @throws F3::PHPCR::RepositoryException if another error occurs.
+	 * @throws \F3\PHPCR\ItemNotFoundException if this query is not a stored query.
+	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 */
 	public function getStoredQueryPath();
 
@@ -115,14 +115,14 @@ interface QueryInterface {
 	 * then the new node is appended to the end of the child node list.
 	 *
 	 * @param string $absPath absolute path the query should be stored at
-	 * @return F3::PHPCR::NodeInterface the newly created node.
-	 * @throws F3::PHPCR::ItemExistsException if an item at the specified path already exists, same-name siblings are not allowed and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws F3::PHPCR::PathNotFoundException if the specified path implies intermediary Nodes that do not exist or the last element of relPath has an index, and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws F3::PHPCR::NodeType::ConstraintViolationException if a node type or implementation-specific constraint is violated or if an attempt is made to add a node as the child of a property and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws F3::PHPCR::Version::VersionException if the node to which the new child is being added is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws F3::PHPCR::Lock::LockException if a lock prevents the addition of the node and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws F3::PHPCR::UnsupportedRepositoryOperationException in a level 1 implementation.
-	 * @throws F3::PHPCR::RepositoryException if another error occurs or if the absPath provided has an index on its final element.
+	 * @return \F3\PHPCR\NodeInterface the newly created node.
+	 * @throws \F3\PHPCR\ItemExistsException if an item at the specified path already exists, same-name siblings are not allowed and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws \F3\PHPCR\PathNotFoundException if the specified path implies intermediary Nodes that do not exist or the last element of relPath has an index, and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws \F3\PHPCR\NodeType\ConstraintViolationException if a node type or implementation-specific constraint is violated or if an attempt is made to add a node as the child of a property and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws \F3\PHPCR\Version\VersionException if the node to which the new child is being added is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws \F3\PHPCR\Lock\LockException if a lock prevents the addition of the node and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws \F3\PHPCR\UnsupportedRepositoryOperationException in a level 1 implementation.
+	 * @throws \F3\PHPCR\RepositoryException if another error occurs or if the absPath provided has an index on its final element.
 	 */
 	public function storeAsNode($absPath);
 

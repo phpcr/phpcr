@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3::PHPCR::Observation;
+namespace F3\PHPCR\Observation;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -18,7 +18,7 @@ namespace F3::PHPCR::Observation;
 /**
  * @package PHPCR
  * @subpackage Observation
- * @version $Id:$
+ * @version $Id$
  */
 
 /**
@@ -40,7 +40,7 @@ namespace F3::PHPCR::Observation;
  *
  * @package PHPCR
  * @subpackage Observation
- * @version $Id:$
+ * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
 interface EventInterface {
@@ -196,7 +196,7 @@ interface EventInterface {
 	 * associated path depends upon the type of the event.
 	 *
 	 * @return string the absolute path associated with this event.
-	 * @throws F3::PHPCR::RepositoryException - if an error occurs.
+	 * @throws \F3\PHPCR\RepositoryException - if an error occurs.
 	 */
 	public function getPath();
 
@@ -214,7 +214,7 @@ interface EventInterface {
 	 * depends upon the type of the event.
 	 *
 	 * @return string the identifier associated with this event or null if this event has no associated identifier.
-	 * @throws F3::PHPCR::RepositoryException - if an error occurs.
+	 * @throws \F3\PHPCR\RepositoryException - if an error occurs.
 	 */
 	public function getIdentifier();
 
@@ -223,7 +223,7 @@ interface EventInterface {
 	 * method that caused this event.
 	 *
 	 * @return string
-	 * @throws F3::PHPCR::RepositoryException - if an error occurs.
+	 * @throws \F3\PHPCR\RepositoryException - if an error occurs.
 	 */
 	public function getMethod();
 
@@ -246,7 +246,7 @@ interface EventInterface {
 	 *  object or null. An implementation should only use null in cases where
 	 *  keeping the object reference in the Event is impractical for performance
 	 *  or other resource-related reasons. For example, an implementation may
-	 *  choose to use null for objects of type F3::PHPCR::BinaryInterface.
+	 *  choose to use null for objects of type \F3\PHPCR\BinaryInterface.
 	 *
 	 * In addition to the entries described above:
 	 *
@@ -267,7 +267,7 @@ interface EventInterface {
 	 * parameter name.
 	 *
 	 * @return array An array containing the parameters and return value of the called method.
-	 * @throws F3::PHPCR::RepositoryException - if an error occurs.
+	 * @throws \F3\PHPCR\RepositoryException - if an error occurs.
 	 */
 	public function getMethodInfo();
 
@@ -275,7 +275,7 @@ interface EventInterface {
 	 * Returns the user data set in ObservationManager.setUserData()
 	 *
 	 * @return string
-	 * @throws F3::PHPCR::RepositoryException - if an error occurs.
+	 * @throws \F3\PHPCR\RepositoryException - if an error occurs.
 	 */
 	public function getUserData();
 

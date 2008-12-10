@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3::PHPCR::Observation;
+namespace F3\PHPCR\Observation;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -18,7 +18,7 @@ namespace F3::PHPCR::Observation;
 /**
  * @package PHPCR
  * @subpackage Observation
- * @version $Id:$
+ * @version $Id$
  */
 
 /**
@@ -31,7 +31,7 @@ namespace F3::PHPCR::Observation;
  *
  * @package PHPCR
  * @subpackage Observation
- * @version $Id:$
+ * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
 interface EventListenerInterface {
@@ -39,10 +39,10 @@ interface EventListenerInterface {
 	/**
 	 * This method is called when a bundle of events is dispatched.
 	 *
-	 * @param F3::PHPCR::Observation::EventIteratorInterface $events - The event set received.
+	 * @param \F3\PHPCR\Observation\EventIteratorInterface $events - The event set received.
 	 * @return void
 	 */
-	public function onEvent(F3::PHPCR::Observation::EventIteratorInterface $events);
+	public function onEvent(\F3\PHPCR\Observation\EventIteratorInterface $events);
 
 }
 ?>

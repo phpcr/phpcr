@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3\PHPCR;
+namespace F3\PHPCR\Query\QOM;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -17,18 +17,19 @@ namespace F3\PHPCR;
 
 /**
  * @package PHPCR
+ * @subpackage Query
  * @version $Id$
  */
 
 /**
- * Exception thrown by Session.setNamespacePrefix(String prefix, String uri)
- * if the specified uri is not registered in the NamespaceRegistry.
+ * Filters the set of node-tuples formed from a join.
  *
  * @package PHPCR
+ * @subpackage Query
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class NamespaceException extends \F3\PHPCR\RepositoryException {
+interface JoinConditionInterface {
 }
 
 ?>

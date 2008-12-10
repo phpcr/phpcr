@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3::PHPCR::Lock;
+namespace F3\PHPCR\Lock;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -58,7 +58,7 @@ interface LockInterface {
 	 * is a locked node) will only return N if N is the lock holder. If N is in
 	 * the subtree of the lock holder, H, then this call will return H.
 	 *
-	 * @return F3::PHPCR::NodeInterface a Node
+	 * @return \F3\PHPCR\NodeInterface a Node
 	 */
 	public function getNode();
 
@@ -118,8 +118,8 @@ interface LockInterface {
 	 * timer so that the lock does not timeout and expire. If this lock's time-to-live
 	 * is not governed by a timer, then this method has no effect.
 	 *
-	 * @throws F3::PHPCR::Lock::LockException if this Session does not hold the correct lock token for this lock.
-	 * @throws F3::PHPCR::RepositoryException if another error occurs.
+	 * @throws \F3\PHPCR\Lock\LockException if this Session does not hold the correct lock token for this lock.
+	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 */
 	public function refresh();
 

@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3::PHPCR;
+namespace F3\PHPCR;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -31,14 +31,14 @@ namespace F3::PHPCR;
 interface ValueFactoryInterface {
 
 	/**
-	 * Returns a F3::PHPCR::Binary object with a value consisting of the content of
+	 * Returns a \F3\PHPCR\Binary object with a value consisting of the content of
 	 * the specified resource handle.
 	 * The passed resource handle is closed before this method returns either normally
 	 * or because of an exception.
 	 *
 	 * @param resource $handle
-	 * @return F3::PHPCR::BinaryInterface
-	 * @throws F3::PHPCR::RepositoryException if an error occurs.
+	 * @return \F3\PHPCR\BinaryInterface
+	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
 	 */
 	public function createBinary($handle);
 
@@ -50,13 +50,13 @@ interface ValueFactoryInterface {
 	 * preserved. Exceptions are:
 	 * * if the given $value is a Node object, it's Identifier is fetched for the
 	 *   Value object and the type of that object will be REFERENCE
-	 * * if the given $Value is a DateTime object, the Value type will be DATE.
+	 * * if the given $Value is a \DateTime object, the Value type will be DATE.
 	 *
 	 * @param mixed $value
 	 * @param integer $type
-	 * @return F3::PHPCR::ValueInterface
-	 * @throws F3::PHPCR::ValueFormatException is thrown if the specified value cannot be converted to the specified type.
-	 * @throws F3::PHPCR::RepositoryException if the specified Node is not referenceable, the current Session is no longer active, or another error occurs.
+	 * @return \F3\PHPCR\ValueInterface
+	 * @throws \F3\PHPCR\ValueFormatException is thrown if the specified value cannot be converted to the specified type.
+	 * @throws \F3\PHPCR\RepositoryException if the specified Node is not referenceable, the current Session is no longer active, or another error occurs.
 	 */
 	public function createValue($value, $type = NULL);
 }

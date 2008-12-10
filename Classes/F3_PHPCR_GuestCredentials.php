@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3::PHPCR;
+namespace F3\PHPCR;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -31,7 +31,7 @@ namespace F3::PHPCR;
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  * @scope prototype
  */
-final class GuestCredentials implements F3::PHPCR::CredentialsInterface {
+final class GuestCredentials implements \F3\PHPCR\CredentialsInterface {
 
 }
 

@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3::PHPCR;
+namespace F3\PHPCR;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -25,10 +25,10 @@ namespace F3::PHPCR;
  * workspace is not found.
  *
  * @package PHPCR
- * @version $Id:F3::PHPCR::NoSuchWorkspaceException.php 254 2007-07-09 06:34:07Z robert $
+ * @version $Id:\F3\PHPCR\NoSuchWorkspaceException.php 254 2007-07-09 06:34:07Z robert $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class NoSuchWorkspaceException extends F3::PHPCR::RepositoryException {
+class NoSuchWorkspaceException extends \F3\PHPCR\RepositoryException {
 }
 
 ?>

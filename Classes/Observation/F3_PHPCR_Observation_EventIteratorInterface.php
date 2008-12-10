@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3::PHPCR::Observation;
+namespace F3\PHPCR\Observation;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -30,12 +30,12 @@ namespace F3::PHPCR::Observation;
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface EventIteratorInterface extends F3::PHPCR::RangeIteratorInterface {
+interface EventIteratorInterface extends \F3\PHPCR\RangeIteratorInterface {
 
 	/**
 	 * Returns the next Event in the iteration.
 	 *
-	 * @return F3::PHPCR::Observation::EventInterface the next Event in the iteration
+	 * @return \F3\PHPCR\Observation\EventInterface the next Event in the iteration
 	 * @throws OutOfBoundsException if iteration has no more Events
 	 */
 	public function nextEvent();
@@ -45,7 +45,7 @@ interface EventIteratorInterface extends F3::PHPCR::RangeIteratorInterface {
 	 * The date is required to be non-null for event iterators obtained through
 	 * an EventJournal.
 	 *
-	 * @return DateTime the date associated with this event iterator, or null.
+	 * @return \DateTime the date associated with this event iterator, or null.
 	 */
 	public function getDate();
 

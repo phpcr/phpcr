@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3::PHPCR;
+namespace F3\PHPCR;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -42,10 +42,10 @@ interface ItemVisitorInterface {
 	 * of a Node or Property. If this method throws an exception the visiting
 	 * process is aborted.
 	 *
-	 * @param F3::PHPCR::NodeInterface|F3::PHPCR::PropertyInterface $item a node or property accepting this visitor
-	 * @throws F3::PHPCR::RepositoryException if an error occurs
+	 * @param \F3\PHPCR\NodeInterface|\F3\PHPCR\PropertyInterface $item a node or property accepting this visitor
+	 * @throws \F3\PHPCR\RepositoryException if an error occurs
 	*/
-	public function visit(F3::PHPCR::ItemInterface $item);
+	public function visit(\F3\PHPCR\ItemInterface $item);
 
 }
 

@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3::PHPCR::Version;
+namespace F3\PHPCR\Version;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -30,7 +30,7 @@ namespace F3::PHPCR::Version;
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface VersionInterface extends F3::PHPCR::NodeInterface {
+interface VersionInterface extends \F3\PHPCR\NodeInterface {
 
 	/**
 	 * Returns the VersionHistory that contains this Version
@@ -45,7 +45,7 @@ interface VersionInterface extends F3::PHPCR::NodeInterface {
 	 * value of the jcr:created property in the nt:version node that represents
 	 * this version.
 	 *
-	 * @return DateTime a DateTime object
+	 * @return \DateTime a \DateTime object
 	 * @throws RepositoryException - if an error occurs
 	 */
 	public function getCreated();
@@ -53,7 +53,7 @@ interface VersionInterface extends F3::PHPCR::NodeInterface {
 	/**
 	 * Returns the successor versions of this version. This corresponds to returning all the nt:version nodes referenced by the jcr:successors multi-value property in the nt:version node that represents this version.
 	 *
-	 * @return array of F3::PHPCR::Version::Version
+	 * @return array of \F3\PHPCR\Version\Version
 	 * @throws RepositoryException if an error occurs
 	 */
 	public function getSuccessors();
@@ -63,7 +63,7 @@ interface VersionInterface extends F3::PHPCR::NodeInterface {
 	 * returning all the nt:version nodes whose jcr:successors property includes
 	 * a reference to the nt:version node that represents this version.
 	 *
-	 * @return array of F3::PHPCR::Version::Version
+	 * @return array of \F3\PHPCR\Version\Version
 	 * @throws RepositoryException if an error occurs
 	 */
 	public function getPredecessors();
@@ -71,7 +71,7 @@ interface VersionInterface extends F3::PHPCR::NodeInterface {
 	/**
 	 * Returns the frozen node of this version.
 	 *
-	 * @return F3::PHPCR::NodeInterface a Node object
+	 * @return \F3\PHPCR\NodeInterface a Node object
 	 * @throws RepositoryException if an error occurs
 	 */
 	public function getFrozenNode();

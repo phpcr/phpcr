@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3::PHPCR;
+namespace F3\PHPCR;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -57,14 +57,14 @@ namespace F3::PHPCR;
  *
  * Use repository factory based on parameters (the parameters below are examples):
  *    $parameters = array('com.vendor.address' => 'vendor://localhost:9999/myrepo');
- *    $repo = F3::PHPCR::RepositoryFactory::getRepository($parameters);
+ *    $repo = \F3\PHPCR\RepositoryFactory::getRepository($parameters);
  *
  * Get a default repository available in this environment:
- *    $repo = F3::PHPCR::RepositoryFactory::getRepository();
+ *    $repo = \F3\PHPCR\RepositoryFactory::getRepository();
  *
  * Manually instantiate a specific repository factory and connect to the repository:
  *    $parameters = array('com.vendor.address' => 'vendor://localhost:9999/myrepo');
- *    $factory = new F3::TYPO3CR::RepositoryFactory();
+ *    $factory = new \F3\TYPO3CR\RepositoryFactory();
  *    $repo = $factory->connect($parameters);
  *
  * @package PHPCR
@@ -89,8 +89,8 @@ abstract class RepositoryFactory {
 	 * factory is not able to identify a default repository.
 	 *
 	 * @param array $parameters
-	 * @return F3::PHPCR::RepositoryInterface
-	 * @throws F3::PHPCR::RepositoryException If an implementation is the right factory but has trouble connecting to the repository.
+	 * @return \F3\PHPCR\RepositoryInterface
+	 * @throws \F3\PHPCR\RepositoryException If an implementation is the right factory but has trouble connecting to the repository.
 	 */
 	abstract public function connect(array $parameters);
 
@@ -105,8 +105,8 @@ abstract class RepositoryFactory {
 	 * an address parameter might be com.vendor.address.
 	 *
 	 * @param array|NULL $parameters string key/value pairs as repository arguments or NULL if a client wishes to connect to a default repository.
-	 * @return F3::PHPCR::RepositoryInterface
-	 * @throws F3::PHPCR::RepositoryException if getRepository fails or if no suitable (default) repository is found.
+	 * @return \F3\PHPCR\RepositoryInterface
+	 * @throws \F3\PHPCR\RepositoryException if getRepository fails or if no suitable (default) repository is found.
 	 */
 	abstract public function getRepository(array $parameters = NULL);
 

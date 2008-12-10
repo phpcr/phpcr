@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3::PHPCR;
+namespace F3\PHPCR;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -28,7 +28,7 @@ namespace F3::PHPCR;
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface RangeIteratorInterface extends F3::PHPCR::IteratorInterface {
+interface RangeIteratorInterface extends \F3\PHPCR\IteratorInterface {
 
 	/**
 	 * Skip a number of elements in the iterator.

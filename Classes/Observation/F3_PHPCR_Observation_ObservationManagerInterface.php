@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3::PHPCR::Observation;
+namespace F3\PHPCR\Observation;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -18,7 +18,7 @@ namespace F3::PHPCR::Observation;
 /**
  * @package PHPCR
  * @subpackage Observation
- * @version $Id:$
+ * @version $Id$
  */
 
 /**
@@ -28,7 +28,7 @@ namespace F3::PHPCR::Observation;
  *
  * @package PHPCR
  * @subpackage Observation
- * @version $Id:$
+ * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
 interface ObservationManagerInterface {
@@ -74,7 +74,7 @@ interface ObservationManagerInterface {
 	 * repositories observation of changes in the jcr:system subtree may not be
 	 * supported
 	 *
-	 * @param F3::PHPCR::Observation::EventListenerInterface $listener - an EventListener object.
+	 * @param \F3\PHPCR\Observation\EventListenerInterface $listener - an EventListener object.
 	 * @param integer $eventTypes - A combination of one or more event type constants encoded as a bitmask.
 	 * @param string $absPath - an absolute path.
 	 * @param boolean $isDeep - a boolean.
@@ -82,9 +82,9 @@ interface ObservationManagerInterface {
 	 * @param array $nodeTypeName - array of node type names.
 	 * @param boolean $noLocal - a boolean.
 	 * @return void
-	 * @throws F3::PHPCR::RepositoryException - If an error occurs.
+	 * @throws \F3\PHPCR\RepositoryException - If an error occurs.
 	 */
-	public function addEventListener(F3::PHPCR::Observation::EventListenerInterface $listener, $eventTypes, $absPath, $isDeep, array $uuid, array $nodeTypeName, $noLocal);
+	public function addEventListener(\F3\PHPCR\Observation\EventListenerInterface $listener, $eventTypes, $absPath, $isDeep, array $uuid, array $nodeTypeName, $noLocal);
 
 	/**
 	 * Deregisters an event listener.
@@ -94,17 +94,17 @@ interface ObservationManagerInterface {
 	 * method. In this case, the deregistration method returns immediately, but
 	 * deregistration will effectively be delayed until the listener completes.
 	 *
-	 * @param F3::PHPCR::Observation::EventListenerInterface $listener - The listener to deregister.
+	 * @param \F3\PHPCR\Observation\EventListenerInterface $listener - The listener to deregister.
 	 * @return void
-	 * @throws F3::PHPCR::RepositoryException - If an error occurs.
+	 * @throws \F3\PHPCR\RepositoryException - If an error occurs.
 	 */
-	public function removeEventListener(F3::PHPCR::Observation::EventListenerInterface $listener);
+	public function removeEventListener(\F3\PHPCR\Observation\EventListenerInterface $listener);
 
 	/**
 	 * Returns all event listeners that have been registered through this session. If no listeners have been registered, an empty iterator is returned.
 	 *
 	 * @return an EventListenerIterator.
-	 * @throws F3::PHPCR::RepositoryException - If an error occurs
+	 * @throws \F3\PHPCR\RepositoryException - If an error occurs
 	 */
 	public function getRegisteredEventListeners();
 
@@ -113,7 +113,7 @@ interface ObservationManagerInterface {
 	 *
 	 * @param string $userData -
 	 * @return void
-	 * @throws F3::PHPCR::RepositoryException
+	 * @throws \F3\PHPCR\RepositoryException
 	 */
 	public function setUserData($userData);
 

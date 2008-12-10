@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3::PHPCR;
+namespace F3\PHPCR;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -38,7 +38,7 @@ interface BinaryInterface {
 	 * on the returned stream.
 	 *
 	 * @return resource A stream representation of this value.
-	 * @throws F3::PHPCR::RepositoryException if another error occurs.
+	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 */
 	public function getStream();
 
@@ -49,9 +49,9 @@ interface BinaryInterface {
 	 * @param string $bytes the buffer into which the data is read.
 	 * @param integer $position the position in this Binary from which to start reading bytes.
 	 * @return integer the number of bytes read into the buffer
-	 * @throws ::RuntimeException if an I/O error occurs.
-	 * @throws ::InvalidArgumentException if offset is negative.
-	 * @throws F3::PHPCR::RepositoryException if another error occurs.
+	 * @throws \RuntimeException if an I/O error occurs.
+	 * @throws \InvalidArgumentException if offset is negative.
+	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 */
 	public function read(&$bytes, $position);
 
@@ -59,7 +59,7 @@ interface BinaryInterface {
 	 * Returns the size of this Binary value in bytes.
 	 *
 	 * @return integer the size of this value in bytes.
-	 * @throws F3::PHPCR::RepositoryException if another error occurs.
+	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 */
 	public function getSize();
 

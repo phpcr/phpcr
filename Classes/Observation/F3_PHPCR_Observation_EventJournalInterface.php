@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3::PHPCR::Observation;
+namespace F3\PHPCR\Observation;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -23,24 +23,24 @@ namespace F3::PHPCR::Observation;
 
 /**
  * An EventJournal is an extension of EventIterator that provides the additional
- * method skipTo(::DateTime):.
+ * method skipTo(\DateTime):.
  *
  * @package PHPCR
  * @subpackage Observation
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface EventJournalInterface extends F3::PHPCR::Observation::EventIteratorInterface {
+interface EventJournalInterface extends \F3\PHPCR\Observation\EventIteratorInterface {
 
 	/**
 	 * Skip all elements of the iterator earlier than date.
 	 * If an attempt is made to skip past the last element of the iterator, no
 	 * exception is thrown but the subsequent EventIterator.nextEvent() will fail.
 	 *
-	 * @param DateTime $date - a Calendar object
+	 * @param \DateTime $date - a Calendar object
 	 * @return void
 	 */
-	public function skipTo(::DateTime $date);
+	public function skipTo(\DateTime $date);
 
 }
 

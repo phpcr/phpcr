@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3::PHPCR::Query::QOM;
+namespace F3\PHPCR\Query\QOM;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -37,7 +37,7 @@ namespace F3::PHPCR::Query::QOM;
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface PropertyValueInterface extends F3::PHPCR::Query::QOM::DynamicOperandInterface {
+interface PropertyValueInterface extends \F3\PHPCR\Query\QOM\DynamicOperandInterface {
 
 	/**
 	 * Gets the name of the selector against which to evaluate this operand.

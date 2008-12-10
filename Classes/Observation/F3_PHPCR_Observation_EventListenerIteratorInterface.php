@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3::PHPCR::Observation;
+namespace F3\PHPCR\Observation;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -30,12 +30,12 @@ namespace F3::PHPCR::Observation;
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface EventListenerIteratorInterface extends F3::PHPCR::RangeIteratorInterface {
+interface EventListenerIteratorInterface extends \F3\PHPCR\RangeIteratorInterface {
 
 	/**
 	 * Returns the next EventListener in the iteration.
 	 *
-	 * @return F3::PHPCR::Observation::EventListenerInterface the next EventListener in the iteration
+	 * @return \F3\PHPCR\Observation\EventListenerInterface the next EventListener in the iteration
 	 * @throws OutOfBoundsException if iteration has no more EventListeners
 	 */
 	public function nextEventListener();

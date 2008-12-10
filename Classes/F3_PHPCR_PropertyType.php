@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3::PHPCR;
+namespace F3\PHPCR;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -199,25 +199,25 @@ final class PropertyType {
 	 * @author Karsten Dambekalns <karsten@typo3.org>
 	 */
 	static public function valueFromType($type) {
-		switch (F3::PHP6::Functions::strtolower($type)) {
+		switch (\F3\PHP6\Functions::strtolower($type)) {
 			case 'string':
-				return F3::PHPCR::PropertyType::STRING;
+				return \F3\PHPCR\PropertyType::STRING;
 				break;
 			case 'boolean':
-				return F3::PHPCR::PropertyType::BOOLEAN;
+				return \F3\PHPCR\PropertyType::BOOLEAN;
 				break;
 			case 'integer':
-				return F3::PHPCR::PropertyType::LONG;
+				return \F3\PHPCR\PropertyType::LONG;
 				break;
 			case 'float':
 			case 'double':
-				return F3::PHPCR::PropertyType::DOUBLE;
+				return \F3\PHPCR\PropertyType::DOUBLE;
 				break;
 			case 'datetime':
-				return F3::PHPCR::PropertyType::DATE;
+				return \F3\PHPCR\PropertyType::DATE;
 				break;
 			default:
-				return F3::PHPCR::PropertyType::UNDEFINED;
+				return \F3\PHPCR\PropertyType::UNDEFINED;
 		}
 	}
 }

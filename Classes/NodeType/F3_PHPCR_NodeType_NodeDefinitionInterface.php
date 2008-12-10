@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3::PHPCR::NodeType;
+namespace F3\PHPCR\NodeType;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -29,7 +29,7 @@ namespace F3::PHPCR::NodeType;
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface NodeDefinitionInterface extends F3::PHPCR::NodeType::ItemDefinitionInterface {
+interface NodeDefinitionInterface extends \F3\PHPCR\NodeType\ItemDefinitionInterface {
 
 	/**
 	 * Gets the minimum set of primary node types that the child node must have.
@@ -47,7 +47,7 @@ interface NodeDefinitionInterface extends F3::PHPCR::NodeType::ItemDefinitionInt
 	 * object may be acquired (in the form of a NodeDefinitionTemplate) that is
 	 * not attached to a live NodeType. In such cases this method returns NULL.
 	 *
-	 * @return F3::PHPCR::NodeType::NodeTypeInterface an array of NodeType objects.
+	 * @return \F3\PHPCR\NodeType\NodeTypeInterface an array of NodeType objects.
 	 */
 	public function getRequiredPrimaryTypes();
 
@@ -77,7 +77,7 @@ interface NodeDefinitionInterface extends F3::PHPCR::NodeType::ItemDefinitionInt
 	 * object may be acquired (in the form of a NodeDefinitionTemplate) that is
 	 * not attached to a live NodeType. In such cases this method returns null.
 	 *
-	 * @return F3::PHPCR::NodeType::NodeTypeInterface a NodeType.
+	 * @return \F3\PHPCR\NodeType\NodeTypeInterface a NodeType.
 	 */
 	public function getDefaultPrimaryType();
 

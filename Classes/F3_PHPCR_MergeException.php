@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3::PHPCR;
+namespace F3\PHPCR;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -24,10 +24,10 @@ namespace F3::PHPCR;
  * Exception thrown by Node.merge(String srcWorkspace, boolean isDeep).
  *
  * @package PHPCR
- * @version $Id:F3::PHPCR::LoginException.php 254 2007-07-09 06:34:07Z robert $
+ * @version $Id:\F3\PHPCR\LoginException.php 254 2007-07-09 06:34:07Z robert $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class MergeException extends F3::PHPCR::RepositoryException {
+class MergeException extends \F3\PHPCR\RepositoryException {
 }
 
 ?>

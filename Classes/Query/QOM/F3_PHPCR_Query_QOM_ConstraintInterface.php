@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3::PHPCR::Query::QOM;
+namespace F3\PHPCR\Query\QOM;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *

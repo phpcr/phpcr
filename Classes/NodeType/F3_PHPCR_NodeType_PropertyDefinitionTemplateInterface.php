@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3::PHPCR::NodeType;
+namespace F3\PHPCR\NodeType;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -36,7 +36,7 @@ the default values assumed when a new empty PropertyDefinitionTemplate is create
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface PropertyDefinitionTemplateInterface extends F3::PHPCR::NodeType::PropertyDefinitionInterface {
+interface PropertyDefinitionTemplateInterface extends \F3\PHPCR\NodeType\PropertyDefinitionInterface {
 
 	/**
 	 * Sets the name of the property.

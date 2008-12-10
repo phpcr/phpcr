@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3::PHPCR::NodeType;
+namespace F3\PHPCR\NodeType;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -31,7 +31,7 @@ namespace F3::PHPCR::NodeType;
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class ConstraintViolationException extends F3::PHPCR::RepositoryException {
+class ConstraintViolationException extends \F3\PHPCR\RepositoryException {
 }
 
 ?>

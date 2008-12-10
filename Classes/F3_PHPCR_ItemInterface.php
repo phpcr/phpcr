@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3::PHPCR;
+namespace F3\PHPCR;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -36,7 +36,7 @@ interface ItemInterface {
 	 * example, /a/b[3]/c).
 	 *
 	 * @returns string the path of this Item.
-	 * @throws F3::PHPCR::RepositoryException if an error occurs.
+	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
 	 */
 	public function getPath();
 
@@ -47,7 +47,7 @@ interface ItemInterface {
 	 * $this->getDepth() == 0), an empty string will be returned.
 	 *
 	 * @return string the (or a) name of this Item or an empty string if this Item is the root node.
-	 * @throws F3::PHPCR::RepositoryException if an error occurs.
+	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
 	 */
 	public function getName();
 
@@ -65,10 +65,10 @@ interface ItemInterface {
 	 * If depth > n is specified then a ItemNotFoundException is thrown.
 	 *
 	 * @param integer $depth An integer, 0 <= depth <= n where n is the depth of this Item.
-	 * @return F3::PHPCR::ItemInterface The ancestor of this Item at the specified depth.
-	 * @throws F3::PHPCR::ItemNotFoundException if depth &lt; 0 or depth &gt; n where n is the depth of this item.
-	 * @throws F3::PHPCR::AccessDeniedException if the current session does not have sufficient access rights to retrieve the specified node.
-	 * @throws F3::PHPCR::RepositoryException if another error occurs.
+	 * @return \F3\PHPCR\ItemInterface The ancestor of this Item at the specified depth.
+	 * @throws \F3\PHPCR\ItemNotFoundException if depth &lt; 0 or depth &gt; n where n is the depth of this item.
+	 * @throws \F3\PHPCR\AccessDeniedException if the current session does not have sufficient access rights to retrieve the specified node.
+	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 */
 	public function getAncestor($depth);
 
@@ -82,7 +82,7 @@ interface ItemInterface {
 	 * * And so on to this Item.
 	 *
 	 * @return integer The depth of this Item in the workspace hierarchy.
-	 * @throws F3::PHPCR::RepositoryException if an error occurs.
+	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
 	 */
 	public function getDepth();
 
@@ -92,8 +92,8 @@ interface ItemInterface {
 	 * call Session->getRootNode(), Session->getItem() or
 	 * Session.getNodeByIdentifier(). This method returns that Session object.
 	 *
-	 * @return F3::PHPCR::SessionInterface the Session through which this Item was acquired.
-	 * @throws F3::PHPCR::RepositoryException if an error occurs.
+	 * @return \F3\PHPCR\SessionInterface the Session through which this Item was acquired.
+	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
 	 */
 	public function getSession();
 
@@ -163,20 +163,20 @@ interface ItemInterface {
 	 * same state (see section 5.1.3 Reflecting Item State in the JSR 283 specification
 	 * document) so comparing state is not an issue.
 	 *
-	 * @param F3::PHPCR::ItemInterface $otherItem the Item object to be tested for identity with this Item.
+	 * @param \F3\PHPCR\ItemInterface $otherItem the Item object to be tested for identity with this Item.
 	 * @return boolean TRUE if this Item object and otherItem represent the same actual repository item; FALSE otherwise.
-	 * @throws F3::PHPCR::RepositoryException if an error occurs.
+	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
 	 */
-	public function isSame(F3::PHPCR::ItemInterface $otherItem);
+	public function isSame(\F3\PHPCR\ItemInterface $otherItem);
 
 	/**
 	 * Accepts an ItemVistor. Calls the appropriate ItemVistor visit method of
 	 * the visitor according to whether this Item is a Node or a Property.
 	 *
-	 * @param F3::PHPCR::ItemVisitorInterface $visitor The ItemVisitor to be accepted.
-	 * @throws F3::PHPCR::RepositoryException if an error occurs.
+	 * @param \F3\PHPCR\ItemVisitorInterface $visitor The ItemVisitor to be accepted.
+	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
 	 */
-	public function accept(F3::PHPCR::ItemVisitorInterface $visitor);
+	public function accept(\F3\PHPCR\ItemVisitorInterface $visitor);
 
 	/**
 	 * If keepChanges is false, this method discards all pending changes
@@ -194,8 +194,8 @@ interface ItemInterface {
 	 *
 	 * @param boolean $keepChanges a boolean
 	 * @return void
-	 * @throws F3::PHPCR::InvalidItemStateException if this Item object represents a workspace item that has been removed (either by this session or another).
-	 * @throws F3::PHPCR::RepositoryException if another error occurs.
+	 * @throws \F3\PHPCR\InvalidItemStateException if this Item object represents a workspace item that has been removed (either by this session or another).
+	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	*/
 	public function refresh($keepChanges);
 
@@ -221,10 +221,10 @@ interface ItemInterface {
 	 * does not have read access to that REFERENCE property.
 	 *
 	 * @return void
-	 * @throws F3::PHPCR::Version::VersionException if the parent node of this item is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws F3::PHPCR::Lock::LockException if a lock prevents the removal of this item and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws F3::PHPCR::ConstraintViolationException if removing the specified item would violate a node type or implementation-specific constraint and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws F3::PHPCR::RepositoryException if another error occurs.
+	 * @throws \F3\PHPCR\Version\VersionException if the parent node of this item is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws \F3\PHPCR\Lock\LockException if a lock prevents the removal of this item and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws \F3\PHPCR\ConstraintViolationException if removing the specified item would violate a node type or implementation-specific constraint and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 * @see Workspace::removeItem(String)
 	 */
 	public function remove();

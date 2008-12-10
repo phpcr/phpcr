@@ -26,7 +26,6 @@ RepositoryFactory
 		FullTextSearch
 		FullTextSearchScore
 		Join
-		JoinCondition
 		NodeLocalName
 		NodeName
 		Ordering
@@ -81,6 +80,7 @@ RepositoryFactory
 		Comparison
 		Constraint
 		DynamicOperand
+		JoinCondition
 		Length
 		Literal
 		LowerCase

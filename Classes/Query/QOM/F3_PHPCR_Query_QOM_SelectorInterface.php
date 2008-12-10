@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3::PHPCR::Query::QOM;
+namespace F3\PHPCR\Query\QOM;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -37,7 +37,7 @@ namespace F3::PHPCR::Query::QOM;
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface SelectorInterface extends F3::PHPCR::Query::QOM::SourceInterface {
+interface SelectorInterface extends \F3\PHPCR\Query\QOM\SourceInterface {
 
 	/**
 	 * Gets the name of the required node type.

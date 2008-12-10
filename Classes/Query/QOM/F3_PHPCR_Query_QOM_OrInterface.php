@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3::PHPCR::Query::QOM;
+namespace F3\PHPCR\Query\QOM;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -34,19 +34,19 @@ namespace F3::PHPCR::Query::QOM;
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface OrInterface extends F3::PHPCR::Query::QOM::ConstraintInterface {
+interface OrInterface extends \F3\PHPCR\Query\QOM\ConstraintInterface {
 
 	/**
 	 * Gets the first constraint.
 	 *
-	 * @return F3::PHPCR::Query::QOM::ConstraintInterface the constraint; non-null
+	 * @return \F3\PHPCR\Query\QOM\ConstraintInterface the constraint; non-null
 	 */
 	public function getConstraint1();
 
 	/**
 	 * Gets the second constraint.
 	 *
-	 * @return F3::PHPCR::Query::QOM::ConstraintInterface the constraint; non-null
+	 * @return \F3\PHPCR\Query\QOM\ConstraintInterface the constraint; non-null
 	 */
 	public function getConstraint2();
 

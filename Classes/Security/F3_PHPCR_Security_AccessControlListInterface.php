@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3::PHPCR::Security;
+namespace F3\PHPCR\Security;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -32,7 +32,7 @@ namespace F3::PHPCR::Security;
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface AccessControlListInterface extends F3::PHPCR::Security::AccessControlPolicyInterface {
+interface AccessControlListInterface extends \F3\PHPCR\Security\AccessControlPolicyInterface {
 
 	/**
 	 * Returns all access control entries present with this policy.
@@ -40,7 +40,7 @@ interface AccessControlListInterface extends F3::PHPCR::Security::AccessControlP
 	 * AccessControlEntry has been assigned through this API.
 	 *
 	 * @return array all AccessControlEntry objects present with this policy.
-	 * @throws F3::PHPCR::RepositoryException - if an error occurs.
+	 * @throws \F3\PHPCR\RepositoryException - if an error occurs.
 	 */
 	public function getAccessControlEntries();
 
@@ -62,8 +62,8 @@ interface AccessControlListInterface extends F3::PHPCR::Security::AccessControlP
 	 * @param java.security.Principal $principal - a Principal.
 	 * @param array $privileges - an array of Privileges.
 	 * @return boolean true if this policy was modify; false otherwise.
-	 * @throws F3::PHPCR::Security::AccessControlException - if the specified principal or any of the privileges does not existor if some other access control related exception occurs.
-	 * @throws F3::PHPCR::RepositoryException - if another error occurs.
+	 * @throws \F3\PHPCR\Security\AccessControlException - if the specified principal or any of the privileges does not existor if some other access control related exception occurs.
+	 * @throws \F3\PHPCR\RepositoryException - if another error occurs.
 	 * @todo find replacement for java.security.Principal
 	 */
 	public function addAccessControlEntry($principal, array $privileges);
@@ -75,12 +75,12 @@ interface AccessControlListInterface extends F3::PHPCR::Security::AccessControlP
 	 * to a node by calling AccessControlManager.setPolicy(String, AccessControlPolicy)
 	 * and save is performed.
 	 *
-	 * @param F3::PHPCR::Security::AccessControlEntryInterface $ace - the access control entry to be removed.
+	 * @param \F3\PHPCR\Security\AccessControlEntryInterface $ace the access control entry to be removed.
 	 * @return void
-	 * @throws F3::PHPCR::Security::AccessControlException - if the specified entry is not present on the specified node.
-	 * @throws F3::PHPCR::RepositoryException - if another error occurs.
+	 * @throws \F3\PHPCR\Security\AccessControlException if the specified entry is not present on the specified node.
+	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 * */
-	public function removeAccessControlEntry(F3::PHPCR::Security::AccessControlEntryInterface $ace);
+	public function removeAccessControlEntry(\F3\PHPCR\Security\AccessControlEntryInterface $ace);
 
 }
 

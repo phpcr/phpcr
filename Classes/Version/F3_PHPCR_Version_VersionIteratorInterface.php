@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3::PHPCR::Version;
+namespace F3\PHPCR\Version;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -30,12 +30,12 @@ namespace F3::PHPCR::Version;
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-interface VersionIteratorInterface extends F3::PHPCR::RangeIteratorInterface {
+interface VersionIteratorInterface extends \F3\PHPCR\RangeIteratorInterface {
 
 	/**
 	 * Returns the next Version in the iteration.
 	 *
-	 * @return F3::PHPCR::Version::VersionInterface the next Version in the iteration
+	 * @return \F3\PHPCR\Version\VersionInterface the next Version in the iteration
 	 * @throws OutOfBoundsException if iteration has no more Versions.
 	 */
 	public function nextVersion();

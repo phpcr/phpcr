@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3::PHPCR;
+namespace F3\PHPCR;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -56,8 +56,8 @@ interface ValueInterface {
 	 * methods to access the binary data itself. Uses the standard conversion to binary
 	 * (see JCR specification).
 	 *
-	 * @return F3::PHPCR::BinaryInterface A Binary representation of this value.
-	 * @throws F3::PHPCR::RepositoryException if another error occurs.
+	 * @return \F3\PHPCR\BinaryInterface A Binary representation of this value.
+	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 */
 	public function getBinary();
 
@@ -65,8 +65,8 @@ interface ValueInterface {
 	 * Returns a string representation of this value.
 	 *
 	 * @return string A string representation of the value of this property.
-	 * @throws F3::PHPCR::ValueFormatException if conversion to a String is not possible.
-	 * @throws F3::PHPCR::RepositoryException if another error occurs.
+	 * @throws \F3\PHPCR\ValueFormatException if conversion to a String is not possible.
+	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 */
 	public function getString();
 
@@ -74,8 +74,8 @@ interface ValueInterface {
 	 * Returns a long representation of this value.
 	 *
 	 * @return string A long representation of the value of this property.
-	 * @throws F3::PHPCR::ValueFormatException if conversion to a long is not possible.
-	 * @throws F3::PHPCR::RepositoryException if another error occurs.
+	 * @throws \F3\PHPCR\ValueFormatException if conversion to a long is not possible.
+	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 */
 	public function getLong();
 
@@ -83,8 +83,8 @@ interface ValueInterface {
 	 * Returns a BigDecimal representation of this value.
 	 *
 	 * @return string A double representation of the value of this property.
-	 * @throws F3::PHPCR::ValueFormatException if conversion is not possible.
-	 * @throws F3::PHPCR::RepositoryException if another error occurs.
+	 * @throws \F3\PHPCR\ValueFormatException if conversion is not possible.
+	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 */
 	public function getDecimal();
 
@@ -92,20 +92,20 @@ interface ValueInterface {
 	 * Returns a double representation of this value.
 	 *
 	 * @return string A double representation of the value of this property.
-	 * @throws F3::PHPCR::ValueFormatException if conversion to a double is not possible.
-	 * @throws F3::PHPCR::RepositoryException if another error occurs.
+	 * @throws \F3\PHPCR\ValueFormatException if conversion to a double is not possible.
+	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 */
 	public function getDouble();
 
 	/**
-	 * Returns a DateTime representation of this value.
+	 * Returns a \DateTime representation of this value.
 	 *
 	 * The object returned is a copy of the stored value, so changes to it are
 	 * not reflected in internal storage.
 	 *
-	 * @return DateTime A DateTime representation of the value of this property.
-	 * @throws F3::PHPCR::ValueFormatException if conversion to a DateTime is not possible.
-	 * @throws F3::PHPCR::RepositoryException if another error occurs.
+	 * @return \DateTime A \DateTime representation of the value of this property.
+	 * @throws \F3\PHPCR\ValueFormatException if conversion to a \DateTime is not possible.
+	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 */
 	public function getDate();
 
@@ -113,8 +113,8 @@ interface ValueInterface {
 	 * Returns a boolean representation of this value.
 	 *
 	 * @return string A boolean representation of the value of this property.
-	 * @throws F3::PHPCR::ValueFormatException if conversion to a boolean is not possible.
-	 * @throws F3::PHPCR::RepositoryException if another error occurs.
+	 * @throws \F3\PHPCR\ValueFormatException if conversion to a boolean is not possible.
+	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 */
 	public function getBoolean();
 
