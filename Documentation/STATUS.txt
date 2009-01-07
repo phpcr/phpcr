@@ -11,8 +11,6 @@ The DONE section lists what has been done already.
 
 == WIP ==
 
-RepositoryFactory
-
 == OPEN ==
 
 # Query
@@ -95,6 +93,10 @@ RepositoryFactory
 		Source
 		StaticOperand
 		UpperCase
+# Retention
+	Hold
+	RetentionManager
+	RetentionPolicy
 # Security
 	AccessControlEntry
 	AccessControlException
@@ -140,6 +142,7 @@ RangeIterator
 ReferentialIntegrityException
 Repository
 RepositoryException
+RepositoryFactory
 Session
 SimpleCredentials
 UnsupportedRepositoryOperationException

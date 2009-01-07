@@ -92,7 +92,8 @@ interface LockManagerInterface {
 	 *
 	 * If isDeep is true then the lock applies to the specified node and all its
 	 * descendant nodes; if false, the lock applies only to the specified node.
-	 * On a successful lock, the jcr:isDeep property of the locked node is set to this value.
+	 * On a successful lock, the jcr:lockIsDeep property of the locked node is
+	 * set to this value.
 	 *
 	 * If isSessionScoped is true then this lock will expire upon the expiration
 	 * of the current session (either through an automatic or explicit Session.logout);
@@ -119,8 +120,8 @@ interface LockManagerInterface {
 	 * open-scoped the returned lock will include a lock token. The lock token is
 	 * also automatically added to the set of lock tokens held by the current session.
 	 *
-	 * The addition or change of the properties jcr:isDeep and jcr:lockOwner are
-	 * persisted immediately; there is no need to call save.
+	 * The addition or change of the properties jcr:lockIsDeep and jcr:lockOwner
+	 * are persisted immediately; there is no need to call save.
 	 *
 	 * It is possible to lock a node even if it is checked-in.
 	 *

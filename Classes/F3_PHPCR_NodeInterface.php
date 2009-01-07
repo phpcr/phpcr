@@ -848,7 +848,7 @@ interface NodeInterface extends \F3\PHPCR\ItemInterface {
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 * @see removeShare()
 	 * @see Item::remove()
-	 * @see Workspace::removeItem
+	 * @see SessionInterface::removeItem
 	 */
 	public function removeSharedSet();
 
@@ -868,7 +868,7 @@ interface NodeInterface extends \F3\PHPCR\ItemInterface {
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 * @see removeSharedSet()
 	 * @see Item::remove()
-	 * @see Workspace::removeItem
+	 * @see SessionInterface::removeItem
 	 */
 	public function removeShare();
 

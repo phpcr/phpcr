@@ -89,7 +89,7 @@ interface ObservationManagerInterface {
 	 * @param array $nodeTypeName - array of node type names.
 	 * @param boolean $noLocal - a boolean.
 	 * @return void
-	 * @throws \F3\PHPCR\RepositoryException - If an error occurs.
+	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
 	 */
 	public function addEventListener(\F3\PHPCR\Observation\EventListenerInterface $listener, $eventTypes, $absPath, $isDeep, array $uuid, array $nodeTypeName, $noLocal);
 
@@ -103,7 +103,7 @@ interface ObservationManagerInterface {
 	 *
 	 * @param \F3\PHPCR\Observation\EventListenerInterface $listener - The listener to deregister.
 	 * @return void
-	 * @throws \F3\PHPCR\RepositoryException - If an error occurs.
+	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
 	 */
 	public function removeEventListener(\F3\PHPCR\Observation\EventListenerInterface $listener);
 
@@ -111,18 +111,30 @@ interface ObservationManagerInterface {
 	 * Returns all event listeners that have been registered through this session. If no listeners have been registered, an empty iterator is returned.
 	 *
 	 * @return an EventListenerIterator.
-	 * @throws \F3\PHPCR\RepositoryException - If an error occurs
+	 * @throws \F3\PHPCR\RepositoryException if an error occurs
 	 */
 	public function getRegisteredEventListeners();
 
 	/**
 	 * Sets the user data information that will be returned by Event.getUserData().
 	 *
-	 * @param string $userData -
+	 * @param string $userData the user data
 	 * @return void
-	 * @throws \F3\PHPCR\RepositoryException
+	 * @throws \F3\PHPCR\RepositoryException if an error occurs
 	 */
 	public function setUserData($userData);
+
+	/**
+	 * Retrieves the event journal for this workspace. If journaled observation
+	 * is not supported for this workspace, NULL is returned.
+	 * Events recorded in the EventJournal instance will be filtered according
+	 * to the current session's access rights as well as any additional restrictions
+	 * specified through implemention-specific configuration.
+	 *
+	 * @return \F3\PHPCR\Observation\EventJournalInterface|NULL an EventJournal or NULL.
+	 * @throws \F3\PHPCR\RepositoryException if an error occurs
+	 */
+	public function getEventJournal();
 
 }
 ?>

@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3\PHPCR\Observation;
+namespace F3\PHPCR\Retention;
 
 /*                                                                        *
  * This script belongs to the FLOW3 package "PHPCR".                      *
@@ -24,31 +24,40 @@ namespace F3\PHPCR\Observation;
 
 /**
  * @package PHPCR
- * @subpackage Observation
+ * @subpackage Retention
  * @version $Id$
  */
 
 /**
- * An EventJournal is an extension of EventIterator that provides the additional
- * method skipTo().
+ * Hold represents a hold that can be applied to an existing node in order to
+ * prevent the node from being modified or removed. The format and interpretation
+ * of the name are not specified. They are application-dependent.
+ *
+ * If isDeep() is true, the hold applies to the node and its entire subtree.
+ * Otherwise the hold applies to the node and its properties only.
  *
  * @package PHPCR
- * @subpackage Observation
+ * @subpackage Retention
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser Public License, version 3 or later
  */
-interface EventJournalInterface extends \F3\PHPCR\Observation\EventIteratorInterface {
+interface HoldInterface {
 
 	/**
-	 * Skip all elements of the iterator earlier than date.
-	 * If an attempt is made to skip past the last element of the iterator, no
-	 * exception is thrown but the subsequent EventIterator.nextEvent() will fail.
+	 * Returns true if this Hold is deep.
 	 *
-	 * @param integer value that represents an offset in milliseconds from the epoch.
-	 * @return void
+	 * @return boolean TRUE if this Hold is deep.
+	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
 	 */
-	public function skipTo($date);
+	public function isDeep();
+
+	/**
+	 * Returns the name of this Hold. A JCR name.
+	 *
+	 * @return string the name of this Hold. A JCR name.
+	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 */
+	public function getName();
 
 }
-
 ?>

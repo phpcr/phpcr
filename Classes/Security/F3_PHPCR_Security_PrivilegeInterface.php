@@ -119,12 +119,48 @@ interface PrivilegeInterface {
 	const JCR_MODIFY_ACCESS_CONTROL = "{http://www.jcp.org/jcr/1.0}modifyAccessControl";
 
 	/**
+	 * A constant representing jcr:lockManagement (in extended form), the
+	 * privilege to lock and unlock a node.
+	 */
+	const JCR_LOCK_MANAGEMENT = "{http://www.jcp.org/jcr/1.0}lockManagement";
+
+	/**
+	 * A constant representing jcr:versionManagment (in extended form), the
+	 * privilege to perform versioning operations on a node.
+	 */
+	const JCR_VERSION_MANAGEMENT = "{http://www.jcp.org/jcr/1.0}versionManagement";
+
+	/**
+	 * A constant representing jcr:nodeTypeManagement (in extended form), the
+	 * privilege to add and remove mixin node types and change the primary node
+	 * type of a node.
+	 */
+	const JCR_NODE_TYPE_MANAGEMENT = "{http://www.jcp.org/jcr/1.0}nodeTypeManagement";
+
+	/**
+	 * A constant representing jcr:retentionManagement (in extended form), the
+	 * privilege to perform retention management operations on a node.
+	 */
+	const JCR_RETENTION_MANAGEMENT = "{http://www.jcp.org/jcr/1.0}retentionManagement";
+
+	/**
+	 * A constant representing jcr:lifecycleManagement (in extended form), the
+	 * privilege to perform lifecycle operations on a node.
+	 */
+	const JCR_LIFECYCLE_MANAGEMENT = "{http://www.jcp.org/jcr/1.0}lifecycleManagement";
+
+	/**
 	 * A constant representing jcr:all (in extended form), an aggregate privilege that contains
-	 * all predefined privileges:
+	 * all predefined privileges.
 	 *   jcr:read
 	 *   jcr:write
 	 *   jcr:readAccessControl
 	 *   jcr:modifyAccessControl
+	 *   jcr:lockManagement
+	 *   jcr:versionManagement
+	 *   jcr:nodeTypeManagement
+	 *   jcr:retentionManagement
+	 *   jcr:lifecycleManagement
 	 *
 	 * It should, in addition, include all implementation-defined privileges.
 	 */
@@ -134,7 +170,7 @@ interface PrivilegeInterface {
 	 * Returns the name of this privilege.
 	 *
 	 * @return string the name of this privilege.
-	*/
+	 */
 	public function getName();
 
 	/**

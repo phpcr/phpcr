@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3\PHPCR\Observation;
+namespace F3\PHPCR\Retention;
 
 /*                                                                        *
  * This script belongs to the FLOW3 package "PHPCR".                      *
@@ -24,31 +24,27 @@ namespace F3\PHPCR\Observation;
 
 /**
  * @package PHPCR
- * @subpackage Observation
+ * @subpackage Retention
  * @version $Id$
  */
 
 /**
- * An EventJournal is an extension of EventIterator that provides the additional
- * method skipTo().
+ * A RetentionPolicy is an object with a name and an optional description.
  *
  * @package PHPCR
- * @subpackage Observation
+ * @subpackage Retention
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser Public License, version 3 or later
  */
-interface EventJournalInterface extends \F3\PHPCR\Observation\EventIteratorInterface {
+interface RetentionPolicyInterface {
 
 	/**
-	 * Skip all elements of the iterator earlier than date.
-	 * If an attempt is made to skip past the last element of the iterator, no
-	 * exception is thrown but the subsequent EventIterator.nextEvent() will fail.
+	 * Returns the name of the retention policy. A JCR name.
 	 *
-	 * @param integer value that represents an offset in milliseconds from the epoch.
-	 * @return void
+	 * @return string the name of the access control policy. A JCR name.
+	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
 	 */
-	public function skipTo($date);
+	public function getName();
 
 }
-
 ?>
