@@ -32,7 +32,7 @@ namespace F3\PHPCR;
  * specified path implies intermediary Nodes that do not exist.
  *
  * @package PHPCR
- * @version $Id:\F3\PHPCR\ItemNotFoundException.php 254 2007-07-09 06:34:07Z robert $
+ * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser Public License, version 3 or later
  */
 class PathNotFoundException extends \F3\PHPCR\RepositoryException {

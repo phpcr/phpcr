@@ -32,7 +32,7 @@ namespace F3\PHPCR;
  * workspace is not found.
  *
  * @package PHPCR
- * @version $Id:\F3\PHPCR\NoSuchWorkspaceException.php 254 2007-07-09 06:34:07Z robert $
+ * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser Public License, version 3 or later
  */
 class NoSuchWorkspaceException extends \F3\PHPCR\RepositoryException {

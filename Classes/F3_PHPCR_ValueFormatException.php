@@ -34,7 +34,7 @@ namespace F3\PHPCR;
  * read method of a type into which it is not convertible.
  *
  * @package PHPCR
- * @version $Id:\F3\PHPCR\RepositoryException.php 254 2007-07-09 06:34:07Z robert $
+ * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser Public License, version 3 or later
  */
 class ValueFormatException extends \F3\PHPCR\RepositoryException {
