@@ -287,52 +287,6 @@ interface WorkspaceInterface {
 	public function move($srcAbsPath, $destAbsPath);
 
 	/**
-	 * Restores a set of versions at once. Used in cases where a "chicken and egg"
-	 * problem of mutually referring REFERENCE properties would prevent the restore
-	 * in any serial order.
-	 * If the restore succeeds the changes made to this node are persisted
-	 * immediately, there is no need to call save.
-	 *
-	 * The following restrictions apply to the set of versions specified:
-	 *
-	 * If S is the set of versions being restored simultaneously,
-	 *
-	 * For every version V in S that corresponds to a missing node, there must
-	 * also be a parent of V in S.
-	 * S must contain at least one version that corresponds to an existing node
-	 * in the workspace.
-	 * No V in S can be a root version (jcr:rootVersion).
-	 * If any of these restrictions does not hold, the restore will fail because
-	 * the system will be unable to determine the path locations to which one or
-	 *  more versions are to be restored. In this case a VersionException is thrown.
-	 * The versionable nodes in this workspace that correspond to the versions
-	 * being restored define a set of (one or more) subtrees. An identifier
-	 * collision occurs when this workspace contains a node outside these subtrees
-	 * that has the same identifier as one of the nodes that would be introduced by
-	 * the restore operation into one of these subtrees. The result in such a case
-	 * is governed by the removeExisting flag. If removeExisting is true then the
-	 * incoming node takes precedence, and the existing node (and its subtree) is
-	 * removed. If removeExisting is false then a ItemExistsException is thrown and
-	 * no changes are made. Note that this applies not only to cases where the
-	 * restored node itself conflicts with an existing node but also to cases where
-	 * a conflict occurs with any node that would be introduced into the workspace
-	 * by the restore operation. In particular, conflicts involving subnodes of the
-	 * restored node that have OnParentVersion settings of COPY or VERSION are also
-	 * governed by the removeExisting flag.
-	 *
-	 * @param array $versions The set of versions (array of \F3\PHPCR\Version\VersionInterface) to be restored
-	 * @param boolean $removeExisting governs what happens on identifier collision.
-	 * @return void
-	 * @throws \F3\PHPCR\ItemExistsException if removeExisting is false and an identifier collision occurs with a node being restored.
-	 * @throws \F3\PHPCR\UnsupportedRepositoryOperationException if one or more of the nodes to be restored is not versionable.
-	 * @throws \F3\PHPCR\Version\VersionException if the set of versions to be restored is such that the original path location of one or more of the versions cannot be determined or if the restore would change the state of a existing versionable node that is currently checked-in or if a root version (jcr:rootVersion) is among those being restored.
-	 * @throws \F3\PHPCR\Version\LockException if a lock prevents the restore.
-	 * @throws \F3\PHPCR\InvalidItemStateException if this Session has pending unsaved changes.
-	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
-	 */
-	public function restore(array $versions, $removeExisting);
-
-	/**
 	 * Returns the LockManager object, through which locking methods are accessed.
 	 *
 	 * @return \F3\PHPCR\Lock\LockManagerInterface
@@ -379,6 +333,15 @@ interface WorkspaceInterface {
 	 * @throws \F3\PHPCR::\F3\PHPCR\RepositoryException if an error occurs.
 	 */
 	public function getObservationManager();
+
+	/**
+	 * Returns the VersionManager object.
+	 *
+	 * @return \F3\PHPCR\Version\VersionManagerInterface a VersionManager object.
+	 * @throws \F3\PHPCR\UnsupportedRepositoryOperationException if the implementation does not support versioning.
+	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 */
+	public function getVersionManager();
 
 	/**
 	 * Returns a string array containing the names of all workspaces in this
@@ -559,35 +522,6 @@ interface WorkspaceInterface {
 	public function deleteWorkspace($name);
 
 	/**
-	 * This method creates a new nt:activity at an implementation-determined
-	 * location in the /jcr:system/jcr:activities subtree.
-	 * The repository may, but is not required to, use the title as a hint for
-	 * what to name the new activity node. The new activity Node is returned.
-	 *
-	 * The new node is persisted immediately and does not require a save.
-	 *
-	 * @param string $title a String
-	 * @return \F3\PHPCR\NodeInterface the new activity Node.
-	 * @throws \F3\PHPCR\UnsupportedRepositoryOperationException if the repository does not support activities.
-	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
-	 */
-	public function createActivity($title);
-
-	/**
-	 * This method is called by the user to set the current activity.
-	 * Changing the current activity is done by calling setActivity() again.
-	 * Cancelling the current activity (so that there is no current activity)
-	 * is done by calling setActivity(NULL) which returns the current activity
-	 * node or NULL if there is no current activity.
-	 *
-	 * @param \F3\PHPCR\NodeInterface $activity an activity node
-	 * @return \F3\PHPCR\NodeInterface the activity node
-	 * @throws \F3\PHPCR\UnsupportedRepositoryOperationException if the repository does not support activities or if activity is not a nt:activity node.
-	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
-	 */
-	public function setActivity(\F3\PHPCR\NodeInterface $activity);
-
-	/**
 	 * Returns the node representing the current activity or NULL if there is no
 	 * current activity.
 	 *
@@ -596,41 +530,6 @@ interface WorkspaceInterface {
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 */
 	public function getActivity();
-
-	/**
-	 * This method merges the changes that were made under the specified activity
-	 * into this workspace.
-	 * An activity A will be associated with a set of versions through the jcr:activity
-	 * reference of each version node in the set. We call each such associated
-	 * version a member of A.
-	 *
-	 * For each version history H that contains one or more members of A, one such
-	 * member will be the latest member of A in H. The latest member of A in H is
-	 * the version in H that is a member of A and that has no successor versions (to
-	 * any degree) that are also members of A.
-	 *
-	 * The set of versions that are the latest members of A in their respective
-	 * version histories is called the change set of A. It fully describes the
-	 * changes made under the activity A.
-	 *
-	 * This method performs a shallow merge with bestEffort equal to into this
-	 * workspace of each version in the change set of the activity specified by
-	 * activityNode. If there is no corresponding node in this workspace for a
-	 * given member of the change set, that member is ignored.
-	 *
-	 * This method returns a NodeIterator over all versionable nodes in the
-	 * subtree that received a merge result of fail.
-	 *
-	 * @param \F3\PHPCR\NodeInterface $activityNode an nt:activity node
-	 * @return \F3\PHPCR\NodeIteratorInterface a NodeIterator
-	 * @throws \F3\PHPCR\AccessDeniedException if the current session does not have sufficient rights to perform the operation.
-	 * @throws \F3\PHPCR\UnsupportedRepositoryOperationException if the repository does not support activities or if $activityNode is not a nt:activity node.if the specified node is not an nt:activity node.
-	 * @throws \F3\PHPCR\MergeException in the same cases as in a regular shallow merge with bestEffort equal to FALSE (see Node.merge(String, boolean, boolean)).
-	 * @throws \F3\PHPCR\Lock\LockException if a lock prevents the merge.
-	 * @throws \F3\PHPCR\InvalidItemStateException if this Session has pending unsaved changes.
-	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
-	 */
-	public function merge(\F3\PHPCR\NodeInterface $activityNode);
 
 }
 
