@@ -42,8 +42,8 @@ interface VersionInterface extends \F3\PHPCR\NodeInterface {
 	/**
 	 * Returns the VersionHistory that contains this Version
 	 *
-	 * @return VersionHistory the VersionHistory that contains this Version
-	 * throws RepositoryException if an error occurs
+	 * @return \F3\PHPCR\Version\VersionHistoryInterface the VersionHistory that contains this Version
+	 * @throws \F3\PHPCR\RepositoryException if an error occurs
 	 */
 	public function getContainingHistory();
 
@@ -53,25 +53,58 @@ interface VersionInterface extends \F3\PHPCR\NodeInterface {
 	 * this version.
 	 *
 	 * @return \DateTime a \DateTime object
-	 * @throws RepositoryException - if an error occurs
+	 * @throws \F3\PHPCR\RepositoryException - if an error occurs
 	 */
 	public function getCreated();
 
 	/**
-	 * Returns the successor versions of this version. This corresponds to returning all the nt:version nodes referenced by the jcr:successors multi-value property in the nt:version node that represents this version.
+	 * Assuming that this Version object was acquired through a Workspace W and
+	 * is within the VersionHistory H, this method returns the successor of this
+	 * version along the same line of descent as is returned by
+	 * H.getAllLinearVersions() where H was also acquired through W.
 	 *
-	 * @return array of \F3\PHPCR\Version\Version
-	 * @throws RepositoryException if an error occurs
+	 * Note that under simple versioning the behavior of this method is equivalent
+	 * to getting the unique successor (if any) of this version.
+	 *
+	 * @see VersionHistory#getAllLinearVersions()
+	 * @return \F3\PHPCR\VersionInterface a Version or NULL if no linear successor exists.
+	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 */
+	public function getLinearSuccessor();
+
+	/**
+	 * Returns the successor versions of this version. This corresponds to
+	 * returning all the nt:version nodes referenced by the jcr:successors
+	 * multi-value property in the nt:version node that represents this version.
+	 *
+	 * @return array of \F3\PHPCR\Version\VersionInterface
+	 * @throws \F3\PHPCR\RepositoryException if an error occurs
 	 */
 	public function getSuccessors();
 
 	/**
-	 * Returns the predecessor versions of this version. This corresponds to
-	 * returning all the nt:version nodes whose jcr:successors property includes
-	 * a reference to the nt:version node that represents this version.
+	 * Assuming that this Version object was acquired through a Workspace W and
+	 * is within the VersionHistory H, this method returns the predecessor of
+	 * this version along the same line of descent as is returned by
+	 * H.getAllLinearVersions() where H was also acquired through W.
 	 *
-	 * @return array of \F3\PHPCR\Version\Version
-	 * @throws RepositoryException if an error occurs
+	 * Note that under simple versioning the behavior of this method is equivalent
+	 * to getting the unique predecessor (if any) of this version.
+	 *
+	 * @see VersionHistory#getAllLinearVersions()
+	 * @return \F3\PHPCR\Version\VersionInterface a Version or NULL if no linear predecessor exists.
+	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 */
+	public function getLinearPredecessor();
+
+	/**
+	 * In both simple and full versioning repositories, this method returns the
+	 * predecessor versions of this version. This corresponds to returning all
+	 * the nt:version nodes whose jcr:successors property includes a reference
+	 * to the nt:version node that represents this version.
+	 *
+	 * @return array of \F3\PHPCR\Version\VersionInterface
+	 * @throws \F3\PHPCR\RepositoryException if an error occurs
 	 */
 	public function getPredecessors();
 
@@ -79,7 +112,7 @@ interface VersionInterface extends \F3\PHPCR\NodeInterface {
 	 * Returns the frozen node of this version.
 	 *
 	 * @return \F3\PHPCR\NodeInterface a Node object
-	 * @throws RepositoryException if an error occurs
+	 * @throws \F3\PHPCR\RepositoryException if an error occurs
 	 */
 	public function getFrozenNode();
 

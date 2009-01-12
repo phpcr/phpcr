@@ -57,18 +57,49 @@ interface VersionHistoryInterface extends \F3\PHPCR\NodeInterface {
 	public function getRootVersion();
 
 	/**
-	 * Returns an iterator over all the versions within this version history. The
-	 * order of the returned objects will not necessarily correspond to the order
-	 * of versions in terms of the successor relation. To traverse the version
-	 * graph one must traverse the jcr:successors REFERENCE properties starting
-	 * with the root version. A version history will always have at least one
-	 * version, the root version. Therefore, this method will always return an
-	 * iterator of at least size 1.
+	 * This method returns an iterator over all the versions in the line of
+	 * descent from the root version to that base version within this history
+	 * that is bound to the workspace through which this VersionHistory was
+	 * accessed.
+	 *
+	 * Within a version history H, B is the base version bound to workspace W
+	 * if and only if there exists a versionable node N in W whose version
+	 * history is H and B is the base version of N.
+	 *
+	 * The line of descent from version V1 to V2, where V2 is a successor of V1,
+	 * is the ordered list of versions starting with V1 and proceeding through
+	 * each direct successor to V2.
+	 *
+	 * The versions are returned in order of creation date, from oldest to newest.
+	 *
+	 * Note that in a simple versioning repository the behavior of this method is
+	 * equivalent to returning all versions in the version history in order from
+	 * oldest to newest.
+	 *
+	 * @return \F3\PHPCR\Version\VersionIteratorInterface a VersionIterator object.
+	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 */
+	public function getAllLinearVersions();
+
+	/**
+	 * Returns an iterator over all the versions within this version history.
+	 * If the version graph of this history is linear then the versions are
+	 * returned in order of creation date, from oldest to newest. Otherwise the
+	 * order of the returned versions is implementation-dependent.
 	 *
 	 * @return \F3\PHPCR\Version\VersionIteratorInterface a VersionIterator object.
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
 	 */
 	public function getAllVersions();
+
+	/**
+	 * This method returns all the frozen nodes of all the versions in this
+	 * verison history in the same order as getAllLinearVersions().
+	 *
+	 * @return \F3\PHPCR\NodeIteratorInterface a NodeIterator object.
+	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 */
+	public function getAllLinearFrozenNodes();
 
 	/**
 	 * Returns an iterator over all the frozen nodes of all the versions of
