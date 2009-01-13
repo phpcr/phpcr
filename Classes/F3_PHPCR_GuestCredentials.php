@@ -35,7 +35,7 @@ namespace F3\PHPCR;
  *
  * @package PHPCR
  * @version $Id$
- * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser Public License, version 3 or later
+ * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  * @scope prototype
  */
 final class GuestCredentials implements \F3\PHPCR\CredentialsInterface {

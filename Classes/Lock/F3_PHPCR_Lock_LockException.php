@@ -35,7 +35,7 @@ namespace F3\PHPCR\Lock;
  * @package PHPCR
  * @subpackage Lock
  * @version $Id$
- * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser Public License, version 3 or later
+ * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
 class LockException extends \F3\PHPCR\RepositoryException {
 }
