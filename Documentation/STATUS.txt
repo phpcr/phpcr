@@ -74,7 +74,6 @@ The DONE section lists what has been done already.
 	InvalidQueryException
 	Row
 	RowIterator
-	SearchNotSupportedException
 	## QOM
 		And
 		BindVariableValue
