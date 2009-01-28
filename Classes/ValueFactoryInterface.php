@@ -57,15 +57,20 @@ interface ValueFactoryInterface {
 	 * preserved. Exceptions are:
 	 * * if the given $value is a Node object, it's Identifier is fetched for the
 	 *   Value object and the type of that object will be REFERENCE
+	 * * if the given $value is a Node object, it's Identifier is fetched for the
+	 *   Value object and the type of that object will be WEAKREFERENCE if $weak
+	 *   is set to TRUE
 	 * * if the given $Value is a \DateTime object, the Value type will be DATE.
 	 *
-	 * @param mixed $value
-	 * @param integer $type
+	 * @param mixed $value The value to use when creating the Value object
+	 * @param integer $type Type request for the Value object
+	 * @param boolean $weak When a Node is given as $value this can be given as TRUE to create a WEAKREFERENCE
 	 * @return \F3\PHPCR\ValueInterface
 	 * @throws \F3\PHPCR\ValueFormatException is thrown if the specified value cannot be converted to the specified type.
 	 * @throws \F3\PHPCR\RepositoryException if the specified Node is not referenceable, the current Session is no longer active, or another error occurs.
 	 */
-	public function createValue($value, $type = NULL);
+	public function createValue($value, $type = NULL, $weak = FALSE);
+
 }
 
 ?>

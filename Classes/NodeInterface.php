@@ -416,13 +416,9 @@ interface NodeInterface extends \F3\PHPCR\ItemInterface {
 	public function hasProperties();
 
 	/**
-	 * Returns the primary node type in effect for this node. Note that this may
-	 * differ from the node type implied by the node's jcr:primaryType property
-	 * if that property has recently been created or changed and has not yet been
-	 * saved. Which NodeType is returned when this method is called on the root
-	 * node of a workspace is up to the implementation, though the returned type
-	 * must, of course, be consistent with the child nodes and properties of the
-	 * root node.
+	 * Returns the primary node type in effect for this node. Which NodeType is
+	 * returned when this method is called on the root node of a workspace is up
+	 * to the implementation.
 	 *
 	 * @return \F3\PHPCR\NodeType\NodeTypeInterface a NodeType object.
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs
@@ -435,9 +431,7 @@ interface NodeInterface extends \F3\PHPCR\ItemInterface {
 	 * assigned to this node. It does not include mixin types inherited through
 	 * the addition of supertypes to the primary type hierarchy or through the
 	 * addition of supertypes to the type hierarchy of any of the declared mixin
-	 * types. Note that this may differ from the node types implied by the node's
-	 * jcr:mixinTypes property if that property has recently been created or
-	 * changed and has not yet been saved.
+	 * types.
 	 *
 	 * @return array of \F3\PHPCR\NodeType\NodeTypeInterface objects.
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs
@@ -447,10 +441,7 @@ interface NodeInterface extends \F3\PHPCR\ItemInterface {
 	/**
 	 * Returns true if this node is of the specified primary node type or mixin
 	 * type, or a subtype thereof. Returns false otherwise.
-	 * This method respects the effective node type of the node. Note that this
-	 * may differ from the node type implied by the node's jcr:primaryType property
-	 * or jcr:mixinTypes property if that property has recently been created or
-	 * changed and has not yet been saved.
+	 * This method respects the effective node type of the node.
 	 *
 	 * @param string $nodeTypeName the name of a node type.
 	 * @return boolean true if this node is of the specified primary node type or mixin type, or a subtype thereof. Returns false otherwise.

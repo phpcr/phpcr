@@ -232,8 +232,6 @@ interface VersionManagerInterface {
 	 *
 	 * If an absolute path is given:
 	 *
-	 * Support for this method is only required under full versioning.
-	 *
 	 * This method can be thought of as a version-sensitive update.
 	 *
 	 * If isShallow is true, it tests the node at absPath against its
@@ -278,8 +276,6 @@ interface VersionManagerInterface {
 	public function merge($source, $srcWorkspace = NULL, $bestEffort = NULL, $isShallow = FALSE);
 
 	/**
-	 * Support for this method is only required under full versioning.
-	 *
 	 * Completes the merge process with respect to the node at absPath and the
 	 * specified version.
 	 *
@@ -345,8 +341,6 @@ interface VersionManagerInterface {
 	public function doneMerge($absPath, \F3\PHPCR\Version\VersionInterface $version);
 
 	/**
-	 * Support for this method is only required under full versioning.
-	 *
 	 * Cancels the merge process with respect to the node at absPath and the
 	 * specified version.
 	 *
@@ -404,6 +398,16 @@ interface VersionManagerInterface {
 	public function setActivity(\F3\PHPCR\NodeInterface $activity);
 
 	/**
+	 * Returns the node representing the current activity or NULL if there is no
+	 * current activity.
+	 *
+	 * @return \F3\PHPCR\NodeInterface An nt:activity node or NULL.
+	 * @throws \F3\PHPCR\UnsupportedRepositoryOperationException if the repository does not support activities.
+	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 */
+	public function getActivity();
+
+	/**
 	 * This method creates a new nt:activity at an implementation-determined
 	 * location in the /jcr:system/jcr:activities subtree.
 	 *
@@ -418,6 +422,19 @@ interface VersionManagerInterface {
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 */
 	public function createActivity($title);
+
+	/**
+	 * This method removes an nt:activity at an implementation-determined
+	 * location in the /jcr:system/jcr:activities subtree.
+	 *
+	 * The change is persisted immediately and does not require a save.
+	 *
+	 * @param string $title a String
+	 * @return \F3\PHPCR\NodeInterface the new activity Node.
+	 * @throws \F3\PHPCR\UnsupportedRepositoryOperationException if the repository does not support activities.
+	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 */
+	public function removeActivity($title);
 
 }
 

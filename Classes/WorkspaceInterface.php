@@ -521,16 +521,6 @@ interface WorkspaceInterface {
 	 */
 	public function deleteWorkspace($name);
 
-	/**
-	 * Returns the node representing the current activity or NULL if there is no
-	 * current activity.
-	 *
-	 * @return \F3\PHPCR\NodeInterface An nt:activity node or NULL.
-	 * @throws \F3\PHPCR\UnsupportedRepositoryOperationException if the repository does not support activities.
-	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
-	 */
-	public function getActivity();
-
 }
 
 ?>

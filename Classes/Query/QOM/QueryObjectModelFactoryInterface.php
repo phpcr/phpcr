@@ -54,7 +54,7 @@ interface QueryObjectModelFactoryInterface extends \F3\PHPCR\Query\QOM\QueryObje
 	 * @param array $orderings zero or more orderings; null is equivalent to a zero-length array
 	 * @param array $columns the columns; null is equivalent to a zero-length array
 	 * @return \F3\PHPCR\Query\QOM\QueryObjectModelInterface the query; non-null
-	 * @throws \F3\PHPCR\Query\InvalidQueryException if a particular validity test is possible on this method, the implemention chooses to perform that test (and not leave it until later) on createQuery, and the parameters given fail that test
+	 * @throws \F3\PHPCR\Query\InvalidQueryException if a particular validity test is possible on this method, the implemention chooses to perform that test and the parameters given fail that test.
 	 * @throws \F3\PHPCR\RepositoryException if the operation otherwise fails
 	 */
 	public function createQuery(\F3\PHPCR\Query\QOM\SourceInterface $selectorOrSource, $constraint, array $orderings, array $columns);

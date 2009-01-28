@@ -188,7 +188,7 @@ interface SessionInterface {
 	 * @return \F3\PHPCR\PropertyInterface A property
 	 * @throws \F3\PHPCR\PathNotFoundException If no property exists.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
-	*/
+	 */
 	public function getProperty($absPath);
 
 	/**
@@ -279,8 +279,7 @@ interface SessionInterface {
 	 * @throws \F3\PHPCR\Version\VersionException if the parent node of the item at absPath is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in and this implementation performs this validation immediately instead of waiting until save.
 	 * @throws \F3\PHPCR\Lock\LockException if a lock prevents the removal of the specified item and this implementation performs this validation immediately instead of waiting until save.
 	 * @throws \F3\PHPCR\ConstraintViolationException if removing the specified item would violate a node type or implementation-specific constraint and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws \F3\PHPCR\ReferentialIntegrityException will be thrown on save if the specified item or an item in its subtree is currently the target of a REFERENCE property located in this workspace but outside the specified item's subtree and the current Session has read access to that REFERENCE property.
-	 * @throws \F3\PHPCR\AccessDeniedException will be thrown on save if the specified item or an item in its subtree is currently the target of a REFERENCE property located in this workspace but outside the specified item's subtree and the current Session does not have read access to that REFERENCE property.
+	 * @throws \F3\PHPCR\PathNotFoundException if, given the read privileges of this Session, no item exists at absPath property located in this workspace but outside the specified item's subtree and the current Session does not have read access to that REFERENCE property or if the current Session does not have sufficient privileges to remove the item.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 * @see Item::remove()
 	 */
@@ -419,45 +418,49 @@ interface SessionInterface {
 	public function checkPermission($absPath, $actions);
 
 	/**
-	 * Checks whether an operation can be performed given as much context as can be determined
-	 * by the repsoitory, including:
-	 * * Target object (reflecting the current selection in the application) and its current state
-	 *   (locks etc.).
-	 * * Current user (the current session).
-	 * * Access control rules (permissions granted to the current user).
+	 * Checks whether an operation can be performed given as much context as can
+	 * be determined by the repository, including:
+	 *
+	 * * Permissions granted to the current user, including access control privileges.
+	 * * Current state of the target object (reflecting locks, checkin/checkout
+	 *   status, retention and hold status etc.).
 	 * * Repository capabilities.
-	 * * Schema information (rules embodied in the node type structure or more
-	 *   repository specific rules).
+	 * * Node type-enforced restrictions.
+	 * * Repository configuration-specific restrictions.
 	 *
 	 * The implementation of this method is best effort: returning false guarantees
 	 * that the operation cannot be performed, but returning true does not guarantee
-	 * the opposite. The repository implementation should use this to give priority to
-	 * performance over completeness. An exception should be thrown only for important
-	 * failures such as loss of connectivity to the back-end.
+	 * the opposite.
 	 *
-	 * The methodType parameter identifies the operation using the method event
-	 * constants defined for Event::getMethod.
+	 * The methodName parameter identifies the method in question by its name
+	 * as defined in the Javadoc.
 	 *
-	 * The target parameter identifies the object on which the specified method is
-	 * called. For example, for method Node.addNode, target would identify
-	 * the Node object. The target is an optional parameter, but must be
-	 * supplied if the specified method is defined on Item or any of its subtypes.
-	 * To not supply a target, a NULL is passed as the second parameter.
+	 * The target parameter identifies the object on which the specified method
+	 * is called.
 	 *
-	 * The arguments parameter contains method arguments as defined for
-	 * Event::getMethodInfo. The arguments parameter is optional, and even when
-	 * specified, not all arguments to the corresponding operation need to
-	 * be specified. In such a case, the repository should check whether there exists a
-	 * set of arguments for which the operation could succeed. To not supply arguments,
-	 * either a NULL or an empty Map is passed as the third parameter.
-
-	 * @param string $methodType the operation.
+	 * The arguments parameter contains a Map object consisting of
+	 * name/value pairs where the name is a String holding the parameter name of
+	 * the method as defined in the Javadoc and the value is an Object holding
+	 * the value to be passed. In cases where the value is a Java primitive type
+	 * it must be converted to its corresponding Java object form before being
+	 * passed.
+	 *
+	 * For example, given a Session S and Node N then
+	 *
+	 * Map p = new HashMap();
+	 * p.put("relPath", "foo");
+	 * boolean b = S.hasCapability("addNode", N, p);
+	 *
+	 * will result in b == false if a child node called foo cannot be added to
+	 * the node N within the session S.
+	 *
+	 * @param string $methodName the nakme of the method.
 	 * @param object $target the target object of the operation.
 	 * @param array $arguments the arguments of the operation.
 	 * @return boolean FALSE if the operation cannot be performed, TRUE if the operation can be performed or if the repository cannot determine whether the operation can be performed.
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs
 	 */
-	public function checkCapability($methodType, $target, array $arguments);
+	public function hasCapability($methodName, $target, array $arguments);
 
 	/**
 	 * Returns an org.xml.sax.ContentHandler which can be used to push SAX events

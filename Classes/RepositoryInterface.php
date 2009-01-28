@@ -219,85 +219,85 @@ interface RepositoryInterface {
 	 * Key to a boolean descriptor. Returns TRUE
 	 * if and only if node type management is supported.
 	 */
-	const OPTION_NODETYPE_MANAGEMENT_SUPPORTED = "option.nodetype.management.supported";
+	const OPTION_NODE_TYPE_MANAGEMENT_SUPPORTED = "option.node.type.management.supported";
 
 	/**
 	 * Key to string descriptor. Returns one of the following
 	 * javax.jcr.Repository constants indicating the level of
 	 * support for node type inheritance:
 	 *
-	 * NODETYPE_MANAGEMENT_INHERITANCE_MINIMAL
+	 * NODE_TYPE_MANAGEMENT_INHERITANCE_MINIMAL
 	 *   Registration of primary node types is limited to those which have only
 	 *   nt:base as supertype. Registration of mixin node types is limited to
 	 *   those without any supertypes.
 	 *
-	 * NODETYPE_MANAGEMENT_INHERITANCE_SINGLE
+	 * NODE_TYPE_MANAGEMENT_INHERITANCE_SINGLE
 	 *   Registration of primary node types is limited to those with exactly one
 	 *   supertype. Registration of mixin node types is limited to those with at
 	 *   most one supertype.
 	 *
-	 * NODETYPE_MANAGEMENT_INHERITANCE_MULTIPLE
+	 * NODE_TYPE_MANAGEMENT_INHERITANCE_MULTIPLE
 	 *   Primary node types can be registered with one or more supertypes. Mixin node
 	 *   types can be registered with zero or more supertypes.
 	 */
-	const NODETYPE_MANAGEMENT_INHERITANCE = "nodetype.management.inheritance";
+	const NODE_TYPE_MANAGEMENT_INHERITANCE = "node.type.management.inheritance";
 
 	/**
-	 * One of three possible values for the descriptor NODETYPE_MANAGEMENT_INHERITANCE.
+	 * One of three possible values for the descriptor NODE_TYPE_MANAGEMENT_INHERITANCE.
 	 * Indicates that registration of primary node types is limited to those which have only nt:base
 	 * as supertype. Registration of mixin node types is limited to those without any supertypes.
 	 */
-	const NODETYPE_MANAGEMENT_INHERITANCE_MINIMAL = "nodetype.management.inheritance.minimal";
+	const NODE_TYPE_MANAGEMENT_INHERITANCE_MINIMAL = "node.type.management.inheritance.minimal";
 
 	/**
-	 * One of three possible values for the descriptor NODETYPE_MANAGEMENT_INHERITANCE.
+	 * One of three possible values for the descriptor NODE_TYPE_MANAGEMENT_INHERITANCE.
 	 * Indicates that registration of primary node types is limited to those with exactly one supertype.
 	 * Registration of mixin node types is limited to those with at most one supertype.
 	 */
-	const NODETYPE_MANAGEMENT_INHERITANCE_SINGLE = "nodetype.management.inheritance.single";
+	const NODE_TYPE_MANAGEMENT_INHERITANCE_SINGLE = "node.type.management.inheritance.single";
 
 	/**
-	 * One of three possible values for the descriptor NODETYPE_MANAGEMENT_INHERITANCE.
+	 * One of three possible values for the descriptor NODE_TYPE_MANAGEMENT_INHERITANCE.
 	 * Indicates that primary node types can be registered with one or more supertypes.
 	 * Mixin node types can be registered with zero or more supertypes.
 	 */
-	const NODETYPE_MANAGEMENT_INHERITANCE_MULTIPLE = "nodetype.management.inheritance.multiple";
+	const NODE_TYPE_MANAGEMENT_INHERITANCE_MULTIPLE = "node.type.management.inheritance.multiple";
 
 	/**
 	 * Key to a boolean descriptor. Returns TRUE
 	 * if and only if override of inherited property or child node definitions is supported.
 	 */
-	const NODETYPE_MANAGEMENT_OVERRIDES_SUPPORTED = "nodetype.management.overrides.supported";
+	const NODE_TYPE_MANAGEMENT_OVERRIDES_SUPPORTED = "node.type.management.overrides.supported";
 
 	/**
 	 * Key to a boolean descriptor. Returns TRUE
 	 * if and only if primary items are supported.
 	 */
-	const NODETYPE_MANAGEMENT_PRIMARY_ITEM_NAME_SUPPORTED = "nodetype.management.primary.item.name.supported";
+	const NODE_TYPE_MANAGEMENT_PRIMARY_ITEM_NAME_SUPPORTED = "node.type.management.primary.item.name.supported";
 
 	/**
 	 * Key to a boolean descriptor. Returns TRUE
 	 * if and only if preservation of child node ordering is supported.
 	 */
-	const NODETYPE_MANAGEMENT_ORDERABLE_CHILD_NODES_SUPPORTED = "nodetype.management.orderable.child.nodes.supported";
+	const NODE_TYPE_MANAGEMENT_ORDERABLE_CHILD_NODES_SUPPORTED = "node.type.management.orderable.child.nodes.supported";
 
 	/**
 	 * Key to a boolean descriptor. Returns TRUE
 	 * if and only if residual property and child node definitions are supported.
 	 */
-	const NODETYPE_MANAGEMENT_RESIDUAL_DEFINITIONS_SUPPORTED = "nodetype.management.residual.definitions.supported";
+	const NODE_TYPE_MANAGEMENT_RESIDUAL_DEFINITIONS_SUPPORTED = "node.type.management.residual.definitions.supported";
 
 	/**
 	 * Key to a boolean descriptor. Returns TRUE
 	 * if and only if autocreated properties and child nodes are supported.
 	 */
-	const NODETYPE_MANAGEMENT_AUTOCREATED_DEFINITIONS_SUPPORTED = "nodetype.management.autocreated.definitions.supported";
+	const NODE_TYPE_MANAGEMENT_AUTOCREATED_DEFINITIONS_SUPPORTED = "node.type.management.autocreated.definitions.supported";
 
 	/**
 	 * Key to a boolean descriptor. Returns TRUE
 	 * if and only if same-name sibling child nodes are supported.
 	 */
-	const NODETYPE_MANAGEMENT_SAME_NAME_SIBLINGS_SUPPORTED = "nodetype.management.same.name.siblings.supported";
+	const NODE_TYPE_MANAGEMENT_SAME_NAME_SIBLINGS_SUPPORTED = "node.type.management.same.name.siblings.supported";
 
 	/**
 	 * Key to an integer[] descriptor. Returns an array holding the
@@ -306,26 +306,26 @@ interface RepositoryInterface {
 	 * type can specify, or a zero-length array if registered node types cannot
 	 * specify property definitions.
 	 */
-	const NODETYPE_MANAGEMENT_PROPERTY_TYPES = "nodetype.management.property.types";
+	const NODE_TYPE_MANAGEMENT_PROPERTY_TYPES = "node.type.management.property.types";
 
 	/**
 	 * Key to a boolean descriptor. Returns TRUE
 	 * if and only if multivalue properties are supported.
 	 */
-	const NODETYPE_MANAGEMENT_MULTIVALUED_PROPERTIES_SUPPORTED = "nodetype.management.multivalued.properties.supported";
+	const NODE_TYPE_MANAGEMENT_MULTIVALUED_PROPERTIES_SUPPORTED = "node.type.management.multivalued.properties.supported";
 
 	/**
 	 * Key to a boolean descriptor. Returns TRUE
 	 * if and only if registration of a node types with more than one BINARY
 	 * property is permitted.
 	 */
-	const NODETYPE_MANAGEMENT_MULTIPLE_BINARY_PROPERTIES_SUPPORTED = "nodetype.management.multiple.binary.properties.supported";
+	const NODE_TYPE_MANAGEMENT_MULTIPLE_BINARY_PROPERTIES_SUPPORTED = "node.type.management.multiple.binary.properties.supported";
 
 	/**
 	 * Key to a boolean descriptor. Returns TRUE
 	 * if and only value-constraints are supported.
 	 */
-	const NODETYPE_MANAGEMENT_VALUE_CONSTRAINTS_SUPPORTED = "nodetype.management.value.constraints.supported";
+	const NODE_TYPE_MANAGEMENT_VALUE_CONSTRAINTS_SUPPORTED = "node.type.management.value.constraints.supported";
 
 	/**
 	 * Key to a string[] descriptor. Returns an array holding the
