@@ -595,16 +595,10 @@ interface SessionInterface {
 	public function importXML($parentAbsPath, $in, $uuidBehavior);
 
 	/**
-	 * Serializes the node (and if noRecurse is false, the whole subtree) at absPath
-	 * as an XML stream and outputs it to the supplied OutputStream. It is the
-	 * responsibility of the caller to close the passed OutputStream.
+	 * Serializes the node (and if noRecurse is false, the whole subtree) at $absPath
+	 * as an XML stream and outputs it to the supplied XMLWriter.
 	 *
-	 * If $out is a org.xml.sax.ContentHandler:
-	 * Serializes the node (and if noRecurse is false, the whole subtree) at absPath
-	 * into a series of SAX events by calling the methods of the supplied
-	 * org.xml.sax.ContentHandler.
-	 *
-	 * The resulting XML is in the system view form. Note that absPath must be the path
+	 * The resulting XML is in the system view form. Note that $absPath must be the path
 	 * of a node, not a property.
 	 * If skipBinary is true then any properties of PropertyType.BINARY will be serialized
 	 * as if they are empty. That is, the existence of the property will be serialized,
@@ -631,27 +625,20 @@ interface SessionInterface {
 	 * The output XML will be encoded in UTF-8.
 	 *
 	 * @param string $absPath The path of the root of the subtree to be serialized. This must be the path to a node, not a property
-	 * @param resource $out The OutputStream or org.xml.sax.ContentHandler to which the XML serialization of the subtree will be output.
+	 * @param \XMLWriter $out The XMLWriter to which the XML serialization of the subtree will be output.
 	 * @param boolean $skipBinary A boolean governing whether binary properties are to be serialized.
 	 * @param boolean $noRecurse A boolean governing whether the subtree at absPath is to be recursed.
 	 * @return void
 	 * @throws \F3\PHPCR\PathNotFoundException if no node exists at absPath.
-	 * @throws java.io.IOException if an error during an I/O operation occurs.
-	 * @throws org.xml.sax.SAXException if an error occurs while feeding events to the org.xml.sax.ContentHandler.
+	 * @throws \RuntimeException if an error during an I/O operation occurs.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
-	 * @todo Decide in what to use for org.xml.sax.ContentHandler
 	 */
-	public function exportSystemView($absPath, $out, $skipBinary, $noRecurse);
+	public function exportSystemView($absPath, \XMLWriter $out, $skipBinary, $noRecurse);
 
 	/**
-	 * Serializes the node (and if noRecurse is false, the whole subtree) at absPath as an XML
-	 * stream and outputs it to the supplied OutputStream. The resulting XML is in the document
-	 * view form. Note that absPath must be the path of a node, not a property. It is the
-	 * responsibility of the caller to close the passed OutputStream.
-	 *
-	 * If $out is a org.xml.sax.ContentHandler:
-	 * Serializes the node (and if noRecurse is false, the whole subtree) at absPath into a
-	 * series of SAX events by calling the methods of the supplied org.xml.sax.ContentHandler.
+	 * Serializes the node (and if noRecurse is false, the whole subtree) at $absPath as an XML
+	 * stream and outputs it to the supplied XMLWriter. The resulting XML is in the document
+	 * view form. Note that $absPath must be the path of a node, not a property.
 	 *
 	 * If skipBinary is true then any properties of PropertyType.BINARY will be serialized as if
 	 * they are empty. That is, the existence of the property will be serialized, but its content
@@ -675,17 +662,15 @@ interface SessionInterface {
 	 * The output XML will be encoded in UTF-8.
 	 *
 	 * @param string $absPath The path of the root of the subtree to be serialized. This must be the path to a node, not a property
-	 * @param resource $out The OutputStream or org.xml.sax.ContentHandler to which the XML serialization of the subtree will be output.
+	 * @param \XMLWriter $out The XMLWriter to which the XML serialization of the subtree will be output.
 	 * @param boolean $skipBinary A boolean governing whether binary properties are to be serialized.
 	 * @param boolean $noRecurse A boolean governing whether the subtree at absPath is to be recursed.
 	 * @return void
 	 * @throws \F3\PHPCR\PathNotFoundException if no node exists at absPath.
 	 * @throws \RuntimeException if an error during an I/O operation occurs.
-	 * @throws org.xml.sax.SAXException if an error occurs while feeding events to the org.xml.sax.ContentHandler.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
-	 * @todo Decide in what to use for org.xml.sax.ContentHandler
 	 */
-	public function exportDocumentView($absPath, $out, $skipBinary, $noRecurse);
+	public function exportDocumentView($absPath, \XMLWriter $out, $skipBinary, $noRecurse);
 
 	/**
 	 * Within the scope of this Session, this method maps uri to prefix. The
