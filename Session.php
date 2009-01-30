@@ -3,7 +3,7 @@
 
 /**
  * This file contains {@link Ticket} which is part of the PHP Content Repository
- * (phpCR), a derivative of the Java Content Repository JSR-170,  and is 
+ * (phpCR), a derivative of the Java Content Repository JSR-170,  and is
  * licensed under the Apache License, Version 2.0.
  *
  * This file is based on the code created for
@@ -11,9 +11,9 @@
  *
  * @author Travis Swicegood <development@domain51.com>
  * @copyright PHP Code Copyright &copy; 2004-2005, Domain51, United States
- * @copyright Original Java and Documentation 
+ * @copyright Original Java and Documentation
  *    Copyright &copy; 2002-2004, Day Management AG, Switerland
- * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License, 
+ * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *    Version 2.0
  * @package phpContentRepository
  */
@@ -33,7 +33,7 @@
  *
  * @package phpContentRepository
  */
-interface phpCR_Session 
+interface phpCR_Session
 {
 	/**
 	 * Returns the {@link Repository} object through which this session was
@@ -48,9 +48,9 @@ interface phpCR_Session
 	 * Gets the user ID that was used to acquire this session.
 	 *
 	 * This method is free to return an "anonymous user id" or
-	 * <i>NULL</i> if the {@link Credentials} used to acquire this 
-	 * session happens not to have provided a real user ID (for example, if 
-	 * instead of {@link SimpleCredentials} some other implementation of 
+	 * <i>NULL</i> if the {@link Credentials} used to acquire this
+	 * session happens not to have provided a real user ID (for example, if
+	 * instead of {@link SimpleCredentials} some other implementation of
 	 * {@link Credentials} was used).
 	 *
 	 * @return string
@@ -59,11 +59,11 @@ interface phpCR_Session
 
 	/**
 	 * Returns the value of the named attribute as an <i>Object</i>, or
-	 * <i>NULL</i> if no attribute of the given name exists. See 
+	 * <i>NULL</i> if no attribute of the given name exists. See
 	 * {@link Session::getAttributeNames()}.
 	 *
-	 * @param string 
-	 *   The name of an attribute passed in the credentials used to acquire 
+	 * @param string
+	 *   The name of an attribute passed in the credentials used to acquire
 	 *   this session.
 	 * @return object
 	 */
@@ -71,11 +71,11 @@ interface phpCR_Session
 
 	/**
 	 * Returns the names of the attributes set in this session as a result of
-	 * the {@link Credentials} that were used to acquire it. 
+	 * the {@link Credentials} that were used to acquire it.
 	 *
-	 * Not all {@link Credentials} implementations will contain attributes 
-	 * (though, for example, {@link SimpleCredentials} does allow for them). 
-	 * This method returns an empty array if the {@link Credentials} instance 
+	 * Not all {@link Credentials} implementations will contain attributes
+	 * (though, for example, {@link SimpleCredentials} does allow for them).
+	 * This method returns an empty array if the {@link Credentials} instance
 	 * used to acquire this {@link Session} did not provide attributes.
 	 *
 	 * @return array
@@ -85,7 +85,7 @@ interface phpCR_Session
 	/**
 	 * Returns the {@link Workspace} attached to this {@link Session}.
 	 *
-	 * @return object
+	 * @return phpCR_Workspace
 	 *	A {@link Workspace} object
 	 */
 	public function getWorkspace();
@@ -131,7 +131,7 @@ interface phpCR_Session
 	/**
 	 * Returns the node specifed by the given UUID.
 	 *
-	 * Only applies to nodes that expose a UUID, in other words, those of 
+	 * Only applies to nodes that expose a UUID, in other words, those of
 	 * mixin node type <i>mix:referenceable</i>
 	 *
 	 * @param string
@@ -149,7 +149,7 @@ interface phpCR_Session
 	 * Returns the item at the specified absolute path in the workspace.
 	 *
 	 * @param string
-	 * @return object
+	 * @return phpCR_Item
 	 *	A {@link Item} object
 	 *
 	 * @throws {@link PathNotFoundException}
@@ -160,10 +160,10 @@ interface phpCR_Session
 	public function getItem($absPath);
 
 	/**
-	 * Returns <i>true</i> if an item exists at <i>absPath</i>; 
+	 * Returns <i>true</i> if an item exists at <i>absPath</i>;
 	 * otherwise returns <i>false</i>.
 	 *
-	 * Also returns <i>false</i> if the specified <i>absPath</i> is 
+	 * Also returns <i>false</i> if the specified <i>absPath</i> is
 	 * malformed.
 	 *
 	 * @param string
@@ -175,11 +175,11 @@ interface phpCR_Session
 	public function itemExists($absPath);
 
 	/**
-	 * Moves the node at <i>srcAbsPath</i> (and its entire subtree) to 
+	 * Moves the node at <i>srcAbsPath</i> (and its entire subtree) to
 	 * the new location at <i>destAbsPath</i>.
 	 *
-	 * In order to persist the change, a {@link save()} must be called on 
-	 * either the session or a common ancestor to both the source and 
+	 * In order to persist the change, a {@link save()} must be called on
+	 * either the session or a common ancestor to both the source and
 	 * destination locations.
 	 *
 	 * Note that this behaviour differs from that of
@@ -203,13 +203,13 @@ interface phpCR_Session
 	 * @param string
 	 *
 	 * @throws {@link ItemExistsException}
-	 *    If a property already exists at <i>destAbsPath</i> or a node 
+	 *    If a property already exists at <i>destAbsPath</i> or a node
 	 *    already exist there, and same name siblings are not allowed and this
-	 *    implementation performs this validation immediately instead of 
+	 *    implementation performs this validation immediately instead of
 	 *    waiting until {@link save()}.
 	 * @throws {@link PathNotFoundException}
-	 *    If either <i>srcAbsPath</i> or <i>destAbsPath</i> cannot 
-	 *    be found and this implementation performs this validation immediately 
+	 *    If either <i>srcAbsPath</i> or <i>destAbsPath</i> cannot
+	 *    be found and this implementation performs this validation immediately
 	 *    instead of waiting until {@link save()}.
 	 * @throws {@link VersionException}
 	 *    If the parent node of <i>destAbsPath</i> or the parent node of
@@ -218,12 +218,12 @@ interface phpCR_Session
 	 *    this implementation performs this validation immediately instead of
 	 *    waiting until {@link save()}.
 	 * @throws {@link ConstraintViolationException}
-	 *    If a node-type or other constraint violation is detected immediately 
-	 *    and this implementation performs this validation immediately instead 
+	 *    If a node-type or other constraint violation is detected immediately
+	 *    and this implementation performs this validation immediately instead
 	 *    of waiting until {@link save()}.
 	 * @throws {@link LockException}
-	 *    If the move operation would violate a lock and this implementation 
-	 *    performs this validation immediately instead of waiting until 
+	 *    If the move operation would violate a lock and this implementation
+	 *    performs this validation immediately instead of waiting until
 	 *    {@link save()}.
 	 * @throws {@link RepositoryException}
 	 *    If the last element of <i>destAbsPath</i> has an index or
@@ -232,21 +232,21 @@ interface phpCR_Session
 	public function move($srcAbsPath, $destAbsPath);
 
 	/**
-	 * Validates all pending changes currently recorded in this {@link Session}. 
+	 * Validates all pending changes currently recorded in this {@link Session}.
 	 *
-	 * If validation of all pending changes succeeds, then this change 
+	 * If validation of all pending changes succeeds, then this change
 	 * information is cleared from the {@link Session}.
 	 *
 	 * If the {@link save()} occurs outside a transaction, the changes are
-	 * persisted and thus made visible to other {@link Session}s.  If the 
+	 * persisted and thus made visible to other {@link Session}s.  If the
 	 * {@link save()} occurs within a transaction, the changes are not
 	 * persisted until the transaction is committed.
 	 *
 	 * If validation fails, then no pending changes are saved and they remain
-	 * recorded on the {@link Session}.  There is no best-effort or partial 
+	 * recorded on the {@link Session}.  There is no best-effort or partial
 	 * save.
 	 *
-	 * When an item is saved the item in persistent storage to which pending 
+	 * When an item is saved the item in persistent storage to which pending
 	 * changes are written is determined as follows:
 	 * <ul>
 	 *    <li>
@@ -254,10 +254,10 @@ interface phpCR_Session
 	 *        the persistent item with the same UUID.
 	 *    </li>
 	 *    <li>
-	 *        If the transient item does not have a UUID then its nearest 
-	 *        ancestor with a UUID, or the root node (whichever occurs first) 
-	 *        is found, and the relative path from the node in persistent node 
-	 *        with that UUID is used to determine the item in persistent 
+	 *        If the transient item does not have a UUID then its nearest
+	 *        ancestor with a UUID, or the root node (whichever occurs first)
+	 *        is found, and the relative path from the node in persistent node
+	 *        with that UUID is used to determine the item in persistent
 	 *        storage to which the changes are to be written.
 	 *    </li>
 	 * </ul>
@@ -266,13 +266,13 @@ interface phpCR_Session
 	 * will succeed even if that item has, in the meantime, been moved in
 	 * persistent storage to a new location (that is, its path has changed).
 	 * However, a {@link save()} of a non-UUID item will fail (throwing an
-	 * {@link InvalidItemStateException}) if it has, in the meantime, been 
+	 * {@link InvalidItemStateException}) if it has, in the meantime, been
 	 * moved in persistent storage to a new location. A {@link save()} of a
-	 * non-UUID item will also fail if it has, in addition to being moved, 
+	 * non-UUID item will also fail if it has, in addition to being moved,
 	 * been replaced in its original position by a UUID-bearing item.
 	 *
-	 * Note that {@link save()} uses the same rules to match items between 
-	 * transient storage and persistent storage as {@link update()} does to 
+	 * Note that {@link save()} uses the same rules to match items between
+	 * transient storage and persistent storage as {@link update()} does to
 	 * match nodes between two workspaces.
 	 *
 	 * An {@link AccessDeniedException} will be thrown if any of the changes
@@ -281,7 +281,7 @@ interface phpCR_Session
 	 *
 	 * If any of the changes to be persisted would cause the removal of a node
 	 * that is currently the target of a <i>REFERENCE</i> property then a
-	 * {@link ReferentialIntegrityException} is thrown, provided that this 
+	 * {@link ReferentialIntegrityException} is thrown, provided that this
 	 * {@link Session} has read access to that <i>REFERENCE</i> property.
 	 * If, on the other hand, this {@link Session} does not have read access to
 	 * the <i>REFERENCE</i> property in question, then an
@@ -305,24 +305,24 @@ interface phpCR_Session
 	 * conflict can only be detected at save-time and therefore was not
 	 * detected earlier, at change-time.
 	 *
-	 * A {@link VersionException} is thrown if the {@link save()} would make a 
-	 * result in a change to persistent storage that would violate the 
+	 * A {@link VersionException} is thrown if the {@link save()} would make a
+	 * result in a change to persistent storage that would violate the
 	 * read-only status of a checked-in node.
 	 *
 	 * A {@link LockException} is thrown if the {@link save()} would result in a
 	 * change to persistent storage that would violate a lock.
 	 *
-	 * A {@link NoSuchNodeTypeException} is thrown if the {@link save()} would 
+	 * A {@link NoSuchNodeTypeException} is thrown if the {@link save()} would
 	 * result in the addition of a node with an unrecognized node type.
 	 *
 	 * A {@link RepositoryException} will be thrown if another error
 	 * occurs.
 	 *
 	 * @throws {@link AccessDeniedException}
-	 *    If any of the changes to be persisted would violate the access 
+	 *    If any of the changes to be persisted would violate the access
 	 *    privileges of the this {@link Session}. Also thrown if  any of the
-	 *    changes to be persisted would cause the removal of a node that is 
-	 *    currently referenced by a <i>REFERENCE</i> property that this 
+	 *    changes to be persisted would cause the removal of a node that is
+	 *    currently referenced by a <i>REFERENCE</i> property that this
 	 *    Session <i>does not</i> have read access to.
 	 * @throws {@link ItemExistsException}
 	 *    If any of the changes to be persisted would be prevented by the
@@ -336,17 +336,17 @@ interface phpCR_Session
 	 * @throws {@link InvalidItemStateException}
 	 *    If any of the changes to be persisted conflicts with a change already
 	 *    persisted through another session and the implementation is such that
-	 *    this conflict can only be detected at save-time and therefore was not 
+	 *    this conflict can only be detected at save-time and therefore was not
 	 *    detected earlier, at change-time.
 	 * @throws {@link ReferentialIntegrityException}
 	 *    If any of the changes to be persisted would cause the removal of a
-	 *    node that is currently referenced by a <i>REFERENCE</i> property 
+	 *    node that is currently referenced by a <i>REFERENCE</i> property
 	 *    that this {@link Session} has read access to.
 	 * @throws {@link VersionException}
-	 *    If the {@link save()} would make a result in a change to persistent 
+	 *    If the {@link save()} would make a result in a change to persistent
 	 *    storage that would violate the read-only status of a checked-in node.
 	 * @throws {@link LockException}
-	 *    If the {@link save()} would result in a change to persistent storage 
+	 *    If the {@link save()} would result in a change to persistent storage
 	 *    that would violate a lock.
 	 * @throws {@link NoSuchNodeTypeException}
 	 *    If the {@link save()} would result in the addition of a node with an
@@ -359,16 +359,16 @@ interface phpCR_Session
 	/**
 	 * Refresh this {@link Session} from the persistant storage.
 	 *
-	 * If <i>keepChanges</i> is <i>false</i>, this method discards 
-	 * all pending changes currently recorded in this {@link Session} and 
-	 * returns all items to reflect the current saved state. Outside a 
+	 * If <i>keepChanges</i> is <i>false</i>, this method discards
+	 * all pending changes currently recorded in this {@link Session} and
+	 * returns all items to reflect the current saved state. Outside a
 	 * transaction this state is simply the current state of persistent storage.
-	 * Within a transaction, this state will reflect persistent storage as 
+	 * Within a transaction, this state will reflect persistent storage as
 	 * modified by changes that have been saved but not yet committed.
 	 *
 	 * If <i>keepChanges</i> is true then pending change are not
-	 * discarded but items that do not have changes pending have their state 
-	 * refreshed to reflect the current saved state, thus revealing changes 
+	 * discarded but items that do not have changes pending have their state
+	 * refreshed to reflect the current saved state, thus revealing changes
 	 * made by other sessions.
 	 *
 	 * @param boolean
@@ -390,11 +390,11 @@ interface phpCR_Session
 	public function hasPendingChanges();
 
 	/**
-	 * This method returns a {@link ValueFactory} that is used to create 
+	 * This method returns a {@link ValueFactory} that is used to create
 	 * {@link Value} objects for use when setting repository properties.
 	 *
-	 * If writing to the repository is not supported (because this is a 
-	 * level 1-only implementation, for example) an 
+	 * If writing to the repository is not supported (because this is a
+	 * level 1-only implementation, for example) an
 	 * {@link UnsupportedRepositoryOperationException} will be thrown.
 	 *
 	 * @return object
@@ -411,29 +411,29 @@ interface phpCR_Session
 	 * Determines whether this {@link Session} has permission to perform the
 	 * specified actions at the specified <i>$absPath</i>.
 	 *
-	 * This method quietly returns if the access request is permitted, or 
+	 * This method quietly returns if the access request is permitted, or
 	 * throws a suitable {@link AccessControlException} otherwise.
 	 *
 	 * The <i>actions</i> parameter is a comma separated list of action
 	 * strings. The following action strings are defined:
 	 * <ul>
 	 *    <li>
-	 *        <i>add_node</i>: If 
-	 *        <i>checkPermission(path, "add_node")</i> returns quietly, 
+	 *        <i>add_node</i>: If
+	 *        <i>checkPermission(path, "add_node")</i> returns quietly,
 	 *        then this {@link Session} has permission to add a node at
 	 *        <i>path</i>, otherwise permission is denied.
 	 *    </li>
 	 *    <li>
-	 *        <i>set_property</i>: If 
-	 *        <i>checkPermission(path, "set_property")</i> returns 
+	 *        <i>set_property</i>: If
+	 *        <i>checkPermission(path, "set_property")</i> returns
 	 *        quietly, then this {@link Session} has permission to set (add or
 	 *        change) a property at <i>path</i>, otherwise permission is
 	 *        denied.
 	 *    </li>
 	 *    <li>
-	 *        <i>remove</i>: If 
-	 *        <i>checkPermission(path, "remove")</i> returns quietly, 
-	 *        then this {@link Session} has permission to remove an item at 
+	 *        <i>remove</i>: If
+	 *        <i>checkPermission(path, "remove")</i> returns quietly,
+	 *        then this {@link Session} has permission to remove an item at
 	 *        <i>path</i>, otherwise permission is denied.
 	 *    </li>
 	 *    <li>
@@ -449,10 +449,10 @@ interface phpCR_Session
 	 * has permission to perform <i>all</i> of the listed actions at the
 	 * specified path.
 	 *
-	 * The information returned through this method will only reflect access 
+	 * The information returned through this method will only reflect access
 	 * control policies and not other restrictions that may exist. For example,
-	 * even though <i>checkPermission</i> may indicate that a particular 
-	 * {@link Session} may add a property at <i>/A/B/C</i>, the node type 
+	 * even though <i>checkPermission</i> may indicate that a particular
+	 * {@link Session} may add a property at <i>/A/B/C</i>, the node type
 	 * of the node at <i>/A/B</i> may prevent the addition of a property
 	 * called <i>C</i>.
 	 *
@@ -717,18 +717,18 @@ interface phpCR_Session
 	 * The resulting XML is in the system view form. Note that <i>$absPath</i>
 	 * must be the path of a node, not a property.
 	 *
-	 * If <i>$skipBinary</i> is true then any properties of 
+	 * If <i>$skipBinary</i> is true then any properties of
 	 * {@link PropertyType::BINARY} will be serialized as if they are empty.
-	 * That is, the existence of the property will be serialized, but its 
-	 * content will not appear in the serialized output (the 
+	 * That is, the existence of the property will be serialized, but its
+	 * content will not appear in the serialized output (the
 	 * <i>&lt;sv:value&gt;</i> element will have no content). Note that in the
 	 * case of multi-value <i>BINARY</i> properties, the number of values in the
 	 * property will be reflected in the serialized output, though they will all
-	 * be empty. If <i>$skipBinary</i> is false then the actual value(s) of 
+	 * be empty. If <i>$skipBinary</i> is false then the actual value(s) of
 	 * each <i>BINARY</i> property is recorded using Base64 encoding.
 	 *
-	 * If <i>$noRecurse</i> is true then only the node at <i>$absPath</i> and 
-	 * its properties, but not its child nodes, are serialized. If 
+	 * If <i>$noRecurse</i> is true then only the node at <i>$absPath</i> and
+	 * its properties, but not its child nodes, are serialized. If
 	 * <i>$noRecurse</i> is <i>false</i> then the entire subtree rooted at
 	 * <i>$absPath</i> is serialized.
 	 *
@@ -850,7 +850,7 @@ interface phpCR_Session
 
 	/**
 	 * Returns all prefixes currently set for this session. This includes all
-	 * those registered in the {@link NamespaceRegistry} but <i>not 
+	 * those registered in the {@link NamespaceRegistry} but <i>not
 	 * over-ridden</i> by a {@link Session::setNamespacePrefix()}, plus those
 	 * currently set locally by {@link Session::setNamespacePrefix()}.
 	 *
@@ -918,7 +918,7 @@ interface phpCR_Session
 	public function addLockToken($lt);
 
 	/**
-	 * Returns an array containing all lock tokens currently held by this 
+	 * Returns an array containing all lock tokens currently held by this
 	 * session.
 	 *
 	 * @return array

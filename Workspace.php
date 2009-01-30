@@ -3,7 +3,7 @@
 
 /**
  * This file contains {@link Workspace} which is part of the PHP Content Repository
- * (phpCR), a derivative of the Java Content Repository JSR-170,  and is 
+ * (phpCR), a derivative of the Java Content Repository JSR-170,  and is
  * licensed under the Apache License, Version 2.0.
  *
  * This file is based on the b created for
@@ -11,9 +11,9 @@
  *
  * @author Travis Swicegood <development@domain51.com>
  * @copyright PHP Code Copyright &copy; 2004-2005, Domain51, United States
- * @copyright Original Java and Documentation 
+ * @copyright Original Java and Documentation
  *    Copyright &copy; 2002-2004, Day Management AG, Switerland
- * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License, 
+ * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *    Version 2.0
  * @package phpContentRepository
  */
@@ -29,18 +29,18 @@
  *
  * @package phpContentRepository
  */
-interface phpCR_Workspace 
+interface phpCR_Workspace
 {
 	/**
 	 * Returns the {@link Session} object through which this {@link Workspace}
 	 * object was acquired.
 	 *
-	 * @return object
+	 * @return phpCR_Session
 	 *	A {@link Session} object
 	 */
 	public function getSession();
-	
-	
+
+
 	/**
 	 * Returns the name of the actual persistent workspace represented by this
 	 * {@link Workspace} object.
@@ -48,8 +48,8 @@ interface phpCR_Workspace
 	 * @return string
 	 */
 	public function getName();
-	
-	
+
+
 	/**
 	/**
 	 * This method copies the subtree at <i>$srcAbsPath</i> in <i>$srcWorkspace</i>
@@ -83,18 +83,18 @@ interface phpCR_Workspace
 	 *    copied.
 	 *
 	 * @throws {@link ConstraintViolationException}
-	 *    If the operation would violate a node-type or other 
+	 *    If the operation would violate a node-type or other
 	 *    implementation-specific constraint.
 	 * @throws {@link VersionException}
 	 *    If the parent node of <i>$destAbsPath</i> is versionable and
-	 *    checked-in, or is non-versionable but its nearest versionable ancestor 
+	 *    checked-in, or is non-versionable but its nearest versionable ancestor
 	 *    is checked-in.
 	 * @throws {@link AccessDeniedException}
 	 *    If the current session does not have sufficient access rights to
 	 *    complete the operation.
 	 * @throws {@link PathNotFoundException}
-	 *    If the node at <i>$srcAbsPath</i> or the parent of 
-	 *    <i>$destAbsPath</i> does not exist. 
+	 *    If the node at <i>$srcAbsPath</i> or the parent of
+	 *    <i>$destAbsPath</i> does not exist.
 	 * @throws {@link ItemExistsException}
 	 *    If a property already exists at <i>$destAbsPath</i> or a
 	 *    node already exist there, and same name siblings are not allowed.
@@ -105,8 +105,8 @@ interface phpCR_Workspace
 	 *    another error occurs.
 	 */
 	public function copy($srcWorkspace, $srcAbsPath, $destAbsPath);
-	
-	
+
+
 	/**
 	 * Clones the subtree at the node <i>$srcAbsPath</i> in <i>$srcWorkspace</i> to the new location at
 	 * <i>$destAbsPath</i> in <i>$this</i> workspace. This method does not assign new UUIDs to
@@ -133,18 +133,18 @@ interface phpCR_Workspace
 	 * entire node and its subtree (including, of course, any properties contained therein).
 	 *
 	 * <b>PHP Note</b>: This method has been renamed <i>clone_()</i> from
-	 * JCR's <i>clone()</i> to avoid a naming collision with PHP's 
+	 * JCR's <i>clone()</i> to avoid a naming collision with PHP's
 	 * special clone() method.
 	 *
 	 * @param string
 	 *    The name of the workspace from which the node is to be copied.
-	 * @param string 
+	 * @param string
 	 *    The path of the node to be copied in <i>$srcWorkspace</i>.
 	 * @param string
 	 *    The location to which the node at <i>$srcAbsPath</i> is to be
 	 *    copied in <i>$this</i> workspace.
 	 * @param boolean
-	 *    If <i>false</i> then this method throws an 
+	 *    If <i>false</i> then this method throws an
 	 *    {@link ItemExistsException} on UUID conflict with an incoming node.
 	 *    If <i>true</i> then a UUID conflict is resolved by removing the
 	 *    existing node from its location in this workspace and cloning (copying
@@ -153,24 +153,24 @@ interface phpCR_Workspace
 	 * @throws {@link NoSuchWorkspaceException}
 	 *    If <i>$destWorkspace</i> does not exist.
 	 * @throws {@link ConstraintViolationException}
-	 *    If the operation would violate a node-type or other 
+	 *    If the operation would violate a node-type or other
 	 *    implementation-specific constraint.
 	 * @throws {@link VersionException}
 	 *    If the parent node of <i>$destAbsPath</i> is versionable and
-	 *    checked-in, or is non-versionable but its nearest versionable ancestor 
-	 *    is checked-in. This exception will also be thrown if 
+	 *    checked-in, or is non-versionable but its nearest versionable ancestor
+	 *    is checked-in. This exception will also be thrown if
 	 *    <i>$removeExisting</i> is <i>$true</i>, and a UUID
 	 *    conflict occurs that would require the moving and/or altering of a
 	 *    node that is checked-in.
 	 * @throws {@link AccessDeniedException}
-	 *    If the current session does not have sufficient access rights to 
+	 *    If the current session does not have sufficient access rights to
 	 *    complete the operation.
 	 * @throws {@link PathNotFoundException}
 	 *    If the node at <i>$srcAbsPath</i> in <i>$srcWorkspace</i>
-	 *    or the parent of <i>$destAbsPath</i> in this workspace does not 
+	 *    or the parent of <i>$destAbsPath</i> in this workspace does not
 	 *    exist.
 	 * @throws {@link ItemExistsException}
-	 *    If a property already exists at <i>$destAbsPath</i> or a node 
+	 *    If a property already exists at <i>$destAbsPath</i> or a node
 	 *    already exist there, and same name siblings are not allowed or if
 	 *    <i>$removeExisting</i> is false and a UUID conflict occurs.
 	 * @throws {@link LockException}
@@ -180,12 +180,12 @@ interface phpCR_Workspace
 	 *    another error occurs.
 	 */
 	public function clone_(
-		$srcWorkspace, 
+		$srcWorkspace,
 		$srcAbsPath,
 		$destAbsPath,
 		$removeExisting);
-	
-	
+
+
 	/**
 	 * Moves the node at <i>$srcAbsPath</i> (and its entire subtree) to the
 	 * new location at <i>$destAbsPath</i>. If successful,
@@ -211,18 +211,18 @@ interface phpCR_Workspace
 	 *    The location to which the node at <i>$srcAbsPath</i> is to be
 	 *    moved.
 	 * @throws {@link ConstraintViolationException}
-	 *    If the operation would violate a node-type or other 
+	 *    If the operation would violate a node-type or other
 	 *    implementation-specific constraint
 	 * @throws {@link VersionException}
-	 *    If the parent node of <i>$destAbsPath</i> or the parent node 
+	 *    If the parent node of <i>$destAbsPath</i> or the parent node
 	 *    of <i>$srcAbsPath</i> is versionable and checked-in, or is
 	 *    non-versionable but its nearest versionable ancestor is checked-in.
 	 * @throws {@link AccessDeniedException}
-	 *    If the current session (i.e. the session that was used to aqcuire 
+	 *    If the current session (i.e. the session that was used to aqcuire
 	 *    this {@link Workspace} object) does not have sufficient access rights
 	 *    to complete the operation.
 	 * @throws {@link PathNotFoundException}
-	 *    If the node at <i>$srcAbsPath</i> or the parent of 
+	 *    If the node at <i>$srcAbsPath</i> or the parent of
 	 *    <i>$destAbsPath</i> does not exist.
 	 * @throws {@link ItemExistsException}
 	 *    If a property already exists at <i>$destAbsPath</i> or a node
@@ -234,8 +234,8 @@ interface phpCR_Workspace
 	 *    another error occurs.
 	 */
 	public function move($srcAbsPath, $destAbsPath);
-	
-	
+
+
 	/**
 	 * Restores a set of versions at once. Used in cases where a "chicken and egg" problem of
 	 * mutually referring <i>REFERENCE</i> properties would prevent the restore in any
@@ -290,10 +290,10 @@ interface phpCR_Workspace
 	 * @throws {@link UnsupportedRepositoryOperationException}
 	 *    If one or more of the nodes to be restored is not versionable.
 	 * @throws {@link VersionException}
-	 *    If the set of versions to be restored is such that the original path 
+	 *    If the set of versions to be restored is such that the original path
 	 *    location of one or more of the versions cannot be determined or if
-	 *    the <i>$restore</i> would change the state of a existing 
-	 *    verisonable node that is currently checked-in or if a root version 
+	 *    the <i>$restore</i> would change the state of a existing
+	 *    verisonable node that is currently checked-in or if a root version
 	 *    (<i>jcr:rootVersion</i>) is among those being restored.
 	 * @throws {@link LockException}
 	 *    If a lock prevents the restore.
@@ -304,21 +304,21 @@ interface phpCR_Workspace
 	 *    If another error occurs.
 	 */
 	public function restore($versions, $removeExisting);
-	
-	
+
+
 	/**
 	 * Gets the <i>QueryManager</i>.
 	 * Returns the <i>QueryManager</i> object, through search methods are accessed.
 	 *
-	 * @return object
+	 * @return phpCR_QueryManager
 	 *	A {@link QueryManager} object
 	 *
 	 * @throws {@link RepositoryException}
 	 *    If an error occurs.
 	 */
 	public function getQueryManager();
-	
-	
+
+
 	/**
 	 * Returns the <i>NamespaceRegistry</i> object, which is used to access information
 	 * and (in level 2) set the mapping between namespace prefixes and URIs.
@@ -330,8 +330,8 @@ interface phpCR_Workspace
 	 *    If an error occurs.
 	 */
 	public function getNamespaceRegistry();
-	
-	
+
+
 	/**
 	 * Returns the <i>NodeTypeManager</i> through which node type
 	 * information can be queried. There is one node type registry per
@@ -346,8 +346,8 @@ interface phpCR_Workspace
 	 *    If an error occurs.
 	 */
 	public function getNodeTypeManager();
-	
-	
+
+
 	/**
 	 * If the the implementation supports observation
 	 * this method returns the <i>ObservationManager</i> object;
@@ -362,8 +362,8 @@ interface phpCR_Workspace
 	 *    If an error occurs.
 	 */
 	public function getObservationManager();
-	
-	
+
+
 	/**
 	 * Returns an string array containing the names of all workspaces
 	 * in this repository that are accessible to this user, given the
@@ -374,10 +374,10 @@ interface phpCR_Workspace
 	 * <i>Repository.login</i>, specifying the name of the desired workspace,
 	 * and receives a new {@link Session} object.
 	 *
-	 * @return array 
+	 * @return array
 	 *    Containing names of accessible workspaces.
 	 * @throws {@link RepositoryException}
-	 *    
+	 *
 	 */
 	public function getAccessibleWorkspaceNames();
 
@@ -474,8 +474,8 @@ interface phpCR_Workspace
 	 * @todo Determine if feasiable within PHP
 	 */
 	public function getImportContentHandler($parentAbsPath, $uuidBehavior);
-	
-	
+
+
 	/**
 	 * Deserializes an XML document and adds the resulting item subtree as a child of the node at
 	 * <i>$parentAbsPath</i>.

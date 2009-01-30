@@ -1,7 +1,7 @@
 <?php
 // $Id: PropertyType.class.php 578 2005-08-29 00:51:26Z tswicegood $
 /**
- * This file contains {@link PropertyType} which is part of the PHP Content Repository 
+ * This file contains {@link PropertyType} which is part of the PHP Content Repository
  * (phpCR), a derivative of the Java Content Repository JSR-170, and is
  * licensed under the Apache License, Version 2.0.
  *
@@ -10,9 +10,9 @@
  *
  * @author Travis Swicegood <development@domain51.com>
  * @copyright PHP Code Copyright &copy; 2004-2005, Domain51, United States
- * @copyright Original Java and Documentation 
+ * @copyright Original Java and Documentation
  *    Copyright &copy; 2002-2004, Day Management AG, Switerland
- * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License, 
+ * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *    Version 2.0
  * @package phpContentRepository
  */
@@ -77,8 +77,8 @@ abstract class phpCR_PropertyType
 	const TYPENAME_NAME      = "Name";
 	const TYPENAME_PATH      = "Path";
 	const TYPENAME_REFERENCE = "Reference";
-	
-	
+
+
 	/**
 	 * String representation of <i>undefined</i> type.
 	 */
@@ -95,116 +95,116 @@ abstract class phpCR_PropertyType
 	 */
 	static public function nameFromValue($type) {
 		assert('$type == intval($type)');
-		
+
 		switch ($type) {
 		case self::STRING :
 			return self::TYPENAME_STRING;
 			break;
-			
+
 		case self::BINARY :
 			return self::TYPENAME_BINARY;
 			break;
-			
+
 		case self::BOOLEAN :
 			return self::TYPENAME_BOOLEAN;
 			break;
-			
+
 		case self::INT  :
 		case self::LONG :
 			return self::TYPENAME_INT;
 			break;
-			
+
 		case self::FLOAT  :
 		case self::DOUBLE :
 			return self::TYPENAME_FLOAT;
 			break;
-			
+
 		case self::DATE :
 			return self::TYPENAME_DATE;
 			break;
-			
+
 		case self::NAME :
 			return self::TYPENAME_NAME;
 			break;
-			
+
 		case self::PATH :
 			return self::TYPENAME_PATH;
 			break;
-			
+
 		case self::REFERENCE :
 			return self::TYPENAME_REFERENCE;
 			break;
-			
+
 		case self::UNDEFINED :
 			return self::TYPENAME_UNDEFINED;
 			break;
-			
+
 		default:
 			throw new IllegalArgumentException("unknown type: " + $type);
 			break;
 		}
 	}
-	
-	
+
+
 	/**
 	 * Returns the numeric constant value of the type with the specified name.
 	 *
 	 * @param string
 	 *   The name of the property type
-	 * @return int 
+	 * @return int
 	 *   The numeric constant value
 	 *
 	 * @throws {@link IllegalArgumentException}
 	 *   If $name is not a valid property type name.
 	 */
-	static public function valueFromName($name) 
+	static public function valueFromName($name)
 	{
 		assert('is_string($name)');
-		
-		$name = ucwords(T3_PHP6_Functions::strtolower($name));
+
+		$name = ucwords(strtolower($name));
 		switch ($name) {
 		case self::TYPENAME_STRING :
 			return self::STRING;
 			break;
-			
+
 		case self::TYPENAME_BINARY :
 			return self::BINARY;
 			break;
-			
+
 		case self::TYPENAME_INT  :
 		case self::TYPENAME_LONG :
 			return self::INT;
 			break;
-			
+
 		case self::TYPENAME_FLOAT  :
 		case self::TYPENAME_DOUBLE :
 			return self::FLOAT;
 			break;
-			
+
 		case self::TYPENAME_DATE :
 			return self::DATE;
 			break;
-			
+
 		case self::TYPENAME_BOOLEAN :
 			return self::BOOLEAN;
 			break;
-			
+
 		case self::TYPENAME_NAME :
 			return self::NAME;
 			break;
-			
+
 		case self::TYPENAME_PATH :
 			return self::PATH;
 			break;
-			
+
 		case self::TYPENAME_REFERENCE :
 			return self::REFERENCE;
 			break;
-		
+
 		case self::TYPENAME_UNDEFINED :
 			return self::UNDEFINED;
 			break;
-			
+
 		default :
 			throw new IllegalArgumentException("unknown type : " . $name);
 			break;
