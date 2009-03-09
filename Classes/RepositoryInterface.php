@@ -139,15 +139,15 @@ interface RepositoryInterface {
 
 	/**
 	 * Key to a boolean descriptor. Returns TRUE
-	 * if and only if simple versioning is supported.
+	 * if and only if full versioning is supported.
 	 */
 	const OPTION_VERSIONING_SUPPORTED = "option.versioning.supported";
 
 	/**
 	 * Key to a boolean descriptor. Returns TRUE
-	 * if and only if advanced versioning is supported.
+	 * if and only if simple versioning is supported.
 	 */
-	const OPTION_ADVANCED_VERSIONING_SUPPORTED = "option.advanced.versioning.supported";
+	const OPTION_SIMPLE_VERSIONING_SUPPORTED = "option.simple.versioning.supported";
 
 	/**
 	 * Key to a boolean descriptor. Returns TRUE

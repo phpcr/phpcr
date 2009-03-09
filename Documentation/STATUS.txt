@@ -16,23 +16,6 @@ The DONE section lists what has been done already.
 
 == OPEN ==
 
-# Query
-	## QOM
-		ChildNode
-		ChildNodeJoinCondition
-		Column
-		DescendantNode
-		DescendantNodeJoinCondition
-		EquiJoinCondition
-		FullTextSearch
-		FullTextSearchScore
-		Join
-		NodeLocalName
-		NodeName
-		Ordering
-		PropertyExistence
-		SameNode
-		SameNodeJoinCondition
 # Util
 	TraversingItemVisitor
 	TraversingItemVisitor.Default
@@ -77,20 +60,35 @@ The DONE section lists what has been done already.
 	## QOM
 		And
 		BindVariableValue
+		ChildNode
+		ChildNodeJoinCondition
+		Column
 		Comparison
 		Constraint
+		DescendantNode
+		DescendantNodeJoinCondition
 		DynamicOperand
+		EquiJoinCondition
+		FullTextSearch
+		FullTextSearchScore
+		Join
 		JoinCondition
 		Length
 		Literal
 		LowerCase
+		NodeLocalName
+		NodeName
 		Not
 		Or
+		Ordering
+		PropertyExistence
 		PropertyValue
 		Operand
 		QueryObjectModel
 		QueryObjectModelConstants
 		QueryObjectModelFactory
+		SameNode
+		SameNodeJoinCondition
 		Selector
 		Source
 		StaticOperand

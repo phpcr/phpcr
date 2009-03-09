@@ -99,6 +99,14 @@ interface NodeTypeTemplateInterface extends \F3\PHPCR\NodeType\NodeTypeDefinitio
 	public function setPrimaryItemName($name);
 
 	/**
+	 * Sets the queryable status of the node type.
+	 *
+	 * @param booolean $queryable a boolean.
+	 * @return void
+	 */
+	public function setQueryable($queryable);
+
+	/**
 	 * Returns a mutable List of PropertyDefinitionTemplate objects. To define a
 	 * new NodeTypeTemplate or change an existing one, PropertyDefinitionTemplate
 	 * objects can be added to or removed from this List.

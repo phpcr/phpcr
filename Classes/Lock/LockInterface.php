@@ -81,9 +81,11 @@ interface LockInterface {
 	public function getLockToken();
 
 	/**
-	 * Returns the seconds remaining until this locks times out
-	 * (PHP_INT_MAX if the timeout is unknown or infinite).
+	 * Returns the seconds remaining until this locks times out.
+	 * If the lock has already timed out, a negative value is returned.
+	 *
 	 * @return integer
+	 * @throws \F3\PHPCR\RepositoryException if the timeout is infinite or unknown
 	 */
 	public function getSecondsRemaining();
 

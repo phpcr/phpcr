@@ -173,7 +173,7 @@ interface NodeInterface extends \F3\PHPCR\ItemInterface {
 	 * @param mixed $value The value to be assigned
 	 * @param integer $type The type to set for the property
 	 * @return \F3\PHPCR\PropertyInterface The updated Property object
-	 * @throws \F3\PHPCR\ValueFormatException if value cannot be converted to the type of the specified property or if the property already exists and is multi-valued.
+	 * @throws \F3\PHPCR\ValueFormatException if the specified property is a DATE but the value cannot be expressed in the ISO 8601-based format defined in the JCR 2.0 specification (section 3.6.4.3) and the implementation does not support dates incompatible with that format or if value cannot be converted to the type of the specified property or if the property already exists and is multi-valued.
 	 * @throws \F3\PHPCR\Version\VersionException if this node is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in and this implementation performs this validation immediately instead of waiting until save.
 	 * @throws \F3\PHPCR\Lock\LockException  if a lock prevents the setting of the property and this implementation performs this validation immediately instead of waiting until save.
 	 * @throws \F3\PHPCR\ConstraintViolationException if the change would violate a node-type or other constraint and this implementation performs this validation immediately instead of waiting until save.

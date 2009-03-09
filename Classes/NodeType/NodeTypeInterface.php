@@ -199,8 +199,8 @@ interface NodeTypeInterface extends \F3\PHPCR\NodeType\NodeTypeDefinitionInterfa
 	const NT_CHILD_NODE_DEFINITION = "{http://www.jcp.org/nt/1.0}childNodeDefinition";
 
 	/**
-	  * A constant for the node type name mix:shareable (in extended form).
-	  */
+	 * A constant for the node type name mix:shareable (in extended form).
+	 */
 	const MIX_SHAREABLE = "{http://www.jcp.org/mix/1.0}shareable";
 
 	/**
@@ -350,8 +350,8 @@ interface NodeTypeInterface extends \F3\PHPCR\NodeType\NodeTypeDefinitionInterfa
 	public function getDeclaredSubtypes();
 
 	/**
-	 * Returns true if this node type is nodeTypeName or a subtype of
-	 * nodeTypeName, otherwise returns false.
+	 * Returns true if the name of this node type or any of its direct or
+	 * indirect supertypes is equal to nodeTypeName, otherwise returns false.
 	 *
 	 * @param string $nodeTypeName the name of a node type.
 	 * @return boolean
