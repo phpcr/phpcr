@@ -42,7 +42,7 @@ namespace F3\PHPCR\Query\QOM;
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-interface LowerCaseInterface extends \F3\PHPCR\Query\QOM\ConstraintInterface {
+interface LowerCaseInterface extends \F3\PHPCR\Query\QOM\DynamicOperandInterface {
 
 	/**
 	 * Gets the operand whose value is converted to a lower-case string.
