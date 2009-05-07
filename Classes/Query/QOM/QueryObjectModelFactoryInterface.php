@@ -54,8 +54,8 @@ interface QueryObjectModelFactoryInterface extends \F3\PHPCR\Query\QOM\QueryObje
 	 * @param array $orderings zero or more orderings; null is equivalent to a zero-length array
 	 * @param array $columns the columns; null is equivalent to a zero-length array
 	 * @return \F3\PHPCR\Query\QOM\QueryObjectModelInterface the query; non-null
-	 * @throws \F3\PHPCR\Query\InvalidQueryException if a particular validity test is possible on this method, the implemention chooses to perform that test and the parameters given fail that test.
-	 * @throws \F3\PHPCR\RepositoryException if the operation otherwise fails
+	 * @throws \F3\PHPCR\Query\InvalidQueryException if a particular validity test is possible on this method, the implemention chooses to perform that test and the parameters given fail that test. See the individual QOM factory methods for the validity criteria of each query element.
+	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 */
 	public function createQuery(\F3\PHPCR\Query\QOM\SourceInterface $selectorOrSource, $constraint, array $orderings, array $columns);
 
@@ -87,7 +87,7 @@ interface QueryObjectModelFactoryInterface extends \F3\PHPCR\Query\QOM\QueryObje
 	 *
 	 * @param \F3\PHPCR\Query\QOM\SourceInterface $left the left node-tuple source; non-null
 	 * @param \F3\PHPCR\Query\QOM\SourceInterface $right the right node-tuple source; non-null
-	 * @param integer $joinType either QueryObjectModelConstants.JOIN_TYPE_INNER, QueryObjectModelConstants.JOIN_TYPE_LEFT_OUTER, QueryObjectModelConstants.JOIN_TYPE_RIGHT_OUTER
+	 * @param string $joinType one of QueryObjectModelConstants.JCR_JOIN_TYPE_*
 	 * @param \F3\PHPCR\Query\QOM\JoinConditionInterface $join Condition the join condition; non-null
 	 * @return \F3\PHPCR\Query\QOM\JoinInterface the join; non-null
 	 * @throws \F3\PHPCR\Query\InvalidQueryException if a particular validity test is possible on this method, the implemention chooses to perform that test (and not leave it until later) on createQuery, and the parameters given fail that test
@@ -212,7 +212,7 @@ interface QueryObjectModelFactoryInterface extends \F3\PHPCR\Query\QOM\QueryObje
 	 * Filters node-tuples based on the outcome of a binary operation.
 	 *
 	 * @param \F3\PHPCR\Query\QOM\DynamicOperandInterface $operand1 the first operand; non-null
-	 * @param integer $operator the operator; either QueryObjectModelConstants.OPERATOR_EQUAL_TO, QueryObjectModelConstants.OPERATOR_NOT_EQUAL_TO, QueryObjectModelConstants.OPERATOR_LESS_THAN, QueryObjectModelConstants.OPERATOR_LESS_THAN_OR_EQUAL_TO, QueryObjectModelConstants.OPERATOR_GREATER_THAN, QueryObjectModelConstants.OPERATOR_GREATER_THAN_OR_EQUAL_TO, or QueryObjectModelConstants.OPERATOR_LIKE
+	 * @param string $operator the operator; one of QueryObjectModelConstants.JCR_OPERATOR_*
 	 * @param \F3\PHPCR\Query\QOM\StaticOperandInterface $operand2 the second operand; non-null
 	 * @return \F3\PHPCR\Query\QOM\ComparisonInterface the constraint; non-null
 	 * @throws \F3\PHPCR\Query\InvalidQueryException if a particular validity test is possible on this method, the implemention chooses to perform that test (and not leave it until later) on createQuery, and the parameters given fail that test
@@ -248,7 +248,7 @@ interface QueryObjectModelFactoryInterface extends \F3\PHPCR\Query\QOM\QueryObje
 	 * does not have a property named $propertyName, the query is valid but the
 	 * constraint is not satisfied.
 	 *
-	 * @param string $propertyName the property name, or null to search all full-text indexed properties of the node (or node subtree, in some implementations);
+	 * @param string $propertyName the property name, or null to search all full-text indexed properties of the node (or node subgraph, in some implementations);
 	 * @param string $fullTextSearchExpression the full-text search expression; non-null
 	 * @param string $selectorName the selector name; non-null
 	 * @return \F3\PHPCR\Query\QOM\FullTextSearchInterface the constraint; non-null

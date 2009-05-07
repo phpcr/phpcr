@@ -12,7 +12,7 @@ The DONE section lists what has been done already.
 == WIP ==
 
 # Version
-	Versionmanager (restore method is pending)
+	VersionManager (restore method is pending)
 
 == OPEN ==
 

@@ -28,9 +28,7 @@ namespace F3\PHPCR;
  */
 
 /**
- * The Binary interface allows repositories to provide implementations that
- * handle JCR BINARY values in the most efficient manner, given the specifics
- * of their internal handling of the binary data.
+ * A Binary object holds a JCR property value of type BINARY.
  *
  * @package PHPCR
  * @version $Id$
@@ -40,12 +38,12 @@ interface BinaryInterface {
 
 	/**
 	 * Returns a stream representation of this value.
-	 * Each call to <code>getStream()</code> returns a new stream.
-	 * The API consumer is responsible for calling <code>close()</code>
-	 * on the returned stream.
+	 * Each call to getStream() returns a new stream.
+	 * The API consumer is responsible for calling close() on the returned
+	 * stream.
 	 *
 	 * @return resource A stream representation of this value.
-	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
 	 */
 	public function getStream();
 
@@ -66,7 +64,7 @@ interface BinaryInterface {
 	 * Returns the size of this Binary value in bytes.
 	 *
 	 * @return integer the size of this value in bytes.
-	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
 	 */
 	public function getSize();
 

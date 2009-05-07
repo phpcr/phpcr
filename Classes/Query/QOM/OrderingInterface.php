@@ -66,7 +66,7 @@ interface OrderingInterface {
 	/**
 	 * Gets the order.
 	 *
-	 * @return integer either QueryObjectModelConstants.ORDER_ASCENDING or QueryObjectModelConstants.ORDER_DESCENDING
+	 * @return string either QueryObjectModelConstants.JCR_ORDER_ASCENDING or QueryObjectModelConstants.JCR_ORDER_DESCENDING
 	 */
 	public function getOrder();
 

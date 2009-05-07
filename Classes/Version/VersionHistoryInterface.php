@@ -144,16 +144,16 @@ interface VersionHistoryInterface extends \F3\PHPCR\NodeInterface {
 	 * to the jcr:versionLabels sub node of the nt:versionHistory node. The
 	 * reference property points to the nt:version node that represents the
 	 * specified version.
-	 * Note that this change is made immediately; there is no need to call save.
-	 * In fact, since the the version storage is read-only with respect to normal
-	 * repository methods, save does not even function in this context.
+	 *
+	 * This is a workspace-write method and therefore the change is made
+	 * immediately.
 	 *
 	 * Within a particular version history, a given label may appear a maximum of
 	 * once. If the specified label is already assigned to a version in this
 	 * history and moveLabel is true then the label is removed from its current
 	 * location and added to the version with the specified versionName. If m
-	 * oveLabel is false, then an attempt to add a label that already exists in
-	 * this version history will throw a LabelExistVersionException.
+	 * oveLabel is false, then an attempt to add a label that already exists
+	 * will fail.
 	 *
 	 * A VersionException is thrown if the named version is not in this
 	 * VersionHistory or if it is the root version (jcr:rootVersion) or if the
@@ -161,7 +161,7 @@ interface VersionHistoryInterface extends \F3\PHPCR\NodeInterface {
 	 *
 	 * @param string $versionName the name of the version to which the label is to be added.
 	 * @param string $label the label to be added, a JCR name in either extended or qualified form.
-	 * @param boolean $moveLabel if true, then if label is already assigned to a version in this version history, it is moved to the new version specified; if false, then attempting to assign an already used label will throw a VersionException.
+	 * @param boolean $moveLabel if true, then if label is already assigned to a version in this version history, it is moved to the new version specified; if false, then attempting to assign an already used label will throw a LabelExistsVersionException.
 	 * @return void
 	 * @throws \F3\PHPCR\Version\LabelExistsVersionException if moveLabel is false, and an attempt is made to add a label that already exists in this version history
 	 * @throws \F3\PHPCR\Version\VersionException if the specified version does not exist in this version history or if the specified version is the root version (jcr:rootVersion).
@@ -174,9 +174,9 @@ interface VersionHistoryInterface extends \F3\PHPCR\NodeInterface {
 	 * The label must be a JCR name in either qualified or extended form.
 	 * This corresponds to removing a property from the jcr:versionLabels child node
 	 * of the nt:versionHistory node that represents this version history.
-	 * Note that this change is made immediately; there is no need to call save.
-	 * In fact, since the the version storage is read-only with respect to normal
-	 * repository methods, save does not even function in this context.
+	 *
+	 * This is a workspace-write method and therefore the change is made
+	 * immediately.
 	 *
 	 * @param string $label a version label. A JCR name in either extended or qualified form.
 	 * @return void

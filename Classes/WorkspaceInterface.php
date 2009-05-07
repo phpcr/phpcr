@@ -28,11 +28,11 @@ namespace F3\PHPCR;
  */
 
 /**
- * The Workspace object represents a "view" of an actual repository workspace
- * entity as seen through the authorization settings of its associated Session.
- * Each Workspace object is associated one-to-one with a Session object. The
- * Workspace object can be acquired by calling Session.getWorkspace() on the
- * associated Session object.
+ * A Workspace object represents a view onto a persistent workspace within a
+ * repository. This view is defined by the authorization settings of the Session
+ * object associated with the Workspace object. Each Workspace object is
+ * associated one-to-one with a Session object. The Workspace object can be
+ * acquired by calling Session.getWorkspace() on the associated Session object.
  *
  * @package PHPCR
  * @version $Id$
@@ -156,21 +156,20 @@ interface WorkspaceInterface {
 	 * identifiers.
 	 *
 	 * If srcWorkspace is given:
-	 * This method copies the subtree at srcAbsPath in srcWorkspace to
+	 * This method copies the subgraph at srcAbsPath in srcWorkspace to
 	 * destAbsPath in this workspace.
 	 * Unlike clone, this method does assign new referenceable identifiers
 	 * to the new copies of referenceable nodes. In the case of
 	 * non-referenceable nodes, this method may assign new identifiers.
 	 *
-	 * This operation is performed entirely within the persistent workspace,
-	 * it does not involve transient storage and therefore does not require
-	 * a save.
+	 * This is a workspace-write operation and therefore dispatches changes
+	 * immediately and does not require a save.
 	 *
-	 * When the source subtree in a copy operation includes both a reference
+	 * When the source subgraph in a copy operation includes both a reference
 	 * property (P) and the node to which it refers (N) then not only does the
 	 * new copy of the referenceable node (N') get a new identifier but the new
 	 * copy of the reference property (P') is changed so that it points to N',
-	 * thus preserving the reference within the subtree.
+	 * thus preserving the reference within the subgraph.
 	 *
 	 * The destAbsPath provided must not have an index on its final element. If
 	 * it does then a RepositoryException is thrown. Strictly speaking, the
@@ -180,9 +179,8 @@ interface WorkspaceInterface {
 	 * is supported by the node type of the parent node of the new location, then
 	 * the new copy of the node is appended to the end of the child node list.
 	 *
-	 * This method cannot be used to copy just an individual property by itself.
-	 * It copies an entire node and its subtree (including, of course, any
-	 * properties contained therein).
+	 * This method cannot be used to copy an individual property by itself. It
+	 * copies an entire node and its subgraph.
 	 *
 	 * @param string $srcAbsPath the path of the node to be copied.
 	 * @param string $destAbsPath the location to which the node at srcAbsPath is to be copied in this workspace.
@@ -190,8 +188,8 @@ interface WorkspaceInterface {
 	 * @return void
 	 * @throws \F3\PHPCR\NoSuchWorkspaceException if srcWorkspace does not exist or if the current Session does not have permission to access it.
 	 * @throws \F3\PHPCR\ConstraintViolationException if the operation would violate a node-type or other implementation-specific constraint
-	 * @throws \F3\PHPCR\Version\VersionException if the parent node of destAbsPath is versionable and checked-in, or is non-versionable but its nearest versionable ancestor is checked-in.
-	 * @throws \F3\PHPCR\AccessDeniedException if the current session does have permission to access srcWorkspace but otherwise does not have sufficient access rights to complete the operation.
+	 * @throws \F3\PHPCR\Version\VersionException if the parent node of destAbsPath is read-only due to a checked-in node.
+	 * @throws \F3\PHPCR\AccessDeniedException if the current session does have access srcWorkspace but otherwise does not have sufficient access to complete the operation.
 	 * @throws \F3\PHPCR\PathNotFoundException if the node at srcAbsPath in srcWorkspace or the parent of destAbsPath in this workspace does not exist.
 	 * @throws \F3\PHPCR\ItemExistsException if a node already exists at destAbsPath and same-name siblings are not allowed.
 	 * @throws \F3\PHPCR\Lock\LockException if a lock prevents the copy.
@@ -200,7 +198,7 @@ interface WorkspaceInterface {
 	public function copy($srcAbsPath, $destAbsPath, $srcWorkspace = NULL);
 
 	/**
-	 * Clones the subtree at the node srcAbsPath in srcWorkspace to the new
+	 * Clones the subgraph at the node srcAbsPath in srcWorkspace to the new
 	 * location at destAbsPath in this workspace.
 	 * Unlike the signature of copy that copies between workspaces, this method
 	 * does not assign new identifiers to the newly cloned nodes but preserves
@@ -215,7 +213,7 @@ interface WorkspaceInterface {
 	 * If removeExisting is true and an existing node in this workspace (the
 	 * destination workspace) has the same identifier as a node being cloned
 	 * from srcWorkspace, then the incoming node takes precedence, and the
-	 * existing node (and its subtree) is removed. If removeExisting is false
+	 * existing node (and its subgraph) is removed. If removeExisting is false
 	 * then an identifier collision causes this method to throw a
 	 * ItemExistsException and no changes are made.
 	 *
@@ -229,7 +227,7 @@ interface WorkspaceInterface {
 	 * child node list.
 	 *
 	 * This method cannot be used to clone just an individual property; it
-	 * clones a node and its subtree.
+	 * clones a node and its subgraph.
 	 *
 	 * @param string $srcWorkspace - The name of the workspace from which the node is to be copied.
 	 * @param string $srcAbsPath - the path of the node to be copied in srcWorkspace.
@@ -238,8 +236,8 @@ interface WorkspaceInterface {
 	 * @return void
 	 * @throws \F3\PHPCR\NoSuchWorkspaceException if destWorkspace does not exist.
 	 * @throws \F3\PHPCR\ConstraintViolationException if the operation would violate a node-type or other implementation-specific constraint.
-	 * @throws \F3\PHPCR\Version\VersionException if the parent node of destAbsPath is versionable and checked-in, or is non-versionable but its nearest versionable ancestor is checked-in. This exception will also be thrown if removeExisting is true, and an identifier conflict occurs that would require the moving and/or altering of a node that is checked-in.
-	 * @throws \F3\PHPCR\AccessDeniedException if the current session does not have sufficient access rights to complete the operation.
+	 * @throws \F3\PHPCR\Version\VersionException if the parent node of destAbsPath is read-only due to a checked-in node. This exception will also be thrown if removeExisting is true, and an identifier conflict occurs that would require the moving and/or altering of a node that is checked-in.
+	 * @throws \F3\PHPCR\AccessDeniedException if the current session does not have sufficient access to complete the operation.
 	 * @throws \F3\PHPCR\PathNotFoundException if the node at srcAbsPath in srcWorkspace or the parent of destAbsPath in this workspace does not exist.
 	 * @throws \F3\PHPCR\ItemExistsException if a node already exists at destAbsPath and same-name siblings are not allowed or if removeExisting is false and an identifier conflict occurs.
 	 * @throws \F3\PHPCR\Lock\LockException if a lock prevents the clone.
@@ -248,7 +246,7 @@ interface WorkspaceInterface {
 	public function klone($srcWorkspace, $srcAbsPath, $destAbsPath, $removeExisting);
 
 	/**
-	 * Moves the node at srcAbsPath (and its entire subtree) to the new location
+	 * Moves the node at srcAbsPath (and its entire subgraph) to the new location
 	 * at destAbsPath.
 	 * If successful, the change is persisted immediately, there is no need to
 	 * call save. Note that this is in contrast to
@@ -267,7 +265,7 @@ interface WorkspaceInterface {
 	 * the newly moved node is appended to the end of the child node list.
 	 *
 	 * This method cannot be used to move just an individual property by itself.
-	 * It moves an entire node and its subtree (including, of course, any
+	 * It moves an entire node and its subgraph (including, of course, any
 	 * properties contained therein).
 	 *
 	 * The identifiers of referenceable nodes must not be changed by a move. The
@@ -277,7 +275,7 @@ interface WorkspaceInterface {
 	 * @param string $destAbsPath the location to which the node at srcAbsPath is to be moved.
 	 * @return void
 	 * @throws \F3\PHPCR\ConstraintViolationException if the operation would violate a node-type or other implementation-specific constraint
-	 * @throws \F3\PHPCR\Version\VersionException if the parent node of destAbsPath or the parent node of srcAbsPath is versionable and checked-in, or is non-versionable but its nearest versionable ancestor is checked-in.
+	 * @throws \F3\PHPCR\Version\VersionException if the parent node of destAbsPath is read-only due to a checked-in node.
 	 * @throws \F3\PHPCR\AccessDeniedException if the current session (i.e. the session that was used to acquire this Workspace object) does not have sufficient access rights to complete the operation.
 	 * @throws \F3\PHPCR\PathNotFoundException if the node at srcAbsPath or the parent of destAbsPath does not exist.
 	 * @throws \F3\PHPCR\ItemExistsException if a node already exists at destAbsPath and same-name siblings are not allowed.
@@ -361,7 +359,7 @@ interface WorkspaceInterface {
 	 * into the repository. If the incoming XML stream (in the form of SAX events)
 	 * does not appear to be a JCR system view XML document then it is interpreted
 	 * as a document view XML document.
-	 * The incoming XML is deserialized into a subtree of items immediately below
+	 * The incoming XML is deserialized into a subgraph of items immediately below
 	 * the node at parentAbsPath.
 	 *
 	 * This method simply returns the ContentHandler without altering the state of
@@ -387,14 +385,14 @@ interface WorkspaceInterface {
 	 *  collisions never occur.
 	 * * ImportUUIDBehavior.IMPORT_UUID_COLLISION_REMOVE_EXISTING: If an incoming node
 	 *   has the same identifier as a node already existing in the workspace, then the
-	 *   already existing node (and its subtree) is removed from wherever it may be in
+	 *   already existing node (and its subgraph) is removed from wherever it may be in
 	 *   the workspace before the incoming node is added. Note that this can result in
 	 *   nodes "disappearing" from locations in the workspace that are remote from the
-	 *   location to which the incoming subtree is being written.
+	 *   location to which the incoming subgraph is being written.
 	 * * ImportUUIDBehavior.IMPORT_UUID_COLLISION_REPLACE_EXISTING: If an incoming node
 	 *   has the same identifier as a node already existing in the workspace then the
 	 *   already existing node is replaced by the incoming node in the same position as
-	 *   the existing node. Note that this may result in the incoming subtree being
+	 *   the existing node. Note that this may result in the incoming subgraph being
 	 *   disaggregated and "spread around" to different locations in the workspace. In
 	 *   the most extreme case this behavior may result in no node at all being added as
 	 *   child of parentAbsPath. This will occur if the topmost element of the incoming
@@ -411,21 +409,21 @@ interface WorkspaceInterface {
 	 * and an incoming node has the same identifier as the node at parentAbsPath or
 	 * one of its ancestors.
 	 *
-	 * @param string $parentAbsPath the absolute path of a node under which (as child) the imported subtree will be built.
+	 * @param string $parentAbsPath the absolute path of a node under which (as child) the imported subgraph will be built.
 	 * @param integer $uuidBehavior a four-value flag that governs how incoming identifiers are handled.
 	 * @return an org.xml.sax.ContentHandler whose methods may be called to feed SAX events into the deserializer.
-	 * @throws \F3\PHPCR\PathNotFoundException if no node exists at parentAbsPath.
-	 * @throws \F3\PHPCR\ConstraintViolationException if the new subtree cannot be added to the node at parentAbsPath due to node-type or other implementation-specific constraints, and this can be determined before the first SAX event is sent.
-	 * @throws \F3\PHPCR\Version\VersionException if the node at parentAbsPath is versionable and checked-in, or is non-versionable but its nearest versionable ancestor is checked-in.
-	 * @throws \F3\PHPCR\Lock\LockException if a lock prevents the addition of the subtree.
-	 * @throws \F3\PHPCR\AccessDeniedException if the session associated with this Workspace object does not have sufficient permissions to perform the import.
+	 * @throws \F3\PHPCR\PathNotFoundException if no node exists at $parentAbsPath.
+	 * @throws \F3\PHPCR\ConstraintViolationException if the new subgraph cannot be added to the node at $parentAbsPath due to node-type or other implementation-specific constraints, and this can be determined before the first SAX event is sent. Unlike Session#getImportContentHandler, this method also enforces node type constraints by throwing SAXExceptions during deserialization. However, which node type constraints are enforced depends upon whether node type information in the imported data is respected, and this is an implementation-specific issue.
+	 * @throws \F3\PHPCR\Version\VersionException if the node at $parentAbsPath is read-only due to a checked-in node.
+	 * @throws \F3\PHPCR\Lock\LockException if a lock prevents the addition of the subgraph.
+	 * @throws \F3\PHPCR\AccessDeniedException if the session associated with this Workspace object does not have sufficient access to perform the import.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 * @todo Decide on a return type that fits the PHP world
 	 */
 	public function getImportContentHandler($parentAbsPath, $uuidBehavior);
 
 	/**
-	 * Deserializes an XML document and adds the resulting item subtree as a
+	 * Deserializes an XML document and adds the resulting item subgraph as a
 	 * child of the node at parentAbsPath.
 	 * If the incoming XML stream does not appear to be a JCR system view XML
 	 * document then it is interpreted as a document view XML document.
@@ -450,15 +448,15 @@ interface WorkspaceInterface {
 	 *   collisions never occur.
 	 * * ImportUUIDBehavior.IMPORT_UUID_COLLISION_REMOVE_EXISTING: If an incoming node
 	 *   has the same identifier as a node already existing in the workspace then the
-	 *   already existing node (and its subtree) is removed from wherever it may be
+	 *   already existing node (and its subgraph) is removed from wherever it may be
 	 *   in the workspace before the incoming node is added. Note that this can result
 	 *   in nodes "disappearing" from locations in the workspace that are remote from
-	 *   the location to which the incoming subtree is being written. If an incoming
+	 *   the location to which the incoming subgraph is being written. If an incoming
 	 *   node has the same identifier as the existing root node of this workspace then
 	 * * ImportUUIDBehavior.IMPORT_UUID_COLLISION_REPLACE_EXISTING: If an incoming node
 	 *   has the same identifier as a node already existing in the workspace then the
 	 *   already existing node is replaced by the incoming node in the same position as
-	 *   the existing node. Note that this may result in the incoming subtree being
+	 *   the existing node. Note that this may result in the incoming subgraph being
 	 *   disaggregated and "spread around" to different locations in the workspace. In
 	 *   the most extreme edge case this behavior may result in no node at all being
 	 *   added as child of parentAbsPath. This will occur if the topmost element of the
@@ -468,19 +466,19 @@ interface WorkspaceInterface {
 	 *   same identifier as a node already existing in the workspace then an
 	 *   ItemExistsException is thrown.
 	 *
-	 * @param string $parentAbsPath the absolute path of the node below which the deserialized subtree is added.
+	 * @param string $parentAbsPath the absolute path of the node below which the deserialized subgraph is added.
 	 * @param resource $in The resource handler from which the XML to be deserialized is read.
 	 * @param integer $uuidBehavior a four-value flag that governs how incoming identifiers are handled.
 	 * @return void
 	 * @throws \RuntimeException if an error during an I/O operation occurs.
 	 * @throws \F3\PHPCR\PathNotFoundException if no node exists at parentAbsPath.
-	 * @throws \F3\PHPCR\ConstraintViolationException if node-type or other implementation-specific constraints prevent the addition of the subtree or if uuidBehavior is set to IMPORT_UUID_COLLISION_REMOVE_EXISTING and an incoming node has the same identifier as the node at parentAbsPath or one of its ancestors.
-	 * @throws \F3\PHPCR\Version\VersionException if the node at parentAbsPath is versionable and checked-in, or is non-versionable but its nearest versionable ancestor is checked-in.
+	 * @throws \F3\PHPCR\ConstraintViolationException if node-type or other implementation-specific constraints prevent the addition of the subgraph or if uuidBehavior is set to IMPORT_UUID_COLLISION_REMOVE_EXISTING and an incoming node has the same identifier as the node at parentAbsPath or one of its ancestors.
+	 * @throws \F3\PHPCR\Version\VersionException if the node at parentAbsPath is read-only due to a checked-in node.
 	 * @throws \F3\PHPCR\InvalidSerializedDataException if incoming stream is not a valid XML document.
 	 * @throws \F3\PHPCR\ItemExistsException if the top-most element of the incoming XML would deserialize to a node with the same name as an existing child of parentAbsPath and that child does not allow same-name siblings, or if a uuidBehavior is set to IMPORT_UUID_COLLISION_THROW and an identifier collision occurs.
-	 * @throws \F3\PHPCR\Lock\LockException if a lock prevents the addition of the subtree.
-	 * @throws \F3\PHPCR\AccessDeniedException if the session associated with this Workspace object does not have sufficient permissions to perform the import.
-	 * @throws \F3\PHPCR\RepositoryException is another error occurs.
+	 * @throws \F3\PHPCR\Lock\LockException if a lock prevents the addition of the subgraph.
+	 * @throws \F3\PHPCR\AccessDeniedException if the session associated with this Workspace object does not have sufficient access to perform the import.
+	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 */
 	public function importXML($parentAbsPath, $in, $uuidBehavior);
 
@@ -501,7 +499,7 @@ interface WorkspaceInterface {
 	 * @param string $name A String, the name of the new workspace.
 	 * @param string $srcWorkspace The name of the workspace from which the new workspace is to be cloned.
 	 * @return void
-	 * @throws \F3\PHPCR\AccessDeniedException if the session through which this Workspace object was acquired does not have permission to create the new workspace.
+	 * @throws \F3\PHPCR\AccessDeniedException if the session through which this Workspace object was acquired does not have sufficient access to create the new workspace.
 	 * @throws \F3\PHPCR\UnsupportedRepositoryOperationException if the repository does not support the creation of workspaces.
 	 * @throws \F3\PHPCR\NoSuchWorkspaceException if $srcWorkspace does not exist.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
@@ -514,7 +512,7 @@ interface WorkspaceInterface {
 	 *
 	 * @param string $name A String, the name of the workspace to be deleted.
 	 * @return void
-	 * @throws \F3\PHPCR\AccessDeniedException if the session through which this Workspace object was acquired does not have permission to remove the workspace.
+	 * @throws \F3\PHPCR\AccessDeniedException if the session through which this Workspace object was acquired does not have sufficient access to remove the workspace.
 	 * @throws \F3\PHPCR\UnsupportedRepositoryOperationException if the repository does not support the removal of workspaces.
 	 * @throws \F3\PHPCR\NoSuchWorkspaceException if $name does not exist.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.

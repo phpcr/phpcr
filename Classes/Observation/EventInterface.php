@@ -132,7 +132,7 @@ interface EventInterface {
 	 * Returns the user ID connected with this event. This is the string returned
 	 * by Session.getUserID() of the session that caused the event.
 	 *
-	 * @return string a String.
+	 * @return string the user ID.
 	 */
 	public function getUserID();
 
@@ -161,7 +161,7 @@ interface EventInterface {
 	 * Returns the user data set through ObservationManager.setUserData() on the
 	 * ObservationManager bound to the Session that caused the event.
 	 *
-	 * @return string
+	 * @return the user data string.
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
 	 */
 	public function getUserData();

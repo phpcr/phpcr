@@ -33,7 +33,7 @@ namespace F3\PHPCR\Retention;
  * prevent the node from being modified or removed. The format and interpretation
  * of the name are not specified. They are application-dependent.
  *
- * If isDeep() is true, the hold applies to the node and its entire subtree.
+ * If isDeep() is true, the hold applies to the node and its entire subgraph.
  * Otherwise the hold applies to the node and its properties only.
  *
  * @package PHPCR

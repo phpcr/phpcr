@@ -68,7 +68,7 @@ interface ValueFactoryInterface {
 	 * @return \F3\PHPCR\ValueInterface
 	 * @throws \F3\PHPCR\ValueFormatException is thrown if the specified value cannot be converted to the specified type.
 	 * @throws \F3\PHPCR\RepositoryException if the specified Node is not referenceable, the current Session is no longer active, or another error occurs.
-	 * @throws IllegalArgumentException if the specified DateTime value cannot be expressed in the ISO 8601-based format defined in the JCR 2.0 specification (section 3.6.4.3) and the implementation does not support dates incompatible with that format.
+	 * @throws \IllegalArgumentException if the specified DateTime value cannot be expressed in the ISO 8601-based format defined in the JCR 2.0 specification and the implementation does not support dates incompatible with that format.
 	 */
 	public function createValue($value, $type = NULL, $weak = FALSE);
 

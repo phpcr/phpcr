@@ -204,19 +204,19 @@ interface PropertyInterface extends \F3\PHPCR\ItemInterface {
 
 	/**
 	 * A constant for the property name jcr:name (in extended form),
-	* declared in node types nt:propertyDefinition and nt:childNodeDefinition.
+	 * declared in node types nt:propertyDefinition and nt:childNodeDefinition.
 	 */
 	const JCR_NAME = "{http://www.jcp.org/jcr/1.0}name";
 
 	/**
 	 * A constant for the property name jcr:autoCreated (in extended form),
-	* declared in node types nt:propertyDefinition and nt:childNodeDefinition.
+	 * declared in node types nt:propertyDefinition and nt:childNodeDefinition.
 	 */
 	const JCR_AUTOCREATED = "{http://www.jcp.org/jcr/1.0}autoCreated";
 
 	/**
 	 * A constant for the property name jcr:mandatory (in extended form),
-	* declared in node types nt:propertyDefinition and nt:childNodeDefinition.
+	 * declared in node types nt:propertyDefinition and nt:childNodeDefinition.
 	 */
 	const JCR_MANDATORY = "{http://www.jcp.org/jcr/1.0}mandatory";
 
@@ -398,16 +398,15 @@ interface PropertyInterface extends \F3\PHPCR\ItemInterface {
 	 * Sets the value of this property to value. If this property's property
 	 * type is not constrained by the node type of its parent node, then the
 	 * property type may be changed. If the property type is constrained, then a
-	 * best-effort conversion is attempted, according to an
-	 * implemention-dependent definition of "best effort". If conversion fails,
-	 * a ValueFormatException is thrown immediately (not on save). The change
-	 * will be persisted (if valid) on save
+	 * best-effort conversion is attempted.
+	 *
+	 * This method is a session-write and therefore requires a <code>save</code>
+	 * to dispatch the change.
 	 *
 	 * For Node objects as value:
-	 * Sets this REFERENCE property to refer to the specified node. If this
-	 * property is not of type REFERENCE or the specified node is not
-	 * referenceable (i.e., is not of mixin node type mix:referenceable and
-	 * therefore does not have a UUID) then a ValueFormatException is thrown.
+	 * Sets this REFERENCE OR WEAKREFERENCE property to refer to the specified
+	 * node. If this property is not of type REFERENCE or WEAKREFERENCE or the
+	 * specified node is not referenceable then a ValueFormatException is thrown.
 	 *
 	 * If value is an array:
 	 * If this property is not multi-valued then a ValueFormatException is
@@ -416,11 +415,11 @@ interface PropertyInterface extends \F3\PHPCR\ItemInterface {
 	 * @param mixed $value The value to set
 	 * @return void
 	 * @throws \F3\PHPCR\ValueFormatException if the type or format of the specified value is incompatible with the type of this property.
-	 * @throws \F3\PHPCR\Version\VersionException if this property belongs to a node that is versionable and checked-in or is non-versionable but whose nearest versionable ancestor is checked-in and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws \F3\PHPCR\Lock\LockException if a lock prevents the setting of the value and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws \F3\PHPCR\ConstraintViolationException if the change would violate a node-type or other constraint and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws \F3\PHPCR\Version\VersionException if this property belongs to a node that is read-only due to a checked-in node and this implementation performs this validation immediately.
+	 * @throws \F3\PHPCR\Lock\LockException if a lock prevents the setting of the value and this implementation performs this validation immediately.
+	 * @throws \F3\PHPCR\ConstraintViolationException if the change would violate a node-type or other constraint and this implementation performs this validation immediately.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
-	*/
+	 */
 	public function setValue($value);
 
 	/**
@@ -499,8 +498,6 @@ interface PropertyInterface extends \F3\PHPCR\ItemInterface {
 	/**
 	 * Returns a \DateTime representation of the value of this property. A
 	 * shortcut for Property.getValue().getDate(). See Value.
-	 * The object returned is a copy of the stored value, so changes to it
-	 * are not reflected in internal storage.
 	 *
 	 * @return \DateTime A date representation of the value of this property.
 	 * @throws \F3\PHPCR\ValueFormatException if conversion to a string is not possible or if the property is multi-valued.
@@ -529,8 +526,8 @@ interface PropertyInterface extends \F3\PHPCR\ItemInterface {
 	 *
 	 * @return \F3\PHPCR\NodeInterface the referenced Node
 	 * @throws \F3\PHPCR\ValueFormatException if this property cannot be converted to a referring type (REFERENCE, WEAKREFERENCE or PATH), if the property is multi-valued or if this property is a referring type but is currently part of the frozen state of a version in version storage.
-	 * @throws \F3\PHPCR\ItemNotFoundException If this property is of type PATH and no node accessible by the current Session exists in this workspace at the specified path.
-	 * @throws \F3\PHPCR\RepositoryException if another error occurs
+	 * @throws \F3\PHPCR\ItemNotFoundException If this property is of type PATH or WEAKREFERENCE and no target node accessible by the current Session exists in this workspace. Note that this applies even if the property is a PATH and a property exists at the specified location. To dereference to a target property (as opposed to a target node), the method Property.getProperty is used.
+	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 */
 	public function getNode();
 
@@ -538,13 +535,17 @@ interface PropertyInterface extends \F3\PHPCR\ItemInterface {
 	 * If this property is of type PATH (or convertible to this type) this
 	 * method returns the Property to which this property refers.
 	 * If this property contains a relative path, it is interpreted relative
-	 * to the parent node of this property. For example "." refers to the
-	 * parent node itself, ".." to the parent of the parent node and "foo" to a
-	 * sibling property of this property or this property itself.
+	 * to the parent node of this property. Therefore, when resolving such a
+	 * relative path, the segment "." refers to the parent node itself, ".." to
+	 * the parent of the parent node and "foo" to a sibling property of this
+	 * property or this property itself.
+	 *
+	 * For example, if this property is located at /a/b/c and it has a value of
+	 * "../d" then this method will return the property at /a/d if such exists.
 	 *
 	 * @return \F3\PHPCR\PropertyInterface the referenced property
 	 * @throws \F3\PHPCR\ValueFormatException if this property cannot be converted to a PATH, if the property is multi-valued or if this property is a referring type but is currently part of the frozen state of a version in version storage.
-	 * @throws \F3\PHPCR\ItemNotFoundException If this property is of type PATH and no property accessible by the current Session exists in this workspace at the specified path.
+	 * @throws \F3\PHPCR\ItemNotFoundException If no property accessible by the current Session exists in this workspace at the specified path. Note that this applies even if a node exists at the specified location. To dereference to a target node, the method Property.getNode is used.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs
 	 */
 	public function getProperty();
@@ -615,6 +616,15 @@ interface PropertyInterface extends \F3\PHPCR\ItemInterface {
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs
 	 */
 	public function getType();
+
+	/**
+	 * Returns TRUE if this property is multi-valued and FALSE if this property
+	 * is single-valued.
+	 *
+	 * @return boolean TRUE if this property is multi-valued; FALSE otherwise.
+	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 */
+	public function isMultiple();
 
 }
 

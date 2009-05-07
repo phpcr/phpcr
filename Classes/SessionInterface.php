@@ -136,7 +136,7 @@ interface SessionInterface {
 	 *
 	 * @param \F3\PHPCR\CredentialsInterface $credentials A Credentials object
 	 * @return \F3\PHPCR\SessionInterface a Session object
-	 * @throws \F3\PHPCR\LoginException if the current session does not have sufficient permissions to perform the operation.
+	 * @throws \F3\PHPCR\LoginException if the current session does not have sufficient access to perform the operation.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 */
 	public function impersonate(\F3\PHPCR\CredentialsInterface $credentials);
@@ -147,15 +147,14 @@ interface SessionInterface {
 	 *
 	 * @param string $id An identifier.
 	 * @return \F3\PHPCR\NodeInterface A Node.
-	 * @throws \F3\PHPCR\ItemNotFoundException if the specified identifier is not found. This exception is also thrown if this Session does not have read access to the node with the specified identifier.
+	 * @throws \F3\PHPCR\ItemNotFoundException if no node with the specified identifier exists or if this Session does not have read access to the node with the specified identifier.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 */
 	public function getNodeByIdentifier($id);
 
 	/**
 	 * Returns the node at the specified absolute path in the workspace. If no such
-	 * node exists, then it returns the property at the specified path. If no such
-	 * property exists a PathNotFoundException is thrown.
+	 * node exists, then it returns the property at the specified path.
 	 *
 	 * This method should only be used if the application does not know whether the
 	 * item at the indicated path is property or node. In cases where the application
@@ -166,7 +165,7 @@ interface SessionInterface {
 	 *
 	 * @param string $absPath An absolute path.
 	 * @return \F3\PHPCR\ItemInterface
-	 * @throws \F3\PHPCR\PathNotFoundException if the specified path cannot be found.
+	 * @throws \F3\PHPCR\PathNotFoundException if no accessible item is found at the specified path.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 */
 	public function getItem($absPath);
@@ -176,7 +175,7 @@ interface SessionInterface {
 	 *
 	 * @param string $absPath An absolute path.
 	 * @return \F3\PHPCR\NodeInterface A node
-	 * @throws \F3\PHPCR\PathNotFoundException If no node exists.
+	 * @throws \F3\PHPCR\PathNotFoundException if no accessible node is found at the specified path.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 */
 	public function getNode($absPath);
@@ -186,7 +185,7 @@ interface SessionInterface {
 	 *
 	 * @param string $absPath An absolute path.
 	 * @return \F3\PHPCR\PropertyInterface A property
-	 * @throws \F3\PHPCR\PathNotFoundException If no property exists.
+	 * @throws \F3\PHPCR\PathNotFoundException if no accessible property is found at the specified path.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 */
 	public function getProperty($absPath);
@@ -222,51 +221,51 @@ interface SessionInterface {
 	public function propertyExists($absPath);
 
 	/**
-	 * Moves the node at srcAbsPath (and its entire subtree) to the new location
+	 * Moves the node at srcAbsPath (and its entire subgraph) to the new location
 	 * at destAbsPath.
-	 * In order to persist the change, Session.save() must be called.
+	 *
+	 * This is a session-write method and therefor requires a save to dispatch
+	 * the change.
 	 *
 	 * The identifiers of referenceable nodes must not be changed by a move. The
 	 * identifiers of non-referenceable nodes may change.
 	 *
-	 * A ConstraintViolationException is thrown either immediately or on save if
-	 * performing this operation would violate a node type or implementation-specific
-	 * constraint. Implementations may differ on when this validation is performed.
+	 * A ConstraintViolationException is thrown either immediately, on dispatch
+	 * or on persist, if performing this operation would violate a node type or
+	 * implementation-specific constraint. Implementations may differ on when
+	 * this validation is performed.
 	 *
-	 * As well, a ConstraintViolationException will be thrown on save if an attempt
-	 * is made to separately save either the source or destination node.
+	 * As well, a ConstraintViolationException will be thrown on persist if an
+	 * attempt is made to separately save either the source or destination node.
 	 *
 	 * Note that this behaviour differs from that of Workspace.move($srcAbsPath,
-	 * $destAbsPath), which operates directly in the persistent workspace and does
-	 * not require a save.
+	 * $destAbsPath), which is a workspace-write method and therefore
+	 * immediately dispatches changes.
 	 *
-	 * The destAbsPath provided must not have an index on its final element. If it
-	 * does then a RepositoryException is thrown. Strictly speaking, the destAbsPath
-	 * parameter is actually an absolute path to the parent node of the new location,
-	 * appended with the new name desired for the moved node. It does not specify a
-	 * position within the child node ordering (if such ordering is supported). If
+	 * The destAbsPath provided must not have an index on its final element. If
 	 * ordering is supported by the node type of the parent node of the new location,
 	 * then the newly moved node is appended to the end of the child node list.
 	 *
-	 * This method cannot be used to move just an individual property by itself.
-	 * It moves an entire node and its subtree (including, of course, any properties
-	 * contained therein).
+	 * This method cannot be used to move an individual property by itself. It
+	 * moves an entire node and its subgraph.
 	 *
-	 * @param string $srcAbsPath the root of the subtree to be moved.
-	 * @param string $destAbsPath the location to which the subtree is to be moved.
+	 * @param string $srcAbsPath the root of the subgraph to be moved.
+	 * @param string $destAbsPath the location to which the subgraph is to be moved.
 	 * @return void
-	 * @throws \F3\PHPCR\ItemExistsException - if a node already exists at destAbsPath and same-name siblings are not allowed.
-	 * @throws \F3\PHPCR\PathNotFoundException - if either srcAbsPath or destAbsPath cannot be found and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws \F3\PHPCR\Version\VersionException - if the parent node of destAbsPath or the parent node of srcAbsPath is versionable and checked-in, or or is non-versionable and its nearest versionable ancestor is checked-in and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws \F3\PHPCR\ConstraintViolationException - if a node-type or other constraint violation is detected immediately and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws \F3\PHPCR\Lock\LockException - if the move operation would violate a lock and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws \F3\PHPCR\RepositoryException - if the last element of destAbsPath has an index or if another error occurs.
+	 * @throws \F3\PHPCR\ItemExistsException if a node already exists at destAbsPath and same-name siblings are not allowed.
+	 * @throws \F3\PHPCR\PathNotFoundException if either srcAbsPath or destAbsPath cannot be found and this implementation performs this validation immediately.
+	 * @throws \F3\PHPCR\Version\VersionException if the parent node of destAbsPath or the parent node of srcAbsPath is versionable and checked-in, or or is non-versionable and its nearest versionable ancestor is checked-in and this implementation performs this validation immediately.
+	 * @throws \F3\PHPCR\ConstraintViolationException if a node-type or other constraint violation is detected immediately and this implementation performs this validation immediately.
+	 * @throws \F3\PHPCR\Lock\LockException if the move operation would violate a lock and this implementation performs this validation immediately.
+	 * @throws \F3\PHPCR\RepositoryException if the last element of destAbsPath has an index or if another error occurs.
 	 */
 	public function move($srcAbsPath, $destAbsPath);
 
 	/**
-	 * Removes the specified item (and its subtree).
-	 * To persist a removal, a save must be performed.
+	 * Removes the specified item and its subgraph.
+	 *
+	 * This is a session-write method and therefore requires a save in order to
+	 * dispatch the change.
 	 *
 	 * If a node with same-name siblings is removed, this decrements by one the
 	 * indices of all the siblings with indices greater than that of the removed
@@ -276,27 +275,29 @@ interface SessionInterface {
 	 *
 	 * @param string $absPath the absolute path of the item to be removed.
 	 * @return void
-	 * @throws \F3\PHPCR\Version\VersionException if the parent node of the item at absPath is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws \F3\PHPCR\Lock\LockException if a lock prevents the removal of the specified item and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws \F3\PHPCR\ConstraintViolationException if removing the specified item would violate a node type or implementation-specific constraint and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws \F3\PHPCR\PathNotFoundException if, given the read privileges of this Session, no item exists at absPath property located in this workspace but outside the specified item's subtree and the current Session does not have read access to that REFERENCE property or if the current Session does not have sufficient privileges to remove the item.
+	 * @throws \F3\PHPCR\Version\VersionException if the parent node of the item at absPath is read-only due to a checked-in node and this implementation performs this validation immediately.
+	 * @throws \F3\PHPCR\Lock\LockException if a lock prevents the removal of the specified item and this implementation performs this validation immediately instead.
+	 * @throws \F3\PHPCR\ConstraintViolationException if removing the specified item would violate a node type or implementation-specific constraint and this implementation performs this validation immediately.
+	 * @throws \F3\PHPCR\PathNotFoundException if no accessible item is found at $absPath property or if the specified item or an item in its subgraph is currently the target of a REFERENCE property located in this workspace but outside the specified item's subgraph and the current Session does not have read access to that REFERENCE property.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 * @see Item::remove()
 	 */
 	public function removeItem($absPath);
 
 	/**
-	 * Validates all pending changes currently recorded in this Session. If validation
-	 * of all pending changes succeeds, then this change information is cleared from
-	 * the Session. If the save occurs outside a transaction, the changes are persisted
-	 * and thus made visible to other Sessions. If the save occurs within a transaction,
-	 * the changes are not persisted until the transaction is committed.
+	 * Validates all pending changes currently recorded in this Session. If
+	 * validation of all pending changes succeeds, then this change information
+	 * is cleared from the Session.
 	 *
-	 * If validation fails, then no pending changes are saved and they remain recorded
-	 * on the Session. There is no best-effort or partial save.
+	 * If the save occurs outside a transaction, the changes are dispatched and
+	 * persisted. Upon being persisted the changes become potentially visible to
+	 * other Sessions bound to the same persitent workspace.
 	 *
-	 * The item in persistent storage to which a transient item is saved is determined
-	 * by matching identifiers and paths.
+	 * If the save occurs within a transaction, the changes are dispatched but
+	 * are not persisted until the transaction is committed.
+	 *
+	 * If validation fails, then no pending changes are dispatched and they
+	 * remain recorded on the Session. There is no best-effort or partial save.
 	 *
 	 * @return void
 	 * @throws \F3\PHPCR\AccessDeniedException if any of the changes to be persisted would violate the access privileges of the this Session. Also thrown if any of the changes to be persisted would cause the removal of a node that is currently referenced by a REFERENCE property that this Session does not have read access to.
@@ -463,69 +464,78 @@ interface SessionInterface {
 	public function hasCapability($methodName, $target, array $arguments);
 
 	/**
-	 * Returns an org.xml.sax.ContentHandler which can be used to push SAX events
-	 * into the repository. If the incoming XML stream (in the form of SAX events)
+	 * Returns an org.xml.sax.ContentHandler which is used to push SAX events
+	 * to the repository. If the incoming XML (in the form of SAX events)
 	 * does not appear to be a JCR system view XML document then it is interpreted
 	 * as a JCR document view XML document.
-	 * The incoming XML is deserialized into a subtree of items immediately below
+	 * The incoming XML is deserialized into a subgraph of items immediately below
 	 * the node at parentAbsPath.
 	 *
 	 * This method simply returns the ContentHandler without altering the state of
-	 * the session; the actual deserialization to the session transient space is done through the methods of the ContentHandler. Invalid XML data will cause the ContentHandler to throw a SAXException.
+	 * the session; the actual deserialization to the session transient space is
+	 * done through the methods of the ContentHandler. Invalid XML data will
+	 * cause the ContentHandler to throw a SAXException.
 	 *
 	 * As SAX events are fed into the ContentHandler, the tree of new items is built
-	 * in the transient storage of the session. In order to persist the new content, save must be called. The advantage of this through-the-session method is that (depending on which constraint checks the implementation leaves until save) structures that violate node type constraints can be imported, fixed and then saved. The disadvantage is that a large import will result in a large cache of pending nodes in the session. See Workspace.getImportContentHandler(java.lang.String, int) for a version of this method that does not go through the session.
+	 * in the transient storage of the session. In order to dispatch the new
+	 * content, save must be called. See Workspace.getImportContentHandler() for
+	 * a workspace-write version of this method.
 	 *
-	 * The flag uuidBehavior governs how the identifiers of incoming (deserialized)
-	 * nodes are handled. There are four options:
+	 * The flag uuidBehavior governs how the identifiers of incoming nodes are
+	 * handled. There are four options:
 	 *
 	 * ImportUUIDBehavior.IMPORT_UUID_CREATE_NEW: Incoming identifiers nodes are added
 	 * in the same way that new node is added with Node.addNode. That is, they are either
 	 * assigned newly created identifiers upon addition or upon save (depending on the
 	 * implementation). In either case, identifier collisions will not occur.
+	 *
 	 * ImportUUIDBehavior.IMPORT_UUID_COLLISION_REMOVE_EXISTING: If an incoming node has
 	 * the same identifier as a node already existing in the workspace then the already
-	 * existing node (and its subtree) is removed from wherever it may be in the workspace
+	 * existing node (and its subgraph) is removed from wherever it may be in the workspace
 	 * before the incoming node is added. Note that this can result in nodes "disappearing"
 	 * from locations in the workspace that are remote from the location to which the
-	 * incoming subtree is being written. Both the removal and the new addition will be
+	 * incoming subgraph is being written. Both the removal and the new addition will be
 	 * persisted on save.
+	 *
 	 * ImportUUIDBehavior.IMPORT_UUID_COLLISION_REPLACE_EXISTING: If an incoming node has
 	 * the same identifier as a node already existing in the workspace, then the
 	 * already-existing node is replaced by the incoming node in the same position as the
-	 * existing node. Note that this may result in the incoming subtree being disaggregated
+	 * existing node. Note that this may result in the incoming subgraph being disaggregated
 	 * and "spread around" to different locations in the workspace. In the most extreme
 	 * case this behavior may result in no node at all being added as child of parentAbsPath.
 	 * This will occur if the topmost element of the incoming XML has the same identifier as
 	 * an existing node elsewhere in the workspace. The change will be persisted on save.
+	 *
 	 * ImportUUIDBehavior.IMPORT_UUID_COLLISION_THROW: If an incoming node has the same
 	 * identifier as a node already existing in the workspace then a SAXException is thrown
 	 * by the ContentHandler during deserialization.
+	 *
 	 * Unlike Workspace.getImportContentHandler, this method does not necessarily enforce
 	 * all node type constraints during deserialization. Those that would be immediately
-	 * enforced in a normal write method (Node.addNode, Node.setProperty etc.) of this
+	 * enforced in a session-write method (Node.addNode, Node.setProperty etc.) of this
 	 * implementation cause the returned ContentHandler to throw an immediate SAXException
 	 * during deserialization. All other constraints are checked on save, just as they are
 	 * in normal write operations. However, which node type constraints are enforced depends
 	 * upon whether node type information in the imported data is respected, and this is an
 	 * implementation-specific issue.
+	 *
 	 * A SAXException will also be thrown by the returned ContentHandler during deserialization
 	 * if uuidBehavior is set to IMPORT_UUID_COLLISION_REMOVE_EXISTING and an incoming node has
 	 * the same identifier as the node at parentAbsPath or one of its ancestors.
 	 *
-	 * @param string $parentAbsPath the absolute path of a node under which (as child) the imported subtree will be built.
+	 * @param string $parentAbsPath the absolute path of a node under which (as child) the imported subgraph will be built.
 	 * @param integer $uuidBehavior a four-value flag that governs how incoming identifiers are handled.
 	 * @return org.xml.sax.ContentHandler whose methods may be called to feed SAX events into the deserializer.
-	 * @throws \F3\PHPCR\PathNotFoundException - if no node exists at parentAbsPath and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws \F3\PHPCR\ConstraintViolationException - if the new subtree cannot be added to the node at parentAbsPath due to node-type or other implementation-specific constraints, and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws \F3\PHPCR\Version\VersionException - if the node at parentAbsPath is versionable and checked-in, or is non-versionable but its nearest versionable ancestor is checked-in and this implementation performs this validation immediately instead of waiting until save..
-	 * @throws \F3\PHPCR\Lock\LockException - if a lock prevents the addition of the subtree and this implementation performs this validation immediately instead of waiting until save..
-	 * @throws \F3\PHPCR\RepositoryException - if another error occurs.
+	 * @throws \F3\PHPCR\PathNotFoundException if no node exists at parentAbsPath and this implementation performs this validation immediately.
+	 * @throws \F3\PHPCR\ConstraintViolationException if the new subgraph cannot be added to the node at parentAbsPath due to node-type or other implementation-specific constraints, and this implementation performs this validation immediately.
+	 * @throws \F3\PHPCR\Version\VersionException if the node at $parentAbsPath is read-only due to a checked-in node and this implementation performs this validation immediately.
+	 * @throws \F3\PHPCR\Lock\LockException if a lock prevents the addition of the subgraph and this implementation performs this validation immediately.
+	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 */
 	public function getImportContentHandler($parentAbsPath, $uuidBehavior);
 
 	/**
-	 * Deserializes an XML document and adds the resulting item subtree as a
+	 * Deserializes an XML document and adds the resulting item subgraph as a
 	 * child of the node at parentAbsPath.
 	 * If the incoming XML stream does not appear to be a JCR system view XML
 	 * document then it is interpreted as a document view XML document.
@@ -542,8 +552,8 @@ interface SessionInterface {
 	 * Workspace.importXML(java.lang.String, java.io.InputStream, int) for a version
 	 * of this method that does not go through the Session.
 	 *
-	 * The flag uuidBehavior governs how the identifiers of incoming (deserialized)
-	 * nodes are handled. There are four options:
+	 * The flag uuidBehavior governs how the identifiers of incoming nodes are
+	 * handled. There are four options:
 	 *
 	 * ImportUUIDBehavior.IMPORT_UUID_CREATE_NEW: Incoming nodes are added in the same
 	 * way that new node is added with Node.addNode. That is, they are either assigned
@@ -552,20 +562,20 @@ interface SessionInterface {
 	 * identifier collisions will not occur.
 	 * ImportUUIDBehavior.IMPORT_UUID_COLLISION_REMOVE_EXISTING: If an incoming node has
 	 * the same identifier as a node already existing in the workspace then the already
-	 * existing node (and its subtree) is removed from wherever it may be in the workspace
+	 * existing node (and its subgraph) is removed from wherever it may be in the workspace
 	 * before the incoming node is added. Note that this can result in nodes "disappearing"
 	 * from locations in the workspace that are remote from the location to which the
-	 * incoming subtree is being written. Both the removal and the new addition will be
-	 * persisted on save.
+	 * incoming subgraph is being written. Both the removal and the new addition will be
+	 * dispatched on save.
 	 * ImportUUIDBehavior.IMPORT_UUID_COLLISION_REPLACE_EXISTING: If an incoming node
 	 * has the same identifier as a node already existing in the workspace, then the
 	 * already-existing node is replaced by the incoming node in the same position as
-	 * the existing node. Note that this may result in the incoming subtree being
+	 * the existing node. Note that this may result in the incoming subgraph being
 	 * disaggregated and "spread around" to different locations in the workspace. In the
 	 * most extreme case this behavior may result in no node at all being added as child
 	 * of parentAbsPath. This will occur if the topmost element of the incoming XML has
 	 * the same identifier as an existing node elsewhere in the workspace. The change
-	 * will only be persisted on save.
+	 * will be dispatched on save.
 	 * ImportUUIDBehavior.IMPORT_UUID_COLLISION_THROW: If an incoming node has the same
 	 * identifier as a node already existing in the workspace then an
 	 * ItemExistsException is thrown.
@@ -576,26 +586,25 @@ interface SessionInterface {
 	 * ConstraintViolationException during deserialization. All other constraints are
 	 * checked on save, just as they are in normal write operations. However, which node
 	 * type constraints are enforced depends upon whether node type information in the
-	 * imported data is respected, and this is an implementation-specific issue (see
-	 * 5.4.3 Respecting Property Semantics in the specification).
+	 * imported data is respected, and this is an implementation-specific issue.
 	 *
-	 * @param string $parentAbsPath the absolute path of the node below which the deserialized subtree is added.
+	 * @param string $parentAbsPath the absolute path of the node below which the deserialized subgraph is added.
 	 * @param resource $in The Inputstream from which the XML to be deserialized is read.
 	 * @param integer $uuidBehavior a four-value flag that governs how incoming identifiers are handled.
 	 * @return void
 	 * @throws \RuntimeException if an error during an I/O operation occurs.
-	 * @throws \F3\PHPCR\PathNotFoundException if no node exists at parentAbsPath and this implementation performs this validation immediately instead of waiting until save..
-	 * @throws \F3\PHPCR\ItemExistsException if deserialization would overwrite an existing item and this implementation performs this validation immediately instead of waiting until save..
-	 * @throws \F3\PHPCR\ConstraintViolationException if a node type or other implementation-specific constraint is violated that would be checked on a normal write method or if uuidBehavior is set to IMPORT_UUID_COLLISION_REMOVE_EXISTING and an incoming node has the same UUID as the node at parentAbsPath or one of its ancestors.
-	 * @throws \F3\PHPCR\Version\VersionException if the node at parentAbsPath is versionable and checked-in, or its nearest versionable ancestor is checked-in and this implementation performs this validation immediately instead of waiting until save..
+	 * @throws \F3\PHPCR\PathNotFoundException if no node exists at parentAbsPath and this implementation performs this validation immediately.
+	 * @throws \F3\PHPCR\ItemExistsException if deserialization would overwrite an existing item and this implementation performs this validation immediately.
+	 * @throws \F3\PHPCR\ConstraintViolationException if a node type or other implementation-specific constraint is violated that would be checked on a session write method or if uuidBehavior is set to IMPORT_UUID_COLLISION_REMOVE_EXISTING and an incoming node has the same UUID as the node at parentAbsPath or one of its ancestors.
+	 * @throws \F3\PHPCR\Version\VersionException if the node at $parentAbsPath is read-only due to a checked-in node and this implementation performs this validation immediately.
 	 * @throws \F3\PHPCR\InvalidSerializedDataException if incoming stream is not a valid XML document.
-	 * @throws \F3\PHPCR\Lock\LockException if a lock prevents the addition of the subtree and this implementation performs this validation immediately instead of waiting until save..
-	 * @throws \F3\PHPCR\RepositoryException is another error occurs.
+	 * @throws \F3\PHPCR\Lock\LockException if a lock prevents the addition of the subgraph and this implementation performs this validation immediately.
+	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 */
 	public function importXML($parentAbsPath, $in, $uuidBehavior);
 
 	/**
-	 * Serializes the node (and if noRecurse is false, the whole subtree) at $absPath
+	 * Serializes the node (and if noRecurse is false, the whole subgraph) at $absPath
 	 * as an XML stream and outputs it to the supplied XMLWriter.
 	 *
 	 * The resulting XML is in the system view form. Note that $absPath must be the path
@@ -609,7 +618,7 @@ interface SessionInterface {
 	 * of each BINARY property is recorded using Base64 encoding.
 	 *
 	 * If noRecurse is true then only the node at absPath and its properties, but not
-	 * its child nodes, are serialized. If noRecurse is false then the entire subtree
+	 * its child nodes, are serialized. If noRecurse is false then the entire subgraph
 	 * rooted at absPath is serialized.
 	 *
 	 * If the user lacks read access to some subsection of the specified tree, that
@@ -624,10 +633,10 @@ interface SessionInterface {
 	 *
 	 * The output XML will be encoded in UTF-8.
 	 *
-	 * @param string $absPath The path of the root of the subtree to be serialized. This must be the path to a node, not a property
-	 * @param \XMLWriter $out The XMLWriter to which the XML serialization of the subtree will be output.
+	 * @param string $absPath The path of the root of the subgraph to be serialized. This must be the path to a node, not a property
+	 * @param \XMLWriter $out The XMLWriter to which the XML serialization of the subgraph will be output.
 	 * @param boolean $skipBinary A boolean governing whether binary properties are to be serialized.
-	 * @param boolean $noRecurse A boolean governing whether the subtree at absPath is to be recursed.
+	 * @param boolean $noRecurse A boolean governing whether the subgraph at absPath is to be recursed.
 	 * @return void
 	 * @throws \F3\PHPCR\PathNotFoundException if no node exists at absPath.
 	 * @throws \RuntimeException if an error during an I/O operation occurs.
@@ -636,7 +645,7 @@ interface SessionInterface {
 	public function exportSystemView($absPath, \XMLWriter $out, $skipBinary, $noRecurse);
 
 	/**
-	 * Serializes the node (and if noRecurse is false, the whole subtree) at $absPath as an XML
+	 * Serializes the node (and if noRecurse is false, the whole subgraph) at $absPath as an XML
 	 * stream and outputs it to the supplied XMLWriter. The resulting XML is in the document
 	 * view form. Note that $absPath must be the path of a node, not a property.
 	 *
@@ -647,7 +656,7 @@ interface SessionInterface {
 	 * Base64 encoding.
 	 *
 	 * If noRecurse is true then only the node at absPath and its properties, but not its
-	 * child nodes, are serialized. If noRecurse is false then the entire subtree rooted at
+	 * child nodes, are serialized. If noRecurse is false then the entire subgraph rooted at
 	 * absPath is serialized.
 	 *
 	 * If the user lacks read access to some subsection of the specified tree, that section
@@ -661,10 +670,10 @@ interface SessionInterface {
 	 *
 	 * The output XML will be encoded in UTF-8.
 	 *
-	 * @param string $absPath The path of the root of the subtree to be serialized. This must be the path to a node, not a property
-	 * @param \XMLWriter $out The XMLWriter to which the XML serialization of the subtree will be output.
+	 * @param string $absPath The path of the root of the subgraph to be serialized. This must be the path to a node, not a property
+	 * @param \XMLWriter $out The XMLWriter to which the XML serialization of the subgraph will be output.
 	 * @param boolean $skipBinary A boolean governing whether binary properties are to be serialized.
-	 * @param boolean $noRecurse A boolean governing whether the subtree at absPath is to be recursed.
+	 * @param boolean $noRecurse A boolean governing whether the subgraph at absPath is to be recursed.
 	 * @return void
 	 * @throws \F3\PHPCR\PathNotFoundException if no node exists at absPath.
 	 * @throws \RuntimeException if an error during an I/O operation occurs.
@@ -683,7 +692,7 @@ interface SessionInterface {
 	 * @param string $prefix a string
 	 * @param string $uri a string
 	 * @return void
-	 * @throws \F3\PHPCR\NamespaceException if the local mapping cannot be done.
+	 * @throws \F3\PHPCR\NamespaceException if an attempt is made to map a namespace URI to a prefix beginning with the characters "xml" (in any combination of case) or if an attempt is made to map either the empty prefix or the empty namespace (i.e., if either $prefix or $uri are the empty string).
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 */
 	public function setNamespacePrefix($prefix, $uri);

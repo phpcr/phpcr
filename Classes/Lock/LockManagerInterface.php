@@ -58,7 +58,7 @@ interface LockManagerInterface {
 	 * @param string $absPath - absolute path of node for which to obtain the lock
 	 * @return \F3\PHPCR\Lock\LockInterface The applicable Lock object.
 	 * @throws \F3\PHPCR\Lock\LockException if no lock applies to this node.
-	 * @throws \F3\PHPCR\AccessDeniedException if the current session does not have permission to get the lock.
+	 * @throws \F3\PHPCR\AccessDeniedException if the current session does not have sufficient access to get the lock.
 	 * @throws \F3\PHPCR\PathNotFoundException if no node is found at $absPath
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 */
@@ -133,7 +133,7 @@ interface LockManagerInterface {
 	 * @param string $ownerInfo a string containing owner information supplied by the client; servers are free to ignore this value.
 	 * @return \F3\PHPCR\Lock\LockInterface A Lock object containing a lock token.
 	 * @throws \F3\PHPCR\Lock\LockException if this node is not mix:lockable or this node is already locked or isDeep is true and a descendant node of this node already holds a lock.
-	 * @throws \F3\PHPCR\AccessDeniedException if this session does not have permission to lock this node.
+	 * @throws \F3\PHPCR\AccessDeniedException if this session does not have sufficient access to lock this node.
 	 * @throws \F3\PHPCR\InvalidItemStateException if this node has pending unsaved changes.
 	 * @throws \F3\PHPCR\PathNotFoundException if no node is found at $absPath
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
@@ -168,7 +168,8 @@ interface LockManagerInterface {
 	 * lock token is removed from the set of lock tokens held by the current Session.
 	 *
 	 * If the node does not currently hold a lock or holds a lock for which this
-	 * Session is not the owner, then a \F3\PHPCR\Lock\LockException is thrown.
+	 * Session is not the owner and is not a "lock-superuser", then a
+	 * \F3\PHPCR\Lock\LockException is thrown.
 	 * Note however that the system may give permission to a non-owning session
 	 * to unlock a lock. Typically such "lock-superuser" capability is intended
 	 * to facilitate administrational clean-up of orphaned open-scoped locks.

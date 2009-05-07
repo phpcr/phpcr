@@ -55,7 +55,7 @@ interface JoinInterface extends \F3\PHPCR\Query\QOM\SourceInterface {
 	/**
 	 * Gets the join type.
 	 *
-	 * @return integer one of QueryObjectModelConstants.JOIN_TYPE_*
+	 * @return string one of QueryObjectModelConstants.JCR_JOIN_TYPE_*
 	 */
 	public function getJoinType();
 

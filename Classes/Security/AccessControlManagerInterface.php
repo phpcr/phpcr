@@ -77,11 +77,11 @@ interface AccessControlManagerInterface {
 	 * control status caused by these mechanisms only take effect on Session.save()
 	 * and are only then reflected in the results of the privilege test methods.
 	 *
-	 * @param string $absPath - an absolute path.
-	 * @para array $privileges - an array of Privileges.
+	 * @param string $absPath an absolute path.
+	 * @para array $privileges an array of Privileges.
 	 * @return boolean true if the session has the specified privileges; false otherwise.
-	 * @throws \F3\PHPCR\PathNotFoundException - if no node at absPath exists or the session does not have privilege to retrieve the node.
-	 * @throws \F3\PHPCR\RepositoryException - if another error occurs.
+	 * @throws \F3\PHPCR\PathNotFoundException if no node at $absPath exists or the session does not have sufficent access to retrieve a node at that location.
+	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 */
 	public function hasPrivileges($absPath, array $privileges);
 
@@ -99,8 +99,8 @@ interface AccessControlManagerInterface {
 	 *
 	 * @param string $absPath - an absolute path.
 	 * @return array an array of Privileges.
-	 * @throws \F3\PHPCR\PathNotFoundException - if no node at absPath exists or the session does not have privilege to retrieve the node.
-	 * @throws \F3\PHPCR\RepositoryException - if another error occurs.
+	 * @throws \F3\PHPCR\PathNotFoundException if no node at absPath exists or the session does not have sufficent access to retrieve a node at that location.
+	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 */
 	public function getPrivileges($absPath);
 
@@ -113,9 +113,9 @@ interface AccessControlManagerInterface {
 	 *
 	 * @param string $absPath - an absolute path.
 	 * @return array an array of AccessControlPolicy objects or an empty array if no policy has been set.
-	 * @throws \F3\PHPCR\PathNotFoundException - if no node at absPath exists or the session does not have privilege to retrieve the node.
-	 * @throws \F3\PHPCR\AccessDeniedException - if the session lacks READ_ACCESS_CONTROL privilege for the absPath node.
-	 * @throws \F3\PHPCR\RepositoryException - if another error occurs.
+	 * @throws \F3\PHPCR\PathNotFoundException if no node at absPath exists or the session does not have sufficent access to retrieve a node at that location.
+	 * @throws \F3\PHPCR\AccessDeniedException if the session lacks READ_ACCESS_CONTROL privilege for the absPath node.
+	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 */
 	public function getPolicies($absPath);
 
@@ -126,9 +126,9 @@ interface AccessControlManagerInterface {
 	 *
 	 * @param string $absPath - an absolute path.
 	 * @return array an array of AccessControlPolicy objects.
-	 * @throws \F3\PHPCR\PathNotFoundException - if no node at absPath exists or the session does not have privilege to retrieve the node.
+	 * @throws \F3\PHPCR\PathNotFoundException if no node at absPath exists or the session does not have sufficent access to retrieve a node at that location.
 	 * @throws \F3\PHPCR\AccessDeniedException - if the session lacks READ_ACCESS_CONTROL privilege for the absPath node.
-	 * @throws \F3\PHPCR\RepositoryException - if another error occurs.
+	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 */
 	public function getEffectivePolicies($absPath);
 
@@ -138,30 +138,38 @@ interface AccessControlManagerInterface {
 	 *
 	 * @param string $absPath - an absolute path.
 	 * @return \F3\PHPCR\Security\AccessControlPolicyIteratorInterface an AccessControlPolicyIterator over the applicable access control policies or an empty iterator if no policies are applicable.
-	 * @throws \F3\PHPCR\PathNotFoundException - if no node at absPath exists or the session does not have privilege to retrieve the node.
-	 * @throws \F3\PHPCR\AccessDeniedException - if the session lacks READ_ACCESS_CONTROL privilege for the absPath node.
-	 * @throws \F3\PHPCR\RepositoryException - if another error occurs.
+	 * @throws \F3\PHPCR\PathNotFoundException if no node at absPath exists or the session does not have sufficent access to retrieve a node at that location.
+	 * @throws \F3\PHPCR\AccessDeniedException if the session lacks READ_ACCESS_CONTROL privilege for the absPath node.
+	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 */
 	public function getApplicablePolicies($absPath);
 
 	/**
 	 * Binds the policy to the node at absPath.
 	 *
-	 * Only policies obtained through getApplicablePolicies($absPath) can be set.
-	 * The access control policy does not take effect until a save is performed.
+	 * The behavior of the call acm.setPolicy(absPath, policy) differs depending
+	 * on how the policy object was originally acquired.
 	 *
-	 * Any implementation-specific (non-JCR) access control settings may be
-	 * changed in response to a successful call to setPolicy.
+	 * If policy was acquired through acm.getApplicablePolicies(absPath) then
+	 * that policy object is added to the node at absPath.
+	 *
+	 * On the other hand, if <code>policy</code> was acquired through
+	 * acm.getPolicies(absPath) then that policy object (usually after being
+	 * altered) replaces its former version on the node at $absPath.
+	 *
+	 * This is session-write method and therefore the access control policy
+	 * is only dispatched on <code>save</code> and will only take effect upon
+	 * persist.
 	 *
 	 * @param string $absPath - an absolute path.
 	 * @param \F3\PHPCR\Security\AccessControlPolicyInterface $policy - the AccessControlPolicy to be applied.
 	 * @return void
-	 * @throws \F3\PHPCR\PathNotFoundException - if no node at absPath exists or the session does not have privilege to retrieve the node.
-	 * @throws \F3\PHPCR\Security\AccessControlException - if the policy is not applicable.
-	 * @throws \F3\PHPCR\AccessDeniedException - if the session lacks MODIFY_ACCESS_CONTROL privilege for the absPath node.
-	 * @throws \F3\PHPCR\Lock\LockException - if a lock applies at the node at absPath and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws \F3\PHPCR\Version\VersionException - if the node at absPath is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws \F3\PHPCR\RepositoryException - if another error occurs.
+	 * @throws \F3\PHPCR\PathNotFoundException if no node at absPath exists or the session does not have sufficent access to retrieve a node at that location.
+	 * @throws \F3\PHPCR\Security\AccessControlException if the policy is not applicable.
+	 * @throws \F3\PHPCR\AccessDeniedException if the session lacks MODIFY_ACCESS_CONTROL privilege for the absPath node.
+	 * @throws \F3\PHPCR\Lock\LockException if a lock applies at the node at absPath and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws \F3\PHPCR\Version\VersionException if the node at absPath is read-only due to a checked-in node and this implementation performs this validation immediately.
+	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 */
 	public function setPolicy($absPath, \F3\PHPCR\Security\AccessControlPolicyInterface $policy);
 
@@ -177,12 +185,12 @@ interface AccessControlManagerInterface {
 	 * @param string $absPath - an absolute path.
 	 * @param \F3\PHPCR\Security\AccessControlPolicyInterface $policy - the policy to be removed.
 	 * @return void
-	 * @throws PathNotFoundException - if no node at absPath exists or the session does not have privilege to retrieve the node.
-	 * @throws \F3\PHPCR\Security\AccessControlException - if no policy exists.
-	 * @throws \F3\PHPCR\AccessDeniedException - if the session lacks MODIFY_ACCESS_CONTROL privilege for the absPath node.
-	 * @throws \F3\PHPCR\Lock\LockException - if a lock applies at the node at absPath and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws \F3\PHPCR\Version\VersionException - if the node at absPath is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws \F3\PHPCR\RepositoryException - if another error occurs.
+	 * @throws \F3\HPPCR\PathNotFoundException if no node at absPath exists or the session does not have sufficent access to retrieve a node at that location.
+	 * @throws \F3\PHPCR\Security\AccessControlException if no policy exists.
+	 * @throws \F3\PHPCR\AccessDeniedException if the session lacks MODIFY_ACCESS_CONTROL privilege for the absPath node.
+	 * @throws \F3\PHPCR\Lock\LockException if a lock applies at the node at absPath and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws \F3\PHPCR\Version\VersionException if the node at absPath is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 */
 	public function removePolicy($absPath, \F3\PHPCR\Security\AccessControlPolicyInterface $policy);
 

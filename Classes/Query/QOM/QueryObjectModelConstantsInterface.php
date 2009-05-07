@@ -39,28 +39,64 @@ namespace F3\PHPCR\Query\QOM;
 interface QueryObjectModelConstantsInterface {
 
 	/**
-	 * Join types
+	 * An inner join.
 	 */
-	const JOIN_TYPE_INNER = 101;
-	const JOIN_TYPE_LEFT_OUTER = 102;
-	const JOIN_TYPE_RIGHT_OUTER = 103;
+	const JCR_JOIN_TYPE_INNER = '{http://www.jcp.org/jcr/1.0}joinTypeInner';
 
 	/**
-	 * Operators
+	 * A left-outer join.
 	 */
-	const OPERATOR_EQUAL_TO = 201;
-	const OPERATOR_GREATER_THAN = 205;
-	const OPERATOR_GREATER_THAN_OR_EQUAL_TO = 206;
-	const OPERATOR_LESS_THAN = 203;
-	const OPERATOR_LESS_THAN_OR_EQUAL_TO = 204;
-	const OPERATOR_LIKE = 207;
-	const OPERATOR_NOT_EQUAL_TO = 202;
+	const JCR_JOIN_TYPE_LEFT_OUTER = '{http://www.jcp.org/jcr/1.0}joinTypeLeftOuter';
 
 	/**
-	 * Ordering
+	 * A right-outer join.
 	 */
-	const ORDER_ASCENDING = 301;
-	const ORDER_DESCENDING = 302;
+	const JCR_JOIN_TYPE_RIGHT_OUTER = '{http://www.jcp.org/jcr/1.0}joinTypeRightOuter';
+
+	/**
+	 * The '=' comparison operator.
+	 */
+	const JCR_OPERATOR_EQUAL_TO = '{http://www.jcp.org/jcr/1.0}operatorEqualTo';
+
+	/**
+	 * The '!=' comparison operator.
+	 */
+	const JCR_OPERATOR_NOT_EQUAL_TO = '{http://www.jcp.org/jcr/1.0}operatorNotEqualTo';
+
+	/**
+	 * The '<' comparison operator.
+	 */
+	const JCR_OPERATOR_LESS_THAN = '{http://www.jcp.org/jcr/1.0}operatorLessThan';
+
+	/**
+	 * The '<=' comparison operator.
+	 */
+	const JCR_OPERATOR_LESS_THAN_OR_EQUAL_TO = '{http://www.jcp.org/jcr/1.0}operatorLessThanOrEqualTo';
+
+	/**
+	 * The '>' comparison operator.
+	 */
+	const JCR_OPERATOR_GREATER_THAN = '{http://www.jcp.org/jcr/1.0}operatorGreaterThan';
+
+	/**
+	 * The '>=' comparison operator.
+	 */
+	const JCR_OPERATOR_GREATER_THAN_OR_EQUAL_TO = '{http://www.jcp.org/jcr/1.0}operatorGreaterThanOrEqualTo';
+
+	/**
+	 * The 'like' comparison operator.
+	 */
+	const JCR_OPERATOR_LIKE = '{http://www.jcp.org/jcr/1.0}operatorLike';
+
+	/**
+	 * Ascending order.
+	 */
+	const JCR_ORDER_ASCENDING = '{http://www.jcp.org/jcr/1.0}orderAscending';
+
+	/**
+	 * Descending order.
+	 */
+	const JCR_ORDER_DESCENDING = '{http://www.jcp.org/jcr/1.0}orderDescending';
 
 }
 

@@ -63,7 +63,7 @@ interface LockInterface {
 	/**
 	 * Returns the lock holding node. Note that N.getLock().getNode() (where N
 	 * is a locked node) will only return N if N is the lock holder. If N is in
-	 * the subtree of the lock holder, H, then this call will return H.
+	 * the subgraph of the lock holder, H, then this call will return H.
 	 *
 	 * @return \F3\PHPCR\NodeInterface a Node
 	 */
@@ -81,10 +81,13 @@ interface LockInterface {
 	public function getLockToken();
 
 	/**
-	 * Returns the seconds remaining until this locks times out.
-	 * If the lock has already timed out, a negative value is returned.
+	 * Returns the number of seconds remaining until this locks times out. If
+	 * the lock has already timed out, a negative value is returned. If the
+	 * number of seconds remaining is infinite or unknown, PHP_INT_MAX is
+	 * returned.
 	 *
-	 * @return integer
+	 * @return integer the number of seconds remaining until this lock times out.
+
 	 * @throws \F3\PHPCR\RepositoryException if the timeout is infinite or unknown
 	 */
 	public function getSecondsRemaining();

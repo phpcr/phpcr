@@ -37,67 +37,69 @@ namespace F3\PHPCR;
 interface ItemInterface {
 
 	/**
-	 * Returns the absolute path to this item. If the path includes items that
-	 * are same-name sibling nodes properties then those elements in the path
-	 * will include the appropriate "square bracket" index notation (for
-	 * example, /a/b[3]/c).
+	 * Returns the normalized absolute path to this item.
 	 *
-	 * @returns string the path of this Item.
+	 * @returns string the normalized absolute path of this Item.
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
 	 */
 	public function getPath();
 
 	/**
-	 * Returns the name of this Item. The name of an item is the last element
-	 * in its path, minus any square-bracket index that may exist.
-	 * If this Item is the root node of the workspace (i.e., if
-	 * $this->getDepth() == 0), an empty string will be returned.
+	 * Returns the name of this Item in qualified form. If this Item is the root
+	 * node of the workspace, an empty string is returned.
 	 *
-	 * @return string the (or a) name of this Item or an empty string if this Item is the root node.
+	 * @return string the name of this Item> in qualified form or an empty string if this Item is the root node of a workspace.
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
 	 */
 	public function getName();
 
 	/**
-	 * Returns the ancestor of the specified depth.
+	 * Returns the ancestor of this Item at the specified depth. An ancestor of
+	 * depth x is the Item that is x levels down along the path from the root
+	 * node to this Item.
 	 *
-	 * An ancestor of depth x is the Item that is x levels down along the path from
-	 * the root node to this Item.
-	 *
-	 * * depth = 0 returns the root node.
+	 * * depth = 0 returns the root node of a workspace.
 	 * * depth = 1 returns the child of the root node along the path to this Item.
 	 * * depth = 2 returns the grandchild of the root node along the path to this Item.
 	 * * And so on to depth = n, where n is the depth of this Item, which returns this Item itself.
 	 *
-	 * If depth > n is specified then a ItemNotFoundException is thrown.
+	 * If this node has more than one path (i.e., if it is a descendant of a
+	 * shared node) then the path used to define the ancestor is implementaion-
+	 * dependent.
 	 *
 	 * @param integer $depth An integer, 0 <= depth <= n where n is the depth of this Item.
 	 * @return \F3\PHPCR\ItemInterface The ancestor of this Item at the specified depth.
 	 * @throws \F3\PHPCR\ItemNotFoundException if depth &lt; 0 or depth &gt; n where n is the depth of this item.
-	 * @throws \F3\PHPCR\AccessDeniedException if the current session does not have sufficient access rights to retrieve the specified node.
+	 * @throws \F3\PHPCR\AccessDeniedException if the current session does not have sufficient access to retrieve the specified node.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 */
 	public function getAncestor($depth);
 
 	/**
-	 * Returns the depth of this Item in the workspace tree. Returns the depth
-	 * below the root node of this Item (counting this Item itself).
+	 * Returns the parent of this Item.
+	 *
+	 * @return \F3\HPPCR\NodeInterface The parent of this Item.
+	 * @throws \F3\PHPCR\ItemNotFoundException if this Item< is the root node of a workspace.
+	 * @throws \F3\PHPCR\AccessDeniedException if the current session does not have sufficent access to retrieve the parent of this item.
+	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 */
+	public function getParent();
+
+	/**
+	 * Returns the depth of this Item in the workspace item graph.
 	 *
 	 * * The root node returns 0.
 	 * * A property or child node of the root node returns 1.
 	 * * A property or child node of a child node of the root returns 2.
 	 * * And so on to this Item.
 	 *
-	 * @return integer The depth of this Item in the workspace hierarchy.
+	 * @return integer The depth of this Item in the workspace item graph.
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
 	 */
 	public function getDepth();
 
 	/**
-	 * Returns the Session through which this Item was acquired. Every Item
-	 * can ultimately be traced back through a series of method calls to the
-	 * call Session->getRootNode(), Session->getItem() or
-	 * Session.getNodeByIdentifier(). This method returns that Session object.
+	 * Returns the Session through which this Item was acquired.
 	 *
 	 * @return \F3\PHPCR\SessionInterface the Session through which this Item was acquired.
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
@@ -122,8 +124,8 @@ interface ItemInterface {
 	 * Note that if an item returns true on isNew, then by definition is parent
 	 * will return true on isModified.
 	 *
-	 * Note that in level 1 (that is, read-only) implementations, this method
-	 * will always return false.
+	 * Note that in read-only implementations, this method will always return
+	 * false.
 	 *
 	 * @return boolean TRUE if this item is new; FALSE otherwise.
 	 */
@@ -138,8 +140,8 @@ interface ItemInterface {
 	 * modification in question is not in persistent storage (because the
 	 * transaction has not yet been committed).
 	 *
-	 * Note that in level 1 (that is, read-only) implementations, this method
-	 * will always return false.
+	 * Note that in read-only implementations, this method will always return
+	 * false.
 	 *
 	 * @return boolean TRUE if this item is modified; FALSE otherwise.
 	 */
@@ -158,17 +160,17 @@ interface ItemInterface {
 	 *   repository workspace.
 	 * * The objects are either both Node objects or both Property
 	 *   objects.
+	 * * If they are Node objects, they have the same identifier.
 	 * * If they are Property objects they have identical names and
-	 *   isSame is true of their parent nodes.
+	 *   isSame() is TRUE of their parent nodes.
 	 *
-	 * This method does not compare the states of the two items. For example, if two
-	 * Item objects representing the same actual workspace item have been
-	 * retrieved through two different sessions and one has been modified, then this method
-	 * will still return true when comparing these two objects. Note that if two
-	 * Item objects representing the same workspace item
-	 * are retrieved through the same session they will always reflect the
-	 * same state (see section 5.1.3 Reflecting Item State in the JSR 283 specification
-	 * document) so comparing state is not an issue.
+	 * This method does not compare the states of the two items. For example, if
+	 * two Item objects representing the same actual workspace item have been
+	 * retrieved through two different sessions and one has been modified, then
+	 * this method will still return true when comparing these two objects.
+	 * Note that if two Item objects representing the same workspace item are
+	 * retrieved through the same session they will always reflect the same
+	 * state.
 	 *
 	 * @param \F3\PHPCR\ItemInterface $otherItem the Item object to be tested for identity with this Item.
 	 * @return boolean TRUE if this Item object and otherItem represent the same actual repository item; FALSE otherwise.
@@ -177,7 +179,7 @@ interface ItemInterface {
 	public function isSame(\F3\PHPCR\ItemInterface $otherItem);
 
 	/**
-	 * Accepts an ItemVistor. Calls the appropriate ItemVistor visit method of
+	 * Accepts an ItemVisitor. Calls the appropriate ItemVisitor visit method of
 	 * the visitor according to whether this Item is a Node or a Property.
 	 *
 	 * @param \F3\PHPCR\ItemVisitorInterface $visitor The ItemVisitor to be accepted.
@@ -188,7 +190,7 @@ interface ItemInterface {
 	/**
 	 * If keepChanges is false, this method discards all pending changes
 	 * currently recorded in this Session that apply to this Item or any
-	 * of its descendants (that is, the subtree rooted at this Item) and
+	 * of its descendants (that is, the subgraph rooted at this Item) and
 	 * returns all items to reflect the current saved state. Outside a
 	 * transaction this state is simple the current state of persistent
 	 * storage. Within a transaction, this state will reflect persistent
@@ -203,11 +205,12 @@ interface ItemInterface {
 	 * @return void
 	 * @throws \F3\PHPCR\InvalidItemStateException if this Item object represents a workspace item that has been removed (either by this session or another).
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
-	*/
+	 */
 	public function refresh($keepChanges);
 
 	/**
-	 * Removes this item (and its subtree).
+	 * Removes this item (and its subgraph).
+	 *
 	 * To persist a removal, a save must be performed that includes the (former)
 	 * parent of the removed item within its scope.
 	 *
@@ -217,16 +220,11 @@ interface ItemInterface {
 	 * and causes the minimal re-numbering required to maintain the original
 	 * order but leave no gaps in the numbering.
 	 *
-	 * A ReferentialIntegrityException will be thrown on save if this item or
-	 * an item in its subtree is currently the target of a REFERENCE property
-	 * located in this workspace but outside this item's subtree and the
-	 * current Session has read access to that REFERENCE property.
-	 *
 	 * @return void
 	 * @throws \F3\PHPCR\Version\VersionException if the parent node of this item is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in and this implementation performs this validation immediately instead of waiting until save.
 	 * @throws \F3\PHPCR\Lock\LockException if a lock prevents the removal of this item and this implementation performs this validation immediately instead of waiting until save.
 	 * @throws \F3\PHPCR\ConstraintViolationException if removing the specified item would violate a node type or implementation-specific constraint and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws \F3\PHPCR\AccessDeniedException if this item or an item in its subtree is currently the target of a REFERENCE property located in this workspace but outside this item's subtree and the current Session does not have read access to that REFERENCE property or if the current Session does not have sufficent privileges to remove the item.
+	 * @throws \F3\PHPCR\AccessDeniedException if this item or an item in its subgraph is currently the target of a REFERENCE property located in this workspace but outside this item's subgraph and the current Session does not have read access to that REFERENCE property or if the current Session does not have sufficent privileges to remove the item.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 * @see SessionInterface::removeItem(String)
 	 */

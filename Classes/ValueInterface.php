@@ -57,6 +57,14 @@ namespace F3\PHPCR;
  */
 interface ValueInterface {
 
+	/**
+	 * Returns a string representation of this value.
+	 *
+	 * @return string A string representation of the value of this property.
+	 * @throws \F3\PHPCR\ValueFormatException if conversion to a String is not possible.
+	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 */
+	public function getString();
 
 	/**
 	 * Returns a Binary representation of this value. The Binary object in turn provides
@@ -67,15 +75,6 @@ interface ValueInterface {
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 */
 	public function getBinary();
-
-	/**
-	 * Returns a string representation of this value.
-	 *
-	 * @return string A string representation of the value of this property.
-	 * @throws \F3\PHPCR\ValueFormatException if conversion to a String is not possible.
-	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
-	 */
-	public function getString();
 
 	/**
 	 * Returns a long representation of this value.

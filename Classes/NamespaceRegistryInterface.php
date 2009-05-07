@@ -116,9 +116,9 @@ interface NamespaceRegistryInterface {
 	 * @param string $prefix The prefix to be mapped.
 	 * @param string $uri The URI to be mapped.
 	 * @return void
-	 * @throws \F3\PHPCR\NamespaceException if an illegal attempt is made to register a mapping.
-	 * @throws \F3\PHPCR\UnsupportedRepositoryOperationException in a level 1 implementation
-	 * @throws \F3\PHPCR\AccessDeniedException if the session associated with the Workspace object through which this registry was acquired does not have sufficient permissions to register the namespace.
+	 * @throws \F3\PHPCR\NamespaceException If an attempt is made to re-assign a built-in prefix to a new URI or, to register a namespace with a prefix that begins with the characters "xml" (in any combination of case) or an attempt is made to perform a prefix re-assignment that is forbidden for implementation-specific reasons.
+	 * @throws \F3\PHPCR\UnsupportedRepositoryOperationException if this repository does not support namespace registry changes.
+	 * @throws \F3\PHPCR\AccessDeniedException if the current session does not have sufficient access to register the namespace.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 * */
 	public function registerNamespace($prefix, $uri);
@@ -137,9 +137,9 @@ interface NamespaceRegistryInterface {
 	 *
 	 * @param string $prefix The prefix of the mapping to be removed.
 	 * @return void
-	 * @throws \F3\PHPCR\NamespaceException if an illegal attempt is made to remove a mapping.
-	 * @throws \F3\PHPCR\UnsupportedRepositoryOperationException in a level 1 implementation
-	 * @throws \F3\PHPCR\AccessDeniedException if the session associated with the Workspace object through which this registry was acquired does not have sufficient permissions to unregister the namespace.
+	 * @throws \F3\PHPCR\NamespaceException unregister a built-in namespace or a namespace that is not currently registered or a namespace whose unregsitration is forbidden for implementation-specific reasons.
+	 * @throws \F3\PHPCR\UnsupportedRepositoryOperationException if this repository does not support namespace registry changes.
+	 * @throws \F3\PHPCR\AccessDeniedException if the current session does not have sufficient access to unregister the namespace.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 * */
 	public function unregisterNamespace($prefix);
@@ -166,7 +166,7 @@ interface NamespaceRegistryInterface {
 	 * @param $prefix a string
 	 * @return string a string
 	 * @throws \F3\PHPCR\NamespaceException if a mapping with the specified prefix does not exist.
-	 * @throws \F3\PHPCR\RepositoryException is another error occurs
+	 * @throws \F3\PHPCR\RepositoryException if another error occurs
 	 * */
 	public function getURI($prefix);
 
@@ -176,7 +176,7 @@ interface NamespaceRegistryInterface {
 	 * @param string $uri a string
 	 * @return string a string
 	 * @throws \F3\PHPCR\NamespaceException if a mapping with the specified uri does not exist.
-	 * @throws \F3\PHPCR\RepositoryException is another error occurs
+	 * @throws \F3\PHPCR\RepositoryException if another error occurs
 	 * */
 	public function getPrefix($uri);
 

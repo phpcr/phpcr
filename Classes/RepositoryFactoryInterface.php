@@ -59,11 +59,13 @@ interface RepositoryFactoryInterface {
 	 * The implementation must return NULL if it does not understand
 	 * the given parameters. The implementation may also return null if a default
 	 * repository instance is requested (indicated by null parameters) and this
-	 * factory is not able to identify a default repository.
+	 * factory is not able to identify a default repository. An implementation
+	 * should throw an RepositoryException if it is the right factory but has
+	 * trouble connecting to the repository.
 	 *
 	 * @param array|NULL $parameters string key/value pairs as repository arguments or NULL if a client wishes to connect to a default repository.
 	 * @return \F3\PHPCR\RepositoryInterface a repository instance or NULL if this implementation does not understand the passed parameters
-	 * @throws \F3\PHPCR\RepositoryException if getRepository fails or if no suitable (default) repository is found.
+	 * @throws \F3\PHPCR\RepositoryException if no suitable repository is found or another error occurs.
 	 */
 	public function getRepository(array $parameters = NULL);
 

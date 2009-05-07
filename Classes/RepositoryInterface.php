@@ -93,17 +93,17 @@ interface RepositoryInterface {
 	 * IDENTIFIER_STABILITY_SESSION_DURATION - Identifiers are guaranteed stable within a single session.
 	 * IDENTIFIER_STABILITY_INDEFINITE_DURATION - Identifers are guaranteed to be stable forever.
 	 */
-	const IDENTIFIER_STABILITY = "identifier_stability";
+	const IDENTIFIER_STABILITY = "identifier.stability";
 
 	/**
 	 * One of four possible values for the descriptor IDENTIFIER_STABILITY.
 	 * Indicates that identifiers may change between method calls.
 	 */
-	const IDENTIFIER_STABILITY_METHOD_DURATION = "identifier_stability_method_duration";
+	const IDENTIFIER_STABILITY_METHOD_DURATION = "identifier.stability.method.duration";
 
 	/**
 	 * One of four possible values for the descriptor IDENTIFIER_STABILITY.
-	 * Indicates that identifers are guaranteed stable within a single save/refresh cycle.
+	 * Indicates that identifiers are guaranteed stable within a single save/refresh cycle.
 	 */
 	const IDENTIFIER_STABILITY_SAVE_DURATION = "identifier.stability.save.duration";
 
@@ -115,7 +115,7 @@ interface RepositoryInterface {
 
 	/**
 	 * One of four possible values for the descriptor IDENTIFIER_STABILITY.
-	 * Indicates that identifers are guaranteed to be stable forever.
+	 * Indicates that identifiers are guaranteed to be stable forever.
 	 */
 	const IDENTIFIER_STABILITY_INDEFINITE_DURATION = "identifier.stability.indefinite.duration";
 
@@ -395,8 +395,8 @@ interface RepositoryInterface {
 	 * @param \F3\PHPCR\CredentialsInterface $credentials The credentials of the user
 	 * @param string $workspaceName the name of a workspace
 	 * @return \F3\PHPCR\SessionInterface a valid session for the user to access the repository
-	 * @throws \F3\PHPCR\LoginException If the login fails
-	 * @throws \F3\PHPCR\NoSuchWorkspacexception If the specified workspaceName is not recognized
+	 * @throws \F3\PHPCR\LoginException if authentication or authorization (for the specified workspace) fails
+	 * @throws \F3\PHPCR\NoSuchWorkspacexception if the specified workspaceName is not recognized
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs
 	 */
 	public function login($credentials = NULL, $workspaceName = NULL);

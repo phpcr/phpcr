@@ -52,7 +52,7 @@ interface ObservationManagerInterface {
 	 * formerly at) the path returned by Event.getPath(). The following restrictions
 	 * are available:
 	 *  absPath, isDeep: Only events whose associated parent node is at absPath (or
-	 *   within its subtree, if isDeep is true) will be received. It is permissible
+	 *   within its subgraph, if isDeep is true) will be received. It is permissible
 	 *   to register a listener for a path where no node currently exists.
 	 *  uuid: Only events whose associated parent node has one of the identifiers in
 	 *   this list will be received. If his parameter is null then no identifier-
@@ -76,9 +76,9 @@ interface ObservationManagerInterface {
 	 * events are lost during the changeover.
 	 *
 	 * In addition to the filters placed on a listener above, the scope of
-	 * observation support, in terms of which subtrees are observable, may also be
+	 * observation support, in terms of which subgraphs are observable, may also be
 	 * subject to implementation-specific restrictions. For example, in some
-	 * repositories observation of changes in the jcr:system subtree may not be
+	 * repositories observation of changes in the jcr:system subgraph may not be
 	 * supported
 	 *
 	 * @param \F3\PHPCR\Observation\EventListenerInterface $listener - an EventListener object.

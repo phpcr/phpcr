@@ -36,7 +36,7 @@ namespace F3\PHPCR\Query\QOM;
  * specified, the full-text search scope is the property of that name on the
  * selector node in the node-tuple; otherwise the full-text search scope is all
  * properties of the selector node (or, in some implementations, all properties
- * in the node subtree).
+ * in the node subgraph).
  *
  * Which properties (if any) in a repository are full-text indexed is
  * implementation determined.
@@ -87,7 +87,7 @@ interface FullTextSearchInterface extends \F3\PHPCR\Query\QOM\ConstraintInterfac
 	/**
 	 * Gets the name of the property.
 	 *
-	 * @return string the property name if the full-text search scope is a property, otherwise null if the full-text search scope is the node (or node subtree, in some implementations).
+	 * @return string the property name if the full-text search scope is a property, otherwise null if the full-text search scope is the node (or node subgraph, in some implementations).
 	 */
 	public function getPropertyName();
 

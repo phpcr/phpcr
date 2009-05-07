@@ -109,15 +109,15 @@ interface NodeTypeDefinitionInterface {
 	public function hasOrderableChildNodes();
 
 	/**
-	 * Returns TRUE if the node type is queryable, meaning that all properties
-	 * of all nodes of this type are accessible to query and full text search
-	 * and can be used in the order by clause of a query, except where
-	 * explicitly indicated otherwise in a particular PropertyDefinition
+	 * Returns TRUE if the node type is queryable, meaning that the
+	 * available-query-operators, full-text-searchable and query-orderable
+	 * attributes of its property definitions take effect. See
+	 * PropertyDefinition#getAvailableQueryOperators(),
+	 * PropertyDefinition#isFullTextSearchable() and
+	 * PropertyDefinition#isQueryOrderable().
 	 *
-	 * If a node type is declared queryable, then the queryable, full-text searchable
-	 * and query-orderable attributes of its property definitons take effect.
-	 * If a node type is declared non-queryable then these attributes of its property
-	 * definitions are all set automatically to FALSE.
+	 * If a node type is declared non-queryable then these attributes of its
+	 * property definitions have no effect.
 	 *
 	 * @return boolean a boolean
 	 */

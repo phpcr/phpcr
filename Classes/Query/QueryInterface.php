@@ -105,28 +105,22 @@ interface QueryInterface {
 	public function getStoredQueryPath();
 
 	/**
-	 * Creates a node representing this Query in content.
-	 *
-	 * In a level 2 repository it creates a node of type nt:query at absPath and
+	 * Creates a node of type nt:query holding this query at $absPath and
 	 * returns that node.
 	 *
-	 * In order to persist the newly created node, a save must be performed that
-	 * includes the parent of this new node within its scope. In other words, either
-	 * a Session.save or an Item.save on the parent or higher-degree ancestor of
-	 * absPath must be performed.
+	 * This is  a session-write method and therefore requires a
+	 * Session.save() to dispatch the change.
 	 *
-	 * Strictly speaking, the parameter is actually a absolute path to the parent
-	 * node of the node to be added, appended with the name desired for the new node.
-	 * It does not specify a position within the child node ordering (if such ordering
-	 * is supported). If ordering is supported by the node type of the parent node
-	 * then the new node is appended to the end of the child node list.
+	 * The $absPath provided must not have an index on its final element. If
+	 * ordering is supported by the node type of the parent node then the new
+	 * node is appended to the end of the child node list.
 	 *
 	 * @param string $absPath absolute path the query should be stored at
 	 * @return \F3\PHPCR\NodeInterface the newly created node.
-	 * @throws \F3\PHPCR\ItemExistsException if an item at the specified path already exists, same-name siblings are not allowed and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws \F3\PHPCR\PathNotFoundException if the specified path implies intermediary Nodes that do not exist or the last element of relPath has an index, and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws \F3\PHPCR\NodeType\ConstraintViolationException if a node type or implementation-specific constraint is violated or if an attempt is made to add a node as the child of a property and this implementation performs this validation immediately instead of waiting until save.
-	 * @throws \F3\PHPCR\Version\VersionException if the node to which the new child is being added is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in and this implementation performs this validation immediately instead of waiting until save.
+	 * @throws \F3\PHPCR\ItemExistsException if an item at the specified path already exists, same-name siblings are not allowed and this implementation performs this validation immediately.
+	 * @throws \F3\PHPCR\PathNotFoundException if the specified path implies intermediary Nodes that do not exist or the last element of relPath has an index, and this implementation performs this validation immediately.
+	 * @throws \F3\PHPCR\NodeType\ConstraintViolationException if a node type or implementation-specific constraint is violated or if an attempt is made to add a node as the child of a property and this implementation performs this validation immediately.
+	 * @throws \F3\PHPCR\Version\VersionException if the node to which the new child is being added is read-only due to a checked-in node and this implementation performs this validation immediately.
 	 * @throws \F3\PHPCR\Lock\LockException if a lock prevents the addition of the node and this implementation performs this validation immediately instead of waiting until save.
 	 * @throws \F3\PHPCR\UnsupportedRepositoryOperationException in a level 1 implementation.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs or if the absPath provided has an index on its final element.

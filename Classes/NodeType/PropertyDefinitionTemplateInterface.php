@@ -121,10 +121,10 @@ interface PropertyDefinitionTemplateInterface extends \F3\PHPCR\NodeType\Propert
 	/**
 	 * Sets the queryable status of the property.
 	 *
-	 * @param boolean $queryable a boolean.
+	 * @param array operators an array of String constants. See PropertyDefinition#getAvailableQueryOperators().
 	 * @return void
 	 */
-	public function setQueryable($queryable);
+	public function setAvailableQueryOperators(array $operators);
 
 	/**
 	 * Sets the full-text-searchable status of the property.

@@ -52,14 +52,14 @@ interface VersionManagerInterface {
 	 * generated version name and returns that version (which will be the new
 	 * base version of this node). Sets the jcr:checkedOut property to FALSE
 	 * thus putting the node into the checked-in state. This means that the node
-	 * and its connected non-versionable subtree become read-only. A node's
-	 * connected non-versionable subtree is the set of non-versionable descendant
+	 * and its connected non-versionable subgraph become read-only. A node's
+	 * connected non-versionable subgraph is the set of non-versionable descendant
 	 * nodes reachable from that node through child links without encountering
 	 * any versionable nodes. In other words, the read-only status flows down
 	 * from the checked-in node along every child link until either a versionable
 	 * node is encountered or an item with no children is encountered. In a
 	 * system that supports only simple versioning the connected non-versionable
-	 * subtree will be equivalent to the whole subtree, since simple-versionable
+	 * subgraph will be equivalent to the whole subgraph, since simple-versionable
 	 * nodes cannot have simple-versionable descendants.
 	 *
 	 * Read-only status means that an item cannot be altered by the client using
@@ -73,7 +73,7 @@ interface VersionManagerInterface {
 	 * the current base version of this node.
 	 *
 	 * If checkin succeeds, the change to the jcr:isCheckedOut property is
-	 * automatically persisted (there is no need to do an additional save).
+	 * dispatched immediately.
 	 *
 	 * @param string $absPath an absolute path.
 	 * @return \F3\PHPCR\Version\VersionInterface the created version.
@@ -92,9 +92,9 @@ interface VersionManagerInterface {
 	 * version (the same value as held in jcr:baseVersion).
 	 *
 	 * This method puts the node into the checked-out state, making it and its
-	 * connected non-versionable subtree no longer read-only (see checkin() for
-	 * an explanation of the term "connected non-versionable subtree". Under
-	 * simple versioning this will simply be the whole subtree).
+	 * connected non-versionable subgraph no longer read-only (see checkin() for
+	 * an explanation of the term "connected non-versionable subgraph". Under
+	 * simple versioning this will simply be the whole subgraph).
 	 *
 	 * If successful, these changes are persisted immediately, there is no need
 	 * to call save.
@@ -177,12 +177,12 @@ interface VersionManagerInterface {
 	 * This method will work regardless of whether the node at absPath is
 	 * checked-in or not.
 	 *
-	 * An identifier collision occurs when a node exists outside the subtree
+	 * An identifier collision occurs when a node exists outside the subgraph
 	 * rooted at this node with the same identifier as a node that would be
-	 * introduced by the restoreByLabel operation into the subtree at this node.
+	 * introduced by the restoreByLabel operation into the subgraph at this node.
 	 * The result in such a case is governed by the removeExisting flag. If
 	 * removeExisting is true, then the incoming node takes precedence, and the
-	 * existing node (and its subtree) is removed (if possible; otherwise a
+	 * existing node (and its subgraph) is removed (if possible; otherwise a
 	 * RepositoryException is thrown). If removeExisting is false, then a
 	 * ItemExistsException is thrown and no changes are made. Note that this
 	 * applies not only to cases where the restored node itself conflicts with
@@ -239,8 +239,8 @@ interface VersionManagerInterface {
 	 * their respective base versions and either updates the node in question or
 	 * not, depending on the outcome of the test.
 	 *
-	 * If isShallow is false, it recursively tests each versionable node in the
-	 * subtree as mentioned above.
+	 * If isShallow is false, this method recursively tests each versionable
+	 * node in the subgraph as mentioned above.
 	 *
 	 * If isShallow is true and this node is not versionable, then this method
 	 * returns and no changes are made.
@@ -249,15 +249,19 @@ interface VersionManagerInterface {
 	 * is encountered whose corresponding node's base version is on a divergent
 	 * branch from the base version of the node at absPath.
 	 *
-	 * If successful, the changes are persisted immediately, there is no need to
-	 * call save.
+	 * This is a worksapce-write method and therefore any changes are dispatched
+	 * immediately.
 	 *
 	 * This method returns a NodeIterator over all versionable nodes in the
-	 * subtree that received a merge result of fail. If bestEffort is false,
+	 * subgraph that received a merge result of fail. If bestEffort is false,
 	 * this iterator will be empty (since if merge returns successfully, instead
 	 * of throwing an exception, it will be because no failures were encountered).
 	 * If bestEffort is true, this iterator will contain all nodes that received
 	 * a fail during the course of this merge operation.
+	 *
+	 *
+	 * See the JCR specifications for more details on the behavior of this
+	 * method.
 	 *
 	 * @param string|\F3\PHPCR\NodeInterface $source an absolute path or an nt:activity node.
 	 * @param string $srcWorkspace the name of the source workspace (optional if $source is a Node).
@@ -280,7 +284,7 @@ interface VersionManagerInterface {
 	 * specified version.
 	 *
 	 * When the merge(string, string, boolean) method is called on a node, every
-	 * versionable node in that subtree is compared with its corresponding node
+	 * versionable node in that subgraph is compared with its corresponding node
 	 * in the indicated other workspace and a "merge test result" is determined
 	 * indicating one of the following:
 	 *
@@ -295,7 +299,7 @@ interface VersionManagerInterface {
 	 *
 	 * (See merge(java.lang.String, java.lang.String, boolean) for more details)
 	 *
-	 * In the last case the merge of the non-versionable subtree (the "content")
+	 * In the last case the merge of the non-versionable subgraph (the "content")
 	 * of this node must be done by the application (for example, by providing a
 	 * merge tool for the user).
 	 *
@@ -327,7 +331,7 @@ interface VersionManagerInterface {
 	 * connection to each version for which doneMerge was called, thus joining
 	 * those branches of the version graph.
 	 *
-	 * If successful, these changes are persisted immediately, there is no need
+	 * If successful, these changes are dispatched immediately, there is no need
 	 * to call save.
 	 *
 	 * @param string $absPath an absolute path.
@@ -347,7 +351,7 @@ interface VersionManagerInterface {
 	 * See doneMerge(string, Version) for a full explanation. Also see
 	 * merge(string, string, boolean) for more details.
 	 *
-	 * If successful, these changes are persisted immediately, there is no need
+	 * If successful, these changes are dispatched immediately, there is no need
 	 * to call save.
 	 *
 	 * @param string $absPat an absolute path
@@ -409,12 +413,12 @@ interface VersionManagerInterface {
 
 	/**
 	 * This method creates a new nt:activity at an implementation-determined
-	 * location in the /jcr:system/jcr:activities subtree.
+	 * location in the /jcr:system/jcr:activities subgraph.
 	 *
 	 * The repository may, but is not required to, use the title as a hint for
 	 * what to name the new activity node. The new activity Node is returned.
 	 *
-	 * The new node is persisted immediately and does not require a save.
+	 * The new node is dispatched immediately and does not require a save.
 	 *
 	 * @param string $title a String
 	 * @return \F3\PHPCR\NodeInterface the new activity Node.
@@ -425,9 +429,9 @@ interface VersionManagerInterface {
 
 	/**
 	 * This method removes an nt:activity at an implementation-determined
-	 * location in the /jcr:system/jcr:activities subtree.
+	 * location in the /jcr:system/jcr:activities subgraph.
 	 *
-	 * The change is persisted immediately and does not require a save.
+	 * The change is dispatched immediately and does not require a save.
 	 *
 	 * @param string $title a String
 	 * @return \F3\PHPCR\NodeInterface the new activity Node.
