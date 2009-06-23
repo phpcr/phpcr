@@ -45,17 +45,17 @@ interface NodeTypeInterface extends \F3\PHPCR\NodeType\NodeTypeDefinitionInterfa
 	 * Property#JCR_PRIMARY_TYPE
 	 * Property#JCR_MIXIN_TYPES
 	 */
-	const NT_BASE = "{http://www.jcp.org/nt/1.0}base";
+	const NT_BASE = "{http://www.jcp.org/jcr/nt/1.0}base";
 
 	/**
 	 * A constant for the node type name nt:hierarchyNode (in extended form).
 	 */
-	const NT_HIERARCHY_NODE = "{http://www.jcp.org/nt/1.0}hierarchyNode";
+	const NT_HIERARCHY_NODE = "{http://www.jcp.org/jcr/nt/1.0}hierarchyNode";
 
 	/**
 	 * A constant for the node type name nt:folder (in extended form).
 	 */
-	const NT_FOLDER = "{http://www.jcp.org/nt/1.0}folder";
+	const NT_FOLDER = "{http://www.jcp.org/jcr/nt/1.0}folder";
 
 	/**
 	 * A constant for the node type name nt:file (in extended form).
@@ -63,7 +63,7 @@ interface NodeTypeInterface extends \F3\PHPCR\NodeType\NodeTypeDefinitionInterfa
 	 *
 	 * Node#JCR_CONTENT
 	 */
-	const NT_FILE = "{http://www.jcp.org/nt/1.0}file";
+	const NT_FILE = "{http://www.jcp.org/jcr/nt/1.0}file";
 
 	/**
 	 * A constant for the node type name nt:linkedFile (in extended form).
@@ -71,7 +71,7 @@ interface NodeTypeInterface extends \F3\PHPCR\NodeType\NodeTypeDefinitionInterfa
 	 *
 	 * Property#JCR_CONTENT
 	 */
-	const NT_LINKED_FILE = "{http://www.jcp.org/nt/1.0}linkedFile";
+	const NT_LINKED_FILE = "{http://www.jcp.org/jcr/nt/1.0}linkedFile";
 
 	/**
 	 * A constant for the node type name nt:resource (in extended form).
@@ -79,12 +79,12 @@ interface NodeTypeInterface extends \F3\PHPCR\NodeType\NodeTypeDefinitionInterfa
 	 *
 	 * Property#JCR_DATA
 	 */
-	const NT_RESOURCE = "{http://www.jcp.org/nt/1.0}resource";
+	const NT_RESOURCE = "{http://www.jcp.org/jcr/nt/1.0}resource";
 
 	/**
 	 * A constant for the node type name nt:unstructured (in extended form).
 	 */
-	const NT_UNSTRUCTURED = "{http://www.jcp.org/nt/1.0}unstructured";
+	const NT_UNSTRUCTURED = "{http://www.jcp.org/jcr/nt/1.0}unstructured";
 
 	/**
 	 * A constant for the node type name nt:address (in extended form).
@@ -98,7 +98,7 @@ interface NodeTypeInterface extends \F3\PHPCR\NodeType\NodeTypeDefinitionInterfa
 	 * Property#JCR_PATH
 	 * Property#JCR_ID
 	 */
-	const NT_ADDRESS = "{http://www.jcp.org/nt/1.0}address";
+	const NT_ADDRESS = "{http://www.jcp.org/jcr/nt/1.0}address";
 
 	/**
 	 * A constant for the node type name mix:referenceable (in extended form).
@@ -165,7 +165,7 @@ interface NodeTypeInterface extends \F3\PHPCR\NodeType\NodeTypeDefinitionInterfa
 	 * Node#JCR_PROPERTY_DEFINITION
 	 * Node#JCR_CHILD_NODE_DEFINITION
 	 */
-	const NT_NODE_TYPE = "{http://www.jcp.org/nt/1.0}nodeType";
+	const NT_NODE_TYPE = "{http://www.jcp.org/jcr/nt/1.0}nodeType";
 
 	/**
 	 * A constant for the node type name nt:propertyDefinition (in extended form).
@@ -181,7 +181,7 @@ interface NodeTypeInterface extends \F3\PHPCR\NodeType\NodeTypeDefinitionInterfa
 	 * Property#JCR_DEFAULT_VALUES
 	 * Property#JCR_MULTIPLE
 	 */
-	const NT_PROPERTY_DEFINITION = "{http://www.jcp.org/nt/1.0}propertyDefinition";
+	const NT_PROPERTY_DEFINITION = "{http://www.jcp.org/jcr/nt/1.0}propertyDefinition";
 
 	/**
 	 * A constant for the node type name nt:childNodeDefinition (in extended form).
@@ -196,7 +196,7 @@ interface NodeTypeInterface extends \F3\PHPCR\NodeType\NodeTypeDefinitionInterfa
 	 * Property#JCR_DEFAULT_PRIMARY_TYPE
 	 * Property#JCR_SAME_NAME_SIBLINGS
 	 */
-	const NT_CHILD_NODE_DEFINITION = "{http://www.jcp.org/nt/1.0}childNodeDefinition";
+	const NT_CHILD_NODE_DEFINITION = "{http://www.jcp.org/jcr/nt/1.0}childNodeDefinition";
 
 	/**
 	 * A constant for the node type name mix:shareable (in extended form).
@@ -251,7 +251,7 @@ interface NodeTypeInterface extends \F3\PHPCR\NodeType\NodeTypeDefinitionInterfa
 	 * Node#JCR_ROOT_VERSION
 	 * Node#JCR_VERSION_LABELS
 	 */
-	const NT_VERSION_HISTORY = "{http://www.jcp.org/nt/1.0}versionHistory";
+	const NT_VERSION_HISTORY = "{http://www.jcp.org/jcr/nt/1.0}versionHistory";
 
 	/**
 	 * A constant for the node type name nt:version (in extended form).
@@ -263,7 +263,7 @@ interface NodeTypeInterface extends \F3\PHPCR\NodeType\NodeTypeDefinitionInterfa
 	 * Property#JCR_ACTIVITY
 	 * Node#JCR_FROZEN_NODE
 	 */
-	const NT_VERSION = "{http://www.jcp.org/nt/1.0}version";
+	const NT_VERSION = "{http://www.jcp.org/jcr/nt/1.0}version";
 
 	/**
 	 * A constant for the node type name nt:frozenNode (in extended form).
@@ -273,7 +273,7 @@ interface NodeTypeInterface extends \F3\PHPCR\NodeType\NodeTypeDefinitionInterfa
 	 * Property#JCR_FROZEN_MIXIN_TYPES
 	 * Property#JCR_FROZEN_UUID
 	 */
-	const NT_FROZEN_NODE = "{http://www.jcp.org/nt/1.0}frozenNode";
+	const NT_FROZEN_NODE = "{http://www.jcp.org/jcr/nt/1.0}frozenNode";
 
 	/**
 	 * A constant for the node type name nt:versionedChild (in extended form).
@@ -281,7 +281,7 @@ interface NodeTypeInterface extends \F3\PHPCR\NodeType\NodeTypeDefinitionInterfa
 	 *
 	 * Property#JCR_CHILD_VERSION_HISTORY
 	 */
-	const NT_VERSIONED_CHILD = "{http://www.jcp.org/nt/1.0}versionedChild";
+	const NT_VERSIONED_CHILD = "{http://www.jcp.org/jcr/nt/1.0}versionedChild";
 
 	/**
 	 * A constant for the node type name nt:activity (in extended form).
@@ -289,7 +289,7 @@ interface NodeTypeInterface extends \F3\PHPCR\NodeType\NodeTypeDefinitionInterfa
 	 *
 	 * Property#JCR_TITLE
 	 */
-	const NT_ACTIVITY = "{http://www.jcp.org/nt/1.0}activity";
+	const NT_ACTIVITY = "{http://www.jcp.org/jcr/nt/1.0}activity";
 
 	/**
 	 * A constant for the node type name nt:configuration (in extended form).
@@ -297,7 +297,7 @@ interface NodeTypeInterface extends \F3\PHPCR\NodeType\NodeTypeDefinitionInterfa
 	 *
 	 * Property#JCR_ROOT
 	 */
-	const NT_CONFIGURATION = "{http://www.jcp.org/nt/1.0}configuration";
+	const NT_CONFIGURATION = "{http://www.jcp.org/jcr/nt/1.0}configuration";
 
 	/**
 	 * A constant for the node type name nt:query (in extended form).
@@ -306,7 +306,7 @@ interface NodeTypeInterface extends \F3\PHPCR\NodeType\NodeTypeDefinitionInterfa
 	 * Property#JCR_STATEMENT
 	 * Property#JCR_LANGUAGE
 	 */
-	const NT_QUERY = "{http://www.jcp.org/nt/1.0}query";
+	const NT_QUERY = "{http://www.jcp.org/jcr/nt/1.0}query";
 
 	/**
 	 * Returns all supertypes of this node type in the node type inheritance

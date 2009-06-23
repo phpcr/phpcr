@@ -150,6 +150,18 @@ interface RepositoryInterface {
 	const OPTION_SIMPLE_VERSIONING_SUPPORTED = "option.simple.versioning.supported";
 
 	/**
+	 * Key to a boolean descriptor. Returns TRUE if and only if activities are
+	 * supported.
+	 */
+	const OPTION_ACTIVITIES_SUPPORTED = "option.activities.supported";
+
+	/**
+	 * Key to a boolean descriptor. Returns TRUE if and only if configurations
+	 * and baselines are supported.
+	 */
+	const OPTION_BASELINES_SUPPORTED = "option.baselines.supported";
+
+	/**
 	 * Key to a boolean descriptor. Returns TRUE
 	 * if and only if access control is supported.
 	 */
@@ -220,6 +232,12 @@ interface RepositoryInterface {
 	 * if and only if node type management is supported.
 	 */
 	const OPTION_NODE_TYPE_MANAGEMENT_SUPPORTED = "option.node.type.management.supported";
+
+	/**
+	 * Key to a boolean descriptor. Returns TRUE if and only if node and
+	 * property with same name is supported.
+	 */
+	const OPTION_NODE_AND_PROPERTY_WITH_SAME_NAME_SUPPORTED = "option.node.and.property.with.same.name.supported";
 
 	/**
 	 * Key to string descriptor. Returns one of the following

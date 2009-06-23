@@ -428,17 +428,16 @@ interface VersionManagerInterface {
 	public function createActivity($title);
 
 	/**
-	 * This method removes an nt:activity at an implementation-determined
-	 * location in the /jcr:system/jcr:activities subgraph.
+	 * This method removes the given $activityNode.
 	 *
 	 * The change is dispatched immediately and does not require a save.
 	 *
-	 * @param string $title a String
-	 * @return \F3\PHPCR\NodeInterface the new activity Node.
+	 * @param \F3\PHPCR\NodeInterface $activityNode an activity Node
+	 * @return void
 	 * @throws \F3\PHPCR\UnsupportedRepositoryOperationException if the repository does not support activities.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 */
-	public function removeActivity($title);
+	public function removeActivity(\F3\PHPCR\NodeInterface $activityNode);
 
 }
 

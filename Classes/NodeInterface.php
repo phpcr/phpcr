@@ -658,6 +658,30 @@ interface NodeInterface extends \F3\PHPCR\ItemInterface {
 	public function removeShare();
 
 	/**
+	 * Returns FALSE if this node is currently in the checked-in state (either
+	 * due to its own status as a versionable node or due to the effect of
+	 * a versionable node being checked in above it). Otherwise this method
+	 * returns TRUE. This includes the case where the repository does not
+	 * support versioning (and therefore all nodes are always "checked-out",
+	 * by default).
+	 *
+	 * @return a boolean
+	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 */
+	public function isCheckedOut();
+
+	/**
+	 * Returns TRUE if this node is locked either as a result of a lock held
+	 * by this node or by a deep lock on a node above this node;
+	 * otherwise returns FALSE. This includes the case where a repository does
+	 * not support locking (in which case all nodes are "unlocked" by default).
+	 *
+	 * @return a boolean.
+	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 */
+	public function isLocked();
+
+	/**
 	 * Causes the lifecycle state of this node to undergo the specified transition.
 	 * This method may change the value of the jcr:currentLifecycleState property,
 	 * in most cases it is expected that the implementation will change the value

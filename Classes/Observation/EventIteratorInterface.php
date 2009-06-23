@@ -47,19 +47,6 @@ interface EventIteratorInterface extends \F3\PHPCR\RangeIteratorInterface {
 	 */
 	public function nextEvent();
 
-	/**
-	 * Returns the date associated with this event iterator, or null.
-	 * The date is required to be non-null for event iterators obtained through
-	 * an EventJournal.
-	 *
-	 * The date is represented as a millisecond value that is an offset from the
-	 * Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian). The granularity of
-	 * the returned value is implementation dependent.
-	 *
-	 * @return integer the date associated with this event iterator, or null.
-	 */
-	public function getDate();
-
 }
 
 ?>

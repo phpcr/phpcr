@@ -149,38 +149,67 @@ interface WorkspaceInterface {
 	public function getName();
 
 	/**
-	 * This method copies the node at srcAbsPath to the new location at
-	 * destAbsPath.
-	 * The new copies of nodes are automatically given new identifiers and
-	 * referenceable nodes in particular are always given new referenceable
-	 * identifiers.
-	 *
-	 * If srcWorkspace is given:
-	 * This method copies the subgraph at srcAbsPath in srcWorkspace to
-	 * destAbsPath in this workspace.
-	 * Unlike clone, this method does assign new referenceable identifiers
-	 * to the new copies of referenceable nodes. In the case of
-	 * non-referenceable nodes, this method may assign new identifiers.
+	 * This method copies the subgraph rooted at, and including, the node at
+	 * $srcWorkspace (if given) and $srcAbsPath to the new location in this
+	 * Workspace at $destAbsPath.
 	 *
 	 * This is a workspace-write operation and therefore dispatches changes
 	 * immediately and does not require a save.
 	 *
-	 * When the source subgraph in a copy operation includes both a reference
-	 * property (P) and the node to which it refers (N) then not only does the
-	 * new copy of the referenceable node (N') get a new identifier but the new
-	 * copy of the reference property (P') is changed so that it points to N',
-	 * thus preserving the reference within the subgraph.
+	 * When a node N is copied to a path location where no node currently
+	 * exists, a new node N' is created at that location.
+	 * The subgraph rooted at and including N' (call it S') is created and is
+	 * identical to the subgraph rooted at and including N (call it S) with the
+	 * following exceptions:
+	 * * Every node in S' is given a new and distinct identifier
+	 *   - or if $srcWorkspace is given -
+	 *   Every referenceable node in S' is given a new and distinct identifier
+	 *   while every non-referenceable node in S' may be given a new and
+	 *   distinct identifier.
+	 * * The repository may automatically drop any mixin node type T present on
+	 *   any node M in S. Dropping a mixin node type in this context means that
+	 *   while M remains unchanged, its copy M' will lack the mixin T and any
+	 *   child nodes and properties defined by T that are present on M. For
+	 *   example, a node M that is mix:versionable may be copied such that the
+	 *   resulting node M' will be a copy of N except that M' will not be
+	 *   mix:versionable and will not have any of the properties defined by
+	 *   mix:versionable. In order for a mixin node type to be dropped it must
+	 *   be listed by name in the jcr:mixinTypes property of M. The resulting
+	 *   jcr:mixinTypes property of M' will reflect any change.
+	 * * If a node M in S is referenceable and its mix:referenceable mixin is
+	 *   not dropped on copy, then the resulting jcr:uuid property of M' will
+	 *   reflect the new identifier assigned to M'.
+	 * * Each REFERENCE or WEAKEREFERENCE property R in S is copied to its new
+	 *   location R' in S'. If R references a node M within S then the value of
+	 *   R' will be the identifier of M', the new copy of M, thus preserving the
+	 *   reference within the subgraph.
 	 *
-	 * The destAbsPath provided must not have an index on its final element. If
+	 * When a node N is copied to a location where a node N' already exists, the
+	 * repository may either immediately throw an ItemExistsException or attempt
+	 * to update the node N' by selectively replacing part of its subgraph with
+	 * a copy of the relevant part of the subgraph of N. If the node types of N
+	 * and N' are compatible, the implementation supports update-on-copy for
+	 * these node types and no other errors occur, then the copy will succeed.
+	 * Otherwise an ItemExistsException is thrown.
+	 *
+	 * Which node types can be updated on copy and the details of any such
+	 * updates are implementation-dependent. For example, some implementations
+	 * may support update-on-copy for mix:versionable nodes. In such a case the
+	 * versioning-related properties of the target node would remain unchanged
+	 * (jcr:uuid, jcr:versionHistory, etc.) while the substantive content part
+	 * of the subgraph would be replaced with that of the source node.
+	 *
+	 * The $destAbsPath provided must not have an index on its final element. If
 	 * it does then a RepositoryException is thrown. Strictly speaking, the
-	 * destAbsPath parameter is actually an absolute path to the parent node of
+	 * $destAbsPath parameter is actually an absolute path to the parent node of
 	 * the new location, appended with the new name desired for the copied node.
 	 * It does not specify a position within the child node ordering. If ordering
 	 * is supported by the node type of the parent node of the new location, then
 	 * the new copy of the node is appended to the end of the child node list.
 	 *
 	 * This method cannot be used to copy an individual property by itself. It
-	 * copies an entire node and its subgraph.
+	 * copies an entire node and its subgraph (including, of course, any
+	 * properties contained therein).
 	 *
 	 * @param string $srcAbsPath the path of the node to be copied.
 	 * @param string $destAbsPath the location to which the node at srcAbsPath is to be copied in this workspace.
@@ -191,7 +220,7 @@ interface WorkspaceInterface {
 	 * @throws \F3\PHPCR\Version\VersionException if the parent node of destAbsPath is read-only due to a checked-in node.
 	 * @throws \F3\PHPCR\AccessDeniedException if the current session does have access srcWorkspace but otherwise does not have sufficient access to complete the operation.
 	 * @throws \F3\PHPCR\PathNotFoundException if the node at srcAbsPath in srcWorkspace or the parent of destAbsPath in this workspace does not exist.
-	 * @throws \F3\PHPCR\ItemExistsException if a node already exists at destAbsPath and same-name siblings are not allowed.
+	 * @throws \F3\PHPCR\ItemExistsException if a node already exists at destAbsPath and either same-name siblings are not allowed or update on copy is not supported for the nodes involved.
 	 * @throws \F3\PHPCR\Lock\LockException if a lock prevents the copy.
 	 * @throws \F3\PHPCR\RepositoryException if the last element of destAbsPath has an index or if another error occurs.
 	 */

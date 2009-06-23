@@ -125,16 +125,28 @@ interface ObservationManagerInterface {
 	public function setUserData($userData);
 
 	/**
-	 * Retrieves the event journal for this workspace. If journaled observation
-	 * is not supported for this workspace, NULL is returned.
-	 * Events recorded in the EventJournal instance will be filtered according
-	 * to the current session's access rights as well as any additional restrictions
-	 * specified through implemention-specific configuration.
+	 * Retrieves the event journal for this workspace.
 	 *
-	 * @return \F3\PHPCR\Observation\EventJournalInterface|NULL an EventJournal or NULL.
+	 * If journaled observation is not supported for this workspace, NULL is
+	 * returned.
+	 *
+	 * Events returned in the EventJournal instance will be filtered according
+	 * to the parameters of this method, the current session's access
+	 * restrictions as well as any additional restrictions specified through
+	 * implemention-specific configuration.
+	 *
+	 * The parameters of this method filter the event set in the same way as
+	 * they do in addEventListener().
+	 *
+	 * @param integer $eventTypes A combination of one or more event type constants encoded as a bitmask.
+	 * @param string $absPath an absolute path.
+	 * @param boolean $isDeep a <code>boolean</code>.
+	 * @param array $uuid array of identifiers.
+	 * @param array $nodeTypeName array of node type names.
+	 * @return \F3\PHPCR\Observation\EventJournalInterface an EventJournal (or NULL).
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs
 	 */
-	public function getEventJournal();
+	public function getEventJournal($eventTypes = NULL, $absPath = NULL, $isDeep = NULL, array $uuid = NULL, array $nodeTypeName = NULL);
 
 }
 ?>

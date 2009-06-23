@@ -130,6 +130,7 @@ interface ValueInterface {
 	 * * PropertyType.DATE
 	 * * PropertyType.BINARY
 	 * * PropertyType.DOUBLE
+	 * * PropertyType.DECIMAL
 	 * * PropertyType.LONG
 	 * * PropertyType.BOOLEAN
 	 * * PropertyType.NAME
