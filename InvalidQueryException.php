@@ -3,7 +3,7 @@
 
 /**
  * This file contains {@link InvalidQueryException} which is part of the PHP
- * Content Repository (phpCR), a derivative of the Java Content Repository 
+ * Content Repository (phpCR), a derivative of the Java Content Repository
  * JSR-170,  and is licensed under the Apache License, Version 2.0.
  *
  * This file is based on the code created for
@@ -11,21 +11,19 @@
  *
  * @author Travis Swicegood <development@domain51.com>
  * @copyright PHP Code Copyright &copy; 2004-2005, Domain51, United States
- * @copyright Original Java and Documentation 
+ * @copyright Original Java and Documentation
  *    Copyright &copy; 2002-2004, Day Management AG, Switerland
- * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License, 
+ * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *    Version 2.0
  * @package phpContentRepository
- * @package Query
  */
 
 /**
  * Exception thrown by {@link Node::save()} and {@link Ticket::save()} if a
- * {@link VetoableEventListener} vetoes a change that the save method is 
+ * {@link VetoableEventListener} vetoes a change that the save method is
  * attempting to make.
  *
  * @package phpContentRepository
- * @package Query
  */
 class phpCR_InvalidQueryException extends phpCR_RepositoryException
 {
