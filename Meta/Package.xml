@@ -4,7 +4,6 @@
     <title>PHP Content Repository Interfaces</title>
     <description>The JSR-283 interfaces ported to PHP.</description>
     <version>2.0.0-RC21</version>
-    <state>ReleaseCandidate</state>
     <categories/>
     <parties>
         <person role="LeadDeveloper">
