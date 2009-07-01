@@ -3,7 +3,7 @@
     <key>PHPCR</key>
     <title>PHP Content Repository Interfaces</title>
     <description>The JSR-283 interfaces ported to PHP.</description>
-    <version>2.0.0-RC22</version>
+    <version>2.0.0-RC23</version>
     <categories/>
     <parties>
         <person role="LeadDeveloper">
