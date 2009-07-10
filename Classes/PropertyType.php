@@ -317,25 +317,25 @@ final class PropertyType {
 	 * @author Karsten Dambekalns <karsten@typo3.org>
 	 */
 	static public function valueFromType($type) {
-		switch (\F3\PHP6\Functions::strtolower($type)) {
+		switch (strtolower($type)) {
 			case 'string':
-				return \F3\PHPCR\PropertyType::STRING;
+				return self::STRING;
 				break;
 			case 'boolean':
-				return \F3\PHPCR\PropertyType::BOOLEAN;
+				return self::BOOLEAN;
 				break;
 			case 'integer':
-				return \F3\PHPCR\PropertyType::LONG;
+				return self::LONG;
 				break;
 			case 'float':
 			case 'double':
-				return \F3\PHPCR\PropertyType::DOUBLE;
+				return self::DOUBLE;
 				break;
 			case 'datetime':
-				return \F3\PHPCR\PropertyType::DATE;
+				return self::DATE;
 				break;
 			default:
-				return \F3\PHPCR\PropertyType::UNDEFINED;
+				return self::UNDEFINED;
 		}
 	}
 }
