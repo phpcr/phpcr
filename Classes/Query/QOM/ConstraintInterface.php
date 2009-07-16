@@ -23,19 +23,11 @@ namespace F3\PHPCR\Query\QOM;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage Query
- * @version $Id$
- */
-
-/**
  * Filters the set of node-tuples formed by evaluating the query's selectors and
  * the joins between them.
  *
  * To be included in the query results, a node-tuple must satisfy the constraint.
  *
- * @package PHPCR
- * @subpackage Query
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */

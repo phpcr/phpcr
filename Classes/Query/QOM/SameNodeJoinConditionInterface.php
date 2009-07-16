@@ -23,12 +23,6 @@ namespace F3\PHPCR\Query\QOM;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage Query
- * @version $Id$
- */
-
-/**
  * Tests whether two nodes are "the same" according to the isSame method of
  * javax.jcr.Item.
  *
@@ -47,8 +41,6 @@ namespace F3\PHPCR\Query\QOM;
  *  would return true, where selector1Node is the node for selector1 and
  *  selector2Node is the node for selector2.
  *
- * @package PHPCR
- * @subpackage Query
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -58,6 +50,7 @@ interface SameNodeJoinConditionInterface extends \F3\PHPCR\Query\QOM\JoinConditi
 	 * Gets the name of the first selector.
 	 *
 	 * @return string the selector name; non-null
+	 * @api
 	 */
 	public function getSelector1Name();
 
@@ -65,6 +58,7 @@ interface SameNodeJoinConditionInterface extends \F3\PHPCR\Query\QOM\JoinConditi
 	 * Gets the name of the second selector.
 	 *
 	 * @return string the selector name; non-null
+	 * @api
 	 */
 	public function getSelector2Name();
 
@@ -72,6 +66,7 @@ interface SameNodeJoinConditionInterface extends \F3\PHPCR\Query\QOM\JoinConditi
 	 * Gets the path relative to the second selector.
 	 *
 	 * @return string the relative path, or null for none
+	 * @api
 	 */
 	public function getSelector2Path();
 

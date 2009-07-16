@@ -23,11 +23,6 @@ namespace F3\PHPCR;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @version $Id$
- */
-
-/**
  * RepositoryFactory is an interface for factory class implementations for
  * Repositories.
  *
@@ -40,7 +35,6 @@ namespace F3\PHPCR;
  * Get a default repository available in this environment:
  *    $repo = \F3\PHPCR\RepositoryFactory::getRepository();
  *
- * @package PHPCR
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -66,6 +60,7 @@ interface RepositoryFactoryInterface {
 	 * @param array|NULL $parameters string key/value pairs as repository arguments or NULL if a client wishes to connect to a default repository.
 	 * @return \F3\PHPCR\RepositoryInterface a repository instance or NULL if this implementation does not understand the passed parameters
 	 * @throws \F3\PHPCR\RepositoryException if no suitable repository is found or another error occurs.
+	 * @api
 	 */
 	public function getRepository(array $parameters = NULL);
 

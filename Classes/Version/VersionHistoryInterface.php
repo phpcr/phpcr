@@ -23,17 +23,9 @@ namespace F3\PHPCR\Version;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage Version
- * @version $Id$
- */
-
-/**
  * A VersionHistory object wraps an nt:versionHistory node. It provides
  * convenient access to version history information.
  *
- * @package PHPCR
- * @subpackage Version
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -45,6 +37,7 @@ interface VersionHistoryInterface extends \F3\PHPCR\NodeInterface {
 	 *
 	 * @return string the identifier of the versionable node for which this is the version history.
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 * @api
 	 */
 	public function getVersionableIdentifier();
 
@@ -53,6 +46,7 @@ interface VersionHistoryInterface extends \F3\PHPCR\NodeInterface {
 	 *
 	 * @return \F3\PHPCR\Version\VersionInterface a Version object.
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 * @api
 	 */
 	public function getRootVersion();
 
@@ -78,6 +72,7 @@ interface VersionHistoryInterface extends \F3\PHPCR\NodeInterface {
 	 *
 	 * @return \F3\PHPCR\Version\VersionIteratorInterface a VersionIterator object.
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 * @api
 	 */
 	public function getAllLinearVersions();
 
@@ -89,6 +84,7 @@ interface VersionHistoryInterface extends \F3\PHPCR\NodeInterface {
 	 *
 	 * @return \F3\PHPCR\Version\VersionIteratorInterface a VersionIterator object.
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 * @api
 	 */
 	public function getAllVersions();
 
@@ -98,6 +94,7 @@ interface VersionHistoryInterface extends \F3\PHPCR\NodeInterface {
 	 *
 	 * @return \F3\PHPCR\NodeIteratorInterface a NodeIterator object.
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 * @api
 	 */
 	public function getAllLinearFrozenNodes();
 
@@ -109,6 +106,7 @@ interface VersionHistoryInterface extends \F3\PHPCR\NodeInterface {
 	 *
 	 * @return \F3\PHPCR\NodeIteratorInterface a NodeIterator object.
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 * @api
 	 */
 	public function getAllFrozenNodes();
 
@@ -119,6 +117,7 @@ interface VersionHistoryInterface extends \F3\PHPCR\NodeInterface {
 	 * @return \F3\PHPCR\Version\VersionInterface a Version object.
 	 * @throws \F3\PHPCR\Version\VersionException if the specified version is not in this version history.
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 * @api
 	 */
 	public function getVersion($versionName);
 
@@ -129,6 +128,7 @@ interface VersionHistoryInterface extends \F3\PHPCR\NodeInterface {
 	 * @return \F3\PHPCR\Version\VersionInterface a Version object.
 	 * @throws \F3\PHPCR\Version\VersionException if the specified label is not in this version history.
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 * @api
 	 */
 	public function getVersionByLabel($label);
 
@@ -166,6 +166,7 @@ interface VersionHistoryInterface extends \F3\PHPCR\NodeInterface {
 	 * @throws \F3\PHPCR\Version\LabelExistsVersionException if moveLabel is false, and an attempt is made to add a label that already exists in this version history
 	 * @throws \F3\PHPCR\Version\VersionException if the specified version does not exist in this version history or if the specified version is the root version (jcr:rootVersion).
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function addVersionLabel($versionName, $label, $moveLabel);
 
@@ -182,6 +183,7 @@ interface VersionHistoryInterface extends \F3\PHPCR\NodeInterface {
 	 * @return void
 	 * @throws \F3\PHPCR\Version\VersionException if the name label does not exist in this version history.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function removeVersionLabel($label);
 
@@ -195,6 +197,7 @@ interface VersionHistoryInterface extends \F3\PHPCR\NodeInterface {
 	 * @return boolean a boolean.
 	 * @throws \F3\PHPCR\Version\VersionException if the specified version is not of this version history.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function hasVersionLabel($label, $version = NULL);
 
@@ -207,6 +210,7 @@ interface VersionHistoryInterface extends \F3\PHPCR\NodeInterface {
 	 * @return array a string array containing all the labels of the (given) version (history)
 	 * @throws \F3\PHPCR\Version\VersionException if the specified version is not in this version history.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function getVersionLabels($version = NULL);
 
@@ -231,6 +235,7 @@ interface VersionHistoryInterface extends \F3\PHPCR\NodeInterface {
 	 * @throws \F3\PHPCR\UnsupportedRepositoryOperationException if this operation is not supported by the implementation.
 	 * @throws \F3\PHPCR\Version\VersionException if the named version is not in this version history.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function removeVersion($versionName);
 }

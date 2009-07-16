@@ -23,15 +23,9 @@ namespace F3\PHPCR;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @version $Id$
- */
-
-/**
  * The ValueFactory object provides methods for the creation Value objects that can
  * then be used to set properties.
  *
- * @package PHPCR
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -46,6 +40,7 @@ interface ValueFactoryInterface {
 	 * @param resource $handle
 	 * @return \F3\PHPCR\BinaryInterface
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 * @api
 	 */
 	public function createBinary($handle);
 
@@ -69,6 +64,7 @@ interface ValueFactoryInterface {
 	 * @throws \F3\PHPCR\ValueFormatException is thrown if the specified value cannot be converted to the specified type.
 	 * @throws \F3\PHPCR\RepositoryException if the specified Node is not referenceable, the current Session is no longer active, or another error occurs.
 	 * @throws \IllegalArgumentException if the specified DateTime value cannot be expressed in the ISO 8601-based format defined in the JCR 2.0 specification and the implementation does not support dates incompatible with that format.
+	 * @api
 	 */
 	public function createValue($value, $type = NULL, $weak = FALSE);
 

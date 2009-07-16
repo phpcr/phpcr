@@ -23,16 +23,8 @@ namespace F3\PHPCR\Query;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage Query
- * @version $Id$
- */
-
-/**
  * A QueryResult object. Returned by Query->execute().
  *
- * @package PHPCR
- * @subpackage Query
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -43,6 +35,7 @@ interface QueryResultInterface {
 	 *
 	 * @return array array holding the column names.
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 * @api
 	 */
 	public function getColumnNames();
 
@@ -61,6 +54,7 @@ interface QueryResultInterface {
 	 *
 	 * @return \F3\PHPCR\NodeIteratorInterface a NodeIterator
 	 * @throws \F3\PHPCR\RepositoryException if the query contains more than one selector, if this call is the second time either getRows() or getNodes() has been called on the same QueryResult object or if another error occurs.
+	 * @api
 	 */
 	public function getNodes();
 

@@ -23,15 +23,9 @@ namespace F3\PHPCR;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @version $Id$
- */
-
-/**
  * SimpleCredentials implements the Credentials interface and represents simple
  * user ID/password credentials.
  *
- * @package PHPCR
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  * @scope prototype
@@ -60,6 +54,7 @@ final class SimpleCredentials implements \F3\PHPCR\CredentialsInterface {
 	 * @param string $userID the user ID
 	 * @param string $password the user's password
 	 * @author Karsten Dambekalns <karsten@typo3.org>
+	 * @api
 	 */
 	public function __construct($userID, $password) {
 		$this->userID = $userID;
@@ -71,6 +66,7 @@ final class SimpleCredentials implements \F3\PHPCR\CredentialsInterface {
 	 *
 	 * @return string the password
 	 * @author Karsten Dambekalns <karsten@typo3.org>
+	 * @api
 	 */
 	public function getPassword() {
 		return $this->password;
@@ -81,6 +77,7 @@ final class SimpleCredentials implements \F3\PHPCR\CredentialsInterface {
 	 *
 	 * @return string the user ID.
 	 * @author Karsten Dambekalns <karsten@typo3.org>
+	 * @api
 	 */
 	public function getUserID() {
 		return $this->userID;
@@ -93,6 +90,7 @@ final class SimpleCredentials implements \F3\PHPCR\CredentialsInterface {
 	 * @param mixed $value the value to be stored
 	 * @return void
 	 * @author Karsten Dambekalns <karsten@typo3.org>
+	 * @api
 	 */
 	public function setAttribute($name, $value) {
 		if ($name === NULL) {
@@ -114,6 +112,7 @@ final class SimpleCredentials implements \F3\PHPCR\CredentialsInterface {
 	 * @param string $name the name of the attribute
 	 * @return mixed the value of the attribute, or NULL if the attribute does not exist
 	 * @author Karsten Dambekalns <karsten@typo3.org>
+	 * @api
 	 */
 	public function getAttribute($name) {
 		if (isset($this->attributes[$name])) {
@@ -129,6 +128,7 @@ final class SimpleCredentials implements \F3\PHPCR\CredentialsInterface {
 	 * @param string $name the name of the attribute to remove
 	 * @return void
 	 * @author Karsten Dambekalns <karsten@typo3.org>
+	 * @api
 	 */
 	public function removeAttribute($name) {
 		if (isset($this->attributes[$name])) {
@@ -143,6 +143,7 @@ final class SimpleCredentials implements \F3\PHPCR\CredentialsInterface {
 	 *
 	 * @return array a string array containing the names of the stored attributes
 	 * @author Karsten Dambekalns <karsten@typo3.org>
+	 * @api
 	 */
 	public function getAttributeNames() {
 		return array_keys($this->attributes);

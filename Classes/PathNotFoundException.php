@@ -23,15 +23,9 @@ namespace F3\PHPCR;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @version $Id$
- */
-
-/**
  * Exception thrown when no Item exists at the specified path or when the
  * specified path implies intermediary Nodes that do not exist.
  *
- * @package PHPCR
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */

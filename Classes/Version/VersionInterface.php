@@ -23,17 +23,9 @@ namespace F3\PHPCR\Version;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage Version
- * @version $Id$
- */
-
-/**
  * A Version object wraps an nt:version node. It provides convenient access to
  * version information.
  *
- * @package PHPCR
- * @subpackage Version
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -44,6 +36,7 @@ interface VersionInterface extends \F3\PHPCR\NodeInterface {
 	 *
 	 * @return \F3\PHPCR\Version\VersionHistoryInterface the VersionHistory that contains this Version
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs
+	 * @api
 	 */
 	public function getContainingHistory();
 
@@ -54,6 +47,7 @@ interface VersionInterface extends \F3\PHPCR\NodeInterface {
 	 *
 	 * @return \DateTime a \DateTime object
 	 * @throws \F3\PHPCR\RepositoryException - if an error occurs
+	 * @api
 	 */
 	public function getCreated();
 
@@ -69,6 +63,7 @@ interface VersionInterface extends \F3\PHPCR\NodeInterface {
 	 * @see VersionHistory#getAllLinearVersions()
 	 * @return \F3\PHPCR\VersionInterface a Version or NULL if no linear successor exists.
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 * @api
 	 */
 	public function getLinearSuccessor();
 
@@ -79,6 +74,7 @@ interface VersionInterface extends \F3\PHPCR\NodeInterface {
 	 *
 	 * @return array of \F3\PHPCR\Version\VersionInterface
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs
+	 * @api
 	 */
 	public function getSuccessors();
 
@@ -94,6 +90,7 @@ interface VersionInterface extends \F3\PHPCR\NodeInterface {
 	 * @see VersionHistory#getAllLinearVersions()
 	 * @return \F3\PHPCR\Version\VersionInterface a Version or NULL if no linear predecessor exists.
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 * @api
 	 */
 	public function getLinearPredecessor();
 
@@ -105,6 +102,7 @@ interface VersionInterface extends \F3\PHPCR\NodeInterface {
 	 *
 	 * @return array of \F3\PHPCR\Version\VersionInterface
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs
+	 * @api
 	 */
 	public function getPredecessors();
 
@@ -113,6 +111,7 @@ interface VersionInterface extends \F3\PHPCR\NodeInterface {
 	 *
 	 * @return \F3\PHPCR\NodeInterface a Node object
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs
+	 * @api
 	 */
 	public function getFrozenNode();
 

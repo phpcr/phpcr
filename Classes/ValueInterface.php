@@ -23,11 +23,6 @@ namespace F3\PHPCR;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @version $Id$
- */
-
-/**
  * A generic holder for the value of a property. A Value object can be used
  * without knowing the actual property type (STRING, DOUBLE, BINARY etc.).
  *
@@ -51,7 +46,6 @@ namespace F3\PHPCR;
  * The deprecated getStream() method and it's related exceptions and rules have been
  * omitted in this PHP port of the API.
  *
- * @package PHPCR
  * @version  $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -63,6 +57,7 @@ interface ValueInterface {
 	 * @return string A string representation of the value of this property.
 	 * @throws \F3\PHPCR\ValueFormatException if conversion to a String is not possible.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function getString();
 
@@ -73,6 +68,7 @@ interface ValueInterface {
 	 *
 	 * @return \F3\PHPCR\BinaryInterface A Binary representation of this value.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function getBinary();
 
@@ -82,6 +78,7 @@ interface ValueInterface {
 	 * @return string A long representation of the value of this property.
 	 * @throws \F3\PHPCR\ValueFormatException if conversion to a long is not possible.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function getLong();
 
@@ -91,6 +88,7 @@ interface ValueInterface {
 	 * @return string A double representation of the value of this property.
 	 * @throws \F3\PHPCR\ValueFormatException if conversion is not possible.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function getDecimal();
 
@@ -100,6 +98,7 @@ interface ValueInterface {
 	 * @return string A double representation of the value of this property.
 	 * @throws \F3\PHPCR\ValueFormatException if conversion to a double is not possible.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function getDouble();
 
@@ -112,6 +111,7 @@ interface ValueInterface {
 	 * @return \DateTime A \DateTime representation of the value of this property.
 	 * @throws \F3\PHPCR\ValueFormatException if conversion to a \DateTime is not possible.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function getDate();
 
@@ -121,6 +121,7 @@ interface ValueInterface {
 	 * @return string A boolean representation of the value of this property.
 	 * @throws \F3\PHPCR\ValueFormatException if conversion to a boolean is not possible.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function getBoolean();
 
@@ -141,6 +142,7 @@ interface ValueInterface {
 	 *
 	 * The type returned is that which was set at property creation.
 	 * @return integer The type of the value
+	 * @api
 	 */
 	public function getType();
 }

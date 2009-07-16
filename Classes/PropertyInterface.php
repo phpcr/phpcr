@@ -23,17 +23,11 @@ namespace F3\PHPCR;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @version $Id$
- */
-
-/**
  * A Property object represents the smallest granularity of content storage.
  * It has a single parent node and no children. A property consists of a name
  * and a value, or in the case of multi-value properties, a set of values all
  * of the same type. See Value.
  *
- * @package PHPCR
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -419,6 +413,7 @@ interface PropertyInterface extends \F3\PHPCR\ItemInterface {
 	 * @throws \F3\PHPCR\Lock\LockException if a lock prevents the setting of the value and this implementation performs this validation immediately.
 	 * @throws \F3\PHPCR\ConstraintViolationException if the change would violate a node-type or other constraint and this implementation performs this validation immediately.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function setValue($value);
 
@@ -430,6 +425,7 @@ interface PropertyInterface extends \F3\PHPCR\ItemInterface {
 	 * @return \F3\PHPCR\ValueInterface the value
 	 * @throws \F3\PHPCR\ValueFormatException if the property is multi-valued.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function getValue();
 
@@ -442,6 +438,7 @@ interface PropertyInterface extends \F3\PHPCR\ItemInterface {
 	 * @return array of \F3\PHPCR\ValueInterface
 	 * @throws \F3\PHPCR\ValueFormatException if the property is single-valued.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function getValues();
 
@@ -452,6 +449,7 @@ interface PropertyInterface extends \F3\PHPCR\ItemInterface {
 	 * @return string A string representation of the value of this property.
 	 * @throws \F3\PHPCR\ValueFormatException if conversion to a String is not possible or if the property is multi-valued.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function getString();
 
@@ -462,6 +460,7 @@ interface PropertyInterface extends \F3\PHPCR\ItemInterface {
 	 * @return \F3\PHPCR\BinaryInterface A Binary representation of the value of this property.
 	 * @throws \F3\PHPCR\ValueFormatException if the property is multi-valued.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs
+	 * @api
 	 */
 	public function getBinary();
 
@@ -472,6 +471,7 @@ interface PropertyInterface extends \F3\PHPCR\ItemInterface {
 	 * @return integer An integer representation of the value of this property.
 	 * @throws \F3\PHPCR\ValueFormatException if conversion to a long is not possible or if the property is multi-valued.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs
+	 * @api
 	 */
 	public function getLong();
 
@@ -482,6 +482,7 @@ interface PropertyInterface extends \F3\PHPCR\ItemInterface {
 	 * @return float A float representation of the value of this property.
 	 * @throws \F3\PHPCR\ValueFormatException if conversion to a double is not possible or if the property is multi-valued.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs
+	 * @api
 	 */
 	public function getDouble();
 
@@ -492,6 +493,7 @@ interface PropertyInterface extends \F3\PHPCR\ItemInterface {
 	 * @return float A float representation of the value of this property.
 	 * @throws \F3\PHPCR\ValueFormatException if conversion to a BigDecimal is not possible or if the property is multi-valued.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs
+	 * @api
 	 */
 	public function getDecimal();
 
@@ -502,6 +504,7 @@ interface PropertyInterface extends \F3\PHPCR\ItemInterface {
 	 * @return \DateTime A date representation of the value of this property.
 	 * @throws \F3\PHPCR\ValueFormatException if conversion to a string is not possible or if the property is multi-valued.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs
+	 * @api
 	 */
 	public function getDate();
 
@@ -512,6 +515,7 @@ interface PropertyInterface extends \F3\PHPCR\ItemInterface {
 	 * @return boolean A boolean representation of the value of this property.
 	 * @throws \F3\PHPCR\ValueFormatException if conversion to a boolean is not possible or if the property is multi-valued.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs
+	 * @api
 	 */
 	public function getBoolean();
 
@@ -528,6 +532,7 @@ interface PropertyInterface extends \F3\PHPCR\ItemInterface {
 	 * @throws \F3\PHPCR\ValueFormatException if this property cannot be converted to a referring type (REFERENCE, WEAKREFERENCE or PATH), if the property is multi-valued or if this property is a referring type but is currently part of the frozen state of a version in version storage.
 	 * @throws \F3\PHPCR\ItemNotFoundException If this property is of type PATH or WEAKREFERENCE and no target node accessible by the current Session exists in this workspace. Note that this applies even if the property is a PATH and a property exists at the specified location. To dereference to a target property (as opposed to a target node), the method Property.getProperty is used.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function getNode();
 
@@ -547,6 +552,7 @@ interface PropertyInterface extends \F3\PHPCR\ItemInterface {
 	 * @throws \F3\PHPCR\ValueFormatException if this property cannot be converted to a PATH, if the property is multi-valued or if this property is a referring type but is currently part of the frozen state of a version in version storage.
 	 * @throws \F3\PHPCR\ItemNotFoundException If no property accessible by the current Session exists in this workspace at the specified path. Note that this applies even if a node exists at the specified location. To dereference to a target node, the method Property.getNode is used.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs
+	 * @api
 	 */
 	public function getProperty();
 
@@ -563,6 +569,7 @@ interface PropertyInterface extends \F3\PHPCR\ItemInterface {
 	 * @return integer an integer.
 	 * @throws \F3\PHPCR\ValueFormatException if this property is multi-valued.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function getLength();
 
@@ -574,6 +581,7 @@ interface PropertyInterface extends \F3\PHPCR\ItemInterface {
 	 * @return array an array of lengths
 	 * @throws \F3\PHPCR\ValueFormatException if this property is single-valued.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function getLengths();
 
@@ -589,6 +597,7 @@ interface PropertyInterface extends \F3\PHPCR\ItemInterface {
 	 *
 	 * @return \F3\PHPCR\NodeType\PropertyDefinitionInterface a PropertyDefinition object.
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 * @api
 	 */
 	public function getDefinition();
 
@@ -614,6 +623,7 @@ interface PropertyInterface extends \F3\PHPCR\ItemInterface {
 	 *
 	 * @return integer an int
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs
+	 * @api
 	 */
 	public function getType();
 
@@ -623,6 +633,7 @@ interface PropertyInterface extends \F3\PHPCR\ItemInterface {
 	 *
 	 * @return boolean TRUE if this property is multi-valued; FALSE otherwise.
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 * @api
 	 */
 	public function isMultiple();
 

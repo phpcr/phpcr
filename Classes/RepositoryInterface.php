@@ -23,15 +23,9 @@ namespace F3\PHPCR;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @version $Id$
- */
-
-/**
  * The entry point into the content repository. The Repository object is
  * usually acquired through the RepositoryFactory.
  *
- * @package PHPCR
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -416,6 +410,7 @@ interface RepositoryInterface {
 	 * @throws \F3\PHPCR\LoginException if authentication or authorization (for the specified workspace) fails
 	 * @throws \F3\PHPCR\NoSuchWorkspacexception if the specified workspaceName is not recognized
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs
+	 * @api
 	 */
 	public function login($credentials = NULL, $workspaceName = NULL);
 
@@ -427,6 +422,7 @@ interface RepositoryInterface {
 	 * to query information about this repository implementation.
 	 *
 	 * @return array a string array holding all descriptor keys
+	 * @api
 	 */
 	public function getDescriptorKeys();
 
@@ -437,6 +433,7 @@ interface RepositoryInterface {
 	 *
 	 * @param string $key a descriptor key.
 	 * @return boolan whether $key is a standard descriptor.
+	 * @api
 	 */
 	public function isStandardDescriptor($key);
 
@@ -446,6 +443,7 @@ interface RepositoryInterface {
 	 *
 	 * @param string $key a descriptor key.
 	 * @return boolean whether the specified descriptor is multi-valued.
+	 * @api
 	 */
 	public function isSingleValueDescriptor($key);
 
@@ -457,6 +455,7 @@ interface RepositoryInterface {
 	 *
 	 * @param string $key a descriptor key.
 	 * @return \F3\PHPCR\ValueInterface The value of the indicated descriptor
+	 * @api
 	 */
 	public function getDescriptorValue($key);
 
@@ -469,6 +468,7 @@ interface RepositoryInterface {
 	 *
 	 * @param string $key a descriptor key.
 	 * @return array of \F3\PHPCR\ValueInterface the value array for the indicated descriptor
+	 * @api
 	 */
 	public function getDescriptorValues($key);
 
@@ -481,6 +481,7 @@ interface RepositoryInterface {
 	 *
 	 * @param key a descriptor key.
 	 * @return a descriptor value in string form.
+	 * @api
 	 */
 	public function getDescriptor($key);
 

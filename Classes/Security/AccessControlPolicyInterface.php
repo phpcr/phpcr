@@ -23,19 +23,11 @@ namespace F3\PHPCR\Security;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage Security
- * @version $Id$
- */
-
-/**
  * The AccessControlPolicy is a marker interface for all kind of access control
  * policies. This API defines two subinterfaces:
  *  NamedAccessControlPolicy
  *  AccessControlList
  *
- * @package PHPCR
- * @subpackage Security
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */

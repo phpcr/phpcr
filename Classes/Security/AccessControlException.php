@@ -23,16 +23,8 @@ namespace F3\PHPCR\Security;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage Security
- * @version $Id$
- */
-
-/**
  * Exception thrown by access control related methods of AccessControlManager.
  *
- * @package PHPCR
- * @subpackage Security
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */

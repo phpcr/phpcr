@@ -23,16 +23,8 @@ namespace F3\PHPCR\Observation;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage Observation
- * @version $Id$
- */
-
-/**
  * An event fired by the observation mechanism.
  *
- * @package PHPCR
- * @subpackage Observation
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -114,6 +106,7 @@ interface EventInterface {
 	 *  PERSIST
 	 *
 	 * @return integer the type of this event.
+	 * @api
 	 */
 	public function getType();
 
@@ -125,6 +118,7 @@ interface EventInterface {
 	 *
 	 * @return string the absolute path associated with this event or NULL.
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 * @api
 	 */
 	public function getPath();
 
@@ -133,6 +127,7 @@ interface EventInterface {
 	 * by Session.getUserID() of the session that caused the event.
 	 *
 	 * @return string the user ID.
+	 * @api
 	 */
 	public function getUserID();
 
@@ -144,6 +139,7 @@ interface EventInterface {
 	 *
 	 * @return string the identifier associated with this event or NULL.
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 * @api
 	 */
 	public function getIdentifier();
 
@@ -154,6 +150,7 @@ interface EventInterface {
 	 *
 	 * @return array an array containing parameter information for instances of a NODE_MOVED event.
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 * @api
 	 */
 	public function getInfo();
 
@@ -163,6 +160,7 @@ interface EventInterface {
 	 *
 	 * @return the user data string.
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 * @api
 	 */
 	public function getUserData();
 
@@ -174,6 +172,7 @@ interface EventInterface {
 	 *
 	 * @return integer the date when the change was persisted that caused this event (milliseconds since epoch).
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 * @api
 	 */
 	public function getDate();
 

@@ -23,17 +23,9 @@ namespace F3\PHPCR\Observation;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage Observation
- * @version $Id$
- */
-
-/**
  * Allows easy iteration through a list of Events with nextEvent as well as a
  * skip method inherited from RangeIterator.
  *
- * @package PHPCR
- * @subpackage Observation
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -44,6 +36,7 @@ interface EventIteratorInterface extends \F3\PHPCR\RangeIteratorInterface {
 	 *
 	 * @return \F3\PHPCR\Observation\EventInterface the next Event in the iteration
 	 * @throws OutOfBoundsException if iteration has no more Events
+	 * @api
 	 */
 	public function nextEvent();
 

@@ -23,12 +23,6 @@ namespace F3\PHPCR\Query\QOM;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage Query
- * @version $Id$
- */
-
-/**
  * Evaluates to the value (or values, if multi-valued) of a property.
  *
  * If, for a node-tuple, the selector node does not have a property named property,
@@ -39,8 +33,6 @@ namespace F3\PHPCR\Query\QOM;
  * selector is not the name of a selector in the query, or
  * property is not a syntactically valid JCR name.
  *
- * @package PHPCR
- * @subpackage Query
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -50,6 +42,7 @@ interface PropertyValueInterface extends \F3\PHPCR\Query\QOM\DynamicOperandInter
 	 * Gets the name of the selector against which to evaluate this operand.
 	 *
 	 * @return string the selector name; non-null
+	 * @api
 	 */
 	public function getSelectorName();
 
@@ -57,6 +50,7 @@ interface PropertyValueInterface extends \F3\PHPCR\Query\QOM\DynamicOperandInter
 	 * Gets the name of the property.
 	 *
 	 * @return string the property name; non-null
+	 * @api
 	 */
 	public function getPropertyName();
 

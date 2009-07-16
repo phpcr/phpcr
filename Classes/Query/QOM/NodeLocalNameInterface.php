@@ -23,16 +23,8 @@ namespace F3\PHPCR\Query\QOM;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage Query
- * @version $Id$
- */
-
-/**
  * Evaluates to a NAME value equal to the local (unprefixed) name of a node.
  *
- * @package PHPCR
- * @subpackage Query
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -42,6 +34,7 @@ interface NodeLocalNameInterface extends \F3\PHPCR\Query\QOM\DynamicOperandInter
 	 * Gets the name of the selector against which to evaluate this operand.
 	 *
 	 * @return string the selector name; non-null
+	 * @api
 	 */
 	public function getSelectorName();
 

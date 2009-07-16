@@ -23,16 +23,8 @@ namespace F3\PHPCR\NodeType;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage NodeType
- * @version $Id$
- */
-
-/**
  * An iterator for NodeType objects.
  *
- * @package PHPCR
- * @subpackage NodeType
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -43,6 +35,7 @@ interface NodeTypeIteratorInterface extends \F3\PHPCR\RangeIteratorInterface {
 	 *
 	 * @return \F3\PHPCR\NodeTypeInterface the next NodeType in the iteration
 	 * @throws OutOfBoundsException if iteration has no more NodeTypes
+	 * @api
 	 */
 	public function nextNodeType();
 

@@ -23,12 +23,6 @@ namespace F3\PHPCR\Query\QOM;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage Query
- * @version $Id$
- */
-
-/**
  * Tests whether the descendantSelector node is a descendant of the
  * ancestorSelector node. A node-tuple satisfies the constraint only if:
  *   descendantSelectorNode.getAncestor(n).isSame(ancestorSelectorNode) &&
@@ -37,8 +31,6 @@ namespace F3\PHPCR\Query\QOM;
  * is the node for descendantSelector and ancestorSelectorNode is the node for
  * ancestorSelector.
  *
- * @package PHPCR
- * @subpackage Query
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -48,6 +40,7 @@ interface DescendantNodeJoinConditionInterface extends \F3\PHPCR\Query\QOM\JoinC
 	 * Gets the name of the descendant selector.
 	 *
 	 * @return string the selector name; non-null
+	 * @api
 	 */
 	public function getDescendantSelectorName();
 
@@ -55,6 +48,7 @@ interface DescendantNodeJoinConditionInterface extends \F3\PHPCR\Query\QOM\JoinC
 	 * Gets the name of the ancestor selector.
 	 *
 	 * @return string the selector name; non-null
+	 * @api
 	 */
 	public function getAncestorSelectorName();
 

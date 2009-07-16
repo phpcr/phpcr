@@ -23,18 +23,10 @@ namespace F3\PHPCR\Query\QOM;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage Query
- * @version $Id$
- */
-
-/**
  * Performs a logical negation of another constraint.
  *
  * To satisfy the Not constraint, the node-tuple must not satisfy constraint.
  *
- * @package PHPCR
- * @subpackage Query
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -44,6 +36,7 @@ interface NotInterface extends \F3\PHPCR\Query\QOM\ConstraintInterface {
 	 * Gets the constraint negated by this Not constraint.
 	 *
 	 * @return \F3\PHPCR\Query\QOM\ConstraintInterface the constraint; non-null
+	 * @api
 	 */
 	public function getConstraint();
 

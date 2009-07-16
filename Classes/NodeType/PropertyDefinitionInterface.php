@@ -23,16 +23,8 @@ namespace F3\PHPCR\NodeType;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage NodeType
- * @version $Id$
- */
-
-/**
  * A property definition. Used in node type definitions.
  *
- * @package PHPCR
- * @subpackage NodeType
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -61,6 +53,7 @@ interface PropertyDefinitionInterface extends \F3\PHPCR\NodeType\ItemDefinitionI
 	 * PropertyDefinitionTemplate, then this method will return PropertyType.STRING.
 	 *
 	 * @return integer an int constant member of PropertyType.
+	 * @api
 	 */
 	public function getRequiredType();
 
@@ -188,6 +181,7 @@ interface PropertyDefinitionInterface extends \F3\PHPCR\NodeType\ItemDefinitionI
 	 * PropertyDefinitionTemplate, then this method will return null.
 	 *
 	 * @return array a String array.
+	 * @api
 	 */
 	public function getValueConstraints();
 
@@ -218,6 +212,7 @@ interface PropertyDefinitionInterface extends \F3\PHPCR\NodeType\ItemDefinitionI
 	 * PropertyDefinitionTemplate, then this method will return null.
 	 *
 	 * @return array an array of Value objects.
+	 * @api
 	 */
 	public function getDefaultValues();
 
@@ -234,6 +229,7 @@ interface PropertyDefinitionInterface extends \F3\PHPCR\NodeType\ItemDefinitionI
 	 * PropertyDefinitionTemplate, then this method will return false.
 	 *
 	 * @return boolean a boolean
+	 * @api
 	 */
 	public function isMultiple();
 
@@ -261,6 +257,7 @@ interface PropertyDefinitionInterface extends \F3\PHPCR\NodeType\ItemDefinitionI
 	 * Comparison of Values).
 	 *
 	 * @return array a string array
+	 * @api
 	 */
 	public function getAvailableQueryOperators();
 
@@ -273,6 +270,7 @@ interface PropertyDefinitionInterface extends \F3\PHPCR\NodeType\ItemDefinitionI
 	 * property definition has a queryable setting of TRUE.
 	 *
 	 * @return boolean a boolean
+	 * @api
 	 */
 	public function isFullTextSearchable();
 
@@ -285,6 +283,7 @@ interface PropertyDefinitionInterface extends \F3\PHPCR\NodeType\ItemDefinitionI
 	 * property definition has a queryable setting of TRUE.
 	 *
 	 * @return boolean a boolean
+	 * @api
 	 */
 	public function isQueryOrderable();
 

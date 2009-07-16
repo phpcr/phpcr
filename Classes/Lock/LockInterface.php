@@ -23,16 +23,8 @@ namespace F3\PHPCR\Lock;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage Lock
- * @version $Id$
- */
-
-/**
  * Represents a lock placed on an item.
  *
- * @package PHPCR
- * @subpackage Lock
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -50,6 +42,7 @@ interface LockInterface {
 	 * locked nodes; that depends entirely upon who the token holder is.
 	 *
 	 * @return string a user ID
+	 * @api
 	 */
 	public function getLockOwner();
 
@@ -57,6 +50,7 @@ interface LockInterface {
 	 * Returns true if this is a deep lock; false otherwise.
 	 *
 	 * @return boolean
+	 * @api
 	 */
 	public function isDeep();
 
@@ -66,6 +60,7 @@ interface LockInterface {
 	 * the subgraph of the lock holder, H, then this call will return H.
 	 *
 	 * @return \F3\PHPCR\NodeInterface a Node
+	 * @api
 	 */
 	public function getNode();
 
@@ -77,6 +72,7 @@ interface LockInterface {
 	 * return null.
 	 *
 	 * @return string
+	 * @api
 	 */
 	public function getLockToken();
 
@@ -89,6 +85,7 @@ interface LockInterface {
 	 * @return integer the number of seconds remaining until this lock times out.
 
 	 * @throws \F3\PHPCR\RepositoryException if the timeout is infinite or unknown
+	 * @api
 	 */
 	public function getSecondsRemaining();
 
@@ -105,6 +102,7 @@ interface LockInterface {
 	 *
 	 * @return boolean
 	 * @throws RepositoryException if an error occurs
+	 * @api
 	 */
 	public function isLive();
 
@@ -113,6 +111,7 @@ interface LockInterface {
 	 * current session. Returns false otherwise.
 	 *
 	 * @return boolean
+	 * @api
 	 */
 	public function isSessionScoped();
 
@@ -122,6 +121,7 @@ interface LockInterface {
 	 * currently holds the token for this lock. Returns false otherwise.
 	 *
 	 * @return boolean
+	 * @api
 	 */
 	public function isLockOwningSession();
 
@@ -132,6 +132,7 @@ interface LockInterface {
 	 *
 	 * @throws \F3\PHPCR\Lock\LockException if this Session does not hold the correct lock token for this lock.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function refresh();
 

@@ -23,11 +23,6 @@ namespace F3\PHPCR;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @version $Id$
- */
-
-/**
  * The property types supported by the JCR standard.
  *
  * The STRING property type is used to store strings.
@@ -44,7 +39,6 @@ namespace F3\PHPCR;
  * A URI property is identical to STRING property except that it only accepts values that conform to the syntax of a URI-reference as defined in RFC 3986. See also 4.2.6.6 URI in the specification.
  * UNDEFINED can be used within a property definition (see 4.7.5 Property Definitions) to specify that the property in question may be of any type. However, it cannot be the actual type of any property instance. For example it will never be returned by Property.getType() and (in level 2 implementations) it cannot be assigned as the type when creating a new property.
  *
- * @package PHPCR
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -200,6 +194,7 @@ final class PropertyType {
 	 *
 	 * @return void
 	 * @author Karsten Dambekalns <karsten@typo3.org>
+	 * @api
 	 */
 	private function __construct() {}
 

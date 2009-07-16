@@ -23,16 +23,8 @@ namespace F3\PHPCR\NodeType;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage NodeType
- * @version $Id$
- */
-
-/**
  * A NodeType object represents a "live" node type that is registered in the repository.
  *
- * @package PHPCR
- * @subpackage NodeType
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -314,6 +306,7 @@ interface NodeTypeInterface extends \F3\PHPCR\NodeType\NodeTypeDefinitionInterfa
 	 * include at least nt:base. For mixin types, there is no required supertype.
 	 *
 	 * @return array of \F3\PHPCR\NodeType\NodeType objects.
+	 * @api
 	 */
 	public function getSupertypes();
 
@@ -325,6 +318,7 @@ interface NodeTypeInterface extends \F3\PHPCR\NodeType\NodeTypeDefinitionInterfa
 	 * types this array may be of size greater than 1.
 	 *
 	 * @return array of \F3\PHPCR\NodeType\NodeType objects.
+	 * @api
 	 */
 	public function getDeclaredSupertypes();
 
@@ -335,6 +329,7 @@ interface NodeTypeInterface extends \F3\PHPCR\NodeType\NodeTypeDefinitionInterfa
 	 * @see getDeclaredSubtypes()
 	 *
 	 * @return \F3\PHPCR\NodeType\NodeTypeIteratorInterface a NodeTypeIterator.
+	 * @api
 	 */
 	public function getSubtypes();
 
@@ -346,6 +341,7 @@ interface NodeTypeInterface extends \F3\PHPCR\NodeType\NodeTypeDefinitionInterfa
 	 * @see getSubtypes()
 	 *
 	 * @return \F3\PHPCR\NodeType\NodeTypeIteratorInterface a NodeTypeIterator.
+	 * @api
 	 */
 	public function getDeclaredSubtypes();
 
@@ -355,6 +351,7 @@ interface NodeTypeInterface extends \F3\PHPCR\NodeType\NodeTypeDefinitionInterfa
 	 *
 	 * @param string $nodeTypeName the name of a node type.
 	 * @return boolean
+	 * @api
 	 */
 	public function isNodeType($nodeTypeName);
 
@@ -364,6 +361,7 @@ interface NodeTypeInterface extends \F3\PHPCR\NodeType\NodeTypeDefinitionInterfa
 	 * in this node type and those inherited from the supertypes of this type.
 	 *
 	 * @return array an array of \F3\PHPCR\NodeType\PropertyDefinition containing the property definitions.
+	 * @api
 	 */
 	public function getPropertyDefinitions();
 
@@ -373,6 +371,7 @@ interface NodeTypeInterface extends \F3\PHPCR\NodeType\NodeTypeDefinitionInterfa
 	 * node type and those inherited from the supertypes of this node type.
 	 *
 	 * @return array an array of \F3\PHPCR\NodeType\NodeDefinition containing the child node definitions.
+	 * @api
 	 */
 	public function getChildNodeDefinitions();
 
@@ -383,6 +382,7 @@ interface NodeTypeInterface extends \F3\PHPCR\NodeType\NodeTypeDefinitionInterfa
 	 * @param string $propertyName The name of the property
 	 * @param \F3\PHPCR\ValueInterface|array $value A \F3\PHPCR\ValueInterface object or an array of \F3\PHPCR\ValueInterface objects.
 	 * @return boolean
+	 * @api
 	 */
 	public function canSetProperty($propertyName, $value);
 
@@ -398,6 +398,7 @@ interface NodeTypeInterface extends \F3\PHPCR\NodeType\NodeTypeDefinitionInterfa
 	 * @param string $childNodeName The name of the child node.
 	 * @param string $nodeTypeName The name of the node type of the child node.
 	 * @return boolean
+	 * @api
 	 */
 	public function canAddChildNode($childNodeName, $nodeTypeName = NULL);
 
@@ -407,6 +408,7 @@ interface NodeTypeInterface extends \F3\PHPCR\NodeType\NodeTypeDefinitionInterfa
 	 *
 	 * @param string $nodeName The name of the child node
 	 * @return boolean
+	 * @api
 	 */
 	public function canRemoveNode($nodeName);
 
@@ -416,6 +418,7 @@ interface NodeTypeInterface extends \F3\PHPCR\NodeType\NodeTypeDefinitionInterfa
 	 *
 	 * @param string $propertyName The name of the property
 	 * @return boolean
+	 * @api
 	 */
 	public function canRemoveProperty($propertyName);
 }

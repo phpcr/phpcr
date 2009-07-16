@@ -23,12 +23,6 @@ namespace F3\PHPCR\NodeType;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage NodeType
- * @version $Id$
- */
-
-/**
  * The NodeTypeDefinition interface provides methods for discovering the
  * static definition of a node type. These are accessible both before and
  * after the node type is registered. Its subclass NodeType adds methods
@@ -40,8 +34,6 @@ namespace F3\PHPCR\NodeType;
  * registration, only objects implementing the subinterface NodeType will
  * be encountered.
  *
- * @package PHPCR
- * @subpackage NodeType
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -54,6 +46,7 @@ interface NodeTypeDefinitionInterface {
 	 * NodeTypeTemplate, then this method will return null.
 	 *
 	 * @return string a String
+	 * @api
 	 */
 	public function getName();
 
@@ -65,6 +58,7 @@ interface NodeTypeDefinitionInterface {
 	 * single string indicating the node type nt:base.
 	 *
 	 * @return array an array of Strings
+	 * @api
 	 */
 	public function getDeclaredSupertypeNames();
 
@@ -79,6 +73,7 @@ interface NodeTypeDefinitionInterface {
 	 * NodeTypeTemplate, then this method will return false.
 	 *
 	 * @return boolean a boolean
+	 * @api
 	 */
 	public function isAbstract();
 
@@ -89,6 +84,7 @@ interface NodeTypeDefinitionInterface {
 	 * NodeTypeTemplate, then this method will return false.
 	 *
 	 * @return boolean a boolean
+	 * @api
 	 */
 	public function isMixin();
 
@@ -105,6 +101,7 @@ interface NodeTypeDefinitionInterface {
 	 * NodeTypeTemplate, then this method will return false.
 	 *
 	 * @return boolean a boolean
+	 * @api
 	 */
 	public function hasOrderableChildNodes();
 
@@ -120,6 +117,7 @@ interface NodeTypeDefinitionInterface {
 	 * property definitions have no effect.
 	 *
 	 * @return boolean a boolean
+	 * @api
 	 */
 	public function isQueryable();
 
@@ -132,6 +130,7 @@ interface NodeTypeDefinitionInterface {
 	 * NodeTypeTemplate, then this method will return null.
 	 *
 	 * @return string a String
+	 * @api
 	 */
 	public function getPrimaryItemName();
 
@@ -143,6 +142,7 @@ interface NodeTypeDefinitionInterface {
 	 * NodeTypeTemplate, then this method will return null.
 	 *
 	 * @return array an array of PropertyDefinitions
+	 * @api
 	 */
 	public function getDeclaredPropertyDefinitions();
 
@@ -154,6 +154,7 @@ interface NodeTypeDefinitionInterface {
 	 * NodeTypeTemplate, then this method will return null.
 	 *
 	 * @return array an array of NodeDefinitions
+	 * @api
 	 */
 	public function getDeclaredChildNodeDefinitions();
 }

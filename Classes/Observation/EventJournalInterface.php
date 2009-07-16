@@ -23,17 +23,9 @@ namespace F3\PHPCR\Observation;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage Observation
- * @version $Id$
- */
-
-/**
  * An EventJournal is an extension of EventIterator that provides the additional
  * method skipTo().
  *
- * @package PHPCR
- * @subpackage Observation
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -46,6 +38,7 @@ interface EventJournalInterface extends \F3\PHPCR\Observation\EventIteratorInter
 	 *
 	 * @param integer value that represents an offset in milliseconds from the epoch.
 	 * @return void
+	 * @api
 	 */
 	public function skipTo($date);
 

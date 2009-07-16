@@ -23,20 +23,12 @@ namespace F3\PHPCR\Query\QOM;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage Query
- * @version $Id$
- */
-
-/**
  * Tests whether the childSelector node is a child of the parentSelector node. A
  * node-tuple satisfies the constraint only if:
  *  childSelectorNode.getParent().isSame(parentSelectorNode)
  * would return true, where childSelectorNode is the node for childSelector and
  * parentSelectorNode is the node for parentSelector.
  *
- * @package PHPCR
- * @subpackage Query
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -46,6 +38,7 @@ interface ChildNodeJoinConditionInterface extends \F3\PHPCR\Query\QOM\JoinCondit
 	 * Gets the name of the child selector.
 	 *
 	 * @return string the selector name; non-null
+	 * @api
 	 */
 	public function getChildSelectorName();
 
@@ -53,6 +46,7 @@ interface ChildNodeJoinConditionInterface extends \F3\PHPCR\Query\QOM\JoinCondit
 	 * Gets the name of the parent selector.
 	 *
 	 * @return string the selector name; non-null
+	 * @api
 	 */
 	public function getParentSelectorName();
 

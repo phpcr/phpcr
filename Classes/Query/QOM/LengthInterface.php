@@ -23,12 +23,6 @@ namespace F3\PHPCR\Query\QOM;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage Query
- * @version $Id$
- */
-
-/**
  * Evaluates to the length (or lengths, if multi-valued) of a property.
  *
  * The length should be computed as though the getLength method (or getLengths,
@@ -36,8 +30,6 @@ namespace F3\PHPCR\Query\QOM;
  *
  * If propertyValue evaluates to null, the Length operand also evaluates to null.
  *
- * @package PHPCR
- * @subpackage Query
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -47,6 +39,7 @@ interface LengthInterface extends \F3\PHPCR\Query\QOM\DynamicOperandInterface {
 	 * Gets the property value for which to compute the length.
 	 *
 	 * @return \F3\PHPCR\Query\QOM\PropertyValueInterface the property value; non-null
+	 * @api
 	 */
 	public function getPropertyValue();
 

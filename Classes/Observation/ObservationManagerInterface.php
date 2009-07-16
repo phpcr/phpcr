@@ -23,18 +23,10 @@ namespace F3\PHPCR\Observation;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage Observation
- * @version $Id$
- */
-
-/**
  * The ObservationManager object.
  * Acquired via Workspace.getObservationManager(). Allows for the registration
  * and deregistration of event listeners.
  *
- * @package PHPCR
- * @subpackage Observation
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -90,6 +82,7 @@ interface ObservationManagerInterface {
 	 * @param boolean $noLocal - a boolean.
 	 * @return void
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 * @api
 	 */
 	public function addEventListener(\F3\PHPCR\Observation\EventListenerInterface $listener, $eventTypes, $absPath, $isDeep, array $uuid, array $nodeTypeName, $noLocal);
 
@@ -104,6 +97,7 @@ interface ObservationManagerInterface {
 	 * @param \F3\PHPCR\Observation\EventListenerInterface $listener - The listener to deregister.
 	 * @return void
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 * @api
 	 */
 	public function removeEventListener(\F3\PHPCR\Observation\EventListenerInterface $listener);
 
@@ -112,6 +106,7 @@ interface ObservationManagerInterface {
 	 *
 	 * @return an EventListenerIterator.
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs
+	 * @api
 	 */
 	public function getRegisteredEventListeners();
 
@@ -121,6 +116,7 @@ interface ObservationManagerInterface {
 	 * @param string $userData the user data
 	 * @return void
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs
+	 * @api
 	 */
 	public function setUserData($userData);
 
@@ -145,6 +141,7 @@ interface ObservationManagerInterface {
 	 * @param array $nodeTypeName array of node type names.
 	 * @return \F3\PHPCR\Observation\EventJournalInterface an EventJournal (or NULL).
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs
+	 * @api
 	 */
 	public function getEventJournal($eventTypes = NULL, $absPath = NULL, $isDeep = NULL, array $uuid = NULL, array $nodeTypeName = NULL);
 

@@ -23,16 +23,8 @@ namespace F3\PHPCR\Query\QOM;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage Query
- * @version $Id$
- */
-
-/**
  * Evaluates to the value of a bind variable.
  *
- * @package PHPCR
- * @subpackage Query
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -42,6 +34,7 @@ interface BindVariableValueInterface extends \F3\PHPCR\Query\QOM\StaticOperandIn
 	 * Gets the name of the bind variable.
 	 *
 	 * @return string the bind variable name; non-null
+	 * @api
 	 */
 	public function getBindVariableName();
 

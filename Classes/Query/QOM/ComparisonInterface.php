@@ -23,12 +23,6 @@ namespace F3\PHPCR\Query\QOM;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage Query
- * @version $Id$
- */
-
-/**
  * Filters node-tuples based on the outcome of a binary operation.
  *
  * For any comparison, operand2 always evaluates to a scalar value. In contrast,
@@ -71,8 +65,6 @@ namespace F3\PHPCR\Query\QOM;
  * * the string "\x" matches the character "x", and
  *   all other characters match themselves.
  *
- * @package PHPCR
- * @subpackage Query
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -83,6 +75,7 @@ interface ComparisonInterface extends \F3\PHPCR\Query\QOM\ConstraintInterface {
 	 * Gets the first operand.
 	 *
 	 * @return \F3\PHPCR\Query\QOM\DynamicOperandInterface the operand; non-null
+	 * @api
 	 */
 	public function getOperand1();
 
@@ -90,6 +83,7 @@ interface ComparisonInterface extends \F3\PHPCR\Query\QOM\ConstraintInterface {
 	 * Gets the operator.
 	 *
 	 * @return string one of \F3\PHPCR\Query\QOM\QueryObjectModelConstantsInterface.JCR_OPERATOR_*
+	 * @api
 	 */
 	public function getOperator();
 
@@ -97,6 +91,7 @@ interface ComparisonInterface extends \F3\PHPCR\Query\QOM\ConstraintInterface {
 	 * Gets the second operand.
 	 *
 	 * @return \F3\PHPCR\Query\QOM\StaticOperandInterface the operand; non-null
+	 * @api
 	 */
 	public function getOperand2();
 

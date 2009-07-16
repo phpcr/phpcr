@@ -23,16 +23,8 @@ namespace F3\PHPCR\Query;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage Query
- * @version $Id$
- */
-
-/**
  * A Query object.
  *
- * @package PHPCR
- * @subpackage Query
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -50,6 +42,7 @@ interface QueryInterface {
 	 * @return \F3\PHPCR\Query\QueryInterface a QueryResult object
 	 * @throws \F3\PHPCR\Query\InvalidQueryException if the query contains an unbound variable.
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs
+	 * @api
 	 */
 	public function execute();
 
@@ -58,6 +51,7 @@ interface QueryInterface {
 	 *
 	 * @param integer $limit
 	 * @return void
+	 * @api
 	 */
 	public function setLimit($limit);
 
@@ -66,6 +60,7 @@ interface QueryInterface {
 	 *
 	 * @param integer $offset
 	 * @return void
+	 * @api
 	 */
 	public function setOffset($offset);
 
@@ -81,6 +76,7 @@ interface QueryInterface {
 	 * in the jcr:statement property if the query is persisted. See storeAsNode($absPath).
 	 *
 	 * @return string the query statement.
+	 * @api
 	 */
 	public function getStatement();
 
@@ -89,6 +85,7 @@ interface QueryInterface {
 	 * constants returned by QueryManager.getSupportedQueryLanguages().
 	 *
 	 * @return string the query language.
+	 * @api
 	 */
 	public function getLanguage();
 
@@ -101,6 +98,7 @@ interface QueryInterface {
 	 * @return string path of the node representing this query.
 	 * @throws \F3\PHPCR\ItemNotFoundException if this query is not a stored query.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function getStoredQueryPath();
 
@@ -124,6 +122,7 @@ interface QueryInterface {
 	 * @throws \F3\PHPCR\Lock\LockException if a lock prevents the addition of the node and this implementation performs this validation immediately instead of waiting until save.
 	 * @throws \F3\PHPCR\UnsupportedRepositoryOperationException in a level 1 implementation.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs or if the absPath provided has an index on its final element.
+	 * @api
 	 */
 	public function storeAsNode($absPath);
 

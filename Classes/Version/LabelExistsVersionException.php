@@ -23,18 +23,10 @@ namespace F3\PHPCR\Version;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage Version
- * @version $Id$
- */
-
-/**
  * Exception thrown by VersionHistory.addVersionLabel if moveLabel is set to
  * false and an attempt is made to add a label that already exists in the
  * VersionHistory.
  *
- * @package PHPCR
- * @subpackage Version
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */

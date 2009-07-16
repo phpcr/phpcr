@@ -23,14 +23,8 @@ namespace F3\PHPCR;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @version $Id$
- */
-
-/**
  * The Item is the base interface of Node and Property.
  *
- * @package PHPCR
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -41,6 +35,7 @@ interface ItemInterface {
 	 *
 	 * @returns string the normalized absolute path of this Item.
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 * @api
 	 */
 	public function getPath();
 
@@ -50,6 +45,7 @@ interface ItemInterface {
 	 *
 	 * @return string the name of this Item> in qualified form or an empty string if this Item is the root node of a workspace.
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 * @api
 	 */
 	public function getName();
 
@@ -72,6 +68,7 @@ interface ItemInterface {
 	 * @throws \F3\PHPCR\ItemNotFoundException if depth &lt; 0 or depth &gt; n where n is the depth of this item.
 	 * @throws \F3\PHPCR\AccessDeniedException if the current session does not have sufficient access to retrieve the specified node.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function getAncestor($depth);
 
@@ -82,6 +79,7 @@ interface ItemInterface {
 	 * @throws \F3\PHPCR\ItemNotFoundException if this Item< is the root node of a workspace.
 	 * @throws \F3\PHPCR\AccessDeniedException if the current session does not have sufficent access to retrieve the parent of this item.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function getParent();
 
@@ -95,6 +93,7 @@ interface ItemInterface {
 	 *
 	 * @return integer The depth of this Item in the workspace item graph.
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 * @api
 	 */
 	public function getDepth();
 
@@ -103,6 +102,7 @@ interface ItemInterface {
 	 *
 	 * @return \F3\PHPCR\SessionInterface the Session through which this Item was acquired.
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 * @api
 	 */
 	public function getSession();
 
@@ -111,6 +111,7 @@ interface ItemInterface {
 	 * this Item is a Node; Returns false if this Item is a Property.
 	 *
 	 * @return boolean TRUE if this Item is a Node, FALSE if it is a Property.
+	 * @api
 	 */
 	public function isNode();
 
@@ -128,6 +129,7 @@ interface ItemInterface {
 	 * false.
 	 *
 	 * @return boolean TRUE if this item is new; FALSE otherwise.
+	 * @api
 	 */
 	public function isNew();
 
@@ -144,6 +146,7 @@ interface ItemInterface {
 	 * false.
 	 *
 	 * @return boolean TRUE if this item is modified; FALSE otherwise.
+	 * @api
 	 */
 	public function isModified();
 
@@ -175,6 +178,7 @@ interface ItemInterface {
 	 * @param \F3\PHPCR\ItemInterface $otherItem the Item object to be tested for identity with this Item.
 	 * @return boolean TRUE if this Item object and otherItem represent the same actual repository item; FALSE otherwise.
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 * @api
 	 */
 	public function isSame(\F3\PHPCR\ItemInterface $otherItem);
 
@@ -184,6 +188,7 @@ interface ItemInterface {
 	 *
 	 * @param \F3\PHPCR\ItemVisitorInterface $visitor The ItemVisitor to be accepted.
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 * @api
 	 */
 	public function accept(\F3\PHPCR\ItemVisitorInterface $visitor);
 
@@ -205,6 +210,7 @@ interface ItemInterface {
 	 * @return void
 	 * @throws \F3\PHPCR\InvalidItemStateException if this Item object represents a workspace item that has been removed (either by this session or another).
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function refresh($keepChanges);
 
@@ -227,6 +233,7 @@ interface ItemInterface {
 	 * @throws \F3\PHPCR\AccessDeniedException if this item or an item in its subgraph is currently the target of a REFERENCE property located in this workspace but outside this item's subgraph and the current Session does not have read access to that REFERENCE property or if the current Session does not have sufficent privileges to remove the item.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 * @see SessionInterface::removeItem(String)
+	 * @api
 	 */
 	public function remove();
 }

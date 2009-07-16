@@ -23,12 +23,6 @@ namespace F3\PHPCR\Query\QOM;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage Query
- * @version $Id$
- */
-
-/**
  * Selects a subset of the nodes in the repository based on node type.
 *
 * A selector selects every node in the repository, subject to access control
@@ -39,8 +33,6 @@ namespace F3\PHPCR\Query\QOM;
 * the node has a mixin node type that is nodeType, or
 * the node has a mixin node type that is a subtype of nodeType.
 *
- * @package PHPCR
- * @subpackage Query
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -50,6 +42,7 @@ interface SelectorInterface extends \F3\PHPCR\Query\QOM\SourceInterface {
 	 * Gets the name of the required node type.
 	 *
 	 * @return string the node type name; non-null
+	 * @api
 	 */
 	public function getNodeTypeName();
 
@@ -58,6 +51,7 @@ interface SelectorInterface extends \F3\PHPCR\Query\QOM\SourceInterface {
 	 * A selector's name can be used elsewhere in the query to identify the selector.
 	 *
 	 * @return the selector name; non-null
+	 * @api
 	 */
 	public function getSelectorName();
 

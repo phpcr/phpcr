@@ -23,14 +23,8 @@ namespace F3\PHPCR;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @version $Id$
- */
-
-/**
  * A Binary object holds a JCR property value of type BINARY.
  *
- * @package PHPCR
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -45,6 +39,7 @@ interface BinaryInterface {
 	 * @return resource A stream representation of this value.
 	 * @throws \BadMethodCallException if dispose() has already been called on this Binary
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 * @api
 	 */
 	public function getStream();
 
@@ -59,6 +54,7 @@ interface BinaryInterface {
 	 * @throws \InvalidArgumentException if offset is negative.
 	 * @throws \BadMethodCallException if dispose() has already been called on this Binary
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function read(&$bytes, $position);
 
@@ -68,6 +64,7 @@ interface BinaryInterface {
 	 * @return integer the size of this value in bytes.
 	 * @throws \BadMethodCallException if dispose() has already been called on this Binary
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 * @api
 	 */
 	public function getSize();
 
@@ -78,6 +75,7 @@ interface BinaryInterface {
 	 * Binary object.
 	 *
 	 * @return void
+	 * @api
 	 */
 	public function dispose();
 

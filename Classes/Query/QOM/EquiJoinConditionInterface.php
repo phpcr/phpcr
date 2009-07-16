@@ -23,12 +23,6 @@ namespace F3\PHPCR\Query\QOM;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage Query
- * @version $Id$
- */
-
-/**
  * Tests whether the value of a property in a first selector is equal to the
  * value of a property in a second selector.
  *
@@ -37,8 +31,6 @@ namespace F3\PHPCR\Query\QOM;
  *  selector2 has a property named property2, and
  *  the value of property1 equals the value of property2
  *
- * @package PHPCR
- * @subpackage Query
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -48,6 +40,7 @@ interface EquiJoinConditionInterface extends \F3\PHPCR\Query\QOM\JoinConditionIn
 	 * Gets the name of the first selector.
 	 *
 	 * @return string the selector name; non-null
+	 * @api
 	 */
 	public function getSelector1Name();
 
@@ -55,6 +48,7 @@ interface EquiJoinConditionInterface extends \F3\PHPCR\Query\QOM\JoinConditionIn
 	 * Gets the property name in the first selector.
 	 *
 	 * @return string the property name; non-null
+	 * @api
 	 */
 	public function getProperty1Name();
 
@@ -62,6 +56,7 @@ interface EquiJoinConditionInterface extends \F3\PHPCR\Query\QOM\JoinConditionIn
 	 * Gets the name of the second selector.
 	 *
 	 * @return string the selector name; non-null
+	 * @api
 	 */
 	public function getSelector2Name();
 
@@ -69,6 +64,7 @@ interface EquiJoinConditionInterface extends \F3\PHPCR\Query\QOM\JoinConditionIn
 	 * Gets the property name in the second selector.
 	 *
 	 * @return string the property name; non-null
+	 * @api
 	 */
 	public function getProperty2Name();
 

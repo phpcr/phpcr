@@ -23,16 +23,8 @@ namespace F3\PHPCR\Query\QOM;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage Query
- * @version $Id$
- */
-
-/**
  * Evaluates to a literal value.
  *
- * @package PHPCR
- * @subpackage Query
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -42,6 +34,7 @@ interface LiteralInterface extends \F3\PHPCR\Query\QOM\StaticOperandInterface {
 	 * Gets the value of the literal.
 	 *
 	 * @return string the literal value; non-null
+	 * @api
 	 */
 	public function getLiteralValue();
 

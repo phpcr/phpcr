@@ -23,15 +23,9 @@ namespace F3\PHPCR;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @version $Id$
- */
-
-/**
  * Allows easy iteration through a list of Propertys with nextProperty as
  * well as a skip method.
  *
- * @package PHPCR
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -42,6 +36,7 @@ interface PropertyIteratorInterface extends \F3\PHPCR\RangeIteratorInterface {
 	 *
 	 * @return \F3\PHPCR\PropertyInterface
 	 * @throws OutOfBoundsException if the iterator contains no more elements.
+	 * @api
 	 */
 	public function nextProperty();
 

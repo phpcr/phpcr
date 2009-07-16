@@ -23,12 +23,6 @@ namespace F3\PHPCR\Version;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage Version
- * @version $Id$
- */
-
-/**
  * Exception will be thrown by Node.checkout and Node.checkpoint if an activity
  * A is present on the current session and any of the following conditions is met:
  *
@@ -37,8 +31,6 @@ namespace F3\PHPCR\Version;
  *  * There is a version in the version history of N that is not a predecessor
  *    of N but whose jcr:activity references A.
  *
- * @package PHPCR
- * @subpackage Version
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */

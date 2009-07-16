@@ -23,20 +23,12 @@ namespace F3\PHPCR\Query\QOM;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage Query
- * @version $Id$
- */
-
-/**
  * Tests whether the selector node is reachable by absolute path path.
  *
  * A node-tuple satisfies the constraint only if:
  *  selectorNode.isSame(session.getNode(path))
  * would return true, where selectorNode is the node for the specified selector.
  *
- * @package PHPCR
- * @subpackage Query
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -46,6 +38,7 @@ interface SameNodeInterface extends \F3\PHPCR\Query\QOM\ConstraintInterface {
 	 * Gets the name of the selector against which to apply this constraint.
 	 *
 	 * @return string the selector name; non-null
+	 * @api
 	 */
 	public function getSelectorName();
 
@@ -53,6 +46,7 @@ interface SameNodeInterface extends \F3\PHPCR\Query\QOM\ConstraintInterface {
 	 * Gets the absolute path.
 	 *
 	 * @return string the path; non-null
+	 * @api
 	 */
 	public function getPath();
 

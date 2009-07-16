@@ -23,12 +23,6 @@ namespace F3\PHPCR\Query\QOM;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage Query
- * @version $Id$
- */
-
-/**
  * Tests whether the selector node is a descendant of a node reachable by
  * absolute path path.
  *
@@ -38,8 +32,6 @@ namespace F3\PHPCR\Query\QOM;
  * would return true for some non-negative integer n, where selectorNode is the
  * node for the specified selector.
  *
- * @package PHPCR
- * @subpackage Query
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -49,6 +41,7 @@ interface DescendantNodeInterface extends \F3\PHPCR\Query\QOM\ConstraintInterfac
 	 * Gets the name of the selector against which to apply this constraint.
 	 *
 	 * @return string the selector name; non-null
+	 * @api
 	 */
 	public function getSelectorName();
 
@@ -56,6 +49,7 @@ interface DescendantNodeInterface extends \F3\PHPCR\Query\QOM\ConstraintInterfac
 	 * Gets the absolute path.
 	 *
 	 * @return string the path; non-null
+	 * @api
 	 */
 	public function getAncestorPath();
 

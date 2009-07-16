@@ -23,16 +23,8 @@ namespace F3\PHPCR\Retention;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage Retention
- * @version $Id$
- */
-
-/**
  * A RetentionPolicy is an object with a name and an optional description.
  *
- * @package PHPCR
- * @subpackage Retention
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -43,6 +35,7 @@ interface RetentionPolicyInterface {
 	 *
 	 * @return string the name of the access control policy. A JCR name.
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 * @api
 	 */
 	public function getName();
 

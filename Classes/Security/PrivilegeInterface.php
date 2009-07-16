@@ -23,12 +23,6 @@ namespace F3\PHPCR\Security;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage Security
- * @version $Id$
- */
-
-/**
  * A privilege represents the capability of performing a particular set of
  * operations on items in the JCR repository. Each privilege is identified by a
  * JCR name. JCR defines a set of standard privileges in the jcr namespace.
@@ -46,8 +40,6 @@ namespace F3\PHPCR\Security;
  *
  * A privilege can be both aggregate and abstract.
  *
- * @package PHPCR
- * @subpackage Security
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -170,6 +162,7 @@ interface PrivilegeInterface {
 	 * Returns the name of this privilege.
 	 *
 	 * @return string the name of this privilege.
+	 * @api
 	 */
 	public function getName();
 
@@ -177,6 +170,7 @@ interface PrivilegeInterface {
 	 * Returns whether this privilege is an abstract privilege.
 	 *
 	 * @return boolean true if this privilege is an abstract privilege; false otherwise.
+	 * @api
 	 */
 	public function isAbstract();
 
@@ -184,6 +178,7 @@ interface PrivilegeInterface {
 	 * Returns whether this privilege is an aggregate privilege.
 	 *
 	 * @return boolean true if this privilege is an aggregate privilege; false otherwise.
+	 * @api
 	 */
 	public function isAggregate();
 
@@ -193,6 +188,7 @@ interface PrivilegeInterface {
 	 * array.
 	 *
 	 * @return array an array of Privileges
+	 * @api
 	 */
 	public function getDeclaredAggregatePrivileges();
 
@@ -203,6 +199,7 @@ interface PrivilegeInterface {
 	 * privilege). Otherwise returns an empty array.
 	 *
 	 * @return array an array of Privileges
+	 * @api
 	 */
 	public function getAggregatePrivileges();
 

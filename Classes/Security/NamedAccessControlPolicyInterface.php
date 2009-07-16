@@ -23,19 +23,11 @@ namespace F3\PHPCR\Security;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage Security
- * @version $Id$
- */
-
-/**
  * An NamedAccessControlPolicy is an opaque access control policy that is described
  * by a JCR name and optionally a description. NamedAccessControlPolicy are
  * immutable and can therefore be directly applied to a node without additional
  * configuration step.
  *
- * @package PHPCR
- * @subpackage Security
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -47,6 +39,7 @@ interface NamedAccessControlPolicyInterface extends \F3\PHPCR\Security\AccessCon
 	 *
 	 * @return string the name of the access control policy. A JCR name.
 	 * @throws \F3\PHPCR\RepositoryException - if an error occurs.
+	 * @api
 	 */
 	public function getName();
 

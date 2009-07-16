@@ -23,19 +23,11 @@ namespace F3\PHPCR\Query\QOM;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage Query
- * @version $Id$
- */
-
-/**
  * Performs a logical conjunction of two other constraints.
  *
  * To satisfy the And constraint, a node-tuple must satisfy both constraint1 and
  * constraint2.
  *
- * @package PHPCR
- * @subpackage Query
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -45,6 +37,7 @@ interface AndInterface extends \F3\PHPCR\Query\QOM\ConstraintInterface {
 	 * Gets the first constraint.
 	 *
 	 * @return \F3\PHPCR\Query\QOM\ConstraintInterface the constraint; non-null
+	 * @api
 	 */
 	public function getConstraint1();
 
@@ -52,6 +45,7 @@ interface AndInterface extends \F3\PHPCR\Query\QOM\ConstraintInterface {
 	 * Gets the second constraint.
 	 *
 	 * @return \F3\PHPCR\Query\QOM\ConstraintInterface the constraint; non-null
+	 * @api
 	 */
 	public function getConstraint2();
 

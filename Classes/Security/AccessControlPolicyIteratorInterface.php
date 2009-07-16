@@ -23,17 +23,9 @@ namespace F3\PHPCR\Security;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage Security
- * @version $Id$
- */
-
-/**
  * Allows easy iteration through a list of AccessControlPolicys with
  * nextAccessControlPolicy as well as a skip method inherited from RangeIterator.
  *
- * @package PHPCR
- * @subpackage Security
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -44,6 +36,7 @@ interface AccessControlPolicyIteratorInterface extends \F3\PHPCR\RangeIteratorIn
 	 *
 	 * @return \F3\PHPCR\Security\AccessControlPolicyInterface the next AccessControlPolicy in the iteration
 	 * @throws OutOfBoundsException if iteration has no more AccessControlPolicys
+	 * @api
 	 */
 	public function nextAccessControlPolicy();
 

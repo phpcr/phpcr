@@ -23,18 +23,10 @@ namespace F3\PHPCR\Query\QOM;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage Query
- * @version $Id$
- */
-
-/**
  * A QueryObjectModelFactory creates instances of the JCR query object model.
  *
  * Refer to QueryObjectModelInterface for a description of the query object model.
  *
- * @package PHPCR
- * @subpackage Query
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -56,6 +48,7 @@ interface QueryObjectModelFactoryInterface extends \F3\PHPCR\Query\QOM\QueryObje
 	 * @return \F3\PHPCR\Query\QOM\QueryObjectModelInterface the query; non-null
 	 * @throws \F3\PHPCR\Query\InvalidQueryException if a particular validity test is possible on this method, the implemention chooses to perform that test and the parameters given fail that test. See the individual QOM factory methods for the validity criteria of each query element.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function createQuery(\F3\PHPCR\Query\QOM\SourceInterface $selectorOrSource, $constraint, array $orderings, array $columns);
 
@@ -77,6 +70,7 @@ interface QueryObjectModelFactoryInterface extends \F3\PHPCR\Query\QOM\QueryObje
 	 * @return \F3\PHPCR\Query\QOM\SelectorInterface the selector; non-null
 	 * @throws \F3\PHPCR\Query\InvalidQueryException if a particular validity test is possible on this method, the implemention chooses to perform that test (and not leave it until later) on createQuery, and the parameters given fail that test
 	 * @throws \F3\PHPCR\RepositoryException if the operation otherwise fails
+	 * @api
 	 */
 	public function selector($nodeTypeName, $selectorName = NULL);
 
@@ -92,6 +86,7 @@ interface QueryObjectModelFactoryInterface extends \F3\PHPCR\Query\QOM\QueryObje
 	 * @return \F3\PHPCR\Query\QOM\JoinInterface the join; non-null
 	 * @throws \F3\PHPCR\Query\InvalidQueryException if a particular validity test is possible on this method, the implemention chooses to perform that test (and not leave it until later) on createQuery, and the parameters given fail that test
 	 * @throws \F3\PHPCR\RepositoryException if the operation otherwise fails
+	 * @api
 	 */
 	public function join(\F3\PHPCR\Query\QOM\SourceInterface $left, \F3\PHPCR\Query\QOM\SourceInterface $right, $joinType, \F3\PHPCR\Query\QOM\JoinConditionInterface $joinCondition);
 
@@ -119,6 +114,7 @@ interface QueryObjectModelFactoryInterface extends \F3\PHPCR\Query\QOM\QueryObje
 	 * @return \F3\PHPCR\Query\QOM\EquiJoinConditionInterface the constraint; non-null
 	 * @throws \F3\PHPCR\Query\InvalidQueryException if a particular validity test is possible on this method, the implemention chooses to perform that test (and not leave it until later) on createQuery, and the parameters given fail that test
 	 * @throws \F3\PHPCR\RepositoryException if the operation otherwise fails
+	 * @api
 	 */
 	public function equiJoinCondition($selector1Name, $property1Name, $selector2Name, $property2Name);
 
@@ -141,6 +137,7 @@ interface QueryObjectModelFactoryInterface extends \F3\PHPCR\Query\QOM\QueryObje
 	 * @return \F3\PHPCR\Query\QOM\SameNodeJoinConditionInterface the constraint; non-null
 	 * @throws \F3\PHPCR\Query\InvalidQueryException if a particular validity test is possible on this method, the implemention chooses to perform that test (and not leave it until later) on createQuery, and the parameters given fail that test
 	 * @throws \F3\PHPCR\RepositoryException if the operation otherwise fails
+	 * @api
 	 */
 	public function sameNodeJoinCondition($selector1Name, $selector2Name, $selector2Path = NULL);
 
@@ -157,6 +154,7 @@ interface QueryObjectModelFactoryInterface extends \F3\PHPCR\Query\QOM\QueryObje
 	 * @return \F3\PHPCR\Query\QOM\ChildNodeJoinConditionInterface the constraint; non-null
 	 * @throws \F3\PHPCR\Query\InvalidQueryException if a particular validity test is possible on this method, the implemention chooses to perform that test (and not leave it until later) on createQuery, and the parameters given fail that test
 	 * @throws \F3\PHPCR\RepositoryException if the operation otherwise fails
+	 * @api
 	 */
 	public function childNodeJoinCondition($childSelectorName, $parentSelectorName);
 
@@ -173,6 +171,7 @@ interface QueryObjectModelFactoryInterface extends \F3\PHPCR\Query\QOM\QueryObje
 	 * @return \F3\PHPCR\Query\QOM\DescendantNodeJoinConditionInterface the constraint; non-null
 	 * @throws \F3\PHPCR\Query\InvalidQueryException if a particular validity test is possible on this method, the implemention chooses to perform that test (and not leave it until later) on createQuery, and the parameters given fail that test
 	 * @throws \F3\PHPCR\RepositoryException if the operation otherwise fails
+	 * @api
 	 */
 	public function descendantNodeJoinCondition($descendantSelectorName, $ancestorSelectorName);
 
@@ -184,6 +183,7 @@ interface QueryObjectModelFactoryInterface extends \F3\PHPCR\Query\QOM\QueryObje
 	 * @return \F3\PHPCR\Query\QOM\AndInterface the And constraint; non-null
 	 * @throws \F3\PHPCR\Query\InvalidQueryException if a particular validity test is possible on this method, the implemention chooses to perform that test (and not leave it until later) on createQuery, and the parameters given fail that test
 	 * @throws \F3\PHPCR\RepositoryException if the operation otherwise fails
+	 * @api
 	 */
 	public function _and(\F3\PHPCR\Query\QOM\ConstraintInterface $constraint1, \F3\PHPCR\Query\QOM\ConstraintInterface $constraint2);
 
@@ -195,6 +195,7 @@ interface QueryObjectModelFactoryInterface extends \F3\PHPCR\Query\QOM\QueryObje
 	 * @return \F3\PHPCR\Query\QOM\OrInterface the Or constraint; non-null
 	 * @throws \F3\PHPCR\Query\InvalidQueryException if a particular validity test is possible on this method, the implemention chooses to perform that test (and not leave it until later) on createQuery, and the parameters given fail that test
 	 * @throws \F3\PHPCR\RepositoryException if the operation otherwise fails
+	 * @api
 	 */
 	public function _or(\F3\PHPCR\Query\QOM\ConstraintInterface $constraint1, \F3\PHPCR\Query\QOM\ConstraintInterface $constraint2);
 
@@ -205,6 +206,7 @@ interface QueryObjectModelFactoryInterface extends \F3\PHPCR\Query\QOM\QueryObje
 	 * @return \F3\PHPCR\Query\QOM\NotInterface the Not constraint; non-null
 	 * @throws \F3\PHPCR\Query\InvalidQueryException if a particular validity test is possible on this method, the implemention chooses to perform that test (and not leave it until later) on createQuery, and the parameters given fail that test
 	 * @throws \F3\PHPCR\RepositoryException if the operation otherwise fails
+	 * @api
 	 */
 	public function not(\F3\PHPCR\Query\QOM\ConstraintInterface $constraint);
 
@@ -217,6 +219,7 @@ interface QueryObjectModelFactoryInterface extends \F3\PHPCR\Query\QOM\QueryObje
 	 * @return \F3\PHPCR\Query\QOM\ComparisonInterface the constraint; non-null
 	 * @throws \F3\PHPCR\Query\InvalidQueryException if a particular validity test is possible on this method, the implemention chooses to perform that test (and not leave it until later) on createQuery, and the parameters given fail that test
 	 * @throws \F3\PHPCR\RepositoryException if the operation otherwise fails
+	 * @api
 	 */
 	public function comparison(\F3\PHPCR\Query\QOM\DynamicOperandInterface $operand1, $operator, \F3\PHPCR\Query\QOM\StaticOperandInterface $operand2);
 
@@ -233,6 +236,7 @@ interface QueryObjectModelFactoryInterface extends \F3\PHPCR\Query\QOM\QueryObje
 	 * @return \F3\PHPCR\Query\QOM\PropertyExistenceInterface the constraint; non-null
 	 * @throws \F3\PHPCR\Query\InvalidQueryException if a particular validity test is possible on this method, the implemention chooses to perform that test (and not leave it until later) on createQuery, and the parameters given fail that test
 	 * @throws \F3\PHPCR\RepositoryException if the operation otherwise fails
+	 * @api
 	 */
 	public function propertyExistence($propertyName, $selectorName = NULL);
 
@@ -254,6 +258,7 @@ interface QueryObjectModelFactoryInterface extends \F3\PHPCR\Query\QOM\QueryObje
 	 * @return \F3\PHPCR\Query\QOM\FullTextSearchInterface the constraint; non-null
 	 * @throws \F3\PHPCR\Query\InvalidQueryException if a particular validity test is possible on this method, the implemention chooses to perform that test (and not leave it until later) on createQuery, and the parameters given fail that test
 	 * @throws \F3\PHPCR\RepositoryException if the operation otherwise fails
+	 * @api
 	 */
 	public function fullTextSearch($propertyName, $fullTextSearchExpression, $selectorName = NULL);
 
@@ -274,6 +279,7 @@ interface QueryObjectModelFactoryInterface extends \F3\PHPCR\Query\QOM\QueryObje
 	 * @return \F3\PHPCR\Query\QOM\SameNodeInterface the constraint; non-null
 	 * @throws \F3\PHPCR\Query\InvalidQueryException if the query is invalid
 	 * @throws \F3\PHPCR\RepositoryException if the operation otherwise fails
+	 * @api
 	 */
 	public function sameNode($path, $selectorName = NULL);
 
@@ -294,6 +300,7 @@ interface QueryObjectModelFactoryInterface extends \F3\PHPCR\Query\QOM\QueryObje
 	 * @return \F3\PHPCR\Query\QOM\ChildNodeInterface the constraint; non-null
 	 * @throws \F3\PHPCR\Query\InvalidQueryException if a particular validity test is possible on this method, the implemention chooses to perform that test (and not leave it until later) on createQuery, and the parameters given fail that test
 	 * @throws \F3\PHPCR\RepositoryException if the operation otherwise fails
+	 * @api
 	 */
 	public function childNode($path, $selectorName = NULL);
 
@@ -314,6 +321,7 @@ interface QueryObjectModelFactoryInterface extends \F3\PHPCR\Query\QOM\QueryObje
 	 * @return \F3\PHPCR\Query\QOM\DescendantNodeInterface the constraint; non-null
 	 * @throws \F3\PHPCR\Query\InvalidQueryException if a particular validity test is possible on this method, the implemention chooses to perform that test (and not leave it until later) on createQuery, and the parameters given fail that test
 	 * @throws \F3\PHPCR\RepositoryException if the operation otherwise fails
+	 * @api
 	 */
 	public function descendantNode($path, $selectorName = NULL);
 
@@ -330,6 +338,7 @@ interface QueryObjectModelFactoryInterface extends \F3\PHPCR\Query\QOM\QueryObje
 	 * @return \F3\PHPCR\Query\QOM\PropertyValueInterface the operand; non-null
 	 * @throws \F3\PHPCR\Query\InvalidQueryException if the query is invalid
 	 * @throws \F3\PHPCR\RepositoryException if the operation otherwise fails
+	 * @api
 	 */
 	public function propertyValue($propertyName, $selectorName = NULL);
 
@@ -340,6 +349,7 @@ interface QueryObjectModelFactoryInterface extends \F3\PHPCR\Query\QOM\QueryObje
 	 * @return \F3\PHPCR\Query\QOM\LengthInterface the operand; non-null
 	 * @throws \F3\PHPCR\Query\InvalidQueryException if a particular validity test is possible on this method, the implemention chooses to perform that test (and not leave it until later) on createQuery, and the parameters given fail that test
 	 * @throws \F3\PHPCR\RepositoryException if the operation otherwise fails
+	 * @api
 	 */
 	public function length(\F3\PHPCR\Query\QOM\PropertyValueInterface $propertyValue);
 
@@ -354,6 +364,7 @@ interface QueryObjectModelFactoryInterface extends \F3\PHPCR\Query\QOM\QueryObje
 	 * @return \F3\PHPCR\Query\QOM\NodeNameInterface the operand; non-null
 	 * @throws \F3\PHPCR\Query\InvalidQueryException if a particular validity test is possible on this method, the implemention chooses to perform that test (and not leave it until later) on createQuery, and the parameters given fail that test
 	 * @throws \F3\PHPCR\RepositoryException if the operation otherwise fails
+	 * @api
 	 */
 	public function nodeName($selectorName = NULL);
 
@@ -367,6 +378,7 @@ interface QueryObjectModelFactoryInterface extends \F3\PHPCR\Query\QOM\QueryObje
 	 * @return \F3\PHPCR\Query\QOM\NodeLocalNameInterface the operand; non-null
 	 * @throws \F3\PHPCR\Query\InvalidQueryException if the query is invalid
 	 * @throws \F3\PHPCR\RepositoryException if the operation otherwise fails
+	 * @api
 	 */
 	public function nodeLocalName($selectorName = NULL);
 
@@ -380,6 +392,7 @@ interface QueryObjectModelFactoryInterface extends \F3\PHPCR\Query\QOM\QueryObje
 	 * @return \F3\PHPCR\Query\QOM\FullTextSearchScoreInterface the operand; non-null
 	 * @throws \F3\PHPCR\Query\InvalidQueryException if a particular validity test is possible on this method, the implemention chooses to perform that test (and not leave it until later) on createQuery, and the parameters given fail that test
 	 * @throws \F3\PHPCR\RepositoryException if the operation otherwise fails
+	 * @api
 	 */
 	public function fullTextSearchScore($selectorName = NULL);
 
@@ -390,6 +403,7 @@ interface QueryObjectModelFactoryInterface extends \F3\PHPCR\Query\QOM\QueryObje
 	 * @return \F3\PHPCR\Query\QOM\LowerCaseInterface the operand; non-null
 	 * @throws \F3\PHPCR\Query\InvalidQueryException if a particular validity test is possible on this method, the implemention chooses to perform that test (and not leave it until later) on createQuery, and the parameters given fail that test
 	 * @throws \F3\PHPCR\RepositoryException if the operation otherwise fails
+	 * @api
 	 */
 	public function lowerCase(\F3\PHPCR\Query\QOM\DynamicOperandInterface $operand);
 
@@ -400,6 +414,7 @@ interface QueryObjectModelFactoryInterface extends \F3\PHPCR\Query\QOM\QueryObje
 	 * @return \F3\PHPCR\Query\QOM\UpperCaseInterface the operand; non-null
 	 * @throws \F3\PHPCR\Query\InvalidQueryException if a particular validity test is possible on this method, the implemention chooses to perform that test (and not leave it until later) on createQuery, and the parameters given fail that test
 	 * @throws \F3\PHPCR\RepositoryException if the operation otherwise fails
+	 * @api
 	 */
 	public function upperCase(\F3\PHPCR\Query\QOM\DynamicOperandInterface $operand);
 
@@ -412,6 +427,7 @@ interface QueryObjectModelFactoryInterface extends \F3\PHPCR\Query\QOM\QueryObje
 	 * @return \F3\PHPCR\Query\QOM\BindVariableValueInterface the operand; non-null
 	 * @throws \F3\PHPCR\Query\InvalidQueryException if a particular validity test is possible on this method, the implemention chooses to perform that test (and not leave it until later) on createQuery, and the parameters given fail that test
 	 * @throws \F3\PHPCR\RepositoryException if the operation otherwise fails
+	 * @api
 	 */
 	public function bindVariable($bindVariableName);
 
@@ -424,6 +440,7 @@ interface QueryObjectModelFactoryInterface extends \F3\PHPCR\Query\QOM\QueryObje
 	 * @return \F3\PHPCR\ValueInterface the operand; non-null
 	 * @throws \F3\PHPCR\Query\InvalidQueryException if a particular validity test is possible on this method, the implemention chooses to perform that test (and not leave it until later) on createQuery, and the parameters given fail that test
 	 * @throws \F3\PHPCR\RepositoryException if the operation otherwise fails
+	 * @api
 	 */
 	public function literal(\F3\PHPCR\ValueInterface $literalValue);
 
@@ -436,6 +453,7 @@ interface QueryObjectModelFactoryInterface extends \F3\PHPCR\Query\QOM\QueryObje
 	 * @return \F3\PHPCR\Query\QOM\OrderingInterface the ordering
 	 * @throws \F3\PHPCR\Query\InvalidQueryException if the query is invalid
 	 * @throws \F3\PHPCR\RepositoryException if the operation otherwise fails
+	 * @api
 	 */
 	public function ascending(\F3\PHPCR\Query\QOM\DynamicOperandInterface $operand);
 
@@ -448,6 +466,7 @@ interface QueryObjectModelFactoryInterface extends \F3\PHPCR\Query\QOM\QueryObje
 	 * @return \F3\PHPCR\Query\QOM\OrderingInterface the ordering
 	 * @throws \F3\PHPCR\Query\InvalidQueryException if the query is invalid
 	 * @throws \F3\PHPCR\RepositoryException if the operation otherwise fails
+	 * @api
 	 */
 	public function descending(\F3\PHPCR\Query\QOM\DynamicOperandInterface $operand);
 
@@ -476,6 +495,7 @@ interface QueryObjectModelFactoryInterface extends \F3\PHPCR\Query\QOM\QueryObje
 	 * @return \F3\PHPCR\Query\QOM\ColumnInterface the column; non-null
 	 * @throws \F3\PHPCR\Query\InvalidQueryException if the query has no default selector or is otherwise invalid
 	 * @throws \F3\PHPCR\RepositoryException if the operation otherwise fails
+	 * @api
 	 */
 	public function column($propertyName, $columnName = NULL, $selectorName = NULL);
 

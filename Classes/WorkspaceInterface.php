@@ -23,18 +23,12 @@ namespace F3\PHPCR;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @version $Id$
- */
-
-/**
  * A Workspace object represents a view onto a persistent workspace within a
  * repository. This view is defined by the authorization settings of the Session
  * object associated with the Workspace object. Each Workspace object is
  * associated one-to-one with a Session object. The Workspace object can be
  * acquired by calling Session.getWorkspace() on the associated Session object.
  *
- * @package PHPCR
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -137,6 +131,7 @@ interface WorkspaceInterface {
 	 * Returns the Session object through which this Workspace object was acquired.
 	 *
 	 * @return \F3\PHPCR\SessionInterface a Session object.
+	 * @api
 	 */
 	public function getSession();
 
@@ -145,6 +140,7 @@ interface WorkspaceInterface {
 	 * Workspace object. This the name used in Repository->login.
 	 *
 	 * @return string the name of this workspace.
+	 * @api
 	 */
 	public function getName();
 
@@ -223,6 +219,7 @@ interface WorkspaceInterface {
 	 * @throws \F3\PHPCR\ItemExistsException if a node already exists at destAbsPath and either same-name siblings are not allowed or update on copy is not supported for the nodes involved.
 	 * @throws \F3\PHPCR\Lock\LockException if a lock prevents the copy.
 	 * @throws \F3\PHPCR\RepositoryException if the last element of destAbsPath has an index or if another error occurs.
+	 * @api
 	 */
 	public function copy($srcAbsPath, $destAbsPath, $srcWorkspace = NULL);
 
@@ -271,6 +268,7 @@ interface WorkspaceInterface {
 	 * @throws \F3\PHPCR\ItemExistsException if a node already exists at destAbsPath and same-name siblings are not allowed or if removeExisting is false and an identifier conflict occurs.
 	 * @throws \F3\PHPCR\Lock\LockException if a lock prevents the clone.
 	 * @throws \F3\PHPCR\RepositoryException if the last element of destAbsPath has an index or if another error occurs.
+	 * @api
 	 */
 	public function klone($srcWorkspace, $srcAbsPath, $destAbsPath, $removeExisting);
 
@@ -310,6 +308,7 @@ interface WorkspaceInterface {
 	 * @throws \F3\PHPCR\ItemExistsException if a node already exists at destAbsPath and same-name siblings are not allowed.
 	 * @throws \F3\PHPCR\Lock\LockException if a lock prevents the move.
 	 * @throws \F3\PHPCR\RepositoryException if the last element of destAbsPath has an index or if another error occurs.
+	 * @api
 	 */
 	public function move($srcAbsPath, $destAbsPath);
 
@@ -319,6 +318,7 @@ interface WorkspaceInterface {
 	 * @return \F3\PHPCR\Lock\LockManagerInterface
 	 * @throws \F3\PHPCR\UnsupportedRepositoryOperationException if the implementation does not support locking.
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 * @api
 	 */
 	public function getLockManager();
 
@@ -327,6 +327,7 @@ interface WorkspaceInterface {
 	 *
 	 * @return \F3\PHPCR\Query\QueryManagerInterface the QueryManager object.
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 * @api
 	 */
 	public function getQueryManager();
 
@@ -337,6 +338,7 @@ interface WorkspaceInterface {
 	 *
 	 * @return \F3\PHPCR\NamespaceRegistryInterface the NamespaceRegistry.
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 * @api
 	 */
 	public function getNamespaceRegistry();
 
@@ -349,6 +351,7 @@ interface WorkspaceInterface {
 	 *
 	 * @return \F3\PHPCR\NodeType\NodeTypeManagerInterface a NodeTypeManager object.
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 * @api
 	 */
 	public function getNodeTypeManager();
 
@@ -358,6 +361,7 @@ interface WorkspaceInterface {
 	 * @return \F3\PHPCR\Observation\ObservationManagerInterface an ObservationManager object.
 	 * @throws \F3\PHPCR::\F3\PHPCR\UnsupportedRepositoryOperationException if the implementation does not support observation.
 	 * @throws \F3\PHPCR::\F3\PHPCR\RepositoryException if an error occurs.
+	 * @api
 	 */
 	public function getObservationManager();
 
@@ -367,6 +371,7 @@ interface WorkspaceInterface {
 	 * @return \F3\PHPCR\Version\VersionManagerInterface a VersionManager object.
 	 * @throws \F3\PHPCR\UnsupportedRepositoryOperationException if the implementation does not support versioning.
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 * @api
 	 */
 	public function getVersionManager();
 
@@ -380,6 +385,7 @@ interface WorkspaceInterface {
 	 *
 	 * @return array string array of names of accessible workspaces.
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs
+	 * @api
 	 */
 	public function getAccessibleWorkspaceNames();
 
@@ -448,6 +454,7 @@ interface WorkspaceInterface {
 	 * @throws \F3\PHPCR\AccessDeniedException if the session associated with this Workspace object does not have sufficient access to perform the import.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 * @todo Decide on a return type that fits the PHP world
+	 * @api
 	 */
 	public function getImportContentHandler($parentAbsPath, $uuidBehavior);
 
@@ -508,6 +515,7 @@ interface WorkspaceInterface {
 	 * @throws \F3\PHPCR\Lock\LockException if a lock prevents the addition of the subgraph.
 	 * @throws \F3\PHPCR\AccessDeniedException if the session associated with this Workspace object does not have sufficient access to perform the import.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function importXML($parentAbsPath, $in, $uuidBehavior);
 
@@ -532,6 +540,7 @@ interface WorkspaceInterface {
 	 * @throws \F3\PHPCR\UnsupportedRepositoryOperationException if the repository does not support the creation of workspaces.
 	 * @throws \F3\PHPCR\NoSuchWorkspaceException if $srcWorkspace does not exist.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function createWorkspace($name, $srcWorkspace = NULL);
 
@@ -545,6 +554,7 @@ interface WorkspaceInterface {
 	 * @throws \F3\PHPCR\UnsupportedRepositoryOperationException if the repository does not support the removal of workspaces.
 	 * @throws \F3\PHPCR\NoSuchWorkspaceException if $name does not exist.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function deleteWorkspace($name);
 

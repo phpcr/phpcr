@@ -23,17 +23,11 @@ namespace F3\PHPCR;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @version $Id$
- */
-
-/**
  * GuestCredentials implements the Credentials interface and is used to obtain
  * a "guest", "public" or "anonymous" session.
  * Note that the characteristics of the session created from the
  * GuestCredentials remain implementation specific.
  *
- * @package PHPCR
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  * @scope prototype

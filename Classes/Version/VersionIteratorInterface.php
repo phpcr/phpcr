@@ -23,17 +23,9 @@ namespace F3\PHPCR\Version;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage Version
- * @version $Id$
- */
-
-/**
  * Allows easy iteration through a list of Versions objects with nextVersion
  * as well as a skip method inherited from RangeIterator.
  *
- * @package PHPCR
- * @subpackage Version
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -44,6 +36,7 @@ interface VersionIteratorInterface extends \F3\PHPCR\RangeIteratorInterface {
 	 *
 	 * @return \F3\PHPCR\Version\VersionInterface the next Version in the iteration
 	 * @throws OutOfBoundsException if iteration has no more Versions.
+	 * @api
 	 */
 	public function nextVersion();
 

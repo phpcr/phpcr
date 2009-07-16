@@ -23,12 +23,6 @@ namespace F3\PHPCR\NodeType;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage NodeType
- * @version $Id$
- */
-
-/**
  * The NodeDefinitionTemplate interface extends NodeDefinition with the addition
  * of write methods, enabling the characteristics of a child node definition to
  * be set, after which the NodeDefinitionTemplate is added to a NodeTypeTemplate.
@@ -37,8 +31,6 @@ namespace F3\PHPCR\NodeType;
  * default values assumed when a new empty NodeDefinitionTemplate is created (as
  * opposed to one extracted from an existing NodeType).
  *
- * @package PHPCR
- * @subpackage NodeType
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -49,6 +41,7 @@ interface NodeDefinitionTemplateInterface extends \F3\PHPCR\NodeType\NodeDefinit
 	 *
 	 * @param string $name a String.
 	 * @return void
+	 * @api
 	 */
 	public function setName($name);
 
@@ -57,6 +50,7 @@ interface NodeDefinitionTemplateInterface extends \F3\PHPCR\NodeType\NodeDefinit
 	 *
 	 * @param boolean $autoCreated a boolean.
 	 * @return void
+	 * @api
 	 */
 	public function setAutoCreated($autoCreated);
 
@@ -65,6 +59,7 @@ interface NodeDefinitionTemplateInterface extends \F3\PHPCR\NodeType\NodeDefinit
 	 *
 	 * @param boolean $mandatory a boolean.
 	 * @return void
+	 * @api
 	 */
 	public function setMandatory($mandatory);
 
@@ -73,6 +68,7 @@ interface NodeDefinitionTemplateInterface extends \F3\PHPCR\NodeType\NodeDefinit
 	 *
 	 * @param integer $opv an int constant member of OnParentVersionAction.
 	 * @return void
+	 * @api
 	 */
 	public function setOnParentVersion($opv);
 
@@ -81,6 +77,7 @@ interface NodeDefinitionTemplateInterface extends \F3\PHPCR\NodeType\NodeDefinit
 	 *
 	 * @param boolean $protectedStatus a boolean.
 	 * @return void
+	 * @api
 	 */
 	public function setProtected($protectedStatus);
 
@@ -89,6 +86,7 @@ interface NodeDefinitionTemplateInterface extends \F3\PHPCR\NodeType\NodeDefinit
 	 *
 	 * @param array $requiredPrimaryTypeNames a String array.
 	 * @return void
+	 * @api
 	 */
 	public function setRequiredPrimaryTypeNames(array $requiredPrimaryTypeNames);
 
@@ -97,6 +95,7 @@ interface NodeDefinitionTemplateInterface extends \F3\PHPCR\NodeType\NodeDefinit
 	 *
 	 * @param string $defaultPrimaryTypeName a String.
 	 * @return void
+	 * @api
 	 */
 	public function setDefaultPrimaryTypeName($defaultPrimaryTypeName);
 
@@ -105,6 +104,7 @@ interface NodeDefinitionTemplateInterface extends \F3\PHPCR\NodeType\NodeDefinit
 	 *
 	 * @param boolean $allowSameNameSiblings a boolean.
 	 * @return void
+	 * @api
 	 */
 	public function setSameNameSiblings($allowSameNameSiblings);
 

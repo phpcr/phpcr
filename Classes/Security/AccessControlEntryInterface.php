@@ -23,17 +23,9 @@ namespace F3\PHPCR\Security;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage Security
- * @version $Id$
- */
-
-/**
  * An AccessControlEntry represents the association of one or more Privilege
  * objects with a specific Principal
  *
- * @package PHPCR
- * @subpackage Security
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -44,6 +36,7 @@ interface AccessControlEntryInterface {
 	 *
 	 * @return java.security.Principal a Principal.
 	 * @todo find replacement for java.security.Principal
+	 * @api
 	 */
 	public function getPrincipal();
 
@@ -51,6 +44,7 @@ interface AccessControlEntryInterface {
 	 * Returns the privileges associated with this access control entry.
 	 *
 	 * @return array an array of Privileges.
+	 * @api
 	 */
 	public function getPrivileges();
 

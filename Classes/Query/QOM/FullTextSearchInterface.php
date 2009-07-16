@@ -23,12 +23,6 @@ namespace F3\PHPCR\Query\QOM;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage Query
- * @version $Id$
- */
-
-/**
  * Performs a full-text search.
  *
  * The full-text search expression is evaluated against the set of full-text
@@ -70,8 +64,6 @@ namespace F3\PHPCR\Query\QOM;
  *  "AND" has higher precedence than "OR".
  *  Within a term, each double quote ("), "-" (minus sign), and "\" (backslash) must be escaped by a preceding "\" (backslash).
  *
- * @package PHPCR
- * @subpackage Query
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -81,6 +73,7 @@ interface FullTextSearchInterface extends \F3\PHPCR\Query\QOM\ConstraintInterfac
 	 * Gets the name of the selector against which to apply this constraint.
 	 *
 	 * @return string the selector name; non-null
+	 * @api
 	 */
 	public function getSelectorName();
 
@@ -88,6 +81,7 @@ interface FullTextSearchInterface extends \F3\PHPCR\Query\QOM\ConstraintInterfac
 	 * Gets the name of the property.
 	 *
 	 * @return string the property name if the full-text search scope is a property, otherwise null if the full-text search scope is the node (or node subgraph, in some implementations).
+	 * @api
 	 */
 	public function getPropertyName();
 
@@ -95,6 +89,7 @@ interface FullTextSearchInterface extends \F3\PHPCR\Query\QOM\ConstraintInterfac
 	 * Gets the full-text search expression.
 	 *
 	 * @return \F3\PHPCR\Query\QOM\StaticOperandInterface the full-text search expression; non-null
+	 * @api
 	 */
 	public function getFullTextSearchExpression();
 

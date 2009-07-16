@@ -23,17 +23,9 @@ namespace F3\PHPCR\Query;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage Query
- * @version $Id$
- */
-
-/**
  * This interface encapsulates methods for the management of search queries.
  * Provides methods for the creation and retrieval of search queries.
  *
- * @package PHPCR
- * @subpackage Query
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -49,6 +41,7 @@ interface QueryManagerInterface {
 	 * @return \F3\PHPCR\Query\QueryInterface a Query object
 	 * @throws \F3\PHPCR\Query\InvalidQueryException if the query statement is syntactically invalid or the specified language is not supported
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs
+	 * @api
 	 */
 	public function createQuery($statement, $language);
 
@@ -61,6 +54,7 @@ interface QueryManagerInterface {
 	 * @return \F3\PHPCR\Query\PreparedQueryInterface a PreparedQuery object
 	 * @throws \F3\PHPCR\Query\InvalidQueryException if the query statement is syntactically invalid or the specified language is not supported
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs
+	 * @api
 	 */
 	public function createPreparedQuery($statement, $language);
 
@@ -69,6 +63,7 @@ interface QueryManagerInterface {
 	 * programmatically.
 	 *
 	 * @return \F3\PHPCR\Query\QOM\QueryObjectModelFactoryInterface a QueryObjectModelFactory object
+	 * @api
 	 */
 	public function getQOMFactory();
 
@@ -83,6 +78,7 @@ interface QueryManagerInterface {
 	 * @return \F3\PHPCR\Query\QueryInterface a Query object.
 	 * @throws \F3\PHPCR\Query\InvalidQueryException If node is not a valid persisted query (that is, a node of type nt:query).
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs
+	 * @api
 	 */
 	public function getQuery($node);
 
@@ -94,6 +90,7 @@ interface QueryManagerInterface {
 	 *
 	 * @return array A string array.
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 * @api
 	 */
 	public function getSupportedQueryLanguages();
 

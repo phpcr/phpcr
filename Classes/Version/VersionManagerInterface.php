@@ -23,12 +23,6 @@ namespace F3\PHPCR\Version;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage Version
- * @version $Id$
- */
-
-/**
  * The VersionManager object is accessed via Workspace.getVersionManager(). It
  * provides methods for:
  *  Version graph functionality (version history, base version, successors predecessors)
@@ -39,8 +33,6 @@ namespace F3\PHPCR\Version;
  *  Configuration feature
  *  Activity feature
  *
- * @package PHPCR
- * @subpackage Version
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -82,6 +74,7 @@ interface VersionManagerInterface {
 	 * @throws \F3\PHPCR\InvalidItemStateException If unsaved changes exist on the node at $absPath.
 	 * @throws \F3\PHPCR\Lock\LockException if a lock prevents the operation.
 	 * @throws \F3\PHPCR\RepositoryException If another error occurs.
+	 * @api
 	 */
 	public function checkin($absPath);
 
@@ -107,6 +100,7 @@ interface VersionManagerInterface {
 	 * @throws \F3\PHPCR\Lock\LockException if a lock prevents the checkout.
 	 * @throws \F3\PHPCR\Version\ActivityViolationException If the checkout conflicts with the activity present on the current session.
 	 * @throws \F3\PHPCR\RepositoryException If another error occurs.
+	 * @api
 	 */
 	public function checkout($absPath);
 
@@ -123,6 +117,7 @@ interface VersionManagerInterface {
 	 * @throws \F3\PHPCR\InvalidItemStateException if there are unsaved changes pending on the node at absPath.
 	 * @throws \F3\PHPCR\Lock\LockException if a lock prevents the operation.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function checkpoint($absPath);
 
@@ -139,6 +134,7 @@ interface VersionManagerInterface {
 	 * @param $absPath an absolute path.
 	 * @return boolean a boolean
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 * @api
 	 */
 	public function isCheckedOut($absPath);
 
@@ -150,6 +146,7 @@ interface VersionManagerInterface {
 	 * @return \F3\PHPCR\Version\VersionHistoryInterface a VersionHistory object
 	 * @throws \F3\PHPCR\UnsupportedRepositoryOperationException if the node at absPath is not versionable.
 	 * @throws \F3\PHPCR\RepositoryException If another error occurs.
+	 * @api
 	 */
 	public function getVersionHistory($absPath);
 
@@ -160,11 +157,13 @@ interface VersionManagerInterface {
 	 * @return \F3\PHPCR\Version\VersionInterface a Version object.
 	 * @throws \F3\PHPCR\UnsupportedRepositoryOperationException if the node at absPath is not versionable.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function getBaseVersion($absPath);
 
 	/**
 	 * pending
+	 * @api
 	 */
 	public function restore();
 
@@ -202,6 +201,7 @@ interface VersionManagerInterface {
 	 * @throws \F3\PHPCR\Lock\LockException if a lock prevents the restore.
 	 * @throws \F3\PHPCR\InvalidItemStateException if this Session (not necessarily the Node at absPath) has pending unsaved changes.
 	 * @throws \F3\PHPCR\RepositoryException If another error occurs.
+	 * @api
 	 */
 	public function restoreByLabel($absPath, $versionLabel, $removeExisting);
 
@@ -276,6 +276,7 @@ interface VersionManagerInterface {
 	 * @throws \F3\PHPCR\Version\VersionException - if the specified node is not an nt:activity node.
 	 * @throws \F3\PHPCR\UnsupportedRepositoryOperationException if this operation is not supported by this implementation.
 	 * @throws \F3\PHPCR\RepositoryException - if another error occurs.
+	 * @api
 	 */
 	public function merge($source, $srcWorkspace = NULL, $bestEffort = NULL, $isShallow = FALSE);
 
@@ -341,6 +342,7 @@ interface VersionManagerInterface {
 	 * @throws \F3\PHPCR\InvalidItemStateException if there are unsaved changes pending on the node at absPath.
 	 * @throws \F3\PHPCR\UnsupportedRepositoryOperationException if the node at absPath is not versionable.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function doneMerge($absPath, \F3\PHPCR\Version\VersionInterface $version);
 
@@ -361,6 +363,7 @@ interface VersionManagerInterface {
 	 * @throws \F3\PHPCR\InvalidItemStateExceptionif there are unsaved changes pending on the node at absPath.
 	 * @throws \F3\PHPCR\UnsupportedRepositoryOperationExceptionif the node at absPath is not versionable.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function cancelMerge($absPath, \F3\PHPCR\Version\VersionInterface $version);
 
@@ -384,6 +387,7 @@ interface VersionManagerInterface {
 	 * @return \F3\PHPCR\NodeInterface a new nt:configuration node
 	 * @throws \F3\PHPCR\UnsupportedRepositoryOperationException if N is not versionable.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function createConfiguration($absPath, \F3\PHPCR\Version\VersionInterface $baseline);
 
@@ -398,6 +402,7 @@ interface VersionManagerInterface {
 	 * @return \F3\PHPCR\NodeInterface the activity node
 	 * @throws \F3\PHPCR\UnsupportedRepositoryOperationException if the repository does not support activities or if activity is not a nt:activity node.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function setActivity(\F3\PHPCR\NodeInterface $activity);
 
@@ -408,6 +413,7 @@ interface VersionManagerInterface {
 	 * @return \F3\PHPCR\NodeInterface An nt:activity node or NULL.
 	 * @throws \F3\PHPCR\UnsupportedRepositoryOperationException if the repository does not support activities.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function getActivity();
 
@@ -424,6 +430,7 @@ interface VersionManagerInterface {
 	 * @return \F3\PHPCR\NodeInterface the new activity Node.
 	 * @throws \F3\PHPCR\UnsupportedRepositoryOperationException if the repository does not support activities.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function createActivity($title);
 
@@ -436,6 +443,7 @@ interface VersionManagerInterface {
 	 * @return void
 	 * @throws \F3\PHPCR\UnsupportedRepositoryOperationException if the repository does not support activities.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function removeActivity(\F3\PHPCR\NodeInterface $activityNode);
 

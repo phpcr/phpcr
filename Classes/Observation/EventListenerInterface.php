@@ -23,12 +23,6 @@ namespace F3\PHPCR\Observation;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage Observation
- * @version $Id$
- */
-
-/**
  * An event listener.
  *
  * An EventListener can be registered via the ObservationManager object. Event
@@ -36,8 +30,6 @@ namespace F3\PHPCR\Observation;
  * the transaction is committed. An event listener only sees events for which
  * the session that registered it has sufficient access rights.
  *
- * @package PHPCR
- * @subpackage Observation
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -48,6 +40,7 @@ interface EventListenerInterface {
 	 *
 	 * @param \F3\PHPCR\Observation\EventIteratorInterface $events - The event set received.
 	 * @return void
+	 * @api
 	 */
 	public function onEvent(\F3\PHPCR\Observation\EventIteratorInterface $events);
 

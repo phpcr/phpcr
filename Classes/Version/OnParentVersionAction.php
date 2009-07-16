@@ -23,12 +23,6 @@ namespace F3\PHPCR\Version;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage Version
- * @version $Id$
- */
-
-/**
  * The possible actions specified by the onParentVersion attribute in a
  * property definition within a node type definition.
  *
@@ -46,8 +40,6 @@ namespace F3\PHPCR\Version;
  * status is defined by the onParentVersion attribute in the PropertyDefinition
  * or NodeDefinition that applies to the item in question.
  *
- * @package PHPCR
- * @subpackage Version
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -78,6 +70,7 @@ final class OnParentVersionAction {
 	 *
 	 * @return void
 	 * @author Karsten Dambekalns <karsten@typo3.org>
+	 * @api
 	 */
 	private function __construct() {}
 

@@ -23,11 +23,6 @@ namespace F3\PHPCR;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @version $Id$
- */
-
-/**
  * The Session object provides read and (in level 2) write access to the
  * content of a particular workspace in the repository.
  *
@@ -40,7 +35,6 @@ namespace F3\PHPCR;
  * Workspace object represents a "view" of an actual repository workspace
  * entity as seen through the authorization settings of its associated Session.
  *
- * @package PHPCR
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -75,6 +69,7 @@ interface SessionInterface {
 	 * Returns the Repository object through which this session was acquired.
 	 *
 	 * @return \F3\PHPCR\RepositoryInterface a Repository object.
+	 * @api
 	 */
 	public function getRepository();
 
@@ -85,6 +80,7 @@ interface SessionInterface {
 	 * is free to return an "anonymous user ID" or null.
 	 *
 	 * @return string The user id associated with this Session.
+	 * @api
 	 */
 	public function getUserID();
 
@@ -96,6 +92,7 @@ interface SessionInterface {
 	 * array if the Credentials instance did not provide attributes.
 	 *
 	 * @return array A string array containing the names of all attributes passed in the credentials used to acquire this session.
+	 * @api
 	 */
 	public function getAttributeNames();
 
@@ -105,6 +102,7 @@ interface SessionInterface {
 	 *
 	 * @param string $name The name of an attribute passed in the credentials used to acquire this session.
 	 * @return object The value of the attribute or null if no attribute of the given name exists.
+	 * @api
 	 */
 	public function getAttribute($name);
 
@@ -112,6 +110,7 @@ interface SessionInterface {
 	 * Returns the Workspace attached to this Session.
 	 *
 	 * @return \F3\PHPCR\WorkspaceInterface a Workspace object.
+	 * @api
 	 */
 	public function getWorkspace();
 
@@ -121,6 +120,7 @@ interface SessionInterface {
 	 *
 	 * @return \F3\PHPCR\NodeInterface The root node of the workspace: a Node object.
 	 * @throws RepositoryException if an error occurs.
+	 * @api
 	 */
 	public function getRootNode();
 
@@ -138,6 +138,7 @@ interface SessionInterface {
 	 * @return \F3\PHPCR\SessionInterface a Session object
 	 * @throws \F3\PHPCR\LoginException if the current session does not have sufficient access to perform the operation.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function impersonate(\F3\PHPCR\CredentialsInterface $credentials);
 
@@ -149,6 +150,7 @@ interface SessionInterface {
 	 * @return \F3\PHPCR\NodeInterface A Node.
 	 * @throws \F3\PHPCR\ItemNotFoundException if no node with the specified identifier exists or if this Session does not have read access to the node with the specified identifier.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function getNodeByIdentifier($id);
 
@@ -167,6 +169,7 @@ interface SessionInterface {
 	 * @return \F3\PHPCR\ItemInterface
 	 * @throws \F3\PHPCR\PathNotFoundException if no accessible item is found at the specified path.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function getItem($absPath);
 
@@ -177,6 +180,7 @@ interface SessionInterface {
 	 * @return \F3\PHPCR\NodeInterface A node
 	 * @throws \F3\PHPCR\PathNotFoundException if no accessible node is found at the specified path.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function getNode($absPath);
 
@@ -187,6 +191,7 @@ interface SessionInterface {
 	 * @return \F3\PHPCR\PropertyInterface A property
 	 * @throws \F3\PHPCR\PathNotFoundException if no accessible property is found at the specified path.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function getProperty($absPath);
 
@@ -197,6 +202,7 @@ interface SessionInterface {
 	 * @param string $absPath An absolute path.
 	 * @return boolean a boolean
 	 * @throws \F3\PHPCR\RepositoryException if absPath is not a well-formed absolute path.
+	 * @api
 	 */
 	public function itemExists($absPath);
 
@@ -207,6 +213,7 @@ interface SessionInterface {
 	 * @param string $absPath An absolute path.
 	 * @return boolean a boolean
 	 * @throws \F3\PHPCR\RepositoryException if absPath is not a well-formed absolute path.
+	 * @api
 	 */
 	public function nodeExists($absPath);
 
@@ -217,6 +224,7 @@ interface SessionInterface {
 	 * @param string $absPath An absolute path.
 	 * @return boolean a boolean
 	 * @throws \F3\PHPCR\RepositoryException if absPath is not a well-formed absolute path.
+	 * @api
 	 */
 	public function propertyExists($absPath);
 
@@ -258,6 +266,7 @@ interface SessionInterface {
 	 * @throws \F3\PHPCR\ConstraintViolationException if a node-type or other constraint violation is detected immediately and this implementation performs this validation immediately.
 	 * @throws \F3\PHPCR\Lock\LockException if the move operation would violate a lock and this implementation performs this validation immediately.
 	 * @throws \F3\PHPCR\RepositoryException if the last element of destAbsPath has an index or if another error occurs.
+	 * @api
 	 */
 	public function move($srcAbsPath, $destAbsPath);
 
@@ -281,6 +290,7 @@ interface SessionInterface {
 	 * @throws \F3\PHPCR\PathNotFoundException if no accessible item is found at $absPath property or if the specified item or an item in its subgraph is currently the target of a REFERENCE property located in this workspace but outside the specified item's subgraph and the current Session does not have read access to that REFERENCE property.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 * @see Item::remove()
+	 * @api
 	 */
 	public function removeItem($absPath);
 
@@ -309,6 +319,7 @@ interface SessionInterface {
 	 * @throws \F3\PHPCR\Lock\LockException if the save would result in a change to persistent storage that would violate a lock.
 	 * @throws \F3\PHPCR\NodeType\NoSuchNodeTypeException if the save would result in the addition of a node with an unrecognized node type.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function save();
 
@@ -325,6 +336,7 @@ interface SessionInterface {
 	 * @param boolean $keepChanges a boolean
 	 * @return void
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 * @api
 	 */
 	public function refresh($keepChanges);
 
@@ -334,6 +346,7 @@ interface SessionInterface {
 	 *
 	 * @return boolean a boolean
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs
+	 * @api
 	 */
 	public function hasPendingChanges();
 
@@ -344,6 +357,7 @@ interface SessionInterface {
 	 * @return \F3\PHPCR\ValueFactoryInterface
 	 * @throws \F3\PHPCR\UnsupportedRepositoryOperationException if writing to the repository is not supported.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function getValueFactory();
 
@@ -378,6 +392,7 @@ interface SessionInterface {
 	 * @param string $actions a comma separated list of action strings.
 	 * @return boolean true if this Session has permission to perform the specified actions at the specified absPath.
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 * @api
 	 */
 	public function hasPermission($absPath, $actions);
 
@@ -415,6 +430,7 @@ interface SessionInterface {
 	 * @return void
 	 * @throws java.security.AccessControlException If permission is denied.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function checkPermission($absPath, $actions);
 
@@ -460,6 +476,7 @@ interface SessionInterface {
 	 * @param array $arguments the arguments of the operation.
 	 * @return boolean FALSE if the operation cannot be performed, TRUE if the operation can be performed or if the repository cannot determine whether the operation can be performed.
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs
+	 * @api
 	 */
 	public function hasCapability($methodName, $target, array $arguments);
 
@@ -531,6 +548,7 @@ interface SessionInterface {
 	 * @throws \F3\PHPCR\Version\VersionException if the node at $parentAbsPath is read-only due to a checked-in node and this implementation performs this validation immediately.
 	 * @throws \F3\PHPCR\Lock\LockException if a lock prevents the addition of the subgraph and this implementation performs this validation immediately.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function getImportContentHandler($parentAbsPath, $uuidBehavior);
 
@@ -600,6 +618,7 @@ interface SessionInterface {
 	 * @throws \F3\PHPCR\InvalidSerializedDataException if incoming stream is not a valid XML document.
 	 * @throws \F3\PHPCR\Lock\LockException if a lock prevents the addition of the subgraph and this implementation performs this validation immediately.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function importXML($parentAbsPath, $in, $uuidBehavior);
 
@@ -641,6 +660,7 @@ interface SessionInterface {
 	 * @throws \F3\PHPCR\PathNotFoundException if no node exists at absPath.
 	 * @throws \RuntimeException if an error during an I/O operation occurs.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function exportSystemView($absPath, \XMLWriter $out, $skipBinary, $noRecurse);
 
@@ -678,6 +698,7 @@ interface SessionInterface {
 	 * @throws \F3\PHPCR\PathNotFoundException if no node exists at absPath.
 	 * @throws \RuntimeException if an error during an I/O operation occurs.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function exportDocumentView($absPath, \XMLWriter $out, $skipBinary, $noRecurse);
 
@@ -694,6 +715,7 @@ interface SessionInterface {
 	 * @return void
 	 * @throws \F3\PHPCR\NamespaceException if an attempt is made to map a namespace URI to a prefix beginning with the characters "xml" (in any combination of case) or if an attempt is made to map either the empty prefix or the empty namespace (i.e., if either $prefix or $uri are the empty string).
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function setNamespacePrefix($prefix, $uri);
 
@@ -702,6 +724,7 @@ interface SessionInterface {
 	 *
 	 * @return array a string array
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs
+	 * @api
 	 */
 	public function getNamespacePrefixes();
 
@@ -713,6 +736,7 @@ interface SessionInterface {
 	 * @return string a string
 	 * @throws \F3\PHPCR\NamespaceException if the specified prefix is unknown.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs
+	 * @api
 	 */
 	public function getNamespaceURI($prefix);
 
@@ -724,6 +748,7 @@ interface SessionInterface {
 	 * @return string a string
 	 * @throws \F3\PHPCR\NamespaceException if the specified uri is unknown.
 	 * @throws \F3\PHPCR\RepositoryException - if another error occurs
+	 * @api
 	 */
 	public function getNamespacePrefix($uri);
 
@@ -732,6 +757,7 @@ interface SessionInterface {
 	 * be called when a Session is no longer needed.
 	 *
 	 * @return void
+	 * @api
 	 */
 	public function logout();
 
@@ -742,6 +768,7 @@ interface SessionInterface {
 	 * any other way disconnected from the repository.
 	 *
 	 * @return boolean true if this Session is usable, false otherwise.
+	 * @api
 	 */
 	public function isLive();
 
@@ -751,6 +778,7 @@ interface SessionInterface {
 	 * @return \F3\PHPCR\Security\AccessControlManager the access control manager for this Session
 	 * @throws \F3\PHPCR\UnsupportedRepositoryOperationException if access control is not supported.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function getAccessControlManager();
 
@@ -760,6 +788,7 @@ interface SessionInterface {
 	 * @return \F3\PHPCR\Retention\RetentionManagerInterface the retention manager for this Session.
 	 * @throws \F3\PHPCR\UnsupportedRepositoryOperationException if retention and hold are not supported.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
+	 * @api
 	 */
 	public function getRetentionManager();
 

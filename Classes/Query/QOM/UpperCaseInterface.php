@@ -23,12 +23,6 @@ namespace F3\PHPCR\Query\QOM;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage Query
- * @version $Id$
- */
-
-/**
  * Evaluates to the upper-case string value (or values, if multi-valued) of
  * operand.
  *
@@ -37,8 +31,6 @@ namespace F3\PHPCR\Query\QOM;
  *
  * If operand evaluates to null, the UpperCase operand also evaluates to null.
  *
- * @package PHPCR
- * @subpackage Query
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -48,6 +40,7 @@ interface UpperCaseInterface extends \F3\PHPCR\Query\QOM\DynamicOperandInterface
 	 * Gets the operand whose value is converted to a upper-case string.
 	 *
 	 * @return \F3\PHPCR\Query\QOM\DynamicOperandInterface the operand; non-null
+	 * @api
 	 */
 	public function getOperand();
 

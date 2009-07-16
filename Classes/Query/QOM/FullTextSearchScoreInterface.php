@@ -23,12 +23,6 @@ namespace F3\PHPCR\Query\QOM;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage Query
- * @version $Id$
- */
-
-/**
  * Evaluates to a DOUBLE value equal to the full-text search score of a node.
  *
  * Full-text search score ranks a selector's nodes by their relevance to the
@@ -38,8 +32,6 @@ namespace F3\PHPCR\Query\QOM;
  * in a repository that does not support full-text search scoring or has no
  * full-text indexed properties.
  *
- * @package PHPCR
- * @subpackage Query
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -49,6 +41,7 @@ interface FullTextSearchScoreInterface extends \F3\PHPCR\Query\QOM\DynamicOperan
 	 * Gets the name of the selector against which to evaluate this operand.
 	 *
 	 * @return string the selector name; non-null
+	 * @api
 	 */
 	public function getSelectorName();
 

@@ -23,12 +23,6 @@ namespace F3\PHPCR\Query\QOM;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage Query
- * @version $Id$
- */
-
-/**
  * Determines the relative order of two node-tuples by evaluating operand for
  * each.
  *
@@ -49,8 +43,6 @@ namespace F3\PHPCR\Query\QOM;
  *  if v1 is ordered after v2, then nt1 precedes nt2, otherwise
  *  the relative order of nt1 and nt2 is implementation determined and may be arbitrary.
  *
- * @package PHPCR
- * @subpackage Query
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -60,6 +52,7 @@ interface OrderingInterface {
 	 * The operand by which to order.
 	 *
 	 * @return \F3\PHPCR\Query\QOM\DynamicOperandInterface the operand; non-null
+	 * @api
 	 */
 	public function getOperand();
 
@@ -67,6 +60,7 @@ interface OrderingInterface {
 	 * Gets the order.
 	 *
 	 * @return string either QueryObjectModelConstants.JCR_ORDER_ASCENDING or QueryObjectModelConstants.JCR_ORDER_DESCENDING
+	 * @api
 	 */
 	public function getOrder();
 

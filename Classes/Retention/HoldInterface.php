@@ -23,12 +23,6 @@ namespace F3\PHPCR\Retention;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage Retention
- * @version $Id$
- */
-
-/**
  * Hold represents a hold that can be applied to an existing node in order to
  * prevent the node from being modified or removed. The format and interpretation
  * of the name are not specified. They are application-dependent.
@@ -36,8 +30,6 @@ namespace F3\PHPCR\Retention;
  * If isDeep() is true, the hold applies to the node and its entire subgraph.
  * Otherwise the hold applies to the node and its properties only.
  *
- * @package PHPCR
- * @subpackage Retention
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -48,6 +40,7 @@ interface HoldInterface {
 	 *
 	 * @return boolean TRUE if this Hold is deep.
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 * @api
 	 */
 	public function isDeep();
 
@@ -56,6 +49,7 @@ interface HoldInterface {
 	 *
 	 * @return string the name of this Hold. A JCR name.
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 * @api
 	 */
 	public function getName();
 

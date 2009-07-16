@@ -23,12 +23,6 @@ namespace F3\PHPCR\Query\QOM;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage Query
- * @version $Id$
- */
-
-/**
  * A query in the JCR query object model.
  *
  * The JCR query object model describes the queries that can be evaluated by a JCR
@@ -57,8 +51,6 @@ namespace F3\PHPCR\Query\QOM;
  *
  * The query object model representation of a query is created by factory methods in the QueryObjectModelFactory.
  *
- * @package PHPCR
- * @subpackage Query
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */

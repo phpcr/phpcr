@@ -23,12 +23,6 @@ namespace F3\PHPCR\NodeType;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage NodeType
- * @version $Id$
- */
-
-/**
  * The NodeTypeTemplate interface represents a simple container structure used
  * to define node types which are then registered through the
  * NodeTypeManager.registerNodeType method.
@@ -43,8 +37,6 @@ namespace F3\PHPCR\NodeType;
  * for the default values assumed when a new empty NodeTypeTemplate is created
  * (as opposed to one extracted from an existing NodeType).
  *
- * @package PHPCR
- * @subpackage NodeType
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -55,6 +47,7 @@ interface NodeTypeTemplateInterface extends \F3\PHPCR\NodeType\NodeTypeDefinitio
 	 *
 	 * @param string $name a String.
 	 * @return void
+	 * @api
 	 */
 	public function setName($name);
 
@@ -63,6 +56,7 @@ interface NodeTypeTemplateInterface extends \F3\PHPCR\NodeType\NodeTypeDefinitio
 	 *
 	 * @param array $names a String array.
 	 * @return void
+	 * @api
 	 */
 	public function setDeclaredSuperTypeNames(array $names);
 
@@ -71,6 +65,7 @@ interface NodeTypeTemplateInterface extends \F3\PHPCR\NodeType\NodeTypeDefinitio
 	 *
 	 * @param boolean $abstractStatus a boolean.
 	 * @return void
+	 * @api
 	 */
 	public function setAbstract($abstractStatus);
 
@@ -79,6 +74,7 @@ interface NodeTypeTemplateInterface extends \F3\PHPCR\NodeType\NodeTypeDefinitio
 	 *
 	 * @param boolean $mixin a boolean.
 	 * @return void
+	 * @api
 	 */
 	public function setMixin($mixin);
 
@@ -87,6 +83,7 @@ interface NodeTypeTemplateInterface extends \F3\PHPCR\NodeType\NodeTypeDefinitio
 	 *
 	 * @param boolean $orderable a boolean.
 	 * @return void
+	 * @api
 	 */
 	public function setOrderableChildNodes($orderable);
 
@@ -95,6 +92,7 @@ interface NodeTypeTemplateInterface extends \F3\PHPCR\NodeType\NodeTypeDefinitio
 	 *
 	 * @param string $name a String.
 	 * @return void
+	 * @api
 	 */
 	public function setPrimaryItemName($name);
 
@@ -103,6 +101,7 @@ interface NodeTypeTemplateInterface extends \F3\PHPCR\NodeType\NodeTypeDefinitio
 	 *
 	 * @param booolean $queryable a boolean.
 	 * @return void
+	 * @api
 	 */
 	public function setQueryable($queryable);
 
@@ -112,6 +111,7 @@ interface NodeTypeTemplateInterface extends \F3\PHPCR\NodeType\NodeTypeDefinitio
 	 * objects can be added to or removed from this List.
 	 *
 	 * @return array a mutable List of PropertyDefinitionTemplate objects.
+	 * @api
 	 */
 	public function getPropertyDefinitionTemplates();
 
@@ -121,6 +121,7 @@ interface NodeTypeTemplateInterface extends \F3\PHPCR\NodeType\NodeTypeDefinitio
 	 * can be added to or removed from this List.
 	 *
 	 * @return array a mutable List of NodeDefinitionTemplate objects.
+	 * @api
 	 */
 	public function getNodeDefinitionTemplates();
 }

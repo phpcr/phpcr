@@ -23,16 +23,8 @@ namespace F3\PHPCR\Query\QOM;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage Query
- * @version $Id$
- */
-
-/**
  * Performs a join between two node-tuple sources.
  *
- * @package PHPCR
- * @subpackage Query
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -42,6 +34,7 @@ interface JoinInterface extends \F3\PHPCR\Query\QOM\SourceInterface {
 	 * Gets the left node-tuple source.
 	 *
 	 * @return \F3\PHPCR\Query\QOM\SourceInterface the left source; non-null
+	 * @api
 	 */
 	public function getLeft();
 
@@ -49,6 +42,7 @@ interface JoinInterface extends \F3\PHPCR\Query\QOM\SourceInterface {
 	 * Gets the right node-tuple source.
 	 *
 	 * @return \F3\PHPCR\Query\QOM\SourceInterface the right source; non-null
+	 * @api
 	 */
 	public function getRight();
 
@@ -56,6 +50,7 @@ interface JoinInterface extends \F3\PHPCR\Query\QOM\SourceInterface {
 	 * Gets the join type.
 	 *
 	 * @return string one of QueryObjectModelConstants.JCR_JOIN_TYPE_*
+	 * @api
 	 */
 	public function getJoinType();
 
@@ -63,6 +58,7 @@ interface JoinInterface extends \F3\PHPCR\Query\QOM\SourceInterface {
 	 * Gets the join condition.
 	 *
 	 * @return JoinCondition the join condition; non-null
+	 * @api
 	 */
 	public function getJoinCondition();
 }

@@ -23,16 +23,8 @@ namespace F3\PHPCR\NodeType;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage NodeType
- * @version $Id$
- */
-
-/**
  * A node definition. Used in node type definitions.
  *
- * @package PHPCR
- * @subpackage NodeType
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -55,6 +47,7 @@ interface NodeDefinitionInterface extends \F3\PHPCR\NodeType\ItemDefinitionInter
 	 * not attached to a live NodeType. In such cases this method returns NULL.
 	 *
 	 * @return \F3\PHPCR\NodeType\NodeTypeInterface an array of NodeType objects.
+	 * @api
 	 */
 	public function getRequiredPrimaryTypes();
 
@@ -69,6 +62,7 @@ interface NodeDefinitionInterface extends \F3\PHPCR\NodeType\ItemDefinitionInter
 	 * empty one, then this method will return NULL.
 	 *
 	 * @return array a String array
+	 * @api
 	 */
 	public function getRequiredPrimaryTypeNames();
 
@@ -85,6 +79,7 @@ interface NodeDefinitionInterface extends \F3\PHPCR\NodeType\ItemDefinitionInter
 	 * not attached to a live NodeType. In such cases this method returns null.
 	 *
 	 * @return \F3\PHPCR\NodeType\NodeTypeInterface a NodeType.
+	 * @api
 	 */
 	public function getDefaultPrimaryType();
 
@@ -99,6 +94,7 @@ interface NodeDefinitionInterface extends \F3\PHPCR\NodeType\ItemDefinitionInter
 	 * empty one, then this method will return null.
 	 *
 	 * @return string a String
+	 * @api
 	 */
 	public function getDefaultPrimaryTypeName();
 
@@ -111,6 +107,7 @@ interface NodeDefinitionInterface extends \F3\PHPCR\NodeType\ItemDefinitionInter
 	 * newly-created empty one, then this method will return false.
 	 *
 	 * @return boolean a boolean.
+	 * @api
 	 */
 	public function allowsSameNameSiblings();
 

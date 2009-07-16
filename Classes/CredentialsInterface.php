@@ -23,18 +23,12 @@ namespace F3\PHPCR;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @version $Id$
- */
-
-/**
  * Interface for all credentials that may be passed to the
  * Repository.login(Credentials credentials, String workspaceName) method.
  * Serves as a marker interface that all repositories must implement when
  * providing a credentials class. See SimpleCredentials and GuestCredentials
  * for examples of such a class.
  *
- * @package PHPCR
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */

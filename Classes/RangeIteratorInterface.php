@@ -23,15 +23,9 @@ namespace F3\PHPCR;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @version $Id$
- */
-
-/**
  * Extends Iterator with the skip, getSize and getPosition methods. The base
  * interface of all type-specific iterators in the JCR and its sub packages.
  *
- * @package PHPCR
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -42,6 +36,7 @@ interface RangeIteratorInterface extends \F3\PHPCR\IteratorInterface {
 	 *
 	 * @param integer $skipNum the non-negative number of elements to skip
 	 * @throws OutOfBoundsException if skipped past the last element in the iterator.
+	 * @api
 	 */
 	public function skip($skipNum);
 
@@ -57,6 +52,7 @@ interface RangeIteratorInterface extends \F3\PHPCR\IteratorInterface {
 	 * estimate on the number of elements.
 	 *
 	 * @return integer
+	 * @api
 	 */
 	public function getSize();
 
@@ -69,6 +65,7 @@ interface RangeIteratorInterface extends \F3\PHPCR\IteratorInterface {
 	 * i.e. an empty iterator will always return 0.
 	 *
 	 * @return integer
+	 * @api
 	 */
 	public function getPosition();
 

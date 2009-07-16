@@ -23,12 +23,6 @@ namespace F3\PHPCR\NodeType;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @subpackage NodeType
- * @version $Id$
- */
-
-/**
  * The PropertyDefinitionTemplate interface extends PropertyDefinition with the
  * addition of write methods, enabling the characteristics of a child property
  * definition to be set, after which the PropertyDefinitionTemplate is added to
@@ -38,8 +32,6 @@ See the corresponding get methods for each attribute in PropertyDefinition for
 the default values assumed when a new empty PropertyDefinitionTemplate is created
 (as opposed to one extracted from an existing NodeType).
  *
- * @package PHPCR
- * @subpackage NodeType
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
@@ -50,6 +42,7 @@ interface PropertyDefinitionTemplateInterface extends \F3\PHPCR\NodeType\Propert
 	 *
 	 * @param string $name a String.
 	 * @return void
+	 * @api
 	 */
 	public function setName($name);
 
@@ -58,6 +51,7 @@ interface PropertyDefinitionTemplateInterface extends \F3\PHPCR\NodeType\Propert
 	 *
 	 * @param boolean $autoCreated a boolean.
 	 * @return void
+	 * @api
 	 */
 	public function setAutoCreated($autoCreated);
 
@@ -66,6 +60,7 @@ interface PropertyDefinitionTemplateInterface extends \F3\PHPCR\NodeType\Propert
 	 *
 	 * @param boolean $mandatory a boolean.
 	 * @return void
+	 * @api
 	 */
 	public function setMandatory($mandatory);
 
@@ -74,6 +69,7 @@ interface PropertyDefinitionTemplateInterface extends \F3\PHPCR\NodeType\Propert
 	 *
 	 * @param integer $opv an int constant member of OnParentVersionAction.
 	 * @return void
+	 * @api
 	 */
 	public function setOnParentVersion($opv);
 
@@ -82,6 +78,7 @@ interface PropertyDefinitionTemplateInterface extends \F3\PHPCR\NodeType\Propert
 	 *
 	 * @param boolean $protectedStatus a boolean.
 	 * @return void
+	 * @api
 	 */
 	public function setProtected($protectedStatus);
 
@@ -90,6 +87,7 @@ interface PropertyDefinitionTemplateInterface extends \F3\PHPCR\NodeType\Propert
 	 *
 	 * @param integer $type an int constant member of PropertyType.
 	 * @return void
+	 * @api
 	 */
 	public function setRequiredType($type);
 
@@ -98,6 +96,7 @@ interface PropertyDefinitionTemplateInterface extends \F3\PHPCR\NodeType\Propert
 	 *
 	 * @param array $constraints a String array.
 	 * @return void
+	 * @api
 	 */
 	public function setValueConstraints(array $constraints);
 
@@ -107,6 +106,7 @@ interface PropertyDefinitionTemplateInterface extends \F3\PHPCR\NodeType\Propert
 	 *
 	 * @param array $defaultValues a Value array.
 	 * @return void
+	 * @api
 	 */
 	public function setDefaultValues(array $defaultValues);
 
@@ -115,6 +115,7 @@ interface PropertyDefinitionTemplateInterface extends \F3\PHPCR\NodeType\Propert
 	 *
 	 * @param boolean $multiple a boolean.
 	 * @return void
+	 * @api
 	 */
 	public function setMultiple($multiple);
 
@@ -123,6 +124,7 @@ interface PropertyDefinitionTemplateInterface extends \F3\PHPCR\NodeType\Propert
 	 *
 	 * @param array operators an array of String constants. See PropertyDefinition#getAvailableQueryOperators().
 	 * @return void
+	 * @api
 	 */
 	public function setAvailableQueryOperators(array $operators);
 
@@ -131,6 +133,7 @@ interface PropertyDefinitionTemplateInterface extends \F3\PHPCR\NodeType\Propert
 	 *
 	 * @param boolean $fullTextSearchable a boolean.
 	 * @return void
+	 * @api
 	 */
 	public function setFullTextSearchable($fullTextSearchable);
 
@@ -139,6 +142,7 @@ interface PropertyDefinitionTemplateInterface extends \F3\PHPCR\NodeType\Propert
 	 *
 	 * @param boolean $queryOrderable a boolean.
 	 * @return void
+	 * @api
 	 */
 	public function setQueryOrderable($queryOrderable);
 

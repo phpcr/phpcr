@@ -23,11 +23,6 @@ namespace F3\PHPCR;
  *                                                                        */
 
 /**
- * @package PHPCR
- * @version $Id$
- */
-
-/**
  * This interface defines two signatures of the visit method; one taking a
  * Node, the other a Property. When an object implementing this interface is
  * passed to Item->accept(ItemVisitor) the appropriate visit method is
@@ -37,7 +32,6 @@ namespace F3\PHPCR;
  * method to call accept on the children of the passed node and thus recurse
  * through the tree performing some operation on each Item.
  *
- * @package PHPCR
  * @version $Id$
  * @copyright Copyright belongs to the respective authors
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
