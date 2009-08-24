@@ -80,7 +80,8 @@ interface AccessControlListInterface extends \F3\PHPCR\Security\AccessControlPol
 	 * @return void
 	 * @throws \F3\PHPCR\Security\AccessControlException if the specified entry is not present on the specified node.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
-	 * */
+	 * @api
+	 */
 	public function removeAccessControlEntry(\F3\PHPCR\Security\AccessControlEntryInterface $ace);
 
 }

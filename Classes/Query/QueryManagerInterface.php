@@ -46,19 +46,6 @@ interface QueryManagerInterface {
 	public function createQuery($statement, $language);
 
 	/**
-	 * Creates a new prepared query by specifying the query statement itself and the language
-	 * in which the query is stated.
-	 *
-	 * @param string $statement
-	 * @param string $language
-	 * @return \F3\PHPCR\Query\PreparedQueryInterface a PreparedQuery object
-	 * @throws \F3\PHPCR\Query\InvalidQueryException if the query statement is syntactically invalid or the specified language is not supported
-	 * @throws \F3\PHPCR\RepositoryException if another error occurs
-	 * @api
-	 */
-	public function createPreparedQuery($statement, $language);
-
-	/**
 	 * Returns a QueryObjectModelFactory with which a JCR-JQOM query can be built
 	 * programmatically.
 	 *

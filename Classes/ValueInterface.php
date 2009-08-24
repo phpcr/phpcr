@@ -141,6 +141,7 @@ interface ValueInterface {
 	 * * PropertyType.URI
 	 *
 	 * The type returned is that which was set at property creation.
+	 *
 	 * @return integer The type of the value
 	 * @api
 	 */

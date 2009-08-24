@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<appendix version="5.0" xml:id="typo3cr.appendix.testing"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xl="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:xhtml="http://www.w3.org/1999/xhtml"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns="http://docbook.org/ns/docbook"
+          xmlns:mathml="http://www.w3.org/1998/Math/MathML">
+  <title>Predefined node types</title>
+
+  <para>The following node types are defined by the JCR 2.0 specification.
+  Consult the specification document for details on their use.<itemizedlist>
+      <listitem>
+        <para>mix:created</para>
+      </listitem>
+
+      <listitem>
+        <para>mix:etag</para>
+      </listitem>
+
+      <listitem>
+        <para>mix:language</para>
+      </listitem>
+
+      <listitem>
+        <para>mix:lastModified</para>
+      </listitem>
+
+      <listitem>
+        <para>mix:lifecycle</para>
+      </listitem>
+
+      <listitem>
+        <para>mix:lockable</para>
+      </listitem>
+
+      <listitem>
+        <para>mix:mimeType</para>
+      </listitem>
+
+      <listitem>
+        <para>mix:referenceable</para>
+      </listitem>
+
+      <listitem>
+        <para>mix:shareable</para>
+      </listitem>
+
+      <listitem>
+        <para>mix:simpleVersionable</para>
+      </listitem>
+
+      <listitem>
+        <para>mix:title</para>
+      </listitem>
+
+      <listitem>
+        <para>mix:versionable</para>
+      </listitem>
+
+      <listitem>
+        <para>nt:activity</para>
+      </listitem>
+
+      <listitem>
+        <para>nt:address</para>
+      </listitem>
+
+      <listitem>
+        <para>nt:base</para>
+      </listitem>
+
+      <listitem>
+        <para>nt:childNodeDefinition</para>
+      </listitem>
+
+      <listitem>
+        <para>nt:configuration</para>
+      </listitem>
+
+      <listitem>
+        <para>nt:file</para>
+      </listitem>
+
+      <listitem>
+        <para>nt:folder</para>
+      </listitem>
+
+      <listitem>
+        <para>nt:frozenNode</para>
+      </listitem>
+
+      <listitem>
+        <para>nt:hierarchyNode</para>
+      </listitem>
+
+      <listitem>
+        <para>nt:linkedFile</para>
+      </listitem>
+
+      <listitem>
+        <para>nt:nodeType</para>
+      </listitem>
+
+      <listitem>
+        <para>nt:propertyDefinition</para>
+      </listitem>
+
+      <listitem>
+        <para>nt:query</para>
+      </listitem>
+
+      <listitem>
+        <para>nt:resource</para>
+      </listitem>
+
+      <listitem>
+        <para>nt:unstructured</para>
+      </listitem>
+
+      <listitem>
+        <para>nt:version</para>
+      </listitem>
+
+      <listitem>
+        <para>nt:versionHistory</para>
+      </listitem>
+
+      <listitem>
+        <para>nt:versionLabels</para>
+      </listitem>
+
+      <listitem>
+        <para>nt:versionedChild</para>
+      </listitem>
+    </itemizedlist></para>
+
+  <para>The node types are defined in CND notation, see the specification for
+  information on this notation.</para>
+
+  <literallayout>&lt;'mix'='http://www.jcp.org/jcr/mix/1.0'&gt;
+&lt;'jcr'='http://www.jcp.org/jcr/1.0'&gt;
+&lt;'nt'='http://www.jcp.org/jcr/nt/1.0'&gt;
+&lt;'rep'='internal'&gt;
+
+[mix:created]
+  MIXIN
+  - jcr:created (DATE) AUTOCREATED PROTECTED
+  - jcr:createdBy (STRING) PROTECTED
+
+[mix:etag]
+  MIXIN
+  - jcr:etag (STRING) = '' AUTOCREATED PROTECTED
+
+[mix:language]
+  MIXIN
+  - jcr:language (STRING)
+
+[mix:lastModified]
+  MIXIN
+  - jcr:lastModified (DATE)
+  - jcr:lastModifiedBy (STRING)
+
+[mix:lifecycle]
+  MIXIN
+  - jcr:lifecyclePolicy (REFERENCE) PROTECTED INITIALIZE
+  - jcr:currentLifecycleState (STRING) PROTECTED INITIALIZE
+
+[mix:lockable]
+  MIXIN
+  - jcr:lockOwner (STRING) PROTECTED IGNORE
+  - jcr:lockIsDeep (BOOLEAN) PROTECTED IGNORE
+
+[mix:mimeType]
+  MIXIN
+  - jcr:mimeType (STRING)
+  - jcr:encoding (STRING)
+
+[mix:referenceable]
+  MIXIN
+  - jcr:uuid (STRING) MANDATORY AUTOCREATED PROTECTED INITIALIZE
+
+[mix:shareable] &gt; mix:referenceable
+  MIXIN
+
+[mix:simpleVersionable]
+  MIXIN
+  - jcr:isCheckedOut (BOOLEAN) = 'true' MANDATORY AUTOCREATED PROTECTED IGNORE
+
+[mix:title]
+  MIXIN
+  - jcr:title (STRING)
+  - jcr:description (STRING)
+
+[mix:versionable] &gt; mix:referenceable, mix:simpleVersionable
+  MIXIN
+  - jcr:versionHistory (REFERENCE) MANDATORY PROTECTED IGNORE &lt; 'nt:versionHistory'
+  - jcr:baseVersion (REFERENCE) MANDATORY PROTECTED IGNORE &lt; 'nt:version'
+  - jcr:predecessors (REFERENCE) MANDATORY PROTECTED MULTIPLE IGNORE &lt; 'nt:version'
+  - jcr:mergeFailed (REFERENCE) PROTECTED MULTIPLE ABORT &lt; 'nt:version'
+  - jcr:activity (REFERENCE) PROTECTED IGNORE &lt; 'nt:activity'
+  - jcr:configuration (REFERENCE) PROTECTED IGNORE &lt; 'nt:configuration'
+
+[nt:activity] &gt; mix:referenceable
+  - jcr:activityTitle (STRING) MANDATORY AUTOCREATED PROTECTED
+
+[nt:address]
+  - jcr:protocol (STRING)
+  - jcr:host (STRING)
+  - jcr:port (STRING)
+  - jcr:repository (STRING)
+  - jcr:workspace (STRING)
+  - jcr:path (PATH)
+  - jcr:id (WEAKREFERENCE)
+
+[nt:base]
+  - jcr:primaryType (NAME) MANDATORY AUTOCREATED PROTECTED COMPUTE
+  - jcr:mixinTypes (NAME) PROTECTED MULTIPLE COMPUTE
+
+[nt:childNodeDefinition]
+  - jcr:name (NAME) PROTECTED
+  - jcr:autoCreated (BOOLEAN) MANDATORY PROTECTED
+  - jcr:mandatory (BOOLEAN) MANDATORY PROTECTED
+  - jcr:onParentVersion (STRING) MANDATORY PROTECTED &lt; 'COPY', 'VERSION', 'INITIALIZE', 'COMPUTE', 'IGNORE', 'ABORT'
+  - jcr:protected (BOOLEAN) MANDATORY PROTECTED
+  - jcr:requiredPrimaryTypes (NAME) = 'nt:base' MANDATORY PROTECTED MULTIPLE
+  - jcr:defaultPrimaryType (NAME) PROTECTED
+  - jcr:sameNameSiblings (BOOLEAN) MANDATORY PROTECTED
+
+[nt:configuration] &gt; mix:versionable
+  - jcr:root (REFERENCE) MANDATORY AUTOCREATED PROTECTED
+
+[nt:file] &gt; nt:hierarchyNode
+  PRIMARYITEM JCR:CONTENT
+  + jcr:content (nt:base) MANDATORY
+
+[nt:folder] &gt; nt:hierarchyNode
+  + * (nt:hierarchyNode) VERSION
+
+[nt:frozenNode] &gt; mix:referenceable
+  ORDERABLE
+  - jcr:frozenPrimaryType (NAME) MANDATORY AUTOCREATED PROTECTED ABORT
+  - jcr:frozenMixinTypes (NAME) PROTECTED MULTIPLE ABORT
+  - jcr:frozenUuid (STRING) MANDATORY AUTOCREATED PROTECTED ABORT
+  - * (UNDEFINED) PROTECTED ABORT
+  - * (UNDEFINED) PROTECTED MULTIPLE ABORT
+  + * (nt:base) PROTECTED SNS ABORT
+
+[nt:hierarchyNode] &gt; mix:created
+
+[nt:linkedFile] &gt; nt:hierarchyNode
+  PRIMARYITEM JCR:CONTENT
+  - jcr:content (REFERENCE) MANDATORY
+
+[nt:nodeType]
+  - jcr:nodeTypeName (NAME) MANDATORY PROTECTED
+  - jcr:supertypes (NAME) PROTECTED MULTIPLE
+  - jcr:isAbstract (BOOLEAN) MANDATORY PROTECTED
+  - jcr:isQueryable (BOOLEAN) MANDATORY PROTECTED
+  - jcr:isMixin (BOOLEAN) MANDATORY PROTECTED
+  - jcr:hasOrderableChildNodes (BOOLEAN) MANDATORY PROTECTED
+  - jcr:primaryItemName (NAME) PROTECTED
+  + jcr:propertyDefinition (nt:propertyDefinition) = nt:propertyDefinition PROTECTED SNS
+  + jcr:childNodeDefinition (nt:childNodeDefinition) = nt:childNodeDefinition PROTECTED SNS
+
+[nt:propertyDefinition]
+  - jcr:name (NAME) PROTECTED
+  - jcr:autoCreated (BOOLEAN) MANDATORY PROTECTED
+  - jcr:mandatory (BOOLEAN) MANDATORY PROTECTED
+  - jcr:onParentVersion (STRING) MANDATORY PROTECTED &lt; 'COPY', 'VERSION', 'INITIALIZE', 'COMPUTE', 'IGNORE', 'ABORT'
+  - jcr:protected (BOOLEAN) MANDATORY PROTECTED
+  - jcr:requiredType (STRING) MANDATORY PROTECTED &lt; 'STRING', 'URI', 'BINARY', 'LONG', 'DOUBLE', 'DECIMAL', 'BOOLEAN', 'DATE', 'NAME', 'PATH', 'REFERENCE', 'WEAKREFERENCE', 'UNDEFINED'
+  - jcr:valueConstraints (STRING) PROTECTED MULTIPLE
+  - jcr:defaultValues (UNDEFINED) PROTECTED MULTIPLE
+  - jcr:multiple (BOOLEAN) MANDATORY PROTECTED
+  - jcr:availableQueryOperators (NAME) MANDATORY PROTECTED MULTIPLE
+  - jcr:isFullTextSearchable (BOOLEAN) MANDATORY PROTECTED
+  - jcr:isQueryOrderable (BOOLEAN) MANDATORY PROTECTED
+
+[nt:query]
+  - jcr:statement (STRING)
+  - jcr:language (STRING)
+
+[nt:resource] &gt; mix:lastModified, mix:mimeType
+  PRIMARYITEM JCR:DATA
+  - jcr:data (BINARY) MANDATORY
+
+[nt:unstructured]
+  ORDERABLE
+  - * (UNDEFINED) MULTIPLE
+  - * (UNDEFINED)
+  + * (nt:base) = nt:unstructured SNS VERSION
+
+[nt:version] &gt; mix:referenceable
+  - jcr:created (DATE) MANDATORY AUTOCREATED PROTECTED ABORT
+  - jcr:predecessors (REFERENCE) PROTECTED MULTIPLE ABORT &lt; 'nt:version'
+  - jcr:successors (REFERENCE) PROTECTED MULTIPLE ABORT &lt; 'nt:version'
+  - jcr:activity (REFERENCE) PROTECTED ABORT &lt; 'nt:activity'
+  + jcr:frozenNode (nt:frozenNode) PROTECTED ABORT
+
+[nt:versionHistory] &gt; mix:referenceable
+  - jcr:versionableUuid (STRING) MANDATORY AUTOCREATED PROTECTED ABORT
+  - jcr:copiedFrom (WEAKREFERENCE) PROTECTED ABORT &lt; 'nt:version'
+  + jcr:rootVersion (nt:version) = nt:version MANDATORY AUTOCREATED PROTECTED ABORT
+  + jcr:versionLabels (nt:versionLabels) = nt:versionLabels MANDATORY AUTOCREATED PROTECTED ABORT
+  + * (nt:version) = nt:version PROTECTED ABORT
+
+[nt:versionLabels]
+  - * (REFERENCE) PROTECTED ABORT &lt; 'nt:version'
+
+[nt:versionedChild]
+  - jcr:childVersionHistory (REFERENCE) MANDATORY AUTOCREATED PROTECTED ABORT &lt; 'nt:versionHistory'
+</literallayout>
+</appendix>

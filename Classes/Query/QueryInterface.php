@@ -31,10 +31,28 @@ namespace F3\PHPCR\Query;
 interface QueryInterface {
 
 	/**
-	 * Flags determining the language of the query
+	 * A string constant representing the JCR-JQOM query language.
+	 * @api
 	 */
 	const JCR_JQOM = 'JCR-JQOM';
+
+	/**
+	 * A string constant representing the JCR-SQL2 query language.
+	 * @api
+	 */
 	const JCR_SQL2 = 'JCR-SQL2';
+
+	/**
+	 * Binds the given value to the variable named $varName.
+	 *
+	 * @param string $varName name of variable in query
+	 * @param \F3\PHPCR\ValueInterface $value value to bind
+	 * @return void
+	 * @throws \InvalidArgumentException if $varName is not a valid variable in this query.
+	 * @throws RepositoryException if an error occurs.
+	 * @api
+	 */
+	public function bindValue($varName, \F3\PHPCR\ValueInterface $value);
 
 	/**
 	 * Executes this query and returns a QueryResult object.
@@ -45,6 +63,16 @@ interface QueryInterface {
 	 * @api
 	 */
 	public function execute();
+
+	/**
+	 * Returns the names of the bind variables in this query. If this query
+	 * does not contains any bind variables then an empty array is returned.
+	 *
+	 * @return array the names of the bind variables in this query.
+	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 * @api
+	 */
+	public function getBindVariableNames();
 
 	/**
 	 * Sets the maximum size of the result set to limit.

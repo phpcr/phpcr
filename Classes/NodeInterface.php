@@ -34,31 +34,37 @@ interface NodeInterface extends \F3\PHPCR\ItemInterface {
 	 * A constant for the JCR name jcr:content. This is the name of
 	 * a child node declared in NodeType nt:file and a property declared in
 	 * nt:linkedFile.
+	 * @api
 	 */
 	const JCR_CONTENT = "{http://www.jcp.org/jcr/1.0}content";
 
 	/**
 	 * A constant for the node name jcr:propertyDefinition declared in nt:nodeType.
+	 * @api
 	 */
 	const JCR_PROPERTY_DEFINITION = "{http://www.jcp.org/jcr/1.0}propertyDefinition";
 
 	/**
 	 * A constant for the node name jcr:childNodeDefinition declared in nt:nodeType.
+	 * @api
 	 */
 	const JCR_CHILD_NODE_DEFINITION = "{http://www.jcp.org/jcr/1.0}childNodeDefinition";
 
 	/**
 	 * A constant for the node name jcr:rootVersion declared in nt:versionHistory.
+	 * @api
 	 */
 	const JCR_ROOT_VERSION = "{http://www.jcp.org/jcr/1.0}rootVersion";
 
 	/**
 	 * A constant for the node name jcr:versionLabels declared in nt:versionHistory.
+	 * @api
 	 */
 	const JCR_VERSION_LABELS = "{http://www.jcp.org/jcr/1.0}versionLabels";
 
 	/**
 	 * A constant for the node name jcr:frozenNode declared in nt:version.
+	 * @api
 	 */
 	const JCR_FROZEN_NODE = "{http://www.jcp.org/jcr/1.0}frozenNode";
 

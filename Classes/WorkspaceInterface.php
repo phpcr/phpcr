@@ -36,87 +36,103 @@ interface WorkspaceInterface {
 
 	/**
 	 * A constant for the name of the workspace root node.
+	 * @api
 	 */
 	const NAME_WORKSPACE_ROOT = '';
 
 	/**
 	 * A constant for the absolute path of the workspace root node.
+	 * @api
 	 */
 	const PATH_WORKSPACE_ROOT = '/';
 
 	/**
 	 * A constant for the name of the system node.
+	 * @api
 	 */
 	const NAME_SYSTEM_NODE = '{http://www.jcp.org/jcr/1.0}system';
 
 	/**
 	 * A constant for the absolute path of the system node.
 	 * This is '/' . NAME_SYSTEM_NODE
+	 * @api
 	 */
 	const PATH_SYSTEM_NODE = '/{http://www.jcp.org/jcr/1.0}system';
 
 	/**
 	 * A constant for the name of the node type definition storage node.
+	 * @api
 	 */
 	const NAME_NODE_TYPES_NODE = '{http://www.jcp.org/jcr/1.0}nodeTypes';
 
 	/**
 	 * A constant for the absolute path of the node type definition storage node.
 	 * This is PATH_SYSTEM_NODE . '/' . NAME_NODE_TYPES_NODE
+	 * @api
 	 */
 	const PATH_NODE_TYPES_NODE = '/{http://www.jcp.org/jcr/1.0}system/{http://www.jcp.org/jcr/1.0}nodeTypes';
 
 	/**
 	 * A constant for the name of the version storage node.
+	 * @api
 	 */
 	const NAME_VERSION_STORAGE_NODE = '{http://www.jcp.org/jcr/1.0}versionStorage';
 
 	/**
 	 * A constant for the absolute path of the version storage node.
 	 * This is PATH_SYSTEM_NODE . '/' . NAME_VERSION_STORAGE_NODE
+	 * @api
 	 */
 	const PATH_VERSION_STORAGE_NODE = '/{http://www.jcp.org/jcr/1.0}system/{http://www.jcp.org/jcr/1.0}versionStorage';
 
 	/**
 	 * A constant for the name of the activities node.
+	 * @api
 	 */
 	const NAME_ACTIVITIES_NODE = '{http://www.jcp.org/jcr/1.0}activities';
 
 	/**
 	 * A constant for the absolute path of the activities node.
 	 * This is PATH_SYSTEM_NODE . '/' . NAME_ACTIVITIES_NODE
+	 * @api
 	 */
 	const PATH_ACTIVITIES_NODE = '/{http://www.jcp.org/jcr/1.0}system/{http://www.jcp.org/jcr/1.0}activities';
 
 	/**
 	 * A constant for the name of the configurations node.
+	 * @api
 	 */
 	const NAME_CONFIGURATIONS_NODE = '{http://www.jcp.org/jcr/1.0}configurations';
 
 	/**
 	 * A constant for the absolute path of the configurations node.
 	 * This is PATH_SYSTEM_NODE . '/' . NAME_CONFIGURATIONS_NODE
+	 * @api
 	 */
 	const PATH_CONFIGURATIONS_NODE = '/{http://www.jcp.org/jcr/1.0}system/{http://www.jcp.org/jcr/1.0}configurations';
 
 	/**
 	 * A constant for the name of the unfiled storage node.
+	 * @api
 	 */
 	const NAME_UNFILED_NODE = '{http://www.jcp.org/jcr/1.0}unfiled';
 
 	/**
 	 * A constant for the absolute path of the unfiled storage node.
 	 * This is PATH_SYSTEM_NODE . '/' . NAME_UNFILED_NODE
+	 * @api
 	 */
 	const PATH_UNFILED_NODE = '/{http://www.jcp.org/jcr/1.0}system/{http://www.jcp.org/jcr/1.0}unfiled';
 
 	/**
 	 * A constant for the name of the jcr:xmltext node produced on importXML().
+	 * @api
 	 */
 	const NAME_JCR_XMLTEXT = '{http://www.jcp.org/jcr/1.0}xmltext';
 
 	/**
 	 * A constant for the name of the jcr:xmlcharacters property produced on importXML().
+	 * @api
 	 */
 	const NAME_JCR_XMLCHARACTERS = '{http://www.jcp.org/jcr/1.0}xmlcharacters';
 
@@ -124,6 +140,7 @@ interface WorkspaceInterface {
 	 * A constant for the relative path from the node representing the imported XML element of
 	 * the jcr:xmlcharacters property produced on importXML().
 	 * This is NAME_JCR_XMLTEXT . '/' . NAME_JCR_XMLCHARACTERS
+	 * @api
 	 */
 	const RELPATH_JCR_XMLCHARACTERS = '{http://www.jcp.org/jcr/1.0}xmltext/{http://www.jcp.org/jcr/1.0}xmlcharacters';
 

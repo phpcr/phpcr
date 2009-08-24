@@ -194,7 +194,6 @@ final class PropertyType {
 	 *
 	 * @return void
 	 * @author Karsten Dambekalns <karsten@typo3.org>
-	 * @api
 	 */
 	private function __construct() {}
 
@@ -205,6 +204,7 @@ final class PropertyType {
 	 * @return string  name of the specified type
 	 * @author Sebastian Kurfürst <sebastian@typo3.org>
 	 * @author Karsten Dambekalns <karsten@typo3.org>
+	 * @api
 	 */
 	static public function nameFromValue($type) {
 		switch (intval($type)) {
@@ -258,6 +258,7 @@ final class PropertyType {
 	 * @return int The numeric constant value
 	 * @author Sebastian Kurfürst <sebastian@typo3.org>
 	 * @author Karsten Dambekalns <karsten@typo3.org>
+	 * @api
 	 */
 	static public function valueFromName($name) {
 		switch ($name) {
@@ -307,9 +308,12 @@ final class PropertyType {
 	 * Returns the numeric constant value of the type for the given PHP type
 	 * name as returned by gettype().
 	 *
+	 * Note: this is an addition not defined in JSR-283.
+	 *
 	 * @param string $type
 	 * @return integer
 	 * @author Karsten Dambekalns <karsten@typo3.org>
+	 * @api
 	 */
 	static public function valueFromType($type) {
 		switch (strtolower($type)) {

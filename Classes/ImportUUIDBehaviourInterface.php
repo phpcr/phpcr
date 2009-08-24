@@ -34,11 +34,27 @@ namespace F3\PHPCR;
 interface ImportUUIDBehaviourInterface {
 
 	/**
-	 * The supported behaviors.
+	 * When importing remove existing item upon collision.
+	 * @api
 	 */
 	const IMPORT_UUID_COLLISION_REMOVE_EXISTING = 1;
+
+	/**
+	 * When importing replace existing item upon collision.
+	 * @api
+	 */
 	const IMPORT_UUID_COLLISION_REPLACE_EXISTING = 2;
+
+	/**
+	 * When importing throw exception upon collision.
+	 * @api
+	 */
 	const IMPORT_UUID_COLLISION_THROW = 3;
+
+	/**
+	 * When importing create new UUIDs.
+	 * @api
+	 */
 	const IMPORT_UUID_CREATE_NEW = 0;
 
 }

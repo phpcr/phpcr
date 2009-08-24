@@ -43,6 +43,7 @@ interface SessionInterface {
 	/**
 	 * A constant representing the add_node action string, used to determine if
 	 * this Session has permission to add a new node.
+	 * @api
 	 */
 	const ACTION_ADD_NODE = 'add_node';
 
@@ -50,18 +51,21 @@ interface SessionInterface {
 	 * A constant representing the read action string, used to determine if this
 	 * Session has permission to retrieve an item (and read the value, in the case
 	 * of a property).
+	 * @api
 	 */
 	const ACTION_READ = 'read';
 
 	/**
 	 * A constant representing the remove action string, used to determine if this
 	 * Session has permission to remove an item.
+	 * @api
 	 */
 	const ACTION_REMOVE = 'remove';
 
 	/**
 	 * A constant representing the set_property action string, used to determine if
 	 * this Session has permission to set (add or modify) a property.
+	 * @api
 	 */
 	const ACTION_SET_PROPERTY = 'set_property';
 

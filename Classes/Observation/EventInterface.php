@@ -35,6 +35,7 @@ interface EventInterface {
 	 *  getPath() returns the absolute path of the node that was added.
 	 *  getIdentifier() returns the identifier of the node that was added.
 	 *  getInfo() returns an empty array
+	 * @api
 	 */
 	const NODE_ADDED = 0x1;
 
@@ -43,6 +44,7 @@ interface EventInterface {
 	 *  getPath() returns the absolute path of the node that was removed.
 	 *  getIdentifier() returns the identifier of the node that was removed.
 	 *  getInfo() returns an empty array
+	 * @api
 	 */
 	const NODE_REMOVED = 0x2;
 
@@ -51,6 +53,7 @@ interface EventInterface {
 	 *  getPath() returns the absolute path of the property that was added.
 	 *  getIdentifier() returns the identifier of the parent node of the property that was added.
 	 *  getInfo() returns an empty array
+	 * @api
 	 */
 	const PROPERTY_ADDED = 0x4;
 
@@ -59,6 +62,7 @@ interface EventInterface {
 	 *  getPath() returns the absolute path of the property that was removed.
 	 *  getIdentifier() returns the identifier of the parent node of the property that was removed.
 	 *  getInfo() returns an empty array
+	 * @api
 	 */
 	const PROPERTY_REMOVED = 0x8;
 
@@ -67,6 +71,7 @@ interface EventInterface {
 	 *  getPath() returns the absolute path of the property that was changed.
 	 *  getIdentifier() returns the identifier of the parent node of the property that was changed.
 	 *  getInfo() returns an empty array
+	 * @api
 	 */
 	const PROPERTY_CHANGED = 0x10;
 
@@ -82,6 +87,7 @@ interface EventInterface {
 	 *    then the returned aray has keys srcChildRelPath and destChildRelPath
 	 *    with values corresponding to the parameters passed to the orderBefore()
 	 *    method.
+	 * @api
 	 */
 	const NODE_MOVED = 0x20;
 
@@ -91,6 +97,7 @@ interface EventInterface {
 	 *  getPath() returns NULL.
 	 *  getIdentifier() returns NULL.
 	 *  getInfo() returns an empty array.
+	 * @api
 	 */
 	const PERSIST = 0x40;
 

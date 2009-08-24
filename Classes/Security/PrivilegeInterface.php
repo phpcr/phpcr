@@ -48,18 +48,21 @@ interface PrivilegeInterface {
 	/**
 	 * A constant representing jcr:read (in extended form), the privilege to retrieve
 	 * a node and get its properties and their values.
+	 * @api
 	 */
 	const JCR_READ = "{http://www.jcp.org/jcr/1.0}read";
 
 	/**
 	 * A constant representing jcr:modifyProperties (in extended form), the privilege
 	 * to create, modify and remove the properties of a node.
+	 * @api
 	 */
 	const JCR_MODIFY_PROPERTIES = "{http://www.jcp.org/jcr/1.0}modifyProperties";
 
 	/**
 	 * A constant representing jcr:addChildNodes (in extended form), the privilege
 	 * to create child nodes of a node.
+	 * @api
 	 */
 	const JCR_ADD_CHILD_NODES = "{http://www.jcp.org/jcr/1.0}addChildNodes";
 
@@ -74,6 +77,7 @@ interface PrivilegeInterface {
 	 * as a "delete" instead of a "unlink". A repository that uses the "delete" model
 	 * can have jcr:removeChildNodes in every access control policy, so that removal
 	 * is effectively controlled by jcr:removeNode.
+	 * @api
 	 */
 	const JCR_REMOVE_NODE = "{http://www.jcp.org/jcr/1.0}removeNode";
 
@@ -86,6 +90,7 @@ interface PrivilegeInterface {
 	 * as a "unlink" instead of a "delete". A repository that uses the "unlink" model
 	 * can have jcr:removeNode in every access control policy, so that removal
 	 * is effectively controlled by jcr:removeChildNodes.
+	 * @api
 	 */
 	const JCR_REMOVE_CHILD_NODES = "{http://www.jcp.org/jcr/1.0}removeChildNodes";
 
@@ -95,30 +100,35 @@ interface PrivilegeInterface {
 	 *  jcr:addChildNodes
 	 *  jcr:removeNode
 	 *  jcr:removeChildNodes
+	 * @api
 	 */
 	const JCR_WRITE = "{http://www.jcp.org/jcr/1.0}write";
 
 	/**
 	 * A constant representing jcr:readAccessControl (in extended form), the privilege
 	 * to get the access control policy of a node.
+	 * @api
 	 */
 	const JCR_READ_ACCESS_CONTROL = "{http://www.jcp.org/jcr/1.0}readAccessControl";
 
 	/**
 	 * A constant representing jcr:modifyAccessControl (in extended form), the privilege
 	 * to modify the access control policies of a node.
+	 * @api
 	 */
 	const JCR_MODIFY_ACCESS_CONTROL = "{http://www.jcp.org/jcr/1.0}modifyAccessControl";
 
 	/**
 	 * A constant representing jcr:lockManagement (in extended form), the
 	 * privilege to lock and unlock a node.
+	 * @api
 	 */
 	const JCR_LOCK_MANAGEMENT = "{http://www.jcp.org/jcr/1.0}lockManagement";
 
 	/**
 	 * A constant representing jcr:versionManagment (in extended form), the
 	 * privilege to perform versioning operations on a node.
+	 * @api
 	 */
 	const JCR_VERSION_MANAGEMENT = "{http://www.jcp.org/jcr/1.0}versionManagement";
 
@@ -126,18 +136,21 @@ interface PrivilegeInterface {
 	 * A constant representing jcr:nodeTypeManagement (in extended form), the
 	 * privilege to add and remove mixin node types and change the primary node
 	 * type of a node.
+	 * @api
 	 */
 	const JCR_NODE_TYPE_MANAGEMENT = "{http://www.jcp.org/jcr/1.0}nodeTypeManagement";
 
 	/**
 	 * A constant representing jcr:retentionManagement (in extended form), the
 	 * privilege to perform retention management operations on a node.
+	 * @api
 	 */
 	const JCR_RETENTION_MANAGEMENT = "{http://www.jcp.org/jcr/1.0}retentionManagement";
 
 	/**
 	 * A constant representing jcr:lifecycleManagement (in extended form), the
 	 * privilege to perform lifecycle operations on a node.
+	 * @api
 	 */
 	const JCR_LIFECYCLE_MANAGEMENT = "{http://www.jcp.org/jcr/1.0}lifecycleManagement";
 
@@ -155,6 +168,7 @@ interface PrivilegeInterface {
 	 *   jcr:lifecycleManagement
 	 *
 	 * It should, in addition, include all implementation-defined privileges.
+	 * @api
 	 */
 	const JCR_ALL = "{http://www.jcp.org/jcr/1.0}all";
 

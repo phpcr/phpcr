@@ -43,8 +43,12 @@ interface ItemVisitorInterface {
 	 * of a Node or Property. If this method throws an exception the visiting
 	 * process is aborted.
 	 *
+	 * Note: you need to distinguish between Node and Property objects being
+	 *       visited in your implementation.
+	 *
 	 * @param \F3\PHPCR\NodeInterface|\F3\PHPCR\PropertyInterface $item a node or property accepting this visitor
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs
+	 * @api
 	*/
 	public function visit(\F3\PHPCR\ItemInterface $item);
 

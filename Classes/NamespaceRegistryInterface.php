@@ -37,51 +37,61 @@ interface NamespaceRegistryInterface {
 
 	/**
 	 * A constant for the predefined namespace prefix "jcr".
+	 * @api
 	 */
 	const PREFIX_JCR = "jcr";
 
 	/**
 	 * A constant for the predefined namespace prefix "nt".
+	 * @api
 	 */
 	const PREFIX_NT = "nt";
 
 	/**
 	 * A constant for the predefined namespace prefix "mix".
+	 * @api
 	 */
 	const PREFIX_MIX = "mix";
 
 	/**
 	 * A constant for the predefined namespace prefix "xml".
+	 * @api
 	 */
 	const PREFIX_XML = "xml";
 
 	/**
 	 * A constant for the predefined namespace prefix "" (the empty prefix).
+	 * @api
 	 */
 	const PREFIX_EMPTY = "";
 
 	/**
 	 * A constant for the predefined namespace mapped by default to the prefix "jcr"
+	 * @api
 	 */
 	const NAMESPACE_JCR = "http://www.jcp.org/jcr/1.0";
 
 	/**
 	 * A constant for the predefined namespace mapped by default to the prefix "nt"
+	 * @api
 	 */
 	const NAMESPACE_NT = "http://www.jcp.org/jcr/nt/1.0";
 
 	/**
 	 * A constant for the predefined namespace mapped by default to the prefix "mix"
+	 * @api
 	 */
 	const NAMESPACE_MIX = "http://www.jcp.org/jcr/mix/1.0";
 
 	/**
 	 * A constant for the predefined namespace mapped by default to the prefix "xml"
+	 * @api
 	 */
 	const NAMESPACE_XML = "http://www.w3.org/XML/1998/namespace";
 
 	/**
 	 * A constant for the predefined namespace mapped by default to the prefix "" (the empty prefix)
+	 * @api
 	 */
 	const NAMESPACE_EMPTY = "";
 
@@ -114,7 +124,8 @@ interface NamespaceRegistryInterface {
 	 * @throws \F3\PHPCR\UnsupportedRepositoryOperationException if this repository does not support namespace registry changes.
 	 * @throws \F3\PHPCR\AccessDeniedException if the current session does not have sufficient access to register the namespace.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
-	 * */
+	 * @api
+	 */
 	public function registerNamespace($prefix, $uri);
 
 
@@ -135,7 +146,8 @@ interface NamespaceRegistryInterface {
 	 * @throws \F3\PHPCR\UnsupportedRepositoryOperationException if this repository does not support namespace registry changes.
 	 * @throws \F3\PHPCR\AccessDeniedException if the current session does not have sufficient access to unregister the namespace.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
-	 * */
+	 * @api
+	 */
 	public function unregisterNamespace($prefix);
 
 	/**
@@ -143,7 +155,8 @@ interface NamespaceRegistryInterface {
 	 *
 	 * @return array a string array
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
-	 * */
+	 * @api
+	 */
 	public function getPrefixes();
 
 	/**
@@ -151,7 +164,8 @@ interface NamespaceRegistryInterface {
 	 *
 	 * @return array a string array
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
-	 * */
+	 * @api
+	 */
 	public function getURIs();
 
 	/**
@@ -161,7 +175,8 @@ interface NamespaceRegistryInterface {
 	 * @return string a string
 	 * @throws \F3\PHPCR\NamespaceException if a mapping with the specified prefix does not exist.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs
-	 * */
+	 * @api
+	 */
 	public function getURI($prefix);
 
 	/**
@@ -171,7 +186,8 @@ interface NamespaceRegistryInterface {
 	 * @return string a string
 	 * @throws \F3\PHPCR\NamespaceException if a mapping with the specified uri does not exist.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs
-	 * */
+	 * @api
+	 */
 	public function getPrefix($uri);
 
 }

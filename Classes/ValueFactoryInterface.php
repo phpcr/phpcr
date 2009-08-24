@@ -57,6 +57,9 @@ interface ValueFactoryInterface {
 	 *   is set to TRUE
 	 * * if the given $Value is a \DateTime object, the Value type will be DATE.
 	 *
+	 * Note: The Java API defines this with multiple differing signatures, you
+	 *       need to reproduce this behaviour in your implementation.
+	 *
 	 * @param mixed $value The value to use when creating the Value object
 	 * @param integer $type Type request for the Value object
 	 * @param boolean $weak When a Node is given as $value this can be given as TRUE to create a WEAKREFERENCE

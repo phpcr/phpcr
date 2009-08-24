@@ -30,36 +30,37 @@ namespace F3\PHPCR\Query\QOM;
  *
  * A query consists of:
  *
- * a source. When the query is evaluated, the source evaluates its selectors and
- * the joins between them to produce a (possibly empty) set of node-tuples. This
- * is a set of 1-tuples if the query has one selector (and therefore no joins), a
- * set of 2-tuples if the query has two selectors (and therefore one join), a set
- * of 3-tuples if the query has three selectors (two joins), and so forth.
- * an optional constraint. When the query is evaluated, the constraint filters the
- * set of node-tuples.
- * a list of zero or more orderings. The orderings specify the order in which the
- * node-tuples appear in the query results. The relative order of two node-tuples
- * is determined by evaluating the specified orderings, in list order, until
- * encountering an ordering for which one node-tuple precedes the other. If no
- * orderings are specified, or if for none of the specified orderings does one
- * node-tuple precede the other, then the relative order of the node-tuples is
- * implementation determined (and may be arbitrary).
- * a list of zero or more columns to include in the tabular view of the query
- * results. If no columns are specified, the columns available in the tabular view
- * are implementation determined, but minimally include, for each selector, a column
- * for each single-valued non-residual property of the selector's node type.
+ * * a source. When the query is evaluated, the source evaluates its selectors and
+ *   the joins between them to produce a (possibly empty) set of node-tuples. This
+ *   is a set of 1-tuples if the query has one selector (and therefore no joins), a
+ *   set of 2-tuples if the query has two selectors (and therefore one join), a set
+ *   of 3-tuples if the query has three selectors (two joins), and so forth.
+ * * an optional constraint. When the query is evaluated, the constraint filters the
+ *   set of node-tuples.
+ * * a list of zero or more orderings. The orderings specify the order in which the
+ *   node-tuples appear in the query results. The relative order of two node-tuples
+ *   is determined by evaluating the specified orderings, in list order, until
+ *   encountering an ordering for which one node-tuple precedes the other. If no
+ *   orderings are specified, or if for none of the specified orderings does one
+ *   node-tuple precede the other, then the relative order of the node-tuples is
+ *   implementation determined (and may be arbitrary).
+ * * a list of zero or more columns to include in the tabular view of the query
+ *   results. If no columns are specified, the columns available in the tabular view
+ *   are implementation determined, but minimally include, for each selector, a column
+ *   for each single-valued non-residual property of the selector's node type.
  *
  * The query object model representation of a query is created by factory methods in the QueryObjectModelFactory.
  *
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-interface QueryObjectModelInterface extends \F3\PHPCR\Query\PreparedQueryInterface {
+interface QueryObjectModelInterface extends \F3\PHPCR\Query\QueryInterface {
 
 	/**
 	 * Gets the node-tuple source for this query.
 	 *
 	 * @return \F3\PHPCR\Query\QOM\SourceInterface the node-tuple source; non-null
+	 * @api
 	*/
 	public function getSource();
 
@@ -67,6 +68,7 @@ interface QueryObjectModelInterface extends \F3\PHPCR\Query\PreparedQueryInterfa
 	 * Gets the constraint for this query.
 	 *
 	 * @return \F3\PHPCR\Query\QOM\ConstraintInterface the constraint, or null if none
+	 * @api
 	*/
 	public function getConstraint();
 
@@ -74,6 +76,7 @@ interface QueryObjectModelInterface extends \F3\PHPCR\Query\PreparedQueryInterfa
 	 * Gets the orderings for this query.
 	 *
 	 * @return array an array of zero or more \F3\PHPCR\Query\QOM\OrderingInterface; non-null
+	 * @api
 	*/
 	public function getOrderings();
 
@@ -81,6 +84,7 @@ interface QueryObjectModelInterface extends \F3\PHPCR\Query\PreparedQueryInterfa
 	 * Gets the columns for this query.
 	 *
 	 * @return array an array of zero or more \F3\PHPCR\Query\QOM\ColumnInterface; non-null
+	 * @api
 	*/
 	public function getColumns();
 

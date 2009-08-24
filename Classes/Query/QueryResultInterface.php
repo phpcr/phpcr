@@ -45,6 +45,7 @@ interface QueryResultInterface {
 	 *
 	 * @return \F3\PHPCR\Query\RowIteratorInterface a RowIterator
 	 * @throws \F3\PHPCR\RepositoryException if this call is the second time either getRows() or getNodes() has been called on the same QueryResult object or if another error occurs.
+	 * @api
 	*/
 	public function getRows();
 
@@ -58,5 +59,15 @@ interface QueryResultInterface {
 	 */
 	public function getNodes();
 
+	/**
+	 * Returns an array of all the selector names that were used in the query
+	 * that created this result. If the query did not have a selector name then
+	 * an empty array is returned.
+	 *
+	 * @return array a String array holding the selector names.
+	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 * @api
+	 */
+	public function getSelectorNames();
 }
 ?>

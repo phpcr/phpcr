@@ -192,6 +192,8 @@ interface VersionHistoryInterface extends \F3\PHPCR\NodeInterface {
 	 * returns true if any version in the history has the given label.
 	 * The label must be a JCR name in either qualified or extended form.
 	 *
+	 * Note: The Java API defines this with multiple differing signatures.
+	 *
 	 * @param string $label a version label. A JCR name in either extended or qualified form.
 	 * @param \F3\PHPCR\Version\VersionInterface $version a Version object
 	 * @return boolean a boolean.
@@ -205,6 +207,8 @@ interface VersionHistoryInterface extends \F3\PHPCR\NodeInterface {
 	 * Returns all version labels of the given version - empty array if none.
 	 * If a $version is given returns all version labels of the history or an empty
 	 * array if there are none.
+	 *
+	 * Note: The Java API defines this with multiple differing signatures.
 	 *
 	 * @param VersionInterface $version a Version object
 	 * @return array a string array containing all the labels of the (given) version (history)
