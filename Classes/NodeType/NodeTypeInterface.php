@@ -149,14 +149,14 @@ interface NodeTypeInterface extends \F3\PHPCR\NodeType\NodeTypeDefinitionInterfa
 	const MIX_LANGUAGE = "{http://www.jcp.org/mix/1.0}language";
 
 	/**
-	 * A constant for the node type name mix:mimetype (in extended form).
-	 * Constants for the names of the properties declared by mix:mimetype are:
+	 * A constant for the node type name mix:mimeType (in extended form).
+	 * Constants for the names of the properties declared by mix:mimeType are:
 	 *
 	 * Property#JCR_MIMETYPE
 	 * Property#JCR_ENCODING
 	 * @api
 	 */
-	const MIX_MIMETYPE = "{http://www.jcp.org/mix/1.0}mimetype";
+	const MIX_MIMETYPE = "{http://www.jcp.org/mix/1.0}mimeType";
 
 	/**
 	 * A constant for the node type name nt:nodeType (in extended form).

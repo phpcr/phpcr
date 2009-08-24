@@ -168,15 +168,15 @@ interface PropertyInterface extends \F3\PHPCR\ItemInterface {
 	const JCR_LANGUAGE = "{http://www.jcp.org/jcr/1.0}language";
 
 	/**
-	 * A constant for the property name jcr:mimetype (in extended form),
-	 * declared in node type mix:mimetype.
+	 * A constant for the property name jcr:mimeType (in extended form),
+	 * declared in node type mix:mimeType.
 	 * @api
 	 */
-	const JCR_MIMETYPE = "{http://www.jcp.org/jcr/1.0}mimetype";
+	const JCR_MIMETYPE = "{http://www.jcp.org/jcr/1.0}mimeType";
 
 	/**
 	 * A constant for the property name jcr:encoding (in extended form),
-	 * declared in node type mix:mimetype.
+	 * declared in node type mix:mimeType.
 	 * @api
 	 */
 	const JCR_ENCODING = "{http://www.jcp.org/jcr/1.0}encoding";
