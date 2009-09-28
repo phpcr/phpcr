@@ -131,7 +131,7 @@ interface VersionManagerInterface {
 	 *  versionable (full or simple) and currently checked-in or
 	 *  non-versionable and its nearest versionable ancestor is checked-in.
 	 *
-	 * @param $absPath an absolute path.
+	 * @param string $absPath an absolute path.
 	 * @return boolean a boolean
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
 	 * @api
@@ -435,8 +435,8 @@ interface VersionManagerInterface {
 	 * If successful, these changes are dispatched immediately, there is no need
 	 * to call save.
 	 *
-	 * @param string $absPat an absolute path
-	 * @param \F3\PHPCR\Version\VersionInterface a version referred to by the jcr:mergeFailed  property of the node at absPath.
+	 * @param string $absPath an absolute path
+	 * @param \F3\PHPCR\Version\VersionInterface $version a version referred to by the jcr:mergeFailed  property of the node at absPath.
 	 * @return void
 	 * @throws \F3\PHPCR\Version\VersionException if the version specified is not among those referenced in the jcr:mergeFailed  property of the node at absPath  or if the node is currently checked-in.
 	 * @throws \F3\PHPCR\InvalidItemStateExceptionif there are unsaved changes pending on the node at absPath.

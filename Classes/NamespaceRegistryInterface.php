@@ -171,7 +171,7 @@ interface NamespaceRegistryInterface {
 	/**
 	 * Returns the URI to which the given prefix is mapped.
 	 *
-	 * @param $prefix a string
+	 * @param string $prefix a string
 	 * @return string a string
 	 * @throws \F3\PHPCR\NamespaceException if a mapping with the specified prefix does not exist.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs

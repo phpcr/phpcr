@@ -41,7 +41,7 @@ interface QueryObjectModelFactoryInterface extends \F3\PHPCR\Query\QOM\QueryObje
 	 * See the individual QOM factory methods for the validity criteria of each
 	 * query element.
 	 *
-	 * @param mixed $source the Selector or the node-tuple Source; non-null
+	 * @param \F3\PHPCR\Query\QOM\SourceInterface $source the Selector or the node-tuple Source; non-null
 	 * @param \F3\PHPCR\Query\QOM\ConstraintInterface $constraint the constraint, or null if none
 	 * @param array $orderings zero or more orderings; null is equivalent to a zero-length array
 	 * @param array $columns the columns; null is equivalent to a zero-length array
@@ -50,7 +50,7 @@ interface QueryObjectModelFactoryInterface extends \F3\PHPCR\Query\QOM\QueryObje
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 * @api
 	 */
-	public function createQuery(\F3\PHPCR\Query\QOM\SourceInterface $selectorOrSource, $constraint, array $orderings, array $columns);
+	public function createQuery(\F3\PHPCR\Query\QOM\SourceInterface $source, $constraint, array $orderings, array $columns);
 
 	/**
 	 * Selects a subset of the nodes in the repository based on node type.
@@ -82,7 +82,7 @@ interface QueryObjectModelFactoryInterface extends \F3\PHPCR\Query\QOM\QueryObje
 	 * @param \F3\PHPCR\Query\QOM\SourceInterface $left the left node-tuple source; non-null
 	 * @param \F3\PHPCR\Query\QOM\SourceInterface $right the right node-tuple source; non-null
 	 * @param string $joinType one of QueryObjectModelConstants.JCR_JOIN_TYPE_*
-	 * @param \F3\PHPCR\Query\QOM\JoinConditionInterface $join Condition the join condition; non-null
+	 * @param \F3\PHPCR\Query\QOM\JoinConditionInterface $joinCondition the join condition; non-null
 	 * @return \F3\PHPCR\Query\QOM\JoinInterface the join; non-null
 	 * @throws \F3\PHPCR\Query\InvalidQueryException if a particular validity test is possible on this method, the implemention chooses to perform that test (and not leave it until later) on createQuery, and the parameters given fail that test
 	 * @throws \F3\PHPCR\RepositoryException if the operation otherwise fails
@@ -274,8 +274,8 @@ interface QueryObjectModelFactoryInterface extends \F3\PHPCR\Query\QOM\QueryObje
 	 * because of access control constraints), the query is valid but the
 	 * constraint is not satisfied.
 	 *
-	 * @param string $selectorName the selector name; non-null
 	 * @param string $path an absolute path; non-null
+	 * @param string $selectorName the selector name; non-null
 	 * @return \F3\PHPCR\Query\QOM\SameNodeInterface the constraint; non-null
 	 * @throws \F3\PHPCR\Query\InvalidQueryException if the query is invalid
 	 * @throws \F3\PHPCR\RepositoryException if the operation otherwise fails

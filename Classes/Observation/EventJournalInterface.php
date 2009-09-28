@@ -36,7 +36,7 @@ interface EventJournalInterface extends \F3\PHPCR\Observation\EventIteratorInter
 	 * If an attempt is made to skip past the last element of the iterator, no
 	 * exception is thrown but the subsequent EventIterator.nextEvent() will fail.
 	 *
-	 * @param integer value that represents an offset in milliseconds from the epoch.
+	 * @param integer $date value that represents an offset in milliseconds from the epoch.
 	 * @return void
 	 * @api
 	 */
