@@ -12,7 +12,7 @@ namespace F3\PHPCR\Version;
  *                                                                        *
  * This script is distributed in the hope that it will be useful, but     *
  * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHAN-    *
- * TABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser       *
+* TABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser       *
  * General Public License for more details.                               *
  *                                                                        *
  * You should have received a copy of the GNU Lesser General Public       *
@@ -28,6 +28,7 @@ namespace F3\PHPCR\Version;
  *
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
+ * @api
  */
 class VersionException extends \F3\PHPCR\RepositoryException {
 }

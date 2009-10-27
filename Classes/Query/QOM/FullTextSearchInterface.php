@@ -52,7 +52,7 @@ namespace F3\PHPCR\Query\QOM;
  *  term ::= word | '"' word {whitespace word} '"'
  *  word ::= (A string containing no whitespace)
  *  whitespace ::= (A string of only whitespace)
-
+ *
  * A query satisfies a FullTextSearch constraint if the value (or values) of the
  * full-text indexed properties within the full-text search scope satisfy the
  * specified fullTextSearchExpression, evaluated as follows:
@@ -66,6 +66,7 @@ namespace F3\PHPCR\Query\QOM;
  *
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
+ * @api
  */
 interface FullTextSearchInterface extends \F3\PHPCR\Query\QOM\ConstraintInterface {
 

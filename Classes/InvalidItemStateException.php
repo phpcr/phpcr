@@ -31,6 +31,7 @@ namespace F3\PHPCR;
  *
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
+ * @api
  */
 class InvalidItemStateException extends \F3\PHPCR\RepositoryException {
 }

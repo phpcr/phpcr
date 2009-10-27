@@ -33,8 +33,8 @@ namespace F3\PHPCR;
  * through the tree performing some operation on each Item.
  *
  * @version $Id$
- * @copyright Copyright belongs to the respective authors
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
+ * @api
  */
 interface ItemVisitorInterface {
 

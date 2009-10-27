@@ -24,17 +24,18 @@ namespace F3\PHPCR\Query\QOM;
 
 /**
  * Selects a subset of the nodes in the repository based on node type.
-*
-* A selector selects every node in the repository, subject to access control
-* constraints, that satisfies at least one of the following conditions:
-*
-* the node's primary node type is nodeType, or
-* the node's primary node type is a subtype of nodeType, or
-* the node has a mixin node type that is nodeType, or
-* the node has a mixin node type that is a subtype of nodeType.
-*
+ *
+ * A selector selects every node in the repository, subject to access control
+ * constraints, that satisfies at least one of the following conditions:
+ *
+ * the node's primary node type is nodeType, or
+ * the node's primary node type is a subtype of nodeType, or
+ * the node has a mixin node type that is nodeType, or
+ * the node has a mixin node type that is a subtype of nodeType.
+ *
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
+ * @api
  */
 interface SelectorInterface extends \F3\PHPCR\Query\QOM\SourceInterface {
 

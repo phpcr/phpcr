@@ -27,13 +27,14 @@ namespace F3\PHPCR\NodeType;
  * addition of write methods, enabling the characteristics of a child property
  * definition to be set, after which the PropertyDefinitionTemplate is added to
  * a NodeTypeTemplate.
-
-See the corresponding get methods for each attribute in PropertyDefinition for
-the default values assumed when a new empty PropertyDefinitionTemplate is created
-(as opposed to one extracted from an existing NodeType).
+ *
+ * See the corresponding get methods for each attribute in PropertyDefinition for
+ * the default values assumed when a new empty PropertyDefinitionTemplate is created
+ * (as opposed to one extracted from an existing NodeType).
  *
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
+ * @api
  */
 interface PropertyDefinitionTemplateInterface extends \F3\PHPCR\NodeType\PropertyDefinitionInterface {
 
