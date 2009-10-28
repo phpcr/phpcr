@@ -29,6 +29,7 @@ namespace F3\PHPCR\Version;
  *
  * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
+ * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
  * @api
  */
 class LabelExistsVersionException extends \F3\PHPCR\Version\VersionException {
