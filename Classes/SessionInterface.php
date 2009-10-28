@@ -486,7 +486,7 @@ interface SessionInterface {
 	public function hasCapability($methodName, $target, array $arguments);
 
 	/**
-	 * Returns an org.xml.sax.ContentHandler which is used to push SAX events
+	 * Returns an \F3\PHPCR\ContentHandlerInterface which is used to push SAX events
 	 * to the repository. If the incoming XML (in the form of SAX events)
 	 * does not appear to be a JCR system view XML document then it is interpreted
 	 * as a JCR document view XML document.
@@ -547,7 +547,7 @@ interface SessionInterface {
 	 *
 	 * @param string $parentAbsPath the absolute path of a node under which (as child) the imported subgraph will be built.
 	 * @param integer $uuidBehavior a four-value flag that governs how incoming identifiers are handled.
-	 * @return org.xml.sax.ContentHandler whose methods may be called to feed SAX events into the deserializer.
+	 * @return \F3\PHPCR\ContentHandlerInterface whose methods may be called to feed SAX events into the deserializer.
 	 * @throws \F3\PHPCR\PathNotFoundException if no node exists at parentAbsPath and this implementation performs this validation immediately.
 	 * @throws \F3\PHPCR\ConstraintViolationException if the new subgraph cannot be added to the node at parentAbsPath due to node-type or other implementation-specific constraints, and this implementation performs this validation immediately.
 	 * @throws \F3\PHPCR\Version\VersionException if the node at $parentAbsPath is read-only due to a checked-in node and this implementation performs this validation immediately.
@@ -559,12 +559,9 @@ interface SessionInterface {
 
 	/**
 	 * Deserializes an XML document and adds the resulting item subgraph as a
-	 * child of the node at parentAbsPath.
-	 * If the incoming XML stream does not appear to be a JCR system view XML
-	 * document then it is interpreted as a document view XML document.
-	 *
-	 * The passed InputStream is closed before this method returns either normally
-	 * or because of an exception.
+	 * child of the node at $parentAbsPath.
+	 * If the incoming XML does not appear to be a JCR system view XML document
+	 * then it is interpreted as a document view XML document.
 	 *
 	 * The tree of new items is built in the transient storage of the Session. In order
 	 * to persist the new content, save must be called. The advantage of this
@@ -572,10 +569,10 @@ interface SessionInterface {
 	 * implementation leaves until save) structures that violate node type constraints
 	 * can be imported, fixed and then saved. The disadvantage is that a large import
 	 * will result in a large cache of pending nodes in the session. See
-	 * Workspace.importXML(java.lang.String, java.io.InputStream, int) for a version
+	 * Workspace.importXML(string, string, integer) for a version
 	 * of this method that does not go through the Session.
 	 *
-	 * The flag uuidBehavior governs how the identifiers of incoming nodes are
+	 * The flag $uuidBehavior governs how the identifiers of incoming nodes are
 	 * handled. There are four options:
 	 *
 	 * ImportUUIDBehavior.IMPORT_UUID_CREATE_NEW: Incoming nodes are added in the same
@@ -602,8 +599,8 @@ interface SessionInterface {
 	 * ImportUUIDBehavior.IMPORT_UUID_COLLISION_THROW: If an incoming node has the same
 	 * identifier as a node already existing in the workspace then an
 	 * ItemExistsException is thrown.
-	 * Unlike Workspace.importXML(java.lang.String, java.io.InputStream, int), this
-	 * method does not necessarily enforce all node type constraints during deserialization.
+	 * Unlike Workspace.importXML(string, string, integer), this method does not
+	 * necessarily enforce all node type constraints during deserialization.
 	 * Those that would be immediately enforced in a normal write method (Node.addNode,
 	 * Node.setProperty etc.) of this implementation cause an immediate
 	 * ConstraintViolationException during deserialization. All other constraints are
@@ -612,7 +609,7 @@ interface SessionInterface {
 	 * imported data is respected, and this is an implementation-specific issue.
 	 *
 	 * @param string $parentAbsPath the absolute path of the node below which the deserialized subgraph is added.
-	 * @param resource $in The Inputstream from which the XML to be deserialized is read.
+	 * @param string $in An URI from which the XML to be deserialized is read.
 	 * @param integer $uuidBehavior a four-value flag that governs how incoming identifiers are handled.
 	 * @return void
 	 * @throws \RuntimeException if an error during an I/O operation occurs.
@@ -628,22 +625,22 @@ interface SessionInterface {
 	public function importXML($parentAbsPath, $in, $uuidBehavior);
 
 	/**
-	 * Serializes the node (and if noRecurse is false, the whole subgraph) at $absPath
-	 * as an XML stream and outputs it to the supplied XMLWriter.
+	 * Serializes the node (and if noRecurse is false, the whole subgraph) at 
+	 * $absPath as an XML stream and outputs it to the supplied XMLWriter. The
+	 * resulting XML is in the system view form. Note that $absPath must be
+	 * the path of a node, not a property.
 	 *
-	 * The resulting XML is in the system view form. Note that $absPath must be the path
-	 * of a node, not a property.
-	 * If skipBinary is true then any properties of PropertyType.BINARY will be serialized
+	 * If $skipBinary is true then any properties of PropertyType.BINARY will be serialized
 	 * as if they are empty. That is, the existence of the property will be serialized,
 	 * but its content will not appear in the serialized output (the <sv:value> element
 	 * will have no content). Note that in the case of multi-value BINARY properties,
 	 * the number of values in the property will be reflected in the serialized output,
-	 * though they will all be empty. If skipBinary is false then the actual value(s)
+	 * though they will all be empty. If $skipBinary is false then the actual value(s)
 	 * of each BINARY property is recorded using Base64 encoding.
 	 *
-	 * If noRecurse is true then only the node at absPath and its properties, but not
-	 * its child nodes, are serialized. If noRecurse is false then the entire subgraph
-	 * rooted at absPath is serialized.
+	 * If $noRecurse is true then only the node at $absPath and its properties, but not
+	 * its child nodes, are serialized. If $noRecurse is false then the entire subgraph
+	 * rooted at $absPath is serialized.
 	 *
 	 * If the user lacks read access to some subsection of the specified tree, that
 	 * section simply does not get serialized, since, from the user's point of view,
@@ -670,19 +667,20 @@ interface SessionInterface {
 	public function exportSystemView($absPath, \XMLWriter $out, $skipBinary, $noRecurse);
 
 	/**
-	 * Serializes the node (and if noRecurse is false, the whole subgraph) at $absPath as an XML
-	 * stream and outputs it to the supplied XMLWriter. The resulting XML is in the document
-	 * view form. Note that $absPath must be the path of a node, not a property.
+	 * Serializes the node (and if $noRecurse is false, the whole subgraph) at
+	 * $absPath as an XML stream and outputs it to the supplied XMLWriter. The
+	 * resulting XML is in the document view form. Note that $absPath must be
+	 * the path of a node, not a property.
 	 *
-	 * If skipBinary is true then any properties of PropertyType.BINARY will be serialized as if
+	 * If $skipBinary is true then any properties of PropertyType.BINARY will be serialized as if
 	 * they are empty. That is, the existence of the property will be serialized, but its content
 	 * will not appear in the serialized output (the value of the attribute will be empty). If
-	 * skipBinary is false then the actual value(s) of each BINARY property is recorded using
+	 * $skipBinary is false then the actual value(s) of each BINARY property is recorded using
 	 * Base64 encoding.
 	 *
-	 * If noRecurse is true then only the node at absPath and its properties, but not its
-	 * child nodes, are serialized. If noRecurse is false then the entire subgraph rooted at
-	 * absPath is serialized.
+	 * If $noRecurse is true then only the node at $absPath and its properties, but not its
+	 * child nodes, are serialized. If $noRecurse is false then the entire subgraph rooted at
+	 * $absPath is serialized.
 	 *
 	 * If the user lacks read access to some subsection of the specified tree, that section
 	 * simply does not get serialized, since, from the user's point of view, it is not there.

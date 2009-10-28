@@ -11,9 +11,6 @@ The DONE section lists what has been done already.
 
 == WIP ==
 
-# Util
-	TraversingItemVisitor (LinkedList missing, use something from SPL)
-
 == OPEN ==
 
 == DONE ==
@@ -102,6 +99,7 @@ The DONE section lists what has been done already.
 	NamedAccessControlPolicy
 	Privilege
 # Util
+	TraversingItemVisitor
 	TraversingItemVisitor.Default (skipped)
 # Version
 	ActivityViolationException

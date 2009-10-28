@@ -408,7 +408,7 @@ interface WorkspaceInterface {
 	public function getAccessibleWorkspaceNames();
 
 	/**
-	 * Returns an org.xml.sax.ContentHandler which can be used to push SAX events
+	 * Returns an \F3\PHPCR\ContentHandlerInterface which can be used to push SAX events
 	 * into the repository. If the incoming XML stream (in the form of SAX events)
 	 * does not appear to be a JCR system view XML document then it is interpreted
 	 * as a document view XML document.
@@ -464,7 +464,7 @@ interface WorkspaceInterface {
 	 *
 	 * @param string $parentAbsPath the absolute path of a node under which (as child) the imported subgraph will be built.
 	 * @param integer $uuidBehavior a four-value flag that governs how incoming identifiers are handled.
-	 * @return an org.xml.sax.ContentHandler whose methods may be called to feed SAX events into the deserializer.
+	 * @return an \F3\PHPCR\ContentHandlerInterface whose methods may be called to feed SAX events into the deserializer.
 	 * @throws \F3\PHPCR\PathNotFoundException if no node exists at $parentAbsPath.
 	 * @throws \F3\PHPCR\ConstraintViolationException if the new subgraph cannot be added to the node at $parentAbsPath due to node-type or other implementation-specific constraints, and this can be determined before the first SAX event is sent. Unlike Session#getImportContentHandler, this method also enforces node type constraints by throwing SAXExceptions during deserialization. However, which node type constraints are enforced depends upon whether node type information in the imported data is respected, and this is an implementation-specific issue.
 	 * @throws \F3\PHPCR\Version\VersionException if the node at $parentAbsPath is read-only due to a checked-in node.
@@ -478,12 +478,9 @@ interface WorkspaceInterface {
 
 	/**
 	 * Deserializes an XML document and adds the resulting item subgraph as a
-	 * child of the node at parentAbsPath.
-	 * If the incoming XML stream does not appear to be a JCR system view XML
-	 * document then it is interpreted as a document view XML document.
-	 *
-	 * The passed resource handler is closed before this method returns either
-	 * normally or because of an exception.
+	 * child of the node at $parentAbsPath.
+	 * If the incoming XML does not appear to be a JCR system view XML document
+	 * then it is interpreted as a document view XML document.
 	 *
 	 * Changes are made directly at the workspace level, without going through
 	 * the Session. As a result, there is not need to call save. The advantage
@@ -494,7 +491,7 @@ interface WorkspaceInterface {
 	 * See Session.importXML for a version of this method that does go through
 	 * the Session.
 	 *
-	 * The flag uuidBehavior governs how the identifiers of incoming (deserialized)
+	 * The flag $uuidBehavior governs how the identifiers of incoming (deserialized)
 	 * nodes are handled. There are four options:
 	 *
 	 * * ImportUUIDBehavior.IMPORT_UUID_CREATE_NEW: Incoming nodes are assigned newly
@@ -521,7 +518,7 @@ interface WorkspaceInterface {
 	 *   ItemExistsException is thrown.
 	 *
 	 * @param string $parentAbsPath the absolute path of the node below which the deserialized subgraph is added.
-	 * @param resource $in The resource handler from which the XML to be deserialized is read.
+	 * @param string $in An URI from which the XML to be deserialized is read.
 	 * @param integer $uuidBehavior a four-value flag that governs how incoming identifiers are handled.
 	 * @return void
 	 * @throws \RuntimeException if an error during an I/O operation occurs.

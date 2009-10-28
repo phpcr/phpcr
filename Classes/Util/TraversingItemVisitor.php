@@ -55,13 +55,13 @@ abstract class TraversingItemVisitor implements \F3\PHPCR\ItemVisitorInterface {
 
 	/**
 	 * Queue used to implement breadth-first traversal.
-	 * @var LinkedList
+	 * @var \SplQueue
 	 */
 	protected $currentQueue;
 
 	/**
 	 * Queue used to implement breadth-first traversal.
-	 * @var LinkedList
+	 * @var \SplQueue
 	 */
 	protected $nextQueue;
 
@@ -85,8 +85,8 @@ abstract class TraversingItemVisitor implements \F3\PHPCR\ItemVisitorInterface {
 		$this->maxLevel = $maxLevel;
 
 		if ($this->breadthFirst === TRUE) {
-			$this->currentQueue = new LinkedList();
-			$this->nextQueue = new LinkedList();
+			$this->currentQueue = new \SplQueue();
+			$this->nextQueue = new \SplQueue();
 		}
 		$this->currentLevel = 0;
 	}
@@ -159,11 +159,11 @@ abstract class TraversingItemVisitor implements \F3\PHPCR\ItemVisitorInterface {
 					if ($this->maxLevel == -1 || $this->currentLevel < $this->maxLevel) {
 						$propertyIterator = $item->getProperties();
 						while ($propertyIterator->hasNext()) {
-							$this->nextQueue->addLast($propertyIterator->nextProperty());
+							$this->nextQueue->enqueue($propertyIterator->nextProperty());
 						}
 						$nodeIterator = $item->getNodes();
 						while ($nodeIterator->hasNext()) {
-							$this->nextQueue->addLast($nodeIterator->nextNode());
+							$this->nextQueue->enqueue($nodeIterator->nextNode());
 						}
 					}
 
@@ -171,9 +171,9 @@ abstract class TraversingItemVisitor implements \F3\PHPCR\ItemVisitorInterface {
 						if ($this->currentQueue->isEmpty()) {
 							$this->currentLevel++;
 							$this->currentQueue = $this->nextQueue;
-							$this->nextQueue = new LinkedList();
+							$this->nextQueue = new \SplQueue();
 						}
-						$item = $this->currentQueue->removeFirst();
+						$item = $this->currentQueue->dequeue();
 						$item->accept($this);
 					}
 					$this->currentLevel = 0;
