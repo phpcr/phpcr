@@ -30,7 +30,7 @@ namespace F3\PHPCR;
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  * @api
  */
-interface RangeIteratorInterface extends \F3\PHPCR\IteratorInterface {
+interface RangeIteratorInterface extends \Iterator {
 
 	/**
 	 * Skip a number of elements in the iterator.
