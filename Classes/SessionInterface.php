@@ -626,8 +626,8 @@ interface SessionInterface {
 	public function importXML($parentAbsPath, $in, $uuidBehavior);
 
 	/**
-	 * Serializes the node (and if noRecurse is false, the whole subgraph) at 
-	 * $absPath as an XML stream and outputs it to the supplied XMLWriter. The
+	 * Serializes the node (and if $noRecurse is false, the whole subgraph) at
+	 * $absPath as an XML stream and outputs it to the supplied URI. The
 	 * resulting XML is in the system view form. Note that $absPath must be
 	 * the path of a node, not a property.
 	 *
@@ -656,7 +656,7 @@ interface SessionInterface {
 	 * The output XML will be encoded in UTF-8.
 	 *
 	 * @param string $absPath The path of the root of the subgraph to be serialized. This must be the path to a node, not a property
-	 * @param \XMLWriter $out The XMLWriter to which the XML serialization of the subgraph will be output.
+	 * @param string $out The URI to which the XML serialization of the subgraph will be output.
 	 * @param boolean $skipBinary A boolean governing whether binary properties are to be serialized.
 	 * @param boolean $noRecurse A boolean governing whether the subgraph at absPath is to be recursed.
 	 * @return void
@@ -665,11 +665,11 @@ interface SessionInterface {
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 * @api
 	 */
-	public function exportSystemView($absPath, \XMLWriter $out, $skipBinary, $noRecurse);
+	public function exportSystemView($absPath, $out, $skipBinary, $noRecurse);
 
 	/**
 	 * Serializes the node (and if $noRecurse is false, the whole subgraph) at
-	 * $absPath as an XML stream and outputs it to the supplied XMLWriter. The
+	 * $absPath as an XML stream and outputs it to the supplied URI. The
 	 * resulting XML is in the document view form. Note that $absPath must be
 	 * the path of a node, not a property.
 	 *
@@ -695,7 +695,7 @@ interface SessionInterface {
 	 * The output XML will be encoded in UTF-8.
 	 *
 	 * @param string $absPath The path of the root of the subgraph to be serialized. This must be the path to a node, not a property
-	 * @param \XMLWriter $out The XMLWriter to which the XML serialization of the subgraph will be output.
+	 * @param string $out The URI to which the XML serialization of the subgraph will be output.
 	 * @param boolean $skipBinary A boolean governing whether binary properties are to be serialized.
 	 * @param boolean $noRecurse A boolean governing whether the subgraph at absPath is to be recursed.
 	 * @return void
@@ -704,7 +704,7 @@ interface SessionInterface {
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 * @api
 	 */
-	public function exportDocumentView($absPath, \XMLWriter $out, $skipBinary, $noRecurse);
+	public function exportDocumentView($absPath, $out, $skipBinary, $noRecurse);
 
 	/**
 	 * Within the scope of this Session, this method maps uri to prefix. The
