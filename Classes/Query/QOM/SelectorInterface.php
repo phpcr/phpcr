@@ -52,7 +52,7 @@ interface SelectorInterface extends \F3\PHPCR\Query\QOM\SourceInterface {
 	 * Gets the selector name.
 	 * A selector's name can be used elsewhere in the query to identify the selector.
 	 *
-	 * @return the selector name; non-null
+	 * @return string the selector name; non-null
 	 * @api
 	 */
 	public function getSelectorName();

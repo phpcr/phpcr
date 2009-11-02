@@ -696,7 +696,7 @@ interface NodeInterface extends \F3\PHPCR\ItemInterface {
 	 * support versioning (and therefore all nodes are always "checked-out",
 	 * by default).
 	 *
-	 * @return a boolean
+	 * @return boolean
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
 	 * @api
 	 */
@@ -708,7 +708,7 @@ interface NodeInterface extends \F3\PHPCR\ItemInterface {
 	 * otherwise returns FALSE. This includes the case where a repository does
 	 * not support locking (in which case all nodes are "unlocked" by default).
 	 *
-	 * @return a boolean.
+	 * @return boolean.
 	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
 	 * @api
 	 */

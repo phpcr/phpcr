@@ -77,7 +77,7 @@ interface ValueInterface {
 	/**
 	 * Returns a long representation of this value.
 	 *
-	 * @return string A long representation of the value of this property.
+	 * @return integer A long representation of the value of this property.
 	 * @throws \F3\PHPCR\ValueFormatException if conversion to a long is not possible.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 * @api
@@ -85,9 +85,9 @@ interface ValueInterface {
 	public function getLong();
 
 	/**
-	 * Returns a BigDecimal representation of this value.
+	 * Returns a double representation of this value (a BigDecimal in Java).
 	 *
-	 * @return string A double representation of the value of this property.
+	 * @return float A double representation of the value of this property.
 	 * @throws \F3\PHPCR\ValueFormatException if conversion is not possible.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 * @api
@@ -97,7 +97,7 @@ interface ValueInterface {
 	/**
 	 * Returns a double representation of this value.
 	 *
-	 * @return string A double representation of the value of this property.
+	 * @return float A double representation of the value of this property.
 	 * @throws \F3\PHPCR\ValueFormatException if conversion to a double is not possible.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 * @api
@@ -120,7 +120,7 @@ interface ValueInterface {
 	/**
 	 * Returns a boolean representation of this value.
 	 *
-	 * @return string A boolean representation of the value of this property.
+	 * @return boolean A boolean representation of the value of this property.
 	 * @throws \F3\PHPCR\ValueFormatException if conversion to a boolean is not possible.
 	 * @throws \F3\PHPCR\RepositoryException if another error occurs.
 	 * @api

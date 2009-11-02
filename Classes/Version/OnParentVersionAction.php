@@ -155,6 +155,8 @@ final class OnParentVersionAction {
 			case self::ABORT :
 				return self::ACTIONNAME_ABORT;
 				break;
+			default:
+				throw new \InvalidArgumentException('Unknown action (' . $action . ') given.', 1257170242);
 		}
 	}
 
@@ -187,6 +189,8 @@ final class OnParentVersionAction {
 			case self::ACTIONNAME_ABORT :
 				return self::ABORT;
 				break;
+			default:
+				throw new \InvalidArgumentException('Unknown name (' . $name . ') given.', 1257170243);
 		}
 	}
 }

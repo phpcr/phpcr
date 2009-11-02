@@ -249,6 +249,8 @@ final class PropertyType {
 			case self::URI :
 				return self::TYPENAME_URI;
 				break;
+			default:
+				throw new \InvalidArgumentException('Unknown type (' . $type . ') given.', 1257170231);
 		}
 	}
 
@@ -303,6 +305,8 @@ final class PropertyType {
 			case self::TYPENAME_URI :
 				return self::URI;
 				break;
+			default:
+				throw new \InvalidArgumentException('Unknown name (' . $name . ') given.', 1257170232);
 		}
 	}
 

@@ -85,7 +85,6 @@ interface LockInterface {
 	 * returned.
 	 *
 	 * @return integer the number of seconds remaining until this lock times out.
-
 	 * @throws \F3\PHPCR\RepositoryException if the timeout is infinite or unknown
 	 * @api
 	 */
