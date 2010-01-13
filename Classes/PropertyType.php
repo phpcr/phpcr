@@ -326,9 +326,11 @@ final class PropertyType {
 			case 'string':
 				return self::STRING;
 				break;
+			case 'bool':
 			case 'boolean':
 				return self::BOOLEAN;
 				break;
+			case 'int':
 			case 'integer':
 				return self::LONG;
 				break;
