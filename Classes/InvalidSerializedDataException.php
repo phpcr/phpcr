@@ -26,7 +26,6 @@ namespace F3\PHPCR;
  * Exception thrown by the deserialization methods of Session if the serialized
  * data being input has an invalid format.
  *
- * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
  * @api

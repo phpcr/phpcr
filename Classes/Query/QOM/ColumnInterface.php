@@ -33,7 +33,6 @@ namespace F3\PHPCR\Query\QOM;
  * in the tabular results. If property is not specified, columnName must not be
  * specified, and the included columns will be named "selector.propertyName".
  *
- * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
  * @api

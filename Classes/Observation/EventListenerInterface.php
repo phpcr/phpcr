@@ -30,7 +30,6 @@ namespace F3\PHPCR\Observation;
  * the transaction is committed. An event listener only sees events for which
  * the session that registered it has sufficient access rights.
  *
- * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
  * @api

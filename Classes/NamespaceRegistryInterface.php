@@ -30,7 +30,6 @@ namespace F3\PHPCR;
  * in repository content, and there may be repository content with namespaces
  * that are not included n the registry.
  *
- * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
  * @api

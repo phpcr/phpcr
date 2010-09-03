@@ -32,7 +32,6 @@ namespace F3\PHPCR\Util;
  * Tree traversal is done observing the left-to-right order of child Items if
  * such an order is supported and exists.
  *
- * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
  * @api

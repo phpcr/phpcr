@@ -26,7 +26,6 @@ namespace F3\PHPCR;
  * An exception thrown when an attempt is made to place an item in a position
  * where another item already exists.
  *
- * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
  * @api

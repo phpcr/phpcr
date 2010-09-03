@@ -64,7 +64,6 @@ namespace F3\PHPCR\Query\QOM;
  *  "AND" has higher precedence than "OR".
  *  Within a term, each double quote ("), "-" (minus sign), and "\" (backslash) must be escaped by a preceding "\" (backslash).
  *
- * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
  * @api

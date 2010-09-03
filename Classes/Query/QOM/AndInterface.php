@@ -28,7 +28,6 @@ namespace F3\PHPCR\Query\QOM;
  * To satisfy the And constraint, a node-tuple must satisfy both constraint1 and
  * constraint2.
  *
- * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
  * @api

@@ -43,7 +43,6 @@ namespace F3\PHPCR\Query\QOM;
  *  if v1 is ordered after v2, then nt1 precedes nt2, otherwise
  *  the relative order of nt1 and nt2 is implementation determined and may be arbitrary.
  *
- * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
  * @api

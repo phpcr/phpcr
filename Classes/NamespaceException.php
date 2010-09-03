@@ -26,7 +26,6 @@ namespace F3\PHPCR;
  * Exception thrown by Session.setNamespacePrefix(String prefix, String uri)
  * if the specified uri is not registered in the NamespaceRegistry.
  *
- * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
  * @api

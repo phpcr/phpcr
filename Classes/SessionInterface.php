@@ -35,7 +35,6 @@ namespace F3\PHPCR;
  * Workspace object represents a "view" of an actual repository workspace
  * entity as seen through the authorization settings of its associated Session.
  *
- * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
  * @api

@@ -29,7 +29,6 @@ namespace F3\PHPCR;
  * by methods of Node and Property if that object represents an item that has
  * been removed from the workspace.
  *
- * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
  * @api

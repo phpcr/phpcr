@@ -31,7 +31,6 @@ namespace F3\PHPCR\Query\QOM;
  *
  * If operand evaluates to null, the LowerCase operand also evaluates to null.
  *
- * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
  * @api

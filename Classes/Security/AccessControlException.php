@@ -25,7 +25,6 @@ namespace F3\PHPCR\Security;
 /**
  * Exception thrown by access control related methods of AccessControlManager.
  *
- * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
  * @api

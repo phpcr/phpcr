@@ -46,7 +46,6 @@ namespace F3\PHPCR;
  * The deprecated getStream() method and it's related exceptions and rules have been
  * omitted in this PHP port of the API.
  *
- * @version  $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
  * @api

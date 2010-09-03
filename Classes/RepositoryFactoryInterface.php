@@ -35,7 +35,6 @@ namespace F3\PHPCR;
  * Get a default repository available in this environment:
  *    $repo = \F3\PHPCR\RepositoryFactory::getRepository();
  *
- * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
  * @api

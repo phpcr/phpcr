@@ -26,7 +26,6 @@ namespace F3\PHPCR\Security;
  * An AccessControlEntry represents the association of one or more Privilege
  * objects with a specific Principal
  *
- * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
  * @api

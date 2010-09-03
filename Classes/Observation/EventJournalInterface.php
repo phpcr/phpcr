@@ -26,7 +26,6 @@ namespace F3\PHPCR\Observation;
  * An EventJournal is an extension of EventIterator that provides the additional
  * method skipTo().
  *
- * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
  * @api

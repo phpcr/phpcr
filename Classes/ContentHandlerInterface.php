@@ -27,7 +27,6 @@ namespace F3\PHPCR;
  * sign that whatever we want to return from getImportContentHandler needs to be
  * defined in more detail.
  *
- * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
  */

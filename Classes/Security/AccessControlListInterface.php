@@ -28,7 +28,6 @@ namespace F3\PHPCR\Security;
  * and consequently defines methods to read and mutate the list i.e. to get, add
  * or remove individual entries.
  *
- * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
  * @api

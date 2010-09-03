@@ -41,7 +41,6 @@ namespace F3\PHPCR\Query\QOM;
  *  would return true, where selector1Node is the node for selector1 and
  *  selector2Node is the node for selector2.
  *
- * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
  * @api

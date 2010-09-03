@@ -27,7 +27,6 @@ namespace F3\PHPCR\NodeType;
  * structure. For example, when an attempt is made to persistently add an
  * item to a node that would violate that node's node type.
  *
- * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
  * @api

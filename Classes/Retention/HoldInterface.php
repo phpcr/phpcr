@@ -30,7 +30,6 @@ namespace F3\PHPCR\Retention;
  * If isDeep() is true, the hold applies to the node and its entire subgraph.
  * Otherwise the hold applies to the node and its properties only.
  *
- * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
  * @api
