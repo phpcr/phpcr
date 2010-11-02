@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter version="5.0" xml:id="phpcr.chapter.introduction"
+         xmlns="http://docbook.org/ns/docbook"
+         xmlns:xi="http://www.w3.org/2001/XInclude"
+         xmlns:ns6="http://www.w3.org/1999/xlink"
+         xmlns:ns5="http://www.w3.org/2000/svg"
+         xmlns:ns4="http://www.w3.org/1999/xhtml"
+         xmlns:ns3="http://www.w3.org/1998/Math/MathML"
+         xmlns:ns="http://docbook.org/ns/docbook">
+  <title>Introduction</title>
+
+  <para>The <link ns6:href="http://jcp.org/en/jsr/summary?id=283">JSR-283
+  specification</link> defines an API for a Content Repository (CR). The PHPCR
+  Content Repository Interfaces aim to provide that API in PHP.</para>
+
+  <section>
+    <title>Port Status</title>
+
+    <para>The API has been ported fully, but due to the nature of Java versus
+    PHP some differences exist in naming and method signatures. Most of the
+    JSR-283 documentation and code examples should be usable as-is.</para>
+
+    <caution>
+      <para>All deprecated methods coming from JSR-170 have been
+      ignored!</para>
+    </caution>
+  </section>
+</chapter>

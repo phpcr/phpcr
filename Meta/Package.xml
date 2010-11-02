@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<package xmlns="http://typo3.org/ns/2008/flow3/package">
+    <key>PHPCR</key>
+    <title>PHP Content Repository Interfaces</title>
+    <description>The JSR-283 interfaces ported to PHP.</description>
+    <version>2.0.0</version>
+    <categories/>
+    <parties>
+        <person role="LeadDeveloper">
+            <name>Karsten Dambekalns</name>
+            <email>karsten@typo3.org</email>
+            <website></website>
+            <organisation>TYPO3 Association</organisation>
+            <repositoryUserName>k-fish</repositoryUserName>
+        </person>
+    </parties>
+    <constraints>
+        <depends/>
+        <conflicts/>
+        <suggests/>
+    </constraints>
+</package>
