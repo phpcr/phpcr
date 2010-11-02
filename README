@@ -1,0 +1,13 @@
+Interfaces for the PHP Content Repository.
+
+The PHPCR is following the Java Content Repository JCR to the spirit.
+There is a bunch of information here:
+http://liip.to/jackalope
+
+To see what is different in PHPCR than in JCR, see
+https://fosswiki.liip.ch/display/jackalope/From+JCR+to+PHPCR
+
+
+History
+*******
+The API was originally ported by k-fish and others at the typo3/flow3 project from the Java API to PHP.
