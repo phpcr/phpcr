@@ -1,0 +1,178 @@
+The Java Content Repository specification is targeted at strongly typed
+languages. PHP is weak typed. PHPCR is meant to implement JCR in the spirit
+of PHP, not literally.
+
+This page documents where PHPCR diverges from the JCR 283 API.
+
+Short Summary of the important changes
+**************************************
+
+ * Get rid of Value and ValueFactory. They are only relevant with strong typing
+ * Mark Node, Property and NamespaceRegistry with the Traversable interface for
+    ease of use with foreach.
+ * Drop the RangeIterator and Sub-Interfaces in favor of declaring return types
+    implementing PHP iterators. The type specific iterators again are only
+    relevant with strong typing.
+ * Provide shortcut methods Node::getPropertyValue and Node::getPropertyValues
+    to avoid instantiating property objects when not needed.
+
+
+Basic conversion
+****************
+
+Most PHP coding standards require that interfaces have the Interface in their
+name. We followed this, thus Node becomes NodeInterface and so on.
+
+PHP does not allow method overloading (having the same method name with
+different parameter numbers and/or types). PHP uses optional parameters with
+default values instead. Wherever this was encountered in JCR, the methods are
+mapped to one. For example, ItemVisitor::visit is only one method expecting
+ItemInterface instead of two visit methods expecting Node and Property.
+The implementing visitor will have to do a type-check.
+
+ * In PHP you can not have a class method called "clone" because it is a
+    reserved keyword. Workspace::clone is named Workspace::klone.
+ * A note about the Boolean value type. When converting String values to
+    boolean, JCR uses java.lang.Boolean.valueOf(String) which evaluates to true
+    only for the string "true" (case insensitive). PHP usually treats
+    everything not null|0|false as true. The API follows the JCR specification
+    here in order to be consistent.
+
+
+Iterators
+*********
+
+JCR defines many iterators with the single purpose of avoiding class-casting:
+RangeIterator, NodeIterator, PropertyIterator, NodeTypeIterator, VersionIterator,
+AccessControlPolicyIterator, RowIterator, EventIterator, EventListenerIterator
+We loose nothing by dropping them.
+EventJournal is a special case, containing "skipTo($date)". This iterator
+is the only one that is kept.
+
+(I think JCR would better use parametrized types for that anyway, available
+since Java 1.5.)
+
+Wherever the iterators are used, PHPCR requires iterators implementing
+SeekableIterator and Countable. Together, those iterators have the same
+expressivnes as the JCR RangeIterator.
+
+Note: Plain PHP arrays would be even simpler than any interfaces, while still
+allowing to use foreach. But they would have the major drawback that no lazy
+loading is possible, all data has to be instantiated immediatly.
+If an implementation does not need lazy loading, it can just create an
+ArrayIterator from the array.
+
+
+Additionally, we declared API elements as Traversable where it makes sense.
+This allows to directly use the objects in a foreach statement.
+The implementation either has to implement IteratorAggregate::getIterator to
+return a suitable iterator, or be an iterator itselves.
+
+ * NodeInterface iterates over all children (like getChildren() without filters)
+    The keys are the node names, the values the node objects.
+ * PropertyInterface iterates over all values of that property. (Except for
+    multivalue properties, there is exactly 1 value. Keys are meaningless here.
+ * NamespaceRegistryInterface iterates over all namespaces. Keys are the
+    prefixes, values are the uris.
+ * PropertyType iterates over all types, keys being the numeric ids, values the
+    TYPENAME string constants. Note that this is no interface but directly the
+    implementation.
+ * Lock/LockManagerInterface iterates over all lock tokens
+    (like getLockTokens()). Keys are meaningless.
+ * NodeType/NodeTypeManager iterates over all node types
+    (like getAllNodeTypes()). Keys are meaningless.
+ * Observation/ObservationManagerInterface iterates over all registered event
+    listeners (like getRegisteredEventListeners()). Keys are meaningless.
+
+ * TODO determine what is better: Query/QueryResultInterface iterates over the (nodes|rows)?
+ * TODO have a look at QOM.
+
+ * Query/RowInterface iterates over all row values, like getValues(). Keys are
+    the column names, values the corresponding values.
+
+ * Security/AccessControlEntryInterface iterates over all privileges, like
+    getPrivileges(). Keys are meaningless.
+ * Security/AccessControlListInterface iterates over all entries, like
+    getAccessControlEntries(). Keys are meaningless.
+ * Version/VersionHistoryInterface iterates over all versions, like
+    getAllVersions(). Keys are meaningless.
+
+
+For other interfaces there is no obvious default iterator, so we left them without.
+
+
+Value and ValueFactory
+**********************
+
+PHPCR got rid of both Value and ValueFactory. They only make sense in the
+context of strong typing.
+
+The PropertyInterface methods directly access the native property values.
+We keep type conversions possible though. Changes in PropertyInterface are:
+
+ * Remove Property::getValue and Property::getValues
+ * The type specific getters return a native value or an array of such values
+    in case of multivalue properties.
+ * PropertyInterface::setValue got an optional parameter for specifying the
+    desired type if wanted.
+
+
+Property
+********
+
+Instantiating property objects is often not needed. The Node interface got a
+getPropertyValue($name, $type=false) that returns the native property value
+(or array of values in case of multivalue property).
+Additionally, there is a Node::getPropertiesValues($filter=null) function with
+the same logic as Node::getProperties($filter) to get an iterator with all
+property names => property value (resp value array for multival properties).
+
+For performance reason, implementations should delay instantiating the
+PropertyInterface objects when nodes are loaded.
+
+Note: We discussed even completely dropping the Property interface. But the
+separation between Node and Property does make sense, plus allows for things
+like the ItemVisitor.
+
+
+RepositoryFactory
+*****************
+
+We changed getDescriptor() to return both single value descriptors and arrays.
+isSingleValueDescriptor() has been removed.
+getDescriptorValue() and getDescriptorValues() are removed too, see the Values
+topic.
+
+Note: This class uses the "Java Standard Edition Service Provider mechanism". There
+is no equivalent in PHP. However, having a defined way how to create the
+repository instance makes a lot of sense, to be able to swap implementations or
+simply for unit testing. In the context of symfony, Dependency Injection (DIC)
+can replace the need for the factory. However, for usage in other contexts,
+the defined factory makes sense. Symfony can use either RepositoryFactory or
+factory method in Repository or directly the constructor behind the curtains.
+
+
+Helpers
+*******
+
+This was added by k-fish when he originally ported the interfaces to PHP. Noted
+here for completeness.
+PropertyType::valueFromType($type) Returns the PHPCR numeric constant value of the type for the given PHP type name as
+returned by gettype().
+
+Note that this is a final class implemented in the API, not an interface.
+
+
+Note: k-fish also added a third parameter to Node::addNode to manually specify
+the node identifier. In JCR, the identifier can not be set explicitly.
+We removed that, as identifiers should not be imposed to the implementation.
+
+
+General Note
+************
+
+You are free in your implementation to re-add the methods and classes we deemed superfluous in PHP. Thanks to the weak typing, PHP won't complain when using those methods even if they are not declared in the PHPCR interfaces. Of course, your client code then will not be able to use other PHPCR implementations.
+
+
+
+David Buchmann, 2010-11-03
