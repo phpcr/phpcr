@@ -504,7 +504,7 @@ interface PropertyInterface extends \PHPCR\ItemInterface {
      * @throws \IllegalArgumentException if the specified DateTime value cannot be expressed in the ISO 8601-based format defined in the JCR 2.0 specification and the implementation does not support dates incompatible with that format.
      * @api
      */
-    public function setValue($value, , $type = NULL, $weak = FALSE);
+    public function setValue($value, $type = NULL, $weak = FALSE);
 
     /**
      * Returns a String representation of the value of this property.
