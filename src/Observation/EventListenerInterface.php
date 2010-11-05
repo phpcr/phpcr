@@ -1,14 +1,16 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3\PHPCR\Observation;
+namespace PHPCR\Observation;
 
 /*                                                                        *
- * This script belongs to the FLOW3 package "PHPCR".                      *
+ * This file was ported from the Java JCR API to PHP by                   *
+ * Karsten Dambekalns <karsten@typo3.org> for the FLOW3 project.          *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU Lesser General Public License as published by the *
  * Free Software Foundation, either version 3 of the License, or (at your *
- * option) any later version.                                             *
+ * option) any later version. Alternatively, you may use the Simplified   *
+ * BSD License.                                                           *
  *                                                                        *
  * This script is distributed in the hope that it will be useful, but     *
  * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHAN-    *
@@ -36,14 +38,13 @@ namespace F3\PHPCR\Observation;
  */
 interface EventListenerInterface {
 
-	/**
-	 * This method is called when a bundle of events is dispatched.
-	 *
-	 * @param \F3\PHPCR\Observation\EventIteratorInterface $events - The event set received.
-	 * @return void
-	 * @api
-	 */
-	public function onEvent(\F3\PHPCR\Observation\EventIteratorInterface $events);
+    /**
+     * This method is called when a bundle of events is dispatched.
+     *
+     * @param \PHPCR\Observation\EventIteratorInterface $events - The event set received.
+     * @return void
+     * @api
+     */
+    public function onEvent(\PHPCR\Observation\EventIteratorInterface $events);
 
 }
-?>

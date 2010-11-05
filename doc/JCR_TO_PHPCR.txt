@@ -32,6 +32,9 @@ The implementing visitor will have to do a type-check.
 
  * In PHP you can not have a class method called "clone" because it is a
     reserved keyword. Workspace::clone is named Workspace::klone.
+ * BinaryInterface::read got a third optional parameter to limit how much
+    to read. In Java, this is determined by the length of the bytes array
+    passed to the method. In PHP $bytes is a dynamically growing string.
  * A note about the Boolean value type. When converting String values to
     boolean, JCR uses java.lang.Boolean.valueOf(String) which evaluates to true
     only for the string "true" (case insensitive). PHP usually treats
@@ -160,7 +163,7 @@ here for completeness.
 PropertyType::valueFromType($type) Returns the PHPCR numeric constant value of the type for the given PHP type name as
 returned by gettype().
 
-Note that this is a final class implemented in the API, not an interface.
+PropertyType is a final class implemented in the API, not an interface.
 
 
 Note: k-fish also added a third parameter to Node::addNode to manually specify
@@ -171,7 +174,10 @@ We removed that, as identifiers should not be imposed to the implementation.
 General Note
 ************
 
-You are free in your implementation to re-add the methods and classes we deemed superfluous in PHP. Thanks to the weak typing, PHP won't complain when using those methods even if they are not declared in the PHPCR interfaces. Of course, your client code then will not be able to use other PHPCR implementations.
+You are free in your implementation to re-add the methods and classes we deemed
+superfluous in PHP. Thanks to the weak typing, PHP won't complain when using
+those methods even if they are not declared in the PHPCR interfaces. Of course,
+your client code then will not be able to use other PHPCR implementations.
 
 
 

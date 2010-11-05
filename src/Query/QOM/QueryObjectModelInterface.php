@@ -1,14 +1,16 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3\PHPCR\Query\QOM;
+namespace PHPCR\Query\QOM;
 
 /*                                                                        *
- * This script belongs to the FLOW3 package "PHPCR".                      *
+ * This file was ported from the Java JCR API to PHP by                   *
+ * Karsten Dambekalns <karsten@typo3.org> for the FLOW3 project.          *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU Lesser General Public License as published by the *
  * Free Software Foundation, either version 3 of the License, or (at your *
- * option) any later version.                                             *
+ * option) any later version. Alternatively, you may use the Simplified   *
+ * BSD License.                                                           *
  *                                                                        *
  * This script is distributed in the hope that it will be useful, but     *
  * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHAN-    *
@@ -55,40 +57,38 @@ namespace F3\PHPCR\Query\QOM;
  * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
  * @api
  */
-interface QueryObjectModelInterface extends \F3\PHPCR\Query\QueryInterface {
+interface QueryObjectModelInterface extends \PHPCR\Query\QueryInterface {
 
-	/**
-	 * Gets the node-tuple source for this query.
-	 *
-	 * @return \F3\PHPCR\Query\QOM\SourceInterface the node-tuple source; non-null
-	 * @api
-	*/
-	public function getSource();
+    /**
+     * Gets the node-tuple source for this query.
+     *
+     * @return \PHPCR\Query\QOM\SourceInterface the node-tuple source; non-null
+     * @api
+    */
+    public function getSource();
 
-	/**
-	 * Gets the constraint for this query.
-	 *
-	 * @return \F3\PHPCR\Query\QOM\ConstraintInterface the constraint, or null if none
-	 * @api
-	*/
-	public function getConstraint();
+    /**
+     * Gets the constraint for this query.
+     *
+     * @return \PHPCR\Query\QOM\ConstraintInterface the constraint, or null if none
+     * @api
+    */
+    public function getConstraint();
 
-	/**
-	 * Gets the orderings for this query.
-	 *
-	 * @return array an array of zero or more \F3\PHPCR\Query\QOM\OrderingInterface; non-null
-	 * @api
-	*/
-	public function getOrderings();
+    /**
+     * Gets the orderings for this query.
+     *
+     * @return array an array of zero or more \PHPCR\Query\QOM\OrderingInterface; non-null
+     * @api
+    */
+    public function getOrderings();
 
-	/**
-	 * Gets the columns for this query.
-	 *
-	 * @return array an array of zero or more \F3\PHPCR\Query\QOM\ColumnInterface; non-null
-	 * @api
-	*/
-	public function getColumns();
+    /**
+     * Gets the columns for this query.
+     *
+     * @return array an array of zero or more \PHPCR\Query\QOM\ColumnInterface; non-null
+     * @api
+    */
+    public function getColumns();
 
 }
-
-?>

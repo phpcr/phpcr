@@ -1,14 +1,16 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3\PHPCR\Query\QOM;
+namespace PHPCR\Query\QOM;
 
 /*                                                                        *
- * This script belongs to the FLOW3 package "PHPCR".                      *
+ * This file was ported from the Java JCR API to PHP by                   *
+ * Karsten Dambekalns <karsten@typo3.org> for the FLOW3 project.          *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU Lesser General Public License as published by the *
  * Free Software Foundation, either version 3 of the License, or (at your *
- * option) any later version.                                             *
+ * option) any later version. Alternatively, you may use the Simplified   *
+ * BSD License.                                                           *
  *                                                                        *
  * This script is distributed in the hope that it will be useful, but     *
  * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHAN-    *
@@ -69,33 +71,31 @@ namespace F3\PHPCR\Query\QOM;
  * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
  * @api
  */
-interface ComparisonInterface extends \F3\PHPCR\Query\QOM\ConstraintInterface {
+interface ComparisonInterface extends \PHPCR\Query\QOM\ConstraintInterface {
 
-	/**
-	 *
-	 * Gets the first operand.
-	 *
-	 * @return \F3\PHPCR\Query\QOM\DynamicOperandInterface the operand; non-null
-	 * @api
-	 */
-	public function getOperand1();
+    /**
+     *
+     * Gets the first operand.
+     *
+     * @return \PHPCR\Query\QOM\DynamicOperandInterface the operand; non-null
+     * @api
+     */
+    public function getOperand1();
 
-	/**
-	 * Gets the operator.
-	 *
-	 * @return string one of \F3\PHPCR\Query\QOM\QueryObjectModelConstantsInterface.JCR_OPERATOR_*
-	 * @api
-	 */
-	public function getOperator();
+    /**
+     * Gets the operator.
+     *
+     * @return string one of \PHPCR\Query\QOM\QueryObjectModelConstantsInterface.JCR_OPERATOR_*
+     * @api
+     */
+    public function getOperator();
 
-	/**
-	 * Gets the second operand.
-	 *
-	 * @return \F3\PHPCR\Query\QOM\StaticOperandInterface the operand; non-null
-	 * @api
-	 */
-	public function getOperand2();
+    /**
+     * Gets the second operand.
+     *
+     * @return \PHPCR\Query\QOM\StaticOperandInterface the operand; non-null
+     * @api
+     */
+    public function getOperand2();
 
 }
-
-?>

@@ -1,14 +1,16 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3\PHPCR\NodeType;
+namespace PHPCR\NodeType;
 
 /*                                                                        *
- * This script belongs to the FLOW3 package "PHPCR".                      *
+ * This file was ported from the Java JCR API to PHP by                   *
+ * Karsten Dambekalns <karsten@typo3.org> for the FLOW3 project.          *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU Lesser General Public License as published by the *
  * Free Software Foundation, either version 3 of the License, or (at your *
- * option) any later version.                                             *
+ * option) any later version. Alternatively, you may use the Simplified   *
+ * BSD License.                                                           *
  *                                                                        *
  * This script is distributed in the hope that it will be useful, but     *
  * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHAN-    *
@@ -41,90 +43,89 @@ namespace F3\PHPCR\NodeType;
  * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
  * @api
  */
-interface NodeTypeTemplateInterface extends \F3\PHPCR\NodeType\NodeTypeDefinitionInterface {
+interface NodeTypeTemplateInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface {
 
-	/**
-	 * Sets the name of the node type.
-	 *
-	 * @param string $name a String.
-	 * @return void
-	 * @api
-	 */
-	public function setName($name);
+    /**
+     * Sets the name of the node type.
+     *
+     * @param string $name a String.
+     * @return void
+     * @api
+     */
+    public function setName($name);
 
-	/**
-	 * Sets the names of the supertypes of the node type.
-	 *
-	 * @param array $names a String array.
-	 * @return void
-	 * @api
-	 */
-	public function setDeclaredSuperTypeNames(array $names);
+    /**
+     * Sets the names of the supertypes of the node type.
+     *
+     * @param array $names a String array.
+     * @return void
+     * @api
+     */
+    public function setDeclaredSuperTypeNames(array $names);
 
-	/**
-	 * Sets the abstract flag of the node type.
-	 *
-	 * @param boolean $abstractStatus a boolean.
-	 * @return void
-	 * @api
-	 */
-	public function setAbstract($abstractStatus);
+    /**
+     * Sets the abstract flag of the node type.
+     *
+     * @param boolean $abstractStatus a boolean.
+     * @return void
+     * @api
+     */
+    public function setAbstract($abstractStatus);
 
-	/**
-	 * Sets the mixin flag of the node type.
-	 *
-	 * @param boolean $mixin a boolean.
-	 * @return void
-	 * @api
-	 */
-	public function setMixin($mixin);
+    /**
+     * Sets the mixin flag of the node type.
+     *
+     * @param boolean $mixin a boolean.
+     * @return void
+     * @api
+     */
+    public function setMixin($mixin);
 
-	/**
-	 * Sets the orderable child nodes flag of the node type.
-	 *
-	 * @param boolean $orderable a boolean.
-	 * @return void
-	 * @api
-	 */
-	public function setOrderableChildNodes($orderable);
+    /**
+     * Sets the orderable child nodes flag of the node type.
+     *
+     * @param boolean $orderable a boolean.
+     * @return void
+     * @api
+     */
+    public function setOrderableChildNodes($orderable);
 
-	/**
-	 * Sets the name of the primary item.
-	 *
-	 * @param string $name a String.
-	 * @return void
-	 * @api
-	 */
-	public function setPrimaryItemName($name);
+    /**
+     * Sets the name of the primary item.
+     *
+     * @param string $name a String.
+     * @return void
+     * @api
+     */
+    public function setPrimaryItemName($name);
 
-	/**
-	 * Sets the queryable status of the node type.
-	 *
-	 * @param booolean $queryable a boolean.
-	 * @return void
-	 * @api
-	 */
-	public function setQueryable($queryable);
+    /**
+     * Sets the queryable status of the node type.
+     *
+     * @param booolean $queryable a boolean.
+     * @return void
+     * @api
+     */
+    public function setQueryable($queryable);
 
-	/**
-	 * Returns a mutable List of PropertyDefinitionTemplate objects. To define a
-	 * new NodeTypeTemplate or change an existing one, PropertyDefinitionTemplate
-	 * objects can be added to or removed from this List.
-	 *
-	 * @return array a mutable List of PropertyDefinitionTemplate objects.
-	 * @api
-	 */
-	public function getPropertyDefinitionTemplates();
+    /**
+     * Returns a mutable List of PropertyDefinitionTemplate objects. To define a
+     * new NodeTypeTemplate or change an existing one, PropertyDefinitionTemplate
+     * objects can be added to or removed from this List.
+     *
+     * @return array a mutable List of PropertyDefinitionTemplate objects.
+     * @api
+     */
+    public function getPropertyDefinitionTemplates();
 
-	/**
-	 * Returns a mutable List of NodeDefinitionTemplate objects. To define a new
-	 * NodeTypeTemplate or change an existing one, NodeDefinitionTemplate objects
-	 * can be added to or removed from this List.
-	 *
-	 * @return array a mutable List of NodeDefinitionTemplate objects.
-	 * @api
-	 */
-	public function getNodeDefinitionTemplates();
+    /**
+     * Returns a mutable List of NodeDefinitionTemplate objects. To define a new
+     * NodeTypeTemplate or change an existing one, NodeDefinitionTemplate objects
+     * can be added to or removed from this List.
+     *
+     * @return array a mutable List of NodeDefinitionTemplate objects.
+     * @api
+     */
+    public function getNodeDefinitionTemplates();
+
 }
-
-?>
