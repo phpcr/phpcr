@@ -73,7 +73,7 @@ interface VersionHistoryInterface extends \PHPCR\NodeInterface {
      * equivalent to returning all versions in the version history in order from
      * oldest to newest.
      *
-     * @return \PHPCR\Version\VersionIteratorInterface a VersionIterator object.
+     * @return Iterator implementing SeekableIterator and Countable. Values are the VersionInterface instances. Keys have no meaning.
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
      */
@@ -85,7 +85,7 @@ interface VersionHistoryInterface extends \PHPCR\NodeInterface {
      * returned in order of creation date, from oldest to newest. Otherwise the
      * order of the returned versions is implementation-dependent.
      *
-     * @return \PHPCR\Version\VersionIteratorInterface a VersionIterator object.
+     * @return Iterator implementing SeekableIterator and Countable. Values are the VersionInterface instances. Keys have no meaning.
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
      */

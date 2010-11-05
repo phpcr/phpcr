@@ -59,7 +59,7 @@ interface NodeTypeManagerInterface {
     /**
      * Returns an iterator over all available node types (primary and mixin).
      *
-     * @return \PHPCR\NodeType\NodeTypeInteratorInterface An NodeTypeIterator.
+     * @return Iterator implementing SeekableIterator and Countable. Keys are the node type names, values the corresponding NodeTypeInterface instances.
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
      */
@@ -68,7 +68,7 @@ interface NodeTypeManagerInterface {
     /**
      * Returns an iterator over all available primary node types.
      *
-     * @return \PHPCR\NodeType\NodeTypeIteratorInterface An NodeTypeIterator.
+     * @return Iterator implementing SeekableIterator and Countable. Keys are the node type names, values the corresponding NodeTypeInterface instances.
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
      */
@@ -78,7 +78,7 @@ interface NodeTypeManagerInterface {
      * Returns an iterator over all available mixin node types. If none are available,
      * an empty iterator is returned.
      *
-     * @return \PHPCR\NodeType\NodeTypeIteratorInterface An NodeTypeIterator.
+     * @return Iterator implementing SeekableIterator and Countable. Keys are the node type names, values the corresponding NodeTypeInterface instances.
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
      */
@@ -149,7 +149,7 @@ interface NodeTypeManagerInterface {
      *
      * @param array $definitions an array of NodeTypeDefinitions
      * @param boolean $allowUpdate a boolean
-     * @return \PHPCR\NodeType\NodeTypeIteratorInterface the registered node types.
+     * @return Iterator over the registered node types implementing SeekableIterator and Countable. Keys are the node type names, values the corresponding NodeTypeInterface instances.
      * @throws \PHPCR\InvalidNodeTypeDefinitionException - if a NodeTypeDefinition within the Collection is invalid or if the Collection contains an object of a type other than NodeTypeDefinition.
      * @throws \PHPCR\NodeType\NodeTypeExistsException if allowUpdate is false and a NodeTypeDefinition within the Collection specifies a node type name that is already registered.
      * @throws \PHPCR\UnsupportedRepositoryOperationException if this implementation does not support node type registration.
