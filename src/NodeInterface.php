@@ -220,7 +220,7 @@ interface NodeInterface extends \PHPCR\ItemInterface {
      * or a disjunction (using the "|" character to represent logical OR) of these.
      * For example,
      *  N->getNodes("jcr:* | myapp:report | my doc")
-     * would return a NodeIterator holding all accessible child nodes of N that
+     * would return an iterator holding all accessible child nodes of N that
      * are either called 'myapp:report', begin with the prefix 'jcr:' or are
      * called 'my doc'.
      *
@@ -238,7 +238,7 @@ interface NodeInterface extends \PHPCR\ItemInterface {
      * A glob may be a full name or a partial name with one or more wildcard
      * characters ("*"). For example,
      *  N->getNodes(array("jcr:*", "myapp:report", "my doc"))
-     * would return a NodeIterator holding all accessible child nodes of N that
+     * would return an iterator holding all accessible child nodes of N that
      * are either called 'myapp:report', begin with the prefix 'jcr:' or are
      * called 'my doc'.
      *
@@ -255,7 +255,7 @@ interface NodeInterface extends \PHPCR\ItemInterface {
      * The same reacquisition semantics apply as with getNode($relPath).
      *
      * @param string|array $filter a name pattern or an array of globbing strings.
-     * @return \PHPCR\NodeIteratorInterface a NodeIterator over all (matching) child Nodes
+     * @return Iterator over all (matching) child Nodes implementing SeekableIterator and Countable. Keys are the Node names, values the corresponding NodeInterface instances.
      * @throws \PHPCR\RepositoryException If an unexpected error occurs.
      * @api
      */
@@ -274,6 +274,22 @@ interface NodeInterface extends \PHPCR\ItemInterface {
     public function getProperty($relPath);
 
     /**
+     * Returns the property of this node with name $name. If $type is set,
+     * attempts to convert the value to the specified type.
+     *
+     * This is a shortcut for getProperty().getXXX()
+     *
+     * @param string $name Name of this property
+     * @param integer $type Type conversion request, optional. Must be a constant from PropertyType
+     * @return mixed The value of the property with $name.
+     * @throws \PHPCR\PathNotFoundException if no property exists at the specified path or if the current Session does not have read access to the specified property.
+     * @throws \PHPCR\ValueFormatException if the type or format of the property can not be converted to the specified type.
+     * @throws \PHPCR\RepositoryException If another error occurs.
+     * @api
+     */
+    public function getPropertyValue($name, $type=null);
+
+    /**
      * If $filter is a string:
      * Gets all properties of this node accessible through the current Session
      * that match namePattern (if no pattern is given, all accessible properties
@@ -282,7 +298,7 @@ interface NodeInterface extends \PHPCR\ItemInterface {
      * or a disjunction (using the "|" character to represent logical OR) of
      * these. For example,
      * N.getProperties("jcr:* | myapp:name | my doc")
-     * would return a PropertyIterator holding all accessible properties of N
+     * would return an iterator holding all accessible properties of N
      * that are either called 'myapp:name', begin with the prefix 'jcr:' or are
      * called 'my doc'.
      *
@@ -299,7 +315,7 @@ interface NodeInterface extends \PHPCR\ItemInterface {
      * A glob may be a full name or a partial name with one or more wildcard
      * characters ("*"). For example,
      *  N->getProperties(array("jcr:*", "myapp:report", "my doc"))
-     * would return a PropertyIterator holding all accessible properties of N
+     * would return an iterator holding all accessible properties of N
      * that are either called 'myapp:report', begin with the prefix 'jcr:' or
      * are called 'my doc'.
      *
@@ -316,11 +332,24 @@ interface NodeInterface extends \PHPCR\ItemInterface {
      * The same reacquisition semantics apply as with getNode(String).
      *
      * @param string|array $filter a name pattern
-     * @return \PHPCR\PropertyIteratorInterface a PropertyIterator
+     * @return Iterator implementing SeekableIterator and Countable. Keys are the property names, values the corresponding PropertyInterface instances.
      * @throws \PHPCR\RepositoryException If an unexpected error occurs.
      * @api
      */
     public function getProperties($filter = NULL);
+
+
+    /**
+     * Shortcut for getProperties and then getting the values of the properties.
+     *
+     * See NodeInterface::getProperties for a full documentation
+     *
+     * @param string|array $filter a name pattern
+     * @return Iterator implementing SeekableIterator and Countable. Keys are the property names, values the corresponding property value (or array of values in case of multi-valued properties)
+     * @throws \PHPCR\RepositoryException If an unexpected error occurs.
+     * @api
+     */
+    public function getPropertiesValues($filter=null);
 
     /**
      * Returns the primary child item of this node. The primary node type of this
@@ -384,7 +413,7 @@ interface NodeInterface extends \PHPCR\ItemInterface {
      * iterator is returned.
      *
      * @param string $name name of referring REFERENCE properties to be returned; if null then all referring REFERENCEs are returned
-     * @return \PHPCR\PropertyIteratorInterface A PropertyIterator.
+     * @return Iterator implementing SeekableIterator and Countable. Keys are the property names, values the corresponding PropertyInterface instances.
      * @throws \PHPCR\RepositoryException if an error occurs
      * @api
      */
@@ -410,7 +439,7 @@ interface NodeInterface extends \PHPCR\ItemInterface {
      * iterator is returned.
      *
      * @param string $name name of referring WEAKREFERENCE properties to be returned; if null then all referring WEAKREFERENCEs are returned
-     * @return \PHPCR\PropertyIteratorInterface A PropertyIterator.
+     * @return Iterator implementing SeekableIterator and Countable. Keys are the property names, values the corresponding PropertyInterface instances.
      * @throws \PHPCR\RepositoryException if an error occurs
      * @api
      */
@@ -646,7 +675,7 @@ interface NodeInterface extends \PHPCR\ItemInterface {
      * Returns an iterator over all nodes that are in the shared set of this node.
      * If this node is not shared then the returned iterator contains only this node.
      *
-     * @return \PHPCR\NodeIteratorInterface a NodeIterator
+     * @return Iterator implementing SeekableIterator and Countable. Keys are the Node names, values the corresponding NodeInterface instances.
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
      */

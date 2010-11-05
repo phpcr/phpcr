@@ -332,7 +332,7 @@ interface VersionManagerInterface {
      * This is a worksapce-write method and therefore any changes are dispatched
      * immediately.
      *
-     * This method returns a NodeIterator over all versionable nodes in the
+     * This method returns an iterator over all versionable nodes in the
      * subgraph that received a merge result of fail. If bestEffort is false,
      * this iterator will be empty (since if merge returns successfully, instead
      * of throwing an exception, it will be because no failures were encountered).
@@ -349,7 +349,7 @@ interface VersionManagerInterface {
      * @param string $srcWorkspace the name of the source workspace (optional if $source is a Node).
      * @param boolean $bestEffort a boolean (optional if $source is a Node)
      * @param boolean $isShallow a boolean (optional)
-     * @return \PHPCR\NodeIteratorInterface iterator over all nodes that received a merge result of "fail" in the course of this operation.
+     * @return Iterator implementing SeekableIterator and Countable. Keys are the Node names, values the corresponding NodeInterface instances that received a merge result of "fail" in the course of this operation.
      * @throws \PHPCR\MergeException - if bestEffort is false and a failed merge result is encountered.
      * @throws \PHPCR\InvalidItemStateException - if this session (not necessarily the node at absPath) has pending unsaved changes.
      * @throws \PHPCR\NoSuchWorkspaceException - if srcWorkspace does not exist.

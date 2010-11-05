@@ -56,7 +56,7 @@ interface QueryResultInterface {
      * Returns an iterator over all nodes that match the query. The nodes are
      * returned according to the ordering specified in the query.
      *
-     * @return \PHPCR\NodeIteratorInterface a NodeIterator
+     * @return Iterator implementing SeekableIterator and Countable. Keys are the Node names, values the corresponding NodeInterface instances.
      * @throws \PHPCR\RepositoryException if the query contains more than one selector, if this call is the second time either getRows() or getNodes() has been called on the same QueryResult object or if another error occurs.
      * @api
      */
