@@ -28,6 +28,13 @@ namespace PHPCR;
  * The entry point into the content repository. The Repository object is
  * usually acquired through the RepositoryFactory.
  *
+ * PHPCR Note: This interface has been simplified:
+ *  getDescriptor returns array on multivalue, single variable otherwise
+ *  removed isSingleValueDescriptor
+ *  removed getDescriptorValue and getDescriptorValues as ValueInterface
+ *    has been dropped. Use getDescriptor to get the variables.
+ *
+ *
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
  * @api
@@ -476,8 +483,8 @@ interface RepositoryInterface {
      * Returns a string array holding all descriptor keys available for this
      * implementation, both the standard descriptors defined by the string
      * constants in this interface and any implementation-specific descriptors.
-     * Used in conjunction with getDescriptorValue($key) and getDescriptorValues($key)
-     * to query information about this repository implementation.
+     * Used in conjunction with getDescriptor($key) to query information about
+     * this repository implementation.
      *
      * @return array a string array holding all descriptor keys
      * @api
@@ -496,49 +503,10 @@ interface RepositoryInterface {
     public function isStandardDescriptor($key);
 
     /**
-     * Returns TRUE if $key is a valid single-value descriptor;
-     * otherwise returns FALSE.
+     * Get the string value(s) for this key.
      *
      * @param string $key a descriptor key.
-     * @return boolean whether the specified descriptor is multi-valued.
-     * @api
-     */
-    public function isSingleValueDescriptor($key);
-
-    /**
-     * The value of a single-value descriptor is found by
-     * passing the key for that descriptor to this method.
-     * If $key is the key of a multi-value descriptor
-     * or not a valid key this method returns NULL.
-     *
-     * @param string $key a descriptor key.
-     * @return \PHPCR\ValueInterface The value of the indicated descriptor
-     * @api
-     */
-    public function getDescriptorValue($key);
-
-    /**
-     * The value array of a multi-value descriptor is found by
-     * passing the key for that descriptor to this method.
-     * If $key is the key of a single-value descriptor
-     * then this method returns that value as an array of size one.
-     * If $key is not a valid key this method returns NULL.
-     *
-     * @param string $key a descriptor key.
-     * @return array of \PHPCR\ValueInterface the value array for the indicated descriptor
-     * @api
-     */
-    public function getDescriptorValues($key);
-
-    /**
-     * A convenience method. The call
-     *  String s = repository.getDescriptor(key);
-     * is equivalent to
-     *  Value v = repository.getDescriptor(key);
-     *  String s = (v == null) ? null : v.getString();
-     *
-     * @param string $key a descriptor key.
-     * @return a descriptor value in string form.
+     * @return a descriptor value in string form or an array of strings for multivalue descriptors
      * @api
      */
     public function getDescriptor($key);

@@ -138,21 +138,22 @@ separation between Node and Property does make sense, plus allows for things
 like the ItemVisitor.
 
 
-RepositoryFactory
-*****************
+Repository
+**********
 
 We changed getDescriptor() to return both single value descriptors and arrays.
 isSingleValueDescriptor() has been removed.
 getDescriptorValue() and getDescriptorValues() are removed too, see the Values
 topic.
 
-Note: This class uses the "Java Standard Edition Service Provider mechanism". There
-is no equivalent in PHP. However, having a defined way how to create the
-repository instance makes a lot of sense, to be able to swap implementations or
-simply for unit testing. In the context of symfony, Dependency Injection (DIC)
-can replace the need for the factory. However, for usage in other contexts,
-the defined factory makes sense. Symfony can use either RepositoryFactory or
-factory method in Repository or directly the constructor behind the curtains.
+Note: The RepositoryFactory class uses the "Java Standard Edition Service
+Provider mechanism". There is no equivalent in PHP. However, having a defined
+way how to create the repository instance makes a lot of sense, to be able to
+swap implementations or simply for unit testing.
+In the context of symfony, Dependency Injection (DIC) can replace the need for
+the factory. However, for usage in other contexts, the defined factory makes
+sense. Symfony can use either RepositoryFactory or factory method in Repository
+or directly the constructor behind the curtains.
 
 
 Helpers
