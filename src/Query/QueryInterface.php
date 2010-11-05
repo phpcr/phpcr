@@ -49,13 +49,13 @@ interface QueryInterface {
      * Binds the given value to the variable named $varName.
      *
      * @param string $varName name of variable in query
-     * @param \PHPCR\ValueInterface $value value to bind
+     * @param mixed $value value to bind
      * @return void
      * @throws \InvalidArgumentException if $varName is not a valid variable in this query.
      * @throws RepositoryException if an error occurs.
      * @api
      */
-    public function bindValue($varName, \PHPCR\ValueInterface $value);
+    public function bindValue($varName, $value);
 
     /**
      * Executes this query and returns a QueryResult object.

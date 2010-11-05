@@ -193,7 +193,7 @@ interface PropertyDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInte
      * property defined by this PropertyDefinition will be assigned if it is
      * automatically created (that is, if ItemDefinition.isAutoCreated() returns
      * true).
-     * This method returns an array of Value objects. If the property is multi-
+     * This method returns an array of values. If the property is multi-
      * valued, then this array represents the full set of values that the property
      * will be assigned upon being auto-created. Note that this could be the empty
      * array. If the property is single-valued, then the array returned will be

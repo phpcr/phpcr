@@ -111,13 +111,15 @@ PHPCR got rid of both Value and ValueFactory. They only make sense in the
 context of strong typing.
 
 The PropertyInterface methods directly access the native property values.
-We keep type conversions possible though. Changes in PropertyInterface are:
+We keep type conversions possible with the type-specific getters.
+Changes in PropertyInterface are:
 
  * Remove Property::getValue and Property::getValues
  * The type specific getters return a native value or an array of such values
     in case of multivalue properties.
  * PropertyInterface::setValue got an optional parameter for specifying the
-    desired type if wanted.
+    desired type if wanted. The method takes all functionality of
+    ValueFactory::createValue
 
 
 Property

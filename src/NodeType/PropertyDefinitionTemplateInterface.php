@@ -107,7 +107,7 @@ interface PropertyDefinitionTemplateInterface extends \PHPCR\NodeType\PropertyDe
      * Sets the default value (or values, in the case of a multi-value property)
      * of the property.
      *
-     * @param array $defaultValues a Value array.
+     * @param array $defaultValues an array of values in the correct type for this property.
      * @return void
      * @api
      */

@@ -439,13 +439,13 @@ interface QueryObjectModelFactoryInterface extends \PHPCR\Query\QOM\QueryObjectM
      *
      * The query is invalid if no value is bound to $literalValue.
      *
-     * @param \PHPCR\ValueInterface $literalValue the value
-     * @return \PHPCR\ValueInterface the operand; non-null
+     * @param mixed $literalValue the value
+     * @return mixed the operand; non-null
      * @throws \PHPCR\Query\InvalidQueryException if a particular validity test is possible on this method, the implemention chooses to perform that test (and not leave it until later) on createQuery, and the parameters given fail that test
      * @throws \PHPCR\RepositoryException if the operation otherwise fails
      * @api
      */
-    public function literal(\PHPCR\ValueInterface $literalValue);
+    public function literal($literalValue);
 
     /**
      * Orders by the value of the specified operand, in ascending order.

@@ -37,6 +37,10 @@ namespace PHPCR;
  * Workspace object represents a "view" of an actual repository workspace
  * entity as seen through the authorization settings of its associated Session.
  *
+ * PHPCR Note: We removed getValueFactory as the ValueFactory interface has
+ *   been removed. To set properties, use NodeInterface::setProperty or
+ *   PropertyInterface::setValue directly.
+ *
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
  * @api
@@ -104,11 +108,11 @@ interface SessionInterface {
     public function getAttributeNames();
 
     /**
-     * Returns the value of the named attribute as an Object, or null if no
+     * Returns the value of the named attribute, or null if no
      * attribute of the given name exists. See getAttributeNames().
      *
      * @param string $name The name of an attribute passed in the credentials used to acquire this session.
-     * @return object The value of the attribute or null if no attribute of the given name exists.
+     * @return mixed The value of the attribute or null if no attribute of the given name exists.
      * @api
      */
     public function getAttribute($name);
@@ -358,17 +362,6 @@ interface SessionInterface {
     public function hasPendingChanges();
 
     /**
-     * This method returns a ValueFactory that is used to create Value objects
-     * for use when setting repository properties.
-     *
-     * @return \PHPCR\ValueFactoryInterface
-     * @throws \PHPCR\UnsupportedRepositoryOperationException if writing to the repository is not supported.
-     * @throws \PHPCR\RepositoryException if another error occurs.
-     * @api
-     */
-    public function getValueFactory();
-
-    /**
      * Returns true if this Session has permission to perform the specified
      * actions at the specified absPath and false otherwise.
      * The actions parameter is a comma separated list of action strings.
@@ -464,10 +457,7 @@ interface SessionInterface {
      *
      * The arguments parameter contains a Map object consisting of
      * name/value pairs where the name is a String holding the parameter name of
-     * the method as defined in the Javadoc and the value is an Object holding
-     * the value to be passed. In cases where the value is a Java primitive type
-     * it must be converted to its corresponding Java object form before being
-     * passed.
+     * the method as defined in the Javadoc and the value is a variable.
      *
      * For example, given a Session S and Node N then
      *

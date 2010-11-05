@@ -47,7 +47,7 @@ interface RowInterface {
      * Returns the value of the indicated column in this Row.
      *
      * @param string $columnName name of query result table column
-     * @return \PHPCR\ValueInterface a Value
+     * @return mixed a value
      * @throws \PHPCR\ItemNotFoundException if columnName s not among the column names of the query result table.
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api

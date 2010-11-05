@@ -138,8 +138,9 @@ interface NodeInterface extends \PHPCR\ItemInterface {
     public function orderBefore($srcChildRelPath, $destChildRelPath);
 
     /**
-     * Sets the single-value property of this node called $name to the specified
-     * value.
+     * Sets the property of this node called $name to the specified value.
+     * This mehtod works as factory method to create new properties and as a
+     * shortcut for PropertyInterface::setValue
      *
      * If the property does not yet exist, it is created and its property type
      * determined by the node type of this node. If, based on the name and value
@@ -152,16 +153,16 @@ interface NodeInterface extends \PHPCR\ItemInterface {
      * different type than the original value) while other repositories may not
      * allow such dynamic re-binding.
      *
-     * If the property type one or more supplied Value objects is different from
-     * that required, then a best-effort conversion is attempted.
+     * If the property type is different than the type of supplied variables, a
+     * best-effort conversion is attempted.
      *
      * If the node type of this node does not indicate a specific property type,
-     * then the property type of the supplied Value object is used and if the
+     * then the property type of the supplied variable is used and if the
      * property already exists it assumes both the new value and new property type.
      *
      * Passing a null as the second parameter removes the property. It is equivalent
      * to calling remove on the Property object itself. For example,
-     * N.setProperty("P", (Value)null) would remove property called "P" of the
+     * N.setProperty("P", null) would remove property called "P" of the
      * node in N.
      *
      * This is a session-write method, meaning that changes made through this
@@ -178,7 +179,7 @@ interface NodeInterface extends \PHPCR\ItemInterface {
      *
      * @param string $name The name of a property of this node
      * @param mixed $value The value to be assigned
-     * @param integer $type The type to set for the property
+     * @param integer $type The type to set for the property, optional. Must be a constant from PropertyType
      * @return \PHPCR\PropertyInterface The updated Property object
      * @throws \PHPCR\ValueFormatException if the specified property is a DATE but the value cannot be expressed in the ISO 8601-based format defined in the JCR 2.0 specification and the implementation does not support dates incompatible with that format or if value cannot be converted to the type of the specified property or if the property already exists and is multi-valued.
      * @throws \PHPCR\Version\VersionException if this node is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in and this implementation performs this validation immediately instead of waiting until save.

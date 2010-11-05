@@ -45,7 +45,7 @@ interface ItemVisitorInterface {
      * of a Node or Property. If this method throws an exception the visiting
      * process is aborted.
      *
-     * Note: you need to distinguish between Node and Property objects being
+     * PHPCR Note: you need to distinguish between Node and Property objects being
      *       visited in your implementation.
      *
      * @param \PHPCR\ItemInterface $item a node or property accepting this visitor

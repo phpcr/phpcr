@@ -412,7 +412,7 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface 
      * Otherwise returns false.
      *
      * @param string $propertyName The name of the property
-     * @param \PHPCR\ValueInterface|array $value A \PHPCR\ValueInterface object or an array of \PHPCR\ValueInterface objects.
+     * @param mixed $value A variable or an array of variables
      * @return boolean
      * @api
      */
