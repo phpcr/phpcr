@@ -45,6 +45,6 @@ interface EventListenerInterface {
      * @return void
      * @api
      */
-    public function onEvent(\PHPCR\Observation\EventIteratorInterface $events);
+    public function onEvent(\Traversable $events);
 
 }

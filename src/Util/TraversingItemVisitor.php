@@ -142,13 +142,11 @@ abstract class TraversingItemVisitor implements \PHPCR\ItemVisitorInterface {
                     $this->entering($item, $this->currentLevel);
                     if ($this->maxLevel == -1 || $this->currentLevel < $this->maxLevel) {
                         $this->currentLevel++;
-                        $propertyIterator = $item->getProperties();
-                        while ($propertyIterator->hasNext()) {
-                            $propertyIterator->nextProperty()->accept($this);
+                        foreach($item->getProperties() as $property) {
+                            $property->accept($this);
                         }
-                        $nodeIterator = $item->getNodes();
-                        while ($nodeIterator->hasNext()) {
-                            $nodeIterator->nextNode()->accept($this);
+                        foreach($item->getNodes() as $node) {
+                            $node->accept($this);
                         }
                         $this->currentLevel--;
                     }
@@ -159,13 +157,11 @@ abstract class TraversingItemVisitor implements \PHPCR\ItemVisitorInterface {
                     $this->leaving($item, $this->currentLevel);
 
                     if ($this->maxLevel == -1 || $this->currentLevel < $this->maxLevel) {
-                        $propertyIterator = $item->getProperties();
-                        while ($propertyIterator->hasNext()) {
-                            $this->nextQueue->enqueue($propertyIterator->nextProperty());
+                        foreach($item->getProperties() as $property) {
+                            $property->accept($this);
                         }
-                        $nodeIterator = $item->getNodes();
-                        while ($nodeIterator->hasNext()) {
-                            $this->nextQueue->enqueue($nodeIterator->nextNode());
+                        foreach($item->getNodes() as $node) {
+                            $node->accept($this);
                         }
                     }
 

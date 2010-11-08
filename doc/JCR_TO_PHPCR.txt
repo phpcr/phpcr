@@ -52,7 +52,7 @@ We loose nothing by dropping them.
 EventJournal is a special case, containing "skipTo($date)". This iterator
 is the only one that is kept.
 
-(I think JCR would better use parametrized types for that anyway, available
+(I think JCR would better use a parametrized class for that anyway, available
 since Java 1.5.)
 
 Wherever the iterators are used, PHPCR requires iterators implementing
@@ -88,7 +88,6 @@ return a suitable iterator, or be an iterator itselves.
     listeners (like getRegisteredEventListeners()). Keys are meaningless.
 
  * TODO determine what is better: Query/QueryResultInterface iterates over the (nodes|rows)?
- * TODO have a look at QOM.
 
  * Query/RowInterface iterates over all row values, like getValues(). Keys are
     the column names, values the corresponding values.
@@ -161,12 +160,11 @@ or directly the constructor behind the curtains.
 Helpers
 *******
 
+PropertyType::valueFromType($type) returns the PHPCR numeric constant value of the type for the given PHP type name as
+returned by gettype().
+PropertyType is a final class implemented in the API, not an interface.
 This was added by k-fish when he originally ported the interfaces to PHP. Noted
 here for completeness.
-PropertyType::valueFromType($type) Returns the PHPCR numeric constant value of the type for the given PHP type name as
-returned by gettype().
-
-PropertyType is a final class implemented in the API, not an interface.
 
 
 Note: k-fish also added a third parameter to Node::addNode to manually specify
@@ -174,8 +172,8 @@ the node identifier. In JCR, the identifier can not be set explicitly.
 We removed that, as identifiers should not be imposed to the implementation.
 
 
-General Note
-************
+Remark
+******
 
 You are free in your implementation to re-add the methods and classes we deemed
 superfluous in PHP. Thanks to the weak typing, PHP won't complain when using
