@@ -139,7 +139,7 @@ interface NodeInterface extends \PHPCR\ItemInterface {
 
     /**
      * Sets the property of this node called $name to the specified value.
-     * This mehtod works as factory method to create new properties and as a
+     * This method works as factory method to create new properties and as a
      * shortcut for PropertyInterface::setValue
      *
      * If the property does not yet exist, it is created and its property type

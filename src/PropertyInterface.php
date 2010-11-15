@@ -476,7 +476,7 @@ interface PropertyInterface extends \PHPCR\ItemInterface {
      * * if the given $value is a Node object, it's Identifier is fetched and
      *   the type of this property is set to WEAKREFERENCE if $weak is set to
      *   TRUE
-     * * if the given $Value is a DateTime object, the property type will be
+     * * if the given $value is a DateTime object, the property type will be
      *   set to DATE.
      *
      * For Node objects as value:
@@ -505,6 +505,15 @@ interface PropertyInterface extends \PHPCR\ItemInterface {
      * @api
      */
     public function setValue($value, $type = NULL, $weak = FALSE);
+
+    /**
+     * Get the value in format default for the PropertyType of this property.
+     *
+     * PHPCR Note: This is an additional method not found in JSR-283
+     *
+     * @return mixed value of this property, or array in case of multi-value
+     */
+    public function getNativeValue();
 
     /**
      * Returns a String representation of the value of this property.

@@ -127,12 +127,16 @@ Property
 Instantiating property objects is often not needed. The Node interface got a
 getPropertyValue($name, $type=false) that returns the native property value
 (or array of values in case of multivalue property).
-Additionally, there is a Node::getPropertiesValues($filter=null) function with
-the same logic as Node::getProperties($filter) to get an iterator with all
-property names => property value (resp value array for multival properties).
+Additionally, there is a NodeInterface::getPropertiesValues($filter=null)
+function with the same logic as NodeInterface::getProperties($filter) to get
+an iterator with all property names => property value (resp value array for
+multival properties).
 
 For performance reason, implementations should delay instantiating the
 PropertyInterface objects when nodes are loaded.
+
+PropertyInterface::getNativeValue() has been added to get the property value
+without caring about types.
 
 Note: We discussed even completely dropping the Property interface. But the
 separation between Node and Property does make sense, plus allows for things
