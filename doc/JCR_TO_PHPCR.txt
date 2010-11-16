@@ -111,14 +111,17 @@ context of strong typing.
 
 The PropertyInterface methods directly access the native property values.
 We keep type conversions possible with the type-specific getters.
-Changes in PropertyInterface are:
 
- * Remove Property::getValue and Property::getValues
+ * Remove PropertyInterface::getValue and PropertyInterface::getValues
  * The type specific getters return a native value or an array of such values
     in case of multivalue properties.
  * PropertyInterface::setValue got an optional parameter for specifying the
     desired type if wanted. The method takes all functionality of
     ValueFactory::createValue
+
+In all places where Value objects where used, this is changed to plain PHP
+variables. If binaries are used, a BinaryInterface instance is used rather than
+a naked resource stream.
 
 
 Property

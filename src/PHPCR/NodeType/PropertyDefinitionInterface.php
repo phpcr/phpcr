@@ -214,7 +214,7 @@ interface PropertyDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInte
      * PropertyDefinition object is actually a newly-created empty
      * PropertyDefinitionTemplate, then this method will return null.
      *
-     * @return array an array of Value objects.
+     * @return array an array of php values.
      * @api
      */
     public function getDefaultValues();
