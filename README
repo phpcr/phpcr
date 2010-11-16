@@ -21,9 +21,8 @@ Main differences between PHPCR and JCR are
 * PHP is weak typed, which makes the Value interface and the large number of
    almost-identical iterators obsolete.
 
-A complete list of the differences between PHPCR and JCR is available at
-https://fosswiki.liip.ch/display/jackalope/From+JCR+to+PHPCR
-TODO: once this is final, put into file here
+An exhaustive list of the differences between PHPCR and JCR is in the file
+doc/JCR_TO_PHPCR.txt
 
 NOTE: All deprecated methods coming from JSR-170 have been left out
 
