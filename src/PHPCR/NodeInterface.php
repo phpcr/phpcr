@@ -1,34 +1,42 @@
 <?php
+/**
+ * Interface to describe the contract to implement a node to be handled inside of a workspace.
+ *
+ * This file was ported from the Java JCR API to PHP by
+ * Karsten Dambekalns <karsten@typo3.org> for the FLOW3 project.
+ *
+ * It is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or (at your
+ * option) any later version. Alternatively, you may use the Simplified
+ * BSD License.
+ *
+ * This script is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHAN-
+ * TABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with the script.
+ * If not, see {@link http://www.gnu.org/licenses/lgpl.html}.
+ *
+ * The TYPO3 project - inspiring people to share!
+ *
+ * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
+ * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
+ *
+ * @package phpcr
+ * @subpackage interfaces
+ */
+
 declare(ENCODING = 'utf-8');
 namespace PHPCR;
-
-/*                                                                        *
- * This file was ported from the Java JCR API to PHP by                   *
- * Karsten Dambekalns <karsten@typo3.org> for the FLOW3 project.          *
- *                                                                        *
- * It is free software; you can redistribute it and/or modify it under    *
- * the terms of the GNU Lesser General Public License as published by the *
- * Free Software Foundation, either version 3 of the License, or (at your *
- * option) any later version. Alternatively, you may use the Simplified   *
- * BSD License.                                                           *
- *                                                                        *
- * This script is distributed in the hope that it will be useful, but     *
- * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHAN-    *
- * TABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser       *
- * General Public License for more details.                               *
- *                                                                        *
- * You should have received a copy of the GNU Lesser General Public       *
- * License along with the script.                                         *
- * If not, see http://www.gnu.org/licenses/lgpl.html                      *
- *                                                                        *
- * The TYPO3 project - inspiring people to share!                         *
- *                                                                        */
 
 /**
  * The Node interface represents a node in a workspace.
  *
- * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
- * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
+ * @package phpcr
+ * @subpackage interfaces
  * @api
  */
 interface NodeInterface extends \PHPCR\ItemInterface {
@@ -72,7 +80,7 @@ interface NodeInterface extends \PHPCR\ItemInterface {
     const JCR_FROZEN_NODE = "{http://www.jcp.org/jcr/1.0}frozenNode";
 
     /**
-     * Creates a new node at $relPath.
+     * Creates a new node at a specified path.
      *
      * This is session-write method, meaning that the addition of the new node
      * is dispatched upon Session#save.
@@ -107,6 +115,8 @@ interface NodeInterface extends \PHPCR\ItemInterface {
     public function addNode($relPath, $primaryNodeTypeName = NULL);
 
     /**
+     * Insert a child node before another child identified by its path.
+     *
      * If this node supports child node ordering, this method inserts the child
      * node at srcChildRelPath into the child node list at the position
      * immediately before destChildRelPath.
@@ -138,6 +148,8 @@ interface NodeInterface extends \PHPCR\ItemInterface {
     public function orderBefore($srcChildRelPath, $destChildRelPath);
 
     /**
+     * Defines a value for a property identified by its name.
+     *
      * Sets the property of this node called $name to the specified value.
      * This method works as factory method to create new properties and as a
      * shortcut for PropertyInterface::setValue
@@ -178,19 +190,28 @@ interface NodeInterface extends \PHPCR\ItemInterface {
      * The behavior of this method is identical to that of setProperty($name,
      * $value) except that the intended property type is explicitly specified.
      *
-     * Note:
+     * <b>Note:</b>
      * Have a look at the JSR-283 spec and/or API documentation for more details
      * on what is supposed to happen for different types of values being passed
      * to this method.
      *
      * @param string $name The name of a property of this node
      * @param mixed $value The value to be assigned
-     * @param integer $type The type to set for the property, optional. Must be a constant from PropertyType
+     * @param integer $type The type to set for the property, optional. Must be a constant from {@link PropertyType}
      * @return \PHPCR\PropertyInterface The updated Property object
-     * @throws \PHPCR\ValueFormatException if the specified property is a DATE but the value cannot be expressed in the ISO 8601-based format defined in the JCR 2.0 specification and the implementation does not support dates incompatible with that format or if value cannot be converted to the type of the specified property or if the property already exists and is multi-valued.
-     * @throws \PHPCR\Version\VersionException if this node is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in and this implementation performs this validation immediately instead of waiting until save.
-     * @throws \PHPCR\Lock\LockException  if a lock prevents the setting of the property and this implementation performs this validation immediately instead of waiting until save.
-     * @throws \PHPCR\ConstraintViolationException if the change would violate a node-type or other constraint and this implementation performs this validation immediately instead of waiting until save.
+     * @throws \PHPCR\ValueFormatException if the specified property is a DATE but the value cannot be expressed in the
+     *                                     ISO 8601-based format defined in the JCR 2.0 specification and the
+     *                                     implementation does not support dates incompatible with that format or if
+     *                                     value cannot be converted to the type of the specified property or if the
+     *                                     property already exists and is multi-valued.
+     * @throws \PHPCR\Version\VersionException if this node is versionable and checked-in or is non-versionable but its
+     *                                         nearest versionable ancestor is checked-in and this implementation
+     *                                         performs this validation immediately instead of waiting until save.
+     * @throws \PHPCR\Lock\LockException if a lock prevents the setting of the property and this implementation
+     *                                   performs this validation immediately instead of waiting until save.
+     * @throws \PHPCR\ConstraintViolationException if the change would violate a node-type or other constraint and this
+     *                                             implementation performs this validation immediately instead of
+     *                                             waiting until save.
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
      */
@@ -198,6 +219,7 @@ interface NodeInterface extends \PHPCR\ItemInterface {
 
     /**
      * Returns the node at relPath relative to this node.
+     *
      * If relPath contains a path element that refers to a node with same-name
      * sibling nodes without explicitly including an index using the array-style
      * notation ([x]), then the index [1] is assumed (indexing of same name
@@ -218,6 +240,8 @@ interface NodeInterface extends \PHPCR\ItemInterface {
     public function getNode($relPath);
 
     /**
+     * Get a set of nodes gathered by the definition of a filter.
+     *
      * If $filter is a string:
      * Gets all child nodes of this node accessible through the current Session
      * that match namePattern (if no pattern is given, all accessible child nodes
@@ -268,8 +292,9 @@ interface NodeInterface extends \PHPCR\ItemInterface {
     public function getNodes($filter = NULL);
 
     /**
-     * Returns the property at relPath relative to this node. The same
-     * reacquisition semantics apply as with getNode(String).
+     * Returns the property at relPath relative to this node.
+     *
+     * The same reacquisition semantics apply as with getNode(String).
      *
      * @param string $relPath The relative path of the property to retrieve.
      * @return \PHPCR\PropertyInterface The property at relPath.
@@ -280,10 +305,10 @@ interface NodeInterface extends \PHPCR\ItemInterface {
     public function getProperty($relPath);
 
     /**
-     * Returns the property of this node with name $name. If $type is set,
-     * attempts to convert the value to the specified type.
+     * Returns the property of this node with name $name.
      *
-     * This is a shortcut for getProperty().getXXX()
+     * If $type is set, attempts to convert the value to the specified type.
+     * This is a shortcut for getProperty().getXX()
      *
      * @param string $name Name of this property
      * @param integer $type Type conversion request, optional. Must be a constant from PropertyType
@@ -296,6 +321,8 @@ interface NodeInterface extends \PHPCR\ItemInterface {
     public function getPropertyValue($name, $type=null);
 
     /**
+     * Get an iteratable set of properties gathered on behalf of a filter.
+     *
      * If $filter is a string:
      * Gets all properties of this node accessible through the current Session
      * that match namePattern (if no pattern is given, all accessible properties
@@ -344,7 +371,6 @@ interface NodeInterface extends \PHPCR\ItemInterface {
      */
     public function getProperties($filter = NULL);
 
-
     /**
      * Shortcut for getProperties and then getting the values of the properties.
      *
@@ -358,8 +384,9 @@ interface NodeInterface extends \PHPCR\ItemInterface {
     public function getPropertiesValues($filter=null);
 
     /**
-     * Returns the primary child item of this node. The primary node type of this
-     * node may specify one child item (child node or property) of this node as
+     * Returns the primary child item of the current node.
+     *
+     * The primary node type of this node may specify one child item (child node or property) of this node as
      * the primary child item. This method returns that item.
      *
      * In cases where the primary child item specifies the name of a set same-name
@@ -376,8 +403,9 @@ interface NodeInterface extends \PHPCR\ItemInterface {
     public function getPrimaryItem();
 
     /**
-     * Returns the identifier of this node. Applies to both referenceable and
-     * non-referenceable nodes.
+     * Returns the identifier of the current node.
+     *
+     * Applies to both referenceable and non-referenceable nodes.
      *
      * @return string the identifier of this node
      * @throws \PHPCR\RepositoryException If an error occurs.
@@ -386,12 +414,11 @@ interface NodeInterface extends \PHPCR\ItemInterface {
     public function getIdentifier();
 
     /**
-     * This method returns the index of this node within the ordered set of its
-     * same-name sibling nodes. This index is the one used to address same-name
-     * siblings using the square-bracket notation, e.g., /a[3]/b[4]. Note that
-     * the index always starts at 1 (not 0), for compatibility with XPath. As a
-     * result, for nodes that do not have same-name-siblings, this method will
-     * always return 1.
+     * This method returns the index of this node within the ordered set of its same-name sibling nodes.
+     *
+     * This index is the one used to address same-name siblings using the square-bracket notation, e.g., /a[3]/b[4].
+     * Note that the index always starts at 1 (not 0), for compatibility with XPath. As a result, for nodes that do
+     * not have same-name-siblings, this method will always return 1.
      *
      * @return integer The index of this node within the ordered set of its same-name sibling nodes.
      * @throws \PHPCR\RepositoryException if an error occurs.
@@ -402,6 +429,7 @@ interface NodeInterface extends \PHPCR\ItemInterface {
     /**
      * This method returns all REFERENCE properties that refer to this node, have
      * the specified name and that are accessible through the current Session.
+     *
      * If the name parameter is null then all referring REFERENCES are returned
      * regardless of name.
      *
@@ -418,8 +446,10 @@ interface NodeInterface extends \PHPCR\ItemInterface {
      * If this node has no referring properties with the specified name, an empty
      * iterator is returned.
      *
-     * @param string $name name of referring REFERENCE properties to be returned; if null then all referring REFERENCEs are returned
-     * @return Iterator implementing SeekableIterator and Countable. Keys are the property names, values the corresponding PropertyInterface instances.
+     * @param string $name Name of referring REFERENCE properties to be returned; if null then all
+     *                     referring REFERENCEs are returned.
+     * @return Iterator implementing SeekableIterator and Countable. Keys are the property names, values the
+     *                  corresponding PropertyInterface instances.
      * @throws \PHPCR\RepositoryException if an error occurs
      * @api
      */
@@ -428,6 +458,7 @@ interface NodeInterface extends \PHPCR\ItemInterface {
     /**
      * This method returns all WEAKREFERENCE properties that refer to this node,
      * have the specified name and that are accessible through the current Session.
+     *
      * If the name parameter is null then all referring WEAKREFERENCE are returned
      * regardless of name.
      *
@@ -463,7 +494,9 @@ interface NodeInterface extends \PHPCR\ItemInterface {
     public function hasNode($relPath);
 
     /**
-     * Indicates whether a property exists at relPath Returns true if a property
+     * Determine if a property exists at the specified path.
+     *
+     * Indicates whether a property exists at relPath. Returns true if a property
      * accessible through the current Session exists at relPath and false otherwise.
      *
      * @param string $relPath The path of a (possible) property.
@@ -474,8 +507,9 @@ interface NodeInterface extends \PHPCR\ItemInterface {
     public function hasProperty($relPath);
 
     /**
-     * Indicates whether this node has child nodes. Returns true if this node has
-     * one or more child nodes accessible through the current Session; false otherwise.
+     * Indicates whether this node has child nodes.
+     *
+     * Returns true if this node has one or more child nodes accessible through the current Session; false otherwise.
      *
      * @return boolean true if this node has one or more child nodes; false otherwise.
      * @throws \PHPCR\RepositoryException if an error occurs.
@@ -484,8 +518,9 @@ interface NodeInterface extends \PHPCR\ItemInterface {
     public function hasNodes();
 
     /**
-     * Indicates whether this node has properties. Returns true if this node has
-     * one or more properties accessible through the current Session; false otherwise.
+     * Indicates whether this node has properties.
+     *
+     * Returns true if this node has one or more properties accessible through the current Session; false otherwise.
      *
      * @return boolean true if this node has one or more properties; false otherwise.
      * @throws \PHPCR\RepositoryException if an error occurs.
@@ -494,8 +529,9 @@ interface NodeInterface extends \PHPCR\ItemInterface {
     public function hasProperties();
 
     /**
-     * Returns the primary node type in effect for this node. Which NodeType is
-     * returned when this method is called on the root node of a workspace is up
+     * Returns the primary node type in effect for this node.
+     *
+     * Which NodeType is returned when this method is called on the root node of a workspace is up
      * to the implementation.
      *
      * @return \PHPCR\NodeType\NodeTypeInterface a NodeType object.
@@ -505,12 +541,11 @@ interface NodeInterface extends \PHPCR\ItemInterface {
     public function getPrimaryNodeType();
 
     /**
-     * Returns an array of NodeType objects representing the mixin node types in
-     * effect for this node. This includes only those mixin types explicitly
-     * assigned to this node. It does not include mixin types inherited through
-     * the addition of supertypes to the primary type hierarchy or through the
-     * addition of supertypes to the type hierarchy of any of the declared mixin
-     * types.
+     * Returns an array of NodeType objects representing the mixin node types in effect for this node.
+     *
+     * This includes only those mixin types explicitly assigned to this node. It does not include mixin types
+     * inherited through the addition of supertypes to the primary type hierarchy or through the
+     * addition of supertypes to the type hierarchy of any of the declared mixin types.
      *
      * @return array of \PHPCR\NodeType\NodeTypeInterface objects.
      * @throws \PHPCR\RepositoryException if an error occurs
@@ -519,40 +554,46 @@ interface NodeInterface extends \PHPCR\ItemInterface {
     public function getMixinNodeTypes();
 
     /**
-     * Returns true if this node is of the specified primary node type or mixin
-     * type, or a subtype thereof. Returns false otherwise.
-     * This method respects the effective node type of the node.
+     * Returns true if this node is of the specified primary node type or mixin type, or a subtype thereof.
+     *
+     * Returns false otherwise. This method respects the effective node type of the node.
      *
      * @param string $nodeTypeName the name of a node type.
-     * @return boolean true if this node is of the specified primary node type or mixin type, or a subtype thereof. Returns false otherwise.
+     * @return boolean TRUE if this node is of the specified primary node type or mixin type, or a subtype thereof.
+     *                 Returns FALSE otherwise.
      * @throws \PHPCR\RepositoryException If an error occurs.
      * @api
      */
     public function isNodeType($nodeTypeName);
 
     /**
-     * Changes the primary node type of this node to nodeTypeName. Also immediately
-     * changes this node's jcr:primaryType property appropriately. Semantically,
-     * the new node type may take effect immediately or on dispatch but must take
-     * effect on persist.
+     * Changes the primary node type of this node to nodeTypeName.
+     *
+     * Also immediately changes this node's jcr:primaryType property appropriately. Semantically,
+     * the new node type may take effect immediately or on dispatch but must take effect on persist.
      * Whichever behavior is adopted it must be the same as the behavior adopted
      * for addMixin() (see below) and the behavior that occurs when a node is
      * first created.
      *
      * @param string $nodeTypeName the name of the new node type.
      * @return void
-     * @throws \PHPCR\ConstraintViolationException If the specified primary node type creates a type conflict and this implementation performs this validation immediately.
-     * @throws \PHPCR\NodeType\NoSuchNodeTypeException If the specified nodeTypeName is not recognized and this implementation performs this validation immediately.
-     * @throws \PHPCR\Version\VersionException if this node is read-only due to a checked-in node and this implementation performs this validation immediately.
-     * @throws \PHPCR\Lock\LockException if a lock prevents the change of the primary node type and this implementation performs this validation immediately.
+     * @throws \PHPCR\ConstraintViolationException If the specified primary node type creates a type conflict and this
+     *                                             implementation performs this validation immediately.
+     * @throws \PHPCR\NodeType\NoSuchNodeTypeException If the specified nodeTypeName is not recognized and this
+     *                                                 implementation performs this validation immediately.
+     * @throws \PHPCR\Version\VersionException if this node is read-only due to a checked-in node and this
+     *                                         implementation performs this validation immediately.
+     * @throws \PHPCR\Lock\LockException if a lock prevents the change of the primary node type and this implementation
+     *                                   performs this validation immediately.
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
      */
     public function setPrimaryType($nodeTypeName);
 
     /**
-     * Adds the mixin node type named $mixinName to this node. If this node is already
-     * of type $mixinName (either due to a previously added mixin or due to its
+     * Adds the mixin node type named $mixinName to this node.
+     *
+     * If this node is already of type $mixinName (either due to a previously added mixin or due to its
      * primary type, through inheritance) then this method has no effect.
      * Otherwise $mixinName is added to this node's jcr:mixinTypes property.
      *
@@ -573,33 +614,44 @@ interface NodeInterface extends \PHPCR\ItemInterface {
      *
      * @param string $mixinName the name of the mixin node type to be added
      * @return void
-     * @throws \PHPCR\NodeType\NoSuchNodeTypeException If the specified mixinName is not recognized and this implementation performs this validation immediately instead of waiting until save.
+     * @throws \PHPCR\NodeType\NoSuchNodeTypeException If the specified mixinName is not recognized and this
+     *                                                 implementation performs this validation immediately instead of
+     *                                                 waiting until save.
      * @throws \PHPCR\ConstraintViolationException If the specified mixin node type is prevented from being assigned.
-     * @throws \PHPCR\Version\VersionException if this node is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in and this implementation performs this validation immediately instead of waiting until save..
-     * @throws \PHPCR\Lock\LockException if a lock prevents the addition of the mixin and this implementation performs this validation immediately instead of waiting until save.
+     * @throws \PHPCR\Version\VersionException If this node is versionable and checked-in or is non-versionable but its
+     *                                         nearest versionable ancestor is checked-in and this implementation
+     *                                         performs this validation immediately instead of waiting until save.
+     * @throws \PHPCR\Lock\LockException If a lock prevents the addition of the mixin and this implementation performs
+     *                                   this validation immediately instead of waiting until save.
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
      */
     public function addMixin($mixinName);
 
     /**
-     * Removes the specified mixin node type from this node and removes mixinName
-     * from this node's jcr:mixinTypes property. Both the semantic change in
-     * effective node type and the persistence of the change to the jcr:mixinTypes
+     * Removes the specified mixin node type from this node and removes mixinName from this node's jcr:mixinTypes property.
+     *
+     * Both the semantic change in effective node type and the persistence of the change to the jcr:mixinTypes
      * property occur on persist.
      *
      * @param string $mixinName the name of the mixin node type to be removed.
      * @return void
-     * @throws \PHPCR\NodeType\NoSuchNodeTypeException if the specified mixinName is not currently assigned to this node and this implementation performs this validation immediately.
-     * @throws \PHPCR\ConstraintViolationException if the specified mixin node type is prevented from being removed and this implementation performs this validation immediately.
-     * @throws \PHPCR\Version\VersionException if this node is read-only due to a checked-in node and this implementation performs this validation immediately.
-     * @throws \PHPCR\Lock\LockException if a lock prevents the removal of the mixin and this implementation performs this validation immediately.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws \PHPCR\NodeType\NoSuchNodeTypeException If the specified mixinName is not currently assigned to this
+     *                                                 node and this implementation performs this validation immediately.
+     * @throws \PHPCR\ConstraintViolationException if the specified mixin node type is prevented from being removed and
+     *                                             this implementation performs this validation immediately.
+     * @throws \PHPCR\Version\VersionException If this node is read-only due to a checked-in node and this
+     *                                         implementation performs this validation immediately.
+     * @throws \PHPCR\Lock\LockException If a lock prevents the removal of the mixin and this implementation performs
+     *                                   this validation immediately.
+     * @throws \PHPCR\RepositoryException If another error occurs.
      * @api
      */
     public function removeMixin($mixinName);
 
     /**
+     * Determine if a mixin node type may be added to the current node.
+     *
      * Returns true if the specified mixin node type called $mixinName can be
      * added to this node. Returns false otherwise. A result of false must be
      * returned in each of the following cases:
@@ -622,8 +674,9 @@ interface NodeInterface extends \PHPCR\ItemInterface {
     public function canAddMixin($mixinName);
 
     /**
-     * Returns the node definition that applies to this node. In some cases there
-     * may appear to be more than one definition that could apply to this node.
+     * Returns the node definition that applies to this node.
+     *
+     * In some cases there may appear to be more than one definition that could apply to this node.
      * However, it is assumed that upon creation of this node, a single particular
      * definition was used and it is that definition that this method returns.
      * How this governing definition is selected upon node creation from among
@@ -639,6 +692,8 @@ interface NodeInterface extends \PHPCR\ItemInterface {
     public function getDefinition();
 
     /**
+     * Updates a node corresponding to the current one in the given workspace.
+     *
      * If this node does have a corresponding node in the workspace srcWorkspace,
      * then this replaces this node and its subgraph with a clone of the
      * corresponding node and its subgraph.
@@ -679,9 +734,11 @@ interface NodeInterface extends \PHPCR\ItemInterface {
 
     /**
      * Returns an iterator over all nodes that are in the shared set of this node.
+     *
      * If this node is not shared then the returned iterator contains only this node.
      *
-     * @return Iterator implementing SeekableIterator and Countable. Keys are the Node names, values the corresponding NodeInterface instances.
+     * @return Iterator implementing SeekableIterator and Countable. Keys are the Node names, values the corresponding
+     *                  NodeInterface instances.
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
      */
@@ -691,32 +748,46 @@ interface NodeInterface extends \PHPCR\ItemInterface {
      * Removes this node and every other node in the shared set of this node.
      *
      * This removal must be done atomically, i.e., if one of the nodes cannot be
-     * removed, the method throws the exception Node#remove() would have thrown
+     * removed, the method throws the exception Node.remove() would have thrown
      * in that case, and none of the nodes are removed.
      *
      * If this node is not shared this method removes only this node.
      *
      * @return void
-     * @throws \PHPCR\Version\VersionException if the parent node of this item is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in and this implementation performs this validation immediately.
-     * @throws \PHPCR\Lock\LockException if a lock prevents the removal of this item and this implementation performs this validation immediately.
-     * @throws \PHPCR\NodeType\ConstraintViolationException if removing the specified item would violate a node type or implementation-specific constraint and this implementation performs this validation immediately.
+     * @throws \PHPCR\Version\VersionException If the parent node of this item is versionable and checked-in or is
+     *                                         non-versionable but its nearest versionable ancestor is checked-in and
+     *                                         this implementation performs this validation immediately.
+     * @throws \PHPCR\Lock\LockException If a lock prevents the removal of this item and this implementation performs
+     *                                   this validation immediately.
+     * @throws \PHPCR\NodeType\ConstraintViolationException If removing the specified item would violate a node type or
+     *                                                      implementation-specific constraint and this implementation
+     *                                                      performs this validation immediately.
      * @throws \PHPCR\RepositoryException if another error occurs.
+     *
      * @see removeShare()
      * @see Item::remove()
-     * @see SessionInterface::removeItem
+     * @see SessionInterface::removeItem()
+     *
      * @api
      */
     public function removeSharedSet();
 
     /**
-     * Removes this node, but does not remove any other node in the shared set
-     * of this node.
+     * Removes this node, but does not remove any other node in the shared set of this node.
      *
      * @return void
-     * @throws \PHPCR\Version\VersionException if the parent node of this item is versionable and checked-in or is non-versionable but its nearest versionable ancestor is checked-in and this implementation performs this validation immediately instead of waiting until save.
-     * @throws \PHPCR\Lock\LockException if a lock prevents the removal of this item and this implementation performs this validation immediately instead of waiting until save.
-     * @throws \PHPCR\NodeType\ConstraintViolationException if removing the specified item would violate a node type or implementation-specific constraint and this implementation performs this validation immediately instead of waiting until save.
-     * @throws \PHPCR\RepositoryException if this node cannot be removed without removing another node in the shared set of this node or another error occurs.
+     * @throws \PHPCR\Version\VersionException if the parent node of this item is versionable and checked-in or is
+     *                                         non-versionable but its nearest versionable ancestor is checked-in and
+     *                                         this implementation performs this validation immediately instead of
+     *                                         waiting until save.
+     * @throws \PHPCR\Lock\LockException if a lock prevents the removal of this item and this implementation performs
+     *                                   this validation immediately instead of waiting until save.
+     * @throws \PHPCR\NodeType\ConstraintViolationException if removing the specified item would violate a node type or
+     *                                                      implementation-specific constraint and this implementation
+     *                                                      performs this validation immediately instead of waiting
+     *                                                      until save.
+     * @throws \PHPCR\RepositoryException if this node cannot be removed without removing another node in the shared
+     *                                    set of this node or another error occurs.
      * @see removeSharedSet()
      * @see Item::remove()
      * @see SessionInterface::removeItem
@@ -725,6 +796,8 @@ interface NodeInterface extends \PHPCR\ItemInterface {
     public function removeShare();
 
     /**
+     * Determine if the current node is currently checked out.
+     *
      * Returns FALSE if this node is currently in the checked-in state (either
      * due to its own status as a versionable node or due to the effect of
      * a versionable node being checked in above it). Otherwise this method
@@ -739,6 +812,8 @@ interface NodeInterface extends \PHPCR\ItemInterface {
     public function isCheckedOut();
 
     /**
+     * Determine if the current node has been locked.
+     *
      * Returns TRUE if this node is locked either as a result of a lock held
      * by this node or by a deep lock on a node above this node;
      * otherwise returns FALSE. This includes the case where a repository does
@@ -752,6 +827,7 @@ interface NodeInterface extends \PHPCR\ItemInterface {
 
     /**
      * Causes the lifecycle state of this node to undergo the specified transition.
+     *
      * This method may change the value of the jcr:currentLifecycleState property,
      * in most cases it is expected that the implementation will change the value
      * to that of the passed transition parameter, though this is an
