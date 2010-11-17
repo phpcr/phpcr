@@ -39,7 +39,7 @@ namespace PHPCR;
  *
  * PHPCR Note: We removed getValueFactory as the ValueFactory interface has
  *   been removed. To set properties, use NodeInterface::setProperty or
- *   PropertyInterface::setValue directly.
+ *   PropertyInterface::setValue with native PHP variables.
  *
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License

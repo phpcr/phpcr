@@ -158,7 +158,13 @@ interface NodeInterface extends \PHPCR\ItemInterface {
      *
      * If the node type of this node does not indicate a specific property type,
      * then the property type of the supplied variable is used and if the
-     * property already exists it assumes both the new value and new property type.
+     * property already exists it assumes both the new value and new property
+     * type. Types are mapped directly, with the same exceptions as in
+     * PropertyInterface::setValue:
+     * * if the given $value is a Node object, it's Identifier is fetched and
+     *   the type will be REFERENCE. To create a WEAKREFERENCE you have to
+     *   explicitly specify the type
+     * * if the given $value is a DateTime object, the type will be DATE.
      *
      * Passing a null as the second parameter removes the property. It is equivalent
      * to calling remove on the Property object itself. For example,

@@ -33,7 +33,7 @@ namespace PHPCR;
  * PHPCR Note:
  * We removed the Value interface and consequently the getValue() and
  * getValues() methods. If you just want the property value in its native type,
- * use NodeInterface::getPropertyValue.
+ * use getNativeValue, or just NodeInterface::getPropertyValue.
  * The PropertyInterface::getXX methods also work for multivalue properties.
  * They return arrays in case of multivalue.
  * PropertyInterface::setValue completely replaces the
