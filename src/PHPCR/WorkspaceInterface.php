@@ -1,41 +1,55 @@
 <?php
+/**
+ * Interface to describe the contract to implement a Workspace.
+ *
+ * This file was ported from the Java JCR API to PHP by
+ * Karsten Dambekalns <karsten@typo3.org> for the FLOW3 project.
+ *
+ * It is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or (at your
+ * option) any later version. Alternatively, you may use the Simplified
+ * BSD License.
+ *
+ * This script is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHAN-
+ * TABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with the script.
+ * If not, see {@link http://www.gnu.org/licenses/lgpl.html}.
+ *
+ * The TYPO3 project - inspiring people to share!
+ *
+ * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
+ * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
+ *
+ * @package phpcr
+ * @subpackage interfaces
+ */
+
 declare(ENCODING = 'utf-8');
 namespace PHPCR;
 
-/*                                                                        *
- * This file was ported from the Java JCR API to PHP by                   *
- * Karsten Dambekalns <karsten@typo3.org> for the FLOW3 project.          *
- *                                                                        *
- * It is free software; you can redistribute it and/or modify it under    *
- * the terms of the GNU Lesser General Public License as published by the *
- * Free Software Foundation, either version 3 of the License, or (at your *
- * option) any later version. Alternatively, you may use the Simplified   *
- * BSD License.                                                           *
- *                                                                        *
- * This script is distributed in the hope that it will be useful, but     *
- * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHAN-    *
- * TABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser       *
- * General Public License for more details.                               *
- *                                                                        *
- * You should have received a copy of the GNU Lesser General Public       *
- * License along with the script.                                         *
- * If not, see http://www.gnu.org/licenses/lgpl.html                      *
- *                                                                        *
- * The TYPO3 project - inspiring people to share!                         *
- *                                                                        */
-
 /**
+ * Interface representing a view onto a persistant workspace within a repository.
+ *
  * A Workspace object represents a view onto a persistent workspace within a
  * repository. This view is defined by the authorization settings of the Session
  * object associated with the Workspace object. Each Workspace object is
  * associated one-to-one with a Session object. The Workspace object can be
  * acquired by calling Session.getWorkspace() on the associated Session object.
  *
- * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
- * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
+ * @package phpcr
+ * @subpackage interfaces
  * @api
  */
 interface WorkspaceInterface {
+
+    /**#@+
+     * @var string
+     */
 
     /**
      * A constant for the name of the workspace root node.
@@ -147,6 +161,8 @@ interface WorkspaceInterface {
      */
     const RELPATH_JCR_XMLCHARACTERS = '{http://www.jcp.org/jcr/1.0}xmltext/{http://www.jcp.org/jcr/1.0}xmlcharacters';
 
+    /**#@-*/
+
     /**
      * Returns the Session object through which this Workspace object was acquired.
      *
@@ -156,8 +172,9 @@ interface WorkspaceInterface {
     public function getSession();
 
     /**
-     * Returns the name of the actual persistent workspace represented by this
-     * Workspace object. This the name used in Repository->login.
+     * Returns the name of the actual persistent workspace represented by this Workspace object.
+     *
+     * This the name used in Repository->login.
      *
      * @return string the name of this workspace.
      * @api
@@ -165,6 +182,8 @@ interface WorkspaceInterface {
     public function getName();
 
     /**
+     * Copies a Node including its children to a new location to the given workspace.
+     *
      * This method copies the subgraph rooted at, and including, the node at
      * $srcWorkspace (if given) and $srcAbsPath to the new location in this
      * Workspace at $destAbsPath.
@@ -231,6 +250,7 @@ interface WorkspaceInterface {
      * @param string $destAbsPath the location to which the node at srcAbsPath is to be copied in this workspace.
      * @param string $srcWorkspace the name of the workspace from which the copy is to be made.
      * @return void
+     *
      * @throws \PHPCR\NoSuchWorkspaceException if srcWorkspace does not exist or if the current Session does not have permission to access it.
      * @throws \PHPCR\ConstraintViolationException if the operation would violate a node-type or other implementation-specific constraint
      * @throws \PHPCR\Version\VersionException if the parent node of destAbsPath is read-only due to a checked-in node.
@@ -244,8 +264,8 @@ interface WorkspaceInterface {
     public function copy($srcAbsPath, $destAbsPath, $srcWorkspace = NULL);
 
     /**
-     * Clones the subgraph at the node srcAbsPath in srcWorkspace to the new
-     * location at destAbsPath in this workspace.
+     * Clones the subgraph at the node srcAbsPath in srcWorkspace to the new location at destAbsPath in this workspace.
+     *
      * Unlike the signature of copy that copies between workspaces, this method
      * does not assign new identifiers to the newly cloned nodes but preserves
      * the identifiers of their respective source nodes. This applies to both
@@ -278,17 +298,27 @@ interface WorkspaceInterface {
      * PHP Notice: The JCR method is called clone, but that is a reserved
      * keyword in PHP, thus we named the method klone.
      *
-     * @param string $srcWorkspace - The name of the workspace from which the node is to be copied.
-     * @param string $srcAbsPath - the path of the node to be copied in srcWorkspace.
-     * @param string $destAbsPath - the location to which the node at srcAbsPath is to be copied in this workspace.
-     * @param boolean $removeExisting - if false then this method throws an ItemExistsException on identifier conflict with an incoming node. If true then a identifier conflict is resolved by removing the existing node from its location in this workspace and cloning (copying in) the one from srcWorkspace.
+     * @param string $srcWorkspace The name of the workspace from which the node is to be copied.
+     * @param string $srcAbsPath The path of the node to be copied in srcWorkspace.
+     * @param string $destAbsPath The location to which the node at srcAbsPath is to be copied in this workspace.
+     * @param boolean $removeExisting if false then this method throws an ItemExistsException on identifier conflict
+     *                                with an incoming node. If true then a identifier conflict is resolved by removing
+     *                                the existing node from its location in this workspace and cloning (copying in) the
+     *                                one from srcWorkspace.
      * @return void
+     *
      * @throws \PHPCR\NoSuchWorkspaceException if destWorkspace does not exist.
-     * @throws \PHPCR\ConstraintViolationException if the operation would violate a node-type or other implementation-specific constraint.
-     * @throws \PHPCR\Version\VersionException if the parent node of destAbsPath is read-only due to a checked-in node. This exception will also be thrown if removeExisting is true, and an identifier conflict occurs that would require the moving and/or altering of a node that is checked-in.
+     * @throws \PHPCR\ConstraintViolationException if the operation would violate a node-type or other
+     *                                             implementation-specific constraint.
+     * @throws \PHPCR\Version\VersionException if the parent node of destAbsPath is read-only due to a checked-in node.
+     *                                         This exception will also be thrown if removeExisting is true, and an
+     *                                          identifier conflict occurs that would require the moving and/or altering
+     *                                          of a node that is checked-in.
      * @throws \PHPCR\AccessDeniedException if the current session does not have sufficient access to complete the operation.
-     * @throws \PHPCR\PathNotFoundException if the node at srcAbsPath in srcWorkspace or the parent of destAbsPath in this workspace does not exist.
-     * @throws \PHPCR\ItemExistsException if a node already exists at destAbsPath and same-name siblings are not allowed or if removeExisting is false and an identifier conflict occurs.
+     * @throws \PHPCR\PathNotFoundException if the node at srcAbsPath in srcWorkspace or the parent of destAbsPath in
+     *                                      this workspace does not exist.
+     * @throws \PHPCR\ItemExistsException if a node already exists at destAbsPath and same-name siblings are not
+     *                                    allowed or if removeExisting is false and an identifier conflict occurs.
      * @throws \PHPCR\Lock\LockException if a lock prevents the clone.
      * @throws \PHPCR\RepositoryException if the last element of destAbsPath has an index or if another error occurs.
      * @api
@@ -296,8 +326,8 @@ interface WorkspaceInterface {
     public function klone($srcWorkspace, $srcAbsPath, $destAbsPath, $removeExisting);
 
     /**
-     * Moves the node at srcAbsPath (and its entire subgraph) to the new location
-     * at destAbsPath.
+     * Moves the node at srcAbsPath (and its entire subgraph) to the new location at destAbsPath.
+     *
      * If successful, the change is persisted immediately, there is no need to
      * call save. Note that this is in contrast to
      * Session->move($srcAbsPath, $destAbsPath) which operates within the transient
@@ -324,9 +354,13 @@ interface WorkspaceInterface {
      * @param string $srcAbsPath the path of the node to be moved.
      * @param string $destAbsPath the location to which the node at srcAbsPath is to be moved.
      * @return void
-     * @throws \PHPCR\ConstraintViolationException if the operation would violate a node-type or other implementation-specific constraint
+     *
+     * @throws \PHPCR\ConstraintViolationException if the operation would violate a node-type or other
+     *                                             implementation-specific constraint
      * @throws \PHPCR\Version\VersionException if the parent node of destAbsPath is read-only due to a checked-in node.
-     * @throws \PHPCR\AccessDeniedException if the current session (i.e. the session that was used to acquire this Workspace object) does not have sufficient access rights to complete the operation.
+     * @throws \PHPCR\AccessDeniedException if the current session (i.e. the session that was used to acquire this
+     *                                      Workspace object) does not have sufficient access rights to complete the
+     *                                      operation.
      * @throws \PHPCR\PathNotFoundException if the node at srcAbsPath or the parent of destAbsPath does not exist.
      * @throws \PHPCR\ItemExistsException if a node already exists at destAbsPath and same-name siblings are not allowed.
      * @throws \PHPCR\Lock\LockException if a lock prevents the move.
@@ -355,9 +389,9 @@ interface WorkspaceInterface {
     public function getQueryManager();
 
     /**
-     * Returns the NamespaceRegistry object, which is used to access the mapping
-     * between prefixes and namespaces. In level 2 repositories the NamespaceRegistry
-     * can also be used to change the namespace mappings.
+     * Returns the NamespaceRegistry object, which is used to access the mapping between prefixes and namespaces.
+     *
+     * In level 2 repositories the NamespaceRegistry can also be used to change the namespace mappings.
      *
      * @return \PHPCR\NamespaceRegistryInterface the NamespaceRegistry.
      * @throws \PHPCR\RepositoryException if an error occurs.
@@ -367,6 +401,7 @@ interface WorkspaceInterface {
 
     /**
      * Returns the NodeTypeManager through which node type information can be queried.
+     *
      * There is one node type registry per repository, therefore the NodeTypeManager
      * is not workspace-specific; it provides introspection methods for the global,
      * repository-wide set of available node types. In repositories that support it,
@@ -399,6 +434,8 @@ interface WorkspaceInterface {
     public function getVersionManager();
 
     /**
+     * Gets a set of workspace accessible to the current user.
+     *
      * Returns a string array containing the names of all workspaces in this
      * repository that are accessible to this user, given the Credentials that
      * were used to get the Session to which this Workspace is tied.
@@ -413,8 +450,9 @@ interface WorkspaceInterface {
     public function getAccessibleWorkspaceNames();
 
     /**
-     * Returns an \PHPCR\ContentHandlerInterface which can be used to push SAX events
-     * into the repository. If the incoming XML stream (in the form of SAX events)
+     * Returns an \PHPCR\ContentHandlerInterface which can be used to push SAX events into the repository.
+     *
+     * If the incoming XML stream (in the form of SAX events)
      * does not appear to be a JCR system view XML document then it is interpreted
      * as a document view XML document.
      * The incoming XML is deserialized into a subgraph of items immediately below
@@ -470,11 +508,20 @@ interface WorkspaceInterface {
      * @param string $parentAbsPath the absolute path of a node under which (as child) the imported subgraph will be built.
      * @param integer $uuidBehavior a four-value flag that governs how incoming identifiers are handled.
      * @return an \PHPCR\ContentHandlerInterface whose methods may be called to feed SAX events into the deserializer.
+     *
      * @throws \PHPCR\PathNotFoundException if no node exists at $parentAbsPath.
-     * @throws \PHPCR\ConstraintViolationException if the new subgraph cannot be added to the node at $parentAbsPath due to node-type or other implementation-specific constraints, and this can be determined before the first SAX event is sent. Unlike Session#getImportContentHandler, this method also enforces node type constraints by throwing SAXExceptions during deserialization. However, which node type constraints are enforced depends upon whether node type information in the imported data is respected, and this is an implementation-specific issue.
+     * @throws \PHPCR\ConstraintViolationException if the new subgraph cannot be added to the node at $parentAbsPath due
+     *                                             to node-type or other implementation-specific constraints, and this
+     *                                             can be determined before the first SAX event is sent. Unlike
+     *                                             Session#getImportContentHandler, this method also enforces node type
+     *                                             constraints by throwing SAXExceptions during deserialization.
+     *                                             However, which node type constraints are enforced depends upon
+     *                                             whether node type information in the imported data is respected,
+     *                                             and this is an implementation-specific issue.
      * @throws \PHPCR\Version\VersionException if the node at $parentAbsPath is read-only due to a checked-in node.
      * @throws \PHPCR\Lock\LockException if a lock prevents the addition of the subgraph.
-     * @throws \PHPCR\AccessDeniedException if the session associated with this Workspace object does not have sufficient access to perform the import.
+     * @throws \PHPCR\AccessDeniedException if the session associated with this Workspace object does not have
+     *                                      sufficient access to perform the import.
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @todo Decide on a return type that fits the PHP world
      * @api
@@ -482,8 +529,8 @@ interface WorkspaceInterface {
     public function getImportContentHandler($parentAbsPath, $uuidBehavior);
 
     /**
-     * Deserializes an XML document and adds the resulting item subgraph as a
-     * child of the node at $parentAbsPath.
+     * Deserializes an XML document and adds the resulting item subgraph as a child of the node at $parentAbsPath.
+     *
      * If the incoming XML does not appear to be a JCR system view XML document
      * then it is interpreted as a document view XML document.
      *
@@ -526,6 +573,7 @@ interface WorkspaceInterface {
      * @param string $in An URI from which the XML to be deserialized is read.
      * @param integer $uuidBehavior a four-value flag that governs how incoming identifiers are handled.
      * @return void
+     *
      * @throws \RuntimeException if an error during an I/O operation occurs.
      * @throws \PHPCR\PathNotFoundException if no node exists at parentAbsPath.
      * @throws \PHPCR\ConstraintViolationException if node-type or other implementation-specific constraints prevent the addition of the subgraph or if uuidBehavior is set to IMPORT_UUID_COLLISION_REMOVE_EXISTING and an incoming node has the same identifier as the node at parentAbsPath or one of its ancestors.
@@ -540,8 +588,7 @@ interface WorkspaceInterface {
     public function importXML($parentAbsPath, $in, $uuidBehavior);
 
     /**
-     * Creates a new Workspace with the specified name. The new workspace is
-     * empty, meaning it contains only root node.
+     * Creates a new Workspace with the specified name. The new workspace is empty, meaning it contains only root node.
      *
      * If srcWorkspace is given:
      * Creates a new Workspace with the specified name initialized with a
@@ -556,6 +603,7 @@ interface WorkspaceInterface {
      * @param string $name A String, the name of the new workspace.
      * @param string $srcWorkspace The name of the workspace from which the new workspace is to be cloned.
      * @return void
+     *
      * @throws \PHPCR\AccessDeniedException if the session through which this Workspace object was acquired does not have sufficient access to create the new workspace.
      * @throws \PHPCR\UnsupportedRepositoryOperationException if the repository does not support the creation of workspaces.
      * @throws \PHPCR\NoSuchWorkspaceException if $srcWorkspace does not exist.
@@ -565,11 +613,11 @@ interface WorkspaceInterface {
     public function createWorkspace($name, $srcWorkspace = NULL);
 
     /**
-     * Deletes the workspace with the specified name from the repository,
-     * deleting all content within it.
+     * Deletes the workspace with the specified name from the repository, deleting all content within it.
      *
      * @param string $name A String, the name of the workspace to be deleted.
      * @return void
+     *
      * @throws \PHPCR\AccessDeniedException if the session through which this Workspace object was acquired does not have sufficient access to remove the workspace.
      * @throws \PHPCR\UnsupportedRepositoryOperationException if the repository does not support the removal of workspaces.
      * @throws \PHPCR\NoSuchWorkspaceException if $name does not exist.
