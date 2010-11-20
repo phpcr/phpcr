@@ -1,35 +1,43 @@
 <?php
-declare(ENCODING = 'utf-8');
-namespace PHPCR\Version;
+/**
+ * Interface description of an implementation of a version history class.
+ *
+ * This file was ported from the Java JCR API to PHP by
+ * Karsten Dambekalns <karsten@typo3.org> for the FLOW3 project.
+ *
+ * It is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or (at your
+ * option) any later version. Alternatively, you may use the Simplified
+ * BSD License.
+ *
+ * This script is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHAN-
+ * TABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with the script.
+ * If not, see {@link http://www.gnu.org/licenses/lgpl.html}.
+ *
+ * The TYPO3 project - inspiring people to share!
+ *
+ * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
+ * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
+ *
+ * @package phpcr
+ * @subpackage interfaces
+ */
 
-/*                                                                        *
- * This file was ported from the Java JCR API to PHP by                   *
- * Karsten Dambekalns <karsten@typo3.org> for the FLOW3 project.          *
- *                                                                        *
- * It is free software; you can redistribute it and/or modify it under    *
- * the terms of the GNU Lesser General Public License as published by the *
- * Free Software Foundation, either version 3 of the License, or (at your *
- * option) any later version. Alternatively, you may use the Simplified   *
- * BSD License.                                                           *
- *                                                                        *
- * This script is distributed in the hope that it will be useful, but     *
- * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHAN-    *
- * TABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser       *
- * General Public License for more details.                               *
- *                                                                        *
- * You should have received a copy of the GNU Lesser General Public       *
- * License along with the script.                                         *
- * If not, see http://www.gnu.org/licenses/lgpl.html                      *
- *                                                                        *
- * The TYPO3 project - inspiring people to share!                         *
- *                                                                        */
+declare(ENCODING = 'utf-8');
+namespace PHPCR;
 
 /**
  * A VersionHistory object wraps an nt:versionHistory node. It provides
  * convenient access to version history information.
  *
- * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
- * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
+ * @package phpcr
+ * @subpackage interfaces
  * @api
  */
 interface VersionHistoryInterface extends \PHPCR\NodeInterface {
@@ -39,6 +47,7 @@ interface VersionHistoryInterface extends \PHPCR\NodeInterface {
      * version history.
      *
      * @return string the identifier of the versionable node for which this is the version history.
+     *
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
      */
@@ -48,6 +57,7 @@ interface VersionHistoryInterface extends \PHPCR\NodeInterface {
      * Returns the root version of this version history.
      *
      * @return \PHPCR\Version\VersionInterface a Version object.
+     *
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
      */
@@ -73,7 +83,9 @@ interface VersionHistoryInterface extends \PHPCR\NodeInterface {
      * equivalent to returning all versions in the version history in order from
      * oldest to newest.
      *
-     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>. Values are the VersionInterface instances. Keys have no meaning.
+     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>.
+     *                  Values are the VersionInterface instances. Keys have no meaning.
+     *
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
      */
@@ -85,7 +97,9 @@ interface VersionHistoryInterface extends \PHPCR\NodeInterface {
      * returned in order of creation date, from oldest to newest. Otherwise the
      * order of the returned versions is implementation-dependent.
      *
-     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>. Values are the VersionInterface instances. Keys have no meaning.
+     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>.
+     *                  Values are the VersionInterface instances. Keys have no meaning.
+     *
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
      */
@@ -95,7 +109,11 @@ interface VersionHistoryInterface extends \PHPCR\NodeInterface {
      * This method returns all the frozen nodes of all the versions in this
      * verison history in the same order as getAllLinearVersions().
      *
-     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>. Values are the NodeInterface instances. TODO: is there a version id to be used as key?
+     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>.
+     *                  Values are the NodeInterface instances.
+     *
+     * @todo is there a version id to be used as key?
+     *
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
      */
@@ -107,7 +125,11 @@ interface VersionHistoryInterface extends \PHPCR\NodeInterface {
      * nodes will be the order of their creation. Under full versioning the
      * order is implementation-dependent.
      *
-     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>. Values are the NodeInterface instances. TODO: is there a version id to be used as key?
+     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>.
+     *                  Values are the NodeInterface instances.
+     *
+     * @todo is there a version id to be used as key?
+     *
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
      */
@@ -118,6 +140,7 @@ interface VersionHistoryInterface extends \PHPCR\NodeInterface {
      *
      * @param string $versionName a version name
      * @return \PHPCR\Version\VersionInterface a Version object.
+     *
      * @throws \PHPCR\Version\VersionException if the specified version is not in this version history.
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
@@ -129,6 +152,7 @@ interface VersionHistoryInterface extends \PHPCR\NodeInterface {
      *
      * @param string $label a version label
      * @return \PHPCR\Version\VersionInterface a Version object.
+     *
      * @throws \PHPCR\Version\VersionException if the specified label is not in this version history.
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
@@ -137,6 +161,7 @@ interface VersionHistoryInterface extends \PHPCR\NodeInterface {
 
     /**
      * Adds the specified label to the specified version.
+     *
      * The label must be a JCR name in either qualified or extended form
      * and therefore must conform to the syntax restriction that apply to
      * such names. In particular a colon (:) should not be used unless
@@ -164,10 +189,15 @@ interface VersionHistoryInterface extends \PHPCR\NodeInterface {
      *
      * @param string $versionName the name of the version to which the label is to be added.
      * @param string $label the label to be added, a JCR name in either extended or qualified form.
-     * @param boolean $moveLabel if true, then if label is already assigned to a version in this version history, it is moved to the new version specified; if false, then attempting to assign an already used label will throw a LabelExistsVersionException.
+     * @param boolean $moveLabel if true, then if label is already assigned to a version in this version history,
+     *                           it is moved to the new version specified; if false, then attempting to assign an
+     *                           already used label will throw a LabelExistsVersionException.
      * @return void
-     * @throws \PHPCR\Version\LabelExistsVersionException if moveLabel is false, and an attempt is made to add a label that already exists in this version history
-     * @throws \PHPCR\Version\VersionException if the specified version does not exist in this version history or if the specified version is the root version (jcr:rootVersion).
+     *
+     * @throws \PHPCR\Version\LabelExistsVersionException if moveLabel is false, and an attempt is made to add a
+     *                                                    label that already exists in this version history
+     * @throws \PHPCR\Version\VersionException if the specified version does not exist in this version history
+     *                                         or if the specified version is the root version (jcr:rootVersion).
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
      */
@@ -184,6 +214,7 @@ interface VersionHistoryInterface extends \PHPCR\NodeInterface {
      *
      * @param string $label a version label. A JCR name in either extended or qualified form.
      * @return void
+     *
      * @throws \PHPCR\Version\VersionException if the name label does not exist in this version history.
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
@@ -195,11 +226,12 @@ interface VersionHistoryInterface extends \PHPCR\NodeInterface {
      * returns true if any version in the history has the given label.
      * The label must be a JCR name in either qualified or extended form.
      *
-     * Note: The Java API defines this with multiple differing signatures.
+     * <b>Note:</b> The Java API defines this with multiple differing signatures.
      *
      * @param string $label a version label. A JCR name in either extended or qualified form.
      * @param \PHPCR\Version\VersionInterface $version a Version object
      * @return boolean a boolean.
+     *
      * @throws \PHPCR\Version\VersionException if the specified version is not of this version history.
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
@@ -208,13 +240,15 @@ interface VersionHistoryInterface extends \PHPCR\NodeInterface {
 
     /**
      * Returns all version labels of the given version - empty array if none.
+     *
      * If a $version is given returns all version labels of the history or an empty
      * array if there are none.
      *
-     * Note: The Java API defines this with multiple differing signatures.
+     * <b>Note:</b> The Java API defines this with multiple differing signatures.
      *
      * @param VersionInterface $version a Version object
      * @return array a string array containing all the labels of the (given) version (history)
+     *
      * @throws \PHPCR\Version\VersionException if the specified version is not in this version history.
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
@@ -226,19 +260,27 @@ interface VersionHistoryInterface extends \PHPCR\NodeInterface {
      * repairs the version graph. If the version to be removed is V, V's
      * predecessor set is P and V's successor set is S, then the version graph
      * is repaired s follows:
-     * * For each member of P, remove the reference to V from its successor list
+     * - For each member of P, remove the reference to V from its successor list
      *   and add references to each member of S.
-     * * For each member of S, remove the reference to V from its predecessor
+     * - For each member of S, remove the reference to V from its predecessor
      *   list and add references to each member of P.
      *
-     * Note that this change is made immediately; there is no need to call save.
+     * <b>Note</b> that this change is made immediately; there is no need to call save.
      * In fact, since the the version storage is read-only with respect to normal
      * repository methods, save does not even function in this context.
      *
      * @param string $versionName the name of a version in this version history.
      * @return void
-     * @throws \PHPCR\ReferentialIntegrityException if the specified version is currently the target of a REFERENCE property elsewhere in the repository (not necessarily in this workspace) and the current Session has read access to that REFERENCE property.
-     * @throws \PHPCR\AccessDeniedException if the current Session does not have permission to remove the specified version or if the specified version is currently the target of a REFERENCE property elsewhere in the repository (not just in this workspace) and the current Session does not have read access to that REFERENCE property.
+     *
+     * @throws \PHPCR\ReferentialIntegrityException if the specified version is currently the target of a
+     *                                              REFERENCE property elsewhere in the repository
+     *                                              (not necessarily in this workspace) and the current Session
+     *                                              has read access to that REFERENCE property.
+     * @throws \PHPCR\AccessDeniedException if the current Session does not have permission to remove the
+     *                                      specified version or if the specified version is currently the
+     *                                      target of a REFERENCE property elsewhere in the repository
+     *                                      (not just in this workspace) and the current Session does not have
+     *                                      read access to that REFERENCE property.
      * @throws \PHPCR\UnsupportedRepositoryOperationException if this operation is not supported by the implementation.
      * @throws \PHPCR\Version\VersionException if the named version is not in this version history.
      * @throws \PHPCR\RepositoryException if another error occurs.

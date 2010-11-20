@@ -1,28 +1,36 @@
 <?php
-declare(ENCODING = 'utf-8');
-namespace PHPCR\Version;
+/**
+ * Final class implementation to observe an event on a parent version.
+ *
+ * This file was ported from the Java JCR API to PHP by
+ * Karsten Dambekalns <karsten@typo3.org> for the FLOW3 project.
+ *
+ * It is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or (at your
+ * option) any later version. Alternatively, you may use the Simplified
+ * BSD License.
+ *
+ * This script is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHAN-
+ * TABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with the script.
+ * If not, see {@link http://www.gnu.org/licenses/lgpl.html}.
+ *
+ * The TYPO3 project - inspiring people to share!
+ *
+ * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
+ * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
+ *
+ * @package phpcr
+ * @subpackage interfaces
+ */
 
-/*                                                                        *
- * This file was ported from the Java JCR API to PHP by                   *
- * Karsten Dambekalns <karsten@typo3.org> for the FLOW3 project.          *
- *                                                                        *
- * It is free software; you can redistribute it and/or modify it under    *
- * the terms of the GNU Lesser General Public License as published by the *
- * Free Software Foundation, either version 3 of the License, or (at your *
- * option) any later version. Alternatively, you may use the Simplified   *
- * BSD License.                                                           *
- *                                                                        *
- * This script is distributed in the hope that it will be useful, but     *
- * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHAN-    *
- * TABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser       *
- * General Public License for more details.                               *
- *                                                                        *
- * You should have received a copy of the GNU Lesser General Public       *
- * License along with the script.                                         *
- * If not, see http://www.gnu.org/licenses/lgpl.html                      *
- *                                                                        *
- * The TYPO3 project - inspiring people to share!                         *
- *                                                                        */
+declare(ENCODING = 'utf-8');
+namespace PHPCR;
 
 /**
  * The possible actions specified by the onParentVersion attribute in a
@@ -30,23 +38,27 @@ namespace PHPCR\Version;
  *
  * This interface defines the following actions:
  *
- * COPY
- * VERSION
- * INITIALIZE
- * COMPUTE
- * IGNORE
- * ABORT
+ * - COPY
+ * - VERSION
+ * - INITIALIZE
+ * - COMPUTE
+ * - IGNORE
+ * - ABORT
  *
  * Every item (node or property) in the repository has a status indicator that
  * governs what happens to that item when its parent node is versioned. This
  * status is defined by the onParentVersion attribute in the PropertyDefinition
  * or NodeDefinition that applies to the item in question.
  *
- * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
- * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
+ * @package phpcr
+ * @subpackage interfaces
  * @api
  */
 final class OnParentVersionAction {
+
+    /**#@+
+     * @var integer
+     */
 
     /**
      * The COPY action constant.
@@ -84,6 +96,11 @@ final class OnParentVersionAction {
      */
     const ABORT = 6;
 
+    /**#@-*/
+    /**#@+
+     * @var string
+     */
+
     /**
      * The name of the COPY on-version action, as used in serialization.
      * @api
@@ -119,6 +136,8 @@ final class OnParentVersionAction {
      * @api
      */
     const ACTIONNAME_ABORT = 'ABORT';
+
+    /**#@-*/
 
     /**
      * Make instantiation impossible...

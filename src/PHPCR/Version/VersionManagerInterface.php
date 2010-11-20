@@ -1,46 +1,53 @@
 <?php
-declare(ENCODING = 'utf-8');
-namespace PHPCR\Version;
+/**
+ * Interface description of an implementation of a version manager class.
+ *
+ * This file was ported from the Java JCR API to PHP by
+ * Karsten Dambekalns <karsten@typo3.org> for the FLOW3 project.
+ *
+ * It is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or (at your
+ * option) any later version. Alternatively, you may use the Simplified
+ * BSD License.
+ *
+ * This script is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHAN-
+ * TABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with the script.
+ * If not, see {@link http://www.gnu.org/licenses/lgpl.html}.
+ *
+ * The TYPO3 project - inspiring people to share!
+ *
+ * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
+ * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
+ *
+ * @package phpcr
+ * @subpackage interfaces
+ */
 
-/*                                                                        *
- * This file was ported from the Java JCR API to PHP by                   *
- * Karsten Dambekalns <karsten@typo3.org> for the FLOW3 project.          *
- *                                                                        *
- * It is free software; you can redistribute it and/or modify it under    *
- * the terms of the GNU Lesser General Public License as published by the *
- * Free Software Foundation, either version 3 of the License, or (at your *
- * option) any later version. Alternatively, you may use the Simplified   *
- * BSD License.                                                           *
- *                                                                        *
- * This script is distributed in the hope that it will be useful, but     *
- * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHAN-    *
- * TABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser       *
- * General Public License for more details.                               *
- *                                                                        *
- * You should have received a copy of the GNU Lesser General Public       *
- * License along with the script.                                         *
- * If not, see http://www.gnu.org/licenses/lgpl.html                      *
- *                                                                        *
- * The TYPO3 project - inspiring people to share!                         *
- *                                                                        */
+declare(ENCODING = 'utf-8');
+namespace PHPCR;
 
 /**
  * The VersionManager object is accessed via Workspace.getVersionManager(). It
  * provides methods for:
- *  Version graph functionality (version history, base version, successors predecessors)
- *  Basic version operations (checkin, checkout, checkpoint)
- *  Restore feature
- *  Label feature
- *  Merge feature
- *  Configuration feature
- *  Activity feature
+ * - Version graph functionality (version history, base version, successors predecessors)
+ * - Basic version operations (checkin, checkout, checkpoint)
+ * - Restore feature
+ * - Label feature
+ * - Merge feature
+ * - Configuration feature
+ * - Activity feature
  *
- * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
- * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
+ * @package phpcr
+ * @subpackage interfaces
  * @api
  */
 interface VersionManagerInterface {
-
 
     /**
      * Creates for the versionable node at absPath a new version with a system
@@ -72,7 +79,10 @@ interface VersionManagerInterface {
      *
      * @param string $absPath an absolute path.
      * @return \PHPCR\Version\VersionInterface the created version.
-     * @throws \PHPCR\Verson\VersionException if jcr:predecessors does not contain at least one value or if a child item of the node at absPath has an OnParentVersion status of ABORT. This includes the case where an unresolved merge failure exists on the node, as indicated by the presence of a jcr:mergeFailed property.
+     * @throws \PHPCR\Verson\VersionException if jcr:predecessors does not contain at least one value or if a
+     *                                        child item of the node at absPath has an OnParentVersion status of
+     *                                         ABORT. This includes the case where an unresolved merge failure exists
+     *                                         on the node, as indicated by the presence of a jcr:mergeFailed property.
      * @throws \PHPCR\UnsupportedRepositoryOperationException If the node at $absPath is not versionable.
      * @throws \PHPCR\InvalidItemStateException If unsaved changes exist on the node at $absPath.
      * @throws \PHPCR\Lock\LockException if a lock prevents the operation.
@@ -101,7 +111,8 @@ interface VersionManagerInterface {
      * @return void
      * @throws \PHPCR\UnsupportedRepositoryOperationException If the node at absPath is not versionable.
      * @throws \PHPCR\Lock\LockException if a lock prevents the checkout.
-     * @throws \PHPCR\Version\ActivityViolationException If the checkout conflicts with the activity present on the current session.
+     * @throws \PHPCR\Version\ActivityViolationException If the checkout conflicts with the activity present
+     *                                                   on the current session.
      * @throws \PHPCR\RepositoryException If another error occurs.
      * @api
      */
@@ -115,7 +126,9 @@ interface VersionManagerInterface {
      *
      * @param string $absPath an absolute path.
      * @return \PHPCR\Version\VersionInterface the created version.
-     * @throws \PHPCR\Version\VersionException if a child item of the node at absPath has an OnParentVersion of ABORT. This includes the case where an unresolved merge failure exists on the node, as indicated by the presence of the jcr:mergeFailed.
+     * @throws \PHPCR\Version\VersionException if a child item of the node at absPath has an OnParentVersion of
+     *                                         ABORT. This includes the case where an unresolved merge failure
+     *                                         exists on the node, as indicated by the presence of the jcr:mergeFailed.
      * @throws \PHPCR\UnsupportedRepositoryOperationException if the node at absPath is not versionable.
      * @throws \PHPCR\InvalidItemStateException if there are unsaved changes pending on the node at absPath.
      * @throws \PHPCR\Lock\LockException if a lock prevents the operation.
@@ -134,8 +147,8 @@ interface VersionManagerInterface {
      *  versionable (full or simple) and currently checked-in or
      *  non-versionable and its nearest versionable ancestor is checked-in.
      *
-     * @param string $absPath an absolute path.
-     * @return boolean a boolean
+     * @param string $absPath The absolute path to a node the prvileges shall be fetched of.
+     * @return boolean True, if the node identified by the given path is checked out, else false.
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
      */
@@ -145,7 +158,7 @@ interface VersionManagerInterface {
      * Returns the VersionHistory object of the node at $absPath. This object
      * provides access to the nt:versionHistory node holding this node's versions.
      *
-     * @param string $absPath an absolute path.
+     * @param string $absPath The absolute path to a node the prvileges shall be fetched of.
      * @return \PHPCR\Version\VersionHistoryInterface a VersionHistory object
      * @throws \PHPCR\UnsupportedRepositoryOperationException if the node at absPath is not versionable.
      * @throws \PHPCR\RepositoryException If another error occurs.
@@ -156,7 +169,7 @@ interface VersionManagerInterface {
     /**
      * Returns the current base version of the versionable node at absPath.
      *
-     * @param string $absPath an absolute path.
+     * @param string $absPath The absolute path to a node the prvileges shall be fetched of.
      * @return \PHPCR\Version\VersionInterface a Version object.
      * @throws \PHPCR\UnsupportedRepositoryOperationException if the node at absPath is not versionable.
      * @throws \PHPCR\RepositoryException if another error occurs.
@@ -194,19 +207,17 @@ interface VersionManagerInterface {
      *  the restore in any serial order.
      *  The following restrictions apply to the set of versions specified: If S
      *  is the set of versions being restored simultaneously,
-     *  * For every version V in S that corresponds to a missing node, there
+     *  - For every version V in S that corresponds to a missing node, there
      *    must also be a parent of V in S.
-     *  * S must contain at least one version that corresponds to an existing
+     *  - S must contain at least one version that corresponds to an existing
      *    node in the workspace.
-     *  * No V in S can be a root version (jcr:rootVersion).
+     *  - No V in S can be a root version (jcr:rootVersion).
      *  If any of these restrictions does not hold, the restore will fail
      *  because the system will be unable to determine the path locations to
      *  which one or more versions are to be restored. In this case a
      *  VersionException is thrown.
      *  The versionable nodes in the current workspace that correspond to the
      *  versions being restored define a set of (one or more) subgraphs.
-     *
-     *
      *
      * If the restore succeeds the changes made are dispatched immediately;
      * there is no need to call save.
@@ -230,15 +241,19 @@ interface VersionManagerInterface {
      * OnParentVersion settings of COPY or VERSION are also governed by the
      * $removeExisting flag.
      *
-     * Note: The Java API defines this with multiple differing signatures, you
+     * <b>Note:</b> The Java API defines this with multiple differing signatures, you
      * need to act accordingly in your implementation.
      *
      * @param boolean $removeExisting a boolean flag that governs what happens in case of an identifier collision
-     * @param string|array|\PHPCR\Version\VersionInterface $version a version name, an an array of Version objects or a Version object
-     * @param string $absPath an absolute path
+     * @param string|array|\PHPCR\Version\VersionInterface $version a version name, an an array of Version objects
+     *                                                              or a Version object
+     * @param string $absPath The absolute path to a node the prvileges shall be fetched of.
      * @return void
-     * @throws \PHPCR\Version\VersionException if the specified version does not have a corresponding node in the workspace this VersionManager has been created for or if an attempt is made to restore the root version (jcr:rootVersion).
-     * @throws \PHPCR\ItemExistsException if $removeExisting is FALSE and an identifier collision occurs or a node exists at $absPath.
+     * @throws \PHPCR\Version\VersionException if the specified version does not have a corresponding node in
+     *                                         the workspace this VersionManager has been created for or if an
+     *                                         attempt is made to restore the root version (jcr:rootVersion).
+     * @throws \PHPCR\ItemExistsException if $removeExisting is FALSE and an identifier collision occurs or a
+     *                                    node exists at $absPath.
      * @throws \PHPCR\InvalidItemStateException if this Session has pending unsaved changes.
      * @throws \PHPCR\UnsupportedRepositoryOperationException if versioning is not supported.
      * @throws \PHPCR\Lock\LockException if a lock prevents the restore.
@@ -271,7 +286,7 @@ interface VersionManagerInterface {
      * OnParentVersion settings of COPY or VERSION are also governed by the
      * removeExisting flag.
      *
-     * @param string $absPath an absolute path.
+     * @param string $absPath The absolute path to a node the prvileges shall be fetched of.
      * @param string $versionLabel a String
      * @param boolean $removeExisting a boolean flag that governs what happens in case of an identifier collision.
      * @return void
@@ -279,7 +294,8 @@ interface VersionManagerInterface {
      * @throws \PHPCR\Version\VersionException if the specified versionLabel does not exist in this node's version history.
      * @throws \PHPCR\ItemExistsException if removeExisting is false and an identifier collision occurs.
      * @throws \PHPCR\Lock\LockException if a lock prevents the restore.
-     * @throws \PHPCR\InvalidItemStateException if this Session (not necessarily the Node at absPath) has pending unsaved changes.
+     * @throws \PHPCR\InvalidItemStateException if this Session (not necessarily the Node at absPath) has
+     *                                          pending unsaved changes.
      * @throws \PHPCR\RepositoryException If another error occurs.
      * @api
      */
@@ -349,15 +365,19 @@ interface VersionManagerInterface {
      * @param string $srcWorkspace the name of the source workspace (optional if $source is a Node).
      * @param boolean $bestEffort a boolean (optional if $source is a Node)
      * @param boolean $isShallow a boolean (optional)
-     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>. Keys are the Node names, values the corresponding NodeInterface instances that received a merge result of "fail" in the course of this operation.
+     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>. Keys are the Node names,
+     *                  values the corresponding NodeInterface instances that received a merge result of "fail" in
+     *                  the course of this operation.
      * @throws \PHPCR\MergeException - if bestEffort is false and a failed merge result is encountered.
-     * @throws \PHPCR\InvalidItemStateException - if this session (not necessarily the node at absPath) has pending unsaved changes.
-     * @throws \PHPCR\NoSuchWorkspaceException - if srcWorkspace does not exist.
-     * @throws \PHPCR\AccessDeniedException - if the current session does not have sufficient rights to perform the operation.
-     * @throws \PHPCR\Lock\LockException - if a lock prevents the merge.
-     * @throws \PHPCR\Version\VersionException - if the specified node is not an nt:activity node.
+     * @throws \PHPCR\InvalidItemStateException if this session (not necessarily the node at absPath) has
+     *                                          pending unsaved changes.
+     * @throws \PHPCR\NoSuchWorkspaceException if srcWorkspace does not exist.
+     * @throws \PHPCR\AccessDeniedException if the current session does not have sufficient rights to
+     *                                      perform the operation.
+     * @throws \PHPCR\Lock\LockException if a lock prevents the merge.
+     * @throws \PHPCR\Version\VersionException if the specified node is not an nt:activity node.
      * @throws \PHPCR\UnsupportedRepositoryOperationException if this operation is not supported by this implementation.
-     * @throws \PHPCR\RepositoryException - if another error occurs.
+     * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
      */
     public function merge($source, $srcWorkspace = NULL, $bestEffort = NULL, $isShallow = FALSE);
@@ -417,10 +437,12 @@ interface VersionManagerInterface {
      * If successful, these changes are dispatched immediately, there is no need
      * to call save.
      *
-     * @param string $absPath an absolute path.
-     * @param \PHPCR\Version\VersionInterface $version a version referred to by the jcr:mergeFailed  property of the node at absPath.
+     * @param string $absPath The absolute path to a node the prvileges shall be fetched of.
+     * @param \PHPCR\Version\VersionInterface $version a version referred to by the jcr:mergeFailed  property
+     *                                                 of the node at absPath.
      * @return void
-     * @throws \PHPCR\Version\VersionException if the version specified is not among those referenced in this node's jcr:mergeFailed or if the node is currently checked-in.
+     * @throws \PHPCR\Version\VersionException if the version specified is not among those referenced in this
+     *                                         node's jcr:mergeFailed or if the node is currently checked-in.
      * @throws \PHPCR\InvalidItemStateException if there are unsaved changes pending on the node at absPath.
      * @throws \PHPCR\UnsupportedRepositoryOperationException if the node at absPath is not versionable.
      * @throws \PHPCR\RepositoryException if another error occurs.
@@ -438,10 +460,13 @@ interface VersionManagerInterface {
      * If successful, these changes are dispatched immediately, there is no need
      * to call save.
      *
-     * @param string $absPath an absolute path
-     * @param \PHPCR\Version\VersionInterface $version a version referred to by the jcr:mergeFailed  property of the node at absPath.
+     * @param string $absPath The absolute path to a node the prvileges shall be fetched of.
+     * @param \PHPCR\Version\VersionInterface $version a version referred to by the jcr:mergeFailed  property of
+     *                                                 the node at absPath.
      * @return void
-     * @throws \PHPCR\Version\VersionException if the version specified is not among those referenced in the jcr:mergeFailed  property of the node at absPath  or if the node is currently checked-in.
+     * @throws \PHPCR\Version\VersionException if the version specified is not among those referenced in the
+     *                                         jcr:mergeFailed  property of the node at absPath  or if the node
+     *                                         is currently checked-in.
      * @throws \PHPCR\InvalidItemStateExceptionif there are unsaved changes pending on the node at absPath.
      * @throws \PHPCR\UnsupportedRepositoryOperationExceptionif the node at absPath is not versionable.
      * @throws \PHPCR\RepositoryException if another error occurs.
@@ -464,7 +489,7 @@ interface VersionManagerInterface {
      *
      * The changes are persisted immediately, a save is not required.
      *
-     * @param string $absPath an absolute path.
+     * @param string $absPath The absolute path to a node the prvileges shall be fetched of.
      * @param \PHPCR\Version\VersionInterface $baseline a Version
      * @return \PHPCR\NodeInterface a new nt:configuration node
      * @throws \PHPCR\UnsupportedRepositoryOperationException if N is not versionable.
@@ -508,7 +533,7 @@ interface VersionManagerInterface {
      *
      * The new node is dispatched immediately and does not require a save.
      *
-     * @param string $title a String
+     * @param string $title The tilte of the activity to be created.
      * @return \PHPCR\NodeInterface the new activity Node.
      * @throws \PHPCR\UnsupportedRepositoryOperationException if the repository does not support activities.
      * @throws \PHPCR\RepositoryException if another error occurs.
