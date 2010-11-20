@@ -138,7 +138,7 @@ interface AccessControlManagerInterface {
      * the node at absPath.
      *
      * @param string $absPath - an absolute path.
-     * @return Iterator over the applicable access control policies implementing SeekableIterator and Countable. Values are the AccessControlPolicyInterface instances. Keys have no meaning. Returns an empty iterator if no policies are applicable.
+     * @return Iterator over the applicable access control policies implementing <b>SeekableIterator</b> and <b>Countable</b>. Values are the AccessControlPolicyInterface instances. Keys have no meaning. Returns an empty iterator if no policies are applicable.
      * @throws \PHPCR\PathNotFoundException if no node at absPath exists or the session does not have sufficent access to retrieve a node at that location.
      * @throws \PHPCR\AccessDeniedException if the session lacks READ_ACCESS_CONTROL privilege for the absPath node.
      * @throws \PHPCR\RepositoryException if another error occurs.

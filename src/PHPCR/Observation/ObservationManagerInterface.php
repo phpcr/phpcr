@@ -107,7 +107,7 @@ interface ObservationManagerInterface {
     /**
      * Returns all event listeners that have been registered through this session. If no listeners have been registered, an empty iterator is returned.
      *
-     * @return Iterator implementing SeekableIterator and Countable. Values are the EventListenerInterface instances. Keys have no meaning.
+     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>. Values are the EventListenerInterface instances. Keys have no meaning.
      * @throws \PHPCR\RepositoryException if an error occurs
      * @api
      */

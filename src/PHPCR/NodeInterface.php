@@ -285,7 +285,7 @@ interface NodeInterface extends \PHPCR\ItemInterface {
      * The same reacquisition semantics apply as with getNode($relPath).
      *
      * @param string|array $filter a name pattern or an array of globbing strings.
-     * @return Iterator over all (matching) child Nodes implementing SeekableIterator and Countable. Keys are the Node names, values the corresponding NodeInterface instances.
+     * @return Iterator over all (matching) child Nodes implementing <b>SeekableIterator</b> and <b>Countable</b>. Keys are the Node names, values the corresponding NodeInterface instances.
      * @throws \PHPCR\RepositoryException If an unexpected error occurs.
      * @api
      */
@@ -365,7 +365,7 @@ interface NodeInterface extends \PHPCR\ItemInterface {
      * The same reacquisition semantics apply as with getNode(String).
      *
      * @param string|array $filter a name pattern
-     * @return Iterator implementing SeekableIterator and Countable. Keys are the property names, values the corresponding PropertyInterface instances.
+     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>. Keys are the property names, values the corresponding PropertyInterface instances.
      * @throws \PHPCR\RepositoryException If an unexpected error occurs.
      * @api
      */
@@ -377,7 +377,7 @@ interface NodeInterface extends \PHPCR\ItemInterface {
      * See NodeInterface::getProperties for a full documentation
      *
      * @param string|array $filter a name pattern
-     * @return Iterator implementing SeekableIterator and Countable. Keys are the property names, values the corresponding property value (or array of values in case of multi-valued properties)
+     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>. Keys are the property names, values the corresponding property value (or array of values in case of multi-valued properties)
      * @throws \PHPCR\RepositoryException If an unexpected error occurs.
      * @api
      */
@@ -448,7 +448,7 @@ interface NodeInterface extends \PHPCR\ItemInterface {
      *
      * @param string $name Name of referring REFERENCE properties to be returned; if null then all
      *                     referring REFERENCEs are returned.
-     * @return Iterator implementing SeekableIterator and Countable. Keys are the property names, values the
+     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>. Keys are the property names, values the
      *                  corresponding PropertyInterface instances.
      * @throws \PHPCR\RepositoryException if an error occurs
      * @api
@@ -476,7 +476,7 @@ interface NodeInterface extends \PHPCR\ItemInterface {
      * iterator is returned.
      *
      * @param string $name name of referring WEAKREFERENCE properties to be returned; if null then all referring WEAKREFERENCEs are returned
-     * @return Iterator implementing SeekableIterator and Countable. Keys are the property names, values the corresponding PropertyInterface instances.
+     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>. Keys are the property names, values the corresponding PropertyInterface instances.
      * @throws \PHPCR\RepositoryException if an error occurs
      * @api
      */
@@ -737,7 +737,7 @@ interface NodeInterface extends \PHPCR\ItemInterface {
      *
      * If this node is not shared then the returned iterator contains only this node.
      *
-     * @return Iterator implementing SeekableIterator and Countable. Keys are the Node names, values the corresponding
+     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>. Keys are the Node names, values the corresponding
      *                  NodeInterface instances.
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api

@@ -402,7 +402,7 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface 
      * Returns all subtypes of this node type in the node type inheritance
      * hierarchy.
      *
-     * @return Iterator implementing SeekableIterator and Countable.
+     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>.
      *                  Keys are the node type names, values the corresponding NodeTypeInterface instances.
      *
      * @see getDeclaredSubtypes()
@@ -415,7 +415,7 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface 
      * hierarchy, that is, those which actually declared this node type in their
      * list of supertypes.
      *
-     * @return Iterator implementing SeekableIterator and Countable.
+     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>.
      *                  Keys are the node type names, values the corresponding NodeTypeInterface instances.
      *
      * @see getSubtypes()

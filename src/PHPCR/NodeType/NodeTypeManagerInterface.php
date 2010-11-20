@@ -71,7 +71,7 @@ interface NodeTypeManagerInterface {
     /**
      * Returns an iterator over all available node types (primary and mixin).
      *
-     * @return Iterator implementing SeekableIterator and Countable. Keys are the node type names,
+     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>. Keys are the node type names,
      *                  values the corresponding NodeTypeInterface instances.
      *
      * @throws \PHPCR\RepositoryException if an error occurs.
@@ -82,7 +82,7 @@ interface NodeTypeManagerInterface {
     /**
      * Returns an iterator over all available primary node types.
      *
-     * @return Iterator implementing SeekableIterator and Countable. Keys are the node type names,
+     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>. Keys are the node type names,
      *                  values the corresponding NodeTypeInterface instances.
      *
      * @throws \PHPCR\RepositoryException if an error occurs.
@@ -95,7 +95,7 @@ interface NodeTypeManagerInterface {
      *
      * If none are available, an empty iterator is returned.
      *
-     * @return Iterator implementing SeekableIterator and Countable. Keys are the node type names,
+     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>. Keys are the node type names,
      *                  values the corresponding NodeTypeInterface instances.
      *
      * @throws \PHPCR\RepositoryException if an error occurs.
@@ -179,7 +179,7 @@ interface NodeTypeManagerInterface {
      *
      * @param array $definitions an array of NodeTypeDefinitions
      * @param boolean $allowUpdate Switch to allow the update a registered node type.
-     * @return Iterator over the registered node types implementing SeekableIterator and Countable.
+     * @return Iterator over the registered node types implementing <b>SeekableIterator</b> and <b>Countable</b>.
      *                  Keys are the node type names, values the corresponding NodeTypeInterface instances.
      *
      * @throws \PHPCR\InvalidNodeTypeDefinitionException if a NodeTypeDefinition within the Collection is

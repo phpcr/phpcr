@@ -349,7 +349,7 @@ interface VersionManagerInterface {
      * @param string $srcWorkspace the name of the source workspace (optional if $source is a Node).
      * @param boolean $bestEffort a boolean (optional if $source is a Node)
      * @param boolean $isShallow a boolean (optional)
-     * @return Iterator implementing SeekableIterator and Countable. Keys are the Node names, values the corresponding NodeInterface instances that received a merge result of "fail" in the course of this operation.
+     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>. Keys are the Node names, values the corresponding NodeInterface instances that received a merge result of "fail" in the course of this operation.
      * @throws \PHPCR\MergeException - if bestEffort is false and a failed merge result is encountered.
      * @throws \PHPCR\InvalidItemStateException - if this session (not necessarily the node at absPath) has pending unsaved changes.
      * @throws \PHPCR\NoSuchWorkspaceException - if srcWorkspace does not exist.
