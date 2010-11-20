@@ -1,28 +1,36 @@
 <?php
-declare(ENCODING = 'utf-8');
-namespace PHPCR\Util;
+/**
+ * Abstract implementation of the ItemVisitorInterface;
+ *
+ * This file was ported from the Java JCR API to PHP by
+ * Karsten Dambekalns <karsten@typo3.org> for the FLOW3 project.
+ *
+ * It is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or (at your
+ * option) any later version. Alternatively, you may use the Simplified
+ * BSD License.
+ *
+ * This script is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHAN-
+ * TABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with the script.
+ * If not, see {@link http://www.gnu.org/licenses/lgpl.html}.
+ *
+ * The TYPO3 project - inspiring people to share!
+ *
+ * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
+ * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
+ *
+ * @package phpcr
+ * @subpackage interfaces
+ */
 
-/*                                                                        *
- * This file was ported from the Java JCR API to PHP by                   *
- * Karsten Dambekalns <karsten@typo3.org> for the FLOW3 project.          *
- *                                                                        *
- * It is free software; you can redistribute it and/or modify it under    *
- * the terms of the GNU Lesser General Public License as published by the *
- * Free Software Foundation, either version 3 of the License, or (at your *
- * option) any later version. Alternatively, you may use the Simplified   *
- * BSD License.                                                           *
- *                                                                        *
- * This script is distributed in the hope that it will be useful, but     *
- * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHAN-    *
- * TABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser       *
- * General Public License for more details.                               *
- *                                                                        *
- * You should have received a copy of the GNU Lesser General Public       *
- * License along with the script.                                         *
- * If not, see http://www.gnu.org/licenses/lgpl.html                      *
- *                                                                        *
- * The TYPO3 project - inspiring people to share!                         *
- *                                                                        */
+declare(ENCODING = 'utf-8');
+namespace PHPCR;
 
 /**
  * An implementation of ItemVisitor.
@@ -34,8 +42,8 @@ namespace PHPCR\Util;
  * Tree traversal is done observing the left-to-right order of child Items if
  * such an order is supported and exists.
  *
- * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
- * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
+ * @package phpcr
+ * @subpackage interfaces
  * @api
  */
 abstract class TraversingItemVisitor implements \PHPCR\ItemVisitorInterface {
@@ -76,8 +84,12 @@ abstract class TraversingItemVisitor implements \PHPCR\ItemVisitorInterface {
     /**
      * Constructs a new instance of this class.
      *
-     * @param boolean $breadthFirst if $breadthFirst is TRUE then traversal is done in a breadth-first manner; otherwise it is done in a depth-first manner (which is the default behavior).
-     * @param integer $maxLevel the 0-based level up to which the hierarchy should be traversed (if it's -1, the hierarchy will be traversed until there are no more children of the current item).
+     * @param boolean $breadthFirst if $breadthFirst is TRUE then traversal is done in a breadth-first manner;
+     *                              otherwise it is done in a depth-first manner (which is the default behavior).
+     * @param integer $maxLevel the 0-based level up to which the hierarchy should be traversed
+     *                          (if it's -1, the hierarchy will be traversed until there are no more children
+     *                          of the current item).
+     *
      * @author Karsten Dambekalns <karsten@typo3.org>
      * @author Day Management AG, Switzerland
      * @api
@@ -99,6 +111,7 @@ abstract class TraversingItemVisitor implements \PHPCR\ItemVisitorInterface {
      * @param \PHPCR\ItemInterface $item the Item that is accepting this visitor.
      * @param integer $level hierarchy level of this node (the root node starts at level 0).
      * @return void
+     *
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
      */
@@ -117,6 +130,7 @@ abstract class TraversingItemVisitor implements \PHPCR\ItemVisitorInterface {
 
     /**
      * Called when the Visitor is passed to an Item.
+     *
      * It calls TraversingItemVisitor.entering(ItemInterface, int) followed by
      * TraversingItemVisitor.leaving(ItemInterface, int). Implement these
      * abstract methods to specify behavior on 'arrival at' and 'after leaving'
@@ -126,7 +140,9 @@ abstract class TraversingItemVisitor implements \PHPCR\ItemVisitorInterface {
      *
      * @param \PHPCR\ItemInterface $item the Node or Property that is accepting this visitor.
      * @return void
+     *
      * @throws \PHPCR\RepositoryException if an error occurs.
+     *
      * @author Karsten Dambekalns <karsten@typo3.org>
      * @author Day Management AG, Switzerland
      * @api
