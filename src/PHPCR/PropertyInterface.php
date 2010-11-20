@@ -1,36 +1,46 @@
 <?php
+/**
+ * Interface to describe the contract to implement an item property.
+ *
+ * This file was ported from the Java JCR API to PHP by
+ * Karsten Dambekalns <karsten@typo3.org> for the FLOW3 project.
+ *
+ * It is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or (at your
+ * option) any later version. Alternatively, you may use the Simplified
+ * BSD License.
+ *
+ * This script is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHAN-
+ * TABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with the script.
+ * If not, see {@link http://www.gnu.org/licenses/lgpl.html}.
+ *
+ * The TYPO3 project - inspiring people to share!
+ *
+ * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
+ * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
+ *
+ * @package phpcr
+ * @subpackage interfaces
+ */
+
 declare(ENCODING = 'utf-8');
 namespace PHPCR;
 
-/*                                                                        *
- * This file was ported from the Java JCR API to PHP by                   *
- * Karsten Dambekalns <karsten@typo3.org> for the FLOW3 project.          *
- *                                                                        *
- * It is free software; you can redistribute it and/or modify it under    *
- * the terms of the GNU Lesser General Public License as published by the *
- * Free Software Foundation, either version 3 of the License, or (at your *
- * option) any later version. Alternatively, you may use the Simplified   *
- * BSD License.                                                           *
- *                                                                        *
- * This script is distributed in the hope that it will be useful, but     *
- * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHAN-    *
- * TABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser       *
- * General Public License for more details.                               *
- *                                                                        *
- * You should have received a copy of the GNU Lesser General Public       *
- * License along with the script.                                         *
- * If not, see http://www.gnu.org/licenses/lgpl.html                      *
- *                                                                        *
- * The TYPO3 project - inspiring people to share!                         *
- *                                                                        */
-
 /**
+ * The property interface describes how an item property shall look like.
+ *
  * A Property object represents the smallest granularity of content storage.
  * It has a single parent node and no children. A property consists of a name
  * and a value, or in the case of multi-value properties, a set of values all
  * of the same type.
  *
- * PHPCR Note:
+ * <<b>PHPCR Note:</b>
  * We removed the Value interface and consequently the getValue() and
  * getValues() methods. If you just want the property value in its native type,
  * use getNativeValue, or just NodeInterface::getPropertyValue.
@@ -39,12 +49,15 @@ namespace PHPCR;
  * PropertyInterface::setValue completely replaces the
  * ValueFactory::createValue method.
  *
- *
- * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
- * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
+ * @package phpcr
+ * @subpackage interfaces
  * @api
  */
 interface PropertyInterface extends \PHPCR\ItemInterface {
+
+    /**#@+
+     * @var string
+     */
 
     /**
      * A constant for the property name jcr:primaryType (in extended form),
@@ -63,7 +76,8 @@ interface PropertyInterface extends \PHPCR\ItemInterface {
     /**
      * A constant for the property name jcr:content (in extended form),
      * declared in node type nt:linkedFile.
-     * Note, jcr:content is also the name of a child node declared in nt:file.
+     *
+     * <b>Note:</b> jcr:content is also the name of a child node declared in nt:file.
      * @api
      */
     const JCR_CONTENT = "{http://www.jcp.org/jcr/1.0}content";
@@ -460,23 +474,26 @@ interface PropertyInterface extends \PHPCR\ItemInterface {
      */
     const JCR_STATEMENT = "{http://www.jcp.org/jcr/1.0}statement";
 
+    /**#@-*/
+
     /**
-     * Sets the value of this property to value. If this property's property
-     * type is not constrained by the node type of its parent node, then the
-     * property type may be changed. If the property type is constrained, then a
-     * best-effort conversion is attempted.
+     * Sets the value of this property to value.
+     *
+     * If this property's property ype is not constrained by the node type of its
+     * parent node, then the property type may be changed. If the property type is
+     * constrained, then a best-effort conversion is attempted.
      *
      * This method is a session-write and therefore requires a <code>save</code>
      * to dispatch the change.
      *
      * If no type is given, the value is stored as is, i.e. it's type is
      * preserved. Exceptions are:
-     * * if the given $value is a Node object, it's Identifier is fetched and
+     * - if the given $value is a Node object, it's Identifier is fetched and
      *   the type of this property is set to REFERENCE
-     * * if the given $value is a Node object, it's Identifier is fetched and
+     * - if the given $value is a Node object, it's Identifier is fetched and
      *   the type of this property is set to WEAKREFERENCE if $weak is set to
      *   TRUE
-     * * if the given $value is a DateTime object, the property type will be
+     * - if the given $value is a DateTime object, the property type will be
      *   set to DATE.
      *
      * For Node objects as value:
@@ -488,20 +505,28 @@ interface PropertyInterface extends \PHPCR\ItemInterface {
      * If this property is not multi-valued then a ValueFormatException is
      * thrown immediately.
      *
-     * PHPCR Note: The Java API defines this method with multiple differing signatures.
-     * PHPCR Note: Because we removed the Value interface, this method replaces
+     * <b>PHPCR Note:</b> The Java API defines this method with multiple differing signatures.
+     * <b>PHPCR Note:</b> Because we removed the Value interface, this method replaces
      * ValueFactory::createValue.
      *
      * @param mixed $value The value to set
      * @param integer $type Type request for the property, optional. Must be a constant from PropertyType
-     * @param boolean $weak When a Node is given as $value this can be given as TRUE to create a WEAKREFERENCE, by default a REFERENCE is created
+     * @param boolean $weak When a Node is given as $value this can be given as TRUE to create a WEAKREFERENCE,
+     *                      by default a REFERENCE is created
      * @return void
-     * @throws \PHPCR\ValueFormatException if the type or format of the specified value is incompatible with the type of this property.
-     * @throws \PHPCR\Version\VersionException if this property belongs to a node that is read-only due to a checked-in node and this implementation performs this validation immediately.
-     * @throws \PHPCR\Lock\LockException if a lock prevents the setting of the value and this implementation performs this validation immediately.
-     * @throws \PHPCR\ConstraintViolationException if the change would violate a node-type or other constraint and this implementation performs this validation immediately.
+     *
+     * @throws \PHPCR\ValueFormatException if the type or format of the specified value is incompatible with the type
+     *                                     of this property.
+     * @throws \PHPCR\Version\VersionException if this property belongs to a node that is read-only due to a checked-in
+     *                                         node and this implementation performs this validation immediately.
+     * @throws \PHPCR\Lock\LockException if a lock prevents the setting of the value and this implementation performs
+     *                                   this validation immediately.
+     * @throws \PHPCR\ConstraintViolationException if the change would violate a node-type or other constraint and
+     *                                             this implementation performs this validation immediately.
      * @throws \PHPCR\RepositoryException if another error occurs.
-     * @throws \IllegalArgumentException if the specified DateTime value cannot be expressed in the ISO 8601-based format defined in the JCR 2.0 specification and the implementation does not support dates incompatible with that format.
+     * @throws \IllegalArgumentException if the specified DateTime value cannot be expressed in the ISO 8601-based
+     *                                   format defined in the JCR 2.0 specification and the implementation does not
+     *                                   support dates incompatible with that format.
      * @api
      */
     public function setValue($value, $type = NULL, $weak = FALSE);
@@ -509,7 +534,7 @@ interface PropertyInterface extends \PHPCR\ItemInterface {
     /**
      * Get the value in format default for the PropertyType of this property.
      *
-     * PHPCR Note: This is an additional method not found in JSR-283
+     * <b>PHPCR Note:</b> This is an additional method not found in JSR-283
      *
      * @return mixed value of this property, or array in case of multi-value
      */
@@ -518,7 +543,9 @@ interface PropertyInterface extends \PHPCR\ItemInterface {
     /**
      * Returns a String representation of the value of this property.
      *
-     * @return string A string representation of the value of this property, or an array of string for multi-valued properties.
+     * @return string A string representation of the value of this property, or an array of string for multi-valued
+     *                properties.
+     *
      * @throws \PHPCR\ValueFormatException if conversion to a String is not possible
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
@@ -531,7 +558,9 @@ interface PropertyInterface extends \PHPCR\ItemInterface {
      * The Binary object in turn provides methods to access the binary data
      * itself. Uses the standard conversion to binary (see JCR specification).
      *
-     * @return \PHPCR\BinaryInterface A Binary representation of the value of this property, or an array of binary for multi-valued properties.
+     * @return \PHPCR\BinaryInterface A Binary representation of the value of this property, or an array of binary for
+     *                                multi-valued properties.
+     *
      * @throws \PHPCR\RepositoryException if another error occurs
      * @api
      */
@@ -540,7 +569,9 @@ interface PropertyInterface extends \PHPCR\ItemInterface {
     /**
      * Returns an integer representation of the value of this property.
      *
-     * @return integer An integer representation of the value of this property, or an array of integer for multi-valued properties.
+     * @return integer An integer representation of the value of this property, or an array of integer for multi-valued
+     *                 properties.
+     *
      * @throws \PHPCR\ValueFormatException if conversion to a long is not possible
      * @throws \PHPCR\RepositoryException if another error occurs
      * @api
@@ -551,6 +582,7 @@ interface PropertyInterface extends \PHPCR\ItemInterface {
      * Returns a float representation of the value of this property.
      *
      * @return float A float representation of the value of this property, or an array of float for multi-valued properties.
+     *
      * @throws \PHPCR\ValueFormatException if conversion to a double is not possible
      * @throws \PHPCR\RepositoryException if another error occurs
      * @api
@@ -561,6 +593,7 @@ interface PropertyInterface extends \PHPCR\ItemInterface {
      * Returns a double representation of this value (a BigDecimal in Java).
      *
      * @return float A float representation of the value of this property, or an array of float for multi-valued properties.
+     *
      * @throws \PHPCR\ValueFormatException if conversion to a BigDecimal is not possible
      * @throws \PHPCR\RepositoryException if another error occurs
      * @api
@@ -573,7 +606,9 @@ interface PropertyInterface extends \PHPCR\ItemInterface {
      * The object returned is a copy of the stored value, so changes to it are
      * not reflected in internal storage.
      *
-     * @return \DateTime A date representation of the value of this property, or an array of DateTime for multi-valued properties.
+     * @return \DateTime A date representation of the value of this property, or an array of DateTime for
+     *                   multi-valued properties.
+     *
      * @throws \PHPCR\ValueFormatException if conversion to a string is not possible
      * @throws \PHPCR\RepositoryException if another error occurs
      * @api
@@ -589,7 +624,9 @@ interface PropertyInterface extends \PHPCR\ItemInterface {
      * PHP usually treats everything not null|0|false as true. The PHPCR API
      * follows the JCR specification here in order to be consistent.
      *
-     * @return boolean A boolean representation of the value of this property, or an array of boolean for multi-valued properties.
+     * @return boolean A boolean representation of the value of this property, or an array of boolean for
+     *                 multi-valued properties.
+     *
      * @throws \PHPCR\ValueFormatException if conversion to a boolean is not possible
      * @throws \PHPCR\RepositoryException if another error occurs
      * @api
@@ -597,6 +634,8 @@ interface PropertyInterface extends \PHPCR\ItemInterface {
     public function getBoolean();
 
     /**
+     * Gets the node the property refers to by its type.
+     *
      * If this property is of type REFERENCE, WEAKREFERENCE or PATH (or
      * convertible to one of these types) this method returns the Node to
      * which this property refers.
@@ -606,14 +645,24 @@ interface PropertyInterface extends \PHPCR\ItemInterface {
      * and "foo" to a sibling node of this property.
      *
      * @return \PHPCR\NodeInterface the referenced Node, or an array of Nodes for multi-valued properties.
-     * @throws \PHPCR\ValueFormatException if this property cannot be converted to a referring type (REFERENCE, WEAKREFERENCE or PATH) or if this property is a referring type but is currently part of the frozen state of a version in version storage.
-     * @throws \PHPCR\ItemNotFoundException If this property is of type PATH or WEAKREFERENCE and no target node accessible by the current Session exists in this workspace. Note that this applies even if the property is a PATH and a property exists at the specified location. To dereference to a target property (as opposed to a target node), the method Property.getProperty is used.
+     *
+     * @throws \PHPCR\ValueFormatException if this property cannot be converted to a referring type
+     *                                     (REFERENCE, WEAKREFERENCE or PATH) or if this property is a referring
+     *                                     type but is currently part of the frozen state of a version in version
+     *                                     storage.
+     * @throws \PHPCR\ItemNotFoundException If this property is of type PATH or WEAKREFERENCE and no target node
+     *                                      accessible by the current Session exists in this workspace. Note that this
+     *                                      applies even if the property is a PATH and a property exists at the
+     *                                      specified location. To dereference to a target property (as opposed to a
+     *                                      target node), the method Property.getProperty is used.
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
      */
     public function getNode();
 
     /**
+     * Gets the property the property refers to by its type.
+     *
      * If this property is of type PATH (or convertible to this type) this
      * method returns the Property to which this property refers.
      * If this property contains a relative path, it is interpreted relative
@@ -626,8 +675,14 @@ interface PropertyInterface extends \PHPCR\ItemInterface {
      * "../d" then this method will return the property at /a/d if such exists.
      *
      * @return \PHPCR\PropertyInterface the referenced property, or an array of properties for multi-valued properties.
-     * @throws \PHPCR\ValueFormatException if this property cannot be converted to a PATH or if this property is a referring type but is currently part of the frozen state of a version in version storage.
-     * @throws \PHPCR\ItemNotFoundException If no property accessible by the current Session exists in this workspace at the specified path. Note that this applies even if a node exists at the specified location. To dereference to a target node, the method Property.getNode is used.
+     *
+     * @throws \PHPCR\ValueFormatException if this property cannot be converted to a PATH or if this property is a
+     *                                     referring type but is currently part of the frozen state of a version in
+     *                                     version storage.
+     * @throws \PHPCR\ItemNotFoundException If no property accessible by the current Session exists in this workspace
+     *                                      at the specified path. Note that this applies even if a node exists at
+     *                                      the specified location. To dereference to a target node, the method
+     *                                      Property.getNode is used.
      * @throws \PHPCR\RepositoryException if another error occurs
      * @api
      */
@@ -656,6 +711,7 @@ interface PropertyInterface extends \PHPCR\ItemInterface {
      * getLength().
      *
      * @return array an array of lengths (integers)
+     *
      * @throws \PHPCR\ValueFormatException if this property is single-valued.
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
@@ -673,24 +729,27 @@ interface PropertyInterface extends \PHPCR\ItemInterface {
      * and is not covered by this specification.
      *
      * @return \PHPCR\NodeType\PropertyDefinitionInterface a PropertyDefinition object.
+     *
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
      */
     public function getDefinition();
 
     /**
-     * Returns the type of this Property. One of:
-     * * PropertyType.STRING
-     * * PropertyType.BINARY
-     * * PropertyType.DATE
-     * * PropertyType.DOUBLE
-     * * PropertyType.LONG
-     * * PropertyType.BOOLEAN
-     * * PropertyType.NAME
-     * * PropertyType.PATH
-     * * PropertyType.REFERENCE
-     * * PropertyType.WEAKREFERENCE
-     * * PropertyType.URI
+     * Returns the type of this Property.
+     *
+     * Following property types are available:
+     * - PropertyType.STRING
+     * - PropertyType.BINARY
+     * - PropertyType.DATE
+     * - PropertyType.DOUBLE
+     * - PropertyType.LONG
+     * - PropertyType.BOOLEAN
+     * - PropertyType.NAME
+     * - PropertyType.PATH
+     * - PropertyType.REFERENCE
+     * - PropertyType.WEAKREFERENCE
+     * - PropertyType.URI
      *
      * The type returned is that which was set at property creation. Note that
      * for some property p, the type returned by p.getType() will differ from
@@ -698,17 +757,21 @@ interface PropertyInterface extends \PHPCR\ItemInterface {
      * where the latter returns UNDEFINED. The type of a property instance is
      * never UNDEFINED (it must always have some actual type).
      *
-     * @return integer an int
+     * @return integer The numerical representation of a property type.
+     *
      * @throws \PHPCR\RepositoryException if an error occurs
      * @api
      */
     public function getType();
 
     /**
+     * Determines if the current property is multi-valued.
+     *
      * Returns TRUE if this property is multi-valued and FALSE if this property
      * is single-valued.
      *
      * @return boolean TRUE if this property is multi-valued; FALSE otherwise.
+     *
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
      */

@@ -1,45 +1,57 @@
 <?php
-declare(ENCODING = 'utf-8');
-namespace PHPCR;
-
-/*                                                                        *
- * This file was ported from the Java JCR API to PHP by                   *
- * Karsten Dambekalns <karsten@typo3.org> for the FLOW3 project.          *
- *                                                                        *
- * It is free software; you can redistribute it and/or modify it under    *
- * the terms of the GNU Lesser General Public License as published by the *
- * Free Software Foundation, either version 3 of the License, or (at your *
- * option) any later version. Alternatively, you may use the Simplified   *
- * BSD License.                                                           *
- *                                                                        *
- * This script is distributed in the hope that it will be useful, but     *
- * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHAN-    *
- * TABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser       *
- * General Public License for more details.                               *
- *                                                                        *
- * You should have received a copy of the GNU Lesser General Public       *
- * License along with the script.                                         *
- * If not, see http://www.gnu.org/licenses/lgpl.html                      *
- *                                                                        *
- * The TYPO3 project - inspiring people to share!                         *
- *                                                                        */
-
 /**
- * The entry point into the content repository. The Repository object is
- * usually acquired through the RepositoryFactory.
+ * Interface to describe the contract to implement a JCR repository.
  *
- * PHPCR Note: This interface has been simplified:
- *  getDescriptor returns array on multivalue, single variable otherwise
- *  removed isSingleValueDescriptor
- *  removed getDescriptorValue and getDescriptorValues as ValueInterface
- *    has been dropped. Use getDescriptor to get the variables.
+ * This file was ported from the Java JCR API to PHP by
+ * Karsten Dambekalns <karsten@typo3.org> for the FLOW3 project.
  *
+ * It is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or (at your
+ * option) any later version. Alternatively, you may use the Simplified
+ * BSD License.
+ *
+ * This script is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHAN-
+ * TABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with the script.
+ * If not, see {@link http://www.gnu.org/licenses/lgpl.html}.
+ *
+ * The TYPO3 project - inspiring people to share!
  *
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
+ *
+ * @package phpcr
+ * @subpackage interfaces
+ */
+
+declare(ENCODING = 'utf-8');
+namespace PHPCR;
+
+/**
+ * The entry point into the content repository.
+ *
+ * The Repository object is usually acquired through the RepositoryFactory.
+ *
+ * <b>PHPCR Note:</b> This interface has been simplified:
+ *  - getDescriptor returns array on multivalue, single variable otherwise
+ *  - removed isSingleValueDescriptor
+ *  -removed getDescriptorValue and getDescriptorValues as ValueInterface has been dropped.
+ *   Use getDescriptor to get the variables.
+ *
+ * @package phpcr
+ * @subpackage interfaces
  * @api
  */
 interface RepositoryInterface {
+
+    /**#@+
+     * @var string
+     */
 
     /**
      * The descriptor key for the version of the specification
@@ -450,14 +462,16 @@ interface RepositoryInterface {
      */
     const QUERY_JOINS_INNER_OUTER = "query.joins.inner.outer";
 
+    /**#@-*/
+
     /**
-     * Authenticates the user using the supplied credentials. If workspaceName is recognized as the
-     * name of an existing workspace in the repository and authorization to access that workspace
-     * is granted, then a new Session object is returned. The format of the string workspaceName
-     * depends upon the implementation.
-     * If credentials is null, it is assumed that authentication is handled by a mechanism external
-     * to the repository itself and that the repository implementation exists within a context
-     * (for example, an application server) that allows it to handle authorization of the request
+     * Authenticates the user using the supplied credentials.
+     *
+     * If workspaceName is recognized as the name of an existing workspace in the repository and authorization
+     * to access that workspace is granted, then a new Session object is returned. The format of the string
+     * workspaceName depends upon the implementation. If credentials is null, it is assumed that authentication
+     * is handled by a mechanism external to the repository itself and that the repository implementation exists
+     * within a context (for example, an application server) that allows it to handle authorization of the request
      * for access to the specified workspace.
      *
      * If workspaceName is null, a default workspace is automatically selected by the repository
@@ -467,11 +481,12 @@ interface RepositoryInterface {
      * method Workspace.getAccessibleWorkspaceNames(), allowing the client to select from among
      * available "real" workspaces.
      *
-     * Note: The Java API defines this method with multiple differing signatures.
+     * <b>Note:</b> The Java API defines this method with multiple differing signatures.
      *
      * @param \PHPCR\CredentialsInterface $credentials The credentials of the user
      * @param string $workspaceName the name of a workspace
      * @return \PHPCR\SessionInterface a valid session for the user to access the repository
+     *
      * @throws \PHPCR\LoginException if authentication or authorization (for the specified workspace) fails
      * @throws \PHPCR\NoSuchWorkspacexception if the specified workspaceName is not recognized
      * @throws \PHPCR\RepositoryException if another error occurs
@@ -480,10 +495,10 @@ interface RepositoryInterface {
     public function login($credentials = NULL, $workspaceName = NULL);
 
     /**
-     * Returns a string array holding all descriptor keys available for this
-     * implementation, both the standard descriptors defined by the string
-     * constants in this interface and any implementation-specific descriptors.
-     * Used in conjunction with getDescriptor($key) to query information about
+     * Returns a string array holding all descriptor keys available for this implementation.
+     *
+     * Both, the standard descriptors defined by the string constants in this interface and any
+     * implementation-specific descriptors. Used in conjunction with getDescriptor($key) to query information about
      * this repository implementation.
      *
      * @return array a string array holding all descriptor keys
@@ -492,9 +507,10 @@ interface RepositoryInterface {
     public function getDescriptorKeys();
 
     /**
-     * Returns TRUE if $key is a standard descriptor
-     * defined by the string constants in this interface and FALSE if it is
-     * either a valid implementation-specific key or not a valid key.
+     * Determines if the given identifier is a standard descriptor.
+     *
+     * Returns TRUE if $key is a standard descriptor defined by the string constants in this interface and
+     * FALSE if it is either a valid implementation-specific key or not a valid key.
      *
      * @param string $key a descriptor key.
      * @return boolan whether $key is a standard descriptor.
