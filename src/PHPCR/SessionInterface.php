@@ -91,7 +91,7 @@ interface SessionInterface {
      */
     const ACTION_SET_PROPERTY = 'set_property';
 
-    /**#@-*.
+    /**#@-*/
 
     /**
      * Returns the Repository object through which this session was acquired.

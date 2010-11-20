@@ -101,7 +101,7 @@ final class SimpleCredentials implements \PHPCR\CredentialsInterface {
     /**
      * Stores an attribute in this credentials instance.
      *
-     * <b>Note:<b/>
+     * <b>Note:</b>
      * If no value is passed the attribute will be removed.
      *
      * @param string $name the name of the attribute
