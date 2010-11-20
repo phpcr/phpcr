@@ -1,53 +1,63 @@
 <?php
-declare(ENCODING = 'utf-8');
-namespace PHPCR\NodeType;
+/**
+ * Interface description of how to implement a property definition.
+ *
+ * This file was ported from the Java JCR API to PHP by
+ * Karsten Dambekalns <karsten@typo3.org> for the FLOW3 project.
+ *
+ * It is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or (at your
+ * option) any later version. Alternatively, you may use the Simplified
+ * BSD License.
+ *
+ * This script is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHAN-
+ * TABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with the script.
+ * If not, see {@link http://www.gnu.org/licenses/lgpl.html}.
+ *
+ * The TYPO3 project - inspiring people to share!
+ *
+ * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
+ * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
+ *
+ * @package phpcr
+ * @subpackage interfaces
+ */
 
-/*                                                                        *
- * This file was ported from the Java JCR API to PHP by                   *
- * Karsten Dambekalns <karsten@typo3.org> for the FLOW3 project.          *
- *                                                                        *
- * It is free software; you can redistribute it and/or modify it under    *
- * the terms of the GNU Lesser General Public License as published by the *
- * Free Software Foundation, either version 3 of the License, or (at your *
- * option) any later version. Alternatively, you may use the Simplified   *
- * BSD License.                                                           *
- *                                                                        *
- * This script is distributed in the hope that it will be useful, but     *
- * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHAN-    *
- * TABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser       *
- * General Public License for more details.                               *
- *                                                                        *
- * You should have received a copy of the GNU Lesser General Public       *
- * License along with the script.                                         *
- * If not, see http://www.gnu.org/licenses/lgpl.html                      *
- *                                                                        *
- * The TYPO3 project - inspiring people to share!                         *
- *                                                                        */
+declare(ENCODING = 'utf-8');
+namespace PHPCR;
 
 /**
  * A property definition. Used in node type definitions.
  *
- * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
- * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
+ * @package phpcr
+ * @subpackage interfaces
  * @api
  */
 interface PropertyDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInterface {
 
     /**
-     * Gets the required type of the property. One of:
-     *  PropertyType.STRING
-     *  PropertyType.DATE
-     *  PropertyType.BINARY
-     *  PropertyType.DOUBLE
-     *  PropertyType.DECIMAL
-     *  PropertyType.LONG
-     *  PropertyType.BOOLEAN
-     *  PropertyType.NAME
-     *  PropertyType.PATH
-     *  PropertyType.URI
-     *  PropertyType.REFERENCE
-     *  PropertyType.WEAKREFERENCE
-     *  PropertyType.UNDEFINED
+     * Gets the required type of the property.
+     *
+     * Possible property types of:
+     * - PropertyType.STRING
+     * - PropertyType.DATE
+     * - PropertyType.BINARY
+     * - PropertyType.DOUBLE
+     * - PropertyType.DECIMAL
+     * - PropertyType.LONG
+     * - PropertyType.BOOLEAN
+     * - PropertyType.NAME
+     * - PropertyType.PATH
+     * - PropertyType.URI
+     * - PropertyType.REFERENCE
+     * - PropertyType.WEAKREFERENCE
+     * - PropertyType.UNDEFINED
      *
      * PropertyType.UNDEFINED is returned if this property may be of any type.
      *
@@ -55,18 +65,20 @@ interface PropertyDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInte
      * PropertyDefinition object is actually a newly-created empty
      * PropertyDefinitionTemplate, then this method will return PropertyType.STRING.
      *
-     * @return integer an int constant member of PropertyType.
+     * @return integer An integer constant member of PropertyType.
      * @api
      */
     public function getRequiredType();
 
     /**
-     * Gets the array of constraint strings. Each string in the array specifies
-     * a constraint on the value of the property. The constraints are OR-ed
-     * together, meaning that in order to be valid, the value must meet at least
-     * one of the constraints. For example, a constraint array of ["constraint1",
-     * "constraint2", "constraint3"] has the interpretation: "the value of this
-     * property must meet at least one of constraint1, constraint2 or constraint3".
+     * Gets the array of constraint strings.
+     *
+     * Each string in the array specifies a constraint on the value of the property.
+     * The constraints are OR-ed together, meaning that in order to be valid, the
+     * value must meet at least one of the constraints. For example, a constraint
+     * array of ["constraint1", "constraint2", "constraint3"] has the interpretation:
+     * "the value of this property must meet at least one of constraint1, constraint2
+     * or constraint3".
      *
      * Reporting of value constraints is optional. An implementation may return
      * null, indicating that value constraint information is unavailable (though
@@ -82,22 +94,23 @@ interface PropertyDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInte
      * interpretations depending on the type of the property in question. The
      * following describes the value constraint syntax for each property type:
      *
-     * STRING and URI: The constraint string is a regular expression pattern. For
+     * <b>STRING</b> and <b>URI</b>: The constraint string is a regular expression pattern. For
      * example the regular expression ".*" means "any string, including the empty
      * string". Whereas a simple literal string (without any RE-specific meta-
      * characters) like "banana" matches only the string "banana".
      *
-     * PATH: The constraint string is a JCR path with an optional "*" character
+     * <b>PATH</b>: The constraint string is a JCR path with an optional "*" character
      * after the last "/" character. For example, possible constraint strings for
      * a property of type PATH include:
-     *  "/myapp:products/myapp:televisions"
-     *  "/myapp:products/myapp:televisions/"
-     *  "/myapp:products/*"
-     *  "myapp:products/myapp:televisions"
-     *  "../myapp:televisions"
-     *  "../myapp:televisions/*"
      *
-     *      * The following principles apply:
+     * - "/myapp:products/myapp:televisions"
+     * - "/myapp:products/myapp:televisions/"
+     * - "/myapp:products/*"
+     * - "myapp:products/myapp:televisions"
+     * - "../myapp:televisions"
+     * - "../myapp:televisions/*"
+     *
+     * The following principles apply:
      *  The "*" means "matches descendants" not "matches any subsequent path".
      *  For example, /a/* does not match /a/../c. The constraint must match the
      *  normalized path.
@@ -123,7 +136,7 @@ interface PropertyDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInte
      *  according to the current mapping upon the
      *  PropertyDefinition.getValueConstraints call.
      *
-     * NAME: The constraint string is a JCR name in prefix form. For example
+     * <b>NAME</b>: The constraint string is a JCR name in prefix form. For example
      * "myapp:products". No wildcards or other pattern matching are supported.
      * As with PATH properties, the string returned must reflect the namespace
      * mapping in the current Session. Constraint strings for NAME properties
@@ -131,7 +144,7 @@ interface PropertyDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInte
      * the prefix) and then be converted to prefix form according to the current
      * mapping.
      *
-     * REFERENCE and WEAKREFERENCE: The constraint string is a JCR name in prefix
+     * <b>REFERENCE</b> and <b>WEAKREFERENCE</b>: The constraint string is a JCR name in prefix
      * form. This name is interpreted as a node type name and the REFERENCE or
      * WEAKREFERENCE property is restricted to referring only to nodes that have
      * at least the indicated node type. For example, a constraint of "mytype:document"
@@ -145,7 +158,7 @@ interface PropertyDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInte
      * fully-qualified form (using the actual URI instead of the prefix) and then
      * be converted to prefix form according to the current mapping.
      *
-     * BOOLEAN: BOOLEAN properties will always report a value constraint
+     * <b>BOOLEAN</b>: BOOLEAN properties will always report a value constraint
      * consisting of an empty array (meaning no constraint). In implementations
      * that support node type registration any value constraint set on BOOLEAN is
      * ignored and discarded.
@@ -158,7 +171,7 @@ interface PropertyDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInte
      * (inclusive) while [,] means simply that any value will suffice, The meaning
      * of the min and max values themselves differ between types as follows:
      *
-     * BINARY: min and max specify the allowed size range of the binary value in bytes.
+     * <b>BINARY</b>: min and max specify the allowed size range of the binary value in bytes.
      * DATE: min and max are dates specifying the allowed date range. The date
      * strings must be in the ISO8601-compliant format: YYYY-MM-DDThh:mm:ss.sssTZD.
      * LONG, DOUBLE: min and max are numbers.
@@ -189,10 +202,11 @@ interface PropertyDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInte
     public function getValueConstraints();
 
     /**
-     * Gets the default value(s) of the property. These are the values that the
-     * property defined by this PropertyDefinition will be assigned if it is
-     * automatically created (that is, if ItemDefinition.isAutoCreated() returns
-     * true).
+     * Gets the default value(s) of the property.
+     *
+     * These are the values that the property defined by this PropertyDefinition
+     * will be assigned if it is automatically created (that is, if
+     * ItemDefinition.isAutoCreated() returns true).
      * This method returns an array of values. If the property is multi-
      * valued, then this array represents the full set of values that the property
      * will be assigned upon being auto-created. Note that this could be the empty
@@ -214,24 +228,25 @@ interface PropertyDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInte
      * PropertyDefinition object is actually a newly-created empty
      * PropertyDefinitionTemplate, then this method will return null.
      *
-     * @return array an array of php values.
+     * @return array An array of php values.
      * @api
      */
     public function getDefaultValues();
 
     /**
-     * Reports whether this property can have multiple values. Note that the i
-     * sMultiple flag is special in that a given node type may have two property
-     * definitions that are identical in every respect except for the their
-     * isMultiple status. For example, a node type can specify two string properties
-     * both called X, one of which is multi-valued and the other not. An example
-     * of such a node type is nt:unstructured.
+     * Reports whether this property can have multiple values.
+     *
+     * <b>Note</b> that the isMultiple flag is special in that a given node
+     * type may have two property definitions that are identical in every respect
+     * except for the their isMultiple status. For example, a node type can specify
+     * two string properties both called X, one of which is multi-valued and the other not.
+     * An example of such a node type is nt:unstructured.
      *
      * In implementations that support node type registration, if this
      * PropertyDefinition object is actually a newly-created empty
      * PropertyDefinitionTemplate, then this method will return false.
      *
-     * @return boolean a boolean
+     * @return boolean True, if this property may have multiple values, else false.
      * @api
      */
     public function isMultiple();
@@ -259,12 +274,14 @@ interface PropertyDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInte
      * comparison semantics defined in the specification document (see 3.6.5
      * Comparison of Values).
      *
-     * @return array a string array
+     * @return array List of query operators.
      * @api
      */
     public function getAvailableQueryOperators();
 
     /**
+     * Determines if this property is full-text searchable.
+     *
      * Returns TRUE if this property is full-text searchable,
      * meaning that its value is accessible through the full-text search
      * function within a query.
@@ -272,12 +289,14 @@ interface PropertyDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInte
      * This attribute only takes effect if the node type holding the
      * property definition has a queryable setting of TRUE.
      *
-     * @return boolean a boolean
+     * @return boolean True, if this property is full-text searchable, else false.
      * @api
      */
     public function isFullTextSearchable();
 
     /**
+     * Report this property is orderable by a query.
+     *
      * Returns TRUE if this property is query orderable,
      * meaning that query results may be ordered by this property
      * using the order-by clause of a query.
@@ -285,7 +304,7 @@ interface PropertyDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInte
      * This attribute only takes effect if the node type holding the
      * property definition has a queryable setting of TRUE.
      *
-     * @return boolean a boolean
+     * @return boolean True, if this property is query orderable, else false.
      * @api
      */
     public function isQueryOrderable();

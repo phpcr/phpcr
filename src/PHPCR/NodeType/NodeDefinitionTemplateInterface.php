@@ -1,28 +1,36 @@
 <?php
-declare(ENCODING = 'utf-8');
-namespace PHPCR\NodeType;
+/**
+ * Interface description of an implementation of a node template definition.
+ *
+ * This file was ported from the Java JCR API to PHP by
+ * Karsten Dambekalns <karsten@typo3.org> for the FLOW3 project.
+ *
+ * It is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or (at your
+ * option) any later version. Alternatively, you may use the Simplified
+ * BSD License.
+ *
+ * This script is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHAN-
+ * TABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with the script.
+ * If not, see {@link http://www.gnu.org/licenses/lgpl.html}.
+ *
+ * The TYPO3 project - inspiring people to share!
+ *
+ * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
+ * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
+ *
+ * @package phpcr
+ * @subpackage interfaces
+ */
 
-/*                                                                        *
- * This file was ported from the Java JCR API to PHP by                   *
- * Karsten Dambekalns <karsten@typo3.org> for the FLOW3 project.          *
- *                                                                        *
- * It is free software; you can redistribute it and/or modify it under    *
- * the terms of the GNU Lesser General Public License as published by the *
- * Free Software Foundation, either version 3 of the License, or (at your *
- * option) any later version. Alternatively, you may use the Simplified   *
- * BSD License.                                                           *
- *                                                                        *
- * This script is distributed in the hope that it will be useful, but     *
- * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHAN-    *
- * TABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser       *
- * General Public License for more details.                               *
- *                                                                        *
- * You should have received a copy of the GNU Lesser General Public       *
- * License along with the script.                                         *
- * If not, see http://www.gnu.org/licenses/lgpl.html                      *
- *                                                                        *
- * The TYPO3 project - inspiring people to share!                         *
- *                                                                        */
+declare(ENCODING = 'utf-8');
+namespace PHPCR;
 
 /**
  * The NodeDefinitionTemplate interface extends NodeDefinition with the addition
@@ -33,8 +41,8 @@ namespace PHPCR\NodeType;
  * default values assumed when a new empty NodeDefinitionTemplate is created (as
  * opposed to one extracted from an existing NodeType).
  *
- * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
- * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
+ * @package phpcr
+ * @subpackage interfaces
  * @api
  */
 interface NodeDefinitionTemplateInterface extends \PHPCR\NodeType\NodeDefinitionInterface {
@@ -42,7 +50,7 @@ interface NodeDefinitionTemplateInterface extends \PHPCR\NodeType\NodeDefinition
     /**
      * Sets the name of the node.
      *
-     * @param string $name a String.
+     * @param string $name The name of the node.
      * @return void
      * @api
      */
@@ -51,7 +59,7 @@ interface NodeDefinitionTemplateInterface extends \PHPCR\NodeType\NodeDefinition
     /**
      * Sets the auto-create status of the node.
      *
-     * @param boolean $autoCreated a boolean.
+     * @param boolean $autoCreated The status the autocreate attribute of the node shall have.
      * @return void
      * @api
      */
@@ -60,7 +68,7 @@ interface NodeDefinitionTemplateInterface extends \PHPCR\NodeType\NodeDefinition
     /**
      * Sets the mandatory status of the node.
      *
-     * @param boolean $mandatory a boolean.
+     * @param boolean $mandatory The status of the mandatory attribute.
      * @return void
      * @api
      */
@@ -69,7 +77,7 @@ interface NodeDefinitionTemplateInterface extends \PHPCR\NodeType\NodeDefinition
     /**
      * Sets the on-parent-version status of the node.
      *
-     * @param integer $opv an int constant member of OnParentVersionAction.
+     * @param integer $opv An integer constant member of OnParentVersionAction.
      * @return void
      * @api
      */
@@ -78,7 +86,7 @@ interface NodeDefinitionTemplateInterface extends \PHPCR\NodeType\NodeDefinition
     /**
      * Sets the protected status of the node.
      *
-     * @param boolean $protectedStatus a boolean.
+     * @param boolean $protectedStatus The status of the protected attribute.
      * @return void
      * @api
      */
@@ -87,16 +95,16 @@ interface NodeDefinitionTemplateInterface extends \PHPCR\NodeType\NodeDefinition
     /**
      * Sets the names of the required primary types of this node.
      *
-     * @param array $requiredPrimaryTypeNames a String array.
+     * @param array $requiredPrimaryTypeNames List of primary type names to be registered.
      * @return void
      * @api
      */
-    public function setRequiredPrimaryTypeNames(array $requiredPrimaryTypeNames);
+    public function setRequiredPrimaryTypeNames(Array $requiredPrimaryTypeNames);
 
     /**
      * Sets the name of the default primary type of this node.
      *
-     * @param string $defaultPrimaryTypeName a String.
+     * @param string $defaultPrimaryTypeName The name of a primary type name to be registered.
      * @return void
      * @api
      */
@@ -105,7 +113,7 @@ interface NodeDefinitionTemplateInterface extends \PHPCR\NodeType\NodeDefinition
     /**
      * Sets the same-name sibling status of this node.
      *
-     * @param boolean $allowSameNameSiblings a boolean.
+     * @param boolean $allowSameNameSiblings The status the same-name sibling attribute shel be set to.
      * @return void
      * @api
      */
