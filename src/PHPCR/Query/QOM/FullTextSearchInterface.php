@@ -1,28 +1,37 @@
 <?php
-declare(ENCODING = 'utf-8');
-namespace PHPCR\Query\QOM;
+/**
+ * Interface to describe the contract to implement a fulltext search class.
+ *
+ * This file was ported from the Java JCR API to PHP by
+ * Karsten Dambekalns <karsten@typo3.org> for the FLOW3 project.
+ *
+ * It is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or (at your
+ * option) any later version. Alternatively, you may use the Simplified
+ * BSD License.
+ *
+ * This script is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHAN-
+ * TABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with the script.
+ * If not, see {@link http://www.gnu.org/licenses/lgpl.html}.
+ *
+ * The TYPO3 project - inspiring people to share!
+ *
+ * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
+ * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
+ *
+ * @package phpcr
+ * @subpackage interfaces
+ */
 
-/*                                                                        *
- * This file was ported from the Java JCR API to PHP by                   *
- * Karsten Dambekalns <karsten@typo3.org> for the FLOW3 project.          *
- *                                                                        *
- * It is free software; you can redistribute it and/or modify it under    *
- * the terms of the GNU Lesser General Public License as published by the *
- * Free Software Foundation, either version 3 of the License, or (at your *
- * option) any later version. Alternatively, you may use the Simplified   *
- * BSD License.                                                           *
- *                                                                        *
- * This script is distributed in the hope that it will be useful, but     *
- * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHAN-    *
- * TABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser       *
- * General Public License for more details.                               *
- *                                                                        *
- * You should have received a copy of the GNU Lesser General Public       *
- * License along with the script.                                         *
- * If not, see http://www.gnu.org/licenses/lgpl.html                      *
- *                                                                        *
- * The TYPO3 project - inspiring people to share!                         *
- *                                                                        */
+
+declare(ENCODING = 'utf-8');
+namespace PHPCR;
 
 /**
  * Performs a full-text search.
@@ -50,24 +59,25 @@ namespace PHPCR\Query\QOM;
  * At minimum, an implementation must support the following
  * fullTextSearchExpression grammar:
  *
- *  fullTextSearchExpression ::= [-]term {whitespace [OR] whitespace [-]term}
- *  term ::= word | '"' word {whitespace word} '"'
- *  word ::= (A string containing no whitespace)
- *  whitespace ::= (A string of only whitespace)
+ * - fullTextSearchExpression ::= [-]term {whitespace [OR] whitespace [-]term}
+ * - term ::= word | '"' word {whitespace word} '"'
+ * - word ::= (A string containing no whitespace)
+ * - whitespace ::= (A string of only whitespace)
  *
  * A query satisfies a FullTextSearch constraint if the value (or values) of the
  * full-text indexed properties within the full-text search scope satisfy the
  * specified fullTextSearchExpression, evaluated as follows:
  *
- *  A term not preceded with "-" (minus sign) is satisfied only if the value contains that term.
- *  A term preceded with "-" (minus sign) is satisfied only if the value does not contain that term.
- *  Terms separated by whitespace are implicitly "ANDed".
- *  Terms separated by "OR" are "ORed".
- *  "AND" has higher precedence than "OR".
- *  Within a term, each double quote ("), "-" (minus sign), and "\" (backslash) must be escaped by a preceding "\" (backslash).
+ * - A term not preceded with "-" (minus sign) is satisfied only if the value contains that term.
+ * - A term preceded with "-" (minus sign) is satisfied only if the value does not contain that term.
+ * - Terms separated by whitespace are implicitly "ANDed".
+ * - Terms separated by "OR" are "ORed".
+ * - "AND" has higher precedence than "OR".
+ * - Within a term, each double quote ("), "-" (minus sign), and "\" (backslash) must be escaped by a
+ *   preceding "\" (backslash).
  *
- * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
- * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
+ * @package phpcr
+ * @subpackage interfaces
  * @api
  */
 interface FullTextSearchInterface extends \PHPCR\Query\QOM\ConstraintInterface {
@@ -83,7 +93,9 @@ interface FullTextSearchInterface extends \PHPCR\Query\QOM\ConstraintInterface {
     /**
      * Gets the name of the property.
      *
-     * @return string the property name if the full-text search scope is a property, otherwise null if the full-text search scope is the node (or node subgraph, in some implementations).
+     * @return string the property name if the full-text search scope is a property,
+     *                otherwise null if the full-text search scope is the node
+     *                (or node subgraph, in some implementations).
      * @api
      */
     public function getPropertyName();
