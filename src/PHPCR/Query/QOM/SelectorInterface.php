@@ -31,7 +31,7 @@
 
 
 declare(ENCODING = 'utf-8');
-namespace PHPCR;
+namespace PHPCR\Query\QOM;
 
 /**
  * Selects a subset of the nodes in the repository based on node type.

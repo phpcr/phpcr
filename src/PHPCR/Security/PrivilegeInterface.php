@@ -30,7 +30,7 @@
  */
 
 declare(ENCODING = 'utf-8');
-namespace PHPCR;
+namespace PHPCR\Security;
 
 /**
  * A privilege represents the capability of performing a particular set of

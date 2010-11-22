@@ -30,7 +30,7 @@
  */
 
 declare(ENCODING = 'utf-8');
-namespace PHPCR;
+namespace PHPCR\Version;
 
 /**
  * Exception thrown by Version.addSuccessor if an invalid version graph

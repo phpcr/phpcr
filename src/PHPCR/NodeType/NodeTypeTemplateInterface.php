@@ -30,7 +30,7 @@
  */
 
 declare(ENCODING = 'utf-8');
-namespace PHPCR;
+namespace PHPCR\NodeType;
 
 /**
  * The NodeTypeTemplate interface represents a simple container structure used

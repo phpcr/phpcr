@@ -30,7 +30,7 @@
  */
 
 declare(ENCODING = 'utf-8');
-namespace PHPCR;
+namespace PHPCR\Version;
 
 /**
  * Exception thrown by VersionHistory.addVersionLabel if moveLabel is set to

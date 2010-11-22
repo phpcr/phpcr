@@ -31,7 +31,7 @@
 
 
 declare(ENCODING = 'utf-8');
-namespace PHPCR;
+namespace PHPCR\Query\QOM;
 
 /**
  * Filters the set of node-tuples formed by evaluating the query's selectors and

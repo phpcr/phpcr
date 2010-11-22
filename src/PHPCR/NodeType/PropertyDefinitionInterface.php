@@ -30,7 +30,7 @@
  */
 
 declare(ENCODING = 'utf-8');
-namespace PHPCR;
+namespace PHPCR\NodeType;
 
 /**
  * A property definition. Used in node type definitions.

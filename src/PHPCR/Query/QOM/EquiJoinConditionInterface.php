@@ -31,7 +31,7 @@
 
 
 declare(ENCODING = 'utf-8');
-namespace PHPCR;
+namespace PHPCR\Query\QOM;
 
 /**
  * Tests whether the value of a property in a first selector is equal to the

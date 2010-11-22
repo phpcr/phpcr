@@ -31,7 +31,7 @@
 
 
 declare(ENCODING = 'utf-8');
-namespace PHPCR;
+namespace PHPCR\Query\QOM;
 
 /**
  * Tests whether the childSelector node is a child of the parentSelector node. A

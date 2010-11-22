@@ -30,7 +30,7 @@
  */
 
 declare(ENCODING = 'utf-8');
-namespace PHPCR;
+namespace PHPCR\NodeType;
 
 /**
  * A NodeType object represents a "live" node type that is registered in the repository.

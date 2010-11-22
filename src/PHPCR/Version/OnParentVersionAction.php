@@ -30,7 +30,7 @@
  */
 
 declare(ENCODING = 'utf-8');
-namespace PHPCR;
+namespace PHPCR\Version;
 
 /**
  * The possible actions specified by the onParentVersion attribute in a

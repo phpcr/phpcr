@@ -30,7 +30,7 @@
  */
 
 declare(ENCODING = 'utf-8');
-namespace PHPCR;
+namespace PHPCR\Retention;
 
 /**
  * Hold represents a hold that can be applied to an existing node in order to

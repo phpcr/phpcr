@@ -30,7 +30,7 @@
  */
 
 declare(ENCODING = 'utf-8');
-namespace PHPCR;
+namespace PHPCR\NodeType;
 
 /**
  * Exception thrown when an action would violate a constraint on repository structure.

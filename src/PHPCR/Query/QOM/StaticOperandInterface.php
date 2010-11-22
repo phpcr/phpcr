@@ -31,7 +31,7 @@
 
 
 declare(ENCODING = 'utf-8');
-namespace PHPCR;
+namespace PHPCR\Query\QOM;
 
 /**
  * An operand whose value can be determined from static analysis of the query,

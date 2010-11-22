@@ -30,7 +30,7 @@
  */
 
 declare(ENCODING = 'utf-8');
-namespace PHPCR;
+namespace PHPCR\Retention;
 
 /**
  * A RetentionPolicy is an object with a name and an optional description.

@@ -30,7 +30,7 @@
  */
 
 declare(ENCODING = 'utf-8');
-namespace PHPCR;
+namespace PHPCR\Lock;
 
 /**
  * Exception thrown when a lock-related error occurs.

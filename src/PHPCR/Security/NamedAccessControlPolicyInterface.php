@@ -30,7 +30,7 @@
  */
 
 declare(ENCODING = 'utf-8');
-namespace PHPCR;
+namespace PHPCR\Security;
 
 /**
  * An NamedAccessControlPolicy is an opaque access control policy that is described

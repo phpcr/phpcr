@@ -30,7 +30,7 @@
  */
 
 declare(ENCODING = 'utf-8');
-namespace PHPCR;
+namespace PHPCR\Security;
 
 /**
  * Exception thrown by access control related methods of AccessControlManager.

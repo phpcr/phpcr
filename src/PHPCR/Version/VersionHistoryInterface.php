@@ -30,7 +30,7 @@
  */
 
 declare(ENCODING = 'utf-8');
-namespace PHPCR;
+namespace PHPCR\Version;
 
 /**
  * A VersionHistory object wraps an nt:versionHistory node. It provides

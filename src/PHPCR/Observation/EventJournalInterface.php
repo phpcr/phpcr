@@ -30,7 +30,7 @@
  */
 
 declare(ENCODING = 'utf-8');
-namespace PHPCR;
+namespace PHPCR\Observation;
 
 /**
  * An EventJournal is an extended Iterator that provides the additional

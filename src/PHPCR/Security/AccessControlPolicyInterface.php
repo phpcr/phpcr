@@ -30,7 +30,7 @@
  */
 
 declare(ENCODING = 'utf-8');
-namespace PHPCR;
+namespace PHPCR\Security;
 
 /**
  * The AccessControlPolicy is a marker interface for all kind of access control

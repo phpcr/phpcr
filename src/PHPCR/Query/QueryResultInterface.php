@@ -31,7 +31,7 @@
 
 
 declare(ENCODING = 'utf-8');
-namespace PHPCR;
+namespace PHPCR\Query;
 
 /**
  * A QueryResult object. Returned by Query->execute().

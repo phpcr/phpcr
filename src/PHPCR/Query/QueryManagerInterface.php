@@ -31,7 +31,7 @@
 
 
 declare(ENCODING = 'utf-8');
-namespace PHPCR;
+namespace PHPCR\Query;
 
 /**
  * This interface encapsulates methods for the management of search queries.

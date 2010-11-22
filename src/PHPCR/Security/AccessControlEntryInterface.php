@@ -30,7 +30,7 @@
  */
 
 declare(ENCODING = 'utf-8');
-namespace PHPCR;
+namespace PHPCR\Security;
 
 /**
  * An AccessControlEntry represents the association of one or more Privilege

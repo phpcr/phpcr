@@ -30,7 +30,7 @@
  */
 
 declare(ENCODING = 'utf-8');
-namespace PHPCR;
+namespace PHPCR\Version;
 
 /**
  * The VersionManager object is accessed via Workspace.getVersionManager(). It

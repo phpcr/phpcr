@@ -30,7 +30,7 @@
  */
 
 declare(ENCODING = 'utf-8');
-namespace PHPCR;
+namespace PHPCR\Retention;
 
 /**
  * The RetentionManager object is accessed via Session.getRetentionManager().

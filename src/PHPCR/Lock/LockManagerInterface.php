@@ -30,7 +30,7 @@
  */
 
 declare(ENCODING = 'utf-8');
-namespace PHPCR;
+namespace PHPCR\Lock;
 
 /**
  * This interface encapsulates methods for the management of locks.
