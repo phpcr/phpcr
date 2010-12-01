@@ -40,7 +40,7 @@ namespace PHPCR\Query\QOM;
  * @subpackage interfaces
  * @api
  */
-interface NodeLocalNameInterface extends \PHPCR\Query\QOM\DynamicOperandInterface {
+interface NodeLocalNameInterface extends DynamicOperandInterface {
 
     /**
      * Gets the name of the selector against which to evaluate this operand.

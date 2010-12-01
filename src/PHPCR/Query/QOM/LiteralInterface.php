@@ -40,7 +40,7 @@ namespace PHPCR\Query\QOM;
  * @subpackage interfaces
  * @api
  */
-interface LiteralInterface extends \PHPCR\Query\QOM\StaticOperandInterface {
+interface LiteralInterface extends StaticOperandInterface {
 
     /**
      * Gets the value of the literal.

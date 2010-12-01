@@ -42,7 +42,7 @@ namespace PHPCR\Query\QOM;
  * @subpackage interfaces
  * @api
  */
-interface NotInterface extends \PHPCR\Query\QOM\ConstraintInterface {
+interface NotInterface extends ConstraintInterface {
 
 	/**
     * Gets the constraint negated by this Not constraint.

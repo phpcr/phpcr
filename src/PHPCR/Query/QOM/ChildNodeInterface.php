@@ -45,7 +45,7 @@ namespace PHPCR\Query\QOM;
  * @subpackage interfaces
  * @api
  */
-interface ChildNodeInterface extends \PHPCR\Query\QOM\ConstraintInterface {
+interface ChildNodeInterface extends ConstraintInterface {
 
     /**
      * Gets the name of the selector against which to apply this constraint.

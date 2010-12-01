@@ -46,7 +46,7 @@ namespace PHPCR\Query\QOM;
  * @subpackage interfaces
  * @api
  */
-interface UpperCaseInterface extends \PHPCR\Query\QOM\DynamicOperandInterface {
+interface UpperCaseInterface extends DynamicOperandInterface {
 
     /**
      * Gets the operand whose value is converted to a upper-case string.

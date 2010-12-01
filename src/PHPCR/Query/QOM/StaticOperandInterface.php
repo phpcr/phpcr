@@ -41,5 +41,5 @@ namespace PHPCR\Query\QOM;
  * @subpackage interfaces
  * @api
  */
-interface StaticOperandInterface extends \PHPCR\Query\QOM\OperandInterface {
+interface StaticOperandInterface extends OperandInterface {
 }

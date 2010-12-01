@@ -46,7 +46,7 @@ namespace PHPCR\Query\QOM;
  * @subpackage interfaces
  * @api
  */
-interface EquiJoinConditionInterface extends \PHPCR\Query\QOM\JoinConditionInterface {
+interface EquiJoinConditionInterface extends JoinConditionInterface {
 
     /**
      * Gets the name of the first selector.

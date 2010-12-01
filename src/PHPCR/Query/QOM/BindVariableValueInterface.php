@@ -40,7 +40,7 @@ namespace PHPCR\Query\QOM;
  * @subpackage interfaces
  * @api
  */
-interface BindVariableValueInterface extends \PHPCR\Query\QOM\StaticOperandInterface {
+interface BindVariableValueInterface extends StaticOperandInterface {
 
     /**
      * Gets the name of the bind variable.

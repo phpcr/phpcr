@@ -43,7 +43,7 @@ namespace PHPCR\Query\QOM;
  * @subpackage interfaces
  * @api
  */
-interface AndInterface extends \PHPCR\Query\QOM\ConstraintInterface {
+interface AndInterface extends ConstraintInterface {
 
     /**
      * Gets the first constraint.

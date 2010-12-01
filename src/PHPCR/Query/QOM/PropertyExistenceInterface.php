@@ -43,7 +43,7 @@ namespace PHPCR\Query\QOM;
  * @subpackage interfaces
  * @api
  */
-interface PropertyExistenceInterface extends \PHPCR\Query\QOM\ConstraintInterface {
+interface PropertyExistenceInterface extends ConstraintInterface {
 
     /**
      * Gets the name of the selector against which to apply this constraint.

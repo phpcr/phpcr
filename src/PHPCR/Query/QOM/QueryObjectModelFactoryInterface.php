@@ -42,7 +42,7 @@ namespace PHPCR\Query\QOM;
  * @subpackage interfaces
  * @api
  */
-interface QueryObjectModelFactoryInterface extends \PHPCR\Query\QOM\QueryObjectModelConstantsInterface {
+interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInterface {
 
     /**
      * Creates a query with one or more selectors.

@@ -45,7 +45,7 @@ namespace PHPCR\Query\QOM;
  * @subpackage interfaces
  * @api
  */
-interface OrInterface extends \PHPCR\Query\QOM\ConstraintInterface {
+interface OrInterface extends ConstraintInterface {
 
     /**
      * Gets the first constraint.

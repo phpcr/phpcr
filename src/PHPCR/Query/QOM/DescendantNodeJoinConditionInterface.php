@@ -47,7 +47,7 @@ namespace PHPCR\Query\QOM;
  * @subpackage interfaces
  * @api
  */
-interface DescendantNodeJoinConditionInterface extends \PHPCR\Query\QOM\JoinConditionInterface {
+interface DescendantNodeJoinConditionInterface extends JoinConditionInterface {
 
     /**
      * Gets the name of the descendant selector.

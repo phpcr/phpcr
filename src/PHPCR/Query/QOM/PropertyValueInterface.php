@@ -48,7 +48,7 @@ namespace PHPCR\Query\QOM;
  * @subpackage interfaces
  * @api
  */
-interface PropertyValueInterface extends \PHPCR\Query\QOM\DynamicOperandInterface {
+interface PropertyValueInterface extends DynamicOperandInterface {
 
     /**
      * Gets the name of the selector against which to evaluate this operand.

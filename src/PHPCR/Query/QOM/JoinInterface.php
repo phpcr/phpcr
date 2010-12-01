@@ -40,7 +40,7 @@ namespace PHPCR\Query\QOM;
  * @subpackage interfaces
  * @api
  */
-interface JoinInterface extends \PHPCR\Query\QOM\SourceInterface {
+interface JoinInterface extends SourceInterface {
 
     /**
      * Gets the left node-tuple source.

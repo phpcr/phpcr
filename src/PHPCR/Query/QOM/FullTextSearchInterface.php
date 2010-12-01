@@ -80,7 +80,7 @@ namespace PHPCR\Query\QOM;
  * @subpackage interfaces
  * @api
  */
-interface FullTextSearchInterface extends \PHPCR\Query\QOM\ConstraintInterface {
+interface FullTextSearchInterface extends ConstraintInterface {
 
     /**
      * Gets the name of the selector against which to apply this constraint.

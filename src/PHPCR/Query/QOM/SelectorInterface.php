@@ -48,7 +48,7 @@ namespace PHPCR\Query\QOM;
  * @subpackage interfaces
  * @api
  */
-interface SelectorInterface extends \PHPCR\Query\QOM\SourceInterface {
+interface SelectorInterface extends SourceInterface {
 
     /**
      * Gets the name of the required node type.

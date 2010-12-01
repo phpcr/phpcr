@@ -43,7 +43,7 @@ namespace PHPCR\Observation;
  * @subpackage interfaces
  * @api
  */
-interface EventJournalInterface extends \RangeIterator, \Countable {
+interface EventJournalInterface extends \Countable {
 
     /**
      * Skip all elements of the iterator earlier than date.

@@ -44,7 +44,7 @@ namespace PHPCR\Query\QOM;
  * @subpackage interfaces
  * @api
  */
-interface ChildNodeJoinConditionInterface extends \PHPCR\Query\QOM\JoinConditionInterface {
+interface ChildNodeJoinConditionInterface extends JoinConditionInterface {
 
     /**
      * Gets the name of the child selector.

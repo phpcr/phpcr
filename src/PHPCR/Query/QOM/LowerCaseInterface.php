@@ -46,7 +46,7 @@ namespace PHPCR\Query\QOM;
  * @subpackage interfaces
  * @api
  */
-interface LowerCaseInterface extends \PHPCR\Query\QOM\DynamicOperandInterface {
+interface LowerCaseInterface extends DynamicOperandInterface {
 
     /**
      * Gets the operand whose value is converted to a lower-case string.

@@ -80,7 +80,7 @@ namespace PHPCR\Query\QOM;
  * @subpackage interfaces
  * @api
  */
-interface ComparisonInterface extends \PHPCR\Query\QOM\ConstraintInterface {
+interface ComparisonInterface extends ConstraintInterface {
 
     /**
      *

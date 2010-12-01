@@ -39,5 +39,5 @@ namespace PHPCR\Query\QOM;
  * @package phpcr
  * @subpackage interfaces
  */
-interface DynamicOperandInterface extends \PHPCR\Query\QOM\OperandInterface {
+interface DynamicOperandInterface extends OperandInterface {
 }

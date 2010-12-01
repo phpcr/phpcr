@@ -45,7 +45,7 @@ namespace PHPCR\Query\QOM;
  * @subpackage interfaces
  * @api
  */
-interface LengthInterface extends \PHPCR\Query\QOM\DynamicOperandInterface {
+interface LengthInterface extends DynamicOperandInterface {
 
     /**
      * Gets the property value for which to compute the length.
