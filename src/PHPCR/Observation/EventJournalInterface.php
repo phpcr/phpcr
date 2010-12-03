@@ -1,6 +1,6 @@
 <?php
 /**
- * Interface description of how to implement an event journal.
+ * Interface description of how to implement an event journal iterator.
  *
  * This file was ported from the Java JCR API to PHP by
  * Karsten Dambekalns <karsten@typo3.org> for the FLOW3 project.
@@ -36,6 +36,8 @@ namespace PHPCR\Observation;
  * An EventJournal is an extended Iterator that provides the additional
  * method skipTo().
  *
+ * All elements in this iterator are of type EventInterface.
+ *
  * <b>PHPCR Note:</b> This is the only iterator interface we kept, as it adds
  * additional value (performance).
  *
@@ -43,7 +45,7 @@ namespace PHPCR\Observation;
  * @subpackage interfaces
  * @api
  */
-interface EventJournalInterface extends \Countable {
+interface EventJournalInterface extends \Countable, \SeekableIterator {
 
     /**
      * Skip all elements of the iterator earlier than date.
