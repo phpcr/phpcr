@@ -35,11 +35,17 @@ namespace PHPCR\Lock;
 /**
  * This interface encapsulates methods for the management of locks.
  *
+ * The \Traversable interface enables the implementation to be addressed with
+ * <b>foreach</b>. LockManager has to implement either \IteratorAggregate or
+ * \Iterator.
+ * The iterator is equivalent to <b>getLockTokens()</b> returning a list of all
+ * locks. The iterator keys have no significant meaning.
+ *
  * @package phpcr
  * @subpackage interfaces
  * @api
  */
-interface LockManagerInterface {
+interface LockManagerInterface extends \Traversable {
 
     /**
      * Adds the specified lock token to the current Session.

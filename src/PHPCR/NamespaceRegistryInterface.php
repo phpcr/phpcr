@@ -42,11 +42,18 @@ namespace PHPCR;
  * in repository content, and there may be repository content with namespaces
  * that are not included n the registry.
  *
+ * The \Traversable interface enables the implementation to be addressed with
+ * <b>foreach</b>. NamespaceRegistry has to implement either \IteratorAggregate
+ * or \Iterator.
+ * The iterator lets you iterate over all namespaces, with the prefixes as keys
+ * and corresponding url as value.
+ *
+ *
  * @package phpcr
  * @subpackage interfaces
  * @api
  */
-interface NamespaceRegistryInterface {
+interface NamespaceRegistryInterface extends \Traversable {
 
     /**
      * A constant for the predefined namespace prefix "jcr".

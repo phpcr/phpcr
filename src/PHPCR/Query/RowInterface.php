@@ -36,11 +36,11 @@ namespace PHPCR\Query;
 /**
  * A row in the query result table.
  *
- * The \Traversable interface enables the implementation to be addressed with <b>foreach</b>.
- * It has to implement either \RecursiveIterator or \Iterator to do so.
- * The idea is to iterate over each value of the durrent row to get an easy access to it.
- * It is somehow equivalent to <b>getValues()</b> returning a list of values to be able to
- * iterate over.
+ * The \Traversable interface enables the implementation to be addressed with
+ * <b>foreach</b>. Rows have to implement either \RecursiveIterator or
+ * \Iterator.
+ * The iterator is similar to <b>getValues()</b> with keys being the column
+ * names and the values the corresponding entry in that column for this row.
  *
  * @package phpcr
  * @subpackage interfaces

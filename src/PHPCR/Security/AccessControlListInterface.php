@@ -38,11 +38,17 @@ namespace PHPCR\Security;
  * and consequently defines methods to read and mutate the list i.e. to get, add
  * or remove individual entries.
  *
+ * The \Traversable interface enables the implementation to be addressed with
+ * <b>foreach</b>. AccessControlList has to implement either \RecursiveIterator
+ * or \Iterator.
+ * The iterator is equivalent to <b>getAccessControlEntries()</b> returning a list of
+ * AccessControlEntry. The iterator keys have no significant meaning.
+ *
  * @package phpcr
  * @subpackage interfaces
  * @api
  */
-interface AccessControlListInterface extends \PHPCR\Security\AccessControlPolicyInterface {
+interface AccessControlListInterface extends \PHPCR\Security\AccessControlPolicyInterface, \Traversable {
 
     /**
      * Gets every registered access control entry.

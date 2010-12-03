@@ -35,11 +35,11 @@ namespace PHPCR;
 /**
  * The Node interface represents a node in a workspace.
  *
- * The \Traversable interface enables the implementation to be addressed with <b>foreach</b>.
- * It has to implement either \RecursiveIterator or \Iterator to do so.
- * The idea is to iterate over all nodes to get an easy access to them.
- * It is somehow equivalent to <b>getNodes()</b> returning a list of nodes to be able to
- * iterate over.
+ * The \Traversable interface enables the implementation to be addressed with
+ * <b>foreach</b>. Nodes have to implement either \IteratorAggregate or
+ * \Iterator.
+ * The iterator is equivalent to <b>getNodes()</b> with no filter, returning
+ * a list of all child nodes. Keys are the node names, values the node instances.
  *
  * @package phpcr
  * @subpackage interfaces

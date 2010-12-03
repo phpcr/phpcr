@@ -71,36 +71,38 @@ This allows to directly use the objects in a foreach statement.
 The implementation either has to implement IteratorAggregate::getIterator to
 return a suitable iterator, or be an iterator itselves.
 
- * NodeInterface iterates over all children (like getChildren() without filters)
+ * NodeInterface iterates over all children (like getNodes() without filters)
     The keys are the node names, the values the node objects.
  * PropertyInterface iterates over all values of that property. (Except for
-    multivalue properties, there is exactly 1 value. Keys are meaningless here.
+    multivalue properties, there is exactly 1 value. The iterator keys have no
+    significant meaning.
  * NamespaceRegistryInterface iterates over all namespaces. Keys are the
     prefixes, values are the uris.
  * PropertyType iterates over all types, keys being the numeric ids, values the
     TYPENAME string constants. Note that this is no interface but directly the
     implementation.
  * Lock/LockManagerInterface iterates over all lock tokens
-    (like getLockTokens()). Keys are meaningless.
+    (like getLockTokens()). The iterator keys have no significant meaning.
  * NodeType/NodeTypeManager iterates over all node types
-    (like getAllNodeTypes()). Keys are meaningless.
+    (like getAllNodeTypes()). The iterator keys have no significant meaning.
  * Observation/ObservationManagerInterface iterates over all registered event
-    listeners (like getRegisteredEventListeners()). Keys are meaningless.
+    listeners (like getRegisteredEventListeners()). The iterator keys have no
+    significant meaning.
 
- * TODO determine what is better: Query/QueryResultInterface iterates over the (nodes|rows)?
+ * Query/QueryResultInterface iterates over the rows (node is only a special case)
 
  * Query/RowInterface iterates over all row values, like getValues(). Keys are
     the column names, values the corresponding values.
 
  * Security/AccessControlEntryInterface iterates over all privileges, like
-    getPrivileges(). Keys are meaningless.
+    getPrivileges(). The iterator keys have no significant meaning.
  * Security/AccessControlListInterface iterates over all entries, like
-    getAccessControlEntries(). Keys are meaningless.
- * Version/VersionHistoryInterface iterates over all versions, like
-    getAllVersions(). Keys are meaningless.
-
+    getAccessControlEntries(). The iterator keys have no significant meaning.
 
 For other interfaces there is no obvious default iterator, so we left them without.
+Version/VersionHistoryInterface extends the NodeInterface. Even though iterating
+over the versions seems natural, we did not want to change the behaviour for
+this subclass of NodeInterface.
 
 
 Value and ValueFactory

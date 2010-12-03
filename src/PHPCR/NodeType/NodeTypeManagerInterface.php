@@ -36,11 +36,11 @@ namespace PHPCR\NodeType;
  * Allows for the retrieval and (in implementations that support it) the
  * registration of node types. Accessed via Workspace.getNodeTypeManager().
  *
- * The \Traversable interface enables the implementation to be addressed with <b>foreach</b>.
- * It has to implement either \RecursiveIterator or \Iterator to do so.
- * The idea is to iterate over all NodeTypes to get an easy access to them.
- * It is somehow equivalent to <b>getAllNodeTypes()</b> returning a list of nodes to be able to
- * iterate over.
+ * The \Traversable interface enables the implementation to be addressed with
+ * <b>foreach</b>. NodeTypeManager has to implement either \RecursiveIterator
+ * or \Iterator.
+ * The iterator is equivalent to <b>getAllNodeTypes()</b> returning a list of
+ * all node types. The iterator keys have no significant meaning.
  *
  * @package phpcr
  * @subpackage interfaces

@@ -36,6 +36,10 @@ namespace PHPCR\Version;
  * A VersionHistory object wraps an nt:versionHistory node. It provides
  * convenient access to version history information.
  *
+ * Note: As this extends NodeInterface, foreach still iterates over the
+ * children and not over versions. If you want to use a foreach, you can use
+ * getAllVersions() to retrieve an iterator over versions.
+ *
  * @package phpcr
  * @subpackage interfaces
  * @api

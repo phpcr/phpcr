@@ -40,7 +40,14 @@ namespace PHPCR;
  * and a value, or in the case of multi-value properties, a set of values all
  * of the same type.
  *
- * <<b>PHPCR Note:</b>
+ * The \Traversable interface enables the implementation to be addressed with
+ * <b>foreach</b>. Properties have to implement either \IteratorAggregate or
+ * \Iterator.
+ * The iterator is equivalent to <b>getNativeValue()</b> returning an iterator
+ * of all values of this property (which is exactly one except for multivalue
+ * properties). The iterator keys have no significant meaning.
+ *
+ * <b>PHPCR Note:</b>
  * We removed the Value interface and consequently the getValue() and
  * getValues() methods. If you just want the property value in its native type,
  * use getNativeValue, or just NodeInterface::getPropertyValue.
@@ -53,7 +60,7 @@ namespace PHPCR;
  * @subpackage interfaces
  * @api
  */
-interface PropertyInterface extends \PHPCR\ItemInterface {
+interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable {
 
     /**#@+
      * @var string
