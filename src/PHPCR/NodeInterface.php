@@ -35,11 +35,17 @@ namespace PHPCR;
 /**
  * The Node interface represents a node in a workspace.
  *
+ * The \Traversable interface enables the implementation to be addressed with <b>foreach</b>.
+ * It has to implement either \RecursiveIterator or \Iterator to do so.
+ * The idea is to iterate over all nodes to get an easy access to them.
+ * It is somehow equivalent to <b>getNodes()</b> returning a list of nodes to be able to
+ * iterate over.
+ *
  * @package phpcr
  * @subpackage interfaces
  * @api
  */
-interface NodeInterface extends \PHPCR\ItemInterface {
+interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
 
     /**
      * A constant for the JCR name jcr:content. This is the name of
@@ -285,7 +291,8 @@ interface NodeInterface extends \PHPCR\ItemInterface {
      * The same reacquisition semantics apply as with getNode($relPath).
      *
      * @param string|array $filter a name pattern or an array of globbing strings.
-     * @return Iterator over all (matching) child Nodes implementing <b>SeekableIterator</b> and <b>Countable</b>. Keys are the Node names, values the corresponding NodeInterface instances.
+     * @return Iterator over all (matching) child Nodes implementing <b>SeekableIterator</b> and <b>Countable</b>.
+     *                  Keys are the Node names, values the corresponding NodeInterface instances.
      * @throws \PHPCR\RepositoryException If an unexpected error occurs.
      * @api
      */
