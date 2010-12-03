@@ -301,45 +301,45 @@ final class PropertyType {
      * @api
      */
     static public function valueFromName($name) {
-        switch ($name) {
-            case self::TYPENAME_UNDEFINED :
+        switch (strtolower($name)) {
+            case 'undefined':
                 return self::UNDEFINED;
                 break;
-            case self::TYPENAME_STRING :
+            case 'string':
                 return self::STRING;
                 break;
-            case self::TYPENAME_BINARY :
+            case 'binary':
                 return self::BINARY;
                 break;
-            case self::TYPENAME_LONG :
+            case 'long':
                 return self::LONG;
                 break;
-            case self::TYPENAME_DOUBLE :
+            case 'double':
                 return self::DOUBLE;
                 break;
-            case self::TYPENAME_DECIMAL :
-                return self::DECIMAL;
-                break;
-            case self::TYPENAME_DATE :
+            case 'date':
                 return self::DATE;
                 break;
-            case self::TYPENAME_BOOLEAN :
+            case 'boolean':
                 return self::BOOLEAN;
                 break;
-            case self::TYPENAME_NAME :
+            case 'name':
                 return self::NAME;
                 break;
-            case self::TYPENAME_PATH :
+            case 'path':
                 return self::PATH;
                 break;
-            case self::TYPENAME_REFERENCE :
+            case 'reference':
                 return self::REFERENCE;
                 break;
-            case self::TYPENAME_WEAKREFERENCE :
+            case 'weakreference':
                 return self::WEAKREFERENCE;
                 break;
-            case self::TYPENAME_URI :
+            case 'uri':
                 return self::URI;
+                break;
+            case 'decimal':
+                return self::DECIMAL;
                 break;
             default:
                 throw new \InvalidArgumentException('Unknown name (' . $name . ') given.', 1257170232);
