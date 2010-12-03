@@ -36,11 +36,17 @@ namespace PHPCR\Query;
 /**
  * A QueryResult object. Returned by Query->execute().
  *
+ * The \Traversable interface enables the implementation to be addressed with <b>foreach</b>.
+ * It has to implement einther \RecursiveIterator or \Iterator to do so.
+ * The idea is to iterate over every returned row to gain an easy acces to each of them.
+ * It is somehow equivalent to <b>getRows()</b> returning a list of values to be able to
+ * iterate over.
+ *
  * @package phpcr
  * @subpackage interfaces
  * @api
  */
-interface QueryResultInterface {
+interface QueryResultInterface extends \Traversable {
 
     /**
      * Returns an array of all the column names in the table view of this result set.
