@@ -125,7 +125,7 @@ interface NodeTypeTemplateInterface extends \PHPCR\NodeType\NodeTypeDefinitionIn
      * @return array A mutable List of PropertyDefinitionTemplate objects.
      * @api
      */
-    public function getPropertyDefinitionTemplates();
+    public function &getPropertyDefinitionTemplates();
 
     /**
      * Returns a mutable List of NodeDefinitionTemplate objects.
@@ -136,6 +136,6 @@ interface NodeTypeTemplateInterface extends \PHPCR\NodeType\NodeTypeDefinitionIn
      * @return array A mutable List of NodeDefinitionTemplate objects.
      * @api
      */
-    public function getNodeDefinitionTemplates();
+    public function &getNodeDefinitionTemplates();
 
 }
