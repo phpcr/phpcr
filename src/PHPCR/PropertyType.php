@@ -342,7 +342,7 @@ final class PropertyType {
                 return self::DECIMAL;
                 break;
             default:
-                throw new \InvalidArgumentException('Unknown name (' . $name . ') given.', 1257170232);
+                throw new \InvalidArgumentException('Unknown type name (' . $name . ') given.', 1257170232);
         }
     }
 
