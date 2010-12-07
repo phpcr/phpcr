@@ -122,10 +122,10 @@ interface NodeTypeTemplateInterface extends \PHPCR\NodeType\NodeTypeDefinitionIn
      * To define a new NodeTypeTemplate or change an existing one,
      * PropertyDefinitionTemplate objects can be added to or removed from this List.
      *
-     * @return array A mutable List of PropertyDefinitionTemplate objects.
+     * @return Object A mutable List (implementing \Traversable, \ArrayAccess, and \Countable) of PropertyDefinitionTemplate objects
      * @api
      */
-    public function &getPropertyDefinitionTemplates();
+    public function getPropertyDefinitionTemplates();
 
     /**
      * Returns a mutable List of NodeDefinitionTemplate objects.
@@ -133,9 +133,9 @@ interface NodeTypeTemplateInterface extends \PHPCR\NodeType\NodeTypeDefinitionIn
      * To define a new NodeTypeTemplate or change an existing one,
      * NodeDefinitionTemplate objects can be added to or removed from this List.
      *
-     * @return array A mutable List of NodeDefinitionTemplate objects.
+     * @return Object A mutable List (implementing \Traversable, \ArrayAccess, and \Countable) of NodeDefinitionTemplate objects
      * @api
      */
-    public function &getNodeDefinitionTemplates();
+    public function getNodeDefinitionTemplates();
 
 }
