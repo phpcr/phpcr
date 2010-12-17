@@ -539,6 +539,14 @@ interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable {
     public function setValue($value, $type = NULL, $weak = FALSE);
 
     /**
+     * Appends a value to a multi-value property
+     *
+     * @param mixed value
+     * @throws \PHPCR\ValueFormatException if the property is not multi-value
+     */
+    public function addValue($value);
+
+    /**
      * Get the value in format default for the PropertyType of this property.
      *
      * <b>PHPCR Note:</b> This is an additional method not found in JSR-283

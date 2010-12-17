@@ -143,6 +143,9 @@ PropertyInterface objects when nodes are loaded.
 PropertyInterface::getNativeValue() has been added to get the property value
 without caring about types.
 
+PropertyInterface::addValue() has been added to quickly append a value to
+multi-value properties instead of requiring getNativeValue()/append/setValue().
+
 Note: We discussed even completely dropping the Property interface. But the
 separation between Node and Property does make sense, plus allows for things
 like the ItemVisitor.
