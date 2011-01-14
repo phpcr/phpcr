@@ -423,6 +423,13 @@ interface SessionInterface {
     public function refresh($keepChanges);
 
     /**
+     * Clears the state of the current session
+     *
+     * Removes all cached objects, planned changes etc. Mostly useful for testing purposes.
+     */
+    public function clear();
+
+    /**
      * Determines if the current session has pending changes.
      *
      * Returns true if this session holds pending (that is, unsaved) changes;
