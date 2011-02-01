@@ -78,9 +78,6 @@ return a suitable iterator, or be an iterator itselves.
     significant meaning.
  * NamespaceRegistryInterface iterates over all namespaces. Keys are the
     prefixes, values are the uris.
- * PropertyType iterates over all types, keys being the numeric ids, values the
-    TYPENAME string constants. Note that this is no interface but directly the
-    implementation.
  * Lock/LockManagerInterface iterates over all lock tokens
     (like getLockTokens()). The iterator keys have no significant meaning.
  * NodeType/NodeTypeManager iterates over all node types
