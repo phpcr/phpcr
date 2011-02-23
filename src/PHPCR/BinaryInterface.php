@@ -39,8 +39,8 @@ namespace PHPCR;
  * @subpackage interfaces
  * @api
  */
-interface BinaryInterface {
-
+interface BinaryInterface
+{
     /**
      * Returns a stream representation of this value.
      *
@@ -60,17 +60,15 @@ interface BinaryInterface {
      * the passed string until $limit or the end of the Binary is encountered
      * (whichever comes first).
      *
-     * @param string $bytes the buffer into which the data is read.
-     * @param integer $position the position in this Binary from which to start reading bytes.
-     * @param integer $limit how many bytes to read, unlimited by default
-     * @return integer the number of bytes read into the buffer
+     * @param integer $bytes how many bytes to read, unlimited by default
+     * @return string bytes
      * @throws \RuntimeException if an I/O error occurs.
      * @throws \InvalidArgumentException if offset is negative.
      * @throws \BadMethodCallException if dispose() has already been called on this Binary
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
      */
-    public function read(&$bytes, $position, $limit = 0);
+    public function read($bytes);
 
     /**
      * Returns the size of this Binary value in bytes.
@@ -94,4 +92,10 @@ interface BinaryInterface {
      */
     public function dispose();
 
+    /**
+     * Returns the entire binary data
+     *
+     * @return string
+     */
+    public function __toString();
 }
