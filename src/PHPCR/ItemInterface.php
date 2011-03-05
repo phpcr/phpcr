@@ -200,7 +200,11 @@ interface ItemInterface {
     public function isSame(\PHPCR\ItemInterface $otherItem);
 
     /**
-     * Calls the appropriate ItemVisitor::visit() method according to whether this Item is a Node or a Property.
+     * Call the ItemVisitor::visit() method.
+     *
+     * This is less relevant in PHP (Java had it to avoid typecasting in the visitor)
+     * We leave it here, to allow sanity checks or other operations an implementation
+     * might wants to do.
      *
      * @param \PHPCR\ItemVisitorInterface $visitor The ItemVisitor to be accepted.
      * @throws \PHPCR\RepositoryException if an error occurs.
