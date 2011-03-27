@@ -659,6 +659,12 @@ interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable {
      * refers to the parent node itself, ".." to the parent of the parent node
      * and "foo" to a sibling node of this property.
      *
+     * If you do not want to dereference the nodes yet, you can use getString 
+     * to get the unique ids and use the SessionInterface::getNodeByIdentifier
+     * as all referenced nodes are referenciable and thus must have a uuid.
+     * If its a PATH property, you will need the node of this property and use
+     * getNodes to get the nodes with relative or absolute path.
+     *
      * @return \PHPCR\NodeInterface the referenced Node, or an array of Nodes for multi-valued properties.
      *
      * @throws \PHPCR\ValueFormatException if this property cannot be converted to a referring type
