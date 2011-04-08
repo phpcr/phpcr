@@ -162,7 +162,7 @@ interface NodeTypeManagerInterface extends \Traversable {
      * and then filled-in with definition information.
      *
      * @param \PHPCR\NodeType\NodeTypeDefinitionInterface $ntd an NodeTypeDefinition.
-     * @param boolean $allowUpdate Switch to allow the update a registered node type.
+     * @param boolean $allowUpdate whether to fail if node already exists or to update it
      * @return \PHPCR\NodeType\NodeTypeInterface the registered node type
      *
      * @throws \PHPCR\InvalidNodeTypeDefinitionException if the NodeTypeDefinition is invalid.
@@ -184,7 +184,7 @@ interface NodeTypeManagerInterface extends \Traversable {
      * types are registered or updated.
      *
      * @param array $definitions an array of NodeTypeDefinitions
-     * @param boolean $allowUpdate Switch to allow the update a registered node type.
+     * @param boolean $allowUpdate whether to fail if node already exists or to update it
      * @return Iterator over the registered node types implementing <b>SeekableIterator</b> and <b>Countable</b>.
      *                  Keys are the node type names, values the corresponding NodeTypeInterface instances.
      *

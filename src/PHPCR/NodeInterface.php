@@ -615,7 +615,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
      * validation is done.
      *
      * In some implementations it may only be possible to add mixin types before
-     * a a node is persisted for the first time. I such cases any later calls to
+     * a a node is persisted for the first time. In such cases any later calls to
      * $addMixin will throw a ConstraintViolationException either immediately,
      * on dispatch or on persist.
      *
