@@ -70,6 +70,9 @@ Additionally, we declared API elements as Traversable where it makes sense.
 This allows to directly use the objects in a foreach statement.
 The implementation either has to implement IteratorAggregate::getIterator to
 return a suitable iterator, or be an iterator itselves.
+PHP NOTE: When implementing our interfaces, you have to declare either 
+implements Iterator or IteratorAggregate explicitly in your class signature.
+Do NOT put implements Traversable into the signature, it confuses PHP.
 
  * NodeInterface iterates over all children (like getNodes() without filters)
     The keys are the node names, the values the node objects.

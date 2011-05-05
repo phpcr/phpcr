@@ -27,10 +27,22 @@ doc/JCR_TO_PHPCR.txt
 NOTE: All deprecated methods coming from JSR-170 have been left out
 
 
+API Tests
+*********
+An API test suite for the functionality of PHPCR is available at 
+https://github.com/phpcr/phpcr-api-tests/
+All implementations have to test against this test suite to make sure they
+are interchangeable with each other.
+
+
 Implementations
 ***************
-To date, the only known implementation of the PHPCR interfaces is the
-Jackalope project. [2]
+The Jackalope project implements the PHPCR interfaces and maps requests to a
+java Jackrabbit instance or to a relational database (WIP). [2]
+
+The midgard project is working on implementing the PHPCR interfaces for
+midgard2. [3]
+
 
 History
 *******
@@ -40,10 +52,11 @@ The API was originally ported from Java to PHP by Karsten Dambekalns (k-fish)
 with the help of others for the typo3/flow3 project.
 
 A first attempt at a port of JSR-170 to php has been made by SimPCoRe, but it
-seems no applications have been published. The project web site is still up [2]
+seems no applications have been published. The project web site is still up [4]
 That version never tried to provide an API, but just implemented the Java 
 interfaces literally.
 
 [1] http://jcp.org/en/jsr/summary?id=283
 [2] https://github.com/jackalope/jackalope
-[3] http://www.simpcore.org/
+[3] https://github.com/bergie/phpcr-midgard2
+[4] http://www.simpcore.org/
