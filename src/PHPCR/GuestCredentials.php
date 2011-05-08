@@ -29,7 +29,6 @@
  * @subpackage prototypes
  */
 
-declare(ENCODING = 'utf-8');
 namespace PHPCR;
 
 /**

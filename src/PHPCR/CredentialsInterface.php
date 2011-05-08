@@ -29,10 +29,7 @@
  * @subpackage interfaces
  */
 
-
-declare(ENCODING = 'utf-8');
 namespace PHPCR;
-
 
 /**
  * Interface for all credentials that may be passed to the Repository::login() method.

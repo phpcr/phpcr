@@ -29,9 +29,7 @@
  * @subpackage interfaces
  */
 
-declare(ENCODING = 'utf-8');
 namespace PHPCR;
-
 
 /**
  * The possible actions specified by the uuidBehavior parameter in

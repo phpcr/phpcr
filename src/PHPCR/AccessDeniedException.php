@@ -29,9 +29,7 @@
  * @subpackage exceptions
  */
 
-declare(ENCODING = 'utf-8');
 namespace PHPCR;
-
 
 /**
  * Exception shall be thrown by access-related methods.

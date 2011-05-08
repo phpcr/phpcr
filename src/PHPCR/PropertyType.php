@@ -28,7 +28,6 @@
  * @package phpcr
  */
 
-declare(ENCODING = 'utf-8');
 namespace PHPCR;
 
 /**

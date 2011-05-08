@@ -29,7 +29,6 @@
  * @subpackage exceptions
  */
 
-declare(ENCODING = 'utf-8');
 namespace PHPCR;
 
 /**
