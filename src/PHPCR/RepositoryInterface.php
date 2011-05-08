@@ -99,7 +99,7 @@ interface RepositoryInterface {
     const REP_VERSION_DESC = "jcr.repository.version";
 
     /**
-     * Key to a boolean descriptor. Returns TRUE
+     * Key to a boolean descriptor. Returns true
      * if and only if repository content can be updated through the JCR API
      * (as opposed to having read-only access).
      * @api
@@ -148,140 +148,140 @@ interface RepositoryInterface {
     const IDENTIFIER_STABILITY_INDEFINITE_DURATION = "identifier.stability.indefinite.duration";
 
     /**
-     * Key to a boolean descriptor. Returns TRUE
+     * Key to a boolean descriptor. Returns true
      * if and only if XML export is supported.
      * @api
      */
     const OPTION_XML_EXPORT_SUPPORTED = "option.xml.export.supported";
 
     /**
-     * Key to a boolean descriptor. Returns TRUE
+     * Key to a boolean descriptor. Returns true
      * if and only if XML import is supported.
      * @api
      */
     const OPTION_XML_IMPORT_SUPPORTED = "option.xml.import.supported";
 
     /**
-     * Key to a boolean descriptor. Returns TRUE
+     * Key to a boolean descriptor. Returns true
      * if and only if unfiled content is supported.
      * @api
      */
     const OPTION_UNFILED_CONTENT_SUPPORTED = "option.unfiled.content.supported";
 
     /**
-     * Key to a boolean descriptor. Returns TRUE
+     * Key to a boolean descriptor. Returns true
      * if and only if full versioning is supported.
      * @api
      */
     const OPTION_VERSIONING_SUPPORTED = "option.versioning.supported";
 
     /**
-     * Key to a boolean descriptor. Returns TRUE
+     * Key to a boolean descriptor. Returns true
      * if and only if simple versioning is supported.
      * @api
      */
     const OPTION_SIMPLE_VERSIONING_SUPPORTED = "option.simple.versioning.supported";
 
     /**
-     * Key to a boolean descriptor. Returns TRUE if and only if activities are
+     * Key to a boolean descriptor. Returns true if and only if activities are
      * supported.
      * @api
      */
     const OPTION_ACTIVITIES_SUPPORTED = "option.activities.supported";
 
     /**
-     * Key to a boolean descriptor. Returns TRUE if and only if configurations
+     * Key to a boolean descriptor. Returns true if and only if configurations
      * and baselines are supported.
      * @api
      */
     const OPTION_BASELINES_SUPPORTED = "option.baselines.supported";
 
     /**
-     * Key to a boolean descriptor. Returns TRUE
+     * Key to a boolean descriptor. Returns true
      * if and only if access control is supported.
      * @api
      */
     const OPTION_ACCESS_CONTROL_SUPPORTED = "option.access.control.supported";
 
     /**
-     * Key to a boolean descriptor. Returns TRUE
+     * Key to a boolean descriptor. Returns true
      * if and only if locking is supported.
      * @api
      */
     const OPTION_LOCKING_SUPPORTED = "option.locking.supported";
 
     /**
-     * Key to a boolean descriptor. Returns TRUE
+     * Key to a boolean descriptor. Returns true
      * if and only if asynchronous observation is supported.
      * @api
      */
     const OPTION_OBSERVATION_SUPPORTED = "option.observation.supported";
 
     /**
-     * Key to a boolean descriptor. Returns TRUE
+     * Key to a boolean descriptor. Returns true
      * if and only if journaled observation is supported.
      * @api
      */
     const OPTION_JOURNALED_OBSERVATION_SUPPORTED = "option.journaled.observation.supported";
 
     /**
-     * Key to a boolean descriptor. Returns TRUE
+     * Key to a boolean descriptor. Returns true
      * if and only if retention and hold are supported.
      * @api
      */
     const OPTION_RETENTION_SUPPORTED = "option.retention.supported";
 
     /**
-     * Key to a boolean descriptor. Returns TRUE
+     * Key to a boolean descriptor. Returns true
      * if and only if lifecycles are supported.
      * @api
      */
     const OPTION_LIFECYCLE_SUPPORTED = "option.lifecycle.supported";
 
     /**
-     * Key to a boolean descriptor. Returns TRUE
+     * Key to a boolean descriptor. Returns true
      * if and only if transactions are supported.
      * @api
      */
     const OPTION_TRANSACTIONS_SUPPORTED = "option.transactions.supported";
 
     /**
-     * Key to a boolean descriptor. Returns TRUE
+     * Key to a boolean descriptor. Returns true
      * if and only if workspace management is supported.
      * @api
      */
     const OPTION_WORKSPACE_MANAGEMENT_SUPPORTED = "option.workspace.management.supported";
 
     /**
-     * Key to a boolean descriptor. Returns TRUE
+     * Key to a boolean descriptor. Returns true
      * if and only if the primary node type of an existing node can be updated.
      * @api
      */
     const OPTION_UPDATE_PRIMARY_NODETYPE_SUPPORTED = "option.update.primary.nodetype.supported";
 
     /**
-     * Key to a boolean descriptor. Returns TRUE
+     * Key to a boolean descriptor. Returns true
      * if and only if the mixin node types of an existing node can be added and removed.
      * @api
      */
     const OPTION_UPDATE_MIXIN_NODETYPES_SUPPORTED = "option.update.mixin.nodetypes.supported";
 
     /**
-     * Key to a boolean descriptor. Returns TRUE
+     * Key to a boolean descriptor. Returns true
      * if and only if the creation of shareable nodes is supported.
      * @api
      */
     const OPTION_SHAREABLE_NODES_SUPPORTED = "option.shareable.nodes.supported";
 
     /**
-     * Key to a boolean descriptor. Returns TRUE
+     * Key to a boolean descriptor. Returns true
      * if and only if node type management is supported.
      * @api
      */
     const OPTION_NODE_TYPE_MANAGEMENT_SUPPORTED = "option.node.type.management.supported";
 
     /**
-     * Key to a boolean descriptor. Returns TRUE if and only if node and
+     * Key to a boolean descriptor. Returns true if and only if node and
      * property with same name is supported.
      * @api
      */
@@ -334,42 +334,42 @@ interface RepositoryInterface {
     const NODE_TYPE_MANAGEMENT_INHERITANCE_MULTIPLE = "node.type.management.inheritance.multiple";
 
     /**
-     * Key to a boolean descriptor. Returns TRUE
+     * Key to a boolean descriptor. Returns true
      * if and only if override of inherited property or child node definitions is supported.
      * @api
      */
     const NODE_TYPE_MANAGEMENT_OVERRIDES_SUPPORTED = "node.type.management.overrides.supported";
 
     /**
-     * Key to a boolean descriptor. Returns TRUE
+     * Key to a boolean descriptor. Returns true
      * if and only if primary items are supported.
      * @api
      */
     const NODE_TYPE_MANAGEMENT_PRIMARY_ITEM_NAME_SUPPORTED = "node.type.management.primary.item.name.supported";
 
     /**
-     * Key to a boolean descriptor. Returns TRUE
+     * Key to a boolean descriptor. Returns true
      * if and only if preservation of child node ordering is supported.
      * @api
      */
     const NODE_TYPE_MANAGEMENT_ORDERABLE_CHILD_NODES_SUPPORTED = "node.type.management.orderable.child.nodes.supported";
 
     /**
-     * Key to a boolean descriptor. Returns TRUE
+     * Key to a boolean descriptor. Returns true
      * if and only if residual property and child node definitions are supported.
      * @api
      */
     const NODE_TYPE_MANAGEMENT_RESIDUAL_DEFINITIONS_SUPPORTED = "node.type.management.residual.definitions.supported";
 
     /**
-     * Key to a boolean descriptor. Returns TRUE
+     * Key to a boolean descriptor. Returns true
      * if and only if autocreated properties and child nodes are supported.
      * @api
      */
     const NODE_TYPE_MANAGEMENT_AUTOCREATED_DEFINITIONS_SUPPORTED = "node.type.management.autocreated.definitions.supported";
 
     /**
-     * Key to a boolean descriptor. Returns TRUE
+     * Key to a boolean descriptor. Returns true
      * if and only if same-name sibling child nodes are supported.
      * @api
      */
@@ -386,14 +386,14 @@ interface RepositoryInterface {
     const NODE_TYPE_MANAGEMENT_PROPERTY_TYPES = "node.type.management.property.types";
 
     /**
-     * Key to a boolean descriptor. Returns TRUE
+     * Key to a boolean descriptor. Returns true
      * if and only if multivalue properties are supported.
      * @api
      */
     const NODE_TYPE_MANAGEMENT_MULTIVALUED_PROPERTIES_SUPPORTED = "node.type.management.multivalued.properties.supported";
 
     /**
-     * Key to a boolean descriptor. Returns TRUE
+     * Key to a boolean descriptor. Returns true
      * if and only if registration of a node types with more than one BINARY
      * property is permitted.
      * @api
@@ -401,7 +401,7 @@ interface RepositoryInterface {
     const NODE_TYPE_MANAGEMENT_MULTIPLE_BINARY_PROPERTIES_SUPPORTED = "node.type.management.multiple.binary.properties.supported";
 
     /**
-     * Key to a boolean descriptor. Returns TRUE
+     * Key to a boolean descriptor. Returns true
      * if and only value-constraints are supported.
      * @api
      */
@@ -416,14 +416,14 @@ interface RepositoryInterface {
     const QUERY_LANGUAGES = "query.languages";
 
     /**
-     * Key to a boolean descriptor. Returns TRUE
+     * Key to a boolean descriptor. Returns true
      * if and only if stored queries are supported.
      * @api
      */
     const QUERY_STORED_QUERIES_SUPPORTED = "query.stored.queries.supported";
 
     /**
-     * Key to a boolean descriptor. Returns TRUE
+     * Key to a boolean descriptor. Returns true
      * if and only if full-text search is supported.
      * @api
      */
@@ -492,7 +492,7 @@ interface RepositoryInterface {
      * @throws \PHPCR\RepositoryException if another error occurs
      * @api
      */
-    public function login($credentials = NULL, $workspaceName = NULL);
+    public function login($credentials = null, $workspaceName = null);
 
     /**
      * Returns a string array holding all descriptor keys available for this implementation.
@@ -509,8 +509,8 @@ interface RepositoryInterface {
     /**
      * Determines if the given identifier is a standard descriptor.
      *
-     * Returns TRUE if $key is a standard descriptor defined by the string constants in this interface and
-     * FALSE if it is either a valid implementation-specific key or not a valid key.
+     * Returns true if $key is a standard descriptor defined by the string constants in this interface and
+     * false if it is either a valid implementation-specific key or not a valid key.
      *
      * @param string $key a descriptor key.
      * @return boolan whether $key is a standard descriptor.

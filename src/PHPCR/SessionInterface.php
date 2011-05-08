@@ -557,7 +557,7 @@ interface SessionInterface {
      * @param string $methodName the nakme of the method.
      * @param object $target the target object of the operation.
      * @param array $arguments the arguments of the operation.
-     * @return boolean FALSE if the operation cannot be performed, TRUE if the operation can be performed or if the
+     * @return boolean false if the operation cannot be performed, true if the operation can be performed or if the
      *                       repository cannot determine whether the operation can be performed.
      *
      * @throws \PHPCR\RepositoryException if an error occurs

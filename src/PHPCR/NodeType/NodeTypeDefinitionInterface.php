@@ -127,7 +127,7 @@ interface NodeTypeDefinitionInterface {
     /**
      * Determins if the node type is queryable.
      *
-     * Returns TRUE if the node type is queryable, meaning that the
+     * Returns true if the node type is queryable, meaning that the
      * available-query-operators, full-text-searchable and query-orderable
      * attributes of its property definitions take effect.
      *

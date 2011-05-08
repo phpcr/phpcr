@@ -256,7 +256,7 @@ interface PropertyDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInte
      * property.
      *
      * This attribute only takes effect if the node type holding the property
-     * definition has a queryable setting of TRUE.
+     * definition has a queryable setting of true.
      *
      * JCR defines the comparison operators QueryObjectModelConstants::JCR_OPERATOR_*
      *
@@ -282,12 +282,12 @@ interface PropertyDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInte
     /**
      * Determines if this property is full-text searchable.
      *
-     * Returns TRUE if this property is full-text searchable,
+     * Returns true if this property is full-text searchable,
      * meaning that its value is accessible through the full-text search
      * function within a query.
      *
      * This attribute only takes effect if the node type holding the
-     * property definition has a queryable setting of TRUE.
+     * property definition has a queryable setting of true.
      *
      * @return boolean True, if this property is full-text searchable, else false.
      * @api
@@ -297,12 +297,12 @@ interface PropertyDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInte
     /**
      * Report this property is orderable by a query.
      *
-     * Returns TRUE if this property is query orderable,
+     * Returns true if this property is query orderable,
      * meaning that query results may be ordered by this property
      * using the order-by clause of a query.
      *
      * This attribute only takes effect if the node type holding the
-     * property definition has a queryable setting of TRUE.
+     * property definition has a queryable setting of true.
      *
      * @return boolean True, if this property is query orderable, else false.
      * @api

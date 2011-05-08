@@ -261,7 +261,7 @@ interface WorkspaceInterface {
      * @throws \PHPCR\RepositoryException if the last element of destAbsPath has an index or if another error occurs.
      * @api
      */
-    public function copy($srcAbsPath, $destAbsPath, $srcWorkspace = NULL);
+    public function copy($srcAbsPath, $destAbsPath, $srcWorkspace = null);
 
     /**
      * Clones the subgraph at the node srcAbsPath in srcWorkspace to the new location at destAbsPath in this workspace.
@@ -610,7 +610,7 @@ interface WorkspaceInterface {
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
      */
-    public function createWorkspace($name, $srcWorkspace = NULL);
+    public function createWorkspace($name, $srcWorkspace = null);
 
     /**
      * Deletes the workspace with the specified name from the repository, deleting all content within it.
