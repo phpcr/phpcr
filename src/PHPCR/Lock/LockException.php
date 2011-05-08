@@ -58,19 +58,19 @@ class LockException extends \PHPCR\RepositoryException {
      *
      * @param string $message The exception message
      * @param integer $code The exception error code
-     * @param string $failureNodePath the absolute path of the node that caused the error or  NULL if the implementation
+     * @param string $failureNodePath the absolute path of the node that caused the error or  null if the implementation
      *                                chooses not to, or cannot, return a path.
      *
      * @author Karsten Dambekalns <karsten@typo3.org>
      * @api
      */
-    public function __construct($message, $code, $failureNodePath = NULL) {
+    public function __construct($message, $code, $failureNodePath = null) {
         parent::construct($message, $code);
         $this->failureNodePath = $failureNodePath;
     }
 
     /**
-     * Returns the absolute path of the node that caused the error or NULL
+     * Returns the absolute path of the node that caused the error or null
      * if the implementation chooses not to, or cannot, return a path.
      *
      * @return string path of the node that caused the error

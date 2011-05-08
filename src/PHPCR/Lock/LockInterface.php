@@ -46,7 +46,7 @@ interface LockInterface {
      * client supplied owner information (see LockManager->lock()),
      * an implementation-dependent string identifying the user who either
      * created the lock or who is bound to the session holding the lock, or
-     * NULL if none of these are available.
+     * null if none of these are available.
      *
      * The lock owner's identity is only provided for informational purposes.
      * It does not govern who can perform an unlock or make changes to the

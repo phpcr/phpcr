@@ -125,7 +125,7 @@ interface NodeTypeManagerInterface extends \Traversable {
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
      */
-    public function createNodeTypeTemplate($ntd = NULL);
+    public function createNodeTypeTemplate($ntd = null);
 
     /**
      * Returns an empty NodeDefinitionTemplate which can then be used to create a

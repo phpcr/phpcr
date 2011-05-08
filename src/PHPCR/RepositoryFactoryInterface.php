@@ -61,20 +61,20 @@ interface RepositoryFactoryInterface {
      * Java package style to distinguish their key names. For example
      * an address parameter might be com.vendor.address.
      *
-     * The implementation must return NULL if it does not understand
+     * The implementation must return null if it does not understand
      * the given parameters. The implementation may also return null if a default
      * repository instance is requested (indicated by null parameters) and this
      * factory is not able to identify a default repository. An implementation
      * should throw an RepositoryException if it is the right factory but has
      * trouble connecting to the repository.
      *
-     * @param array|NULL $parameters string key/value pairs as repository arguments or NULL if a client wishes
+     * @param array|null $parameters string key/value pairs as repository arguments or null if a client wishes
      *                               to connect to a default repository.
-     * @return \PHPCR\RepositoryInterface a repository instance or NULL if this implementation does
+     * @return \PHPCR\RepositoryInterface a repository instance or null if this implementation does
      *                                    not understand the passed parameters
      * @throws \PHPCR\RepositoryException if no suitable repository is found or another error occurs.
      * @api
      */
-    public function getRepository(array $parameters = NULL);
+    public function getRepository(array $parameters = null);
 
 }

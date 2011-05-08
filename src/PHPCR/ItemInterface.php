@@ -124,7 +124,7 @@ interface ItemInterface {
      *
      * Returns true if this Item is a Node; Returns false if this Item is a Property.
      *
-     * @return boolean TRUE if this Item is a Node, FALSE if it is a Property.
+     * @return boolean true if this Item is a Node, false if it is a Property.
      * @api
      */
     public function isNode();
@@ -144,7 +144,7 @@ interface ItemInterface {
      * Note that in read-only implementations, this method will always return
      * false.
      *
-     * @return boolean TRUE if this item is new; FALSE otherwise.
+     * @return boolean true if this item is new; false otherwise.
      * @api
      */
     public function isNew();
@@ -163,7 +163,7 @@ interface ItemInterface {
      * Note that in read-only implementations, this method will always return
      * false.
      *
-     * @return boolean TRUE if this item is modified; FALSE otherwise.
+     * @return boolean true if this item is modified; false otherwise.
      * @api
      */
     public function isModified();
@@ -182,7 +182,7 @@ interface ItemInterface {
      *   objects.
      * - If they are Node objects, they have the same identifier.
      * - If they are Property objects they have identical names and
-     *   isSame() is TRUE of their parent nodes.
+     *   isSame() is true of their parent nodes.
      *
      * This method does not compare the states of the two items. For example, if
      * two Item objects representing the same actual workspace item have been
@@ -193,7 +193,7 @@ interface ItemInterface {
      * state.
      *
      * @param \PHPCR\ItemInterface $otherItem the Item object to be tested for identity with this Item.
-     * @return boolean TRUE if this Item object and otherItem represent the same actual repository item; FALSE otherwise.
+     * @return boolean true if this Item object and otherItem represent the same actual repository item; false otherwise.
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
      */

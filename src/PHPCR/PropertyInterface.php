@@ -499,7 +499,7 @@ interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable {
      *   the type of this property is set to REFERENCE
      * - if the given $value is a Node object, it's Identifier is fetched and
      *   the type of this property is set to WEAKREFERENCE if $weak is set to
-     *   TRUE
+     *   true
      * - if the given $value is a DateTime object, the property type will be
      *   set to DATE.
      *
@@ -518,7 +518,7 @@ interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable {
      *
      * @param mixed $value The value to set
      * @param integer $type Type request for the property, optional. Must be a constant from PropertyType
-     * @param boolean $weak When a Node is given as $value this can be given as TRUE to create a WEAKREFERENCE,
+     * @param boolean $weak When a Node is given as $value this can be given as true to create a WEAKREFERENCE,
      *                      by default a REFERENCE is created
      * @return void
      *
@@ -536,7 +536,7 @@ interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable {
      *                                   support dates incompatible with that format.
      * @api
      */
-    public function setValue($value, $type = NULL, $weak = FALSE);
+    public function setValue($value, $type = null, $weak = false);
 
     /**
      * Appends a value to a multi-value property
@@ -788,10 +788,10 @@ interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable {
     /**
      * Determines if the current property is multi-valued.
      *
-     * Returns TRUE if this property is multi-valued and FALSE if this property
+     * Returns true if this property is multi-valued and false if this property
      * is single-valued.
      *
-     * @return boolean TRUE if this property is multi-valued; FALSE otherwise.
+     * @return boolean true if this property is multi-valued; false otherwise.
      *
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api

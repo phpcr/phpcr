@@ -152,7 +152,7 @@ interface ObservationManagerInterface extends \Traversable {
     /**
      * Retrieves the event journal for this workspace.
      *
-     * If journaled observation is not supported for this workspace, NULL is
+     * If journaled observation is not supported for this workspace, null is
      * returned.
      *
      * Events returned in the EventJournal instance will be filtered according
@@ -168,12 +168,12 @@ interface ObservationManagerInterface extends \Traversable {
      * @param boolean $isDeep Switch to define the given path as a reference to a child node.
      * @param array $uuid array of identifiers.
      * @param array $nodeTypeName array of node type names.
-     * @return \PHPCR\Observation\EventJournalInterface an EventJournal (or NULL).
+     * @return \PHPCR\Observation\EventJournalInterface an EventJournal (or null).
      *
      * @throws \PHPCR\RepositoryException if an error occurs
      * @api
      */
-    public function getEventJournal($eventTypes = NULL, $absPath = NULL, $isDeep = NULL, array $uuid = NULL,
-                                    array $nodeTypeName = NULL);
+    public function getEventJournal($eventTypes = null, $absPath = null, $isDeep = null, array $uuid = null,
+                                    array $nodeTypeName = null);
 
 }

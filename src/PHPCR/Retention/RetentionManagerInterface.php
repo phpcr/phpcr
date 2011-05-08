@@ -63,7 +63,7 @@ interface RetentionManagerInterface {
     /**
      * Places a hold on the existing node at $absPath.
      *
-     * If $isDeep is TRUE the hold applies to this node and its subgraph.
+     * If $isDeep is true the hold applies to this node and its subgraph.
      * The hold does not take effect until a save is performed. A node may have
      * more than one hold. The format and interpretation of the name are not
      * specified. They are application-dependent.
@@ -116,7 +116,7 @@ interface RetentionManagerInterface {
      *
      * @param string $absPath an absolute path to an existing node.
      * @return \PHPCR\Retention\RetentionPolicyInterface The retention policy that applies to the existing
-     *                                                   node at $absPath or NULL if no policy applies.
+     *                                                   node at $absPath or null if no policy applies.
      * @throws \PHPCR\PathNotFoundException if no node at $absPath exists or the session does not have
      *                                      sufficient access to retrieve the node.
      * @throws \PHPCR\AccessDeniedException if the current session does not have sufficient access to

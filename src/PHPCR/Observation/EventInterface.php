@@ -115,8 +115,8 @@ interface EventInterface {
     /**
      * If event bundling is supported, this event is used to indicate a
      * bundle boundary within the event journal.
-     * - getPath() returns NULL.
-     * - getIdentifier() returns NULL.
+     * - getPath() returns null.
+     * - getIdentifier() returns null.
      * - getInfo() returns an empty array.
      *
      * @api
@@ -142,13 +142,13 @@ interface EventInterface {
     public function getType();
 
     /**
-     * Returns the absolute path associated with this event or NULL if this
+     * Returns the absolute path associated with this event or null if this
      * event has no associated identifier.
      *
      * The meaning of the associated path depends upon the type of the event.
      * See event type constants above.
      *
-     * @return string The absolute path associated with this event or NULL.
+     * @return string The absolute path associated with this event or null.
      *
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
@@ -172,7 +172,7 @@ interface EventInterface {
      * The meaning of the associated identifier depends upon the type of the event.
      * See event type constants above.
      *
-     * @return string The identifier associated with this event or NULL.
+     * @return string The identifier associated with this event or null.
      *
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
