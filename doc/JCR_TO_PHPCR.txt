@@ -31,10 +31,11 @@ ItemInterface instead of two visit methods expecting Node and Property.
 The implementing visitor will have to do a type-check.
 
  * In PHP you can not have a class method called "clone" because it is a
-    reserved keyword. Workspace::clone is named Workspace::klone.
- * BinaryInterface::read got a third optional parameter to limit how much
-    to read. In Java, this is determined by the length of the bytes array
-    passed to the method. In PHP $bytes is a dynamically growing string.
+    reserved keyword. Workspace::clone is named Workspace::cloneFrom as it clones
+    a node from a workspace into the current workspace.
+ * BinaryInterface instead of this, the property has a getBinaryStream method
+    that returns a php stream. To know the file size, you can use
+    Property::getLength
  * A note about the Boolean value type. When converting String values to
     boolean, JCR uses java.lang.Boolean.valueOf(String) which evaluates to true
     only for the string "true" (case insensitive). PHP usually treats
@@ -70,7 +71,7 @@ Additionally, we declared API elements as Traversable where it makes sense.
 This allows to directly use the objects in a foreach statement.
 The implementation either has to implement IteratorAggregate::getIterator to
 return a suitable iterator, or be an iterator itselves.
-PHP NOTE: When implementing our interfaces, you have to declare either 
+PHP NOTE: When implementing our interfaces, you have to declare either
 implements Iterator or IteratorAggregate explicitly in your class signature.
 Do NOT put implements Traversable into the signature, it confuses PHP.
 
@@ -114,7 +115,7 @@ context of strong typing.
 The PropertyInterface methods directly access the native property values.
 We keep type conversions possible with the type-specific getters.
 
- * Remove PropertyInterface::getValue and PropertyInterface::getValues
+ * PropertyInterface::getValue returns the value in its default format
  * The type specific getters return a native value or an array of such values
     in case of multivalue properties.
  * PropertyInterface::setValue got an optional parameter for specifying the
@@ -122,8 +123,7 @@ We keep type conversions possible with the type-specific getters.
     ValueFactory::createValue
 
 In all places where Value objects where used, this is changed to plain PHP
-variables. If binaries are used, a BinaryInterface instance is used rather than
-a naked resource stream.
+variables (streams for binary).
 
 
 Property
@@ -140,11 +140,8 @@ multival properties).
 For performance reason, implementations should delay instantiating the
 PropertyInterface objects when nodes are loaded.
 
-PropertyInterface::getNativeValue() has been added to get the property value
-without caring about types.
-
 PropertyInterface::addValue() has been added to quickly append a value to
-multi-value properties instead of requiring getNativeValue()/append/setValue().
+multi-value properties instead of requiring getValue()/append/setValue().
 
 Note: We discussed even completely dropping the Property interface. But the
 separation between Node and Property does make sense, plus allows for things

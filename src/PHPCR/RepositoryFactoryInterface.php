@@ -41,9 +41,6 @@ namespace PHPCR;
  *    $parameters = array('com.vendor.address' => 'vendor://localhost:9999/myrepo');
  *    $repo = \SomeRepository\RepositoryFactory::getRepository($parameters);
  *
- * Get a default repository available in this environment:
- *    $repo = \PHPCR\RepositoryFactory::getRepository();
- *
  * @package phpcr
  * @subpackage interfaces
  * @api
@@ -75,5 +72,11 @@ interface RepositoryFactoryInterface {
      * @api
      */
     public function getRepository(array $parameters = null);
+
+    /**
+     * Get the list of configuration options that can be passed to getRepository
+     * @return array hash map of configuration key => english description
+     */
+    public function getConfigurationKeys();
 
 }

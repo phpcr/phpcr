@@ -42,14 +42,14 @@ namespace PHPCR;
  * The \Traversable interface enables the implementation to be addressed with
  * <b>foreach</b>. Properties have to implement either \IteratorAggregate or
  * \Iterator.
- * The iterator is equivalent to <b>getNativeValue()</b> returning an iterator
+ * The iterator is equivalent to <b>getValue()</b> returning an iterator
  * of all values of this property (which is exactly one except for multivalue
  * properties). The iterator keys have no significant meaning.
  *
  * <b>PHPCR Note:</b>
  * We removed the Value interface and consequently the getValue() and
  * getValues() methods. If you just want the property value in its native type,
- * use getNativeValue, or just NodeInterface::getPropertyValue.
+ * use getValue, or just NodeInterface::getPropertyValue.
  * The PropertyInterface::getXX methods also work for multivalue properties.
  * They return arrays in case of multivalue.
  * PropertyInterface::setValue completely replaces the
@@ -548,11 +548,14 @@ interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable {
     /**
      * Get the value in format default for the PropertyType of this property.
      *
-     * <b>PHPCR Note:</b> This is an additional method not found in JSR-283
+     * In case of a binary property, this is the stream of binary data.
+     *
+     * <b>PHPCR Note:</b> We dropped the Value interface as its unnecessary
+     * with weak typing
      *
      * @return mixed value of this property, or array in case of multi-value
      */
-    public function getNativeValue();
+    public function getValue();
 
     /**
      * Returns a String representation of the value of this property.
@@ -658,7 +661,7 @@ interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable {
      * refers to the parent node itself, ".." to the parent of the parent node
      * and "foo" to a sibling node of this property.
      *
-     * If you do not want to dereference the nodes yet, you can use getString 
+     * If you do not want to dereference the nodes yet, you can use getString
      * to get the unique ids and use the SessionInterface::getNodeByIdentifier
      * as all referenced nodes are referenciable and thus must have a uuid.
      * If its a PATH property, you will need the node of this property and use

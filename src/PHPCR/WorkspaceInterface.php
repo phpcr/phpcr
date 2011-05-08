@@ -263,7 +263,7 @@ interface WorkspaceInterface {
     public function copy($srcAbsPath, $destAbsPath, $srcWorkspace = null);
 
     /**
-     * Clones the subgraph at the node srcAbsPath in srcWorkspace to the new location at destAbsPath in this workspace.
+     * Clones the subgraph at the node srcAbsPath in srcWorkspace to the new location at destAbsPath in the current workspace.
      *
      * Unlike the signature of copy that copies between workspaces, this method
      * does not assign new identifiers to the newly cloned nodes but preserves
@@ -295,7 +295,7 @@ interface WorkspaceInterface {
      * clones a node and its subgraph.
      *
      * PHP Notice: The JCR method is called clone, but that is a reserved
-     * keyword in PHP, thus we named the method klone.
+     * keyword in PHP, thus we named the method cloneFrom.
      *
      * @param string $srcWorkspace The name of the workspace from which the node is to be copied.
      * @param string $srcAbsPath The path of the node to be copied in srcWorkspace.
@@ -322,7 +322,7 @@ interface WorkspaceInterface {
      * @throws \PHPCR\RepositoryException if the last element of destAbsPath has an index or if another error occurs.
      * @api
      */
-    public function klone($srcWorkspace, $srcAbsPath, $destAbsPath, $removeExisting);
+    public function cloneFrom($srcWorkspace, $srcAbsPath, $destAbsPath, $removeExisting);
 
     /**
      * Moves the node at srcAbsPath (and its entire subgraph) to the new location at destAbsPath.
