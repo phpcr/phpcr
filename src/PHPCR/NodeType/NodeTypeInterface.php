@@ -486,7 +486,7 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface 
      * @return boolean True, if the node type allows the addition of a child node, else false.
      * @api
      */
-    public function canAddChildNode($childNodeName, $nodeTypeName = NULL);
+    public function canAddChildNode($childNodeName, $nodeTypeName = null);
 
     /**
      * Reports if the node type allows the removal of the given node.

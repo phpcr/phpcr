@@ -89,7 +89,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @throws \PHPCR\RepositoryException if the operation otherwise fails
      * @api
      */
-    public function selector($nodeTypeName, $selectorName = NULL);
+    public function selector($nodeTypeName, $selectorName = null);
 
     /**
      * Performs a join between two node-tuple sources.
@@ -164,7 +164,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @throws \PHPCR\RepositoryException if the operation otherwise fails
      * @api
      */
-    public function sameNodeJoinCondition($selector1Name, $selector2Name, $selector2Path = NULL);
+    public function sameNodeJoinCondition($selector1Name, $selector2Name, $selector2Path = null);
 
     /**
      * Tests whether a first selector's node is a child of a second selector's node.
@@ -280,7 +280,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @throws \PHPCR\RepositoryException if the operation otherwise fails
      * @api
      */
-    public function propertyExistence($propertyName, $selectorName = NULL);
+    public function propertyExistence($propertyName, $selectorName = null);
 
     /**
      * Performs a full-text search against the specified or default selector.
@@ -305,7 +305,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @throws \PHPCR\RepositoryException if the operation otherwise fails
      * @api
      */
-    public function fullTextSearch($propertyName, $fullTextSearchExpression, $selectorName = NULL);
+    public function fullTextSearch($propertyName, $fullTextSearchExpression, $selectorName = null);
 
     /**
      * Tests whether a node in the specified or default selector is reachable by
@@ -327,7 +327,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @throws \PHPCR\RepositoryException if the operation otherwise fails
      * @api
      */
-    public function sameNode($path, $selectorName = NULL);
+    public function sameNode($path, $selectorName = null);
 
     /**
      * Tests whether a node in the specified or default selector is a child of a
@@ -351,7 +351,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @throws \PHPCR\RepositoryException if the operation otherwise fails
      * @api
      */
-    public function childNode($path, $selectorName = NULL);
+    public function childNode($path, $selectorName = null);
 
     /**
      * Tests whether a node in the specified or default selector is a descendant
@@ -375,7 +375,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @throws \PHPCR\RepositoryException if the operation otherwise fails
      * @api
      */
-    public function descendantNode($path, $selectorName = NULL);
+    public function descendantNode($path, $selectorName = null);
 
     /**
      * Evaluates to the value (or values, if multi-valued) of a property in the
@@ -392,7 +392,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @throws \PHPCR\RepositoryException if the operation otherwise fails
      * @api
      */
-    public function propertyValue($propertyName, $selectorName = NULL);
+    public function propertyValue($propertyName, $selectorName = null);
 
     /**
      * Evaluates to the length (or lengths, if multi-valued) of a property.
@@ -423,7 +423,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @throws \PHPCR\RepositoryException if the operation otherwise fails
      * @api
      */
-    public function nodeName($selectorName = NULL);
+    public function nodeName($selectorName = null);
 
     /**
      * Evaluates to a NAME value equal to the local (unprefixed) name of a node in the specified or default selector.
@@ -437,7 +437,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @throws \PHPCR\RepositoryException if the operation otherwise fails
      * @api
      */
-    public function nodeLocalName($selectorName = NULL);
+    public function nodeLocalName($selectorName = null);
 
     /**
      * Evaluates to a DOUBLE value equal to the full-text search score of a node in the specified or default selector.
@@ -453,7 +453,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @throws \PHPCR\RepositoryException if the operation otherwise fails
      * @api
      */
-    public function fullTextSearchScore($selectorName = NULL);
+    public function fullTextSearchScore($selectorName = null);
 
     /**
      * Evaluates to the lower-case string value (or values, if multi-valued) of an operand.
@@ -567,6 +567,6 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @throws \PHPCR\RepositoryException if the operation otherwise fails
      * @api
      */
-    public function column($propertyName, $columnName = NULL, $selectorName = NULL);
+    public function column($propertyName, $columnName = null, $selectorName = null);
 
 }

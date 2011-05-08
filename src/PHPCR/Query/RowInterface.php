@@ -81,7 +81,7 @@ interface RowInterface extends \Traversable {
      *                                    another error occurs.
      * @api
      */
-    public function getNode($selectorName = NULL);
+    public function getNode($selectorName = null);
 
     /**
      * Get the path of a node identified by a selector.
@@ -96,7 +96,7 @@ interface RowInterface extends \Traversable {
      *                                    if another error occurs.
      * @api
      */
-    public function getPath($selectorName = NULL);
+    public function getPath($selectorName = null);
 
     /**
      * Returns the full text search score for this row associated with the specified
@@ -123,6 +123,6 @@ interface RowInterface extends \Traversable {
      *                                    or if another error occurs.
      * @api
      */
-    public function getScore($selectorName = NULL);
+    public function getScore($selectorName = null);
 
 }

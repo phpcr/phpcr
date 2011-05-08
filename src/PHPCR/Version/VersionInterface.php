@@ -71,7 +71,7 @@ interface VersionInterface extends \PHPCR\NodeInterface {
      * Note that under simple versioning the behavior of this method is equivalent
      * to getting the unique successor (if any) of this version.
      *
-     * @return \PHPCR\VersionInterface a Version or NULL if no linear successor exists.
+     * @return \PHPCR\VersionInterface a Version or null if no linear successor exists.
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @see VersionHistory::getAllLinearVersions()
      * @api
@@ -98,7 +98,7 @@ interface VersionInterface extends \PHPCR\NodeInterface {
      * Note that under simple versioning the behavior of this method is equivalent
      * to getting the unique predecessor (if any) of this version.
      *
-     * @return \PHPCR\Version\VersionInterface a Version or NULL if no linear predecessor exists.
+     * @return \PHPCR\Version\VersionInterface a Version or null if no linear predecessor exists.
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @see VersionHistory::getAllLinearVersions()
      * @api

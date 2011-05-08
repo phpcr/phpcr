@@ -53,7 +53,7 @@ abstract class TraversingItemVisitor implements \PHPCR\ItemVisitorInterface {
      * than depth-first (which is the default).
      * @var boolean
      */
-    protected $breadthFirst = FALSE;
+    protected $breadthFirst = false;
 
     /**
      * The 0-based level up to which the hierarchy should be traversed (if it's
@@ -84,7 +84,7 @@ abstract class TraversingItemVisitor implements \PHPCR\ItemVisitorInterface {
     /**
      * Constructs a new instance of this class.
      *
-     * @param boolean $breadthFirst if $breadthFirst is TRUE then traversal is done in a breadth-first manner;
+     * @param boolean $breadthFirst if $breadthFirst is true then traversal is done in a breadth-first manner;
      *                              otherwise it is done in a depth-first manner (which is the default behavior).
      * @param integer $maxLevel the 0-based level up to which the hierarchy should be traversed
      *                          (if it's -1, the hierarchy will be traversed until there are no more children
@@ -94,11 +94,11 @@ abstract class TraversingItemVisitor implements \PHPCR\ItemVisitorInterface {
      * @author Day Management AG, Switzerland
      * @api
      */
-    public function TraversingItemVisitor($breadthFirst = FALSE, $maxLevel = -1) {
+    public function TraversingItemVisitor($breadthFirst = false, $maxLevel = -1) {
         $this->breadthFirst = $breadthFirst;
         $this->maxLevel = $maxLevel;
 
-        if ($this->breadthFirst === TRUE) {
+        if ($this->breadthFirst === true) {
             $this->currentQueue = new \SplQueue();
             $this->nextQueue = new \SplQueue();
         }
@@ -153,7 +153,7 @@ abstract class TraversingItemVisitor implements \PHPCR\ItemVisitorInterface {
             $this->leaving($item);
         } else {
             try {
-                if ($this->breadthFirst === FALSE) {
+                if ($this->breadthFirst === false) {
                         // depth-first traversal
                     $this->entering($item, $this->currentLevel);
                     if ($this->maxLevel == -1 || $this->currentLevel < $this->maxLevel) {

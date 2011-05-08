@@ -112,12 +112,12 @@ final class SimpleCredentials implements \PHPCR\CredentialsInterface {
      * @api
      */
     public function setAttribute($name, $value) {
-        if ($name === NULL) {
+        if ($name === null) {
             throw new \InvalidArgumentException('$name cannot be null', 1212580046);
         }
 
             // null value is the same as removeAttribute()
-        if ($value === NULL) {
+        if ($value === null) {
             $this->removeAttribute($name);
         } else {
             $this->attributes[$name] = $value;
@@ -125,11 +125,11 @@ final class SimpleCredentials implements \PHPCR\CredentialsInterface {
     }
 
     /**
-     * Returns the value of the named attribute, or NULL if no attribute of the
+     * Returns the value of the named attribute, or null if no attribute of the
      * given name exists.
      *
      * @param string $name the name of the attribute
-     * @return mixed the value of the attribute, or NULL if the attribute does not exist
+     * @return mixed the value of the attribute, or null if the attribute does not exist
      *
      * @author Karsten Dambekalns <karsten@typo3.org>
      * @api
@@ -137,9 +137,8 @@ final class SimpleCredentials implements \PHPCR\CredentialsInterface {
     public function getAttribute($name) {
         if (isset($this->attributes[$name])) {
             return $this->attributes[$name];
-        } else {
-            return NULL;
         }
+        return null;
     }
 
     /**

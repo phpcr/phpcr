@@ -118,7 +118,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
      * @throws \PHPCR\RepositoryException If the last element of relPath has an index or if another error occurs.
      * @api
      */
-    public function addNode($relPath, $primaryNodeTypeName = NULL);
+    public function addNode($relPath, $primaryNodeTypeName = null);
 
     /**
      * Insert a child node before another child identified by its path.
@@ -221,7 +221,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
      */
-    public function setProperty($name, $value, $type = NULL);
+    public function setProperty($name, $value, $type = null);
 
     /**
      * Returns the node at relPath relative to this node.
@@ -296,7 +296,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
      * @throws \PHPCR\RepositoryException If an unexpected error occurs.
      * @api
      */
-    public function getNodes($filter = NULL);
+    public function getNodes($filter = null);
 
     /**
      * Returns the property at relPath relative to this node.
@@ -376,7 +376,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
      * @throws \PHPCR\RepositoryException If an unexpected error occurs.
      * @api
      */
-    public function getProperties($filter = NULL);
+    public function getProperties($filter = null);
 
     /**
      * Shortcut for getProperties and then getting the values of the properties.
@@ -460,7 +460,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
      * @throws \PHPCR\RepositoryException if an error occurs
      * @api
      */
-    public function getReferences($name = NULL);
+    public function getReferences($name = null);
 
     /**
      * This method returns all WEAKREFERENCE properties that refer to this node,
@@ -487,7 +487,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
      * @throws \PHPCR\RepositoryException if an error occurs
      * @api
      */
-    public function getWeakReferences($name = NULL);
+    public function getWeakReferences($name = null);
 
     /**
      * Indicates whether a node exists at relPath Returns true if a node accessible
@@ -566,8 +566,8 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
      * Returns false otherwise. This method respects the effective node type of the node.
      *
      * @param string $nodeTypeName the name of a node type.
-     * @return boolean TRUE if this node is of the specified primary node type or mixin type, or a subtype thereof.
-     *                 Returns FALSE otherwise.
+     * @return boolean true if this node is of the specified primary node type or mixin type, or a subtype thereof.
+     *                 Returns false otherwise.
      * @throws \PHPCR\RepositoryException If an error occurs.
      * @api
      */
@@ -805,10 +805,10 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
     /**
      * Determine if the current node is currently checked out.
      *
-     * Returns FALSE if this node is currently in the checked-in state (either
+     * Returns false if this node is currently in the checked-in state (either
      * due to its own status as a versionable node or due to the effect of
      * a versionable node being checked in above it). Otherwise this method
-     * returns TRUE. This includes the case where the repository does not
+     * returns true. This includes the case where the repository does not
      * support versioning (and therefore all nodes are always "checked-out",
      * by default).
      *
@@ -821,9 +821,9 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
     /**
      * Determine if the current node has been locked.
      *
-     * Returns TRUE if this node is locked either as a result of a lock held
+     * Returns true if this node is locked either as a result of a lock held
      * by this node or by a deep lock on a node above this node;
-     * otherwise returns FALSE. This includes the case where a repository does
+     * otherwise returns false. This includes the case where a repository does
      * not support locking (in which case all nodes are "unlocked" by default).
      *
      * @return boolean.

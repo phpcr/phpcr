@@ -49,7 +49,7 @@ interface HoldInterface {
     /**
      * Returns true if this Hold is deep.
      *
-     * @return boolean TRUE if this Hold is deep.
+     * @return boolean true if this Hold is deep.
      *
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
