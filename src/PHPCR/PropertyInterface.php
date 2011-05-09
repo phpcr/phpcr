@@ -575,8 +575,7 @@ interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable {
      * The Binary object in turn provides methods to access the binary data
      * itself. Uses the standard conversion to binary (see JCR specification).
      *
-     * @return \PHPCR\BinaryInterface A Binary representation of the value of this property, or an array of binary for
-     *                                multi-valued properties.
+     * @return resource A stream resource if the underlying binary
      *
      * @throws \PHPCR\RepositoryException if another error occurs
      * @api
