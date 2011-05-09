@@ -524,7 +524,7 @@ interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable {
      * @throws \PHPCR\ConstraintViolationException if the change would violate a node-type or other constraint and
      *                                             this implementation performs this validation immediately.
      * @throws \PHPCR\RepositoryException if another error occurs.
-     * @throws \IllegalArgumentException if the specified DateTime value cannot be expressed in the ISO 8601-based
+     * @throws \InvalidArgumentException if the specified DateTime value cannot be expressed in the ISO 8601-based
      *                                   format defined in the JCR 2.0 specification and the implementation does not
      *                                   support dates incompatible with that format.
      * @api
