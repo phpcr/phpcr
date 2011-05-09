@@ -159,6 +159,9 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
      * This method works as factory method to create new properties and as a
      * shortcut for PropertyInterface::setValue
      *
+     * The type detection logic is exactly the same as in
+     * PropertyInterface::setValue
+     *
      * If the property does not yet exist, it is created and its property type
      * determined by the node type of this node. If, based on the name and value
      * passed, there is more than one property definition that applies, the
@@ -172,16 +175,6 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
      *
      * If the property type is different than the type of supplied variables, a
      * best-effort conversion is attempted.
-     *
-     * If the node type of this node does not indicate a specific property type,
-     * then the property type of the supplied variable is used and if the
-     * property already exists it assumes both the new value and new property
-     * type. Types are mapped directly, with the same exceptions as in
-     * PropertyInterface::setValue:
-     * * if the given $value is a Node object, it's Identifier is fetched and
-     *   the type will be REFERENCE. To create a WEAKREFERENCE you have to
-     *   explicitly specify the type
-     * * if the given $value is a DateTime object, the type will be DATE.
      *
      * Passing a null as the second parameter removes the property. It is equivalent
      * to calling remove on the Property object itself. For example,
@@ -203,7 +196,9 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
      * @param string $name The name of a property of this node
      * @param mixed $value The value to be assigned
      * @param integer $type The type to set for the property, optional. Must be a constant from {@link PropertyType}
+     *
      * @return \PHPCR\PropertyInterface The updated Property object
+     *
      * @throws \PHPCR\ValueFormatException if the specified property is a DATE but the value cannot be expressed in the
      *                                     ISO 8601-based format defined in the JCR 2.0 specification and the
      *                                     implementation does not support dates incompatible with that format or if
@@ -218,6 +213,9 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
      *                                             implementation performs this validation immediately instead of
      *                                             waiting until save.
      * @throws \PHPCR\RepositoryException if another error occurs.
+     *
+     * @see \PHPCR\PropertyInterface::setValue()
+     *
      * @api
      */
     public function setProperty($name, $value, $type = null);

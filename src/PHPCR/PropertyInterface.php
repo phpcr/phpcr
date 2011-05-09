@@ -485,27 +485,22 @@ interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable {
     /**
      * Sets the value of this property to value.
      *
-     * If this property's property ype is not constrained by the node type of its
-     * parent node, then the property type may be changed. If the property type is
-     * constrained, then a best-effort conversion is attempted.
+     * If the type parameter is set, the property is set to that type and the
+     * value converted into that type. If the node type does not allow the type
+     * an exception is thrown.
+     *
+     * If no explicit type is given, then it is derived from the value. (First
+     * value in case of multivalue property.)
+     * If the node type allows the implicit type, the property changes its type
+     * to the type of the value. Otherwise, a best-effort conversion is attempted.
+     *
+     * The type detection follows PropertyType::determineType. Thus, passing a
+     * Node object without an explicit type (REFERENCE or WEAKREFERENCE) will
+     * create a REFERENCE property. If the specified node is not referenceable,
+     * a ValueFormatException is thrown.
      *
      * This method is a session-write and therefore requires a <code>save</code>
      * to dispatch the change.
-     *
-     * If no type is given, the value is stored as is, i.e. it's type is
-     * preserved. Exceptions are:
-     * - if the given $value is a Node object, it's Identifier is fetched and
-     *   the type of this property is set to REFERENCE
-     * - if the given $value is a Node object, it's Identifier is fetched and
-     *   the type of this property is set to WEAKREFERENCE if $weak is set to
-     *   true
-     * - if the given $value is a DateTime object, the property type will be
-     *   set to DATE.
-     *
-     * For Node objects as value:
-     * Sets this REFERENCE OR WEAKREFERENCE property to refer to the specified
-     * node. If this property is not of type REFERENCE or WEAKREFERENCE or the
-     * specified node is not referenceable then a ValueFormatException is thrown.
      *
      * If value is an array:
      * If this property is not multi-valued then a ValueFormatException is
@@ -517,8 +512,7 @@ interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable {
      *
      * @param mixed $value The value to set
      * @param integer $type Type request for the property, optional. Must be a constant from PropertyType
-     * @param boolean $weak When a Node is given as $value this can be given as true to create a WEAKREFERENCE,
-     *                      by default a REFERENCE is created
+     *
      * @return void
      *
      * @throws \PHPCR\ValueFormatException if the type or format of the specified value is incompatible with the type
