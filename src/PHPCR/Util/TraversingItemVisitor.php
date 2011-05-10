@@ -157,10 +157,10 @@ abstract class TraversingItemVisitor implements \PHPCR\ItemVisitorInterface {
                     $this->entering($item, $this->currentLevel);
                     if ($this->maxLevel == -1 || $this->currentLevel < $this->maxLevel) {
                         $this->currentLevel++;
-                        foreach($item->getProperties() as $property) {
+                        foreach ($item->getProperties() as $property) {
                             $property->accept($this);
                         }
-                        foreach($item->getNodes() as $node) {
+                        foreach ($item->getNodes() as $node) {
                             $node->accept($this);
                         }
                         $this->currentLevel--;
@@ -172,10 +172,10 @@ abstract class TraversingItemVisitor implements \PHPCR\ItemVisitorInterface {
                     $this->leaving($item, $this->currentLevel);
 
                     if ($this->maxLevel == -1 || $this->currentLevel < $this->maxLevel) {
-                        foreach($item->getProperties() as $property) {
+                        foreach ($item->getProperties() as $property) {
                             $property->accept($this);
                         }
-                        foreach($item->getNodes() as $node) {
+                        foreach ($item->getNodes() as $node) {
                             $node->accept($this);
                         }
                     }
