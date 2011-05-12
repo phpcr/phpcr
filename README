@@ -24,12 +24,10 @@ Main differences between PHPCR and JCR are
 An exhaustive list of the differences between PHPCR and JCR is in the file
 doc/JCR_TO_PHPCR.txt
 
-NOTE: All deprecated methods coming from JSR-170 have been left out
-
 
 API Tests
 *********
-An API test suite for the functionality of PHPCR is available at 
+An API test suite for the functionality of PHPCR is available at
 https://github.com/phpcr/phpcr-api-tests/
 All implementations have to test against this test suite to make sure they
 are interchangeable with each other.
@@ -48,12 +46,12 @@ History
 *******
 TODO: evolution of JCR
 
-The API was originally ported from Java to PHP by Karsten Dambekalns (k-fish)
+The API was originally ported from Java to PHP by Karsten Dambekalns
 with the help of others for the typo3/flow3 project.
 
 A first attempt at a port of JSR-170 to php has been made by SimPCoRe, but it
 seems no applications have been published. The project web site is still up [4]
-That version never tried to provide an API, but just implemented the Java 
+That version never tried to provide an API, but just implemented the Java
 interfaces literally.
 
 [1] http://jcp.org/en/jsr/summary?id=283

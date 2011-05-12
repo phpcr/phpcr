@@ -483,7 +483,7 @@ interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable {
     /**#@-*/
 
     /**
-     * Sets the value of this property to value.
+     * Sets the value of this property to the value.
      *
      * If the type parameter is set, the property is set to that type and the
      * value converted into that type. If the node type does not allow the type
@@ -491,13 +491,28 @@ interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable {
      *
      * If no explicit type is given, then it is derived from the value. (First
      * value in case of multivalue property.)
-     * If the node type allows the implicit type, the property changes its type
-     * to the type of the value. Otherwise, a best-effort conversion is attempted.
+     * If the node type allows the type of the parameter, the property changes
+     * its type to the type of the value. Otherwise, a best-effort conversion
+     * is attempted.
+     *
+     * If value is of type PropertyInterface, the value of the property is
+     * copied into this property. (If type is set, the property value is
+     * converted into this type, otherwise the type of the property is used
+     * as explained above.
+     * This can be used to copy a binary from one property into another without
+     * getting the stream. The implemenation should take care to detect the
+     * case and copy the binary data directly in the backend for optimal
+     * performance.
      *
      * The type detection follows PropertyType::determineType. Thus, passing a
      * Node object without an explicit type (REFERENCE or WEAKREFERENCE) will
      * create a REFERENCE property. If the specified node is not referenceable,
      * a ValueFormatException is thrown.
+     *
+     * To create a PATH property with a reference to an other property, you can
+     * call setValue with the path of the other property and the PATH type
+     * constant. Passing the property itself and the PATH type will convert the
+     * value of the property to a path.
      *
      * This method is a session-write and therefore requires a <code>save</code>
      * to dispatch the change.
@@ -506,8 +521,8 @@ interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable {
      * If this property is not multi-valued then a ValueFormatException is
      * thrown immediately.
      *
-     * <b>PHPCR Note:</b> The Java API defines this method with multiple differing signatures.
-     * <b>PHPCR Note:</b> Because we removed the Value interface, this method replaces
+     * <strong>PHPCR Note:</strong> The Java API defines this method with multiple differing signatures.
+     * <strong>PHPCR Note:</strong> Because we removed the Value interface, this method replaces
      * ValueFactory::createValue.
      *
      * @param mixed $value The value to set
@@ -529,10 +544,14 @@ interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable {
      *                                   support dates incompatible with that format.
      * @api
      */
-    public function setValue($value, $type = null, $weak = false);
+    public function setValue($value, $type = null);
 
     /**
      * Appends a value to a multi-value property
+     *
+     * <strong>PHPCR Note:</strong> This is a new method not found in Java.
+     * In PHP appending to strings is easy and this is more convenient than
+     * getting the property and appending to the array and setting again.
      *
      * @param mixed value
      * @throws \PHPCR\ValueFormatException if the property is not multi-value
@@ -600,11 +619,13 @@ interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable {
     public function getDouble();
 
     /**
-     * Returns a double representation of this value (a BigDecimal in Java).
+     * Returns an arbitrary precision number (encoded as string) representation of this value (a BigDecimal in Java).
      *
-     * @return float A float representation of the value of this property, or an array of float for multi-valued properties.
+     * The string must be encoded with the C locale because of http://bugs.php.net/bug.php?id=16532
      *
-     * @throws \PHPCR\ValueFormatException if conversion to a BigDecimal is not possible
+     * @return string A string representation of the value of this property, or an array of strings for multi-valued properties.
+     *
+     * @throws \PHPCR\ValueFormatException if conversion to a number string is not possible
      * @throws \PHPCR\RepositoryException if another error occurs
      * @api
      */
@@ -628,11 +649,11 @@ interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable {
     /**
      * Returns a boolean representation of the value of this property.
      *
-     * When converting String values to boolean, JCR uses
-     * java.lang.Boolean.valueOf(String) which evaluates to true only for the
-     * string "true" (case insensitive).
-     * PHP usually treats everything not null|0|false as true. The PHPCR API
-     * follows the JCR specification here in order to be consistent.
+     * As usual in PHP, everything that is not null, 0, or boolean false is
+     * considered true. Note that this might be different in Java:
+     * Jackrabbit uses java.lang.Boolean.valueOf(String) which evaluates to
+     * true only for the string "true" (case insensitive). In PHP, even the
+     * string 'false' will evaluate to true.
      *
      * @return boolean A boolean representation of the value of this property, or an array of boolean for
      *                 multi-valued properties.

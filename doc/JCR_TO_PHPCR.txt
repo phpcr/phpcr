@@ -1,3 +1,7 @@
+Version: 2011-05-11
+http://phpcr.github.com
+
+
 The Java Content Repository specification is targeted at strongly typed
 languages. PHP is weak typed. PHPCR is meant to implement JCR in the spirit
 of PHP, not literally.
@@ -15,7 +19,8 @@ Short Summary of the important changes
     relevant with strong typing.
  * Provide shortcut methods Node::getPropertyValue and Node::getPropertyValues
     to avoid instantiating property objects when not needed.
-
+ * NOTE: All deprecated methods coming from JSR-170 have been completely left
+    out
 
 Basic conversion
 ****************
@@ -33,14 +38,21 @@ The implementing visitor will have to do a type-check.
  * In PHP you can not have a class method called "clone" because it is a
     reserved keyword. Workspace::clone is named Workspace::cloneFrom as it clones
     a node from a workspace into the current workspace.
- * BinaryInterface instead of this, the property has a getBinaryStream method
-    that returns a php stream. To know the file size, you can use
-    Property::getLength
- * A note about the Boolean value type. When converting String values to
-    boolean, JCR uses java.lang.Boolean.valueOf(String) which evaluates to true
-    only for the string "true" (case insensitive). PHP usually treats
-    everything not null|0|false as true. The API follows the JCR specification
-    here in order to be consistent.
+ * For java.io.InputStream we use php streams (resources). For java.util.Calendar
+    we use the DateTime class.
+
+A note about the BOOLEAN value type. When converting String values to boolean,
+JCR uses java.lang.Boolean.valueOf(String) which evaluates to true only for
+the string "true" (case insensitive). The semantics in PHP is different:
+everything different from null|0|false is true.
+We chose to follow the PHP way to avoid confusion. When sharing data with a
+Jackrabbit backend, you should be aware of the difference when converting
+integer or string to boolean values.
+
+For the DECIMAL type, we use string, as there is no equivalent to
+java.math.BigDecimal in PHP. You can use bcmath to work with the large integer
+strings. The encoding must always encode using the C locale because of
+http://bugs.php.net/bug.php?id=16532
 
 
 Iterators
@@ -53,7 +65,7 @@ We loose nothing by dropping them.
 EventJournal is a special case, containing "skipTo($date)". This iterator
 is the only one that is kept.
 
-(I think JCR would better use a parametrized class for that anyway, available
+(Probably JCR would better use a parametrized class for that anyway, available
 since Java 1.5.)
 
 Wherever the iterators are used, PHPCR requires iterators implementing
@@ -63,7 +75,7 @@ expressivnes as the JCR RangeIterator.
 Note: Plain PHP arrays would be even simpler than any interfaces, while still
 allowing to use foreach. But they would have the major drawback that no lazy
 loading is possible, all data has to be instantiated immediatly.
-If an implementation does not need lazy loading, it can just create an
+If an implementation does not want lazy loading, it can just create an
 ArrayIterator from the array.
 
 
@@ -123,7 +135,12 @@ We keep type conversions possible with the type-specific getters.
     ValueFactory::createValue
 
 In all places where Value objects where used, this is changed to plain PHP
-variables (streams for binary).
+variables. This is true even for the Binary interface, as it adds no value over
+plain streams. PropertyInterface::getBinaryStream returns a php resource which
+is compatible with fpassthru and stream_get_contents.
+If you need the data size, you can use the PropertyInterface::getLength method.
+To copy a binary property without loading the stream to the backend, you can
+assign the property to an other property.
 
 
 Property
@@ -135,10 +152,10 @@ getPropertyValue($name, $type=false) that returns the native property value
 Additionally, there is a NodeInterface::getPropertiesValues($filter=null)
 function with the same logic as NodeInterface::getProperties($filter) to get
 an iterator with all property names => property value (resp value array for
-multival properties).
+multivalue properties).
 
 For performance reason, implementations should delay instantiating the
-PropertyInterface objects when nodes are loaded.
+PropertyInterface objects until they are actually needed.
 
 PropertyInterface::addValue() has been added to quickly append a value to
 multi-value properties instead of requiring getValue()/append/setValue().
@@ -158,27 +175,25 @@ topic.
 
 Note: The RepositoryFactory class uses the "Java Standard Edition Service
 Provider mechanism". There is no equivalent in PHP. However, having a defined
-way how to create the repository instance makes a lot of sense, to be able to
-swap implementations or simply for unit testing.
-In the context of symfony, Dependency Injection (DIC) can replace the need for
-the factory. However, for usage in other contexts, the defined factory makes
-sense. Symfony can use either RepositoryFactory or factory method in Repository
-or directly the constructor behind the curtains.
+way how to create the repository instance makes a lot of sense. It allows to
+easily use different implementations. We kept the getRepository method and
+added a getConfigurationKeys() method to allow for generic interactive setup.
 
 
 Helpers
 *******
 
-PropertyType::valueFromType($type) returns the PHPCR numeric constant value of the type for the given PHP type name as
-returned by gettype().
-PropertyType is a final class implemented in the API, not an interface.
-This was added by k-fish when he originally ported the interfaces to PHP. Noted
-here for completeness.
+The PropertyType (a final class implemented in the API, not an interface) does
+basic type detection and conversion (in addition to the constants definition
+according to the JCR specification). This has to be used for all conversions to
+ensure compatibility between implementations. This is the only part of the
+ValueFactory that we need to use in php.
 
+PropertyType::valueFromType($type) returns the PHPCR numeric constant value of
+the type for the given PHP type name as returned by gettype().
 
-Note: k-fish also added a third parameter to Node::addNode to manually specify
-the node identifier. In JCR, the identifier can not be set explicitly.
-We removed that, as identifiers should not be imposed to the implementation.
+PropertyType::convertToType($value, $type) converts the value into the target
+type.
 
 
 Remark
@@ -190,5 +205,13 @@ those methods even if they are not declared in the PHPCR interfaces. Of course,
 your client code then will not be able to use other PHPCR implementations.
 
 
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-David Buchmann, 2010-11-03
+Contributors:
+
+* Karsten Dambekalns <karsten (at) typo3.org>
+* David Buchmann <david (at) liip.ch>
+* Lukas Kahwe Smith <lukas (at) liip.ch>
+* Henri Bergius <henri.bergius (at) iki.fi>
+* Jordi Boggiano <j.boggiano (at) seld.be>
+* Christian Stocker <chregu (at) liip.ch>

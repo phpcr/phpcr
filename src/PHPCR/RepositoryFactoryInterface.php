@@ -75,6 +75,10 @@ interface RepositoryFactoryInterface {
 
     /**
      * Get the list of configuration options that can be passed to getRepository
+     *
+     * The description string should include whether the key is mandatory or
+     * optional.
+     *
      * @return array hash map of configuration key => english description
      */
     public function getConfigurationKeys();
