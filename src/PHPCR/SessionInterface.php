@@ -413,6 +413,10 @@ interface SessionInterface {
      * do not have changes pending have their state refreshed to reflect the current
      * saved state, thus revealing changes made by other sessions.
      *
+     * Implementors note: For performance reasons, implementations should only
+     * mark nodes as dirty and reload them from the backend only if actually
+     * needed.
+     * 
      * @param boolean $keepChanges Switch to override current changes kept in the session.
      * @return void
      *
@@ -420,13 +424,6 @@ interface SessionInterface {
      * @api
      */
     public function refresh($keepChanges);
-
-    /**
-     * Clears the state of the current session
-     *
-     * Removes all cached objects, planned changes etc. Mostly useful for testing purposes.
-     */
-    public function clear();
 
     /**
      * Determines if the current session has pending changes.
