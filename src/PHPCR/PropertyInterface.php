@@ -601,7 +601,7 @@ interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable {
      * @return integer An integer representation of the value of this property, or an array of integer for multi-valued
      *                 properties.
      *
-     * @throws \PHPCR\ValueFormatException if conversion to a long is not possible
+     * @throws \PHPCR\ValueFormatException if conversion to integer is not possible
      * @throws \PHPCR\RepositoryException if another error occurs
      * @api
      */
@@ -640,7 +640,7 @@ interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable {
      * @return \DateTime A date representation of the value of this property, or an array of DateTime for
      *                   multi-valued properties.
      *
-     * @throws \PHPCR\ValueFormatException if conversion to a string is not possible
+     * @throws \PHPCR\ValueFormatException if conversion to \DateTime is not possible
      * @throws \PHPCR\RepositoryException if another error occurs
      * @api
      */
