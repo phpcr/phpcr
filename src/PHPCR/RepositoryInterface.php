@@ -36,11 +36,13 @@ namespace PHPCR;
  *
  * The Repository object is usually acquired through the RepositoryFactory.
  *
- * <b>PHPCR Note:</b> This interface has been simplified:
- *  - getDescriptor returns array on multivalue, single variable otherwise
- *  - removed isSingleValueDescriptor
- *  -removed getDescriptorValue and getDescriptorValues as ValueInterface has been dropped.
- *   Use getDescriptor to get the variables.
+ * <strong>PHPCR Note:</strong> This interface has been simplified:
+ * <ul>
+ *   <li>getDescriptor returns array on multivalue, single variable otherwise</li>
+ *   <li>removed isSingleValueDescriptor</li>
+ *   <li>removed getDescriptorValue and getDescriptorValues as ValueInterface has been dropped.
+ *   Use getDescriptor to get the variable value.</li>
+ * </ul>
  *
  * @package phpcr
  * @subpackage interfaces
@@ -110,10 +112,10 @@ interface RepositoryInterface {
      * javax.jcr.Repository constants indicating the stability
      * of identifiers:
      *
-     * IDENTIFIER_STABILITY_METHOD_DURATION - Identifiers may change between method calls.
-     * IDENTIFIER_STABILITY_SAVE_DURATION - Identifers are guaranteed stable within a single save/refresh cycle.
-     * IDENTIFIER_STABILITY_SESSION_DURATION - Identifiers are guaranteed stable within a single session.
-     * IDENTIFIER_STABILITY_INDEFINITE_DURATION - Identifers are guaranteed to be stable forever.
+     * IDENTIFIER_STABILITY_METHOD_DURATION - Identifiers may change between method calls.<br />
+     * IDENTIFIER_STABILITY_SAVE_DURATION - Identifers are guaranteed stable within a single save/refresh cycle.<br />
+     * IDENTIFIER_STABILITY_SESSION_DURATION - Identifiers are guaranteed stable within a single session.<br />
+     * IDENTIFIER_STABILITY_INDEFINITE_DURATION - Identifers are guaranteed to be stable forever.<br />
      * @api
      */
     const IDENTIFIER_STABILITY = "identifier.stability";
@@ -291,17 +293,17 @@ interface RepositoryInterface {
      * javax.jcr.Repository constants indicating the level of
      * support for node type inheritance:
      *
-     * NODE_TYPE_MANAGEMENT_INHERITANCE_MINIMAL
+     * NODE_TYPE_MANAGEMENT_INHERITANCE_MINIMAL<br />
      *   Registration of primary node types is limited to those which have only
      *   nt:base as supertype. Registration of mixin node types is limited to
      *   those without any supertypes.
      *
-     * NODE_TYPE_MANAGEMENT_INHERITANCE_SINGLE
+     * NODE_TYPE_MANAGEMENT_INHERITANCE_SINGLE<br />
      *   Registration of primary node types is limited to those with exactly one
      *   supertype. Registration of mixin node types is limited to those with at
      *   most one supertype.
      *
-     * NODE_TYPE_MANAGEMENT_INHERITANCE_MULTIPLE
+     * NODE_TYPE_MANAGEMENT_INHERITANCE_MULTIPLE<br />
      *   Primary node types can be registered with one or more supertypes. Mixin node
      *   types can be registered with zero or more supertypes.
      * @api
@@ -433,9 +435,9 @@ interface RepositoryInterface {
      * javax.jcr.Repository constants indicating the level of
      * support for joins in queries:
      *
-     * QUERY_JOINS_NONE - Joins are not supported. Queries are limited to a single selector.
-     * QUERY_JOINS_INNER - Inner joins are supported.
-     * QUERY_JOINS_INNER_OUTER - Inner and outer joins are supported.
+     * QUERY_JOINS_NONE - Joins are not supported. Queries are limited to a single selector.<br />
+     * QUERY_JOINS_INNER - Inner joins are supported.<br />
+     * QUERY_JOINS_INNER_OUTER - Inner and outer joins are supported.<br />
      * @api
      */
     const QUERY_JOINS = "query.joins";
@@ -512,7 +514,7 @@ interface RepositoryInterface {
      * false if it is either a valid implementation-specific key or not a valid key.
      *
      * @param string $key a descriptor key.
-     * @return boolan whether $key is a standard descriptor.
+     * @return boolean whether $key is a standard descriptor.
      * @api
      */
     public function isStandardDescriptor($key);
@@ -521,7 +523,7 @@ interface RepositoryInterface {
      * Get the string value(s) for this key.
      *
      * @param string $key a descriptor key.
-     * @return a descriptor value in string form or an array of strings for multivalue descriptors
+     * @return mixed a descriptor value in string form or an array of strings for multivalue descriptors
      * @api
      */
     public function getDescriptor($key);

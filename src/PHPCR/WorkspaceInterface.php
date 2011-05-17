@@ -506,7 +506,7 @@ interface WorkspaceInterface {
      *
      * @param string $parentAbsPath the absolute path of a node under which (as child) the imported subgraph will be built.
      * @param integer $uuidBehavior a four-value flag that governs how incoming identifiers are handled.
-     * @return an \PHPCR\ContentHandlerInterface whose methods may be called to feed SAX events into the deserializer.
+     * @return \PHPCR\ContentHandlerInterface whose methods may be called to feed SAX events into the deserializer.
      *
      * @throws \PHPCR\PathNotFoundException if no node exists at $parentAbsPath.
      * @throws \PHPCR\ConstraintViolationException if the new subgraph cannot be added to the node at $parentAbsPath due
