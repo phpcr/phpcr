@@ -34,8 +34,8 @@ namespace PHPCR\Query\QOM;
 /**
  * Evaluates to the length (or lengths, if multi-valued) of a property.
  *
- * The length should be computed as though the getLength method (or getLengths,
- * if multi-valued) of \PHPCR\PropertyInterface were called.
+ * The length should be computed as though the getLength method of
+ * \PHPCR\PropertyInterface were called.
  *
  * If propertyValue evaluates to null, the Length operand also evaluates to null.
  *

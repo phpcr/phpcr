@@ -157,6 +157,10 @@ multivalue properties).
 For performance reason, implementations should delay instantiating the
 PropertyInterface objects until they are actually needed.
 
+We dropped the getValues and getLengths methods for *multivalue properties* in
+favor of returning either a single value or an array of values in the same
+method.
+
 PropertyInterface::addValue() has been added to quickly append a value to
 multi-value properties instead of requiring getValue()/append/setValue().
 

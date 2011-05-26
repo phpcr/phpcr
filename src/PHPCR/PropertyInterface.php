@@ -726,7 +726,7 @@ interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable {
     public function getProperty();
 
     /**
-     * Returns the length of the value of this property.
+     * Returns the length(s) of the value(s) of this property.
      *
      * For a BINARY property, getLength returns the number of bytes.
      * For other property types, getLength returns the same value that would be
@@ -735,25 +735,16 @@ interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable {
      *
      * Returns -1 if the implementation cannot determine the length.
      *
+     * For multivalue properties, the same rules apply, but returns an array of lengths
+     * with the same order as the values have in getValue
+     *
+     * @return mixed integer with the length, for multivalue property array of lengths
+     *
      * @return integer an integer.
-     * @throws \PHPCR\ValueFormatException if this property is multi-valued.
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
      */
     public function getLength();
-
-    /**
-     * Returns an array holding the lengths of the values of this (multi-value)
-     * property in bytes where each is individually calculated as described in
-     * getLength().
-     *
-     * @return array an array of lengths (integers)
-     *
-     * @throws \PHPCR\ValueFormatException if this property is single-valued.
-     * @throws \PHPCR\RepositoryException if another error occurs.
-     * @api
-     */
-    public function getLengths();
 
     /**
      * Returns the property definition that applies to this property. In some
