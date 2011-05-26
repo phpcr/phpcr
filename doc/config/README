@@ -2,20 +2,25 @@
 Documentation
 =============
 
-The documentation of this project follows the semantics and paradigms of PHPDocumentor[1].
-Since the API documentation changes constantly and it is easy to build a rendered documentation
-is not part of the repository.
+The documentation of this project follows the semantics and paradigms of
+phpdoctor[1] and PHPDocumentor[1].
+Since the API documentation changes constantly and it is easy to build, a
+rendered documentation is not part of the repository.
+
+You can find a (hopefully up-to-date) version online at
+http://phpcr.github.com/doc/html/index.html
+
 
 How to use the configuration file to generate the documentation
 ===============================================================
 
-1. copy the phpdoc.example.ini to a new file (e.g. phpdoc.ini)
-2. replace the marked entries with your crendentials
+1. copy the phpdoctor.dist.ini to a new file (e.g. phpdoc.ini)
+2. replace the marked entries with your data
 3. save your configuration file
-4. use: 
-    $>phpdoc -c doc/config/phpdoc.ini
+4. use:
+    $>phpdoc doc/config/phpdoc.ini
    to render the documentation when your working directory is the phpcr root directory.
-   
+
 NOTE:
 Please do not commit your copy of the configuration file or the generated documenation.
 
@@ -23,4 +28,5 @@ Please do not commit your copy of the configuration file or the generated docume
 Links
 =====
 
-[1] http://phpdoc.org
+[1] http://peej.github.com/phpdoctor/
+[2] http://phpdoc.org

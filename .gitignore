@@ -1,3 +1,5 @@
 .buildpath
 .project
 .settings/
+doc/config/phpdoc.ini
+doc/html
