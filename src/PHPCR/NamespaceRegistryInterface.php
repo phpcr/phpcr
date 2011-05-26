@@ -161,7 +161,7 @@ interface NamespaceRegistryInterface extends \Traversable {
      *
      * @param string $prefix The prefix of the mapping to be removed.
      * @return void
-     * @throws \PHPCR\NamespaceException unregister a built-in namespace or a namespace that is not currently registered or a namespace whose unregsitration is forbidden for implementation-specific reasons.
+     * @throws \PHPCR\NamespaceException unregister a built-in namespace or a namespace that is not currently registered or a namespace whose unregistration is forbidden for implementation-specific reasons.
      * @throws \PHPCR\UnsupportedRepositoryOperationException if this repository does not support namespace registry changes.
      * @throws \PHPCR\AccessDeniedException if the current session does not have sufficient access to unregister the namespace.
      * @throws \PHPCR\RepositoryException if another error occurs.
