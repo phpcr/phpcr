@@ -148,8 +148,8 @@ abstract class TraversingItemVisitor implements \PHPCR\ItemVisitorInterface {
      */
     public function visit(\PHPCR\ItemInterface $item) {
         if ($item instanceof \PHPCR\PropertyInterface) {
-            $this->entering($item);
-            $this->leaving($item);
+            $this->entering($item, $this->currentLevel);
+            $this->leaving($item, $this->currentLevel);
         } else {
             try {
                 if ($this->breadthFirst === false) {
