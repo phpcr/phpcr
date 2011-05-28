@@ -1,33 +1,26 @@
 <?php
+
 /**
- * Interface description of an implementation of a node type definition.
+ * This file is part of the PHPCR API and was originally ported from the Java
+ * JCR API to PHP by Karsten Dambekalns for the FLOW3 project.
  *
- * This file was ported from the Java JCR API to PHP by
- * Karsten Dambekalns <karsten@typo3.org> for the FLOW3 project.
+ * Copyright 2008-2011 Karsten Dambekalns <karsten@typo3.org>
  *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU Lesser General Public License as published by the
- * Free Software Foundation, either version 3 of the License, or (at your
- * option) any later version. Alternatively, you may use the Simplified
- * BSD License.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * This script is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHAN-
- * TABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser
- * General Public License for more details.
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * You should have received a copy of the GNU Lesser General Public
- * License along with the script.
- * If not, see {@link http://www.gnu.org/licenses/lgpl.html}.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  *
- * The TYPO3 project - inspiring people to share!
- *
- * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
- * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
- *
- * @package phpcr
- * @subpackage interfaces
- */
+ * @license http://www.apache.org/licenses/LICENSE-2.0 Apache Software License 2.0
+ * @link http://phpcr.github.com/
+*/
 
 namespace PHPCR\NodeType;
 
@@ -47,8 +40,8 @@ namespace PHPCR\NodeType;
  * @subpackage interfaces
  * @api
  */
-interface NodeTypeDefinitionInterface {
-
+interface NodeTypeDefinitionInterface
+{
     /**
      * Returns the name of the node type.
      *
@@ -59,7 +52,7 @@ interface NodeTypeDefinitionInterface {
      * @return string The name of the node type.
      * @api
      */
-    public function getName();
+    function getName();
 
     /**
      * Returns the names of the supertypes actually declared in this node type.
@@ -72,7 +65,7 @@ interface NodeTypeDefinitionInterface {
      * @return array List of names of declared supertypes.
      * @api
      */
-    public function getDeclaredSupertypeNames();
+    function getDeclaredSupertypeNames();
 
     /**
      * Reports if this is an abstract node type.
@@ -89,7 +82,7 @@ interface NodeTypeDefinitionInterface {
      * @return boolean True, if the current type is abstract, else false.
      * @api
      */
-    public function isAbstract();
+    function isAbstract();
 
     /**
      * Reports if this is a mixin node type.
@@ -102,7 +95,7 @@ interface NodeTypeDefinitionInterface {
      * @return boolean True if this is a mixin type, else false;
      * @api
      */
-    public function isMixin();
+    function isMixin();
 
     /**
      * Determines if nodes of this type must support orderable child nodes.
@@ -121,7 +114,7 @@ interface NodeTypeDefinitionInterface {
      * @return boolean True, if nodes of this type must support orderable child nodes, else false.
      * @api
      */
-    public function hasOrderableChildNodes();
+    function hasOrderableChildNodes();
 
     /**
      * Determins if the node type is queryable.
@@ -140,7 +133,7 @@ interface NodeTypeDefinitionInterface {
      * @see PropertyDefinition::isQueryOrderable()
      * @api
      */
-    public function isQueryable();
+    function isQueryable();
 
     /**
      * Returns the name of the primary item (one of the child items of the nodes
@@ -155,7 +148,7 @@ interface NodeTypeDefinitionInterface {
      * @return string The name of the primary item.
      * @api
      */
-    public function getPrimaryItemName();
+    function getPrimaryItemName();
 
     /**
      * Returns an array containing the property definitions actually declared
@@ -168,7 +161,7 @@ interface NodeTypeDefinitionInterface {
      * @return array An array of PropertyDefinitions.
      * @api
      */
-    public function getDeclaredPropertyDefinitions();
+    function getDeclaredPropertyDefinitions();
 
     /**
      * Returns an array containing the child node definitions actually
@@ -181,5 +174,5 @@ interface NodeTypeDefinitionInterface {
      * @return array An array of NodeDefinitions.
      * @api
      */
-    public function getDeclaredChildNodeDefinitions();
+    function getDeclaredChildNodeDefinitions();
 }

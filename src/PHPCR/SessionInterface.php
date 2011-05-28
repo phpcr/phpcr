@@ -1,33 +1,26 @@
 <?php
+
 /**
- * Interface to describe the contract to implement a PHPCR session.
+ * This file is part of the PHPCR API and was originally ported from the Java
+ * JCR API to PHP by Karsten Dambekalns for the FLOW3 project.
  *
- * This file was ported from the Java JCR API to PHP by
- * Karsten Dambekalns <karsten@typo3.org> for the FLOW3 project.
+ * Copyright 2008-2011 Karsten Dambekalns <karsten@typo3.org>
  *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU Lesser General Public License as published by the
- * Free Software Foundation, either version 3 of the License, or (at your
- * option) any later version. Alternatively, you may use the Simplified
- * BSD License.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * This script is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHAN-
- * TABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser
- * General Public License for more details.
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * You should have received a copy of the GNU Lesser General Public
- * License along with the script.
- * If not, see {@link http://www.gnu.org/licenses/lgpl.html}.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  *
- * The TYPO3 project - inspiring people to share!
- *
- * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
- * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
- *
- * @package phpcr
- * @subpackage interfaces
- */
+ * @license http://www.apache.org/licenses/LICENSE-2.0 Apache Software License 2.0
+ * @link http://phpcr.github.com/
+*/
 
 namespace PHPCR;
 
@@ -55,8 +48,8 @@ namespace PHPCR;
  * @subpackage interfaces
  * @api
  */
-interface SessionInterface {
-
+interface SessionInterface
+{
     /**#@+
      * @var string
      */
@@ -98,7 +91,7 @@ interface SessionInterface {
      * @return \PHPCR\RepositoryInterface a Repository object.
      * @api
      */
-    public function getRepository();
+    function getRepository();
 
     /**
      * Gets the user ID associated with this Session.
@@ -109,7 +102,7 @@ interface SessionInterface {
      * @return string The user id associated with this Session.
      * @api
      */
-    public function getUserID();
+    function getUserID();
 
     /**
      * Returns the names of the attributes set in this session as a result of
@@ -122,7 +115,7 @@ interface SessionInterface {
      * @return array A string array containing the names of all attributes passed in the credentials used to acquire this session.
      * @api
      */
-    public function getAttributeNames();
+    function getAttributeNames();
 
     /**
      * Returns the value of the named attribute, or null if no
@@ -132,7 +125,7 @@ interface SessionInterface {
      * @return mixed The value of the attribute or null if no attribute of the given name exists.
      * @api
      */
-    public function getAttribute($name);
+    function getAttribute($name);
 
     /**
      * Returns the Workspace attached to this Session.
@@ -140,7 +133,7 @@ interface SessionInterface {
      * @return \PHPCR\WorkspaceInterface a Workspace object.
      * @api
      */
-    public function getWorkspace();
+    function getWorkspace();
 
     /**
      * Returns the root node of the workspace, "/".
@@ -151,7 +144,7 @@ interface SessionInterface {
      * @throws RepositoryException if an error occurs.
      * @api
      */
-    public function getRootNode();
+    function getRootNode();
 
     /**
      * Returns a new session in accordance with the specified (new) Credentials.
@@ -171,7 +164,7 @@ interface SessionInterface {
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
      */
-    public function impersonate(\PHPCR\CredentialsInterface $credentials);
+    function impersonate(\PHPCR\CredentialsInterface $credentials);
 
     /**
      * Returns the node specified by the given identifier.
@@ -185,7 +178,7 @@ interface SessionInterface {
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
      */
-    public function getNodeByIdentifier($id);
+    function getNodeByIdentifier($id);
 
     /**
      * Returns the node at the specified absolute path in the workspace.
@@ -206,7 +199,7 @@ interface SessionInterface {
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
      */
-    public function getItem($absPath);
+    function getItem($absPath);
 
     /**
      * Returns the node at the specified absolute path in the workspace.
@@ -218,7 +211,7 @@ interface SessionInterface {
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
      */
-    public function getNode($absPath);
+    function getNode($absPath);
 
     /**
      * Returns the property at the specified absolute path in the workspace.
@@ -230,7 +223,7 @@ interface SessionInterface {
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
      */
-    public function getProperty($absPath);
+    function getProperty($absPath);
 
     /**
      * Determines if the item identified by a path does exists.
@@ -244,7 +237,7 @@ interface SessionInterface {
      * @throws \PHPCR\RepositoryException if absPath is not a well-formed absolute path.
      * @api
      */
-    public function itemExists($absPath);
+    function itemExists($absPath);
 
     /**
      * Determines if the node identified by the given absolute path does exist.
@@ -258,7 +251,7 @@ interface SessionInterface {
      * @throws \PHPCR\RepositoryException if absPath is not a well-formed absolute path.
      * @api
      */
-    public function nodeExists($absPath);
+    function nodeExists($absPath);
 
     /**
      * Determines the existance of a property.
@@ -271,7 +264,7 @@ interface SessionInterface {
      * @throws \PHPCR\RepositoryException if absPath is not a well-formed absolute path.
      * @api
      */
-    public function propertyExists($absPath);
+    function propertyExists($absPath);
 
     /**
      * Moves the node at srcAbsPath (and its entire subgraph) to the new location
@@ -320,7 +313,7 @@ interface SessionInterface {
      * @throws \PHPCR\RepositoryException if the last element of destAbsPath has an index or if another error occurs.
      * @api
      */
-    public function move($srcAbsPath, $destAbsPath);
+    function move($srcAbsPath, $destAbsPath);
 
     /**
      * Removes the specified item and its subgraph.
@@ -354,7 +347,7 @@ interface SessionInterface {
      * @see Item::remove()
      * @api
      */
-    public function removeItem($absPath);
+    function removeItem($absPath);
 
     /**
      * Validates all pending changes currently recorded in this Session.
@@ -399,7 +392,7 @@ interface SessionInterface {
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
      */
-    public function save();
+    function save();
 
     /**
      * Reloads the current session.
@@ -423,7 +416,7 @@ interface SessionInterface {
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
      */
-    public function refresh($keepChanges);
+    function refresh($keepChanges);
 
     /**
      * Determines if the current session has pending changes.
@@ -435,7 +428,7 @@ interface SessionInterface {
      * @throws \PHPCR\RepositoryException if an error occurs
      * @api
      */
-    public function hasPendingChanges();
+    function hasPendingChanges();
 
     /**
      * Determines if the current session is permitted to run the passed actions.
@@ -473,7 +466,7 @@ interface SessionInterface {
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
      */
-    public function hasPermission($absPath, $actions);
+    function hasPermission($absPath, $actions);
 
     /**
      * Determines whether this Session has permission to perform the specified actions
@@ -514,7 +507,7 @@ interface SessionInterface {
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
      */
-    public function checkPermission($absPath, $actions);
+    function checkPermission($absPath, $actions);
 
     /**
      * Checks whether an operation can be performed given as much context as can
@@ -559,7 +552,7 @@ interface SessionInterface {
      * @throws \PHPCR\RepositoryException if an error occurs
      * @api
      */
-    public function hasCapability($methodName, $target, array $arguments);
+    function hasCapability($methodName, $target, array $arguments);
 
     /**
      * Fetches a content handler without altering the session.
@@ -639,7 +632,7 @@ interface SessionInterface {
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
      */
-    public function getImportContentHandler($parentAbsPath, $uuidBehavior);
+    function getImportContentHandler($parentAbsPath, $uuidBehavior);
 
     /**
      * Deserializes an XML document and adds the resulting item subgraph as a
@@ -716,7 +709,7 @@ interface SessionInterface {
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
      */
-    public function importXML($parentAbsPath, $in, $uuidBehavior);
+    function importXML($parentAbsPath, $in, $uuidBehavior);
 
     /**
      * Serializes the node (and if $noRecurse is false, the whole subgraph) at
@@ -758,7 +751,7 @@ interface SessionInterface {
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
      */
-    public function exportSystemView($absPath, $out, $skipBinary, $noRecurse);
+    function exportSystemView($absPath, $out, $skipBinary, $noRecurse);
 
     /**
      * Serializes the node (and if $noRecurse is false, the whole subgraph) at
@@ -800,7 +793,7 @@ interface SessionInterface {
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
      */
-    public function exportDocumentView($absPath, $out, $skipBinary, $noRecurse);
+    function exportDocumentView($absPath, $out, $skipBinary, $noRecurse);
 
     /**
      * Sets the name of a namespace prefix.
@@ -823,7 +816,7 @@ interface SessionInterface {
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
      */
-    public function setNamespacePrefix($prefix, $uri);
+    function setNamespacePrefix($prefix, $uri);
 
     /**
      * Returns all prefixes currently mapped to URIs in this Session.
@@ -833,7 +826,7 @@ interface SessionInterface {
      * @throws \PHPCR\RepositoryException if an error occurs
      * @api
      */
-    public function getNamespacePrefixes();
+    function getNamespacePrefixes();
 
     /**
      * Returns the URI to which the given prefix is mapped as currently set in
@@ -846,7 +839,7 @@ interface SessionInterface {
      * @throws \PHPCR\RepositoryException if another error occurs
      * @api
      */
-    public function getNamespaceURI($prefix);
+    function getNamespaceURI($prefix);
 
     /**
      * Returns the prefix to which the given uri is mapped as currently set in
@@ -859,7 +852,7 @@ interface SessionInterface {
      * @throws \PHPCR\RepositoryException if another error occurs
      * @api
      */
-    public function getNamespacePrefix($uri);
+    function getNamespacePrefix($uri);
 
     /**
      * Releases all resources associated with this Session.
@@ -869,7 +862,7 @@ interface SessionInterface {
      * @return void
      * @api
      */
-    public function logout();
+    function logout();
 
     /**
      * Determines if the current session is still valid.
@@ -883,7 +876,7 @@ interface SessionInterface {
      * @return boolean true if this Session is usable, false otherwise.
      * @api
      */
-    public function isLive();
+    function isLive();
 
     /**
      * Returns the access control manager for this Session.
@@ -894,7 +887,7 @@ interface SessionInterface {
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
      */
-    public function getAccessControlManager();
+    function getAccessControlManager();
 
     /**
      * Returns the retention and hold manager for this Session.
@@ -905,6 +898,5 @@ interface SessionInterface {
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
      */
-    public function getRetentionManager();
-
+    function getRetentionManager();
 }
