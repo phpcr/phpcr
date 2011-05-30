@@ -1,33 +1,26 @@
 <?php
+
 /**
- * Interface to describe the contract for an implementation of a query result row class.
+ * This file is part of the PHPCR API and was originally ported from the Java
+ * JCR API to PHP by Karsten Dambekalns for the FLOW3 project.
  *
- * This file was ported from the Java JCR API to PHP by
- * Karsten Dambekalns <karsten@typo3.org> for the FLOW3 project.
+ * Copyright 2008-2011 Karsten Dambekalns <karsten@typo3.org>
  *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU Lesser General Public License as published by the
- * Free Software Foundation, either version 3 of the License, or (at your
- * option) any later version. Alternatively, you may use the Simplified
- * BSD License.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * This script is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHAN-
- * TABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser
- * General Public License for more details.
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * You should have received a copy of the GNU Lesser General Public
- * License along with the script.
- * If not, see {@link http://www.gnu.org/licenses/lgpl.html}.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  *
- * The TYPO3 project - inspiring people to share!
- *
- * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
- * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
- *
- * @package phpcr
- * @subpackage interfaces
- */
+ * @license http://www.apache.org/licenses/LICENSE-2.0 Apache Software License 2.0
+ * @link http://phpcr.github.com/
+*/
 
 namespace PHPCR\Query;
 
@@ -44,8 +37,8 @@ namespace PHPCR\Query;
  * @subpackage interfaces
  * @api
  */
-interface RowInterface extends \Traversable {
-
+interface RowInterface extends \Traversable
+{
     /**
      * Returns an array of all the values in the same order as the column names
      * returned by QueryResult.getColumnNames().
@@ -55,7 +48,7 @@ interface RowInterface extends \Traversable {
      * @throws \PHPCR\RepositoryException if an error occurs
      * @api
      */
-    public function getValues();
+    function getValues();
 
     /**
      * Returns the value of the indicated column in this Row.
@@ -67,7 +60,7 @@ interface RowInterface extends \Traversable {
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
      */
-    public function getValue($columnName);
+    function getValue($columnName);
 
     /**
      * Returns the Node corresponding to this Row and the specified selector, if given.
@@ -79,7 +72,7 @@ interface RowInterface extends \Traversable {
      *                                    another error occurs.
      * @api
      */
-    public function getNode($selectorName = null);
+    function getNode($selectorName = null);
 
     /**
      * Get the path of a node identified by a selector.
@@ -94,7 +87,7 @@ interface RowInterface extends \Traversable {
      *                                    if another error occurs.
      * @api
      */
-    public function getPath($selectorName = null);
+    function getPath($selectorName = null);
 
     /**
      * Returns the full text search score for this row associated with the specified
@@ -121,6 +114,5 @@ interface RowInterface extends \Traversable {
      *                                    or if another error occurs.
      * @api
      */
-    public function getScore($selectorName = null);
-
+    function getScore($selectorName = null);
 }

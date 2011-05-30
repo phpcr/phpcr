@@ -1,45 +1,39 @@
 <?php
+
 /**
- * Definition of the exception to be thrown in case of a lock-related error.
+ * This file is part of the PHPCR API and was originally ported from the Java
+ * JCR API to PHP by Karsten Dambekalns for the FLOW3 project.
  *
- * This file was ported from the Java JCR API to PHP by
- * Karsten Dambekalns <karsten@typo3.org> for the FLOW3 project.
+ * Copyright 2008-2011 Karsten Dambekalns <karsten@typo3.org>
  *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU Lesser General Public License as published by the
- * Free Software Foundation, either version 3 of the License, or (at your
- * option) any later version. Alternatively, you may use the Simplified
- * BSD License.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * This script is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHAN-
- * TABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser
- * General Public License for more details.
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * You should have received a copy of the GNU Lesser General Public
- * License along with the script.
- * If not, see {@link http://www.gnu.org/licenses/lgpl.html}.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  *
- * The TYPO3 project - inspiring people to share!
- *
- * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
- * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
- *
- * @package phpcr
- * @subpackage exceptions
- */
+ * @license http://www.apache.org/licenses/LICENSE-2.0 Apache Software License 2.0
+ * @link http://phpcr.github.com/
+*/
 
 namespace PHPCR\Lock;
 
 /**
  * Exception thrown when a lock-related error occurs.
  *
+ * @author Karsten Dambekalns <karsten@typo3.org>
  * @package phpcr
  * @subpackage exceptions
  * @api
  */
-class LockException extends \PHPCR\RepositoryException {
-
+class LockException extends \PHPCR\RepositoryException
+{
     /**
      * Absolute path of the node that caused the error, in normalized, standard
      * form, that is, each path segment must be a JCR name in qualified form,
@@ -60,10 +54,10 @@ class LockException extends \PHPCR\RepositoryException {
      * @param string $failureNodePath the absolute path of the node that caused the error or  null if the implementation
      *                                chooses not to, or cannot, return a path.
      *
-     * @author Karsten Dambekalns <karsten@typo3.org>
      * @api
      */
-    public function __construct($message, $code, $failureNodePath = null) {
+    public function __construct($message, $code, $failureNodePath = null)
+    {
         parent::construct($message, $code);
         $this->failureNodePath = $failureNodePath;
     }
@@ -74,10 +68,10 @@ class LockException extends \PHPCR\RepositoryException {
      *
      * @return string path of the node that caused the error
      *
-     * @author Karsten Dambekalns <karsten@typo3.org>
      * @api
      */
-    public function getFailureNodePath() {
+    public function getFailureNodePath()
+    {
         return $this->failureNodePath;
     }
 

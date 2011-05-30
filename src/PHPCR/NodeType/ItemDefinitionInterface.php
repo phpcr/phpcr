@@ -1,33 +1,26 @@
 <?php
+
 /**
- * Interface description of a superclass of NodeDefinition and PropertyDefinition.
+ * This file is part of the PHPCR API and was originally ported from the Java
+ * JCR API to PHP by Karsten Dambekalns for the FLOW3 project.
  *
- * This file was ported from the Java JCR API to PHP by
- * Karsten Dambekalns <karsten@typo3.org> for the FLOW3 project.
+ * Copyright 2008-2011 Karsten Dambekalns <karsten@typo3.org>
  *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU Lesser General Public License as published by the
- * Free Software Foundation, either version 3 of the License, or (at your
- * option) any later version. Alternatively, you may use the Simplified
- * BSD License.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * This script is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHAN-
- * TABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser
- * General Public License for more details.
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * You should have received a copy of the GNU Lesser General Public
- * License along with the script.
- * If not, see {@link http://www.gnu.org/licenses/lgpl.html}.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  *
- * The TYPO3 project - inspiring people to share!
- *
- * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
- * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
- *
- * @package phpcr
- * @subpackage interfaces
- */
+ * @license http://www.apache.org/licenses/LICENSE-2.0 Apache Software License 2.0
+ * @link http://phpcr.github.com/
+*/
 
 namespace PHPCR\NodeType;
 
@@ -38,8 +31,8 @@ namespace PHPCR\NodeType;
  * @subpackage interfaces
  * @api
  */
-interface ItemDefinitionInterface {
-
+interface ItemDefinitionInterface
+{
     /**
      * Gets the node type that contains the declaration of this ItemDefinition.
      *
@@ -51,7 +44,7 @@ interface ItemDefinitionInterface {
      * @return \PHPCR\NodeType\NodeTypeInterface A NodeType object.
      * @api
      */
-    public function getDeclaringNodeType();
+    function getDeclaringNodeType();
 
     /**
      * Gets the name of the child item.
@@ -68,7 +61,7 @@ interface ItemDefinitionInterface {
      * @return string A string denoting the name or "*".
      * @api
      */
-    public function getName();
+    function getName();
 
     /**
      * Reports whether the item is to be automatically created when its parent
@@ -95,7 +88,7 @@ interface ItemDefinitionInterface {
      * @return boolean True, if the item is automatically created when its parent node is created, else false.
      * @api
      */
-    public function isAutoCreated();
+    function isAutoCreated();
 
     /**
      * Reports whether the item is mandatory.
@@ -119,7 +112,7 @@ interface ItemDefinitionInterface {
      * @return boolean True, if the item is mandatory, else false.
      * @api
      */
-    public function isMandatory();
+    function isMandatory();
 
     /**
      * Gets the OnParentVersion status of the child item.
@@ -141,7 +134,7 @@ interface ItemDefinitionInterface {
      * @return integer An int constant member of OnParentVersionAction.
      * @api
      */
-    public function getOnParentVersion();
+    function getOnParentVersion();
 
     /**
      * Reports whether the child item is protected.
@@ -163,6 +156,5 @@ interface ItemDefinitionInterface {
      * @return boolean True, if the child item is protected, else false.
      * @api
      */
-    public function isProtected();
-
+    function isProtected();
 }
