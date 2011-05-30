@@ -38,7 +38,7 @@ The implementing visitor will have to do a type-check.
  * In PHP you can not have a class method called "clone" because it is a
     reserved keyword. Workspace::clone is named Workspace::cloneFrom as it clones
     a node from a workspace into the current workspace.
- * For java.io.InputStream we use php streams (resources). For java.util.Calendar
+ * For java.io.InputStream we use PHP streams (resources). For java.util.Calendar
     we use the DateTime class.
 
 A note about the BOOLEAN value type. When converting String values to boolean,
@@ -83,9 +83,10 @@ Additionally, we declared API elements as Traversable where it makes sense.
 This allows to directly use the objects in a foreach statement.
 The implementation either has to implement IteratorAggregate::getIterator to
 return a suitable iterator, or be an iterator itselves.
-PHP NOTE: When implementing our interfaces, you have to declare either
+
+PHP NOTE: When implementing the interfaces, you have to declare either
 implements Iterator or IteratorAggregate explicitly in your class signature.
-Do NOT put implements Traversable into the signature, it confuses PHP.
+Do NOT put 'implements Traversable' into the class signature, it confuses PHP.
 
  * NodeInterface iterates over all children (like getNodes() without filters)
     The keys are the node names, the values the node objects.
@@ -93,7 +94,7 @@ Do NOT put implements Traversable into the signature, it confuses PHP.
     multivalue properties, there is exactly 1 value. The iterator keys have no
     significant meaning.
  * NamespaceRegistryInterface iterates over all namespaces. Keys are the
-    prefixes, values are the uris.
+    prefixes, values are the URIs.
  * Lock/LockManagerInterface iterates over all lock tokens
     (like getLockTokens()). The iterator keys have no significant meaning.
  * NodeType/NodeTypeManager iterates over all node types
@@ -112,7 +113,7 @@ Do NOT put implements Traversable into the signature, it confuses PHP.
  * Security/AccessControlListInterface iterates over all entries, like
     getAccessControlEntries(). The iterator keys have no significant meaning.
 
-For other interfaces there is no obvious default iterator, so we left them without.
+For other interfaces, there is no obvious default iterator, so we left them without.
 Version/VersionHistoryInterface extends the NodeInterface. Even though iterating
 over the versions seems natural, we did not want to change the behaviour for
 this subclass of NodeInterface.
@@ -128,19 +129,27 @@ The PropertyInterface methods directly access the native property values.
 We keep type conversions possible with the type-specific getters.
 
  * PropertyInterface::getValue returns the value in its default format
+ * Multivalue properties use getValue / getLength as well, they just return
+    arrays instead of a single value.
  * The type specific getters return a native value or an array of such values
     in case of multivalue properties.
  * PropertyInterface::setValue got an optional parameter for specifying the
     desired type if wanted. The method takes all functionality of
-    ValueFactory::createValue
+    ValueFactory::createValue. (See Helpers below for the PropertyType
+    type conversion helper methods)
 
 In all places where Value objects where used, this is changed to plain PHP
 variables. This is true even for the Binary interface, as it adds no value over
-plain streams. PropertyInterface::getBinaryStream returns a php resource which
+plain streams. PropertyInterface::getBinaryStream returns a PHP resource which
 is compatible with fpassthru and stream_get_contents.
 If you need the data size, you can use the PropertyInterface::getLength method.
 To copy a binary property without loading the stream to the backend, you can
 assign the property to an other property.
+
+Note that the boolean conversion follows PHP conventions, which are different
+from Java. java.lang.Boolean.fromString compares the String with "true",
+anything else is interpreted as false. In PHP, every value except
+false|0|null|"" is true.
 
 
 Property
@@ -148,7 +157,7 @@ Property
 
 Instantiating property objects is often not needed. The Node interface got a
 getPropertyValue($name, $type=false) that returns the native property value
-(or array of values in case of multivalue property).
+(or array of values in case of a multivalue property).
 Additionally, there is a NodeInterface::getPropertiesValues($filter=null)
 function with the same logic as NodeInterface::getProperties($filter) to get
 an iterator with all property names => property value (resp value array for
@@ -191,7 +200,7 @@ The PropertyType (a final class implemented in the API, not an interface) does
 basic type detection and conversion (in addition to the constants definition
 according to the JCR specification). This has to be used for all conversions to
 ensure compatibility between implementations. This is the only part of the
-ValueFactory that we need to use in php.
+ValueFactory that we need to use in PHP.
 
 PropertyType::valueFromType($type) returns the PHPCR numeric constant value of
 the type for the given PHP type name as returned by gettype().
@@ -200,13 +209,45 @@ PropertyType::convertToType($value, $type) converts the value into the target
 type.
 
 
+Drawing the line
+****************
+
+Further additions have been discussed but decided not to do. One example are
+hashmaps, the PHP key - value arrays. They could be stored as a multivalue
+property with keys. However, we decided not to support this as its too close to
+an unstructured child node with named properties. You can still serialize a
+hashmap into a property if you really need it.
+
+Another idea was to return a node with all its properties as an array instead
+of the node object. But with Node::getPropertiesValues, the implementation can
+instantiate just the Node and keep the overhead minimal, but preserve the
+expressivnes of the API.
+
+
+Changes & Improvements
+**********************
+
+If you think something ought to be done better, you need good arguments. We are
+reluctant to change the API signatures. However, clarifications to the
+documentation will happily be made where necessary.
+At the time of this writing, some JCR features have not been implemented in any
+PHPCR implementation. In those areas, changes are more likely to happen, once
+implementation starts and people figure out what needs to be done. Those areas
+are:
+* Lock
+* Observation
+* Retention
+* Security
+
+
 Remark
 ******
 
-You are free in your implementation to re-add the methods and classes we deemed
-superfluous in PHP. Thanks to the weak typing, PHP won't complain when using
-those methods even if they are not declared in the PHPCR interfaces. Of course,
-your client code then will not be able to use other PHPCR implementations.
+If you don't agree with these choices what is superflous in PHP, you can re-add
+methods and classes in your implementation. Thanks to the weak typing, PHP
+won't complain when using those methods even if they are not declared in the
+PHPCR interfaces. Of course, your implementation would no longer be compatible
+with PHPCR and your client code not be able to use other PHPCR implementations.
 
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
