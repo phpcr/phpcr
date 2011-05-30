@@ -1,33 +1,26 @@
 <?php
+
 /**
- * Interface to describe the contract to implement a node to be handled inside of a workspace.
+ * This file is part of the PHPCR API and was originally ported from the Java
+ * JCR API to PHP by Karsten Dambekalns for the FLOW3 project.
  *
- * This file was ported from the Java JCR API to PHP by
- * Karsten Dambekalns <karsten@typo3.org> for the FLOW3 project.
+ * Copyright 2008-2011 Karsten Dambekalns <karsten@typo3.org>
  *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU Lesser General Public License as published by the
- * Free Software Foundation, either version 3 of the License, or (at your
- * option) any later version. Alternatively, you may use the Simplified
- * BSD License.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * This script is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHAN-
- * TABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser
- * General Public License for more details.
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * You should have received a copy of the GNU Lesser General Public
- * License along with the script.
- * If not, see {@link http://www.gnu.org/licenses/lgpl.html}.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  *
- * The TYPO3 project - inspiring people to share!
- *
- * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
- * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
- *
- * @package phpcr
- * @subpackage interfaces
- */
+ * @license http://www.apache.org/licenses/LICENSE-2.0 Apache Software License 2.0
+ * @link http://phpcr.github.com/
+*/
 
 namespace PHPCR;
 
@@ -44,8 +37,8 @@ namespace PHPCR;
  * @subpackage interfaces
  * @api
  */
-interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
-
+interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
+{
     /**
      * A constant for the JCR name jcr:content. This is the name of
      * a child node declared in NodeType nt:file and a property declared in
@@ -117,7 +110,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
      * @throws \PHPCR\RepositoryException If the last element of relPath has an index or if another error occurs.
      * @api
      */
-    public function addNode($relPath, $primaryNodeTypeName = null);
+    function addNode($relPath, $primaryNodeTypeName = null);
 
     /**
      * Insert a child node before another child identified by its path.
@@ -150,7 +143,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
      */
-    public function orderBefore($srcChildRelPath, $destChildRelPath);
+    function orderBefore($srcChildRelPath, $destChildRelPath);
 
     /**
      * Defines a value for a property identified by its name.
@@ -218,7 +211,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
      *
      * @api
      */
-    public function setProperty($name, $value, $type = null);
+    function setProperty($name, $value, $type = null);
 
     /**
      * Returns the node at relPath relative to this node.
@@ -240,7 +233,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
      * @throws \PHPCR\RepositoryException If another error occurs.
      * @api
      */
-    public function getNode($relPath);
+    function getNode($relPath);
 
     /**
      * Get a set of nodes gathered by the definition of a filter.
@@ -293,7 +286,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
      * @throws \PHPCR\RepositoryException If an unexpected error occurs.
      * @api
      */
-    public function getNodes($filter = null);
+    function getNodes($filter = null);
 
     /**
      * Returns the property at relPath relative to this node.
@@ -306,7 +299,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
      * @throws \PHPCR\RepositoryException If another error occurs.
      * @api
      */
-    public function getProperty($relPath);
+    function getProperty($relPath);
 
     /**
      * Returns the property of this node with name $name.
@@ -322,7 +315,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
      * @throws \PHPCR\RepositoryException If another error occurs.
      * @api
      */
-    public function getPropertyValue($name, $type=null);
+    function getPropertyValue($name, $type=null);
 
     /**
      * Get an iteratable set of properties gathered on behalf of a filter.
@@ -373,7 +366,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
      * @throws \PHPCR\RepositoryException If an unexpected error occurs.
      * @api
      */
-    public function getProperties($filter = null);
+    function getProperties($filter = null);
 
     /**
      * Shortcut for getProperties and then getting the values of the properties.
@@ -385,7 +378,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
      * @throws \PHPCR\RepositoryException If an unexpected error occurs.
      * @api
      */
-    public function getPropertiesValues($filter=null);
+    function getPropertiesValues($filter=null);
 
     /**
      * Returns the primary child item of the current node.
@@ -404,7 +397,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
      */
-    public function getPrimaryItem();
+    function getPrimaryItem();
 
     /**
      * Returns the identifier of the current node.
@@ -415,7 +408,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
      * @throws \PHPCR\RepositoryException If an error occurs.
      * @api
      */
-    public function getIdentifier();
+    function getIdentifier();
 
     /**
      * This method returns the index of this node within the ordered set of its same-name sibling nodes.
@@ -428,7 +421,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
      */
-    public function getIndex();
+    function getIndex();
 
     /**
      * This method returns all REFERENCE properties that refer to this node, have
@@ -457,7 +450,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
      * @throws \PHPCR\RepositoryException if an error occurs
      * @api
      */
-    public function getReferences($name = null);
+    function getReferences($name = null);
 
     /**
      * This method returns all WEAKREFERENCE properties that refer to this node,
@@ -484,7 +477,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
      * @throws \PHPCR\RepositoryException if an error occurs
      * @api
      */
-    public function getWeakReferences($name = null);
+    function getWeakReferences($name = null);
 
     /**
      * Indicates whether a node exists at relPath Returns true if a node accessible
@@ -495,7 +488,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
      */
-    public function hasNode($relPath);
+    function hasNode($relPath);
 
     /**
      * Determine if a property exists at the specified path.
@@ -508,7 +501,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
      */
-    public function hasProperty($relPath);
+    function hasProperty($relPath);
 
     /**
      * Indicates whether this node has child nodes.
@@ -519,7 +512,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
      */
-    public function hasNodes();
+    function hasNodes();
 
     /**
      * Indicates whether this node has properties.
@@ -530,7 +523,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
      */
-    public function hasProperties();
+    function hasProperties();
 
     /**
      * Returns the primary node type in effect for this node.
@@ -542,7 +535,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
      * @throws \PHPCR\RepositoryException if an error occurs
      * @api
      */
-    public function getPrimaryNodeType();
+    function getPrimaryNodeType();
 
     /**
      * Returns an array of NodeType objects representing the mixin node types in effect for this node.
@@ -555,7 +548,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
      * @throws \PHPCR\RepositoryException if an error occurs
      * @api
      */
-    public function getMixinNodeTypes();
+    function getMixinNodeTypes();
 
     /**
      * Returns true if this node is of the specified primary node type or mixin type, or a subtype thereof.
@@ -568,7 +561,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
      * @throws \PHPCR\RepositoryException If an error occurs.
      * @api
      */
-    public function isNodeType($nodeTypeName);
+    function isNodeType($nodeTypeName);
 
     /**
      * Changes the primary node type of this node to nodeTypeName.
@@ -592,7 +585,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
      */
-    public function setPrimaryType($nodeTypeName);
+    function setPrimaryType($nodeTypeName);
 
     /**
      * Adds the mixin node type named $mixinName to this node.
@@ -630,7 +623,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
      */
-    public function addMixin($mixinName);
+    function addMixin($mixinName);
 
     /**
      * Removes the specified mixin node type from this node and removes mixinName from this node's jcr:mixinTypes property.
@@ -651,7 +644,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
      * @throws \PHPCR\RepositoryException If another error occurs.
      * @api
      */
-    public function removeMixin($mixinName);
+    function removeMixin($mixinName);
 
     /**
      * Determine if a mixin node type may be added to the current node.
@@ -675,7 +668,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
      */
-    public function canAddMixin($mixinName);
+    function canAddMixin($mixinName);
 
     /**
      * Returns the node definition that applies to this node.
@@ -693,7 +686,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
      */
-    public function getDefinition();
+    function getDefinition();
 
     /**
      * Updates a node corresponding to the current one in the given workspace.
@@ -720,7 +713,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
      */
-    public function update($srcWorkspace);
+    function update($srcWorkspace);
 
     /**
      * Returns the absolute path of the node in the specified workspace that
@@ -734,7 +727,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
      */
-    public function getCorrespondingNodePath($workspaceName);
+    function getCorrespondingNodePath($workspaceName);
 
     /**
      * Returns an iterator over all nodes that are in the shared set of this node.
@@ -746,7 +739,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
      */
-    public function getSharedSet();
+    function getSharedSet();
 
     /**
      * Removes this node and every other node in the shared set of this node.
@@ -774,7 +767,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
      *
      * @api
      */
-    public function removeSharedSet();
+    function removeSharedSet();
 
     /**
      * Removes this node, but does not remove any other node in the shared set of this node.
@@ -797,7 +790,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
      * @see SessionInterface::removeItem
      * @api
      */
-    public function removeShare();
+    function removeShare();
 
     /**
      * Determine if the current node is currently checked out.
@@ -813,7 +806,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
      */
-    public function isCheckedOut();
+    function isCheckedOut();
 
     /**
      * Determine if the current node has been locked.
@@ -827,7 +820,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
      */
-    public function isLocked();
+    function isLocked();
 
     /**
      * Causes the lifecycle state of this node to undergo the specified transition.
@@ -846,7 +839,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
      */
-    public function followLifecycleTransition($transition);
+    function followLifecycleTransition($transition);
 
     /**
      * Returns the list of valid state transitions for this node.
@@ -856,5 +849,5 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable {
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
      */
-    public function getAllowedLifecycleTransitions();
+    function getAllowedLifecycleTransitions();
 }

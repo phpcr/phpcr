@@ -1,32 +1,26 @@
 <?php
+
 /**
- * Final class to define a property type.
+ * This file is part of the PHPCR API and was originally ported from the Java
+ * JCR API to PHP by Karsten Dambekalns for the FLOW3 project.
  *
- * This file was ported from the Java JCR API to PHP by
- * Karsten Dambekalns <karsten@typo3.org> for the FLOW3 project.
+ * Copyright 2008-2011 Karsten Dambekalns <karsten@typo3.org>
  *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU Lesser General Public License as published by the
- * Free Software Foundation, either version 3 of the License, or (at your
- * option) any later version. Alternatively, you may use the Simplified
- * BSD License.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * This script is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHAN-
- * TABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser
- * General Public License for more details.
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * You should have received a copy of the GNU Lesser General Public
- * License along with the script.
- * If not, see {@link http://www.gnu.org/licenses/lgpl.html}.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  *
- * The TYPO3 project - inspiring people to share!
- *
- * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
- * @license http://opensource.org/licenses/bsd-license.php Simplified BSD License
- *
- * @package phpcr
- */
+ * @license http://www.apache.org/licenses/LICENSE-2.0 Apache Software License 2.0
+ * @link http://phpcr.github.com/
+*/
 
 namespace PHPCR;
 
@@ -58,11 +52,13 @@ namespace PHPCR;
  * For example it will never be returned by Property.getType() and (in level 2 implementations) it cannot be assigned
  * as the type when creating a new property.
  *
+ * @author Sebastian Kurfürst <sebastian@typo3.org>
+ * @author Karsten Dambekalns <karsten@typo3.org>
  * @package phpcr
  * @api
  */
-final class PropertyType {
-
+final class PropertyType
+{
     /**#@+
      * @var integer
      */
@@ -224,10 +220,10 @@ final class PropertyType {
      * Make instantiation impossible...
      *
      * @return void
-     *
-     * @author Karsten Dambekalns <karsten@typo3.org>
      */
-    private function __construct() {}
+    private function __construct()
+    {
+    }
 
     /**
      * Returns the name of the specified type, as used in serialization.
@@ -235,13 +231,11 @@ final class PropertyType {
      * @param integer $type type the property type
      * @return string  name of the specified type
      *
-     * @author Sebastian Kurfürst <sebastian@typo3.org>
-     * @author Karsten Dambekalns <karsten@typo3.org>
-     *
      * @throws \InvalidArgumentException if the given type is unknown.
      * @api
      */
-    static public function nameFromValue($type) {
+    static public function nameFromValue($type)
+    {
         switch (intval($type)) {
             case self::UNDEFINED :
                 return self::TYPENAME_UNDEFINED;
@@ -293,13 +287,11 @@ final class PropertyType {
      * @param string $name The name of the property type
      * @return int The numeric constant value
      *
-     * @author Sebastian Kurfürst <sebastian@typo3.org>
-     * @author Karsten Dambekalns <karsten@typo3.org>
-     *
      * @throws \InvalidArgumentException if the given name is unknown.
      * @api
      */
-    static public function valueFromName($name) {
+    static public function valueFromName($name)
+    {
         switch (strtolower($name)) {
             case 'undefined':
                 return self::UNDEFINED;
@@ -354,10 +346,10 @@ final class PropertyType {
      * @param string $type
      * @return integer
      *
-     * @author Karsten Dambekalns <karsten@typo3.org>
      * @api
      */
-    static public function valueFromType($type) {
+    static public function valueFromType($type)
+    {
         switch (strtolower($type)) {
             case 'string':
                 return self::STRING;
