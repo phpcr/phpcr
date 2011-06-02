@@ -178,6 +178,11 @@ separation between Node and Property does make sense, plus allows for things
 like the ItemVisitor.
 
 
+Import and export
+*****************
+TODO: how to substitute org.xml.sax.ContentHandler for import and export?
+
+
 Repository
 **********
 

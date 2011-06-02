@@ -409,7 +409,7 @@ interface SessionInterface
      * Implementors note: For performance reasons, implementations should only
      * mark nodes as dirty and reload them from the backend only if actually
      * needed.
-     * 
+     *
      * @param boolean $keepChanges Switch to override current changes kept in the session.
      * @return void
      *
@@ -742,7 +742,7 @@ interface SessionInterface
      * The output XML will be encoded in UTF-8.
      *
      * @param string $absPath The path of the root of the subgraph to be serialized. This must be the path to a node, not a property
-     * @param string $out The URI to which the XML serialization of the subgraph will be output.
+     * @param resource $stream The stream resource (i.e. aquired with fopen) to which the XML serialization of the subgraph will be output. Must support the fwrite method.
      * @param boolean $skipBinary A boolean governing whether binary properties are to be serialized.
      * @param boolean $noRecurse A boolean governing whether the subgraph at absPath is to be recursed.
      * @return void
@@ -751,7 +751,7 @@ interface SessionInterface
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
      */
-    function exportSystemView($absPath, $out, $skipBinary, $noRecurse);
+    function exportSystemView($absPath, $stream, $skipBinary, $noRecurse);
 
     /**
      * Serializes the node (and if $noRecurse is false, the whole subgraph) at
@@ -783,7 +783,7 @@ interface SessionInterface
      *
      * @param string $absPath The path of the root of the subgraph to be serialized. This must be the path to a node,
      *                        not a property
-     * @param string $out The URI to which the XML serialization of the subgraph will be output.
+     * @param resource $stream The stream resource (i.e. aquired with fopen) to which the XML serialization of the subgraph will be output. Must support the fwrite method.
      * @param boolean $skipBinary A boolean governing whether binary properties are to be serialized.
      * @param boolean $noRecurse A boolean governing whether the subgraph at absPath is to be recursed.
      * @return void
@@ -793,7 +793,7 @@ interface SessionInterface
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
      */
-    function exportDocumentView($absPath, $out, $skipBinary, $noRecurse);
+    function exportDocumentView($absPath, $stream, $skipBinary, $noRecurse);
 
     /**
      * Sets the name of a namespace prefix.
