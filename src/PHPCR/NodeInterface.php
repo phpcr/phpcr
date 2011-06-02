@@ -362,7 +362,9 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      * The same reacquisition semantics apply as with getNode(String).
      *
      * @param string|array $filter a name pattern
+     *
      * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>. Keys are the property names, values the corresponding PropertyInterface instances.
+     *
      * @throws \PHPCR\RepositoryException If an unexpected error occurs.
      * @api
      */
@@ -371,14 +373,23 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
     /**
      * Shortcut for getProperties and then getting the values of the properties.
      *
+     * To improve performance, implementations should avoid instantiating the
+     * property objects for this method
+     *
      * See NodeInterface::getProperties for a full documentation
      *
      * @param string|array $filter a name pattern
-     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>. Keys are the property names, values the corresponding property value (or array of values in case of multi-valued properties)
+     * @param boolean $dereference whether to dereference REFERENCE, WEAKREFERENCE and PATH properties
+     *
+     * @return array Keys are the property names, values the corresponding
+     *   property value (or array of values in case of multi-valued properties)
+     *   If $dereference is false, reference properties are uuid strings and
+     *   path properties path strings instead of the referenced node instances.
+     *
      * @throws \PHPCR\RepositoryException If an unexpected error occurs.
      * @api
      */
-    function getPropertiesValues($filter=null);
+    function getPropertiesValues($filter=null, $dereference=true);
 
     /**
      * Returns the primary child item of the current node.
