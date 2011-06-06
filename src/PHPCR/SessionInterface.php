@@ -632,7 +632,8 @@ interface SessionInterface
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
      */
-    function getImportContentHandler($parentAbsPath, $uuidBehavior);
+    //Dropped for now. If you have an excellent and generic idea for this, suggestions are welcome
+    //function getImportContentHandler($parentAbsPath, $uuidBehavior);
 
     /**
      * Deserializes an XML document and adds the resulting item subgraph as a

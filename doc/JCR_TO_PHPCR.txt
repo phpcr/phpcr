@@ -181,7 +181,11 @@ like the ItemVisitor.
 
 Import and export
 *****************
-TODO: how to substitute org.xml.sax.ContentHandler for import and export?
+
+JCR uses the org.xml.sax.ContentHandler to allow import and export over SAX
+events. There is no matching generic interface in PHP, so we dropped the
+ContentHandler for now. Good and generic ideas are welcome, if it makes sense
+we happily add something for this.
 
 
 Repository
