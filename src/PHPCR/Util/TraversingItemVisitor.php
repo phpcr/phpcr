@@ -141,6 +141,8 @@ abstract class TraversingItemVisitor implements \PHPCR\ItemVisitorInterface
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
      */
+    public function visit(\PHPCR\ItemInterface $item)
+    {
         if ($this->currentDepth == 0) {
             $this->currentDepth = $item->getDepth();
         }
