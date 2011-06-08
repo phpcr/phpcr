@@ -507,6 +507,10 @@ interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable
      * constant. Passing the property itself and the PATH type will convert the
      * value of the property to a path.
      *
+     * When assigning a stream resource to create a binary property, the client
+     * application must leave the stream alone afterwards. The PHPCR
+     * implementation is responsible for closing it after saving.
+     *
      * This method is a session-write and therefore requires a <code>save</code>
      * to dispatch the change.
      *
