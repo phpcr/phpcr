@@ -28,7 +28,8 @@ class Sql2ToQomQueryConverter
     }
 
     /**
-     * Parse an SQL2 query and return the corresponding Qom QueryObjectModel
+     * 6.7.1. Query
+     * Parse an SQL2 query and return the corresponding QOM QueryObjectModel
      *
      * @param string $sql2
      * @return \PHPCR\Query\QOM\QueryObjectModelInterface;
@@ -53,10 +54,10 @@ class Sql2ToQomQueryConverter
                 case 'ORDER':
                     // Ordering, check there is a BY
                     $this->scanner->expectToken('BY');
-                    $this->parseOrderings();
+                    $orderings = $this->parseOrderings();
                     break;
-                case 'ŴHERE':
-                    // Constraint
+                case 'WHERE':
+                    $constraint = $this->parseConstraint();
                     break;
                 default:
                     // Exit loop for debugging
@@ -70,6 +71,7 @@ class Sql2ToQomQueryConverter
     }
 
     /**
+     * 6.7.2. Source
      * Parse an SQL2 source definition and return the corresponding QOM Source
      *
      * @return \PHPCR\Query\QOM\SourceInterface
@@ -82,13 +84,14 @@ class Sql2ToQomQueryConverter
 
         $next = $this->scanner->lookupNextToken();
         if (in_array(strtoupper($next), array('JOIN', 'INNER', 'RIGHT', 'LEFT'))) {
-            // TODO: JOIN...
+            return $this->parseJoin();
         }
 
         return $selector;
     }
 
     /**
+     * 6.7.3. Selector
      * Parse an SQL2 selector and return a QOM\Selector
      *
      * @return \PHPCR\Query\QOM\SelectorInterface
@@ -97,8 +100,8 @@ class Sql2ToQomQueryConverter
     {
         $token = $this->scanner->fetchNextToken();
         if ($this->scanner->lookupNextToken() === 'AS') {
-            $this->scanner->fetchNextToken();
-            $nodeTypeName = $this->scanner->fetchNextToken();
+            $this->scanner->fetchNextToken(); // Consume the AS
+            $nodeTypeName = $this->parseName();
             return $this->factory->selector($nodeTypeName, $token);
         }
 
@@ -106,12 +109,43 @@ class Sql2ToQomQueryConverter
     }
 
     /**
+     * 6.7.4. Name
+     * 
+     * @return string
+     */
+    protected function parseName()
+    {
+        // TODO: check it's the correct way to parse a JCR name
+        return $this->scanner->fetchNextToken();
+    }
+
+    /**
+     * 6.7.5. Join
+     * 6.7.6. Join type
      * Parse an SQL2 join source and return a QOM\Join
      * 
      * @param string $leftSelector the left selector as it has been read by parseSource
      * return \PHPCR\Query\QOM\JoinInterface
      */
     protected function parseJoin($leftSelector)
+    {
+        $joinType = $this->parseJoinType();
+
+        $this->scanner->expectToken('ON');
+
+        $left = $this->factory->selector($leftSelector);
+        $right = $this->factory->selector($this->scanner->fetchNextToken());
+        $joinCondition = $this->parseJoinCondition();
+
+        return $this->factory->join($left, $right, $joinType, $joinCondition);
+    }
+
+    /**
+     * 6.7.6. Join type
+     *
+     * @return string
+     */
+    protected function parseJoinType()
     {
         $joinType = Constants::JCR_JOIN_TYPE_INNER;
         $token = $this->scanner->fetchNextToken();
@@ -135,16 +169,11 @@ class Sql2ToQomQueryConverter
                 throw new \Exception('Syntax error: Expected JOIN, INNER JOIN, RIGHT JOIN or LEFT JOIN');
         }
 
-        $this->scanner->expectToken('ON');
-
-        $left = $this->factory->selector($leftSelector);
-        $right = $this->factory->selector($this->scanner->fetchNextToken());
-        $joinCondition = $this->parseJoinCondition();
-
-        return $this->factory->join($left, $right, $joinType, $joinCondition);
+        return $joinType;
     }
 
     /**
+     * 6.7.7. JoinCondition
      * Parse an SQL2 join condition and return a QOM\Joincondition
      *
      * @return \PHPCR\Query\QOM\JoinConditionInterface
@@ -171,6 +200,7 @@ class Sql2ToQomQueryConverter
     }
 
     /**
+     * 6.7.8. EquiJoinCondition
      * Parse an SQL2 equijoin condition and return a QOM\EquiJoinCondition
      *
      * @return \PHPCR\Query\QOM\EquiJoinConditionInterface
@@ -181,6 +211,7 @@ class Sql2ToQomQueryConverter
     }
 
     /**
+     * 6.7.9 SameNodeJoinCondition
      * Parse an SQL2 same node join condition and return a QOM\SameNodeJoinCondition
      *
      * @return \PHPCR\Query\QOM\SameNodeJoinConditionInterface
@@ -193,6 +224,7 @@ class Sql2ToQomQueryConverter
     }
 
     /**
+     * 6.7.10 ChildNodeJoinCondition
      * Parse an SQL2 child node join condition and return a QOM\ChildNodeJoinCondition
      *
      * @return \PHPCR\Query\QOM\ChildNodeJoinConditionInterface
@@ -203,6 +235,7 @@ class Sql2ToQomQueryConverter
     }
 
     /**
+     * 6.7.11 DescendantNodeJoinCondition
      * Parse an SQL2 descendant node join condition and return a QOM\DescendantNodeJoinCondition
      *
      * @return \PHPCR\Query\QOM\DescendantNodeJoinConditionInterface
@@ -213,51 +246,154 @@ class Sql2ToQomQueryConverter
     }
 
     /**
-     * Parse an SQL2 columns definition and return an array of QOM\Column
+     * 6.7.12 Constraint
      *
-     * @return array of array
+     * @return \PHPCR\Query\QOM\ConstraintInterface
      */
-    protected function parseColumns()
-    {
-        $this->scanner->expectToken('SELECT');
-
-        // Wildcard
-        if ($this->scanner->lookupNextToken() === '*') {
-            $this->scanner->fetchNextToken();
-            return array();
-        }
-
-        $columns = array();
-        $hasNext = true;
-
-        // Column list
-        while ($hasNext) {
-
-            $columns[] = $this->parseColumn();
-
-            // Are there more columns?
-            if ($this->scanner->lookupNextToken() !== ',') {
-                $hasNext = false;
-            } else {
-                $this->scanner->fetchNextToken();
-            }
-
-        }
-
-        return $columns;
-    }
-
-    protected function parseOrderings()
-    {
-        throw new \Exception('Not implemented');
-    }
-
-    protected function parseOrdering()
+    protected function parseConstraint()
     {
         throw new \Exception('Not implemented');
     }
 
     /**
+     * 6.7.13 And
+     *
+     * @return \PHPCR\Query\QOM\AndInterface
+     */
+    protected function parseAnd()
+    {
+        $c1 = $this->scanner->fetchNextToken();
+        $this->expectToken('AND');
+        $c2 = $this->scanner->fetchNextToken();
+        return $this->factory->and($c1, $c2);
+    }
+
+    /**
+     * 6.7.14 Or
+     *
+     * @return \PHPCR\Query\QOM\OrInterface
+     */
+    protected function parseOr()
+    {
+        $c1 = $this->scanner->fetchNextToken();
+        $this->expectToken('OR');
+        $c2 = $this->scanner->fetchNextToken();
+        return $this->factory->_or($c1, $c2);
+    }
+
+    /**
+     * 6.7.15 Not
+     *
+     * @return \PHPCR\Query\QOM\NotInterface
+     */
+    protected function parseNot()
+    {
+        $this->scanner->expectToken('NOT');
+        return $this->factory->not($this->parseConstraint());
+    }
+
+    /**
+     * 6.7.16 Comparison
+     *
+     * @return \PHPCR\Query\QOM\ComparisonInterface
+     */
+    protected function parseComparison()
+    {
+        throw new \Exception('Not implemented');
+    }
+
+    /**
+     * 6.7.17 Operator
+     *
+     * @return \PHPCR\Query\QOM\OperatorInterface
+     */
+    protected function parseOperator()
+    {
+        throw new \Exception('Not implemented');
+    }
+
+    /**
+     * 6.7.18 PropertyExistence
+     *
+     * @return \PHPCR\Query\QOM\PropertyExistenceInterface
+     */
+    protected function parsePropertyExistence()
+    {
+        throw new \Exception('Not implemented');
+    }
+
+    /**
+     * 6.7.19 FullTextSearch
+     *
+     * @return \PHPCR\Query\QOM\FullTextSearchInterface
+     */
+    protected function parseFullTextSearch()
+    {
+        throw new \Exception('Not implemented');
+    }
+
+    /**
+     * 6.7.20 SameNode
+     */
+    protected function parseSameNode()
+    {
+        throw new \Exception('Not implemented');
+    }
+
+    /**
+     * 6.7.21 ChildNode
+     */
+    protected function parseChildNode()
+    {
+        throw new \Exception('Not implemented');
+    }
+
+    /**
+     * 6.7.22 DescendantNode
+     */
+    protected function parseDescendantNode()
+    {
+        throw new \Exception('Not implemented');
+    }
+
+    /**
+     * 6.7.23 Path
+     */
+    protected function parsePath()
+    {
+        throw new \Exception('Not implemented');
+    }
+
+    /**
+     * 6.7.24 Operand
+     */
+    protected function parseOperand()
+    {
+        throw new \Exception('Not implemented');
+    }
+
+    /**
+     * Parse an SQL2 static operand
+     *
+     * @return \PHPCR\Query\QOM\StaticOperandInterface
+     */
+    protected function parseStaticOperand()
+    {
+        $token = $this->scanner->lookupNextToken();
+        if ($this->scanner->tokenIs($token, '$')) {
+            return $this->parseBindVariable();
+        }
+        return $this->parseLiteral();
+    }
+
+    /**
+     * 6.7.26 DynamicOperand
+     * 6.7.28 Length
+     * 6.7.29 NodeName
+     * 6.7.30 NodeLocalName
+     * 6.7.31 FullTextSearchScore
+     * 6.7.32 LowerCase
+     * 6.7.33 UpperCase
      * Parse an SQL2 dynamic operand
      *
      * @return \PHPCR\Query\QOM\DynamicOperandInterface
@@ -328,20 +464,23 @@ class Sql2ToQomQueryConverter
     }
 
     /**
-     * Parse an SQL2 static operand
+     * 6.7.27 PropertyValue
+     * Parse an SQL2 property value
      *
-     * @return \PHPCR\Query\QOM\StaticOperandInterface
+     * @return \PHPCR\Query\QOM\PropertyValueInterface
      */
-    protected function parseStaticOperand()
+    protected function parsePropertyValue()
     {
-        $token = $this->scanner->lookupNextToken();
-        if ($this->scanner->tokenIs($token, '$')) {
-            return $this->parseBindVariable();
+        $token = $this->scanner->fetchNextToken();
+        if ($this->scanner->lookupNextToken() === '.') {
+            $this->scanner->fetchNextToken();
+            return $this->factory->propertyValue($this->fetchNextToken(), $token);
         }
-        return $this->parseLiteral();
+        return $this->factory->propertyValue($token);
     }
 
     /**
+     * 6.7.34 Literal
      * Parse an SQL2 literal value
      *
      * @return \PHPCR\Query\QOM\LiteralInterface
@@ -376,6 +515,8 @@ class Sql2ToQomQueryConverter
     }
 
     /**
+     * 6.7.35 BindVariable
+     * 6.7.36 Prefix
      * Parse an SQL2 bind variable
      *
      * @return \PHPCR\Query\QOM\BindVariableInterface
@@ -388,18 +529,55 @@ class Sql2ToQomQueryConverter
     }
 
     /**
-     * Parse an SQL2 property value
-     *
-     * @return \PHPCR\Query\QOM\PropertyValueInterface
+     * 6.7.37 Ordering
      */
-    protected function parsePropertyValue()
+    protected function parseOrderings()
     {
-        $token = $this->scanner->fetchNextToken();
-        if ($this->scanner->lookupNextToken() === '.') {
+        throw new \Exception('Not implemented');
+    }
+
+    /**
+     * 6.7.38 Order
+     */
+    protected function parseOrdering()
+    {
+        throw new \Exception('Not implemented');
+    }
+
+    /**
+     * 6.7.39 Column
+     * Parse an SQL2 columns definition and return an array of QOM\Column
+     *
+     * @return array of array
+     */
+    protected function parseColumns()
+    {
+        $this->scanner->expectToken('SELECT');
+
+        // Wildcard
+        if ($this->scanner->lookupNextToken() === '*') {
             $this->scanner->fetchNextToken();
-            return $this->factory->propertyValue($this->fetchNextToken(), $token);
+            return array();
         }
-        return $this->factory->propertyValue($token);
+
+        $columns = array();
+        $hasNext = true;
+
+        // Column list
+        while ($hasNext) {
+
+            $columns[] = $this->parseColumn();
+
+            // Are there more columns?
+            if ($this->scanner->lookupNextToken() !== ',') {
+                $hasNext = false;
+            } else {
+                $this->scanner->fetchNextToken();
+            }
+
+        }
+
+        return $columns;
     }
 
     /**
