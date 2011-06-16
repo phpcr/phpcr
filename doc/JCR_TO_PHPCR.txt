@@ -74,7 +74,7 @@ expressivnes as the JCR RangeIterator.
 
 Note: Plain PHP arrays would be even simpler than any interfaces, while still
 allowing to use foreach. But they would have the major drawback that no lazy
-loading is possible, all data has to be instantiated immediatly.
+loading is possible, all data has to be instantiated immediately.
 If an implementation does not want lazy loading, it can just create an
 ArrayIterator from the array.
 
@@ -212,7 +212,7 @@ according to the JCR specification). This has to be used for all conversions to
 ensure compatibility between implementations. This is the only part of the
 ValueFactory that we need to use in PHP.
 
-PropertyType::valueFromType($type) returns the PHPCR numeric constant value of
+PropertyType::determineType($type) returns the PHPCR numeric constant value of
 the type for the given PHP type name as returned by gettype().
 
 PropertyType::convertToType($value, $type) converts the value into the target

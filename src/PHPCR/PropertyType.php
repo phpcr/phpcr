@@ -343,43 +343,6 @@ final class PropertyType
     }
 
     /**
-     * Returns the numeric constant value of the type for the given PHP type
-     * name as returned by gettype().
-     *
-     * <b>Note:</b> this is an addition not defined in JSR-283.
-     *
-     * @param string $type
-     * @return integer
-     *
-     * @api
-     */
-    static public function valueFromType($type)
-    {
-        switch (strtolower($type)) {
-            case 'string':
-                return self::STRING;
-                break;
-            case 'bool':
-            case 'boolean':
-                return self::BOOLEAN;
-                break;
-            case 'int':
-            case 'integer':
-                return self::LONG;
-                break;
-            case 'float':
-            case 'double':
-                return self::DOUBLE;
-                break;
-            case 'datetime':
-                return self::DATE;
-                break;
-            default:
-                return self::UNDEFINED;
-        }
-    }
-
-    /**
      * Determine PropertyType from on variable type.
      *
      * This is most of the remainder of ValueFactory that is still needed.
@@ -390,35 +353,38 @@ final class PropertyType
      *
      * @param mixed $value The variable we need to know the type of
      * @param boolean $weak When a Node is given as $value this can be given as true to create a WEAKREFERENCE.
-     * @return One of the \PHPCR\PropertyType constants
+     * @return One of the self constants
      * @api
      */
     public static function determineType($value, $weak = false)
     {
-        //FIXME: should use PropertyType::valueFromType
-
+        // name, path, reference, weak reference, uri are string, explicitly specify type if you need
+        // decimal is handled as string, explicitly specify type if you need
         if (is_string($value)) {
-            $type = \PHPCR\PropertyType::STRING;
+            if (preg_match("/^(\d{4})-(\d{2})-(\d{2})T([01][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])/", $value, $matches)) {
+                return self::DATE;
+            }
+
+            return self::STRING;
         } elseif (is_resource($value)) {
-            $type = \PHPCR\PropertyType::BINARY;
+            return self::BINARY;
         } elseif (is_int($value)) {
-            $type = \PHPCR\PropertyType::LONG;
+            return self::LONG;
         } elseif (is_float($value)) {
-            $type = \PHPCR\PropertyType::DOUBLE;
-        } elseif (is_object($value) && $value instanceof \DateTime) {
-            $type = \PHPCR\PropertyType::DATE;
+            return self::DOUBLE;
         } elseif (is_bool($value)) {
-            $type = \PHPCR\PropertyType::BOOLEAN;
-        //name, path, reference, weakreference, uri are string, explicitly specify type if you need
-        //decimal is handled as string, explicitly specify type if you need
-        } elseif (is_object($value) && $value instanceof \PHPCR\NodeInterface) {
-            $type = ($weak) ?
-                    \PHPCR\PropertyType::WEAKREFERENCE :
-                    \PHPCR\PropertyType::REFERENCE;
-        } else {
-            throw new \PHPCR\ValueFormatException('Can not determine type of property with value "'.var_export($value, true).'"');
+            return self::BOOLEAN;
+        } elseif (is_object($value)) {
+            if ($value instanceof \DateTime) {
+                return self::DATE;
+            } elseif ($value instanceof \PHPCR\NodeInterface) {
+                return ($weak) ?
+                        self::WEAKREFERENCE :
+                        self::REFERENCE;
+            }
         }
-        return $type;
+
+        throw new \PHPCR\ValueFormatException('Can not determine type of property with value "'.var_export($value, true).'"');
     }
 
     /**
@@ -448,7 +414,7 @@ final class PropertyType
             $ret = array();
         }
         switch($type) {
-            case \PHPCR\PropertyType::STRING:
+            case self::STRING:
                 foreach ($values as $v) {
                     if ($v instanceof \DateTime) {
                         $ret[] = $v->format(self::DATETIME_FORMAT);
@@ -461,19 +427,19 @@ final class PropertyType
                     }
                 }
                 break;
-            case \PHPCR\PropertyType::DECIMAL:
+            case self::DECIMAL:
                 $typename = 'string';
                 break;
-            case \PHPCR\PropertyType::LONG:
+            case self::LONG:
                 $typename = 'integer';
                 break;
-            case \PHPCR\PropertyType::DOUBLE:
+            case self::DOUBLE:
                 $typename = 'double';
                 break;
-            case \PHPCR\PropertyType::BOOLEAN:
+            case self::BOOLEAN:
                 $typename = 'boolean'; //we follow php logic and are not binary compatible with jackrabbit. jcr is not specific about details of the conversion.
                 break;
-            case \PHPCR\PropertyType::DATE:
+            case self::DATE:
                 foreach ($values as $v) {
                     $datetime = false;
                     if ($v instanceof \DateTime) {
@@ -494,8 +460,8 @@ final class PropertyType
                     $ret[] = $datetime;
                 }
                 break;
-            case \PHPCR\PropertyType::REFERENCE:
-            case \PHPCR\PropertyType::WEAKREFERENCE:
+            case self::REFERENCE:
+            case self::WEAKREFERENCE:
                 foreach ($values as $v) {
                     if ($v instanceof \PHPCR\NodeInterface) {
                         // In Jackrabbit a new node cannot be referenced until it has been persisted
@@ -512,7 +478,7 @@ final class PropertyType
                     }
                 }
                 break;
-            case \PHPCR\PropertyType::BINARY:
+            case self::BINARY:
                 foreach ($values as $v) {
                     if (is_string($v)) {
                         $f = fopen('php://memory', 'rwb+');
