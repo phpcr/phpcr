@@ -217,6 +217,11 @@ final class PropertyType
     /**#@-*/
 
     /**
+     * The expected date format to be used with {@link \DateTime}
+     */
+    const DATETIME_FORMAT = 'Y-m-d\TH:i:s.000P';
+
+    /**
      * Make instantiation impossible...
      *
      * @return void
@@ -372,5 +377,176 @@ final class PropertyType
             default:
                 return self::UNDEFINED;
         }
+    }
+
+    /**
+     * Determine PropertyType from on variable type.
+     *
+     * This is most of the remainder of ValueFactory that is still needed.
+     *
+     * * if the given $value is a Node object, type will be REFERENCE, unless
+     *    $weak is set to true which results in WEAKREFERENCE
+     * * if the given $value is a DateTime object, the type will be DATE.
+     *
+     * @param mixed $value The variable we need to know the type of
+     * @param boolean $weak When a Node is given as $value this can be given as true to create a WEAKREFERENCE.
+     * @return One of the \PHPCR\PropertyType constants
+     * @api
+     */
+    public static function determineType($value, $weak = false)
+    {
+        //FIXME: should use PropertyType::valueFromType
+
+        if (is_string($value)) {
+            $type = \PHPCR\PropertyType::STRING;
+        } elseif (is_resource($value)) {
+            $type = \PHPCR\PropertyType::BINARY;
+        } elseif (is_int($value)) {
+            $type = \PHPCR\PropertyType::LONG;
+        } elseif (is_float($value)) {
+            $type = \PHPCR\PropertyType::DOUBLE;
+        } elseif (is_object($value) && $value instanceof \DateTime) {
+            $type = \PHPCR\PropertyType::DATE;
+        } elseif (is_bool($value)) {
+            $type = \PHPCR\PropertyType::BOOLEAN;
+        //name, path, reference, weakreference, uri are string, explicitly specify type if you need
+        //decimal is handled as string, explicitly specify type if you need
+        } elseif (is_object($value) && $value instanceof \PHPCR\NodeInterface) {
+            $type = ($weak) ?
+                    \PHPCR\PropertyType::WEAKREFERENCE :
+                    \PHPCR\PropertyType::REFERENCE;
+        } else {
+            throw new \PHPCR\ValueFormatException('Can not determine type of property with value "'.var_export($value, true).'"');
+        }
+        return $type;
+    }
+
+    /**
+     * Attempt to convert $values into the proper format for $type.
+     *
+     * This is the other remaining part of ValueFactory functionality that is
+     * still needed.
+     *
+     * Note that for converting to boolean, we follow the PHP convention of
+     * treating any non-empty string as true, not just the word "true".
+     *
+     * @param mixed $values The value or value array to check and convert
+     * @param int $type Target type to convert into. One of the type constants in \PHPCR\PropertyType
+     * @return the value typecasted into the proper format (throws an exception if conversion is not possible)
+     *
+     * @throws \PHPCR\ValueFormatException is thrown if the specified value cannot be converted to the specified type.
+     * @throws \PHPCR\RepositoryException if the specified Node is not referenceable, the current Session is no longer active, or another error occurs.
+     * @throws \InvalidArgumentException if the specified DateTime value cannot be expressed in the ISO 8601-based format defined in the JCR 2.0 specification and the implementation does not support dates incompatible with that format.
+     */
+    public static function convertType($values, $type)
+    {
+        $ret = null;
+        $isArray = is_array($values);
+        if (!$isArray) {
+            $values = array($values);
+        } else {
+            $ret = array();
+        }
+        switch($type) {
+            case \PHPCR\PropertyType::STRING:
+                foreach ($values as $v) {
+                    if ($v instanceof \DateTime) {
+                        $ret[] = $v->format(self::DATETIME_FORMAT);
+                    } elseif (is_resource($v)) {
+                        $ret[] = stream_get_contents($v);
+                        rewind($v);
+                    } else {
+                        settype($v, 'string');
+                        $ret[] = $v;
+                    }
+                }
+                break;
+            case \PHPCR\PropertyType::DECIMAL:
+                $typename = 'string';
+                break;
+            case \PHPCR\PropertyType::LONG:
+                $typename = 'integer';
+                break;
+            case \PHPCR\PropertyType::DOUBLE:
+                $typename = 'double';
+                break;
+            case \PHPCR\PropertyType::BOOLEAN:
+                $typename = 'boolean'; //we follow php logic and are not binary compatible with jackrabbit. jcr is not specific about details of the conversion.
+                break;
+            case \PHPCR\PropertyType::DATE:
+                foreach ($values as $v) {
+                    $datetime = false;
+                    if ($v instanceof \DateTime) {
+                        $datetime = $v;
+                    } elseif (is_int($v)) {
+                        $datetime = new \DateTime();
+                        $datetime = $datetime->setTimestamp($v);
+                    } elseif (is_string($v)) {
+                        try {
+                            $datetime = new \DateTime($v);
+                        } catch (\Exception $e) {
+                            $datetime = false;
+                        }
+                    }
+                    if ($datetime === false) {
+                        throw new \PHPCR\ValueFormatException('Can not convert "'.var_export($v, true).'" into a date');
+                    }
+                    $ret[] = $datetime;
+                }
+                break;
+            case \PHPCR\PropertyType::REFERENCE:
+            case \PHPCR\PropertyType::WEAKREFERENCE:
+                foreach ($values as $v) {
+                    if ($v instanceof \PHPCR\NodeInterface) {
+                        // In Jackrabbit a new node cannot be referenced until it has been persisted
+                        // See: https://issues.apache.org/jira/browse/JCR-1614
+                        if ($v->isNew() || ! $v->isNodeType('mix:referenceable')) {
+                            throw new \PHPCR\ValueFormatException('Node ' . $v->getPath() . ' is not referencable');
+                        }
+                        $ret[] = $v->getIdentifier();
+                    } elseif (is_string($v) && ! empty($v)) {
+                        //could check if string is valid uuid, but backend will do that
+                        $ret[] = $v;
+                    } else {
+                        throw new \PHPCR\ValueFormatException("$v is not a unique id");
+                    }
+                }
+                break;
+            case \PHPCR\PropertyType::BINARY:
+                foreach ($values as $v) {
+                    if (is_string($v)) {
+                        $f = fopen('php://memory', 'rwb+');
+                        fwrite($f, $v);
+                        rewind($f);
+                        $v = $f;
+                    }
+
+                    if (!is_resource($v)) {
+                        throw new \PHPCR\ValueFormatException('Cannot convert value into a binary resource');
+                    }
+
+                    $ret[] = $v;
+                }
+            //FIXME: type PATH is missing. should automatically read property and node with getPath.
+            default:
+                //FIXME: handle other types somehow
+                foreach ($values as $v) {
+                    $ret[] = $v;
+                }
+                break;
+            //TODO: more type checks or casts? name, path, uri, decimal. but the backend can handle the checks.
+        }
+        if (isset($typename)) {
+            foreach ($values as $v) {
+                if (! settype($v, $typename)) { //TODO: will this work for streams? or should we read them into string and then convert?
+                    throw new \PHPCR\ValueFormatException;
+                }
+                $ret[] = $v;
+            }
+        }
+        if (!$isArray) {
+            $ret = $ret[0];
+        }
+        return $ret;
     }
 }
