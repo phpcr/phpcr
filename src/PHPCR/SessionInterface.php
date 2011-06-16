@@ -214,6 +214,17 @@ interface SessionInterface
     function getNode($absPath);
 
     /**
+     * Returns all nodes specified in the absPath array.
+     *
+     * @param array $absPath An array containing absolute paths.
+     * @return array containing \PHPCR\NodeInterface nodes
+     *
+     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @api
+     */
+    function getNodes($absPaths);
+
+    /**
      * Returns the property at the specified absolute path in the workspace.
      *
      * @param string $absPath An absolute path.
