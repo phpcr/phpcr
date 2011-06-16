@@ -215,8 +215,8 @@ ValueFactory that we need to use in PHP.
 PropertyType::determineType($type) returns the PHPCR numeric constant value of
 the type for the given PHP type name as returned by gettype().
 
-PropertyType::convertToType($value, $type) converts the value into the target
-type.
+PropertyType::convertType($values, $type) converts the value or values into the
+target type.
 
 
 Drawing the line
