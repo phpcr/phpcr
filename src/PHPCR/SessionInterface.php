@@ -204,25 +204,27 @@ interface SessionInterface
     /**
      * Returns the node at the specified absolute path in the workspace.
      *
-     * @param string $absPath An absolute path.
+     * @param string $identifier An absolute path or uuid.
      * @return \PHPCR\NodeInterface A node
      *
      * @throws \PHPCR\PathNotFoundException if no accessible node is found at the specified path.
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
      */
-    function getNode($absPath);
+    function getNode($identifier);
 
     /**
      * Returns all nodes specified in the absPath array.
      *
-     * @param array $absPath An array containing absolute paths.
-     * @return array containing \PHPCR\NodeInterface nodes
+     * Note uuid's/path's that cannot be found will be ignored
+     * 
+     * @param array $identifiers An array containing absolute paths or uuid's.
+     * @return array containing \PHPCR\NodeInterface nodes keyed by path
      *
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
      */
-    function getNodes($absPaths);
+    function getNodes($identifiers);
 
     /**
      * Returns the property at the specified absolute path in the workspace.
