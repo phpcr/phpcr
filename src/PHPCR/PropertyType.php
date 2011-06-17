@@ -52,6 +52,10 @@ namespace PHPCR;
  * For example it will never be returned by Property.getType() and (in level 2 implementations) it cannot be assigned
  * as the type when creating a new property.
  *
+ * Date formatting:
+ *   Since there is no formatting for milliseconds in PHP we construct the date formatting by cutting the microseconds
+ *   to 3 positions. Unfortunately this might cause an inacuracy of one millisecond in the worst case.
+ *
  * @author Sebastian Kurfürst <sebastian@typo3.org>
  * @author Karsten Dambekalns <karsten@typo3.org>
  * @package phpcr
@@ -215,11 +219,6 @@ final class PropertyType
     const TYPENAME_DECIMAL = 'Decimal';
 
     /**#@-*/
-
-    /**
-     * The expected date format to be used with {@link \DateTime}
-     */
-    const DATETIME_FORMAT = 'Y-m-d\TH:i:s.000P';
 
     /**
      * Make instantiation impossible...
@@ -417,7 +416,13 @@ final class PropertyType
             case self::STRING:
                 foreach ($values as $v) {
                     if ($v instanceof \DateTime) {
-                        $ret[] = $v->format(self::DATETIME_FORMAT);
+                        // Milliseconds formating is not possible in PHP so we
+                        // construct it by cutting microseconds to 3 positions.
+                        // This might not be as accurate as "real" rounded milliseconds.
+                        $tmp = $v->format('Y-m-d\TH:i:s.');
+                        $tmp .= substr($v->format('u'), 0, 3);
+                        $tmp .= $v->format('P');
+                        $ret[] = $tmp;
                     } elseif (is_resource($v)) {
                         $ret[] = stream_get_contents($v);
                         rewind($v);
