@@ -243,43 +243,30 @@ final class PropertyType
         switch (intval($type)) {
             case self::UNDEFINED :
                 return self::TYPENAME_UNDEFINED;
-                break;
             case self::STRING :
                 return self::TYPENAME_STRING;
-                break;
             case self::BINARY :
                 return self::TYPENAME_BINARY;
-                break;
             case self::BOOLEAN :
                 return self::TYPENAME_BOOLEAN;
-                break;
             case self::LONG :
                 return self::TYPENAME_LONG;
-                break;
             case self::DOUBLE :
                 return self::TYPENAME_DOUBLE;
-                break;
             case self::DECIMAL :
                 return self::TYPENAME_DECIMAL;
-                break;
             case self::DATE :
                 return self::TYPENAME_DATE;
-                break;
             case self::NAME :
                 return self::TYPENAME_NAME;
-                break;
             case self::PATH :
                 return self::TYPENAME_PATH;
-                break;
             case self::REFERENCE :
                 return self::TYPENAME_REFERENCE;
-                break;
             case self::WEAKREFERENCE :
                 return self::TYPENAME_WEAKREFERENCE;
-                break;
             case self::URI :
                 return self::TYPENAME_URI;
-                break;
             default:
                 throw new \InvalidArgumentException('Unknown type (' . $type . ') given.', 1257170231);
         }
@@ -299,43 +286,30 @@ final class PropertyType
         switch (strtolower($name)) {
             case 'undefined':
                 return self::UNDEFINED;
-                break;
             case 'string':
                 return self::STRING;
-                break;
             case 'binary':
                 return self::BINARY;
-                break;
             case 'long':
                 return self::LONG;
-                break;
             case 'double':
                 return self::DOUBLE;
-                break;
             case 'date':
                 return self::DATE;
-                break;
             case 'boolean':
                 return self::BOOLEAN;
-                break;
             case 'name':
                 return self::NAME;
-                break;
             case 'path':
                 return self::PATH;
-                break;
             case 'reference':
                 return self::REFERENCE;
-                break;
             case 'weakreference':
                 return self::WEAKREFERENCE;
-                break;
             case 'uri':
                 return self::URI;
-                break;
             case 'decimal':
                 return self::DECIMAL;
-                break;
             default:
                 throw new \InvalidArgumentException('Unknown type name (' . $name . ') given.', 1257170232);
         }
