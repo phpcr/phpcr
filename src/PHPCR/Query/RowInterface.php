@@ -43,7 +43,7 @@ interface RowInterface extends \Traversable
      * Returns an array of all the values in the same order as the column names
      * returned by QueryResult.getColumnNames().
      *
-     * @return array List of values of each column of the current result row.
+     * @return array Hashmap of column name to value of each column of the current result row.
      *
      * @throws \PHPCR\RepositoryException if an error occurs
      * @api
