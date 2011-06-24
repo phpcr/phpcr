@@ -218,6 +218,12 @@ the type for the given PHP type name as returned by gettype().
 PropertyType::convertType($values, $type) converts the value or values into the
 target type.
 
+We added a UUIDHelper that can determine whether a string is a valid UUID.
+Implementations can use it to generate UUIDs as there is no built-in PHP code
+to do that.
+Note that clients of PHPCR can not control what UUID a new node gets. It is up
+to the implementation how to assign UUIDs.
+
 
 Drawing the line
 ****************
