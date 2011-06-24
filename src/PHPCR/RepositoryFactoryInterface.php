@@ -30,9 +30,10 @@ namespace PHPCR;
  *
  * Examples how to obtain repository instances
  *
- * Use repository factory based on parameters (the parameters below are examples):
+ *    $factory = new \SomeRepository\RepositoryFactory;
+ *
  *    $parameters = array('com.vendor.address' => 'vendor://localhost:9999/myrepo');
- *    $repo = \SomeRepository\RepositoryFactory::getRepository($parameters);
+ *    $repo = $factory->getRepository($parameters);
  *
  * @package phpcr
  * @subpackage interfaces
@@ -47,8 +48,8 @@ interface RepositoryFactoryInterface
      * Parameters are passed in an array of key/value pairs. The keys are not
      * specified by JCR and are implementation specific.
      * However, vendors should use keys that are namespace qualified in the
-     * Java package style to distinguish their key names. For example
-     * an address parameter might be com.vendor.address.
+     * php style to distinguish their key names. For example an address
+     * parameter might be jackalope.jackrabbit_url.
      *
      * The implementation must return null if it does not understand
      * the given parameters. The implementation may also return null if a default
