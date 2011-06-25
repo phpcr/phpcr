@@ -486,7 +486,7 @@ interface RepositoryInterface
      * @throws \PHPCR\RepositoryException if another error occurs
      * @api
      */
-    function login($credentials = null, $workspaceName = null);
+    function login(CredentialsInterface $credentials = null, $workspaceName = null);
 
     /**
      * Returns a string array holding all descriptor keys available for this implementation.
