@@ -130,7 +130,6 @@ class Sql2ToQomQueryConverter
      */
     protected function parseJoin($leftSelector)
     {
-        // TODO: check everything is correct
         $joinType = $this->parseJoinType();
         $right = $this->parseSelector();
         $joinCondition = $this->parseJoinCondition();
