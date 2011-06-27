@@ -30,7 +30,7 @@
 namespace PHPCR\Transaction;
 
 /**
- * RollbackException exception is thrown when the transaction has been marked for rollback only or the transaction has been rolled back instead of committed.
+ * RollbackException exception is thrown when the transaction has been rolled back instead of committed.
  *
  * @author Johannes Stark <starkj@gmx.de>
  * @package phpcr

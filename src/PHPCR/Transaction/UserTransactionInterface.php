@@ -44,7 +44,7 @@ namespace PHPCR\Transaction;
  * - New PHPCR exceptions specified by the Java spec:
  *   - RollbackException                ->   \PHPCR\Transaction\RollbackException
  *   - java.lang.SecurityException      ->   \PHPCR\Transaction\SecurityException
- *   - java.lang.IllegalStateException  ->   \PHPCR\Transaction\IllegalStateException
+ *   - java.lang.IllegalStateException  ->   LogicException
  * - Some Java exceptions are dropped (HeuristicMixedException, HeuristicRollbackException)
  *
  * An implementation of this interface has to take care of that if a transaction
@@ -53,7 +53,8 @@ namespace PHPCR\Transaction;
  *
  * It should also be possible to use this interface on a deeper level of a PHPCR
  * implementation e.g. that a $session->save() automatically starts and ends a
- * transaction before and after persisting all changes to the backend.
+ * transaction before and after persisting all changes to the backend (if the
+ * session is not yet in a transaction).
  *
  * @author Johannes Stark <starkj@gmx.de>
  * @package phpcr
@@ -87,8 +88,8 @@ interface UserTransactionInterface
      *      transaction has been rolled back rather than committed.
      * @throws \PHPCR\Transaction\SecurityException Thrown to indicate that the
      *      session is not allowed to commit the transaction.
-     * @throws \PHPCR\Transaction\IllegalStateException Thrown if the current
-     *      session is not associated with a transaction.
+     * @throws LogicException Thrown if the current session is not associated 
+     *      with a transaction.
      * @throws \PHPCR\RepositoryException Thrown if the transaction implementation
      *      encounters an unexpected error condition.
      */
@@ -113,12 +114,12 @@ interface UserTransactionInterface
      *
      * @throws \PHPCR\Transaction\SecurityException Thrown to indicate that the
      *      application is not allowed to roll back the transaction.
-     * @throws \PHPCR\Transaction\IllegalStateException Thrown if the current
-     *      session is not associated with a transaction.
+     * @throws LogicException Thrown if the current session is not associated with
+     *      a transaction.
      * @throws \PHPCR\RepositoryException Thrown if the transaction implementation
      *      encounters an unexpected error condition.
      */
-    public function rollback()
+    public function rollback();
 
     /**
      *
@@ -136,6 +137,6 @@ interface UserTransactionInterface
      * @throws \PHPCR\RepositoryException Thrown if the transaction implementation
      *      encounters an unexpected error condition.
      */
-    public function setTransactionTimeout($seconds = 0)
+    public function setTransactionTimeout($seconds = 0);
 
 }
