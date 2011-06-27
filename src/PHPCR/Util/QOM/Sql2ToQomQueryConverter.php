@@ -53,10 +53,11 @@ class Sql2ToQomQueryConverter
                     break;
                 case 'ORDER':
                     // Ordering, check there is a BY
-                    $this->scanner->expectToken('BY');
+                    $this->scanner->expectTokens(array('ORDER', 'BY'));
                     $orderings = $this->parseOrderings();
                     break;
                 case 'WHERE':
+                    $this->scanner->expectToken('WHERE');
                     $constraint = $this->parseConstraint();
                     break;
                 default:
@@ -84,7 +85,7 @@ class Sql2ToQomQueryConverter
 
         $next = $this->scanner->lookupNextToken();
         if (in_array(strtoupper($next), array('JOIN', 'INNER', 'RIGHT', 'LEFT'))) {
-            return $this->parseJoin();
+            return $this->parseJoin($selector);
         }
 
         return $selector;
@@ -101,8 +102,8 @@ class Sql2ToQomQueryConverter
         $token = $this->scanner->fetchNextToken();
         if ($this->scanner->lookupNextToken() === 'AS') {
             $this->scanner->fetchNextToken(); // Consume the AS
-            $nodeTypeName = $this->parseName();
-            return $this->factory->selector($nodeTypeName, $token);
+            $selectorName = $this->parseName();
+            return $this->factory->selector($token, $selectorName);
         }
 
         return $this->factory->selector($token);
@@ -129,15 +130,12 @@ class Sql2ToQomQueryConverter
      */
     protected function parseJoin($leftSelector)
     {
+        // TODO: check everything is correct
         $joinType = $this->parseJoinType();
-
-        $this->scanner->expectToken('ON');
-
-        $left = $this->factory->selector($leftSelector);
-        $right = $this->factory->selector($this->scanner->fetchNextToken());
+        $right = $this->parseSelector();
         $joinCondition = $this->parseJoinCondition();
 
-        return $this->factory->join($left, $right, $joinType, $joinCondition);
+        return $this->factory->join($leftSelector, $right, $joinType, $joinCondition);
     }
 
     /**
@@ -158,11 +156,11 @@ class Sql2ToQomQueryConverter
                 $this->scanner->fetchNextToken();
                 break;
             case 'LEFT':
-                $this->scanner->expectToken('OUTER');
+                $this->scanner->expectTokens(array('OUTER', 'JOIN'));
                 $joinType = Constants::JCR_JOIN_TYPE_LEFT_OUTER;
                 break;
             case 'RIGHT':
-                $this->scanner->expectToken('OUTTER');
+                $this->scanner->expectTokens(array('OUTER', 'JOIN'));
                 $joinType = Constants::JCR_JOIN_TYPE_RIGHT_OUTER;
                 break;
             default:
@@ -207,7 +205,15 @@ class Sql2ToQomQueryConverter
      */
     protected function parseEquiJoin()
     {
-        throw new \Exception('Not implemented');
+        $selector1 = $this->scanner->fetchNextToken();
+        $this->scanner->expectToken('.');
+        $prop1 = $this->scanner->fetchNextToken();
+        $this->scanner->expectToken('=');
+        $selector2 = $this->scanner->fetchNextToken();
+        $this->scanner->expectToken('.');
+        $prop2 = $this->scanner->fetchNextToken();
+
+        return $this->factory->equiJoinCondition($selector1, $prop1, $selector2, $prop2);
     }
 
     /**
@@ -218,9 +224,20 @@ class Sql2ToQomQueryConverter
      */
     protected function parseSameNodeJoinCondition()
     {
-        $this->assertNextTokenIs('ISSAMENODE');
+        $path = null;
+        $this->scanner->expectTokens(array('ISSAMENODE', '('));
+        $selector1 = $this->scanner->fetchNextToken();
+        $this->scanner->expectToken(',');
+        $selector2 = $this->scanner->fetchNextToken();
 
-        throw new \Exception('Not implemented');
+        $token = $this->scanner->lookupNextToken();
+        if ($this->scanner->tokenIs($token, ',')) {
+            $this->scanner->fetchNextToken(); // consume the coma
+            $path = $this->scanner->fetchNextToken();
+        }
+        $this->scanner->expectToken(')');
+
+        return $this->factory->sameNodeJoinCondition($selector1, $selector2, $path);
     }
 
     /**
@@ -231,7 +248,13 @@ class Sql2ToQomQueryConverter
      */
     protected function parseChildNodeJoinCondition()
     {
-        throw new \Exception('Not implemented');
+        $this->scanner->expectTokens(array('ISCHILDNODE', '('));
+        $child = $this->scanner->fetchNextToken();
+        $this->scanner->expectToken(',');
+        $parent = $this->scanner->fetchNextToken();
+        $this->scanner->expectToken(')');
+
+        return $this->factory->childNodeJoinCondition($child, $parent);
     }
 
     /**
@@ -242,43 +265,83 @@ class Sql2ToQomQueryConverter
      */
     protected function parseDescendantNodeJoinCondition()
     {
-        throw new \Exception('Not implemented');
+        $this->scanner->expectTokens(array('ISDESCENDANTNODE', '('));
+        $child = $this->scanner->fetchNextToken();
+        $this->scanner->expectToken(',');
+        $parent = $this->scanner->fetchNextToken();
+        $this->scanner->expectToken(')');
+
+        return $this->factory->descendantNodeJoinCondition($child, $parent);
     }
 
     /**
      * 6.7.12 Constraint
+     * 6.7.13 And
+     * 6.7.14 Or
      *
      * @return \PHPCR\Query\QOM\ConstraintInterface
      */
     protected function parseConstraint()
     {
-        throw new \Exception('Not implemented');
-    }
+        $constraint = null;
+        $token = $this->scanner->lookupNextToken();
 
-    /**
-     * 6.7.13 And
-     *
-     * @return \PHPCR\Query\QOM\AndInterface
-     */
-    protected function parseAnd()
-    {
-        $c1 = $this->scanner->fetchNextToken();
-        $this->expectToken('AND');
-        $c2 = $this->scanner->fetchNextToken();
-        return $this->factory->and($c1, $c2);
-    }
+        if ($this->scanner->tokenIs($token, 'NOT')) {
+            // NOT
+            $constraint = $this->parseNot();
+        } elseif ($this->scanner->tokenIs($token, '(')) {
+            // Grouping with parenthesis
+            $this->scanner->expectToken('(');
+            $constraint = $this->parseConstraint();
+            $this->scanner->expectToken(')');
+        } elseif ($this->scanner->tokenIs($token, 'CONTAINS')) {
+            // Full Text Search
+            $constraint = $this->parseFullTextSearch();
+        } elseif ($this->scanner->tokenIs($token, 'ISSAMENODE')) {
+            // SameNode
+            $constraint = $this->parseSameNode();
+        } elseif ($this->scanner->tokenIs($token, 'ISCHILDNODE')) {
+            // ChildNode
+            $constraint = $this->parseChildNode();
+        } elseif ($this->scanner->tokenIs($token, 'ISDESCENDANTNODE')) {
+            // DescendantNode
+            $constraint = $this->parseDescendantNode();
+        } else {
+            // Is it a property existence?
+            $next1 = $this->scanner->lookupNextToken(1);
+            if ($this->scanner->tokenIs($next1, 'IS')) {
+                $constraint = $this->parsePropertyExistence();
+            } elseif ($this->scanner->tokenIs($next1, '.')) {
+                $next2 = $this->scanner->lookupNextToken(3);
+                if ($this->scanner->tokenIs($next2, 'IS')) {
+                    $constraint = $this->parsePropertyExistence();
+                }
+            }
 
-    /**
-     * 6.7.14 Or
-     *
-     * @return \PHPCR\Query\QOM\OrInterface
-     */
-    protected function parseOr()
-    {
-        $c1 = $this->scanner->fetchNextToken();
-        $this->expectToken('OR');
-        $c2 = $this->scanner->fetchNextToken();
-        return $this->factory->_or($c1, $c2);
+            if ($constraint === null) {
+               // It's not a property existence neither, then it's a comparison
+               $constraint = $this->parseComparison();
+            }
+        }
+
+        // No constraint read, 
+        if ($constraint === null) {
+            throw new \Exception("Syntax error: constraint expected");
+        }
+
+        // Is it a composed contraint?
+        $token = $this->scanner->lookupNextToken();
+        if (in_array(strtoupper($token), array('AND', 'OR'))) {
+            $this->scanner->fetchNextToken();
+            $constraint2 = $this->parseConstraint();
+            if ($this->scanner->tokenIs($token, 'AND')) {
+                return $this->factory->_and($constraint, $constraint2);
+            } else {
+                return $this->factory->_or($constraint, $constraint2);
+            }
+        }
+
+        return $constraint;
     }
 
     /**
@@ -299,7 +362,16 @@ class Sql2ToQomQueryConverter
      */
     protected function parseComparison()
     {
-        throw new \Exception('Not implemented');
+        $op1 = $this->parseDynamicOperand();
+
+        if (is_null($op1)) {
+            throw new \Exception("Syntax error: dynamic operator expected");
+        }
+
+        $operator = $this->parseOperator();
+        $op2 = $this->parseStaticOperand();
+
+        return $this->factory->comparison($op1, $operator, $op2);
     }
 
     /**
@@ -309,7 +381,25 @@ class Sql2ToQomQueryConverter
      */
     protected function parseOperator()
     {
-        throw new \Exception('Not implemented');
+        $token = $this->scanner->fetchNextToken();
+        switch (strtoupper($token)) {
+            case '=':
+                return Constants::JCR_OPERATOR_EQUAL_TO;
+            case '<>':
+                return Constants::JCR_OPERATOR_NOT_EQUAL_TO;
+            case '<':
+                return Constants::JCR_OPERATOR_LESS_THAN;
+            case '<=':
+                return Constants::JCR_OPERATOR_LESS_THAN_OR_EQUAL_TO;
+            case '>':
+                return Constants::JCR_OPERATOR_GREATER_THAN;
+            case '>=':
+                return Constants::JCR_OPERATOR_GREATER_THAN_OR_EQUAL_TO;
+            case 'LIKE':
+                return Constants::JCR_OPERATOR_LIKE;
+            default:
+                throw new \Exception("Syntax error: operator expected");
+        }
     }
 
     /**
@@ -319,7 +409,25 @@ class Sql2ToQomQueryConverter
      */
     protected function parsePropertyExistence()
     {
-        throw new \Exception('Not implemented');
+        $prop = $this->scanner->fetchNextToken();
+        $selector = null;
+        $token = $this->scanner->lookupNextToken();
+        if ($this->scanner->tokenIs($token, '.')) {
+            $this->scanner->expectToken('.');
+            $selector = $prop;
+            $prop = $this->scanner->fetchNextToken();
+        }
+
+        $this->scanner->expectToken('IS');
+        $token = $this->scanner->lookupNextToken();
+        if ($this->scanner->tokenIs($token, 'NULL')) {
+            $this->scanner->fetchNextToken();
+            return $this->factory->not($this->factory->propertyExistence($prop, $selector));
+        }
+
+        $this->scanner->expectTokens(array('NOT', 'NULL'));
+
+        return $this->factory->propertyExistence($prop, $selector);
     }
 
     /**
@@ -337,7 +445,16 @@ class Sql2ToQomQueryConverter
      */
     protected function parseSameNode()
     {
-        throw new \Exception('Not implemented');
+        $this->scanner->expectTokens(array('ISSAMENODE', '('));
+        $selector = null;
+        $path = $this->scanner->fetchNextToken();
+        if ($this->scanner->tokenIs($this->scanner->lookupNextToken(), ',')) {
+            $selector = $path;
+            $this->scanner->expectToken(',');
+            $path = $this->scanner->fetchNextToken();
+        }
+        $this->scanner->expectToken(')');
+        return $this->factory->sameNode($path, $selector);
     }
 
     /**
@@ -345,7 +462,16 @@ class Sql2ToQomQueryConverter
      */
     protected function parseChildNode()
     {
-        throw new \Exception('Not implemented');
+        $this->scanner->expectTokens(array('ISCHILDNODE', '('));
+        $selector = null;
+        $path = $this->scanner->fetchNextToken();
+        if ($this->scanner->tokenIs($this->scanner->lookupNextToken(), ',')) {
+            $selector = $path;
+            $this->scanner->expectToken(',');
+            $path = $this->scanner->fetchNextToken();
+        }
+        $this->scanner->expectToken(')');
+        return $this->factory->childNode($path, $selector);
     }
 
     /**
@@ -353,35 +479,30 @@ class Sql2ToQomQueryConverter
      */
     protected function parseDescendantNode()
     {
-        throw new \Exception('Not implemented');
-    }
-
-    /**
-     * 6.7.23 Path
-     */
-    protected function parsePath()
-    {
-        throw new \Exception('Not implemented');
-    }
-
-    /**
-     * 6.7.24 Operand
-     */
-    protected function parseOperand()
-    {
-        throw new \Exception('Not implemented');
+        $this->scanner->expectTokens(array('ISDESCENDANTNODE', '('));
+        $selector = null;
+        $path = $this->scanner->fetchNextToken();
+        if ($this->scanner->tokenIs($this->scanner->lookupNextToken(), ',')) {
+            $selector = $path;
+            $this->scanner->expectToken(',');
+            $path = $this->scanner->fetchNextToken();
+        }
+        $this->scanner->expectToken(')');
+        return $this->factory->descendantNode($path, $selector);
     }
 
     /**
      * Parse an SQL2 static operand
+     * 6.7.35 BindVariable
+     * 6.7.36 Prefix
      *
      * @return \PHPCR\Query\QOM\StaticOperandInterface
      */
     protected function parseStaticOperand()
     {
         $token = $this->scanner->lookupNextToken();
-        if ($this->scanner->tokenIs($token, '$')) {
-            return $this->parseBindVariable();
+        if (substr($token, 0, 1) === '$') {
+            return $this->factory->bindVariable(substr($token, 1));
         }
         return $this->parseLiteral();
     }
@@ -401,9 +522,10 @@ class Sql2ToQomQueryConverter
     protected function parseDynamicOperand()
     {
 
-        $token = $this->scanner->fetchNextToken();
+        $token = $this->scanner->lookupNextToken();
         if ($this->scanner->tokenIs($token, 'LENGTH'))
         {
+            $this->scanner->fetchNextToken();
             $this->scanner->expectToken('(');
             $val = $this->parsePropertyValue();
             $this->scanner->expectToken(')');
@@ -411,6 +533,7 @@ class Sql2ToQomQueryConverter
         }
         elseif ($this->scanner->tokenIs($token, 'NAME'))
         {
+            $this->scanner->fetchNextToken();
             $this->scanner->expectToken('(');
 
             $token = $this->scanner->fetchNextToken();
@@ -423,6 +546,7 @@ class Sql2ToQomQueryConverter
         }
         elseif ($this->scanner->tokenIs($token, 'LOCALNAME'))
         {
+            $this->scanner->fetchNextToken();
             $this->scanner->expectToken('(');
 
             $token = $this->scanner->fetchNextToken();
@@ -435,6 +559,7 @@ class Sql2ToQomQueryConverter
         }
         elseif ($this->scanner->tokenIs($token, 'SCORE'))
         {
+            $this->scanner->fetchNextToken();
             $this->scanner->expectToken('(');
 
             $token = $this->scanner->fetchNextToken();
@@ -447,6 +572,7 @@ class Sql2ToQomQueryConverter
         }
         elseif ($this->scanner->tokenIs($token, 'LOWER'))
         {
+            $this->scanner->fetchNextToken();
             $this->scanner->expectToken('(');
             $op = $this->parseDynamicOperand();
             $this->scanner->expectToken(')');
@@ -454,6 +580,7 @@ class Sql2ToQomQueryConverter
         }
         elseif ($this->scanner->tokenIs($token, 'UPPER'))
         {
+            $this->scanner->fetchNextToken();
             $this->scanner->expectToken('(');
             $op = $this->parseDynamicOperand();
             $this->scanner->expectToken(')');
@@ -474,7 +601,7 @@ class Sql2ToQomQueryConverter
         $token = $this->scanner->fetchNextToken();
         if ($this->scanner->lookupNextToken() === '.') {
             $this->scanner->fetchNextToken();
-            return $this->factory->propertyValue($this->fetchNextToken(), $token);
+            return $this->factory->propertyValue($this->scanner->fetchNextToken(), $token);
         }
         return $this->factory->propertyValue($token);
     }
@@ -488,44 +615,13 @@ class Sql2ToQomQueryConverter
     protected function parseLiteral()
     {
         $token = $this->scanner->fetchNextToken();
-        if ($this->scanner->tokenIs($token, 'CAST')) 
-        {
-            // CAST does not seem to be implemented in PHPCR
-            throw new \Exception('Not implemented');
-        }
-        elseif ($token === '\'' || $token === '"')
-        {
-            // TODO: maybe the parsing of string should be moved to the scanner
-            $delimiter = $token;
-            $buffer = '';
-            $token = $this->scanner->fetchNextToken();
-            while ($token !== $delimiter) {
-                if ($token === '') {
-                    throw new \Exception("Unterminated string");
-                }
-                if ($buffer !== '') {
-                    // TODO: here we loose the real delimiter, if any
-                    $buffer .= ' ';
-                }
-                $buffer .= $token;
+        if (substr($token, 0, 1) === '\'') {
+            if (substr($token, -1) !== '\'') {
+                throw new \Exception("Syntax error: unterminated string");
             }
-            return $this->factory->literal($buffer);
+            $token = substr($token, 1, strlen($token) - 2);
         }
-        return $this->scanner->fetchNextToken();
-    }
-
-    /**
-     * 6.7.35 BindVariable
-     * 6.7.36 Prefix
-     * Parse an SQL2 bind variable
-     *
-     * @return \PHPCR\Query\QOM\BindVariableInterface
-     */
-    protected function parseBindVariable()
-    {
-        $this->scanner->expectToken('$');
-        $token = $this->scanner-fetchNextToken();
-        return $this->factory->bindVariable($token);
+        return $this->factory->literal($token);
     }
 
     /**

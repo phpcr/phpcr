@@ -72,8 +72,9 @@ class Sql2Scanner
      */
     public function expectToken($token, $case_insensitive = true)
     {
-        if (! $this->tokenIs($this->fetchNextToken(), $token, $case_insensitive)) {
-            throw new \Exception("Syntax error: Expected " . $expected_token);
+        $nextToken = $this->fetchNextToken();
+        if (! $this->tokenIs($nextToken, $token, $case_insensitive)) {
+            throw new \Exception("Syntax error: Expected $token, found $nextToken");
         }
     }
 
@@ -129,7 +130,7 @@ class Sql2Scanner
     }
 
     /**
-     * Tokenize a string returned by strtok to split the string at '.', ',', '(' 
+     * Tokenize a string returned by strtok to split the string at '.', ',', '(', '='
      * and ')' characters.
      *
      * @param array $tokens
@@ -140,7 +141,7 @@ class Sql2Scanner
         $buffer = '';
         for ($i = 0; $i < strlen($token); $i++) {
             $char = substr($token, $i, 1);
-            if (in_array($char, array('.', ',', '(', ')'))) {
+            if (in_array($char, array('.', ',', '(', ')', '='))) {
                 if ($buffer !== '') {
                     $tokens[] = $buffer;
                     $buffer = '';
