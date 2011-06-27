@@ -664,14 +664,6 @@ class Sql2ToQomQueryConverter
         throw new \Exception("Syntax error: invalid ordering");
     }
 
-//orderings ::= Ordering {',' Ordering}
-//Ordering ::= DynamicOperand [Order]
-//
-//Order ::= Ascending | Descending
-//                                                                                  133
-//Ascending ::= 'ASC'
-//Descending ::= 'DESC'
-
     /**
      * 6.7.39 Column
      * Parse an SQL2 columns definition and return an array of QOM\Column
