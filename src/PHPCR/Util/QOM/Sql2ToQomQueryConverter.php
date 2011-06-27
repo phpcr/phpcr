@@ -629,7 +629,17 @@ class Sql2ToQomQueryConverter
      */
     protected function parseOrderings()
     {
-        throw new \Exception('Not implemented');
+        $orderings = array();
+        $continue = true;
+        while($continue) {
+            $orderings[] = $this->parseOrdering();
+            if ($this->scanner->tokenIs($this->scanner->lookupNextToken(), ',')) {
+                $this->scanner->expectToken(',');
+            } else {
+                $continue = false;
+            }
+        }
+        return $orderings;
     }
 
     /**
@@ -637,8 +647,30 @@ class Sql2ToQomQueryConverter
      */
     protected function parseOrdering()
     {
-        throw new \Exception('Not implemented');
+        $operand = $this->parseDynamicOperand();
+        $token = strtoupper($this->scanner->lookupNextToken());
+
+        if ($token === 'DESC') {
+            $this->scanner->expectToken('DESC');
+            return $this->factory->descending($operand);
+        } elseif ($token === 'ASC' || $token === ',' || $token === '') {
+            if ($token === 'ASC') {
+                // Consume ASC
+                $this->scanner->fetchNextToken();
+            }
+            return $this->factory->ascending($operand);
+        }
+
+        throw new \Exception("Syntax error: invalid ordering");
     }
+
+//orderings ::= Ordering {',' Ordering}
+//Ordering ::= DynamicOperand [Order]
+//
+//Order ::= Ascending | Descending
+//                                                                                  133
+//Ascending ::= 'ASC'
+//Descending ::= 'DESC'
 
     /**
      * 6.7.39 Column
