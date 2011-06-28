@@ -43,7 +43,7 @@ namespace PHPCR\Transaction;
  *   - SystemException                  ->   \PHPCR\RepositoryException
  * - New PHPCR exceptions specified by the Java spec:
  *   - RollbackException                ->   \PHPCR\Transaction\RollbackException
- *   - java.lang.SecurityException      ->   \PHPCR\Transaction\SecurityException
+ *   - java.lang.SecurityException      ->   \PHPCR\AccessDeniedException
  *   - java.lang.IllegalStateException  ->   LogicException
  * - Some Java exceptions are dropped (HeuristicMixedException, HeuristicRollbackException)
  *
@@ -86,8 +86,8 @@ interface UserTransactionInterface
      *
      * @throws \PHPCR\Transaction\RollbackException Thrown to indicate that the
      *      transaction has been rolled back rather than committed.
-     * @throws \PHPCR\Transaction\SecurityException Thrown to indicate that the
-     *      session is not allowed to commit the transaction.
+     * @throws \PHPCR\AccessDeniedException Thrown to indicate that the
+     *      application is not allowed to commit the transaction.
      * @throws LogicException Thrown if the current session is not associated 
      *      with a transaction.
      * @throws \PHPCR\RepositoryException Thrown if the transaction implementation
@@ -112,7 +112,7 @@ interface UserTransactionInterface
      *
      * @return void
      *
-     * @throws \PHPCR\Transaction\SecurityException Thrown to indicate that the
+     * @throws \PHPCR\AccessDeniedException Thrown to indicate that the
      *      application is not allowed to roll back the transaction.
      * @throws LogicException Thrown if the current session is not associated with
      *      a transaction.
