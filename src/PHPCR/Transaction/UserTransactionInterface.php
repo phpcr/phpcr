@@ -65,7 +65,7 @@ interface UserTransactionInterface
 {
 
     /**
-     * Create a new transaction and associate it with the current session.
+     * Begin new transaction associated with current session.
      *
      * @return void
      *
