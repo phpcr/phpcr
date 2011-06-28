@@ -94,6 +94,14 @@ interface SessionInterface
     function getRepository();
 
     /**
+     * Returns the UserTransaction object associated with this session
+     *
+     * @return \PHPCR\Transaction\UserTransactionInterface a UserTransaction object.
+     * @api
+     */
+    function getTransactionManager();
+
+    /**
      * Gets the user ID associated with this Session.
      *
      * How the user ID is set is up to the implementation, it may be a string passed in as part of the credentials
