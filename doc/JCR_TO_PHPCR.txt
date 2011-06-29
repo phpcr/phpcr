@@ -1,4 +1,4 @@
-Version: 2011-05-11
+Version: 2011-06-29
 http://phpcr.github.com
 
 
@@ -223,6 +223,53 @@ Implementations can use it to generate UUIDs as there is no built-in PHP code
 to do that.
 Note that clients of PHPCR can not control what UUID a new node gets. It is up
 to the implementation how to assign UUIDs.
+
+
+Transactions
+************
+
+As there is a standard for transactions in Java (Java Transaction API (JTA))
+the JCR spec does not define any own methods to perform transactions but refers
+to the Java standard.
+
+So transactions are not part of the JCR spec. To give the user the ability for
+transactions PHPCR specifies it's own interface which is derived from the Java
+interface javax.transaction.UserTransaction.
+
+The JTA comes with two general approaches to transactions, container managed
+transactions and user managed transactions. Container managed transactions are
+completely left out in PHPCR even though it's required by the JCR spec.
+
+The PHPCR UserTransaction interface shall provide a transaction mechanism in
+a way the original Java UserTransaction interface can be used for transactions
+while working with the JCR API. Have a look at the JCR spec for an example how
+you can work with transactions. You can obtain a UserTransaction object by
+calling Session::getTransactionManager().
+
+Main differences to the original Java UserTransaction:
+ * The Java method getStatus() is named inTransaction().
+ * The Java method setRollbackOnly() is dropped.
+ * Some exceptions specified by the Java spec are replaced by exceptions already
+   specified by PHPCR:
+   - NotSupportedException -> \PHPCR\UnsupportedRepositoryOperationException
+   - SystemException -> \PHPCR\RepositoryException
+   - java.lang.SecurityException -> \PHPCR\AccessDeniedException
+ * New PHPCR exception specified by the Java spec:
+   - RollbackException -> \PHPCR\Transaction\RollbackException
+ * Standrad Java exception exchanged by SPL PHP exception:
+   - java.lang.IllegalStateException -> LogicException
+ * Two Java exceptions were dropped:
+   - HeuristicMixedException
+   - HeuristicRollbackException
+
+An implementation of the UserTransaction interface has to take care of that if
+a transaction is startet every following request to the repository will be
+done in the transactions context.
+
+It shall also be possible to use the UserTransaction interface on a deeper
+level of a PHPCR implementation e.g. that a $session->save() automatically
+starts and ends a transaction before and after persisting all changes to the
+backend (if the session is not yet in a transaction).
 
 
 Drawing the line

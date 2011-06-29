@@ -34,27 +34,9 @@ namespace PHPCR\Transaction;
  * transaction mechanism in a way the original Java UserTransaction interface
  * can be used for transactions while working with the JCR API.
  *
- * Main differences to the original Java UserTransaction:
- * - The Java method getStatus() is named inTransaction()
- * - The Java method setRollbackOnly() is dropped
- * - Some exceptions specified by the Java spec are replaced by exceptions already
- *   specified by PHPCR:
- *   - NotSupportedException            ->   \PHPCR\UnsupportedRepositoryOperationException
- *   - SystemException                  ->   \PHPCR\RepositoryException
- * - New PHPCR exceptions specified by the Java spec:
- *   - RollbackException                ->   \PHPCR\Transaction\RollbackException
- *   - java.lang.SecurityException      ->   \PHPCR\AccessDeniedException
- *   - java.lang.IllegalStateException  ->   LogicException
- * - Some Java exceptions are dropped (HeuristicMixedException, HeuristicRollbackException)
- *
- * An implementation of this interface has to take care of that if a transaction
- * is startet every following request to the repository will be done in the
- * transactions context.
- *
- * It should also be possible to use this interface on a deeper level of a PHPCR
- * implementation e.g. that a $session->save() automatically starts and ends a
- * transaction before and after persisting all changes to the backend (if the
- * session is not yet in a transaction).
+ * Have a look at the JCR spec for an example how you can work with transactions.
+ * You can obtain a UserTransaction object by calling
+ * Session::getTransactionManager().
  *
  * @author Johannes Stark <starkj@gmx.de>
  * @package phpcr
