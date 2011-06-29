@@ -100,6 +100,8 @@ class Sql2ToQomQueryConverter
     protected function parseSelector()
     {
         $token = $this->scanner->fetchNextToken();
+        $token = substr($token, 1, -1);
+
         if ($this->scanner->lookupNextToken() === 'AS') {
             $this->scanner->fetchNextToken(); // Consume the AS
             $selectorName = $this->parseName();
@@ -236,7 +238,7 @@ class Sql2ToQomQueryConverter
         }
         $this->scanner->expectToken(')');
 
-        return $this->factory->sameNodeJoinCondition($selector1, $selector2, $path);
+        return $this->factory->sameNodeJoinCondition($selector1, $selector2, substr($path, 1, -1));
     }
 
     /**
@@ -453,7 +455,7 @@ class Sql2ToQomQueryConverter
             $path = $this->scanner->fetchNextToken();
         }
         $this->scanner->expectToken(')');
-        return $this->factory->sameNode($path, $selector);
+        return $this->factory->sameNode(substr($path, 1, -1), $selector);
     }
 
     /**
@@ -470,7 +472,7 @@ class Sql2ToQomQueryConverter
             $path = $this->scanner->fetchNextToken();
         }
         $this->scanner->expectToken(')');
-        return $this->factory->childNode($path, $selector);
+        return $this->factory->childNode(substr($path, 1, -1), $selector);
     }
 
     /**
@@ -487,7 +489,7 @@ class Sql2ToQomQueryConverter
             $path = $this->scanner->fetchNextToken();
         }
         $this->scanner->expectToken(')');
-        return $this->factory->descendantNode($path, $selector);
+        return $this->factory->descendantNode(substr($path, 1, -1), $selector);
     }
 
     /**

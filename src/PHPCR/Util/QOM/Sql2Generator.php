@@ -460,7 +460,10 @@ class Sql2Generator
      */
     public function evalPath($path)
     {
-        return "[$path]";
+        if ($path) {
+            return "[$path]";
+        }
+        return null;
     }
 
     public function evalBindVariable($var)
