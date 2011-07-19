@@ -70,15 +70,17 @@ interface QueryResultInterface extends \Traversable
      *
      * The nodes are returned according to the ordering specified in the query.
      *
+     * @param  bool|int $prefetch If to prefetch or not
+     *                              int < 0/true means all, 0/false means none, int > 0 means the prefetch chunk size or none
      * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>.
-     *                  Keys are the Node names, values the corresponding NodeInterface instances.
+     *                  Keys are the paths, Values the given Node instances.
      *
      * @throws \PHPCR\RepositoryException if the query contains more than one selector, if this call is
      *                                    the second time either getRows() or getNodes() has been called on the
      *                                    same QueryResult object or if another error occurs.
      * @api
      */
-    function getNodes();
+    function getNodes($prefetch = false);
 
     /**
      * Returns an array of all the selector names that were used in the query
