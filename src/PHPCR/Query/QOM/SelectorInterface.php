@@ -35,6 +35,8 @@ namespace PHPCR\Query\QOM;
  * - the node has a mixin node type that is nodeType
  * - the node has a mixin node type that is a subtype of nodeType
  *
+ * &nbsp;
+ *
  * @package phpcr
  * @subpackage interfaces
  * @api

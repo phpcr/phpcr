@@ -96,6 +96,8 @@ interface ItemInterface
      * - A property or child node of a child node of the root returns 2.
      * - And so on to this Item.
      *
+     * &nbsp;
+     *
      * @return integer The depth of this Item in the workspace item graph.
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api

@@ -27,8 +27,8 @@ namespace PHPCR;
 /**
  * Shall be thrown in case of invalid login credentials.
  *
- * Exception thrown by Repository.login(Credentials, String) and
- * Session.impersonate(Credentials) if the specified credentials are invalid.
+ * Exception thrown by RepositoryInterface::login() and
+ * SessionInterface::impersonate() if the specified credentials are invalid.
  *
  * @package phpcr
  * @subpackage exceptions

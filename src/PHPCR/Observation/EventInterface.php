@@ -91,11 +91,11 @@ interface EventInterface
      * - getPath() returns the absolute path of the destination of the move.
      * - getIdentifier() returns the identifier of the moved node.
      * - getInfo() If the method that caused this event was a
-     *    SessionInterface->move() or WorkspaceInterface->move() then the
+     *    SessionInterface::move() or WorkspaceInterface::move() then the
      *    returned array has keys srcAbsPath and destAbsPath with values
      *    corresponding to the parameters passed to the move() method.
      *
-     *  If the method that caused this event was a NodeInterface.orderBefore()
+     *  If the method that caused this event was a NodeInterface::orderBefore()
      *  then the returned aray has keys srcChildRelPath and destChildRelPath
      *  with values corresponding to the parameters passed to the orderBefore()
      *  method.
@@ -150,7 +150,7 @@ interface EventInterface
     /**
      * Returns the user ID connected with this event.
      *
-     * This is the string returned by Session.getUserID() of the session that caused the event.
+     * This is the string returned by SessionInterface::getUserID() of the session that caused the event.
      *
      * @return string The identifier of the user connected to the event.
      * @api
@@ -185,7 +185,7 @@ interface EventInterface
     function getInfo();
 
     /**
-     * Returns the user data set through ObservationManager.setUserData() on the
+     * Returns the user data set through ObservationManagerInterface::setUserData() on the
      * ObservationManager bound to the Session that caused the event.
      *
      * @return string The user data string.

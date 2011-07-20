@@ -114,13 +114,13 @@ interface LockManagerInterface extends \Traversable
      * set to this value.
      *
      * If <b>isSessionScoped</b> is true then this lock will expire upon the expiration
-     * of the current session (either through an automatic or explicit Session.logout);
+     * of the current session (either through an automatic or explicit SessionInterface::logout());
      * if false, this lock does not expire until it is explicitly unlocked, it
      * times out, or it is automatically unlocked due to a implementation-specific
      * limitation.
      *
      * The <b>timeout</b> parameter specifies the number of seconds until the lock times
-     * out (if it is not refreshed with Lock.refresh in the meantime). An
+     * out (if it is not refreshed with LockInterface::refresh() in the meantime). An
      * implementation may use this information as a hint or ignore it altogether.
      * Clients can discover the actual timeout by inspecting the returned Lock
      * object.
@@ -129,10 +129,11 @@ interface LockManagerInterface extends \Traversable
      * information relevant to the client. An implementation may either use or
      * ignore this parameter. If it uses the parameter it must set the jcr:lockOwner
      * property of the locked node to this value and return this value on
-     * Lock.getLockOwner. If it ignores this parameter the jcr:lockOwner property
-     * (and the value returned by Lock.getLockOwner) is set to either the value
-     * returned by Session.getUserID of the owning session or an implementation-
-     * specific string identifying the owner.
+     * LockInterface::getLockOwner(). If it ignores this parameter the
+     * jcr:lockOwner property (and the value returned by LockInterface::getLockOwner())
+     * is set to either the value returned by SessionInterface::getUserID() of
+     * the owning session or an implementation-specific string identifying the
+     * owner.
      *
      * The method returns a Lock object representing the new lock. If the lock is
      * open-scoped the returned lock will include a lock token. The lock token is
@@ -150,7 +151,7 @@ interface LockManagerInterface extends \Traversable
      *                                 if false it expires when explicitly or automatically unlocked for
      *                                 some other reason.
      * @param integer $timeoutHint Desired lock timeout in seconds (servers are free to ignore this value);
-     *                             specify Long.MAX_VALUE for no timeout.
+     *                             specify PHP_INT_MAX for no timeout.
      * @param string $ownerInfo A string containing owner information supplied by the client; servers are
      *                          free to ignore this value.
      * @return \PHPCR\Lock\LockInterface A Lock object containing a lock token.

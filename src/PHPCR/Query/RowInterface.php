@@ -41,7 +41,7 @@ interface RowInterface extends \Traversable
 {
     /**
      * Returns an array of all the values in the same order as the column names
-     * returned by QueryResult.getColumnNames().
+     * returned by QueryResultInterface::getColumnNames().
      *
      * @return array Hashmap of column name to value of each column of the current result row.
      *
@@ -77,7 +77,7 @@ interface RowInterface extends \Traversable
     /**
      * Get the path of a node identified by a selector.
      *
-     * Equivalent to Row.getNode(selectorName).getPath(). However, some
+     * Equivalent to $row->getNode($selectorName)->getPath(). However, some
      * implementations may be able gain efficiency by not resolving the actual Node.
      *
      * @param string $selectorName The selector identifying a node within the current result row.
@@ -102,7 +102,7 @@ interface RowInterface extends \Traversable
      * core of 0).
      *
      * Note, in JCR-SQL2 a FullTextSearchScore AQM object is represented by a
-     * SCORE() function. In JCR-JQOM it is represented by a Java object of type
+     * SCORE() function. In JCR-JQOM it is represented by a PHP object of type
      * \PHPCR\Query\QOM\FullTextSearchScoreInterface.
      *
      * @param string $selectorName The selector identifying a node within the current result row.

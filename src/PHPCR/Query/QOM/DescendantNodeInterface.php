@@ -30,7 +30,7 @@ namespace PHPCR\Query\QOM;
  *
  * A node-tuple satisfies the constraint only if:
  *
- *   selectorNode.getAncestor(n).isSame(session.getNode(path)) && selectorNode.getDepth() > n
+ *   <code>$selectorNode->getAncestor($n)->isSame(session->getNode($path)) && $selectorNode->getDepth() > $n</code>
  *
  * would return true for some non-negative integer n, where selectorNode is the
  * node for the specified selector.

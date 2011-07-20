@@ -27,7 +27,7 @@ namespace PHPCR;
 /**
  * Definition of an Exception to be thrown in case of a namespace issue within a session.
  *
- * Exception thrown by Session.setNamespacePrefix(String prefix, String uri)
+ * Exception thrown by SessionInterface::setNamespacePrefix()
  * if the specified uri is not registered in the NamespaceRegistry.
  *
  * @package phpcr

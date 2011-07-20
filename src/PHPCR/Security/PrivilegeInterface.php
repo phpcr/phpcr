@@ -107,6 +107,9 @@ interface PrivilegeInterface
      * - jcr:addChildNodes
      * - jcr:removeNode
      * - jcr:removeChildNodes
+     *
+     * &nbsp;
+     *
      * @api
      */
     const JCR_WRITE = "{http://www.jcp.org/jcr/1.0}write";

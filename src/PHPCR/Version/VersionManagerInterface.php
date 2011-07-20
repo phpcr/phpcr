@@ -25,7 +25,7 @@
 namespace PHPCR\Version;
 
 /**
- * The VersionManager object is accessed via Workspace.getVersionManager(). It
+ * The VersionManager object is accessed via WorkspaceInterface::getVersionManager(). It
  * provides methods for:
  * - Version graph functionality (version history, base version, successors predecessors)
  * - Basic version operations (checkin, checkout, checkpoint)
@@ -34,6 +34,8 @@ namespace PHPCR\Version;
  * - Merge feature
  * - Configuration feature
  * - Activity feature
+ *
+ * &nbsp;
  *
  * @package phpcr
  * @subpackage interfaces
@@ -58,7 +60,7 @@ interface VersionManagerInterface
      *
      * Read-only status means that an item cannot be altered by the client using
      * standard API methods (addNode, setProperty, etc.). The only exceptions to
-     * this rule are the restore(), restoreByLabel(), merge() and Node.update()
+     * this rule are the restore(), restoreByLabel(), merge() and Node::update()
      * operations; these do not respect read-only status due to check-in. Note
      * that remove of a read-only node is possible, as long as its parent is not
      * read-only (since removal is an alteration of the parent node).
@@ -383,16 +385,18 @@ interface VersionManagerInterface
      * in the indicated other workspace and a "merge test result" is determined
      * indicating one of the following:
      *
-     * 1. This node will be updated to the state of its correspondee (if the base
-     *    version of the correspondee is more recent in terms of version history)
-     * 2. This node will be left alone (if this node's base version is more recent
-     *    in terms of version history).
-     * 3. This node will be marked as having failed the merge test (if this node's
+     * <ol>
+     * <li>This node will be updated to the state of its correspondee (if the base
+     *    version of the correspondee is more recent in terms of version history)</li>
+     * <li>This node will be left alone (if this node's base version is more recent
+     *    in terms of version history).</li>
+     * <li>This node will be marked as having failed the merge test (if this node's
      *    base version is on a different branch of the version history from the
      *    base version of its corresponding node in the other workspace, thus
-     *    preventing an automatic determination of which is more recent).
+     *    preventing an automatic determination of which is more recent).</li>
+     * </ol>
      *
-     * (See merge(java.lang.String, java.lang.String, boolean) for more details)
+     * (See merge() for more details)
      *
      * In the last case the merge of the non-versionable subgraph (the "content")
      * of this node must be done by the application (for example, by providing a

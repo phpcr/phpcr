@@ -26,10 +26,14 @@ namespace PHPCR;
 
 /**
  * The possible actions specified by the uuidBehavior parameter in
- * - Workspace::importXML()
- * - Session::importXML()
- * - Workspace::getImportContentHandler()
- * - Session::getImportContentHandler()
+ * - WorkspaceInterface::importXML()
+ * - SessionInterface::importXML()
+ * 
+ * If we implement a content handler, the UUID would also be relevant for
+ * - WorkspaceInterface::getImportContentHandler()
+ * - SessionInterface::getImportContentHandler() 
+ *
+ * &nbsp;
  *
  * @package phpcr
  * @subpackage interfaces

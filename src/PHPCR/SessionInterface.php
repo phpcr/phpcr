@@ -194,7 +194,7 @@ interface SessionInterface
      * Applies to both referenceable and non-referenceable nodes.
      *
      * Note uuid's that cannot be found will be ignored
-     * 
+     *
      * @param string $ids An array of identifier.
      * @return array containing \PHPCR\NodeInterface nodes keyed by uuid
      *
@@ -208,10 +208,10 @@ interface SessionInterface
      *
      * If no such node exists, then it returns the property at the specified path.
      *
-     * This method should only be used if the application does not know whether the
-     * item at the indicated path is property or node. In cases where the application
-     * has this information, either getNode(java.lang.String) or
-     * getProperty(java.lang.String) should be used, as appropriate. In many repository
+     * This method should only be used if the application does not know whether
+     * the item at the indicated path is property or node. In cases where the
+     * application has this information, either self::getNode() or
+     * self::getProperty() should be used, as appropriate. In many repository
      * implementations the node and property-specific methods are likely to be more
      * efficient than getItem.
      *
@@ -240,7 +240,7 @@ interface SessionInterface
      * Returns all nodes specified in the absPath array.
      *
      * Note path's that cannot be found will be ignored
-     * 
+     *
      * @param array $absPaths An array containing absolute paths.
      * @return array containing \PHPCR\NodeInterface nodes keyed by path
      *
@@ -320,7 +320,7 @@ interface SessionInterface
      * As well, a ConstraintViolationException will be thrown on persist if an
      * attempt is made to separately save either the source or destination node.
      *
-     * Note that this behaviour differs from that of Workspace.move($srcAbsPath,
+     * Note that this behaviour differs from that of WorkspaceInterface::move($srcAbsPath,
      * $destAbsPath), which is a workspace-write method and therefore
      * immediately dispatches changes.
      *
@@ -561,23 +561,23 @@ interface SessionInterface
      * the opposite.
      *
      * The methodName parameter identifies the method in question by its name
-     * as defined in the Javadoc.
+     * as defined in the phpdoc.
      *
      * The target parameter identifies the object on which the specified method
      * is called.
      *
-     * The arguments parameter contains a Map object consisting of
-     * name/value pairs where the name is a String holding the parameter name of
-     * the method as defined in the Javadoc and the value is a variable.
+     * The arguments parameter contains a hash map consisting of parameter name
+     * mapping to parameter value.
      *
-     * For example, given a Session S and Node N then
+     * For example, given a Session $s and Node $n then
+     * <pre>
      *
-     * Map p = new HashMap();
-     * p.put("relPath", "foo");
-     * boolean b = S.hasCapability("addNode", N, p);
+     * $p['relPath'] = 'foo';
+     * $b = $s-&gt;hasCapability("addNode", $n, $p);
+     * </pre>
      *
-     * will result in b == false if a child node called foo cannot be added to
-     * the node N within the session S.
+     * will result in $b === false if a child node called foo cannot be added to
+     * the node $n within the session $s.
      *
      * @param string $methodName the nakme of the method.
      * @param object $target the target object of the operation.
@@ -607,18 +607,18 @@ interface SessionInterface
      *
      * As SAX events are fed into the ContentHandler, the tree of new items is built
      * in the transient storage of the session. In order to dispatch the new
-     * content, save must be called. See Workspace.getImportContentHandler() for
+     * content, save must be called. See WorkspaceInterface::getImportContentHandler() for
      * a workspace-write version of this method.
      *
      * The flag uuidBehavior governs how the identifiers of incoming nodes are
      * handled. There are four options:
      *
-     * - ImportUUIDBehavior.IMPORT_UUID_CREATE_NEW: Incoming identifiers nodes are added
-     *   in the same way that new node is added with Node.addNode. That is, they are either
+     * - ImportUUIDBehavior::IMPORT_UUID_CREATE_NEW: Incoming identifiers nodes are added
+     *   in the same way that new node is added with NodeInterface::addNode(). That is, they are either
      *   assigned newly created identifiers upon addition or upon save (depending on the
      *   implementation). In either case, identifier collisions will not occur.
      *
-     * - ImportUUIDBehavior.IMPORT_UUID_COLLISION_REMOVE_EXISTING: If an incoming node has
+     * - ImportUUIDBehavior::IMPORT_UUID_COLLISION_REMOVE_EXISTING: If an incoming node has
      *   the same identifier as a node already existing in the workspace then the already
      *   existing node (and its subgraph) is removed from wherever it may be in the workspace
      *   before the incoming node is added. Note that this can result in nodes "disappearing"
@@ -626,7 +626,7 @@ interface SessionInterface
      *   incoming subgraph is being written. Both the removal and the new addition will be
      *   persisted on save.
      *
-     * -  ImportUUIDBehavior.IMPORT_UUID_COLLISION_REPLACE_EXISTING: If an incoming node has
+     * -  ImportUUIDBehavior::IMPORT_UUID_COLLISION_REPLACE_EXISTING: If an incoming node has
      *   the same identifier as a node already existing in the workspace, then the
      *   already-existing node is replaced by the incoming node in the same position as the
      *   existing node. Note that this may result in the incoming subgraph being disaggregated
@@ -635,14 +635,14 @@ interface SessionInterface
      *   This will occur if the topmost element of the incoming XML has the same identifier as
      *   an existing node elsewhere in the workspace. The change will be persisted on save.
      *
-     * - ImportUUIDBehavior.IMPORT_UUID_COLLISION_THROW: If an incoming node has the same
+     * - ImportUUIDBehavior::IMPORT_UUID_COLLISION_THROW: If an incoming node has the same
      *   identifier as a node already existing in the workspace then a SAXException is thrown
      *   by the ContentHandler during deserialization.
      *
-     * Unlike Workspace.getImportContentHandler, this method does not necessarily enforce
+     * Unlike WorkspaceInterface::getImportContentHandler, this method does not necessarily enforce
      * all node type constraints during deserialization. Those that would be immediately
-     * enforced in a session-write method (Node.addNode, Node.setProperty etc.) of this
-     * implementation cause the returned ContentHandler to throw an immediate SAXException
+     * enforced in a session-write method (NodeInterface::addNode(), NodeInterface::setProperty() etc.) of this
+     * implementation cause the returned ContentHandler to throw an immediate SAXException (todo: or whatever)
      * during deserialization. All other constraints are checked on save, just as they are
      * in normal write operations. However, which node type constraints are enforced depends
      * upon whether node type information in the imported data is respected, and this is an
@@ -684,25 +684,25 @@ interface SessionInterface
      * implementation leaves until save) structures that violate node type constraints
      * can be imported, fixed and then saved. The disadvantage is that a large import
      * will result in a large cache of pending nodes in the session. See
-     * Workspace.importXML(string, string, integer) for a version
+     * WorkspaceInterface::importXML() for a version
      * of this method that does not go through the Session.
      *
      * The flag $uuidBehavior governs how the identifiers of incoming nodes are
      * handled. There are four options:
      *
-     * - ImportUUIDBehavior.IMPORT_UUID_CREATE_NEW: Incoming nodes are added in the same
-     *   way that new node is added with Node.addNode. That is, they are either assigned
+     * - ImportUUIDBehavior::IMPORT_UUID_CREATE_NEW: Incoming nodes are added in the same
+     *   way that new node is added with Node::addNode(). That is, they are either assigned
      *   newly created identifiers upon addition or upon save (depending on the implementation,
      *   see 4.9.1.1 When Identifiers are Assigned in the specification). In either case,
      *   identifier collisions will not occur.
-     * - ImportUUIDBehavior.IMPORT_UUID_COLLISION_REMOVE_EXISTING: If an incoming node has
+     * - ImportUUIDBehavior::IMPORT_UUID_COLLISION_REMOVE_EXISTING: If an incoming node has
      *   the same identifier as a node already existing in the workspace then the already
      *   existing node (and its subgraph) is removed from wherever it may be in the workspace
      *   before the incoming node is added. Note that this can result in nodes "disappearing"
      *   from locations in the workspace that are remote from the location to which the
      *   incoming subgraph is being written. Both the removal and the new addition will be
      *   dispatched on save.
-     * - ImportUUIDBehavior.IMPORT_UUID_COLLISION_REPLACE_EXISTING: If an incoming node
+     * - ImportUUIDBehavior::IMPORT_UUID_COLLISION_REPLACE_EXISTING: If an incoming node
      *   has the same identifier as a node already existing in the workspace, then the
      *   already-existing node is replaced by the incoming node in the same position as
      *   the existing node. Note that this may result in the incoming subgraph being
@@ -711,13 +711,13 @@ interface SessionInterface
      *   of parentAbsPath. This will occur if the topmost element of the incoming XML has
      *   the same identifier as an existing node elsewhere in the workspace. The change
      *   will be dispatched on save.
-     * - ImportUUIDBehavior.IMPORT_UUID_COLLISION_THROW: If an incoming node has the same
+     * - ImportUUIDBehavior::IMPORT_UUID_COLLISION_THROW: If an incoming node has the same
      *   identifier as a node already existing in the workspace then an
      *   ItemExistsException is thrown.
-     *   Unlike Workspace.importXML(string, string, integer), this method does not
+     *   Unlike WorkspaceInterface::importXML(), this method does not
      *   necessarily enforce all node type constraints during deserialization.
-     *   Those that would be immediately enforced in a normal write method (Node.addNode,
-     *   Node.setProperty etc.) of this implementation cause an immediate
+     *   Those that would be immediately enforced in a normal write method (NodeInterface::addNode(),
+     *   NodeInterface::setProperty() etc.) of this implementation cause an immediate
      *   ConstraintViolationException during deserialization. All other constraints are
      *   checked on save, just as they are in normal write operations. However, which node
      *   type constraints are enforced depends upon whether node type information in the
@@ -754,7 +754,7 @@ interface SessionInterface
      * resulting XML is in the system view form. Note that $absPath must be
      * the path of a node, not a property.
      *
-     * If $skipBinary is true then any properties of PropertyType.BINARY will be serialized
+     * If $skipBinary is true then any properties of PropertyType::BINARY will be serialized
      * as if they are empty. That is, the existence of the property will be serialized,
      * but its content will not appear in the serialized output (the <sv:value> element
      * will have no content). Note that in the case of multi-value BINARY properties,
@@ -797,7 +797,7 @@ interface SessionInterface
      * The resulting XML is in the document view form. Note that $absPath must be
      * the path of a node, not a property.
      *
-     * If $skipBinary is true then any properties of PropertyType.BINARY will be serialized as if
+     * If $skipBinary is true then any properties of PropertyType::BINARY will be serialized as if
      * they are empty. That is, the existence of the property will be serialized, but its content
      * will not appear in the serialized output (the value of the attribute will be empty). If
      * $skipBinary is false then the actual value(s) of each BINARY property is recorded using

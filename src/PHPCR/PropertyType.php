@@ -27,32 +27,32 @@ namespace PHPCR;
 /**
  * The property types supported by the JCR standard.
  *
- * The <b>STRING</b> property type is used to store strings.
- * <b>BINARY</b> properties are used to store binary data.
- * The <b>LONG</b> property type is used to store integers.
- * The <b>DECIMAL</b> property type is used to store precise decimal numbers.
- * The <b>DOUBLE</b> property type is used to store floating point numbers.
- * The <b>DATE</b> property type is used to store time and date information. See 4.2.6.1 Date in the specification.
- * The <b>BOOLEAN</b> property type is used to store boolean values.
- * A <b>NAME</b> is a pairing of a namespace and a local name. When read, the namespace is mapped to the current prefix.
- * See 4.2.6.2 Name in the specification.
- * A <b>PATH</b> property is an ordered list of path elements. A path element is a NAME with an optional index.
- * When read, the NAMEs within the path are mapped to their current prefix. A path may be absolute or relative.
- * See 4.2.6.3 Path in the specification.
- * A <b>REFERENCE</b> property stores the identifier of a referenceable node (one having type mix:referenceable),
- * which must exist within the same workspace or session as the REFERENCE property. A REFERENCE property enforces this
- * referential integrity by preventing (in level 2 implementations) the removal of its target node.
- * See 4.2.6.4 Reference in the specification.
- * A <b>WEAKREFERENCE</b> property stores the identifier of a referenceable node (one having type mix:referenceable).
- * A WEAKREFERENCE property does not enforce referential integrity. See 4.2.6.5 Weak Reference in the specification.
- * A <b>URI</b> property is identical to STRING property except that it only accepts values that conform to the
- * syntax of a URI-reference as defined in RFC 3986. See also 4.2.6.6 URI in the specification.
- * <b>UNDEFINED</b> can be used within a property definition (see 4.7.5 Property Definitions) to specify that the
- * property in question may be of any type. However, it cannot be the actual type of any property instance.
- * For example it will never be returned by Property.getType() and (in level 2 implementations) it cannot be assigned
- * as the type when creating a new property.
+ * - The <b>STRING</b> property type is used to store strings.
+ * - <b>BINARY</b> properties are used to store binary data.
+ * - The <b>LONG</b> property type is used to store integers.
+ * - The <b>DECIMAL</b> property type is used to store precise decimal numbers.
+ * - The <b>DOUBLE</b> property type is used to store floating point numbers.
+ * - The <b>DATE</b> property type is used to store time and date information. See 4.2.6.1 Date in the specification.
+ * - The <b>BOOLEAN</b> property type is used to store boolean values.
+ * - A <b>NAME</b> is a pairing of a namespace and a local name. When read, the namespace is mapped to the current prefix.
+ *   See 4.2.6.2 Name in the specification.
+ * - A <b>PATH</b> property is an ordered list of path elements. A path element is a NAME with an optional index.
+ *   When read, the NAMEs within the path are mapped to their current prefix. A path may be absolute or relative.
+ *   See 4.2.6.3 Path in the specification.
+ * - A <b>REFERENCE</b> property stores the identifier of a referenceable node (one having type mix:referenceable),
+ *   which must exist within the same workspace or session as the REFERENCE property. A REFERENCE property enforces this
+ *   referential integrity by preventing (in level 2 implementations) the removal of its target node.
+ *   See 4.2.6.4 Reference in the specification.
+ * - A <b>WEAKREFERENCE</b> property stores the identifier of a referenceable node (one having type mix:referenceable).
+ * - A WEAKREFERENCE property does not enforce referential integrity. See 4.2.6.5 Weak Reference in the specification.
+ * - A <b>URI</b> property is identical to STRING property except that it only accepts values that conform to the
+ *   syntax of a URI-reference as defined in RFC 3986. See also 4.2.6.6 URI in the specification.
+ * - <b>UNDEFINED</b> can be used within a property definition (see 4.7.5 Property Definitions) to specify that the
+ *   property in question may be of any type. However, it cannot be the actual type of any property instance.
+ *   For example it will never be returned by PropertyInterface::getType() and (in level 2 implementations) it cannot be assigned
+ *   as the type when creating a new property.
  *
- * Date formatting:
+ * PHP Note on date formatting:
  *   Since there is no formatting for milliseconds in PHP we construct the date formatting by cutting the microseconds
  *   to 3 positions. Unfortunately this might cause an inacuracy of one millisecond in the worst case.
  *
@@ -320,9 +320,11 @@ final class PropertyType
      *
      * This is most of the remainder of ValueFactory that is still needed.
      *
-     * * if the given $value is a Node object, type will be REFERENCE, unless
+     * - if the given $value is a Node object, type will be REFERENCE, unless
      *    $weak is set to true which results in WEAKREFERENCE
-     * * if the given $value is a DateTime object, the type will be DATE.
+     * - if the given $value is a DateTime object, the type will be DATE.
+     *
+     * &nbsp;
      *
      * @param mixed $value The variable we need to know the type of
      * @param boolean $weak When a Node is given as $value this can be given as true to create a WEAKREFERENCE.

@@ -1,10 +1,7 @@
 <?php
 
 /**
- * This file is part of the PHPCR API and was originally ported from the Java
- * JCR API to PHP by Karsten Dambekalns for the FLOW3 project.
- *
- * Copyright 2008-2011 Karsten Dambekalns <karsten@typo3.org>
+ * This file is part of the PHPCR API.
  *
  * This file in particular is derived from the Java UserTransaction Interface
  * of the package javax.transaction. For more information about the Java
@@ -30,13 +27,46 @@
 namespace PHPCR\Transaction;
 
 /**
- * As there is no transaction standard in PHP this interface should provide a
- * transaction mechanism in a way the original Java UserTransaction interface
- * can be used for transactions while working with the JCR API.
+ * As there is no transaction standard in PHP this interface provides a
+ * transaction interface similar to the <a href="http://en.wikipedia.org/wiki/Java_Transaction_API">Java Transaction API (JTA)</a>
  *
- * Have a look at the JCR spec for an example how you can work with transactions.
- * You can obtain a UserTransaction object by calling
- * Session::getTransactionManager().
+ * You can acquire the transaction manager from a session supporting
+ * transactions with \PHPCR\SessionInterface::getTransactionManager()
+ *
+ * A transaction is started with begin() and only permanently persisted if
+ * commit() is called. If commit() is not called until timeout, the lifetime
+ * of your php script or if rollback() is called explicitly, no changes are
+ * persisted.
+ *
+ * Remember that session changes are never persisted before you call
+ * $session->save(). Transactions are only necessary if you want to be able
+ * to rollback over more than one save operation.
+ *
+ * The usage looks like
+ * <pre>
+ *
+ *    $tm = $session->getTransactionManager();
+ *    $tm->begin();
+ *    //do stuff with the session
+ *    $session->save();
+ *    //do more stuff
+ *    if (problem) {
+ *        $tm->rollback();
+ *    } else {
+ *        $session->save();
+ *        $tm->commit();
+ *    }
+ * </pre>
+ *
+ * A transaction manager might support nested transactions, meaning you can
+ * call begin() repeatedly without commit() in between (but have to commit
+ * every transaction you started).
+ *
+ * Remember that in the context of phpcr, the rollback operation will only
+ * reset the transaction but keep the current session changes. If you want to
+ * get rid of them too, use \PHPCR\SessionInterface::refresh()
+ *
+ * @see \PHPCR\SessionInterface::getTransactionManager()
  *
  * @author Johannes Stark <starkj@gmx.de>
  * @package phpcr
@@ -70,7 +100,7 @@ interface UserTransactionInterface
      *      transaction has been rolled back rather than committed.
      * @throws \PHPCR\AccessDeniedException Thrown to indicate that the
      *      application is not allowed to commit the transaction.
-     * @throws LogicException Thrown if the current session is not associated 
+     * @throws LogicException Thrown if the current session is not associated
      *      with a transaction.
      * @throws \PHPCR\RepositoryException Thrown if the transaction implementation
      *      encounters an unexpected error condition.

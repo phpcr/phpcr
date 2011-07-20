@@ -688,7 +688,7 @@ interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable
      *                                      accessible by the current Session exists in this workspace. Note that this
      *                                      applies even if the property is a PATH and a property exists at the
      *                                      specified location. To dereference to a target property (as opposed to a
-     *                                      target node), the method Property.getProperty is used.
+     *                                      target node), the method PropertyInterface::getProperty() is used.
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
      */
@@ -716,7 +716,7 @@ interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable
      * @throws \PHPCR\ItemNotFoundException If no property accessible by the current Session exists in this workspace
      *                                      at the specified path. Note that this applies even if a node exists at
      *                                      the specified location. To dereference to a target node, the method
-     *                                      Property.getNode is used.
+     *                                      PropertyInterface::getNode() is used.
      * @throws \PHPCR\RepositoryException if another error occurs
      * @api
      */
@@ -764,21 +764,21 @@ interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable
      * Returns the type of this Property.
      *
      * Following property types are available:
-     * - PropertyType.STRING
-     * - PropertyType.BINARY
-     * - PropertyType.DATE
-     * - PropertyType.DOUBLE
-     * - PropertyType.LONG
-     * - PropertyType.BOOLEAN
-     * - PropertyType.NAME
-     * - PropertyType.PATH
-     * - PropertyType.REFERENCE
-     * - PropertyType.WEAKREFERENCE
-     * - PropertyType.URI
+     * - PropertyType::STRING
+     * - PropertyType::BINARY
+     * - PropertyType::DATE
+     * - PropertyType::DOUBLE
+     * - PropertyType::LONG
+     * - PropertyType::BOOLEAN
+     * - PropertyType::NAME
+     * - PropertyType::PATH
+     * - PropertyType::REFERENCE
+     * - PropertyType::WEAKREFERENCE
+     * - PropertyType::URI
      *
      * The type returned is that which was set at property creation. Note that
-     * for some property p, the type returned by p.getType() will differ from
-     * the type returned by p.getDefinition.getRequiredType() only in the case
+     * for some property p, the type returned by $p->getType() will differ from
+     * the type returned by $p->getDefinition()->getRequiredType() only in the case
      * where the latter returns UNDEFINED. The type of a property instance is
      * never UNDEFINED (it must always have some actual type).
      *

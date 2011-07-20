@@ -25,7 +25,7 @@
 namespace PHPCR\Security;
 
 /**
- * The AccessControlManager object is accessed via Session.getAccessControlManager().
+ * The AccessControlManager object is accessed via SessionInterface::getAccessControlManager().
  *
  *  It provides methods for:
  *  - Access control discovery
@@ -73,13 +73,13 @@ interface AccessControlManagerInterface
      * Returns whether the session has the specified privileges for absolute
      * path $absPath, which must be an existing node.
      * Testing an aggregate privilege is equivalent to testing each non aggregate
-     * privilege among the set returned by calling Privilege.getAggregatePrivileges()
+     * privilege among the set returned by calling PrivilegeInterface::getAggregatePrivileges()
      * for that privilege.
      *
      * The results reported by the this method reflect the net effect of the
      * currently applied control mechanisms. It does not reflect unsaved access
      * control policies or unsaved access control entries. Changes to access
-     * control status caused by these mechanisms only take effect on Session.save()
+     * control status caused by these mechanisms only take effect on SessionInterface::save()
      * and are only then reflected in the results of the privilege test methods.
      *
      * @param string $absPath The absolute path to a node the prvileges shall be fetched of.
@@ -98,14 +98,15 @@ interface AccessControlManagerInterface
      *
      * Returns the privileges the session has for absolute path absPath, which
      * must be an existing node.
-     * The returned privileges are those for which hasPrivileges(java.lang.String,
-     * javax.jcr.security.Privilege[]) would return true.
+     * The returned privileges are those for which self::hasPrivileges() would
+     * return true.
      *
      * The results reported by the this method reflect the net effect of the
      * currently applied control mechanisms. It does not reflect unsaved access
      * control policies or unsaved access control entries. Changes to access
-     * control status caused by these mechanisms only take effect on Session.save()
-     * and are only then reflected in the results of the privilege test methods.
+     * control status caused by these mechanisms only take effect on
+     * SessionInterface::save() and are only then reflected in the results of
+     * the privilege test methods.
      *
      * @param string $absPath The absolute path to a node the prvileges shall be fetched of.
      * @return array an array of Privileges.
@@ -174,18 +175,18 @@ interface AccessControlManagerInterface
     /**
      * Binds the policy to the node at absPath.
      *
-     * The behavior of the call acm.setPolicy(absPath, policy) differs depending
+     * The behavior of the call $acm->setPolicy($absPath, $policy) differs depending
      * on how the policy object was originally acquired.
      *
-     * If policy was acquired through acm.getApplicablePolicies(absPath) then
+     * If policy was acquired through $acm->getApplicablePolicies($absPath) then
      * that policy object is added to the node at absPath.
      *
-     * On the other hand, if <code>policy</code> was acquired through
-     * acm.getPolicies(absPath) then that policy object (usually after being
+     * On the other hand, if <code>$policy</code> was acquired through
+     * $acm->getPolicies(absPath) then that policy object (usually after being
      * altered) replaces its former version on the node at $absPath.
      *
      * This is session-write method and therefore the access control policy
-     * is only dispatched on <code>save</code> and will only take effect upon
+     * is only dispatched on <code>save()</code> and will only take effect upon
      * persist.
      *
      * @param string $absPath The absolute path to a node the prvileges shall be fetched of.
@@ -210,7 +211,7 @@ interface AccessControlManagerInterface
      *
      * An AccessControlPolicy can only be removed if it was bound to the specified
      * node through this API before. The effect of the removal only takes place
-     * upon Session.save(). Note, that an implementation default or any other
+     * upon SessionInterface::save(). Note, that an implementation default or any other
      * effective AccessControlPolicy that has not been applied to the node before
      * may never be removed using this method.
      *

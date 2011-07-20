@@ -183,7 +183,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      *
      * Sets the property of this node called $name to the specified value.
      * This method works as factory method to create new properties and as a
-     * shortcut for PropertyInterface::setValue
+     * shortcut for PropertyInterface::setValue()
      *
      * The type detection logic is exactly the same as in
      * PropertyInterface::setValue
@@ -193,7 +193,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      * value passed, there is more than one property definition that applies,
      * the repository chooses one definition according to some implementation-
      * specific criteria. Once property with name P has been created, the
-     * behavior of a subsequent setProperty(P,V) may differ across
+     * behavior of a subsequent setProperty($p,$v) may differ across
      * implementations.
      * Some repositories may allow P to be dynamically re-bound to a different
      * property definition (based for example, on the new value being of a
@@ -205,11 +205,11 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      *
      * Passing a null as the second parameter removes the property. It is
      * equivalent to calling remove on the Property object itself. For example,
-     * N.setProperty("P", null) would remove property called "P" of the
-     * node in N.
+     * $n->setProperty("P", null) would remove property called "P" of the
+     * node $n.
      *
      * This is a session-write method, meaning that changes made through this
-     * method are dispatched on Session#save.
+     * method are dispatched on SessionInterface::save().
      *
      * If $type is given:
      * The behavior of this method is identical to that of setProperty($name,
@@ -291,7 +291,9 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      * characters ("*"), or a disjunction (using the "|" character to represent
      * logical OR) of these.
      * For example,
-     *  <pre>N->getNodes("jcr:* | myapp:report | my doc")</pre>
+     *
+     *  <code>N->getNodes("jcr:* | myapp:report | my doc")</code>
+     *
      * would return an iterator holding all accessible child nodes of N that
      * are either called 'myapp:report', begin with the prefix 'jcr:' or are
      * called 'my doc'.
@@ -362,7 +364,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      * Returns the property of this node with name $name.
      *
      * If $type is set, attempts to convert the value to the specified type.
-     * This is a shortcut for getProperty().getXX()
+     * This is a shortcut for getProperty()->getXX()
      *
      * @param string $name Name of this property
      * @param integer $type Type conversion request, optional. Must be a
@@ -391,7 +393,9 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      * pattern may be a full name or a partial name with one or more wildcard
      * characters ("*"), or a disjunction (using the "|" character to represent
      * logical OR) of these. For example,
-     *  <pre>N.getProperties("jcr:* | myapp:name | my doc")</pre>
+     *
+     *  <code>$n->getProperties("jcr:* | myapp:name | my doc")</code>
+     *
      * would return an iterator holding all accessible properties of N
      * that are either called 'myapp:name', begin with the prefix 'jcr:' or are
      * called 'my doc'.
@@ -743,7 +747,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      *
      * Semantically, the new node type may take effect immediately, on dispatch
      * or on persist. The behavior is adopted must be the same as the behavior
-     * adopted for setPrimaryType(java.lang.String) and the behavior that
+     * adopted for self::setPrimaryType() and the behavior that
      * occurs when a node is first created.
      *
      * A ConstraintViolationException is thrown either immediately or on save
@@ -812,26 +816,18 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      * Returns true if the specified mixin node type called $mixinName can be
      * added to this node. Returns false otherwise. A result of false must be
      * returned in each of the following cases:
-     * <ul>
-     *  <li>
-     *      The mixin's definition conflicts with an existing primary or mixin
-     *      node type of this node.
-     *  </li><li>
-     *      This node is versionable and checked-in or is non-versionable and
-     *      its nearest versionable ancestor is checked-in.
-     *  </li><li>
-     *      This node is protected (as defined in this node's NodeDefinition,
-     *      found in the node type of this node's parent).
-     *  </li><li>
-     *      An access control restriction would prevent the addition of the
-     *      mixin.
-     *  </li><li>
-     *      A lock would prevent the addition of the mixin.
-     *  </li><li>
-     *      An implementation-specific restriction would prevent the addition
-     *      of the mixin.
-     *  </li>
-     * </ul>
+     * - The mixin's definition conflicts with an existing primary or mixin
+     *   node type of this node.
+     * - This node is versionable and checked-in or is non-versionable and
+     *   its nearest versionable ancestor is checked-in.
+     * - This node is protected (as defined in this node's NodeDefinition,
+     *   found in the node type of this node's parent).
+     * - An access control restriction would prevent the addition of the mixin.
+     * - A lock would prevent the addition of the mixin.
+     * - An implementation-specific restriction would prevent the addition of
+     *   the mixin.
+     *
+     * &nbsp;
      *
      * @param string $mixinName The name of the mixin to be tested.
      *
@@ -938,7 +934,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      * Removes this node and every other node in the shared set of this node.
      *
      * This removal must be done atomically, i.e., if one of the nodes cannot
-     * be removed, the method throws the exception Node.remove() would have
+     * be removed, the method throws the exception NodeInterface::remove() would have
      * thrown in that case, and none of the nodes are removed.
      *
      * If this node is not shared this method removes only this node.

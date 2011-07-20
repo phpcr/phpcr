@@ -1,13 +1,10 @@
 <?php
 
 /**
- * This file is part of the PHPCR API and was originally ported from the Java
- * JCR API to PHP by Karsten Dambekalns for the FLOW3 project.
+ * This file is part of the PHPCR API.
  *
- * Copyright 2008-2011 Karsten Dambekalns <karsten@typo3.org>
- *
- * This file in particular is derived from the Java UserTransaction Interface 
- * of the package javax.transaction. For more information about the Java 
+ * This file in particular is derived from the Java UserTransaction Interface
+ * of the package javax.transaction. For more information about the Java
  * interface have a look at
  * http://download.oracle.com/javaee/6/api/javax/transaction/package-summary.html
  *

@@ -31,7 +31,7 @@ namespace PHPCR;
  * repository. This view is defined by the authorization settings of the Session
  * object associated with the Workspace object. Each Workspace object is
  * associated one-to-one with a Session object. The Workspace object can be
- * acquired by calling Session.getWorkspace() on the associated Session object.
+ * acquired by calling $session->getWorkspace() on the associated Session object.
  *
  * @package phpcr
  * @subpackage interfaces
@@ -188,12 +188,12 @@ interface WorkspaceInterface {
      * The subgraph rooted at and including N' (call it S') is created and is
      * identical to the subgraph rooted at and including N (call it S) with the
      * following exceptions:
-     * * Every node in S' is given a new and distinct identifier
-     *   - or if $srcWorkspace is given -
+     * - Every node in S' is given a new and distinct identifier
+     *   - or, if $srcWorkspace is given -
      *   Every referenceable node in S' is given a new and distinct identifier
      *   while every non-referenceable node in S' may be given a new and
      *   distinct identifier.
-     * * The repository may automatically drop any mixin node type T present on
+     * - The repository may automatically drop any mixin node type T present on
      *   any node M in S. Dropping a mixin node type in this context means that
      *   while M remains unchanged, its copy M' will lack the mixin T and any
      *   child nodes and properties defined by T that are present on M. For
@@ -203,10 +203,10 @@ interface WorkspaceInterface {
      *   mix:versionable. In order for a mixin node type to be dropped it must
      *   be listed by name in the jcr:mixinTypes property of M. The resulting
      *   jcr:mixinTypes property of M' will reflect any change.
-     * * If a node M in S is referenceable and its mix:referenceable mixin is
+     * - If a node M in S is referenceable and its mix:referenceable mixin is
      *   not dropped on copy, then the resulting jcr:uuid property of M' will
      *   reflect the new identifier assigned to M'.
-     * * Each REFERENCE or WEAKEREFERENCE property R in S is copied to its new
+     * - Each REFERENCE or WEAKEREFERENCE property R in S is copied to its new
      *   location R' in S'. If R references a node M within S then the value of
      *   R' will be the identifier of M', the new copy of M, thus preserving the
      *   reference within the subgraph.
@@ -432,7 +432,7 @@ interface WorkspaceInterface {
      * repository that are accessible to this user, given the Credentials that
      * were used to get the Session to which this Workspace is tied.
      * In order to access one of the listed workspaces, the user performs
-     * another Repository.login, specifying the name of the desired workspace,
+     * another RepositoryInterface::login(), specifying the name of the desired workspace,
      * and receives a new Session object.
      *
      * @return array string array of names of accessible workspaces.
@@ -462,22 +462,22 @@ interface WorkspaceInterface {
      * the Session. The disadvantage is that structures that violate node type
      * constraints cannot be imported, fixed and then saved. Instead, a constraint
      * violation will cause the ContentHandler to throw a SAXException.
-     * See Session.getImportContentHandler for a version of this method that does go
-     * through the Session.
+     * See SessionInterface::getImportContentHandler for a version of this method
+     * that does go through the Session.
      *
      * The flag uuidBehavior governs how the identifiers of incoming (deserialized)
      * nodes are handled. There are four options:
      *
-     * * ImportUUIDBehavior.IMPORT_UUID_CREATE_NEW: Incoming nodes are assigned newly
+     * - ImportUUIDBehavior::IMPORT_UUID_CREATE_NEW: Incoming nodes are assigned newly
      *   created identifiers upon addition to the workspace. As a result identifier
      *  collisions never occur.
-     * * ImportUUIDBehavior.IMPORT_UUID_COLLISION_REMOVE_EXISTING: If an incoming node
+     * - ImportUUIDBehavior::IMPORT_UUID_COLLISION_REMOVE_EXISTING: If an incoming node
      *   has the same identifier as a node already existing in the workspace, then the
      *   already existing node (and its subgraph) is removed from wherever it may be in
      *   the workspace before the incoming node is added. Note that this can result in
      *   nodes "disappearing" from locations in the workspace that are remote from the
      *   location to which the incoming subgraph is being written.
-     * * ImportUUIDBehavior.IMPORT_UUID_COLLISION_REPLACE_EXISTING: If an incoming node
+     * - ImportUUIDBehavior::IMPORT_UUID_COLLISION_REPLACE_EXISTING: If an incoming node
      *   has the same identifier as a node already existing in the workspace then the
      *   already existing node is replaced by the incoming node in the same position as
      *   the existing node. Note that this may result in the incoming subgraph being
@@ -485,9 +485,10 @@ interface WorkspaceInterface {
      *   the most extreme case this behavior may result in no node at all being added as
      *   child of parentAbsPath. This will occur if the topmost element of the incoming
      *   XML has the same identifier as an existing node elsewhere in the workspace.
-     * * ImportUUIDBehavior.IMPORT_UUID_COLLISION_THROW: If an incoming node has the same
+     * - ImportUUIDBehavior::IMPORT_UUID_COLLISION_THROW: If an incoming node has the same
      *   identifier as a node already existing in the workspace then a SAXException is
      *   thrown by the returned ContentHandler during deserialization.
+     *
      * A SAXException will be thrown by the returned ContentHandler during deserialization
      * if the top-most element of the incoming XML would deserialize to a node with the same
      * name as an existing child of parentAbsPath and that child does not allow same-name
@@ -515,10 +516,11 @@ interface WorkspaceInterface {
      * @throws \PHPCR\AccessDeniedException if the session associated with this Workspace object does not have
      *                                      sufficient access to perform the import.
      * @throws \PHPCR\RepositoryException if another error occurs.
-     * @todo Decide on a return type that fits the PHP world
+     *
      * @api
      */
-    function getImportContentHandler($parentAbsPath, $uuidBehavior);
+    //Dropped for now. If you have an excellent and generic idea for this, suggestions are welcome
+    //function getImportContentHandler($parentAbsPath, $uuidBehavior);
 
     /**
      * Deserializes an XML document and adds the resulting item subgraph as a child of the node at $parentAbsPath.
@@ -532,23 +534,23 @@ interface WorkspaceInterface {
      * in a large cache of pending nodes in the Session. The disadvantage is
      * that invalid data cannot be imported, fixed and then saved. Instead,
      * invalid data will cause this method to throw an InvalidSerializedDataException.
-     * See Session.importXML for a version of this method that does go through
+     * See SessionInterface::importXML() for a version of this method that does go through
      * the Session.
      *
      * The flag $uuidBehavior governs how the identifiers of incoming (deserialized)
      * nodes are handled. There are four options:
      *
-     * * ImportUUIDBehavior.IMPORT_UUID_CREATE_NEW: Incoming nodes are assigned newly
+     * - ImportUUIDBehavior::IMPORT_UUID_CREATE_NEW: Incoming nodes are assigned newly
      *   created identifiers upon addition to the workspace. As a result identifier
      *   collisions never occur.
-     * * ImportUUIDBehavior.IMPORT_UUID_COLLISION_REMOVE_EXISTING: If an incoming node
+     * - ImportUUIDBehavior::IMPORT_UUID_COLLISION_REMOVE_EXISTING: If an incoming node
      *   has the same identifier as a node already existing in the workspace then the
      *   already existing node (and its subgraph) is removed from wherever it may be
      *   in the workspace before the incoming node is added. Note that this can result
      *   in nodes "disappearing" from locations in the workspace that are remote from
      *   the location to which the incoming subgraph is being written. If an incoming
      *   node has the same identifier as the existing root node of this workspace then
-     * * ImportUUIDBehavior.IMPORT_UUID_COLLISION_REPLACE_EXISTING: If an incoming node
+     * - ImportUUIDBehavior::IMPORT_UUID_COLLISION_REPLACE_EXISTING: If an incoming node
      *   has the same identifier as a node already existing in the workspace then the
      *   already existing node is replaced by the incoming node in the same position as
      *   the existing node. Note that this may result in the incoming subgraph being
@@ -557,7 +559,7 @@ interface WorkspaceInterface {
      *   added as child of parentAbsPath. This will occur if the topmost element of the
      *   incoming XML has the same identifier as an existing node elsewhere in the
      *   workspace.
-     * * ImportUUIDBehavior.IMPORT_UUID_COLLISION_THROW: If an incoming node has the
+     * - ImportUUIDBehavior::IMPORT_UUID_COLLISION_THROW: If an incoming node has the
      *   same identifier as a node already existing in the workspace then an
      *   ItemExistsException is thrown.
      *
@@ -587,8 +589,8 @@ interface WorkspaceInterface {
      * clone of the content of the workspace srcWorkspace. Semantically,
      * this method is equivalent to creating a new workspace and manually
      * cloning srcWorkspace to it; however, this method may assist some
-     * implementations in optimizing subsequent Node.update and Node.merge
-     * calls between the new workspace and its source.
+     * implementations in optimizing subsequent NodeInterface::update() and
+     * NodeInterface::merge() calls between the new workspace and its source.
      *
      * The new workspace can be accessed through a login specifying its name.
      *

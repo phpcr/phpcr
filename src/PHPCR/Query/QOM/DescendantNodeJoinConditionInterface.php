@@ -28,10 +28,10 @@ namespace PHPCR\Query\QOM;
  * Tests whether the descendantSelector node is a descendant of the
  * ancestorSelector node. A node-tuple satisfies the constraint only if:
  *
- *   descendantSelectorNode.getAncestor(n).isSame(ancestorSelectorNode) && descendantSelectorNode.getDepth() > n
+ *   <code>$descendantSelectorNode->getAncestor($n)->isSame($ancestorSelectorNode) && $descendantSelectorNode->getDepth() > $n</code>
  *
- * would return true some some non-negative integer n, where descendantSelectorNode
- * is the node for descendantSelector and ancestorSelectorNode is the node for
+ * would return true some some non-negative integer $n, where $descendantSelectorNode
+ * is the node for descendantSelector and $ancestorSelectorNode is the node for
  * ancestorSelector.
  *
  * @package phpcr

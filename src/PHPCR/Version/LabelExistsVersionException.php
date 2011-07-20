@@ -25,7 +25,7 @@
 namespace PHPCR\Version;
 
 /**
- * Exception thrown by VersionHistory.addVersionLabel if moveLabel is set to
+ * Exception thrown by VersionHistoryInterface::addVersionLabel() if moveLabel is set to
  * false and an attempt is made to add a label that already exists in the
  * VersionHistory.
  *

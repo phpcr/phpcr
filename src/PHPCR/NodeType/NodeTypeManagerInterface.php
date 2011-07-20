@@ -26,7 +26,7 @@ namespace PHPCR\NodeType;
 
 /**
  * Allows for the retrieval and (in implementations that support it) the
- * registration of node types. Accessed via Workspace.getNodeTypeManager().
+ * registration of node types. Accessed via WorkspaceInterface::getNodeTypeManager().
  *
  * The \Traversable interface enables the implementation to be addressed with
  * <b>foreach</b>. NodeTypeManager has to implement either \RecursiveIterator
@@ -103,11 +103,11 @@ interface NodeTypeManagerInterface extends \Traversable
 
     /**
      * Returns an empty NodeTypeTemplate which can then be used to define a node type
-     * and passed to NodeTypeManager.registerNodeType.
+     * and passed to NodeTypeManagerInterface::registerNodeType().
      *
      * If <b>$ntd</b> is given:
-     * Returns a NodeTypeTemplate holding the specified node type definition. This
-     * template can then be altered and passed to NodeTypeManager.registerNodeType.
+     * Returns a NodeTypeTemplateInterface holding the specified node type definition. This
+     * template can then be altered and passed to NodeTypeManagerInterface::registerNodeType().
      *
      * @param \PHPCR\NodeType\NodeTypeDefinitionInterface $ntd a NodeTypeDefinition.
      * @return \PHPCR\NodeType\NodeTypeTemplateInterface A NodeTypeTemplate.
@@ -149,8 +149,9 @@ interface NodeTypeManagerInterface extends \Traversable
      * Registers a new node type or updates an existing node type using the specified
      * definition and returns the resulting NodeType object.
      *
-     * Typically, the object passed to this method will be a NodeTypeTemplate (a
-     * subclass of NodeTypeDefinition) acquired from NodeTypeManager.createNodeTypeTemplate
+     * Typically, the object passed to this method will be a 
+     * NodeTypeTemplateInterface (a subclass of NodeTypeDefinitionInterface)
+     * acquired from NodeTypeManagerInterface::createNodeTypeTemplate()
      * and then filled-in with definition information.
      *
      * @param \PHPCR\NodeType\NodeTypeDefinitionInterface $ntd an NodeTypeDefinition.

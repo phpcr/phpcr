@@ -65,7 +65,9 @@ namespace PHPCR\Query\QOM;
  * - the character "%" matches zero or more characters, and
  * - the character "_" (underscore) matches exactly one character, and
  * - the string "\x" matches the character "x", and
- *   all other characters match themselves.
+ * - all other characters match themselves.
+ *
+ * &nbsp;
  *
  * @package phpcr
  * @subpackage interfaces

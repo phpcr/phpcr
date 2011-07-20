@@ -128,7 +128,7 @@ interface QueryInterface
      * Returns the language set for this query.
      *
      * This will be one of the query language constants returned by
-     * QueryManager.getSupportedQueryLanguages().
+     * QueryManagerInterface::getSupportedQueryLanguages().
      *
      * @return string The query language.
      * @api
@@ -138,9 +138,9 @@ interface QueryInterface
     /**
      * Fetches the path of the node representing this query.
      *
-     * If this is a Query object that has been stored using storeAsNode(java.lang.String)
+     * If this is a Query object that has been stored using self::storeAsNode()
      * (regardless of whether it has been saved yet) or retrieved using
-     * QueryManager.getQuery(javax.jcr.Node)), then this method returns the path
+     * QueryManagerInterface::getQuery()), then this method returns the path
      * of the nt:query node that stores the query.
      *
      * @return string Path of the node representing this query.
@@ -156,7 +156,7 @@ interface QueryInterface
      * returns that node.
      *
      * This is  a session-write method and therefore requires a
-     * Session.save() to dispatch the change.
+     * SessionInterface::save() to dispatch the change.
      *
      * The $absPath provided must not have an index on its final element. If
      * ordering is supported by the node type of the parent node then the new

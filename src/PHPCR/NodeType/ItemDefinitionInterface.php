@@ -119,17 +119,17 @@ interface ItemDefinitionInterface
      *
      * This governs what occurs (in implementations that support versioning)
      * when the parent node of this item is checked-in. One of:
-     * - OnParentVersionAction.COPY
-     * - OnParentVersionAction.VERSION
-     * - OnParentVersionAction.IGNORE
-     * - OnParentVersionAction.INITIALIZE
-     * - OnParentVersionAction.COMPUTE
-     * - OnParentVersionAction.ABORT
+     * - OnParentVersionAction::COPY
+     * - OnParentVersionAction::VERSION
+     * - OnParentVersionAction::IGNORE
+     * - OnParentVersionAction::INITIALIZE
+     * - OnParentVersionAction::COMPUTE
+     * - OnParentVersionAction::ABORT
      *
      * In implementations that support node type registration, if this
      * ItemDefinition object is actually a newly-created empty
-     * PropertyDefinitionTemplate or NodeDefinitionTemplate, then this method
-     * will return OnParentVersionAction.COPY.
+     * PropertyDefinitionTemplateInterface or NodeDefinitionTemplateInterface, then this method
+     * will return OnParentVersionAction::COPY.
      *
      * @return integer An int constant member of OnParentVersionAction.
      * @api
@@ -141,8 +141,8 @@ interface ItemDefinitionInterface
      *
      * In level 2 implementations, a protected item is one that cannot be removed
      * (except by removing its parent) or modified through the the standard write
-     * methods of this API (that is, Item.remove, Node.addNode, Node.setProperty
-     * and Property.setValue).
+     * methods of this API (that is, ItemInterface::remove(), NodeInterface::addNode(), NodeInterface::setProperty()
+     * and PropertyInterface::setValue()).
      *
      * A protected node may be removed or modified (in a level 2 implementation),
      * however, through some mechanism not defined by this specification or as a
@@ -150,7 +150,7 @@ interface ItemDefinitionInterface
      *
      * In implementations that support node type registration, if this
      * ItemDefinition object is actually a newly-created empty
-     * PropertyDefinitionTemplate or NodeDefinitionTemplate, then this method
+     * PropertyDefinitionTemplateInterface or NodeDefinitionTemplateInterface, then this method
      * will return false.
      *
      * @return boolean True, if the child item is protected, else false.

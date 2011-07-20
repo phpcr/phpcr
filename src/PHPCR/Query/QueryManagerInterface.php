@@ -39,8 +39,8 @@ interface QueryManagerInterface
      * Creates a new query by specifying the query statement itself and the language
      * in which the query is stated.
      *
-     * The $language must be a string from among
-     * those returned by QueryManager.getSupportedQueryLanguages().
+     * The $language must be a string from among those returned by
+     * QueryManagerInterface::getSupportedQueryLanguages().
      *
      * @param string $statement The query statement to be executed.
      * @param string $language The language of the query to be created.
@@ -64,8 +64,8 @@ interface QueryManagerInterface
     /**
      * Retrieves an existing persistent query.
      *
-     * Persistent queries are created by first using QueryManager.createQuery to
-     * create a Query object and then calling Query.save to persist the query to
+     * Persistent queries are created by first using QueryManagerInterface::createQuery to
+     * create a Query object and then calling QueryInterface::save() to persist the query to
      * a location in the workspace.
      *
      * @param \PHPCR\NodeInterface $node a persisted query (that is, a node of type nt:query).
@@ -81,9 +81,9 @@ interface QueryManagerInterface
      * Returns an array of strings representing all query languages supported by
      * this repository.
      *
-     * This set must include at least the strings represented
-     * by the constants Query.JCR_SQL2 and Query.JCR_JQOM. An implementation may
-     * also support other languages.
+     * This set must include at least the strings represented by the constants
+     * QueryInterface::JCR_SQL2 and QueryInterface::JCR_JQOM. An implementation
+     * may also support other languages.
      *
      * @return array A list of supported languages by the query.
      *

@@ -29,7 +29,7 @@ namespace PHPCR\Query\QOM;
  *
  * A node-tuple satisfies the constraint only if:
  *
- * - selectorNode.isSame(session.getNode(path))
+ * <code>$selectorNode->isSame($session->getNode($path))</code>
  *
  * would return true, where selectorNode is the node for the specified selector.
  *

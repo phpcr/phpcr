@@ -128,8 +128,8 @@ abstract class TraversingItemVisitor implements \PHPCR\ItemVisitorInterface
     /**
      * Called when the Visitor is passed to an Item.
      *
-     * It calls TraversingItemVisitor.entering(ItemInterface, int) followed by
-     * TraversingItemVisitor.leaving(ItemInterface, int). Implement these
+     * It calls TraversingItemVisitor::entering() followed by
+     * TraversingItemVisitor::leaving(). Implement these
      * abstract methods to specify behavior on 'arrival at' and 'after leaving'
      * the $item.
      *

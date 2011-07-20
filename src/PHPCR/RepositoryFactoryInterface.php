@@ -30,10 +30,13 @@ namespace PHPCR;
  *
  * Examples how to obtain repository instances
  *
+ * <pre>
+ *
  *    $factory = new \SomeRepository\RepositoryFactory;
  *
  *    $parameters = array('com.vendor.address' => 'vendor://localhost:9999/myrepo');
  *    $repo = $factory->getRepository($parameters);
+ * </pre>
  *
  * @package phpcr
  * @subpackage interfaces

@@ -103,13 +103,13 @@ interface NodeTypeDefinitionInterface
      * Returns true if nodes of this type must support orderable child nodes;
      * returns false otherwise. If a node type returns true on a call to this
      * method, then all nodes of that node type must support the method
-     * Node.orderBefore. If a node type returns false on a call to this method,
-     * then nodes of that node type may support Node.orderBefore. Only the primary
+     * NodeInterface::orderBefore(). If a node type returns false on a call to this method,
+     * then nodes of that node type may support NodeInterface::orderBefore(). Only the primary
      * node type of a node controls that node's status in this regard. This setting
      * on a mixin node type will not have any effect on the node.
      * In implementations that support node type registration, if this
-     * NodeTypeDefinition object is actually a newly-created empty
-     * NodeTypeTemplate, then this method will return false.
+     * NodeTypeDefinitionInterface object is actually a newly-created empty
+     * NodeTypeTemplateInterface, then this method will return false.
      *
      * @return boolean True, if nodes of this type must support orderable child nodes, else false.
      * @api
@@ -140,10 +140,10 @@ interface NodeTypeDefinitionInterface
      * of this node type).
      *
      * If this node has no primary item, then this method
-     * returns null. This indicator is used by the method Node.getPrimaryItem().
+     * returns null. This indicator is used by the method NodeInterface::getPrimaryItem().
      * In implementations that support node type registration, if this
-     * NodeTypeDefinition object is actually a newly-created empty
-     * NodeTypeTemplate, then this method will return null.
+     * NodeTypeDefinitionInterface object is actually a newly-created empty
+     * NodeTypeTemplateInterface, then this method will return null.
      *
      * @return string The name of the primary item.
      * @api

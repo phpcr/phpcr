@@ -70,10 +70,10 @@ interface AccessControlListInterface extends \PHPCR\Security\AccessControlPolicy
      * Privilege added by a previous call.
      *
      * The modification does not take effect until this policy has been set to a node
-     * by calling AccessControlManager.setPolicy(String, AccessControlPolicy) and
+     * by calling AccessControlManagerInterface::setPolicy() and
      * save is performed.
      *
-     * @param java.security.Principal $principal - a Principal.
+     * @param ? $principal - a Principal. TODO: define a type for this. JCR has javax.security.Principal
      * @param array $privileges - an array of Privileges.
      * @return boolean true if this policy was modify; false otherwise.
      *
@@ -91,7 +91,7 @@ interface AccessControlListInterface extends \PHPCR\Security\AccessControlPolicy
      *
      * Only exactly those entries obtained through getAccessControlEntries can be
      * removed. This method does not take effect until this policy has been re-set
-     * to a node by calling AccessControlManager.setPolicy(String, AccessControlPolicy)
+     * to a node by calling AccessControlManagerInterface::setPolicy()
      * and save is performed.
      *
      * @param \PHPCR\Security\AccessControlEntryInterface $ace the access control entry to be removed.

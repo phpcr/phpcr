@@ -55,10 +55,10 @@ interface VersionInterface extends \PHPCR\NodeInterface
     function getCreated();
 
     /**
-     * Assuming that this Version object was acquired through a Workspace W and
-     * is within the VersionHistory H, this method returns the successor of this
+     * Assuming that this Version object was acquired through a Workspace $w and
+     * is within the VersionHistory $h, this method returns the successor of this
      * version along the same line of descent as is returned by
-     * H.getAllLinearVersions() where H was also acquired through W.
+     * $h->getAllLinearVersions() where $h was also acquired through $w.
      *
      * Note that under simple versioning the behavior of this method is equivalent
      * to getting the unique successor (if any) of this version.
@@ -82,10 +82,10 @@ interface VersionInterface extends \PHPCR\NodeInterface
     function getSuccessors();
 
     /**
-     * Assuming that this Version object was acquired through a Workspace W and
-     * is within the VersionHistory H, this method returns the predecessor of
+     * Assuming that this Version object was acquired through a Workspace $w and
+     * is within the VersionHistory $h, this method returns the predecessor of
      * this version along the same line of descent as is returned by
-     * H.getAllLinearVersions() where H was also acquired through W.
+     * $h->getAllLinearVersions() where $h was also acquired through $w.
      *
      * Note that under simple versioning the behavior of this method is equivalent
      * to getting the unique predecessor (if any) of this version.

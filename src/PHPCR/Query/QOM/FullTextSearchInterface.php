@@ -67,6 +67,8 @@ namespace PHPCR\Query\QOM;
  * - Within a term, each double quote ("), "-" (minus sign), and "\" (backslash) must be escaped by a
  *   preceding "\" (backslash).
  *
+ * &nbsp;
+ *
  * @package phpcr
  * @subpackage interfaces
  * @api

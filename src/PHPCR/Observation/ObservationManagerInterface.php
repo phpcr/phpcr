@@ -27,8 +27,8 @@ namespace PHPCR\Observation;
 /**
  * The ObservationManager object.
  *
- * Acquired via Workspace.getObservationManager(). Allows for the registration
- * and deregistration of event listeners.
+ * Acquired via WorkspaceInterface::getObservationManager(). Allows for the
+ * registration and deregistration of event listeners.
  *
  * The \Traversable interface enables the implementation to be addressed with
  * <b>foreach</b>. ObservationManager has to implement either \RecursiveIterator
@@ -52,17 +52,17 @@ interface ObservationManagerInterface extends \Traversable
      * associated parent node of the event.
      *
      * The associated parent node of an event is the parent node of the item at (or
-     * formerly at) the path returned by Event.getPath(). The following restrictions
-     * are available:
-     *  <b>absPath</b>, <b>isDeep</b>: Only events whose associated parent node is at absPath (or
+     * formerly at) the path returned by EventInterface::getPath(). The following
+     * restrictions are available:
+     * - <b>absPath</b>, <b>isDeep</b>: Only events whose associated parent node is at absPath (or
      *   within its subgraph, if isDeep is true) will be received. It is permissible
      *   to register a listener for a path where no node currently exists.
-     *  <b>uuid</b>: Only events whose associated parent node has one of the identifiers in
+     * - <b>uuid</b>: Only events whose associated parent node has one of the identifiers in
      *   this list will be received. If his parameter is null then no identifier-
      *   related restriction is placed on events received. Note that specifying an
      *   empty array instead of null would result in no nodes being listened to. The
      *   term "UUID" is used for compatibility with JCR 1.0.
-     *  <b>nodeTypeName</b>: Only events whose associated parent node has one of the node
+     * - <b>nodeTypeName</b>: Only events whose associated parent node has one of the node
      *   types (or a subtype of one of the node types) in this list will be received.
      *   If his parameter is null then no node type-related restriction is placed on
      *   events received. Note that specifying an empty array instead of null would
@@ -131,7 +131,7 @@ interface ObservationManagerInterface extends \Traversable
     function getRegisteredEventListeners();
 
     /**
-     * Sets the user data information that will be returned by Event.getUserData().
+     * Sets the user data information that will be returned by EventInterface::getUserData().
      *
      * @param string $userData the user data
      * @return void

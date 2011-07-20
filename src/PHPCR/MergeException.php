@@ -25,7 +25,7 @@
 namespace PHPCR;
 
 /**
- * Exception thrown by Node.merge(String srcWorkspace, boolean isDeep).
+ * Exception thrown by NodeInterface::merge()
  *
  * @package phpcr
  * @subpackage exceptions

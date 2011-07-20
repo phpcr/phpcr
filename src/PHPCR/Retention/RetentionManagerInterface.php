@@ -25,7 +25,7 @@
 namespace PHPCR\Retention;
 
 /**
- * The RetentionManager object is accessed via Session.getRetentionManager().
+ * The RetentionManager object is accessed via SessionInterface::getRetentionManager().
  *
  * @package phpcr
  * @subpackage interfaces

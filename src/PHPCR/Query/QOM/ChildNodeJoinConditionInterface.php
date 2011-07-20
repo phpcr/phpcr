@@ -27,9 +27,9 @@ namespace PHPCR\Query\QOM;
 /**
  * Tests whether the childSelector node is a child of the parentSelector node. A
  * node-tuple satisfies the constraint only if:
- *  childSelectorNode.getParent().isSame(parentSelectorNode)
- * would return true, where childSelectorNode is the node for childSelector and
- * parentSelectorNode is the node for parentSelector.
+ *  <code>$childSelectorNode->getParent()->isSame($parentSelectorNode)
+ * would return true, where $childSelectorNode is the node for childSelector and
+ * $parentSelectorNode is the node for parentSelector.
  *
  * @package phpcr
  * @subpackage interfaces

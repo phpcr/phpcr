@@ -27,17 +27,18 @@ namespace PHPCR\NodeType;
 /**
  * The NodeTypeTemplate interface represents a simple container structure used
  * to define node types which are then registered through the
- * NodeTypeManager.registerNodeType method.
+ * NodeTypeManagerInterface::registerNodeType() method.
  *
- * NodeTypeTemplate, like NodeType, is a subclass of NodeTypeDefinition so it
- * shares with NodeType those methods that are relevant to a static definition.
+ * NodeTypeTemplateInterface, like NodeTypeInterface, is a subclass of 
+ * NodeTypeDefinitionInterface so it shares with NodeTypeInterface those 
+ * methods that are relevant to a static definition.
  * In addition, NodeTypeTemplate provides methods for setting the attributes of
  * the definition. Implementations of this interface need not contain any
  * validation logic.
  *
- * See the corresponding get methods for each attribute in NodeTypeDefinition
- * for the default values assumed when a new empty NodeTypeTemplate is created
- * (as opposed to one extracted from an existing NodeType).
+ * See the corresponding get methods for each attribute in NodeTypeDefinitionInterface
+ * for the default values assumed when a new empty NodeTypeTemplateInterface is created
+ * (as opposed to one extracted from an existing NodeTypeInterface).
  *
  * @package phpcr
  * @subpackage interfaces

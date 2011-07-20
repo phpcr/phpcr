@@ -28,7 +28,7 @@ namespace PHPCR;
  * Defines an interface to implement a single namespace registry.
  *
  * Each repository has a single, persistent namespace registry represented by
- * the NamespaceRegistry object, accessed via Workspace.getNamespaceRegistry().
+ * the NamespaceRegistry object, accessed via WorkspaceInterface::getNamespaceRegistry().
  * The namespace registry contains the default prefixes of the registered
  * namespaces. The namespace registry may contain namespaces that are not used
  * in repository content, and there may be repository content with namespaces
@@ -118,16 +118,18 @@ interface NamespaceRegistryInterface extends \Traversable
      * On the other hand, taking a prefix that is already assigned to a URI
      * and re-assigning it to a new URI in effect unregisters that URI.
      * Therefore, the same restrictions apply to this operation as to
-     * NamespaceRegistry.unregisterNamespace:
-     * * Attempting to re-assign a built-in prefix (jcr, nt, mix, sv, xml,
+     * NamespaceRegistryInterface::unregisterNamespace():
+     * - Attempting to re-assign a built-in prefix (jcr, nt, mix, sv, xml,
      *   or the empty prefix) to a new URI will throw a
      *   \PHPCR\NamespaceException.
-     * * Attempting to register a namespace with a prefix that begins with
+     * - Attempting to register a namespace with a prefix that begins with
      *   the characters "xml" (in any combination of case) will throw a
      *   \PHPCR\NamespaceException.
-     * * An implementation may prevent the re-assignment of any other namespace
+     * - An implementation may prevent the re-assignment of any other namespace
      *   prefixes for implementation-specific reasons by throwing a
      *   \PHPCR\NamespaceException.
+     *
+     * &nbsp;
      *
      * @param string $prefix The prefix to be mapped.
      * @param string $uri The URI to be mapped.
@@ -143,13 +145,15 @@ interface NamespaceRegistryInterface extends \Traversable
     /**
      * Removes a namespace mapping from the registry. The following restriction
      * apply:
-     * * Attempting to unregister a built-in namespace (jcr, nt, mix, sv, xml or
+     * - Attempting to unregister a built-in namespace (jcr, nt, mix, sv, xml or
      *   the empty namespace) will throw a \PHPCR\NamespaceException.
-     * * An attempt to unregister a namespace that is not currently registered
+     * - An attempt to unregister a namespace that is not currently registered
      *   will throw a \PHPCR\NamespaceException.
-     * * An implementation may prevent the unregistering of any other namespace
+     * - An implementation may prevent the unregistering of any other namespace
      *   for implementation-specific reasons by throwing a
      *   \PHPCR\NamespaceException.
+     *
+     * &nbsp;
      *
      * @param string $prefix The prefix of the mapping to be removed.
      * @return void

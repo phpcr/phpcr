@@ -35,7 +35,7 @@ interface LockInterface
 {
     /**
      * Returns the value of the jcr:lockOwner property. This is either the
-     * client supplied owner information (see LockManager->lock()),
+     * client supplied owner information (see LockManager::lock()),
      * an implementation-dependent string identifying the user who either
      * created the lock or who is bound to the session holding the lock, or
      * null if none of these are available.
@@ -60,9 +60,9 @@ interface LockInterface
     /**
      * Returns the lock holding node.
      *
-     * Note that N.getLock().getNode() (where N
-     * is a locked node) will only return N if N is the lock holder. If N is in
-     * the subgraph of the lock holder, H, then this call will return H.
+     * Note that $n->getLock()->getNode() (where $n is a locked node) will only
+     * return $n if $n is the lock holder. If $n is in the subgraph of the lock
+     * holder, $h, then this call will return $h.
      *
      * @return \PHPCR\NodeInterface a Node
      * @api

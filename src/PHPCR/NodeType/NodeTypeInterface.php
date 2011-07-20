@@ -44,6 +44,8 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
      * - Property#JCR_PRIMARY_TYPE
      * - Property#JCR_MIXIN_TYPES
      *
+     * &nbsp;
+     *
      * @api
      */
     const NT_BASE = "{http://www.jcp.org/jcr/nt/1.0}base";
@@ -63,8 +65,7 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
     /**
      * A constant for the node type name nt:file (in extended form).
      * A constant for the name of the child node declared by nt:file is:
-     *
-     * - Node#JCR_CONTENT
+     * Node#JCR_CONTENT
      *
      * @api
      */
@@ -73,8 +74,7 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
     /**
      * A constant for the node type name nt:linkedFile (in extended form).
      * A constant for the name of the property declared by nt:linkedFile is:
-     *
-     * - Property#JCR_CONTENT
+     * Property#JCR_CONTENT
      *
      * @api
      */
@@ -83,8 +83,7 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
     /**
      * A constant for the node type name nt:resource (in extended form).
      * A constant for the name of the property declared by nt:resource is:
-     *
-     * - Property#JCR_DATA
+     * Property#JCR_DATA
      *
      * @api
      */
@@ -108,6 +107,8 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
      * - Property#JCR_PATH
      * - Property#JCR_ID
      *
+     * &nbsp;
+     *
      * @api
      */
     const NT_ADDRESS = "{http://www.jcp.org/jcr/nt/1.0}address";
@@ -115,8 +116,7 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
     /**
      * A constant for the node type name mix:referenceable (in extended form).
      * A constant for the name of the property declared by mix:referenceable is:
-     *
-     * - Property#JCR_UUID
+     * Property#JCR_UUID
      *
      * @api
      */
@@ -129,6 +129,8 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
      * - Property#JCR_TITLE
      * - Property#JCR_DESCRIPTION
      *
+     * &nbsp;
+     *
      * @api
      */
     const MIX_TITLE = "{http://www.jcp.org/mix/1.0}title";
@@ -139,6 +141,8 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
      *
      * - Property#JCR_CREATED
      * - Property#JCR_CREATED_BY
+     *
+     * &nbsp;
      *
      * @api
      */
@@ -151,6 +155,8 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
      * - Property#JCR_LAST_MODIFIED
      * - Property#JCR_LAST_MODIFIED_BY
      *
+     * &nbsp;
+     *
      * @api
      */
     const MIX_LAST_MODIFIED = "{http://www.jcp.org/mix/1.0}lastModified";
@@ -158,8 +164,7 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
     /**
      * A constant for the node type name mix:language (in extended form).
      * A constant for the name of the property declared by mix:language is:
-     *
-     * - Property#JCR_LANGUAGE
+     * Property#JCR_LANGUAGE
      *
      * @api
      */
@@ -171,6 +176,8 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
      *
      * - Property#JCR_MIMETYPE
      * - Property#JCR_ENCODING
+     *
+     * &nbsp;
      *
      * @api
      */
@@ -188,6 +195,8 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
      * - Property#JCR_PRIMARY_ITEM_NAME
      * - Node#JCR_PROPERTY_DEFINITION
      * - Node#JCR_CHILD_NODE_DEFINITION
+     *
+     * &nbsp;
      *
      * @api
      */
@@ -207,6 +216,8 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
      * - Property#JCR_DEFAULT_VALUES
      * - Property#JCR_MULTIPLE
      *
+     * &nbsp;
+     *
      * @api
      */
     const NT_PROPERTY_DEFINITION = "{http://www.jcp.org/jcr/nt/1.0}propertyDefinition";
@@ -223,6 +234,8 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
      * - Property#JCR_REQUIRED_PRIMARY_TYPES
      * - Property#JCR_DEFAULT_PRIMARY_TYPE
      * - Property#JCR_SAME_NAME_SIBLINGS
+     *
+     * &nbsp;
      *
      * @api
      */
@@ -242,6 +255,8 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
      * - Property#JCR_LOCK_OWNER
      * - Property#JCR_LOCK_IS_DEEP
      *
+     * &nbsp;
+     *
      * @api
      */
     const MIX_LOCKABLE = "{http://www.jcp.org/mix/1.0}lockable";
@@ -253,6 +268,8 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
      * - Property#JCR_LIFECYCLE_POLICY
      * - Property#JCR_CURRENT_LIFECYCLE_STATE
      *
+     * &nbsp;
+     *
      * @api
      */
     const MIX_LIFECYCLE = "{http://www.jcp.org/mix/1.0}lifecycle";
@@ -260,8 +277,7 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
     /**
      * A constant for the node type name mix:simpleVersionable (in extended form).
      * A constant for the name of the property declared by mix:simpleVersionable is:
-     *
-     * - Property#JCR_IS_CHECKED_OUT
+     * Property#JCR_IS_CHECKED_OUT
      *
      * @api
      */
@@ -278,6 +294,8 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
      * - Property#JCR_ACTIVITY
      * - Property#JCR_CONFIGURATION
      *
+     * &nbsp;
+     *
      * @api
      */
     const MIX_VERSIONABLE = "{http://www.jcp.org/mix/1.0}versionable";
@@ -290,6 +308,8 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
      * - Property#JCR_COPIED_FROM
      * - Node#JCR_ROOT_VERSION
      * - Node#JCR_VERSION_LABELS
+     *
+     * &nbsp;
      *
      * @api
      */
@@ -305,6 +325,8 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
      * - Property#JCR_ACTIVITY
      * - Node#JCR_FROZEN_NODE
      *
+     * &nbsp;
+     *
      * @api
      */
     const NT_VERSION = "{http://www.jcp.org/jcr/nt/1.0}version";
@@ -317,6 +339,8 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
      * - Property#JCR_FROZEN_MIXIN_TYPES
      * - Property#JCR_FROZEN_UUID
      *
+     * &nbsp;
+     *
      * @api
      */
     const NT_FROZEN_NODE = "{http://www.jcp.org/jcr/nt/1.0}frozenNode";
@@ -324,8 +348,7 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
     /**
      * A constant for the node type name nt:versionedChild (in extended form).
      * A constant for the name of the property declared by nt:versionedChild is:
-     *
-     * - Property#JCR_CHILD_VERSION_HISTORY
+     * Property#JCR_CHILD_VERSION_HISTORY
      *
      * @api
      */
@@ -334,8 +357,7 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
     /**
      * A constant for the node type name nt:activity (in extended form).
      * A constant for the name of the property declared by nt:activity is:
-     *
-     * - Property#JCR_TITLE
+     * Property#JCR_TITLE
      *
      * @api
      */
@@ -343,9 +365,8 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
 
     /**
      * A constant for the node type name nt:configuration (in extended form).
-     * A constant for the name of the property declared by nt:configuration are:
-     *
-     * - Property#JCR_ROOT
+     * A constant for the name of the property declared by nt:configuration is:
+     * Property#JCR_ROOT
      *
      * @api
      */
@@ -357,6 +378,8 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
      *
      * - Property#JCR_STATEMENT
      * - Property#JCR_LANGUAGE
+     *
+     * &nbsp;
      *
      * @api
      */

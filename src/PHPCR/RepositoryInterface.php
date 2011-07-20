@@ -30,12 +30,12 @@ namespace PHPCR;
  * The Repository object is usually acquired through the RepositoryFactory.
  *
  * <strong>PHPCR Note:</strong> This interface has been simplified:
- * <ul>
- *   <li>getDescriptor returns array on multivalue, single variable otherwise</li>
- *   <li>removed isSingleValueDescriptor</li>
- *   <li>removed getDescriptorValue and getDescriptorValues as ValueInterface has been dropped.
- *   Use getDescriptor to get the variable value.</li>
- * </ul>
+ * - getDescriptor returns array on multivalue, single variable otherwise
+ * - removed isSingleValueDescriptor
+ * - removed getDescriptorValue and getDescriptorValues as ValueInterface has been dropped.
+ *   Use getDescriptor to get the variable value.
+ *
+ * &nbsp;
  *
  * @package phpcr
  * @subpackage interfaces
@@ -102,13 +102,15 @@ interface RepositoryInterface
 
     /**
      * Key to a String descriptor. Returns one of the following
-     * javax.jcr.Repository constants indicating the stability
-     * of identifiers:
+     * RepositoryInterface constants indicating the stability of identifiers:
      *
-     * IDENTIFIER_STABILITY_METHOD_DURATION - Identifiers may change between method calls.<br />
-     * IDENTIFIER_STABILITY_SAVE_DURATION - Identifers are guaranteed stable within a single save/refresh cycle.<br />
-     * IDENTIFIER_STABILITY_SESSION_DURATION - Identifiers are guaranteed stable within a single session.<br />
-     * IDENTIFIER_STABILITY_INDEFINITE_DURATION - Identifers are guaranteed to be stable forever.<br />
+     * - IDENTIFIER_STABILITY_METHOD_DURATION - Identifiers may change between method calls.
+     * - IDENTIFIER_STABILITY_SAVE_DURATION - Identifers are guaranteed stable within a single save/refresh cycle.
+     * - IDENTIFIER_STABILITY_SESSION_DURATION - Identifiers are guaranteed stable within a single session.
+     * - IDENTIFIER_STABILITY_INDEFINITE_DURATION - Identifers are guaranteed to be stable forever.
+     *
+     * &nbsp;
+     *
      * @api
      */
     const IDENTIFIER_STABILITY = "identifier.stability";
@@ -283,8 +285,8 @@ interface RepositoryInterface
 
     /**
      * Key to string descriptor. Returns one of the following
-     * javax.jcr.Repository constants indicating the level of
-     * support for node type inheritance:
+     * RepositoryInterface constants indicating the level of support for node
+     * type inheritance:
      *
      * NODE_TYPE_MANAGEMENT_INHERITANCE_MINIMAL<br />
      *   Registration of primary node types is limited to those which have only
@@ -371,7 +373,7 @@ interface RepositoryInterface
 
     /**
      * Key to an integer[] descriptor. Returns an array holding the
-     * javax.jcr.PropertyType constants for the property types
+     * \PHPCR\PropertyType constants for the property types
      * (including UNDEFINED, if supported) that a registered node
      * type can specify, or a zero-length array if registered node types cannot
      * specify property definitions.
@@ -425,12 +427,15 @@ interface RepositoryInterface
 
     /**
      * Key to String descriptor. Returns one of the following
-     * javax.jcr.Repository constants indicating the level of
-     * support for joins in queries:
+     * RepositoryInterface constants indicating the level of support for joins
+     * in queries:
      *
-     * QUERY_JOINS_NONE - Joins are not supported. Queries are limited to a single selector.<br />
-     * QUERY_JOINS_INNER - Inner joins are supported.<br />
-     * QUERY_JOINS_INNER_OUTER - Inner and outer joins are supported.<br />
+     * - QUERY_JOINS_NONE - Joins are not supported. Queries are limited to a single selector.
+     * - QUERY_JOINS_INNER - Inner joins are supported.
+     * - QUERY_JOINS_INNER_OUTER - Inner and outer joins are supported.
+     *
+     * &nbsp;
+     *
      * @api
      */
     const QUERY_JOINS = "query.joins";
@@ -472,7 +477,7 @@ interface RepositoryInterface
      * implementation. This may, for example, be the "home workspace" of the user whose credentials
      * were passed, though this is entirely up to the configuration and implementation of the
      * repository. Alternatively, it may be a "null workspace" that serves only to provide the
-     * method Workspace.getAccessibleWorkspaceNames(), allowing the client to select from among
+     * method WorkspaceInterface::getAccessibleWorkspaceNames(), allowing the client to select from among
      * available "real" workspaces.
      *
      * <b>Note:</b> The Java API defines this method with multiple differing signatures.

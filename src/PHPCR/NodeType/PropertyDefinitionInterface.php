@@ -37,25 +37,25 @@ interface PropertyDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInte
      * Gets the required type of the property.
      *
      * Possible property types of:
-     * - PropertyType.STRING
-     * - PropertyType.DATE
-     * - PropertyType.BINARY
-     * - PropertyType.DOUBLE
-     * - PropertyType.DECIMAL
-     * - PropertyType.LONG
-     * - PropertyType.BOOLEAN
-     * - PropertyType.NAME
-     * - PropertyType.PATH
-     * - PropertyType.URI
-     * - PropertyType.REFERENCE
-     * - PropertyType.WEAKREFERENCE
-     * - PropertyType.UNDEFINED
+     * - PropertyType::STRING
+     * - PropertyType::DATE
+     * - PropertyType::BINARY
+     * - PropertyType::DOUBLE
+     * - PropertyType::DECIMAL
+     * - PropertyType::LONG
+     * - PropertyType::BOOLEAN
+     * - PropertyType::NAME
+     * - PropertyType::PATH
+     * - PropertyType::URI
+     * - PropertyType::REFERENCE
+     * - PropertyType::WEAKREFERENCE
+     * - PropertyType::UNDEFINED
      *
-     * PropertyType.UNDEFINED is returned if this property may be of any type.
+     * PropertyType::UNDEFINED is returned if this property may be of any type.
      *
      * In implementations that support node type registration, if this
      * PropertyDefinition object is actually a newly-created empty
-     * PropertyDefinitionTemplate, then this method will return PropertyType.STRING.
+     * PropertyDefinitionTemplate, then this method will return PropertyType::STRING.
      *
      * @return integer An integer constant member of PropertyType.
      * @api
@@ -126,7 +126,7 @@ interface PropertyDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInte
      *  properties should be stored in fully-qualified form (using the actual
      *  URI instead of the prefix) and then be converted to prefix form
      *  according to the current mapping upon the
-     *  PropertyDefinition.getValueConstraints call.
+     *  PropertyDefinitionInterface::getValueConstraints() call.
      *
      * <b>NAME</b>: The constraint string is a JCR name in prefix form. For example
      * "myapp:products". No wildcards or other pattern matching are supported.
@@ -176,7 +176,7 @@ interface PropertyDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInte
      * property is constrained to be one of the values 2, 4, or 8, the constraint
      * string array {"2", "4", "8"} can be used instead of the standard notation,
      * {"[2,2]", "[4,4]", "[8,8]"}. However, even if this shorthand is used on
-     * registration, the value returned by PropertyDefinition.getValueConstraints()
+     * registration, the value returned by PropertyDefinitionInterface::getValueConstraints()
      * will always use the standard notation.
      *
      * Because constraints are returned as an array of disjunctive constraints,
@@ -198,7 +198,7 @@ interface PropertyDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInte
      *
      * These are the values that the property defined by this PropertyDefinition
      * will be assigned if it is automatically created (that is, if
-     * ItemDefinition.isAutoCreated() returns true).
+     * ItemDefinitionInterface::isAutoCreated() returns true).
      * This method returns an array of values. If the property is multi-
      * valued, then this array represents the full set of values that the property
      * will be assigned upon being auto-created. Note that this could be the empty
