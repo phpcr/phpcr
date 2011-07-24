@@ -225,7 +225,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      * @param integer $type The type to set for the property, optional. Must be
      *      a constant from {@link PropertyType}
      *
-     * @return \PHPCR\PropertyInterface The updated Property object
+     * @return \PHPCR\PropertyInterface The new resp. updated Property object
      *
      * @throws \PHPCR\ValueFormatException if the specified property is a DATE
      *      but the value cannot be expressed in the ISO 8601-based format
