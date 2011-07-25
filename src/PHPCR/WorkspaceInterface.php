@@ -381,6 +381,14 @@ interface WorkspaceInterface {
     function getQueryManager();
 
     /**
+     * Returns the UserTransaction object associated with this session
+     *
+     * @return \PHPCR\Transaction\UserTransactionInterface a UserTransaction object.
+     * @api
+     */
+    function getTransactionManager();
+
+    /**
      * Returns the NamespaceRegistry object, which is used to access the mapping between prefixes and namespaces.
      *
      * In level 2 repositories the NamespaceRegistry can also be used to change the namespace mappings.
