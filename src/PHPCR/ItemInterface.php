@@ -81,7 +81,7 @@ interface ItemInterface
      * Returns the parent of this Item.
      *
      * @return \PHPCR\NodeInterface The parent of this Item.
-     * @throws \PHPCR\ItemNotFoundException if this Item< is the root node of a workspace.
+     * @throws \PHPCR\ItemNotFoundException if this Item is the root node of a workspace.
      * @throws \PHPCR\AccessDeniedException if the current session does not have sufficent access to retrieve the parent of this item.
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
