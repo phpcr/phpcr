@@ -36,7 +36,7 @@ interface ItemInterface
     /**
      * Returns the normalized absolute path to this item.
      *
-     * @returns string the normalized absolute path of this Item.
+     * @return string the normalized absolute path of this Item.
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
      */
