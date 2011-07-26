@@ -1,6 +1,10 @@
 # PHPCR Tutorial
 
-This is an introduction into the PHP content repository basically with code examples.
+This is an introduction into the PHP content repository. You will mostly see code examples.
+
+To get the shortest, self-contained example, [set up Jackalope](https://github.com/jackalope/jackalope/wiki/Downloads) and follow the example in the [API Reference](http://phpcr.github.com/doc/html/index.html)
+
+TODO: Not every implementation has to support all chapters of the specification. We will add a section about capability testing to show you how to write portable code.
 
 ## Introduction
 
@@ -26,7 +30,7 @@ In the following chapters, we will show how to use the API. But first, you need 
 
     $factory = new $factoryclass();
     $repository = $factory->getRepository($parameters);
-    if (null == $repository) {
+    if (null === $repository) {
         var_dump($parameters);
         die('There where missing parameters, the factory could not create a repository');
     }
@@ -51,6 +55,9 @@ In the following chapters, we will show how to use the API. But first, you need 
 
 
 ### Reading data and traversal
+
+You can wrap any code into try catch blocks. See the [API doc](http://phpcr.github.com/doc/html/index.html) for what exceptions to expect on which calls. With PHPCR being ported from Java, there is a lot of Exceptions defined.
+But as this is PHP, you don't have to catch them. As long as your content is as the code expects, it won't matter.
 
     $node = $session->getNode('/foo/bar/ding/dong');
     echo $node->getName(); // will be 'dong'
@@ -280,8 +287,9 @@ Versioning is used to track changes in nodes with the possibility to get back to
 
 The PHPCR API in itself uses a transaction model by only persisting changes on session save. If you need transactions over more than one save operation or including workspace operations that are dispatched immediatly, you can use transactions.
 
-    // get the transaction manager. TODO: should be on workspace
-    $transactionManager = $session->getTransactionManager();
+    // get the transaction manager.
+    $workspace = $session->getWorkspace()
+    $transactionManager = $workspace->getTransactionManager();
     // start a transaction
     $transactionManager->begin();
     $session->removeNode('/some/path/to/node');
@@ -366,11 +374,10 @@ We hope this tutorial helps to get you started. If you miss anything, have sugge
 
 ### Further reading
 
-Browse through the <a href="http://phpcr.github.com/doc/html/index.html">API documentation</a> to see what each of the core elements mentioned in the introduction can do.
+Browse through the [API documentation](http://phpcr.github.com/doc/html/index.html) to see what each of the core elements mentioned in the introduction can do.
 
-To fully understand the concepts behind the content repository API, we suggest reading
-<a href="http://www.day.com/maven/javax.jcr/javadocs/jcr-2.0/index.html">the Java content repository</a> specification and
-then the <a href="https://github.com/phpcr/phpcr/blob/master/doc/JCR_TO_PHPCR.txt">simplifications we did for PHP</a>.
+To fully understand the concepts behind the content repository API, we suggest reading [the Java content repository specification](http://www.day.com/specs/jcr/2.0/index.html) and
+then the [simplifications we did for PHP](https://github.com/phpcr/phpcr/blob/master/doc/JCR_TO_PHPCR.txt).
 
 
 ### Not yet implemented
