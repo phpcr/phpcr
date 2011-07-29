@@ -22,8 +22,9 @@ $parameters = array('jackalope.jackrabbit_uri' =&gt; 'http://localhost:8080/serv
 $factory = new $factoryclass();
 $repository = $factory-&gt;getRepository($parameters);
 $credentials = new \PHPCR\SimpleCredentials('admin','admin');
-$session = $repository-&gt;login($credentials, 'default);
-$node = $session-&gt;addNode('test', 'nt:unstructured');
+$session = $repository-&gt;login($credentials, 'default');
+$root = $session-&gt;getRootNode();
+$node = $root-&gt;addNode('test', 'nt:unstructured');
 $node-&gt;setProperty('prop', 'value');
 $session-&gt;save();
 ...

@@ -1,10 +1,43 @@
 # PHPCR Tutorial
 
-This is an introduction into the PHP content repository. You will mostly see code examples.
+This is an introduction into the PHP content repository. You will mostly see code examples. It should work with any PHPCR implementation. We propose using the [Symfony Cmf Sandbox](https://github.com/symfony-cmf/cmf-sandbox).
 
-To get the shortest, self-contained example, [set up Jackalope](https://github.com/jackalope/jackalope/wiki/Downloads) and follow the example in the [API Reference](http://phpcr.github.com/doc/html/index.html)
+## Installing the Cmf Sandbox
 
-TODO: Not every implementation has to support all chapters of the specification. We will add a section about capability testing to show you how to write portable code.
+Just follow the README of the sandbox repository and run the fixtures import command to have some sample data.
+To do the examples inside Symfony without having to learn symfony, just edit the file
+vendor/symfony-cmf/src/Symfony/Cmf/Bundle/NavigationBundle/Controller/NavigationController.php
+and completely replace the indexAction() with the tutorial code and end the method with a die;
+
+## Installing Jackalope standalone
+
+Jackalope can of course be set up without Symfony: [Installation guide](https://github.com/jackalope/jackalope/wiki/Downloads).
+The issue is that you won't be able to load the tutorial test data.
+
+TODO: port the fixtures loading command to PHPCR and don't mention the cmf sandbox anymore.
+
+
+# In a nutshell
+
+The shortest self-contained example should output a line with 'value':
+
+    $factoryclass = '\Jackalope\RepositoryFactoryJackrabbit';
+    $parameters = array('jackalope.jackrabbit_uri' => 'http://localhost:8080/server');
+    // end of implementation specific configuration
+
+    $factory = new $factoryclass();
+    $repository = $factory->getRepository($parameters);
+    $credentials = new \PHPCR\SimpleCredentials('admin','admin');
+    $session = $repository->login($credentials, 'default');
+    $root = $session->getRootNode();
+    $node = $root->addNode('test', 'nt:unstructured');
+    $node->setProperty('prop', 'value');
+    $session->save();
+    // maybe in a follow up request...
+    $node = $session->getNode('/test');
+    echo $node->getPropertyValue('prop');
+
+Still with us? Good, lets get in a bit deeper...
 
 ## Introduction
 
@@ -15,6 +48,9 @@ In the following chapters, we will show how to use the API. But first, you need 
 * Repository: Linking to one storage location with possibly many workspaces. Repositories are created with the help of the repository factory.
 * RepositoryFactory: Create repository instances for your implementation with implementation specific parameters.
 * Workspace: Provides general operations on the workspace of the Session it is acquired from.
+
+
+TODO: Not every implementation has to support all chapters of the specification. We will add a section about capability testing to show you how to write portable code.
 
 
 ### Bootstrapping
