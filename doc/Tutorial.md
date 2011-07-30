@@ -2,6 +2,7 @@
 
 This is an introduction into the PHP content repository. You will mostly see code examples. It should work with any PHPCR implementation. We propose using the [Symfony Cmf Sandbox](https://github.com/symfony-cmf/cmf-sandbox).
 
+
 ## Installing the Cmf Sandbox
 
 Just follow the README of the sandbox repository and run the fixtures import command to have some sample data.
@@ -9,12 +10,18 @@ To do the examples inside Symfony without having to learn symfony, just edit the
 vendor/symfony-cmf/src/Symfony/Cmf/Bundle/NavigationBundle/Controller/NavigationController.php
 and completely replace the indexAction() with the tutorial code and end the method with a die;
 
+
 ## Installing Jackalope standalone
 
 Jackalope can of course be set up without Symfony: [Installation guide](https://github.com/jackalope/jackalope/wiki/Downloads).
 The issue is that you won't be able to load the tutorial test data.
 
 TODO: port the fixtures loading command to PHPCR and don't mention the cmf sandbox anymore.
+
+
+## Browser to see what is in the repository
+
+We recommend installing the [PhpcrBrowser](https://github.com/symfony-cmf/phpcrbrowser) so that you can see what data you currently have in your repository.
 
 
 # In a nutshell
@@ -95,20 +102,20 @@ TODO: Not every implementation has to support all chapters of the specification.
 You can wrap any code into try catch blocks. See the [API doc](http://phpcr.github.com/doc/html/index.html) for what exceptions to expect on which calls. With PHPCR being ported from Java, there is a lot of Exceptions defined.
 But as this is PHP, you don't have to catch them. As long as your content is as the code expects, it won't matter.
 
-    $node = $session->getNode('/foo/bar/ding/dong');
-    echo $node->getName(); // will be 'dong'
-    echo $node->getPath(); // will be '/foo/bar/ding/dong'
+    $node = $session->getNode('/cms/content/static/home');
+    echo $node->getName(); // will be 'home'
+    echo $node->getPath(); // will be '/cms/content/static/home'
 
 #### Reading properties
 
     // get the php value of a property (type automatically determined from stored information)
-    echo $node->getPropertyValue('my property');
+    echo $node->getPropertyValue('title');
 
     // get the Property object to operate on
-    $property = $node->getProperty('my property');
+    $property = $node->getProperty('content');
     echo 'Size of '.$property->getPath().' is '.$property->getLength();
 
-    // read a binary property
+    // read a binary property. TODO: have binary data in demo content
     $property = $node->getProperty('jcr:data');
 
     $data = $property->getString(); // read binary into string
@@ -141,10 +148,11 @@ But as this is PHP, you don't have to catch them. As long as your content is as 
 #### Traversing the hierarchy
 
     // getting a single node by path relative to the node
-    $othernode = $node->getNode('../baz'); // /foo/bar/ding/baz
+    $othernode = $node->getNode('../projects'); // /cms/content/static/projects
 
-    // get all child nodes
-    foreach($node->getNodes() as $name => $node) {
+    // get all child nodes. the $node is Iterable, the iterator being all children
+    $node = $session->getNode('/cms/content/static');
+    foreach($node as $name => $node) {
         if ($node->hasProperties()) {
             echo "$name has properties\n";
         } else {
@@ -152,18 +160,18 @@ But as this is PHP, you don't have to catch them. As long as your content is as 
         }
     }
 
-    // get child nodes with the name starting with 'a'
-    foreach($node->getNodes('a*') as $name => $node) {
+    // get child nodes with the name starting with 'c'
+    foreach($node->getNodes('c*') as $name => $node) {
         echo "$name\n";
     }
 
-    // get child nodes with the name starting with 'a' or ending with 'b' or named 'my node'
-    foreach($node->getNodes(array('a*', '*b', 'my node')) as $name => $node) {
+    // get child nodes with the name starting with 'h' or ending with 'e' or named 'projects'
+    foreach($node->getNodes(array('h*', '*e', 'projects')) as $name => $node) {
         echo "$name\n";
     }
 
     // get the parent node
-    $parent = $node->getParent(); // /foo/bar/ding
+    $parent = $node->getParent(); // /cms/content
 
     // build a breadcrumb of the node ancestry
     $i = 0;
@@ -173,7 +181,7 @@ But as this is PHP, you don't have to catch them. As long as your content is as 
     do {
         $i++;
         $parent = $node->getAncestor($i);
-        $breadcrumb[$parent->getPath()] = $parent->getPropertyValue('label');
+        $breadcrumb[$parent->getPath()] = $parent->getPropertyValue('title');
     } while ($parent != $node);
 
 #### Node and property references
@@ -181,14 +189,15 @@ But as this is PHP, you don't have to catch them. As long as your content is as 
 Nodes can be referenced by unique id (if they are mix:referenceable) or by path. getValue returns the referenced node instance.
 Properties can only be referenced by path because they can not have a unique id.
 
-    // get a referenced node
+    $node = $session->getNode('/cms/navigation/main/company');
+    // get a referenced node.
     $othernode = $node->getPropertyValue('reference'); // will work if the property is of type reference, weakreference, path or name
 
     // get it from a property
     $property = $node->getProperty('reference');
     $othernode = $property->getNode(); // will also work if the property is a string that happens to denote a path
 
-    // get a referenced property
+    // get a referenced property. TODO: have a property reference in the fixtures
     $otherproperty = $node->getPropertyValue('propref'); // propref has to be a path or name
 
 #### Shareable nodes
@@ -216,7 +225,7 @@ When reading, Jackalope preserves the order in which the nodes have been added.
     $queryManager = $workspace->getQueryManager();
 
     $sql = "SELECT * FROM [nt:unstructured]
-        WHERE [nt:unstructured].[my:property] = 'bar'
+        WHERE [nt:unstructured].[title] = 'The Company'
         ORDER BY [nt:unstructured].title";
     $query = $queryManager->createQuery($sql, 'JCR-SQL2');
     $query->setLimit(10);
@@ -247,7 +256,7 @@ Everything you do on the Session, Node and Property objects is only visible loca
 
 
     // have a reference
-    $targetnode = $session->getNode('/path/to/node');
+    $targetnode = $session->getNode('/cms/content/static/home');
 
     // make sure the target node is referenceable.
     $targetnode->addMixin('mix:referenceable');
@@ -260,24 +269,28 @@ Everything you do on the Session, Node and Property objects is only visible loca
 
     $session->save();
 
+
 #### Moving and deleting nodes
 
-    // move the node ding from its parent /foo/bar to the new parent /other/place
+    // move the node company and all its children from its parent /cms/navigation/main to
+    // the new parent /cms/navigation/main/projects
     // the target parent must already exist, it is not automatically created
-    $session->move('/foo/bar/ding', '/other/place');
+    $session->move('/cms/navigation/main/company', '/cms/navigation/main/projects');
 
-    // for this session, everything that was under /foo/bar/ding is now at /other/place
+    // for this session, everything that was at /cms/navigation/main/company is now under /cms/navigation/main/projects
+    // i.e. /cms/navigation/main/projects/company/team
     // once the session is saved, the move is persisted and visible in other sessions
 
     // immediatly move the node in the persistent storage
     $workspace = $session->getWorkspace();
-    $workspace->move('/foo/bar/ding', '/other/place');
+    $workspace->move('/cms/navigation/main/company', '/cms/navigation/main/projects');
 
     // copy a node and its children (only on workspace, not in session)
-    $workspace->copy('/src/path/node', '/targ/path');
+    $workspace->copy('/cms/navigation/main/company', '/cms/navigation/main/projects');
 
     // delete a node
-    $session->removeItem('/foo/bar');
+    $session->removeItem('/cms/navigation/main/company');
+
 
 #### Orderable child nodes
 
@@ -328,10 +341,10 @@ The PHPCR API in itself uses a transaction model by only persisting changes on s
     $transactionManager = $workspace->getTransactionManager();
     // start a transaction
     $transactionManager->begin();
-    $session->removeNode('/some/path/to/node');
+    $session->removeNode('/cms/navigation/main/company');
     $node->addNode('insideTransaction');
     $session->save(); // wrote to the backend but not yet visible to other sessions
-    $workspace->move('/foo/bar/ding', '/new/path'); // will only move the new node if session has been saved. still not visible to other sessions
+    $workspace->move('/cms/navigation', '/new'); // will only move the new node if session has been saved. still not visible to other sessions
     $transactionManager->commit(); // now everything become persistent and visible to others
 
     // you can abort a transaction
@@ -356,10 +369,10 @@ In Jackalope, we only implemented exporting so far.
     $file = fopen('/tmp/dump.xml');
 
     // dump the tree at /foo/bar into a document view file
-    $session->exportDocumentView('/foo/bar', $file, true /* skip binary properties */, false /* recursivly output the child nodes as well */);
+    $session->exportDocumentView('/cms', $file, true /* skip binary properties */, false /* recursivly output the child nodes as well */);
 
     // export the tree at /foo/bar into a system view xml file
-    $session->exportSystemView('/foo/bar', $file, false /* do not skip binary properties */, false);
+    $session->exportSystemView('/cms', $file, false /* do not skip binary properties */, false);
 
 
 ### Node Types
@@ -426,4 +439,3 @@ A couple of other advanced functionalities are defined by the API. They are not 
 * Locking
 * Lifecycle managment
 * Retention and hold
-
