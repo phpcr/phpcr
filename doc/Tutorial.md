@@ -236,7 +236,19 @@ When reading, Jackalope preserves the order in which the nodes have been added.
         echo $node->getName();
     }
 
-    TODO: more advanced example?
+#### Without building nodes
+
+There can be a little performance boost if you do not need to fetch the nodes
+but just want to access one value of each node.
+
+    foreach ($queryResult as $path => $row) {
+        echo $path . ' scored ' . $row->getScore();
+
+        $row->getValue('a-value-you-know-exists');
+    }
+
+Large search results can be dangerous for performance. See below for some
+performance tips.
 
 
 ### Writing data
