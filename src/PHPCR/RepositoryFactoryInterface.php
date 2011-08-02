@@ -68,7 +68,7 @@ interface RepositoryFactoryInterface
      * @throws \PHPCR\RepositoryException if no suitable repository is found or another error occurs.
      * @api
      */
-    function getRepository(array $parameters = null);
+    static function getRepository(array $parameters = null);
 
     /**
      * Get the list of configuration options that can be passed to getRepository
@@ -78,5 +78,5 @@ interface RepositoryFactoryInterface
      *
      * @return array hash map of configuration key => english description
      */
-    function getConfigurationKeys();
+    static function getConfigurationKeys();
 }
