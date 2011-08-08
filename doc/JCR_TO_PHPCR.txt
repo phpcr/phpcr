@@ -244,7 +244,7 @@ The PHPCR UserTransaction interface shall provide a transaction mechanism in
 a way the original Java UserTransaction interface can be used for transactions
 while working with the JCR API. Have a look at the JCR spec for an example how
 you can work with transactions. You can obtain a UserTransaction object by
-calling Session::getTransactionManager().
+calling Workspace::getTransactionManager().
 
 Main differences to the original Java UserTransaction:
  * The Java method getStatus() is named inTransaction().
