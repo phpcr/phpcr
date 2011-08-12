@@ -152,6 +152,12 @@ from Java. java.lang.Boolean.fromString compares the String with "true",
 anything else is interpreted as false. In PHP, every value except
 false|0|null|"" is true.
 
+Dynamic re-binding of property types: Dropping the Value interface, the methods
+NodeInterface::setProperty() and PropertyInterface::setValue() got an
+additional parameter to force a type. If a change is attempted and the
+implementation does not support re-binding, it has to throw the
+UnsupportedRepositoryOperationException.
+
 
 Property
 ********

@@ -478,20 +478,27 @@ interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable
     /**
      * Sets the value of this property to the value.
      *
-     * If the type parameter is set, the property is set to that type and the
-     * value converted into that type. If the node type does not allow the type
-     * an exception is thrown.
+     * If the type parameter is present and this implementation supports
+     * dynamic re-binding of properties, this property changes its type.
+     * First, a conversion of value into that type is attempted with
+     * PropertyType::convertType() and if there is no ValueFormatException,
+     * the property type changes to the new type.
+     * If the node type does not allow the requested type, a
+     * ConstraintViolationException is thrown.
+     * If the implementation does not support dynamic re-binding, an
+     * UnsupportedRepositoryException is thrown if the type parameter is
+     * present and different from the current type.
      *
-     * If no explicit type is given, then it is derived from the value. (First
-     * value in case of multivalue property.)
-     * If the node type allows the type of the parameter, the property changes
-     * its type to the type of the value. Otherwise, a best-effort conversion
-     * is attempted.
+     * If no explicit type is given, then the type is derived from the value.
+     * (First value in case of multivalue property.)
+     * If the node type allows the type of the parameter, this property changes
+     * its type to the type of the value. Otherwise, a conversion of the value
+     * into the required type is attempted with PropertyType::convertType()
      *
      * If value is of type PropertyInterface, the value of the property is
      * copied into this property. (If type is set, the property value is
      * converted into this type, otherwise the type of the property is used
-     * as explained above.
+     * as in the case of no explicit type).
      * This can be used to copy a binary from one property into another without
      * getting the stream. The implemenation should take care to detect the
      * case and copy the binary data directly in the backend for optimal
@@ -503,11 +510,11 @@ interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable
      * a ValueFormatException is thrown.
      *
      * To create a PATH property with a reference to an other property, you can
-     * call setValue with the path of the other property and the PATH type
-     * constant. Passing the property itself and the PATH type will convert the
-     * value of the property to a path.
+     * call setValue with the return value of getPath called on the other
+     * property and the PATH type constant. Passing the property itself and the
+     * PATH type will convert the *value* of the property to a path.
      *
-     * When assigning a stream resource to create a binary property, the client
+     * When assigning a stream resource to write a binary property, the client
      * application must leave the stream alone afterwards. The PHPCR
      * implementation is responsible for closing it after saving.
      *
@@ -527,18 +534,24 @@ interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable
      *
      * @return void
      *
-     * @throws \PHPCR\ValueFormatException if the type or format of the specified value is incompatible with the type
-     *                                     of this property.
-     * @throws \PHPCR\Version\VersionException if this property belongs to a node that is read-only due to a checked-in
-     *                                         node and this implementation performs this validation immediately.
-     * @throws \PHPCR\Lock\LockException if a lock prevents the setting of the value and this implementation performs
-     *                                   this validation immediately.
-     * @throws \PHPCR\ConstraintViolationException if the change would violate a node-type or other constraint and
-     *                                             this implementation performs this validation immediately.
+     * @throws \PHPCR\ValueFormatException if the type or format of the
+     *      specified value is incompatible with the type of this property.
+     * @throws \PHPCR\Version\VersionException if this property belongs to a
+     *      node that is read-only due to a checked-in node and this
+     *      implementation performs this validation immediately.
+     * @throws \PHPCR\Lock\LockException if a lock prevents the setting of the
+     *      value and this implementation performs this validation immediately.
+     * @throws \PHPCR\ConstraintViolationException if the change would violate
+     *      a node-type or other constraint and this implementation performs
+     *      this validation immediately.
+     * @throws \PHPCR\UnsupportedRepositoryOperationException if the type
+     *      parameter is set and different from the current type and this
+     *      implementation does not support dynamic re-binding
+     * @throws \InvalidArgumentException if the specified DateTime value
+     *      cannot be expressed in the ISO 8601-based format defined in the JCR
+     *      2.0 specification and the implementation does not support dates
+     *      incompatible with that format.
      * @throws \PHPCR\RepositoryException if another error occurs.
-     * @throws \InvalidArgumentException if the specified DateTime value cannot be expressed in the ISO 8601-based
-     *                                   format defined in the JCR 2.0 specification and the implementation does not
-     *                                   support dates incompatible with that format.
      * @api
      */
     function setValue($value, $type = null);

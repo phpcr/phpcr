@@ -192,16 +192,14 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      * determined by the node type of this node. If, based on the name and
      * value passed, there is more than one property definition that applies,
      * the repository chooses one definition according to some implementation-
-     * specific criteria. Once property with name P has been created, the
-     * behavior of a subsequent setProperty($p,$v) may differ across
-     * implementations.
-     * Some repositories may allow P to be dynamically re-bound to a different
-     * property definition (based for example, on the new value being of a
-     * different type than the original value) while other repositories may not
-     * allow such dynamic re-binding.
+     * specific criteria.
      *
-     * If the property type is different than the type of supplied variables, a
-     * best-effort conversion is attempted.
+     * Once property with name P has been created, the behavior of a subsequent
+     * setProperty($p,$v) may differ across implementations. Some repositories
+     * may allow P to be dynamically re-bound to a different property
+     * definition (based for example, on the new value being of a different
+     * type than the original value) while other repositories may not allow
+     * such dynamic re-binding.
      *
      * Passing a null as the second parameter removes the property. It is
      * equivalent to calling remove on the Property object itself. For example,
@@ -243,6 +241,9 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      * @throws \PHPCR\ConstraintViolationException if the change would violate
      *      a node-type or other constraint and this implementation performs
      *      this validation immediately instead of waiting until save.
+     * @throws \PHPCR\UnsupportedRepositoryOperationException if the type
+     *      parameter is set and different from the current type and this
+     *      implementation does not support dynamic re-binding
      * @throws \PHPCR\RepositoryException if another error occurs.
      *
      * @see \PHPCR\PropertyInterface::setValue()
