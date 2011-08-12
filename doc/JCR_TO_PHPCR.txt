@@ -76,7 +76,8 @@ Note: Plain PHP arrays would be even simpler than any interfaces, while still
 allowing to use foreach. But they would have the major drawback that no lazy
 loading is possible, all data has to be instantiated immediately.
 If an implementation does not want lazy loading, it can just create an
-ArrayIterator from the array.
+ArrayIterator from the array. Client code must not forget however that the API
+does *not* require the ArrayAccess interface with random access by key.
 
 
 Additionally, we declared API elements as Traversable where it makes sense.
