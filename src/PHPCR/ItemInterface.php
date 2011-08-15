@@ -251,7 +251,7 @@ interface ItemInterface
      *                                         waiting until save.
      * @throws \PHPCR\Lock\LockException if a lock prevents the removal of this item and this implementation performs
      *                                   this validation immediately instead of waiting until save.
-     * @throws \PHPCR\ConstraintViolationException if removing the specified item would violate a node type or
+     * @throws \PHPCR\NodeType\ConstraintViolationException if removing the specified item would violate a node type or
      *                                             implementation-specific constraint and this implementation performs
      *                                             this validation immediately instead of waiting until save.
      * @throws \PHPCR\AccessDeniedException if this item or an item in its subgraph is currently the target of a

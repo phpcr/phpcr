@@ -334,7 +334,7 @@ interface SessionInterface
      *                                         versionable and checked-in, or or is non-versionable and its nearest
      *                                         versionable ancestor is checked-in and this implementation performs
      *                                         this validation immediately.
-     * @throws \PHPCR\ConstraintViolationException if a node-type or other constraint violation is detected immediately
+     * @throws \PHPCR\NodeType\ConstraintViolationException if a node-type or other constraint violation is detected immediately
      *                                             and this implementation performs this validation immediately.
      * @throws \PHPCR\Lock\LockException if the move operation would violate a lock and this implementation performs
      *                                   this validation immediately.
@@ -363,7 +363,7 @@ interface SessionInterface
      *                                         immediately.
      * @throws \PHPCR\Lock\LockException if a lock prevents the removal of the specified item and this implementation
      *                                   performs this validation immediately instead.
-     * @throws \PHPCR\ConstraintViolationException if removing the specified item would violate a node type or
+     * @throws \PHPCR\NodeType\ConstraintViolationException if removing the specified item would violate a node type or
      *                                             implementation-specific constraint and this implementation performs
      *                                             this validation immediately.
      * @throws \PHPCR\PathNotFoundException if no accessible item is found at $absPath property or if the specified
@@ -401,7 +401,7 @@ interface SessionInterface
      *                                      REFERENCE property that this Session does not have read access to.
      * @throws \PHPCR\ItemExistsException if any of the changes to be persisted would be prevented by the presence
      *                                    of an already existing item in the workspace.
-     * @throws \PHPCR\ConstraintViolationException if any of the changes to be persisted would violate a node type or
+     * @throws \PHPCR\NodeType\ConstraintViolationException if any of the changes to be persisted would violate a node type or
      *                                             restriction. Additionally, a repository may use this exception to
      *                                             enforce implementation- or configuration-dependent restrictions.
      * @throws \PHPCR\InvalidItemStateException if any of the changes to be persisted conflicts with a change already
@@ -650,7 +650,7 @@ interface SessionInterface
      *
      * @throws \PHPCR\PathNotFoundException if no node exists at parentAbsPath and this implementation performs this
      *                                      validation immediately.
-     * @throws \PHPCR\ConstraintViolationException if the new subgraph cannot be added to the node at parentAbsPath
+     * @throws \PHPCR\NodeType\ConstraintViolationException if the new subgraph cannot be added to the node at parentAbsPath
      *                                             due to node-type or other implementation-specific constraints, and
      *                                             this implementation performs this validation immediately.
      * @throws \PHPCR\Version\VersionException if the node at $parentAbsPath is read-only due to a checked-in node and
@@ -725,7 +725,7 @@ interface SessionInterface
      *                                      validation immediately.
      * @throws \PHPCR\ItemExistsException if deserialization would overwrite an existing item and this implementation
      *                                    performs this validation immediately.
-     * @throws \PHPCR\ConstraintViolationException if a node type or other implementation-specific constraint is
+     * @throws \PHPCR\NodeType\ConstraintViolationException if a node type or other implementation-specific constraint is
      *                                             violated that would be checked on a session write method or if
      *                                             uuidBehavior is set to IMPORT_UUID_COLLISION_REMOVE_EXISTING and an
      *                                             incoming node has the same UUID as the node at parentAbsPath or one

@@ -541,9 +541,9 @@ interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable
      *      implementation performs this validation immediately.
      * @throws \PHPCR\Lock\LockException if a lock prevents the setting of the
      *      value and this implementation performs this validation immediately.
-     * @throws \PHPCR\ConstraintViolationException if the change would violate
-     *      a node-type or other constraint and this implementation performs
-     *      this validation immediately.
+     * @throws \PHPCR\NodeType\ConstraintViolationException if the change would
+     *      violate a node-type or other constraint and this implementation
+     *      performs this validation immediately.
      * @throws \PHPCR\UnsupportedRepositoryOperationException if the type
      *      parameter is set and different from the current type and this
      *      implementation does not support dynamic re-binding

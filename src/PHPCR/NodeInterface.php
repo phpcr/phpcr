@@ -111,7 +111,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      *      intermediary Nodes that do not exist or the last element of relPath
      *      has an index, and this implementation performs this validation
      *      immediately.
-     * @throws \PHPCR\ConstraintViolationException if a node type or
+     * @throws \PHPCR\NodeType\ConstraintViolationException if a node type or
      *      implementation-specific constraint is violated or if an attempt is
      *      made to add a node as the child of a property and this
      *      implementation performs this validation immediately.
@@ -159,7 +159,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      *
      * @throws \PHPCR\UnsupportedRepositoryOperationException if ordering is
      *      not supported on this node.
-     * @throws \PHPCR\ConstraintViolationException if an implementation-
+     * @throws \PHPCR\NodeType\ConstraintViolationException if an implementation-
      *      specific ordering restriction is violated and this implementation
      *      performs this validation immediately instead of waiting until save.
      * @throws \PHPCR\ItemNotFoundException if either parameter is not the
@@ -238,7 +238,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      * @throws \PHPCR\Lock\LockException if a lock prevents the setting of the
      *      property and this implementation performs this validation
      *      immediately instead of waiting until save.
-     * @throws \PHPCR\ConstraintViolationException if the change would violate
+     * @throws \PHPCR\NodeType\ConstraintViolationException if the change would violate
      *      a node-type or other constraint and this implementation performs
      *      this validation immediately instead of waiting until save.
      * @throws \PHPCR\UnsupportedRepositoryOperationException if the type
@@ -720,7 +720,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      *
      * @return void
      *
-     * @throws \PHPCR\ConstraintViolationException if the specified primary
+     * @throws \PHPCR\NodeType\ConstraintViolationException if the specified primary
      *      node type creates a type conflict and this implementation performs
      *      this validation immediately.
      * @throws \PHPCR\NodeType\NoSuchNodeTypeException if the specified
@@ -768,7 +768,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      * @throws \PHPCR\NodeType\NoSuchNodeTypeException if the specified
      *      mixinName is not recognized and this implementation performs this
      *      validation immediately instead of waiting until save.
-     * @throws \PHPCR\ConstraintViolationException if the specified mixin node
+     * @throws \PHPCR\NodeType\ConstraintViolationException if the specified mixin node
      *      type is prevented from being assigned.
      * @throws \PHPCR\Version\VersionException if this node is versionable and
      *      checked-in or is non-versionable but its nearest versionable
@@ -797,7 +797,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      * @throws \PHPCR\NodeType\NoSuchNodeTypeException if the specified
      *      mixinName is not currently assigned to this node and this
      *      implementation performs this validation immediately.
-     * @throws \PHPCR\ConstraintViolationException if the specified mixin node
+     * @throws \PHPCR\NodeType\ConstraintViolationException if the specified mixin node
      *      type is prevented from being removed and this implementation
      *      performs this validation immediately.
      * @throws \PHPCR\Version\VersionException if this node is read-only due to

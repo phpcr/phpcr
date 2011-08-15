@@ -244,7 +244,7 @@ interface WorkspaceInterface {
      * @return void
      *
      * @throws \PHPCR\NoSuchWorkspaceException if srcWorkspace does not exist or if the current Session does not have permission to access it.
-     * @throws \PHPCR\ConstraintViolationException if the operation would violate a node-type or other implementation-specific constraint
+     * @throws \PHPCR\NodeType\ConstraintViolationException if the operation would violate a node-type or other implementation-specific constraint
      * @throws \PHPCR\Version\VersionException if the parent node of destAbsPath is read-only due to a checked-in node.
      * @throws \PHPCR\AccessDeniedException if the current session does have access srcWorkspace but otherwise does not have sufficient access to complete the operation.
      * @throws \PHPCR\PathNotFoundException if the node at srcAbsPath in srcWorkspace or the parent of destAbsPath in this workspace does not exist.
@@ -300,7 +300,7 @@ interface WorkspaceInterface {
      * @return void
      *
      * @throws \PHPCR\NoSuchWorkspaceException if destWorkspace does not exist.
-     * @throws \PHPCR\ConstraintViolationException if the operation would violate a node-type or other
+     * @throws \PHPCR\NodeType\ConstraintViolationException if the operation would violate a node-type or other
      *                                             implementation-specific constraint.
      * @throws \PHPCR\Version\VersionException if the parent node of destAbsPath is read-only due to a checked-in node.
      *                                         This exception will also be thrown if removeExisting is true, and an
@@ -347,7 +347,7 @@ interface WorkspaceInterface {
      * @param string $destAbsPath the location to which the node at srcAbsPath is to be moved.
      * @return void
      *
-     * @throws \PHPCR\ConstraintViolationException if the operation would violate a node-type or other
+     * @throws \PHPCR\NodeType\ConstraintViolationException if the operation would violate a node-type or other
      *                                             implementation-specific constraint
      * @throws \PHPCR\Version\VersionException if the parent node of destAbsPath is read-only due to a checked-in node.
      * @throws \PHPCR\AccessDeniedException if the current session (i.e. the session that was used to acquire this
@@ -511,7 +511,7 @@ interface WorkspaceInterface {
      * @return \PHPCR\ContentHandlerInterface whose methods may be called to feed SAX events into the deserializer.
      *
      * @throws \PHPCR\PathNotFoundException if no node exists at $parentAbsPath.
-     * @throws \PHPCR\ConstraintViolationException if the new subgraph cannot be added to the node at $parentAbsPath due
+     * @throws \PHPCR\NodeType\ConstraintViolationException if the new subgraph cannot be added to the node at $parentAbsPath due
      *                                             to node-type or other implementation-specific constraints, and this
      *                                             can be determined before the first SAX event is sent. Unlike
      *                                             Session#getImportContentHandler, this method also enforces node type
@@ -578,7 +578,7 @@ interface WorkspaceInterface {
      *
      * @throws \RuntimeException if an error during an I/O operation occurs.
      * @throws \PHPCR\PathNotFoundException if no node exists at parentAbsPath.
-     * @throws \PHPCR\ConstraintViolationException if node-type or other implementation-specific constraints prevent the addition of the subgraph or if uuidBehavior is set to IMPORT_UUID_COLLISION_REMOVE_EXISTING and an incoming node has the same identifier as the node at parentAbsPath or one of its ancestors.
+     * @throws \PHPCR\NodeType\ConstraintViolationException if node-type or other implementation-specific constraints prevent the addition of the subgraph or if uuidBehavior is set to IMPORT_UUID_COLLISION_REMOVE_EXISTING and an incoming node has the same identifier as the node at parentAbsPath or one of its ancestors.
      * @throws \PHPCR\Version\VersionException if the node at parentAbsPath is read-only due to a checked-in node.
      * @throws \PHPCR\InvalidSerializedDataException if incoming stream is not a valid XML document.
      * @throws \PHPCR\ItemExistsException if the top-most element of the incoming XML would deserialize to a node with the same name as an existing child of parentAbsPath and that child does not allow same-name siblings, or if a uuidBehavior is set to IMPORT_UUID_COLLISION_THROW and an identifier collision occurs.
