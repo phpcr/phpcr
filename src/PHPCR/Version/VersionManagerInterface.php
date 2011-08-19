@@ -141,7 +141,7 @@ interface VersionManagerInterface
      *  versionable (full or simple) and currently checked-in or
      *  non-versionable and its nearest versionable ancestor is checked-in.
      *
-     * @param string $absPath The absolute path to a node the prvileges shall be fetched of.
+     * @param string $absPath The absolute path to a node the privileges shall be fetched of.
      * @return boolean True, if the node identified by the given path is checked out, else false.
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
@@ -152,7 +152,7 @@ interface VersionManagerInterface
      * Returns the VersionHistory object of the node at $absPath. This object
      * provides access to the nt:versionHistory node holding this node's versions.
      *
-     * @param string $absPath The absolute path to a node the prvileges shall be fetched of.
+     * @param string $absPath The absolute path to a node the privileges shall be fetched of.
      * @return \PHPCR\Version\VersionHistoryInterface a VersionHistory object
      * @throws \PHPCR\UnsupportedRepositoryOperationException if the node at absPath is not versionable.
      * @throws \PHPCR\RepositoryException If another error occurs.
@@ -163,7 +163,7 @@ interface VersionManagerInterface
     /**
      * Returns the current base version of the versionable node at absPath.
      *
-     * @param string $absPath The absolute path to a node the prvileges shall be fetched of.
+     * @param string $absPath The absolute path to a node the privileges shall be fetched of.
      * @return \PHPCR\Version\VersionInterface a Version object.
      * @throws \PHPCR\UnsupportedRepositoryOperationException if the node at absPath is not versionable.
      * @throws \PHPCR\RepositoryException if another error occurs.
@@ -241,7 +241,7 @@ interface VersionManagerInterface
      * @param boolean $removeExisting a boolean flag that governs what happens in case of an identifier collision
      * @param string|array|\PHPCR\Version\VersionInterface $version a version name, an an array of Version objects
      *                                                              or a Version object
-     * @param string $absPath The absolute path to a node the prvileges shall be fetched of.
+     * @param string $absPath The absolute path to a node the privileges shall be fetched of.
      * @return void
      * @throws \PHPCR\Version\VersionException if the specified version does not have a corresponding node in
      *                                         the workspace this VersionManager has been created for or if an
@@ -280,7 +280,7 @@ interface VersionManagerInterface
      * OnParentVersion settings of COPY or VERSION are also governed by the
      * removeExisting flag.
      *
-     * @param string $absPath The absolute path to a node the prvileges shall be fetched of.
+     * @param string $absPath The absolute path to a node the privileges shall be fetched of.
      * @param string $versionLabel a String
      * @param boolean $removeExisting a boolean flag that governs what happens in case of an identifier collision.
      * @return void
@@ -433,7 +433,7 @@ interface VersionManagerInterface
      * If successful, these changes are dispatched immediately, there is no need
      * to call save.
      *
-     * @param string $absPath The absolute path to a node the prvileges shall be fetched of.
+     * @param string $absPath The absolute path to a node the privileges shall be fetched of.
      * @param \PHPCR\Version\VersionInterface $version a version referred to by the jcr:mergeFailed  property
      *                                                 of the node at absPath.
      * @return void
@@ -456,7 +456,7 @@ interface VersionManagerInterface
      * If successful, these changes are dispatched immediately, there is no need
      * to call save.
      *
-     * @param string $absPath The absolute path to a node the prvileges shall be fetched of.
+     * @param string $absPath The absolute path to a node the privileges shall be fetched of.
      * @param \PHPCR\Version\VersionInterface $version a version referred to by the jcr:mergeFailed  property of
      *                                                 the node at absPath.
      * @return void
@@ -485,7 +485,7 @@ interface VersionManagerInterface
      *
      * The changes are persisted immediately, a save is not required.
      *
-     * @param string $absPath The absolute path to a node the prvileges shall be fetched of.
+     * @param string $absPath The absolute path to a node the privileges shall be fetched of.
      * @param \PHPCR\Version\VersionInterface $baseline a Version
      * @return \PHPCR\NodeInterface a new nt:configuration node
      * @throws \PHPCR\UnsupportedRepositoryOperationException if N is not versionable.

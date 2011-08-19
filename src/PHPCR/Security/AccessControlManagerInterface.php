@@ -45,7 +45,7 @@ interface AccessControlManagerInterface
      * This method does not return the privileges held by the session. Instead,
      * it returns the privileges that the repository supports.
      *
-     * @param string $absPath The absolute path to a node the prvileges shall be fetched of.
+     * @param string $absPath The absolute path to a node the privileges shall be fetched of.
      * @return array An array of Privileges.
      *
      * @throws \PHPCR\PathNotFoundException if no node at absPath exists or the session does not have
@@ -82,7 +82,7 @@ interface AccessControlManagerInterface
      * control status caused by these mechanisms only take effect on SessionInterface::save()
      * and are only then reflected in the results of the privilege test methods.
      *
-     * @param string $absPath The absolute path to a node the prvileges shall be fetched of.
+     * @param string $absPath The absolute path to a node the privileges shall be fetched of.
      * @param array $privileges an array of Privileges.
      * @return boolean true if the session has the specified privileges; false otherwise.
      *
@@ -108,7 +108,7 @@ interface AccessControlManagerInterface
      * SessionInterface::save() and are only then reflected in the results of
      * the privilege test methods.
      *
-     * @param string $absPath The absolute path to a node the prvileges shall be fetched of.
+     * @param string $absPath The absolute path to a node the privileges shall be fetched of.
      * @return array an array of Privileges.
      *
      * @throws \PHPCR\PathNotFoundException if no node at absPath exists or the session does not have sufficent access to retrieve a node at that location.
@@ -126,7 +126,7 @@ interface AccessControlManagerInterface
      * Use getEffectivePolicies(String) in order to determine the policy that
      * effectively applies at absPath.
      *
-     * @param string $absPath The absolute path to a node the prvileges shall be fetched of.
+     * @param string $absPath The absolute path to a node the privileges shall be fetched of.
      * @return array an array of AccessControlPolicy objects or an empty array if no policy has been set.
      *
      * @throws \PHPCR\PathNotFoundException if no node at absPath exists or the session does not have sufficent
@@ -144,7 +144,7 @@ interface AccessControlManagerInterface
      * the node at $absPath. This may be policies set through this API or some
      * implementation specific (default) policies.
      *
-     * @param string $absPath The absolute path to a node the prvileges shall be fetched of.
+     * @param string $absPath The absolute path to a node the privileges shall be fetched of.
      * @return array an array of AccessControlPolicy objects.
      *
      * @throws \PHPCR\PathNotFoundException if no node at absPath exists or the session does not have
@@ -159,7 +159,7 @@ interface AccessControlManagerInterface
      * Returns the access control policies that are capable of being applied to
      * the node at absPath.
      *
-     * @param string $absPath The absolute path to a node the prvileges shall be fetched of.
+     * @param string $absPath The absolute path to a node the privileges shall be fetched of.
      * @return Iterator over the applicable access control policies implementing
      *                  <b>SeekableIterator</b> and <b>Countable</b>. Values are the AccessControlPolicyInterface
      *                  instances. Keys have no meaning. Returns an empty iterator if no policies are applicable.
@@ -189,7 +189,7 @@ interface AccessControlManagerInterface
      * is only dispatched on <code>save()</code> and will only take effect upon
      * persist.
      *
-     * @param string $absPath The absolute path to a node the prvileges shall be fetched of.
+     * @param string $absPath The absolute path to a node the privileges shall be fetched of.
      * @param \PHPCR\Security\AccessControlPolicyInterface $policy The AccessControlPolicy to be applied.
      * @return void
      *
@@ -215,7 +215,7 @@ interface AccessControlManagerInterface
      * effective AccessControlPolicy that has not been applied to the node before
      * may never be removed using this method.
      *
-     * @param string $absPath The absolute path to a node the prvileges shall be fetched of.
+     * @param string $absPath The absolute path to a node the privileges shall be fetched of.
      * @param \PHPCR\Security\AccessControlPolicyInterface $policy - the policy to be removed.
      * @return void
      *
