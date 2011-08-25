@@ -39,20 +39,10 @@ The implementing visitor will have to do a type-check.
     reserved keyword. Workspace::clone is named Workspace::cloneFrom as it clones
     a node from a workspace into the current workspace.
  * For java.io.InputStream we use PHP streams (resources). For java.util.Calendar
-    we use the DateTime class.
+    we use the DateTime class. For the java.math.BigDecimal, we use strings that
+    can be used with the bcmath PHP extension.
 
-A note about the BOOLEAN value type. When converting String values to boolean,
-JCR uses java.lang.Boolean.valueOf(String) which evaluates to true only for
-the string "true" (case insensitive). The semantics in PHP is different:
-everything different from null|0|false is true.
-We chose to follow the PHP way to avoid confusion. When sharing data with a
-Jackrabbit backend, you should be aware of the difference when converting
-integer or string to boolean values.
-
-For the DECIMAL type, we use string, as there is no equivalent to
-java.math.BigDecimal in PHP. You can use bcmath to work with the large integer
-strings. The encoding must always encode using the C locale because of
-http://bugs.php.net/bug.php?id=16532
+For some notes about value conversion, see the Value section below.
 
 
 Iterators
@@ -148,9 +138,18 @@ To copy a binary property without loading the stream to the backend, you can
 assign the property to an other property.
 
 Note that the boolean conversion follows PHP conventions, which are different
-from Java. java.lang.Boolean.fromString compares the String with "true",
+from Java. java.lang.Boolean.valueOf(String) compares the String with "true",
 anything else is interpreted as false. In PHP, every value except
 false|0|null|"" is true.
+We chose to follow the PHP way to avoid confusion. When sharing data with a
+Jackrabbit backend, you should be aware of the difference when converting
+integer or string to boolean values.
+
+For the DECIMAL strings, bcmath can live with some character garbage and
+interprets that as 0, contrary to the more strict java.math.BigDecimal(String)
+constructor.
+The encoding must always encode using the C locale because of
+http://bugs.php.net/bug.php?id=16532
 
 Dynamic re-binding of property types: Dropping the Value interface, the methods
 NodeInterface::setProperty() and PropertyInterface::setValue() got an

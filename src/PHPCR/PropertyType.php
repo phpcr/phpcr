@@ -368,18 +368,41 @@ final class PropertyType
      * This is the other remaining part of ValueFactory functionality that is
      * still needed.
      *
+     * If a $srctype is specified, the conversion also checks whether the
+     * conversion is allowed according to the property type conversion of the
+     * jcr specification (link below). This might be needed because NAME and
+     * other properties have quite restricted conversion matrix but in php will
+     * be modelled as string.
+     *
      * Note that for converting to boolean, we follow the PHP convention of
      * treating any non-empty string as true, not just the word "true".
+     *
+     * <TABLE>
+     *  <TR><TD>From | To:</TD><TD>String</TD><TD>Binary</TD><TD>Date</TD><TD>Double</TD><TD>Decimal</TD><TD>Long</TD><TD>Boolean</TD><TD>Name</TD><TD>Path</TD><TD>URI</TD><TD>Reference</TD></TR>
+     *  <TR><TD>String</TD><TD>x</TD><TD>Utf-8 encoded</TD><TD>sYYYY-MM-DDThh:mm:ss.sssTZD</TD><TD>cast to float</TD><TD>string</TD><TD>cast to int</TD><TD>cast to bool</TD><TD>if valid name, namespace</TD><TD>if valid path, as name</TD><TD>RFC 3986</TD><TD>check valid uuid</TD></TR>
+     *  <TR><TD>Binary</TD><TD>Utf-8</TD><TD>x</TD><TD colspan="9">Converted to string and then interpreted as above</TD></TR>
+     *  <TR><TD>Date</TD><TD>sYYYY-MM-DDThh:mm:ss.sssTZD</TD><TD>String, then Utf-8</TD><TD>x</TD><TD>Unix timestamp</TD><TD>Unix timestamp</TD><TD>Unix timestamp</TD><TD>ValueFormatException</TD><TD>ValueFormatException</TD><TD>ValueFormatException</TD><TD>ValueFormatException</TD><TD>ValueFormatException</TD></TR>
+     *  <TR><TD>Double</TD><TD>cast to string</TD><TD>String, then Utf-8</TD><TD>Unix Time</TD><TD>x</TD><TD>cast to string</TD><TD>cast to int</TD><TD>ValueFormatException</TD><TD>ValueFormatException</TD><TD>ValueFormatException</TD><TD>ValueFormatException</TD><TD>ValueFormatException</TD></TR>
+     *  <TR><TD>Decimal</TD><TD>noop</TD><TD>Utf-8 encoded</TD><TD>Unix Time</TD><TD>cast to float</TD><TD>x</TD><TD>cast to int</TD><TD>ValueFormatException</TD><TD>ValueFormatException</TD><TD>ValueFormatException</TD><TD>ValueFormatException</TD><TD>ValueFormatException</TD></TR>
+     *  <TR><TD>Long</TD><TD>cast to string</TD><TD>String, then Utf-8</TD><TD>Unix Time</TD><TD>cast to float</TD><TD>cast to string</TD><TD>x</TD><TD>ValueFormatException</TD><TD>ValueFormatException</TD><TD>ValueFormatException</TD><TD>ValueFormatException</TD><TD>ValueFormatException</TD></TR>
+     *  <TR><TD>Boolean</TD><TD>cast to string</TD><TD>String, then Utf-8</TD><TD>ValueFormatException</TD><TD>ValueFormatException</TD><TD>ValueFormatException</TD><TD>ValueFormatException</TD><TD>x</TD><TD>ValueFormatException</TD><TD>ValueFormatException</TD><TD>ValueFormatException</TD><TD>ValueFormatException</TD></TR>
+     *  <TR><TD>Name</TD><TD>Qualified form</TD><TD>String, then Utf-8</TD><TD>ValueFormatException</TD><TD>ValueFormatException</TD><TD>ValueFormatException</TD><TD>ValueFormatException</TD><TD>ValueFormatException</TD><TD>x</TD><TD>noop (relative path)</TD><TD>„./“ and qualified name. % encode illegal characters</TD><TD>ValueFormatException</TD></TR>
+     *  <TR><TD>Path</TD><TD>Standard form</TD><TD>String, then Utf-8</TD><TD>ValueFormatException</TD><TD>ValueFormatException</TD><TD>ValueFormatException</TD><TD>ValueFormatException</TD><TD>ValueFormatException</TD><TD>if relative path lenght 1 noop / otherwise ValueFormatException</TD><TD>x</TD><TD>„./“ if not starting with /. % encode illegal characters</TD><TD>ValueFormatException</TD></TR>
+     *  <TR><TD>URI</TD><TD>noop</TD><TD>String, then Utf-8</TD><TD>ValueFormatException</TD><TD>ValueFormatException</TD><TD>ValueFormatException</TD><TD>ValueFormatException</TD><TD>ValueFormatException</TD><TD>if single name, decode %. take away leading ./. otherwise ValueFormatException</TD><TD>Decode %, remove leading ./ . if not starting with name, / or ./ then ValueFormatException</TD><TD>x</TD><TD>ValueFormatException</TD></TR>
+     *  <TR><TD>Reference</TD><TD>noop</TD><TD>String, then Utf-8</TD><TD>ValueFormatException</TD><TD>ValueFormatException</TD><TD>ValueFormatException</TD><TD>ValueFormatException</TD><TD>ValueFormatException</TD><TD>ValueFormatException</TD><TD>ValueFormatException</TD><TD>ValueFormatException</TD><TD>x</TD></TR>
+     * </TABLE>
      *
      * @param mixed $values The value or value array to check and convert
      * @param int $type Target type to convert into. One of the type constants in \PHPCR\PropertyType
      * @return the value typecasted into the proper format (throws an exception if conversion is not possible)
      *
-     * @throws \PHPCR\ValueFormatException is thrown if the specified value cannot be converted to the specified type.
+     * @throws \PHPCR\ValueFormatException is thrown if the specified value cannot be converted to the specified type
      * @throws \PHPCR\RepositoryException if the specified Node is not referenceable, the current Session is no longer active, or another error occurs.
      * @throws \InvalidArgumentException if the specified DateTime value cannot be expressed in the ISO 8601-based format defined in the JCR 2.0 specification and the implementation does not support dates incompatible with that format.
+     *
+     * @see http://www.day.com/specs/jcr/2.0/3_Repository_Model.html#3.6.4%20Property%20Type%20Conversion
      */
-    public static function convertType($values, $type)
+    public static function convertType($values, $type, $srctype = self::UNDEFINED)
     {
         $ret = null;
         $isArray = is_array($values);
@@ -402,12 +425,32 @@ final class PropertyType
                     } elseif (is_resource($v)) {
                         $ret[] = stream_get_contents($v);
                         rewind($v);
+                    } elseif ($srctype == self::NAME || $srctype == self::PATH) {
+                        // TODO: The name/path is converted to qualified form according to the current local namespace mapping (see §3.2.5.2 Qualified Form).
+                         $ret[] = $v;
                     } else {
                         settype($v, 'string');
                         $ret[] = $v;
                     }
                 }
                 break;
+            case self::BINARY:
+                foreach ($values as $v) {
+                    // TODO: convert other types to string first
+                    if (is_string($v)) {
+                        $f = fopen('php://memory', 'rwb+');
+                        fwrite($f, $v);
+                        rewind($f);
+                        $v = $f;
+                    }
+
+                    if (!is_resource($v)) {
+                        throw new \PHPCR\ValueFormatException('Cannot convert value into a binary resource');
+                    }
+
+                    $ret[] = $v;
+                }
+
             case self::DECIMAL:
                 $typename = 'string';
                 break;
@@ -418,7 +461,7 @@ final class PropertyType
                 $typename = 'double';
                 break;
             case self::BOOLEAN:
-                $typename = 'boolean'; //we follow php logic and are not binary compatible with jackrabbit. jcr is not specific about details of the conversion.
+                $typename = 'boolean'; //we follow php logic and are not binary compatible with the java logic in jackrabbit
                 break;
             case self::DATE:
                 foreach ($values as $v) {
@@ -459,21 +502,6 @@ final class PropertyType
                     }
                 }
                 break;
-            case self::BINARY:
-                foreach ($values as $v) {
-                    if (is_string($v)) {
-                        $f = fopen('php://memory', 'rwb+');
-                        fwrite($f, $v);
-                        rewind($f);
-                        $v = $f;
-                    }
-
-                    if (!is_resource($v)) {
-                        throw new \PHPCR\ValueFormatException('Cannot convert value into a binary resource');
-                    }
-
-                    $ret[] = $v;
-                }
             //FIXME: type PATH is missing. should automatically read property and node with getPath.
             default:
                 //FIXME: handle other types somehow
@@ -484,6 +512,84 @@ final class PropertyType
             //TODO: more type checks or casts? name, path, uri, decimal. but the backend can handle the checks.
         }
         if (isset($typename)) {
+            if ($srctype !== self::UNDEFINED) {
+                switch($srctype) {
+                    case self::STRING:
+                    case self::BINARY:
+                        // string can be converted to everything, lest for parse errors. binary can always be converted to string
+                        break;
+                    case self::DATE:
+                        if ($type == self::BOOLEAN ||
+                            $type == self::NAME ||
+                            $type == self::PATH ||
+                            $type == self::URI ||
+                            $type == self::REFERENCE ||
+                            $type == self::WEAKREFERENCE
+                        ) {
+                            throw new ValueFormatException('Can not convert DATE into the requested type');
+                        }
+                        break;
+                    case self::DOUBLE:
+                    case self::DECIMAL:
+                    case self::LONG:
+                        if ($type == self::BOOLEAN ||
+                            $type == self::NAME ||
+                            $type == self::PATH ||
+                            $type == self::URI ||
+                            $type == self::REFERENCE ||
+                            $type == self::WEAKREFERENCE
+                        ) {
+                            throw new ValueFormatException('Can not convert numbers into the requested type');
+                        }
+                        break;
+                    case self::BOOLEAN:
+                        if ($type == self::DATE ||
+                            $type == self::DOUBLE ||
+                            $type == self::DECIMAL ||
+                            $type == self::LONG ||
+                            $type == self::NAME ||
+                            $type == self::PATH ||
+                            $type == self::URI ||
+                            $type == self::REFERENCE ||
+                            $type == self::WEAKREFERENCE
+                        ) {
+                            throw new ValueFormatException('Can not convert boolean into the requested type');
+                        }
+                        break;
+                    case self::NAME:
+                    case self::PATH:
+                    case self::URI:
+                        if ($type == self::DATE ||
+                            $type == self::DOUBLE ||
+                            $type == self::DECIMAL ||
+                            $type == self::LONG ||
+                            $type == self::BOOLEAN ||
+                            $type == self::REFERENCE ||
+                            $type == self::WEAKREFERENCE
+                        ) {
+                            throw new ValueFormatException('Can not convert NAME or URI into the requested type');
+                        }
+                        break;
+                    case self::REFERENCE:
+                    case self::WEAKREFERENCE:
+                        if ($type == self::DATE ||
+                            $type == self::DOUBLE ||
+                            $type == self::DECIMAL ||
+                            $type == self::LONG ||
+                            $type == self::BOOLEAN ||
+                            $type == self::NAME ||
+                            $type == self::PATH ||
+                            $type == self::URI ||
+                            $type == self::REFERENCE ||
+                            $type == self::WEAKREFERENCE
+                        ) {
+                            throw new ValueFormatException('Can not convert NAME or URI into the requested type');
+                        }
+
+                }
+            }
+
+
             foreach ($values as $v) {
                 if (! settype($v, $typename)) { //TODO: will this work for streams? or should we read them into string and then convert?
                     throw new \PHPCR\ValueFormatException;
