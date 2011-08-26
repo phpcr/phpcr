@@ -30,9 +30,9 @@ namespace PHPCR\Query\QOM;
  *
  *   <code>$descendantSelectorNode->getAncestor($n)->isSame($ancestorSelectorNode) && $descendantSelectorNode->getDepth() > $n</code>
  *
- * would return true some some non-negative integer $n, where $descendantSelectorNode
- * is the node for descendantSelector and $ancestorSelectorNode is the node for
- * ancestorSelector.
+ * would return true some some non-negative integer $n, where
+ * $descendantSelectorNode is the node for descendantSelector and
+ * $ancestorSelectorNode is the node for ancestorSelector.
  *
  * @package phpcr
  * @subpackage interfaces
@@ -44,6 +44,7 @@ interface DescendantNodeJoinConditionInterface extends JoinConditionInterface
      * Gets the name of the descendant selector.
      *
      * @return string the selector name; non-null
+     *
      * @api
      */
     function getDescendantSelectorName();
@@ -52,6 +53,7 @@ interface DescendantNodeJoinConditionInterface extends JoinConditionInterface
      * Gets the name of the ancestor selector.
      *
      * @return string the selector name; non-null
+     *
      * @api
      */
     function getAncestorSelectorName();

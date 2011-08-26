@@ -37,6 +37,7 @@ interface JoinInterface extends SourceInterface
      * Gets the left node-tuple source.
      *
      * @return \PHPCR\Query\QOM\SourceInterface the left source; non-null
+     *
      * @api
      */
     function getLeft();
@@ -45,6 +46,7 @@ interface JoinInterface extends SourceInterface
      * Gets the right node-tuple source.
      *
      * @return \PHPCR\Query\QOM\SourceInterface the right source; non-null
+     *
      * @api
      */
     function getRight();
@@ -53,6 +55,7 @@ interface JoinInterface extends SourceInterface
      * Gets the join type.
      *
      * @return string one of QueryObjectModelConstants.JCR_JOIN_TYPE_*
+     *
      * @api
      */
     function getJoinType();
@@ -61,6 +64,7 @@ interface JoinInterface extends SourceInterface
      * Gets the join condition.
      *
      * @return JoinCondition the join condition; non-null
+     *
      * @api
      */
     function getJoinCondition();

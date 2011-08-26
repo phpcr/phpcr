@@ -27,23 +27,25 @@ namespace PHPCR\Query\QOM;
 /**
  * Filters node-tuples based on the outcome of a binary operation.
  *
- * For any comparison, operand2 always evaluates to a scalar value. In contrast,
- * operand1 may evaluate to an array of values (for example, the value of a multi-valued
- * property), in which case the comparison is separately performed for each element
- * of the array, and the Comparison constraint is satisfied as a whole if the
- * comparison against any element of the array is satisfied.
+ * For any comparison, operand2 always evaluates to a scalar value. In
+ * contrast, operand1 may evaluate to an array of values (for example, the
+ * value of a multi-valued property), in which case the comparison is
+ * separately performed for each element of the array, and the Comparison
+ * constraint is satisfied as a whole if the comparison against any element of
+ * the array is satisfied.
  *
  * If operand1 and operand2 evaluate to values of different property types, the
  * value of operand2 is converted to the property type of the value of operand1.
  * If the type conversion fails, the query is invalid.
  *
- * If operator is not supported for the property type of operand1, the query is invalid.
+ * If operator is not supported for the property type of operand1, the query is
+ * invalid.
  *
- * If operand1 evaluates to null (for example, if the operand evaluates the value
- * of a property which does not exist), the constraint is not satisfied.
+ * If operand1 evaluates to null (for example, if the operand evaluates the
+ * value of a property which does not exist), the constraint is not satisfied.
  *
- * The JCR_OPERATOR_EQUAL_TO operator is satisfied only if the value of operand1
- * equals the value of operand2.
+ * The JCR_OPERATOR_EQUAL_TO operator is satisfied only if the value of
+ * operand1 equals the value of operand2.
  *
  * The JCR_OPERATOR_NOT_EQUAL_TO operator is satisfied unless the value of
  * operand1 equals the value of operand2.
@@ -62,12 +64,11 @@ namespace PHPCR\Query\QOM;
  *
  * The JCR_OPERATOR_LIKE operator is satisfied only if the value of operand1
  * matches the pattern specified by the value of operand2, where in the pattern:
+ *
  * - the character "%" matches zero or more characters, and
  * - the character "_" (underscore) matches exactly one character, and
  * - the string "\x" matches the character "x", and
  * - all other characters match themselves.
- *
- * &nbsp;
  *
  * @package phpcr
  * @subpackage interfaces
@@ -80,6 +81,7 @@ interface ComparisonInterface extends ConstraintInterface
      * Gets the first operand.
      *
      * @return \PHPCR\Query\QOM\DynamicOperandInterface the operand; non-null
+     *
      * @api
      */
     function getOperand1();
@@ -87,7 +89,9 @@ interface ComparisonInterface extends ConstraintInterface
     /**
      * Gets the operator.
      *
-     * @return string one of \PHPCR\Query\QOM\QueryObjectModelConstantsInterface.JCR_OPERATOR_*
+     * @return string one of
+     *      \PHPCR\Query\QOM\QueryObjectModelConstantsInterface.JCR_OPERATOR_*
+     *
      * @api
      */
     function getOperator();
@@ -96,6 +100,7 @@ interface ComparisonInterface extends ConstraintInterface
      * Gets the second operand.
      *
      * @return \PHPCR\Query\QOM\StaticOperandInterface the operand; non-null
+     *
      * @api
      */
     function getOperand2();

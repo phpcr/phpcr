@@ -324,8 +324,6 @@ final class PropertyType
      *    $weak is set to true which results in WEAKREFERENCE
      * - if the given $value is a DateTime object, the type will be DATE.
      *
-     * &nbsp;
-     *
      * @param mixed $value The variable we need to know the type of
      * @param boolean $weak When a Node is given as $value this can be given as true to create a WEAKREFERENCE.
      * @return One of the self constants

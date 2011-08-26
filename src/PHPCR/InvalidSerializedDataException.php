@@ -27,8 +27,8 @@ namespace PHPCR;
 /**
  * Exception to be thrown by the deserialization methods of Session.
  *
- * This exception shall be thrown by the deserialization methods of Session if the serialized
- * data being input has an invalid format.
+ * This exception shall be thrown by the deserialization methods of Session if
+ * the serialized data being input has an invalid format.
  *
  * @package phpcr
  * @subpackage exceptions

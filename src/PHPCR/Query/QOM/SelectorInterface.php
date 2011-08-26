@@ -35,8 +35,6 @@ namespace PHPCR\Query\QOM;
  * - the node has a mixin node type that is nodeType
  * - the node has a mixin node type that is a subtype of nodeType
  *
- * &nbsp;
- *
  * @package phpcr
  * @subpackage interfaces
  * @api
@@ -53,7 +51,9 @@ interface SelectorInterface extends SourceInterface
 
     /**
      * Gets the selector name.
-     * A selector's name can be used elsewhere in the query to identify the selector.
+     *
+     * A selector's name can be used elsewhere in the query to identify the
+     * selector.
      *
      * @return string the selector name; non-null
      * @api

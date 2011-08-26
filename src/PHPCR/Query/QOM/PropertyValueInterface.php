@@ -27,8 +27,8 @@ namespace PHPCR\Query\QOM;
 /**
  * Evaluates to the value (or values, if multi-valued) of a property.
  *
- * If, for a node-tuple, the selector node does not have a property named property,
- * the operand evaluates to null.
+ * If, for a node-tuple, the selector node does not have a property named
+ * property, the operand evaluates to null.
  *
  * The query is invalid if:
  *

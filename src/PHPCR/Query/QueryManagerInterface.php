@@ -36,27 +36,32 @@ namespace PHPCR\Query;
 interface QueryManagerInterface
 {
     /**
-     * Creates a new query by specifying the query statement itself and the language
-     * in which the query is stated.
+     * Creates a new query by specifying the query statement itself and the
+     * language in which the query is stated.
      *
      * The $language must be a string from among those returned by
      * QueryManagerInterface::getSupportedQueryLanguages().
      *
      * @param string $statement The query statement to be executed.
      * @param string $language The language of the query to be created.
+     *
      * @return \PHPCR\Query\QueryInterface a Query object
      *
-     * @throws \PHPCR\Query\InvalidQueryException if the query statement is syntactically invalid or the specified language is not supported
+     * @throws \PHPCR\Query\InvalidQueryException if the query statement is
+     *      syntactically invalid or the specified language is not supported
      * @throws \PHPCR\RepositoryException if another error occurs
+     *
      * @api
      */
     function createQuery($statement, $language);
 
     /**
-     * Returns a QueryObjectModelFactory with which a JCR-JQOM query can be built
-     * programmatically.
+     * Returns a QueryObjectModelFactory with which a JCR-JQOM query can be
+     * built programmatically.
      *
-     * @return \PHPCR\Query\QOM\QueryObjectModelFactoryInterface a QueryObjectModelFactory object
+     * @return \PHPCR\Query\QOM\QueryObjectModelFactoryInterface a
+     *      QueryObjectModelFactory object
+     *
      * @api
      */
     function getQOMFactory();
@@ -64,22 +69,27 @@ interface QueryManagerInterface
     /**
      * Retrieves an existing persistent query.
      *
-     * Persistent queries are created by first using QueryManagerInterface::createQuery to
-     * create a Query object and then calling QueryInterface::save() to persist the query to
-     * a location in the workspace.
+     * Persistent queries are created by first using
+     * QueryManagerInterface::createQuery() to create a Query object and then
+     * calling QueryInterface::save() to persist the query to a location in the
+     * workspace.
      *
-     * @param \PHPCR\NodeInterface $node a persisted query (that is, a node of type nt:query).
+     * @param \PHPCR\NodeInterface $node a persisted query (that is, a node of
+     *      type nt:query).
+     *
      * @return \PHPCR\Query\QueryInterface a Query object.
      *
-     * @throws \PHPCR\Query\InvalidQueryException If node is not a valid persisted query (that is, a node of type nt:query).
+     * @throws \PHPCR\Query\InvalidQueryException If node is not a valid
+     *      persisted query (that is, a node of type nt:query).
      * @throws \PHPCR\RepositoryException if another error occurs
+     *
      * @api
      */
     function getQuery($node);
 
     /**
-     * Returns an array of strings representing all query languages supported by
-     * this repository.
+     * Returns an array of strings representing all query languages supported
+     * by this repository.
      *
      * This set must include at least the strings represented by the constants
      * QueryInterface::JCR_SQL2 and QueryInterface::JCR_JQOM. An implementation
@@ -88,6 +98,7 @@ interface QueryManagerInterface
      * @return array A list of supported languages by the query.
      *
      * @throws \PHPCR\RepositoryException if an error occurs.
+     *
      * @api
      */
     function getSupportedQueryLanguages();

@@ -138,7 +138,7 @@ interface QueryInterface
     /**
      * Fetches the path of the node representing this query.
      *
-     * If this is a Query object that has been stored using self::storeAsNode()
+     * If this is a Query object that has been stored using QueryInterface::storeAsNode()
      * (regardless of whether it has been saved yet) or retrieved using
      * QueryManagerInterface::getQuery()), then this method returns the path
      * of the nt:query node that stores the query.

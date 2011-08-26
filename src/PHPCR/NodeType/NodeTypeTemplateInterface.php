@@ -29,16 +29,17 @@ namespace PHPCR\NodeType;
  * to define node types which are then registered through the
  * NodeTypeManagerInterface::registerNodeType() method.
  *
- * NodeTypeTemplateInterface, like NodeTypeInterface, is a subclass of 
- * NodeTypeDefinitionInterface so it shares with NodeTypeInterface those 
+ * NodeTypeTemplateInterface, like NodeTypeInterface, is a subclass of
+ * NodeTypeDefinitionInterface so it shares with NodeTypeInterface those
  * methods that are relevant to a static definition.
  * In addition, NodeTypeTemplate provides methods for setting the attributes of
  * the definition. Implementations of this interface need not contain any
  * validation logic.
  *
- * See the corresponding get methods for each attribute in NodeTypeDefinitionInterface
- * for the default values assumed when a new empty NodeTypeTemplateInterface is created
- * (as opposed to one extracted from an existing NodeTypeInterface).
+ * See the corresponding get methods for each attribute in
+ * NodeTypeDefinitionInterface for the default values assumed when a new empty
+ * NodeTypeTemplateInterface is created (as opposed to one extracted from an
+ * existing NodeTypeInterface).
  *
  * @package phpcr
  * @subpackage interfaces
@@ -50,7 +51,9 @@ interface NodeTypeTemplateInterface extends \PHPCR\NodeType\NodeTypeDefinitionIn
      * Sets the name of the node type.
      *
      * @param string $name The name of the node type to be set.
+     *
      * @return void
+     *
      * @api
      */
     function setName($name);
@@ -59,7 +62,9 @@ interface NodeTypeTemplateInterface extends \PHPCR\NodeType\NodeTypeDefinitionIn
      * Sets the names of the supertypes of the node type.
      *
      * @param array $names The name of the node supertype to be set.
+     *
      * @return void
+     *
      * @api
      */
     function setDeclaredSuperTypeNames(array $names);
@@ -67,8 +72,10 @@ interface NodeTypeTemplateInterface extends \PHPCR\NodeType\NodeTypeDefinitionIn
     /**
      * Sets the abstract flag of the node type.
      *
-     * @param boolean $abstractStatus The status of the node type being <b>abstract</b>.
+     * @param boolean $abstractStatus Whether this type is abstract.
+     *
      * @return void
+     *
      * @api
      */
     function setAbstract($abstractStatus);
@@ -76,8 +83,11 @@ interface NodeTypeTemplateInterface extends \PHPCR\NodeType\NodeTypeDefinitionIn
     /**
      * Sets the mixin flag of the node type.
      *
-     * @param boolean $mixin The status of the node type being <b>mixin</b>.
+     * @param boolean $mixin Whether this type is a mixin type (or a primary
+     *      type).
+     *
      * @return void
+     *
      * @api
      */
     function setMixin($mixin);
@@ -85,8 +95,11 @@ interface NodeTypeTemplateInterface extends \PHPCR\NodeType\NodeTypeDefinitionIn
     /**
      * Sets the orderable child nodes flag of the node type.
      *
-     * @param boolean $orderable The status of the node type having orderable children.
+     * @param boolean $orderable Whether nodes of this type can have orderable
+     *      children
+     *
      * @return void
+     *
      * @api
      */
     function setOrderableChildNodes($orderable);
@@ -95,7 +108,9 @@ interface NodeTypeTemplateInterface extends \PHPCR\NodeType\NodeTypeDefinitionIn
      * Sets the name of the primary item.
      *
      * @param string $name The name of the primary item.
+     *
      * @return void
+     *
      * @api
      */
     function setPrimaryItemName($name);
@@ -103,8 +118,10 @@ interface NodeTypeTemplateInterface extends \PHPCR\NodeType\NodeTypeDefinitionIn
     /**
      * Sets the queryable status of the node type.
      *
-     * @param booolean $queryable The status of the node type being queryable.
+     * @param booolean $queryable Whether this node is queryable.
+     *
      * @return void
+     *
      * @api
      */
     function setQueryable($queryable);
@@ -113,9 +130,12 @@ interface NodeTypeTemplateInterface extends \PHPCR\NodeType\NodeTypeDefinitionIn
      * Returns a mutable List of PropertyDefinitionTemplate objects.
      *
      * To define a new NodeTypeTemplate or change an existing one,
-     * PropertyDefinitionTemplate objects can be added to or removed from this List.
+     * PropertyDefinitionTemplate objects can be added to or removed from this
+     * list.
      *
-     * @return Object A mutable List (implementing \Traversable, \ArrayAccess, and \Countable) of PropertyDefinitionTemplate objects
+     * @return Object A mutable List (implementing \Traversable, \ArrayAccess,
+     *      and \Countable) of PropertyDefinitionTemplate objects
+     *
      * @api
      */
     function getPropertyDefinitionTemplates();
@@ -124,9 +144,12 @@ interface NodeTypeTemplateInterface extends \PHPCR\NodeType\NodeTypeDefinitionIn
      * Returns a mutable List of NodeDefinitionTemplate objects.
      *
      * To define a new NodeTypeTemplate or change an existing one,
-     * NodeDefinitionTemplate objects can be added to or removed from this List.
+     * NodeDefinitionTemplate objects can be added to or removed from this
+     * list.
      *
-     * @return Object A mutable List (implementing \Traversable, \ArrayAccess, and \Countable) of NodeDefinitionTemplate objects
+     * @return Object A mutable List (implementing \Traversable, \ArrayAccess,
+     *      and \Countable) of NodeDefinitionTemplate objects
+     *
      * @api
      */
     function getNodeDefinitionTemplates();

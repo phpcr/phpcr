@@ -26,13 +26,16 @@ namespace PHPCR\NodeType;
 
 /**
  * The NodeTypeDefinition interface provides methods for discovering the
- * static definition of a node type. These are accessible both before and
- * after the node type is registered. Its subclass NodeType adds methods
- * that are relevant only when the node type is "live"; that is, after it
- * has been registered. Note that the separate NodeDefinition interface only
- * plays a significant role in implementations that support node type
- * registration. In those cases it serves as the superclass of both NodeType
- * and NodeTypeTemplate. In implementations that do not support node type
+ * static definition of a node type.
+ *
+ * The information methods may be used both before and after the node type is
+ * registered. Its subclass NodeType adds methods that are relevant only when
+ * the node type is "live"; that is, after it has been registered. Note that
+ * the separate NodeDefinition interface only plays a significant role in
+ * implementations that support node type registration.
+ *
+ * In those cases it serves as the superclass of both NodeType and
+ * NodeTypeTemplate. In implementations that do not support node type
  * registration, only objects implementing the subinterface NodeType will
  * be encountered.
  *
@@ -50,6 +53,7 @@ interface NodeTypeDefinitionInterface
      * NodeTypeTemplate, then this method will return null.
      *
      * @return string The name of the node type.
+     *
      * @api
      */
     function getName();
@@ -63,6 +67,7 @@ interface NodeTypeDefinitionInterface
      * single string indicating the node type nt:base.
      *
      * @return array List of names of declared supertypes.
+     *
      * @api
      */
     function getDeclaredSupertypeNames();
@@ -80,6 +85,7 @@ interface NodeTypeDefinitionInterface
      * NodeTypeTemplate, then this method will return false.
      *
      * @return boolean True, if the current type is abstract, else false.
+     *
      * @api
      */
     function isAbstract();
@@ -93,6 +99,7 @@ interface NodeTypeDefinitionInterface
      * NodeTypeTemplate, then this method will return false.
      *
      * @return boolean True if this is a mixin type, else false;
+     *
      * @api
      */
     function isMixin();
@@ -103,15 +110,19 @@ interface NodeTypeDefinitionInterface
      * Returns true if nodes of this type must support orderable child nodes;
      * returns false otherwise. If a node type returns true on a call to this
      * method, then all nodes of that node type must support the method
-     * NodeInterface::orderBefore(). If a node type returns false on a call to this method,
-     * then nodes of that node type may support NodeInterface::orderBefore(). Only the primary
-     * node type of a node controls that node's status in this regard. This setting
-     * on a mixin node type will not have any effect on the node.
+     * NodeInterface::orderBefore(). If a node type returns false on a call to
+     * this method, then nodes of that node type may support
+     * NodeInterface::orderBefore(). Only the primary node type of a node
+     * controls that node's status in this regard. This setting on a mixin node
+     * type will not have any effect on the node.
+     *
      * In implementations that support node type registration, if this
      * NodeTypeDefinitionInterface object is actually a newly-created empty
      * NodeTypeTemplateInterface, then this method will return false.
      *
-     * @return boolean True, if nodes of this type must support orderable child nodes, else false.
+     * @return boolean True, if nodes of this type must support orderable child
+     *      nodes, else false.
+     *
      * @api
      */
     function hasOrderableChildNodes();
@@ -131,6 +142,7 @@ interface NodeTypeDefinitionInterface
      * @see PropertyDefinition::getAvailableQueryOperators()
      * @see PropertyDefinition::isFullTextSearchable()
      * @see PropertyDefinition::isQueryOrderable()
+     *
      * @api
      */
     function isQueryable();
@@ -139,13 +151,15 @@ interface NodeTypeDefinitionInterface
      * Returns the name of the primary item (one of the child items of the nodes
      * of this node type).
      *
-     * If this node has no primary item, then this method
-     * returns null. This indicator is used by the method NodeInterface::getPrimaryItem().
+     * If this node has no primary item, then this method returns null. This
+     * indicator is used by the method NodeInterface::getPrimaryItem().
+     *
      * In implementations that support node type registration, if this
      * NodeTypeDefinitionInterface object is actually a newly-created empty
      * NodeTypeTemplateInterface, then this method will return null.
      *
      * @return string The name of the primary item.
+     *
      * @api
      */
     function getPrimaryItemName();
@@ -159,6 +173,7 @@ interface NodeTypeDefinitionInterface
      * NodeTypeTemplate, then this method will return null.
      *
      * @return array An array of PropertyDefinitions.
+     *
      * @api
      */
     function getDeclaredPropertyDefinitions();
@@ -172,6 +187,7 @@ interface NodeTypeDefinitionInterface
      * NodeTypeTemplate, then this method will return null.
      *
      * @return array An array of NodeDefinitions.
+     *
      * @api
      */
     function getDeclaredChildNodeDefinitions();

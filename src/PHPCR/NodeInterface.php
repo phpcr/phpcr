@@ -79,10 +79,10 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
     const JCR_FROZEN_NODE = "{http://www.jcp.org/jcr/1.0}frozenNode";
 
     /**
-     * Creates a new node at a specified path.
+     * Creates a new node at the specified $relPath
      *
      * This is session-write method, meaning that the addition of the new node
-     * is dispatched upon Session#save.
+     * is dispatched upon SessionInterface::save().
      *
      * The $relPath provided must not have an index on its final element,
      * otherwise a RepositoryException is thrown.
@@ -121,7 +121,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      * @throws \PHPCR\Lock\LockException if a lock prevents the addition of the
      *      node and this implementation performs this validation immediately
      *      instead of waiting until save.
-     * @throws InvalidArgumentException if $relPath is an absolute path
+     * @throws \InvalidArgumentException if $relPath is an absolute path
      * @throws \PHPCR\RepositoryException if the last element of relPath has an
      *      index or if another error occurs.
      *
@@ -446,10 +446,11 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
     /**
      * Shortcut for getProperties and then getting the values of the properties.
      *
+     * Apart from returning php native values instead of properties, this
+     * method has the same semantics as getProperties()
+     *
      * To improve performance, implementations should avoid instantiating the
      * property objects for this method
-     *
-     * See NodeInterface::getProperties for a full documentation
      *
      * @param string|array $filter a name pattern
      * @param boolean $dereference whether to dereference REFERENCE,
@@ -461,6 +462,8 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      *   path properties path strings instead of the referenced node instances.
      *
      * @throws \PHPCR\RepositoryException if an error occurs.
+     *
+     * @see \PHPCR\NodeInterface::getProperties()
      *
      * @api
      */
@@ -594,9 +597,10 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
     function getWeakReferences($name = null);
 
     /**
-     * Indicates whether a node exists at relPath Returns true if a node
-     * accessible through the current Session exists at relPath and false
-     * otherwise.
+     * Indicates whether a node exists at relPath
+     *
+     * Returns true if a node accessible through the current Session exists at
+     * relPath and false otherwise.
      *
      * @param string $relPath The path of a (possible) node.
      *
@@ -610,11 +614,10 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
     function hasNode($relPath);
 
     /**
-     * Determine if a property exists at the specified path.
+     * Indicates whether a property exists at relPath.
      *
-     * Indicates whether a property exists at relPath. Returns true if a
-     * property accessible through the current Session exists at relPath and
-     * false otherwise.
+     * Returns true if a property accessible through the current Session exists
+     * at relPath and false otherwise.
      *
      * @param string $relPath The path of a (possible) property.
      *
@@ -628,7 +631,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
     function hasProperty($relPath);
 
     /**
-     * Indicates whether this node has child nodes.
+     * Indicates whether this node has any child nodes.
      *
      * Returns true if this node has one or more child nodes accessible through
      * the current Session; false otherwise.
@@ -748,7 +751,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      *
      * Semantically, the new node type may take effect immediately, on dispatch
      * or on persist. The behavior is adopted must be the same as the behavior
-     * adopted for self::setPrimaryType() and the behavior that
+     * adopted for NodeInterface::setPrimaryType() and the behavior that
      * occurs when a node is first created.
      *
      * A ConstraintViolationException is thrown either immediately or on save
@@ -817,6 +820,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      * Returns true if the specified mixin node type called $mixinName can be
      * added to this node. Returns false otherwise. A result of false must be
      * returned in each of the following cases:
+     *
      * - The mixin's definition conflicts with an existing primary or mixin
      *   node type of this node.
      * - This node is versionable and checked-in or is non-versionable and
@@ -827,8 +831,6 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      * - A lock would prevent the addition of the mixin.
      * - An implementation-specific restriction would prevent the addition of
      *   the mixin.
-     *
-     * &nbsp;
      *
      * @param string $mixinName The name of the mixin to be tested.
      *
@@ -935,8 +937,8 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      * Removes this node and every other node in the shared set of this node.
      *
      * This removal must be done atomically, i.e., if one of the nodes cannot
-     * be removed, the method throws the exception NodeInterface::remove() would have
-     * thrown in that case, and none of the nodes are removed.
+     * be removed, the method throws the exception NodeInterface::remove()
+     * would have thrown in that case, and none of the nodes are removed.
      *
      * If this node is not shared this method removes only this node.
      *

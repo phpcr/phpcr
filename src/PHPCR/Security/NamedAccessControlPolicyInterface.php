@@ -25,10 +25,11 @@
 namespace PHPCR\Security;
 
 /**
- * An NamedAccessControlPolicy is an opaque access control policy that is described
- * by a JCR name and optionally a description. NamedAccessControlPolicy are
- * immutable and can therefore be directly applied to a node without additional
- * configuration step.
+ * A NamedAccessControlPolicy is an opaque access control policy that is
+ * described by a JCR name and optionally a description.
+ *
+ * NamedAccessControlPolicy are immutable and can therefore be directly applied
+ * to a node without additional configuration step.
  *
  * @package phpcr
  * @subpackage interfaces
@@ -37,12 +38,13 @@ namespace PHPCR\Security;
 interface NamedAccessControlPolicyInterface extends \PHPCR\Security\AccessControlPolicyInterface
 {
     /**
-     * Returns the name of the access control policy, which is JCR name and should
-     * be unique among the choices applicable to any particular node.
+     * Returns the name of the access control policy, which is JCR name and
+     * should be unique among the choices applicable to any particular node.
      *
      * @return string the name of the access control policy. A JCR name.
      *
      * @throws \PHPCR\RepositoryException - if an error occurs.
+     *
      * @api
      */
     function getName();

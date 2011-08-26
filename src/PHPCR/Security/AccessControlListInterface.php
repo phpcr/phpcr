@@ -25,16 +25,18 @@
 namespace PHPCR\Security;
 
 /**
- * The AccessControlList is an AccessControlPolicy representing a list of access
- * control entries. It is mutable before being set to the AccessControlManager
- * and consequently defines methods to read and mutate the list i.e. to get, add
- * or remove individual entries.
+ * The AccessControlList is an AccessControlPolicy representing a list of
+ * access control entries.
+ *
+ * It is mutable before being set to the AccessControlManager and consequently
+ * defines methods to read and mutate the list i.e. to get, add or remove
+ * individual entries.
  *
  * The \Traversable interface enables the implementation to be addressed with
  * <b>foreach</b>. AccessControlList has to implement either \RecursiveIterator
  * or \Iterator.
- * The iterator is equivalent to <b>getAccessControlEntries()</b> returning a list of
- * AccessControlEntry. The iterator keys have no significant meaning.
+ * The iterator is equivalent to <b>getAccessControlEntries()</b> returning a
+ * list of AccessControlEntry. The iterator keys have no significant meaning.
  *
  * @package phpcr
  * @subpackage interfaces
@@ -49,9 +51,11 @@ interface AccessControlListInterface extends \PHPCR\Security\AccessControlPolicy
      * This method is only guaranteed to return an AccessControlEntry if that
      * AccessControlEntry has been assigned through this API.
      *
-     * @return array Lis of all AccessControlEntry objects present with this policy.
+     * @return array Lis of all AccessControlEntry objects present with this
+     *      policy.
      *
      * @throws \PHPCR\RepositoryException - if an error occurs.
+     *
      * @api
      */
     function getAccessControlEntries();
@@ -63,25 +67,28 @@ interface AccessControlListInterface extends \PHPCR\Security\AccessControlPolicy
      * principal and the specified privileges.
      * This method returns true if this policy was modified, false otherwise.
      *
-     * How the entries are grouped within the list is an implementation detail. An
-     * implementation may e.g. combine the specified privileges with those added by
-     * a previous call to addAccessControlEntry for the same Principal. However, a
-     * call to addAccessControlEntry for a given Principal can never remove a
-     * Privilege added by a previous call.
+     * How the entries are grouped within the list is an implementation detail.
+     * An implementation may e.g. combine the specified privileges with those
+     * added by a previous call to addAccessControlEntry for the same
+     * Principal. However, a call to addAccessControlEntry for a given
+     * Principal can never remove a Privilege added by a previous call.
      *
-     * The modification does not take effect until this policy has been set to a node
-     * by calling AccessControlManagerInterface::setPolicy() and
-     * save is performed.
+     * The modification does not take effect until this policy has been set to
+     * a node by calling AccessControlManagerInterface::setPolicy() and save is
+     * performed.
      *
      * @param ? $principal - a Principal. TODO: define a type for this. JCR has javax.security.Principal
      * @param array $privileges - an array of Privileges.
+     *
      * @return boolean true if this policy was modify; false otherwise.
      *
-     * @throws \PHPCR\Security\AccessControlException if the specified principal or any of the privileges
-     *                                                does not existor if some other access control related exception occurs.
+     * @throws \PHPCR\Security\AccessControlException if the specified
+     *      principal or any of the privileges does not exist or if some other
+     *      access control related exception occurs.
      * @throws \PHPCR\RepositoryException - if another error occurs.
      *
      * @todo find replacement for java.security.Principal
+     *
      * @api
      */
     function addAccessControlEntry($principal, array $privileges);
@@ -89,16 +96,20 @@ interface AccessControlListInterface extends \PHPCR\Security\AccessControlPolicy
     /**
      * Removes the specified access control entry object from this policy.
      *
-     * Only exactly those entries obtained through getAccessControlEntries can be
-     * removed. This method does not take effect until this policy has been re-set
-     * to a node by calling AccessControlManagerInterface::setPolicy()
+     * Only exactly those entries obtained through getAccessControlEntries can
+     * be removed. This method does not take effect until this policy has been
+     * re-set to a node by calling AccessControlManagerInterface::setPolicy()
      * and save is performed.
      *
-     * @param \PHPCR\Security\AccessControlEntryInterface $ace the access control entry to be removed.
+     * @param \PHPCR\Security\AccessControlEntryInterface $ace the access
+     *      control entry to be removed.
+     *
      * @return void
      *
-     * @throws \PHPCR\Security\AccessControlException if the specified entry is not present on the specified node.
+     * @throws \PHPCR\Security\AccessControlException if the specified entry is
+     *      not present on the specified node.
      * @throws \PHPCR\RepositoryException if another error occurs.
+     *
      * @api
      */
     function removeAccessControlEntry(\PHPCR\Security\AccessControlEntryInterface $ace);

@@ -12,7 +12,9 @@ namespace PHPCR\Transaction;
 
 /**
  * As there is no transaction standard in PHP this interface provides a
- * transaction interface similar to the <a href="http://en.wikipedia.org/wiki/Java_Transaction_API">Java Transaction API (JTA)</a>
+ * transaction interface similar to the
+ * <a href="http://en.wikipedia.org/wiki/Java_Transaction_API">Java Transaction
+ * API (JTA)</a>
  *
  * You can acquire the transaction manager from a session supporting
  * transactions with \PHPCR\SessionInterface::getTransactionManager()

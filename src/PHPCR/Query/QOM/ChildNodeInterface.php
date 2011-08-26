@@ -42,6 +42,7 @@ interface ChildNodeInterface extends ConstraintInterface
      * Gets the name of the selector against which to apply this constraint.
      *
      * @return string the selector name; non-null
+     *
      * @api
      */
     function getSelectorName();
@@ -50,6 +51,7 @@ interface ChildNodeInterface extends ConstraintInterface
      * Gets the absolute path.
      *
      * @return string the path; non-null
+     *
      * @api
      */
     function getParentPath();

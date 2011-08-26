@@ -25,7 +25,8 @@
 namespace PHPCR;
 
 /**
- * Interface for all credentials that may be passed to the Repository::login() method.
+ * Interface for all credentials that may be passed to the Repository::login()
+ * method.
  *
  * Serves as a marker interface that all repositories must implement when
  * providing a credentials class. See {@link SimpleCredentials} and

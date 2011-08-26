@@ -46,6 +46,7 @@ interface AccessControlEntryInterface extends \Traversable
      * @return java.security.Principal a Principal.
      *
      * @todo find replacement for java.security.Principal
+     *
      * @api
      */
     function getPrincipal();
@@ -54,6 +55,7 @@ interface AccessControlEntryInterface extends \Traversable
      * Returns the privileges associated with this access control entry.
      *
      * @return array an array of Privileges.
+     *
      * @api
      */
     function getPrivileges();

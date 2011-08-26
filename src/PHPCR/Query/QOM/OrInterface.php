@@ -28,11 +28,10 @@ namespace PHPCR\Query\QOM;
  * Performs a logical disjunction of two other constraints.
  *
  * To satisfy the Or constraint, the node-tuple must either:
+ *
  * - satisfy constraint1 but not constraint2, or
  * - satisfy constraint2 but not constraint1, or
  * - satisfy both constraint1 and constraint2.
- *
- * &nbsp;
  *
  * @package phpcr
  * @subpackage interfaces
@@ -44,6 +43,7 @@ interface OrInterface extends ConstraintInterface
      * Gets the first constraint.
      *
      * @return \PHPCR\Query\QOM\ConstraintInterface the constraint; non-null
+     *
      * @api
      */
     function getConstraint1();
@@ -52,6 +52,7 @@ interface OrInterface extends ConstraintInterface
      * Gets the second constraint.
      *
      * @return \PHPCR\Query\QOM\ConstraintInterface the constraint; non-null
+     *
      * @api
      */
     function getConstraint2();

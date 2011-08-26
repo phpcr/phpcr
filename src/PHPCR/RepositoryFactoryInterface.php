@@ -31,11 +31,8 @@ namespace PHPCR;
  * Examples how to obtain repository instances
  *
  * <pre>
- *
- *    $factory = new \SomeRepository\RepositoryFactory;
- *
  *    $parameters = array('com.vendor.address' => 'vendor://localhost:9999/myrepo');
- *    $repo = $factory->getRepository($parameters);
+ *    $repository = \SomeRepository\RepositoryFactory::getRepository($parameters);
  * </pre>
  *
  * @package phpcr
@@ -55,28 +52,36 @@ interface RepositoryFactoryInterface
      * parameter might be jackalope.jackrabbit_url.
      *
      * The implementation must return null if it does not understand
-     * the given parameters. The implementation may also return null if a default
-     * repository instance is requested (indicated by null parameters) and this
-     * factory is not able to identify a default repository. An implementation
-     * should throw an RepositoryException if it is the right factory but has
-     * trouble connecting to the repository.
+     * the given parameters. The implementation may also return null if a
+     * default repository instance is requested (indicated by null parameters)
+     * and this factory is not able to identify a default repository. An
+     * implementation should throw an RepositoryException if it is the right
+     * factory but has trouble connecting to the repository.
      *
-     * @param array|null $parameters string key/value pairs as repository arguments or null if a client wishes
-     *                               to connect to a default repository.
-     * @return \PHPCR\RepositoryInterface a repository instance or null if this implementation does
-     *                                    not understand the passed parameters
-     * @throws \PHPCR\RepositoryException if no suitable repository is found or another error occurs.
+     * @param array|null $parameters string key/value pairs as repository
+     *      arguments or null if a client wishes to connect to a default
+     *      repository.
+     *
+     * @return \PHPCR\RepositoryInterface a repository instance or null if this
+     *      implementation does not understand the passed parameters
+     *
+     * @throws \PHPCR\RepositoryException if no suitable repository is found or
+     *      another error occurs.
+     *
      * @api
      */
     static function getRepository(array $parameters = null);
 
     /**
-     * Get the list of configuration options that can be passed to getRepository
+     * Get the list of configuration options that can be passed to
+     * RepositoryFactoryInterface::getRepository()
      *
      * The description string should include whether the key is mandatory or
      * optional.
      *
      * @return array hash map of configuration key => english description
+     *
+     * @api
      */
     static function getConfigurationKeys();
 }

@@ -44,10 +44,13 @@ interface NodeTypeManagerInterface extends \Traversable
      * Returns the named node type.
      *
      * @param string $nodeTypeName the name of an existing node type.
+     *
      * @return \PHPCR\NodeType\NodeTypeInterface A NodeType object.
      *
-     * @throws \PHPCR\NodeType\NoSuchNodeTypeException if no node type by the given name exists.
+     * @throws \PHPCR\NodeType\NoSuchNodeTypeException if no node type of the
+     *      given name exists.
      * @throws \PHPCR\RepositoryException if another error occurs.
+     *
      * @api
      */
     function getNodeType($nodeTypeName);
@@ -55,13 +58,16 @@ interface NodeTypeManagerInterface extends \Traversable
     /**
      * Determines if the given node type is registered.
      *
-     * Returns true if a node type with the specified name is registered. Returns
-     * false otherwise.
+     * Returns true if a node type with the specified name is registered.
+     * Returns false otherwise.
      *
      * @param string $name The name of node type.
-     * @return boolean True, if the node type identified by its name is registered, else false.
+     *
+     * @return boolean True, if the node type identified by its name is
+     *      registered, else false.
      *
      * @throws \PHPCR\RepositoryException if an error occurs.
+     *
      * @api
      */
     function hasNodeType($name);
@@ -69,10 +75,12 @@ interface NodeTypeManagerInterface extends \Traversable
     /**
      * Returns an iterator over all available node types (primary and mixin).
      *
-     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>. Keys are the node type names,
-     *                  values the corresponding NodeTypeInterface instances.
+     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>.
+     *      Keys are the node type names, values the corresponding
+     *      NodeTypeInterface instances.
      *
      * @throws \PHPCR\RepositoryException if an error occurs.
+     *
      * @api
      */
     function getAllNodeTypes();
@@ -80,10 +88,12 @@ interface NodeTypeManagerInterface extends \Traversable
     /**
      * Returns an iterator over all available primary node types.
      *
-     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>. Keys are the node type names,
-     *                  values the corresponding NodeTypeInterface instances.
+     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>.
+     *      Keys are the node type names, values the corresponding
+     *      NodeTypeInterface instances.
      *
      * @throws \PHPCR\RepositoryException if an error occurs.
+     *
      * @api
      */
     function getPrimaryNodeTypes();
@@ -93,77 +103,93 @@ interface NodeTypeManagerInterface extends \Traversable
      *
      * If none are available, an empty iterator is returned.
      *
-     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>. Keys are the node type names,
-     *                  values the corresponding NodeTypeInterface instances.
+     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>.
+     *      Keys are the node type names, values the corresponding
+     *      NodeTypeInterface instances.
      *
      * @throws \PHPCR\RepositoryException if an error occurs.
+     *
      * @api
      */
     function getMixinNodeTypes();
 
     /**
-     * Returns an empty NodeTypeTemplate which can then be used to define a node type
-     * and passed to NodeTypeManagerInterface::registerNodeType().
+     * Returns an empty NodeTypeTemplateInterface which can then be used to
+     * define a node type and passed to
+     * NodeTypeManagerInterface::registerNodeType().
      *
-     * If <b>$ntd</b> is given:
-     * Returns a NodeTypeTemplateInterface holding the specified node type definition. This
-     * template can then be altered and passed to NodeTypeManagerInterface::registerNodeType().
+     * If <b>$ntd</b> is given: Returns a NodeTypeTemplateInterface holding the
+     * specified node type definition. This template can then be altered and
+     * passed to NodeTypeManagerInterface::registerNodeType().
      *
-     * @param \PHPCR\NodeType\NodeTypeDefinitionInterface $ntd a NodeTypeDefinition.
+     * @param \PHPCR\NodeType\NodeTypeDefinitionInterface $ntd a
+     *      NodeTypeDefinition.
+     *
      * @return \PHPCR\NodeType\NodeTypeTemplateInterface A NodeTypeTemplate.
      *
-     * @throws \PHPCR\UnsupportedRepositoryOperationException if this implementation does not support
-     *                                                        node type registration.
+     * @throws \PHPCR\UnsupportedRepositoryOperationException if this
+     *      implementation does not support node type registration.
      * @throws \PHPCR\RepositoryException if another error occurs.
+     *
      * @api
      */
     function createNodeTypeTemplate($ntd = null);
 
     /**
-     * Returns an empty NodeDefinitionTemplate which can then be used to create a
-     * child node definition and attached to a NodeTypeTemplate.
+     * Returns an empty NodeDefinitionTemplate which can then be used to create
+     * a child node definition and attached to a NodeTypeTemplate.
      *
-     * @return \PHPCR\NodeType\NodeDefinitionTemplateInterface A NodeDefinitionTemplate.
+     * @return \PHPCR\NodeType\NodeDefinitionTemplateInterface A
+     *      NodeDefinitionTemplate.
      *
-     * @throws \PHPCR\UnsupportedRepositoryOperationException if this implementation does not support
-     *                                                        node type registration.
+     * @throws \PHPCR\UnsupportedRepositoryOperationException if this
+     *      implementation does not support node type registration.
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
      */
     function createNodeDefinitionTemplate();
 
     /**
-     * Returns an empty PropertyDefinitionTemplate which can then be used to create
-     * a property definition and attached to a NodeTypeTemplate.
+     * Returns an empty PropertyDefinitionTemplateInterface which can then be
+     * used to create a property definition and attached to a
+     * NodeTypeTemplateInterface.
      *
-     * @return \PHPCR\NodeType\PropertyDefinitionTemplateInterface A PropertyDefinitionTemplate.
+     * @return \PHPCR\NodeType\PropertyDefinitionTemplateInterface An empty
+     *      PropertyDefinitionTemplateInterface instance.
      *
-     * @throws \PHPCR\UnsupportedRepositoryOperationException if this implementation does not support
-     *                                                        node type registration.
+     * @throws \PHPCR\UnsupportedRepositoryOperationException if this
+     *      implementation does not support node type registration.
      * @throws \PHPCR\RepositoryException if another error occurs.
+     *
      * @api
      */
     function createPropertyDefinitionTemplate();
 
     /**
-     * Registers a new node type or updates an existing node type using the specified
-     * definition and returns the resulting NodeType object.
+     * Registers a new node type or updates an existing node type using the
+     * specified definition and returns the resulting NodeTypeInterface object.
      *
-     * Typically, the object passed to this method will be a 
+     * Typically, the object passed to this method will be a
      * NodeTypeTemplateInterface (a subclass of NodeTypeDefinitionInterface)
      * acquired from NodeTypeManagerInterface::createNodeTypeTemplate()
      * and then filled-in with definition information.
      *
-     * @param \PHPCR\NodeType\NodeTypeDefinitionInterface $ntd an NodeTypeDefinition.
-     * @param boolean $allowUpdate whether to fail if node already exists or to update it
-     * @return \PHPCR\NodeType\NodeTypeInterface the registered node type
+     * @param \PHPCR\NodeType\NodeTypeDefinitionInterface $ntd a
+     *      NodeTypeDefinitionInterface instance.
+     * @param boolean $allowUpdate whether to fail if node already exists or to
+     *      update it.
      *
-     * @throws \PHPCR\InvalidNodeTypeDefinitionException if the NodeTypeDefinition is invalid.
-     * @throws \PHPCR\NodeType\NodeTypeExistsException if allowUpdate is false and the NodeTypeDefinition
-     *                                                 specifies a node type name that is already registered.
-     * @throws \PHPCR\UnsupportedRepositoryOperationException if this implementation does not support
-     *                                                        node type registration.
+     * @return \PHPCR\NodeType\NodeTypeInterface the registered node type.
+     *
+     * @throws \PHPCR\InvalidNodeTypeDefinitionException if the
+     *      NodeTypeDefinitionInterface is invalid.
+     * @throws \PHPCR\NodeType\NodeTypeExistsException if allowUpdate is false
+     *      and the NodeTypeDefinition specifies a node type name that is
+     *      already registered.
+     * @throws \PHPCR\UnsupportedRepositoryOperationException if this
+     *      implementation does not support node type registration.
      * @throws \PHPCR\RepositoryException if another error occurs.
+     *
      * @api
      */
     function registerNodeType(\PHPCR\NodeType\NodeTypeDefinitionInterface $ntd, $allowUpdate);
@@ -176,20 +202,25 @@ interface NodeTypeManagerInterface extends \Traversable
      * The effect of the method is "all or nothing"; if an error occurs, no node
      * types are registered or updated.
      *
-     * @param array $definitions an array of NodeTypeDefinitions
-     * @param boolean $allowUpdate whether to fail if node already exists or to update it
-     * @return Iterator over the registered node types implementing <b>SeekableIterator</b> and <b>Countable</b>.
-     *                  Keys are the node type names, values the corresponding NodeTypeInterface instances.
+     * @param array $definitions an array of NodeTypeDefinitions.
+     * @param boolean $allowUpdate whether to fail if node already exists or to
+     *      update it.
      *
-     * @throws \PHPCR\InvalidNodeTypeDefinitionException if a NodeTypeDefinition within the Collection is
-     *                                                   invalid or if the Collection contains an object of a
-     *                                                   type other than NodeTypeDefinition.
-     * @throws \PHPCR\NodeType\NodeTypeExistsException if allowUpdate is false and a NodeTypeDefinition within
-     *                                                 the Collection specifies a node type name that is already
-     *                                                 registered.
-     * @throws \PHPCR\UnsupportedRepositoryOperationException if this implementation does not support node type
-     *                                                        registration.
+     * @return Iterator over the registered node types implementing
+     *      <b>SeekableIterator</b> and <b>Countable</b>. Keys are the node
+     *      type names, values the corresponding NodeTypeInterface instances.
+     *
+     * @throws \PHPCR\InvalidNodeTypeDefinitionException if a
+     *      NodeTypeDefinitionInterface within the Collection is invalid or if
+     *      the Collection contains an object of a type other than
+     *      NodeTypeDefinitionInterface.
+     * @throws \PHPCR\NodeType\NodeTypeExistsException if allowUpdate is false
+     *      and a NodeTypeDefinition within the Collection specifies a node
+     *      type name that is already registered.
+     * @throws \PHPCR\UnsupportedRepositoryOperationException if this
+     *      implementation does not support node type registration.
      * @throws \PHPCR\RepositoryException if another error occurs.
+     *
      * @api
      */
     function registerNodeTypes(array $definitions, $allowUpdate);
@@ -197,28 +228,36 @@ interface NodeTypeManagerInterface extends \Traversable
     /**
      * Unregisters the specified node type.
      *
-     * @param string $name The name of the node type to be removed from the registry.
+     * @param string $name The name of the node type to be removed from the
+     *      registry.
+     *
      * @return void
      *
-     * @throws \PHPCR\UnsupportedRepositoryOperationException if this implementation does not
-     *                                                        support node type registration.
-     * @throws \PHPCR\NodeType\NoSuchNodeTypeException if no registered node type exists with the specified name.
+     * @throws \PHPCR\UnsupportedRepositoryOperationException if this
+     *      implementation does not support node type registration.
+     * @throws \PHPCR\NodeType\NoSuchNodeTypeException if no registered node
+     *      type exists with the specified name.
      * @throws \PHPCR\RepositoryException if another error occurs.
+     *
      * @api
      */
     function unregisterNodeType($name);
 
     /**
-     * Unregisters the specified set of node types. Used to unregister a set of node
-     * types with mutual dependencies.
+     * Unregisters the specified set of node types. Used to unregister a set of
+     * node types with mutual dependencies.
      *
-     * @param array $names List of node type names to be removed from the registry.
+     * @param array $names List of node type names to be removed from the
+     *      registry.
+     *
      * @return void
      *
-     * @throws \PHPCR\UnsupportedRepositoryOperationException if this implementation does not support
-     *                                                        node type registration.
-     * @throws \PHPCR\NodeType\NoSuchNodeTypeException if one of the names listed is not a registered node type.
+     * @throws \PHPCR\UnsupportedRepositoryOperationException if this
+     *      implementation does not support node type registration.
+     * @throws \PHPCR\NodeType\NoSuchNodeTypeException if one of the names
+     *      listed is not a registered node type.
      * @throws \PHPCR\RepositoryException if another error occurs.
+     *
      * @api
      */
     function unregisterNodeTypes(array $names);

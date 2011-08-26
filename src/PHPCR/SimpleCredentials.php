@@ -61,7 +61,7 @@ final class SimpleCredentials implements \PHPCR\CredentialsInterface
      *
      * @param string $userID the user ID
      * @param string $password the user's password
-     * 
+     *
      * @api
      */
     public function __construct($userID, $password)
@@ -98,10 +98,11 @@ final class SimpleCredentials implements \PHPCR\CredentialsInterface
      * Stores an attribute in this credentials instance.
      *
      * <b>Note:</b>
-     * If no value is passed the attribute will be removed.
+     * If no value is passed, the attribute will be removed.
      *
      * @param string $name the name of the attribute
      * @param mixed $value the value to be stored
+     *
      * @return void
      *
      * @api
@@ -125,7 +126,9 @@ final class SimpleCredentials implements \PHPCR\CredentialsInterface
      * given name exists.
      *
      * @param string $name the name of the attribute
-     * @return mixed the value of the attribute, or null if the attribute does not exist
+     *
+     * @return mixed the value of the attribute, or null if the attribute does
+     *      not exist
      *
      * @api
      */
@@ -141,6 +144,7 @@ final class SimpleCredentials implements \PHPCR\CredentialsInterface
      * Removes an attribute from this credentials instance.
      *
      * @param string $name the name of the attribute to remove
+     *
      * @return void
      *
      * @api

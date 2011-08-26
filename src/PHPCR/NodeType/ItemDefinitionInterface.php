@@ -42,6 +42,7 @@ interface ItemDefinitionInterface
      * such cases this method returns null.
      *
      * @return \PHPCR\NodeType\NodeTypeInterface A NodeType object.
+     *
      * @api
      */
     function getDeclaringNodeType();
@@ -59,6 +60,7 @@ interface ItemDefinitionInterface
      * will return null.
      *
      * @return string A string denoting the name or "*".
+     *
      * @api
      */
     function getName();
@@ -85,7 +87,9 @@ interface ItemDefinitionInterface
      * PropertyDefinitionTemplate or NodeDefinitionTemplate, then this method
      * will return false.
      *
-     * @return boolean True, if the item is automatically created when its parent node is created, else false.
+     * @return boolean True, if the item is automatically created when its
+     *      parent node is created, else false.
+     *
      * @api
      */
     function isAutoCreated();
@@ -110,6 +114,7 @@ interface ItemDefinitionInterface
      * An item definition cannot be both residual and mandatory.
      *
      * @return boolean True, if the item is mandatory, else false.
+     *
      * @api
      */
     function isMandatory();
@@ -119,6 +124,7 @@ interface ItemDefinitionInterface
      *
      * This governs what occurs (in implementations that support versioning)
      * when the parent node of this item is checked-in. One of:
+     *
      * - OnParentVersionAction::COPY
      * - OnParentVersionAction::VERSION
      * - OnParentVersionAction::IGNORE
@@ -128,10 +134,11 @@ interface ItemDefinitionInterface
      *
      * In implementations that support node type registration, if this
      * ItemDefinition object is actually a newly-created empty
-     * PropertyDefinitionTemplateInterface or NodeDefinitionTemplateInterface, then this method
-     * will return OnParentVersionAction::COPY.
+     * PropertyDefinitionTemplateInterface or NodeDefinitionTemplateInterface,
+     * then this method will return OnParentVersionAction::COPY.
      *
      * @return integer An int constant member of OnParentVersionAction.
+     *
      * @api
      */
     function getOnParentVersion();
@@ -139,19 +146,21 @@ interface ItemDefinitionInterface
     /**
      * Reports whether the child item is protected.
      *
-     * In level 2 implementations, a protected item is one that cannot be removed
-     * (except by removing its parent) or modified through the the standard write
-     * methods of this API (that is, ItemInterface::remove(), NodeInterface::addNode(), NodeInterface::setProperty()
-     * and PropertyInterface::setValue()).
+     * In level 2 implementations, a protected item is one that cannot be
+     * removed (except by removing its parent) or modified through the the
+     * standard write methods of this API (that is, ItemInterface::remove(),
+     * NodeInterface::addNode(), NodeInterface::setProperty() and
+     * PropertyInterface::setValue()).
      *
-     * A protected node may be removed or modified (in a level 2 implementation),
-     * however, through some mechanism not defined by this specification or as a
-     * side-effect of operations other than the standard write methods of the API.
+     * A protected node may be removed or modified (in a level 2
+     * implementation), however, through some mechanism not defined by this
+     * specification or as a side-effect of operations other than the standard
+     * write methods of the API.
      *
      * In implementations that support node type registration, if this
      * ItemDefinition object is actually a newly-created empty
-     * PropertyDefinitionTemplateInterface or NodeDefinitionTemplateInterface, then this method
-     * will return false.
+     * PropertyDefinitionTemplateInterface or NodeDefinitionTemplateInterface,
+     * then this method will return false.
      *
      * @return boolean True, if the child item is protected, else false.
      * @api

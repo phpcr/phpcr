@@ -59,15 +59,15 @@ namespace PHPCR\Query\QOM;
  * full-text indexed properties within the full-text search scope satisfy the
  * specified fullTextSearchExpression, evaluated as follows:
  *
- * - A term not preceded with "-" (minus sign) is satisfied only if the value contains that term.
- * - A term preceded with "-" (minus sign) is satisfied only if the value does not contain that term.
+ * - A term not preceded with "-" (minus sign) is satisfied only if the value
+ *      contains that term.
+ * - A term preceded with "-" (minus sign) is satisfied only if the value does
+ *      not contain that term.
  * - Terms separated by whitespace are implicitly "ANDed".
  * - Terms separated by "OR" are "ORed".
  * - "AND" has higher precedence than "OR".
- * - Within a term, each double quote ("), "-" (minus sign), and "\" (backslash) must be escaped by a
- *   preceding "\" (backslash).
- *
- * &nbsp;
+ * - Within a term, each double quote ("), "-" (minus sign), and "\"
+ *      (backslash) must be escaped by a preceding "\" (backslash).
  *
  * @package phpcr
  * @subpackage interfaces
@@ -79,6 +79,7 @@ interface FullTextSearchInterface extends ConstraintInterface
      * Gets the name of the selector against which to apply this constraint.
      *
      * @return string the selector name; non-null
+     *
      * @api
      */
     function getSelectorName();
@@ -86,9 +87,10 @@ interface FullTextSearchInterface extends ConstraintInterface
     /**
      * Gets the name of the property.
      *
-     * @return string the property name if the full-text search scope is a property,
-     *                otherwise null if the full-text search scope is the node
-     *                (or node subgraph, in some implementations).
+     * @return string the property name if the full-text search scope is a
+     *      property, otherwise null if the full-text search scope is the node
+     *      (or node subgraph, in some implementations).
+     *
      * @api
      */
     function getPropertyName();
@@ -96,7 +98,9 @@ interface FullTextSearchInterface extends ConstraintInterface
     /**
      * Gets the full-text search expression.
      *
-     * @return \PHPCR\Query\QOM\StaticOperandInterface the full-text search expression; non-null
+     * @return \PHPCR\Query\QOM\StaticOperandInterface the full-text search
+     *      expression; non-null
+     *
      * @api
      */
     function getFullTextSearchExpression();

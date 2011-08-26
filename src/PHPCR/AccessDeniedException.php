@@ -25,7 +25,7 @@
 namespace PHPCR;
 
 /**
- * Exception shall be thrown by access-related methods.
+ * Exception to be thrown by access-related methods.
  *
  * @package phpcr
  * @subpackage exceptions

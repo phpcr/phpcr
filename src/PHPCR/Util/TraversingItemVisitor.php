@@ -48,6 +48,7 @@ abstract class TraversingItemVisitor implements \PHPCR\ItemVisitorInterface
     /**
      * Indicates if traversal should be done in a breadth-first manner rather
      * than depth-first (which is the default).
+     *
      * @var boolean
      */
     protected $breadthFirst = false;
@@ -56,24 +57,28 @@ abstract class TraversingItemVisitor implements \PHPCR\ItemVisitorInterface
      * The 0-based depth up to which the hierarchy should be traversed (if it's
      * -1, the hierarchy will be traversed until there are no more children of
      * the current item).
+     *
      * @var integer
      */
     protected $maxDepth = -1;
 
     /**
      * Queue used to implement breadth-first traversal.
+     *
      * @var \SplQueue
      */
     protected $currentQueue;
 
     /**
      * Queue used to implement breadth-first traversal.
+     *
      * @var \SplQueue
      */
     protected $nextQueue;
 
     /**
      * Used to track hierarchy depth of item currently being processed.
+     *
      * @var integer
      */
     protected $currentDepth;
@@ -81,11 +86,12 @@ abstract class TraversingItemVisitor implements \PHPCR\ItemVisitorInterface
     /**
      * Constructs a new instance of this class.
      *
-     * @param boolean $breadthFirst if $breadthFirst is true then traversal is done in a breadth-first manner;
-     *                              otherwise it is done in a depth-first manner (which is the default behavior).
-     * @param integer $maxDepth the 0-based depth up to which the hierarchy should be traversed
-     *                          (if it's -1, the hierarchy will be traversed until there are no more children
-     *                          of the current item).
+     * @param boolean $breadthFirst if $breadthFirst is true then traversal is
+     *      done in a breadth-first manner; otherwise it is done in a
+     *      depth-first manner (which is the default behavior).
+     * @param integer $maxDepth the 0-based depth up to which the hierarchy
+     *      should be traversed (if it's -1, the hierarchy will be traversed
+     *      until there are no more children of the current item).
      *
      * @api
      */
@@ -102,25 +108,35 @@ abstract class TraversingItemVisitor implements \PHPCR\ItemVisitorInterface
     }
 
     /**
-     * Implement this method to add behavior performed before a Property is visited.
+     * Implement this method to add behavior performed before a Property is
+     * visited.
      *
-     * @param \PHPCR\ItemInterface $item the Item that is accepting this visitor.
-     * @param integer $depth hierarchy level of this node (the root node starts at depth 0).
+     * @param \PHPCR\ItemInterface $item the Item that is accepting this
+     *      visitor.
+     * @param integer $depth hierarchy level of this node (the root node starts
+     *      at depth 0).
+     *
      * @return void
      *
      * @throws \PHPCR\RepositoryException if an error occurs.
+     *
      * @api
      */
     protected abstract function entering(\PHPCR\ItemInterface $item, $depth);
 
     /**
-     * Implement this method to add behavior performed after a Property is visited.
+     * Implement this method to add behavior performed after a Property is
+     * visited.
      *
-     * @param \PHPCR\ItemInterface $item the Item that is accepting this visitor.
-     * @param integer $depth hierarchy level of this property (the root node starts at depth 0).
+     * @param \PHPCR\ItemInterface $item the Item that is accepting this
+     *      visitor.
+     * @param integer $depth hierarchy level of this property (the root node
+     *      starts at depth 0).
+     *
      * @return void
      *
      * @throws \PHPCR\RepositoryException if an error occurs.
+     *
      * @api
      */
     protected abstract function leaving(\PHPCR\ItemInterface $item, $depth);
@@ -129,16 +145,18 @@ abstract class TraversingItemVisitor implements \PHPCR\ItemVisitorInterface
      * Called when the Visitor is passed to an Item.
      *
      * It calls TraversingItemVisitor::entering() followed by
-     * TraversingItemVisitor::leaving(). Implement these
-     * abstract methods to specify behavior on 'arrival at' and 'after leaving'
-     * the $item.
+     * TraversingItemVisitor::leaving(). Implement these abstract methods to
+     * specify behavior on 'arrival at' and 'after leaving' the $item.
      *
      * If this method throws, the visiting process is aborted.
      *
-     * @param \PHPCR\ItemInterface $item the Node or Property that is accepting this visitor.
+     * @param \PHPCR\ItemInterface $item the Node or Property that is accepting
+     *      this visitor.
+     *
      * @return void
      *
      * @throws \PHPCR\RepositoryException if an error occurs.
+     *
      * @api
      */
     public function visit(\PHPCR\ItemInterface $item)

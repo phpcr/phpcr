@@ -43,6 +43,7 @@ interface EquiJoinConditionInterface extends JoinConditionInterface
      * Gets the name of the first selector.
      *
      * @return string the selector name; non-null
+     *
      * @api
      */
     function getSelector1Name();
@@ -51,6 +52,7 @@ interface EquiJoinConditionInterface extends JoinConditionInterface
      * Gets the property name in the first selector.
      *
      * @return string the property name; non-null
+     *
      * @api
      */
     function getProperty1Name();
@@ -59,6 +61,7 @@ interface EquiJoinConditionInterface extends JoinConditionInterface
      * Gets the name of the second selector.
      *
      * @return string the selector name; non-null
+     *
      * @api
      */
     function getSelector2Name();
@@ -67,6 +70,7 @@ interface EquiJoinConditionInterface extends JoinConditionInterface
      * Gets the property name in the second selector.
      *
      * @return string the property name; non-null
+     *
      * @api
      */
     function getProperty2Name();

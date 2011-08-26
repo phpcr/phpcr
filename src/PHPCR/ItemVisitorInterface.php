@@ -43,15 +43,18 @@ namespace PHPCR;
 interface ItemVisitorInterface
 {
     /**
-     * This method is called when the ItemVisitor is passed to the accept method of a Node or Property.
+     * This method is called when the ItemVisitor is passed to the accept
+     * method of a Node or Property.
      *
      * If this method throws an exception the visiting process is aborted.
      *
-     * PHPCR Note: you need to distinguish between Node and Property objects being
-     *             visited in your implementation.
+     * PHPCR Note: you need to distinguish between Node and Property objects
+     * being visited in your implementation.
      *
-     * @param \PHPCR\ItemInterface $item a node or property accepting this visitor
+     * @param \PHPCR\ItemInterface $item a node or property accepting this
+     *      visitor
      * @throws \PHPCR\RepositoryException if an error occurs
+     *
      * @api
      */
     function visit(\PHPCR\ItemInterface $item);

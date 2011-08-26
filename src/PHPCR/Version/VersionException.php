@@ -25,8 +25,8 @@
 namespace PHPCR\Version;
 
 /**
- * Exception thrown by VersionInterface::addSuccessor() if an invalid version graph
- * operation is attempted.
+ * Exception thrown by VersionInterface::addSuccessor() if an invalid version
+ * graph operation is attempted.
  *
  * @package phpcr
  * @subpackage exceptions

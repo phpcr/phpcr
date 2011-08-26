@@ -28,8 +28,8 @@ namespace PHPCR\Query\QOM;
  * Defines a column to include in the tabular view of query results.
  *
  * If property is not specified, a column is included for each single-valued
- * non-residual property of the node type specified by the nodeType attribute of
- * selector.
+ * non-residual property of the node type specified by the nodeType attribute
+ * of selector.
  *
  * If property is specified, columnName is required and used to name the column
  * in the tabular results. If property is not specified, columnName must not be
@@ -45,6 +45,7 @@ interface ColumnInterface
      * Gets the name of the selector.
      *
      * @return string the selector name; non-null
+     *
      * @api
      */
     function getSelectorName();
@@ -52,7 +53,9 @@ interface ColumnInterface
     /**
      * Gets the name of the property.
      *
-     * @return string the property name, or null to include a column for each single-value non-residual property of the selector's node type
+     * @return string the property name, or null to include a column for each
+     *      single-value non-residual property of the selector's node type
+     *
      * @api
      */
     function getPropertyName();
@@ -60,7 +63,9 @@ interface ColumnInterface
     /**
      * Gets the column name.
      *
-     * @return string the column name; must be null if getPropertyName is null and non-null otherwise
+     * @return string the column name; must be null if getPropertyName is null
+     *      and non-null otherwise
+     *
      * @api
      */
     function getColumnName();

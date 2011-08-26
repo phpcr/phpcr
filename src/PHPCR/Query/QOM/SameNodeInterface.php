@@ -28,10 +28,9 @@ namespace PHPCR\Query\QOM;
  * Tests whether the selector node is reachable by absolute path path.
  *
  * A node-tuple satisfies the constraint only if:
- *
  * <code>$selectorNode->isSame($session->getNode($path))</code>
- *
- * would return true, where selectorNode is the node for the specified selector.
+ * would return true, where selectorNode is the node for the specified
+ * selector.
  *
  * @package phpcr
  * @subpackage interfaces

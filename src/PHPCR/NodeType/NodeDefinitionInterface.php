@@ -51,6 +51,7 @@ interface NodeDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInterfac
      * not attached to a live NodeType. In such cases this method returns null.
      *
      * @return \PHPCR\NodeType\NodeTypeInterface An array of NodeType objects.
+     *
      * @api
      */
     function getRequiredPrimaryTypes();
@@ -67,6 +68,7 @@ interface NodeDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInterfac
      * empty one, then this method will return null.
      *
      * @return array a String array
+     *
      * @api
      */
     function getRequiredPrimaryTypeNames();
@@ -85,6 +87,7 @@ interface NodeDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInterfac
      * not attached to a live NodeType. In such cases this method returns null.
      *
      * @return \PHPCR\NodeType\NodeTypeInterface A NodeType.
+     *
      * @api
      */
     function getDefaultPrimaryType();
@@ -101,6 +104,7 @@ interface NodeDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInterfac
      * empty one, then this method will return null.
      *
      * @return string The name of the default primary type.
+     *
      * @api
      */
     function getDefaultPrimaryTypeName();
@@ -109,12 +113,14 @@ interface NodeDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInterfac
      * Reports whether this child node can have same-name siblings.
      *
      * In other words, whether the parent node can have more than one child
-     * node of this name. If this NodeDefinition is actually a NodeDefinitionTemplate
-     * that is not part of a registered node type, then this method will return the same
-     * name siblings status as set in that template. If that template is a
-     * newly-created empty one, then this method will return false.
+     * node of this name. If this NodeDefinition is actually a
+     * NodeDefinitionTemplate that is not part of a registered node type, then
+     * this method will return the same name siblings status as set in that
+     * template. If that template is a newly-created empty one, then this
+     * method will return false.
      *
      * @return boolean True, if the node my have a same-name sibling, else false.
+     *
      * @api
      */
     function allowsSameNameSiblings();
