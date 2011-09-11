@@ -518,10 +518,16 @@ interface RepositoryInterface
     function isStandardDescriptor($key);
 
     /**
-     * Get the string value(s) for this key.
+     * Get the value(s) for this key.
+     *
+     * If this is documented as a boolean property, this method returns a
+     * boolean, otherwise a string.
      *
      * @param string $key a descriptor key.
-     * @return mixed a descriptor value in string form or an array of strings for multivalue descriptors
+     *
+     * @return mixed a descriptor value in string or boolean form or an array
+     *      of strings or booleans for multivalue descriptors
+     *
      * @api
      */
     function getDescriptor($key);
