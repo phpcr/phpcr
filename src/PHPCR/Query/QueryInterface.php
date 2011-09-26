@@ -69,7 +69,7 @@ interface QueryInterface
     /**
      * Executes this query and returns a QueryResult object.
      *
-     * @return \PHPCR\Query\QueryInterface a QueryResult object
+     * @return \PHPCR\Query\QueryResultInterface a QueryResult object
      *
      * @throws \PHPCR\Query\InvalidQueryException if the query contains an unbound variable.
      * @throws \PHPCR\RepositoryException if an error occurs
