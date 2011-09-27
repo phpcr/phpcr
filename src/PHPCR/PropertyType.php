@@ -488,7 +488,10 @@ final class PropertyType
                     if ($v instanceof \PHPCR\NodeInterface) {
                         // In Jackrabbit a new node cannot be referenced until it has been persisted
                         // See: https://issues.apache.org/jira/browse/JCR-1614
-                        if ($v->isNew() || ! $v->isNodeType('mix:referenceable')) {
+                        if ($v->isNew()) {
+                            throw new \PHPCR\ValueFormatException('Node ' . $v->getPath() . ' must be persisted before being referencable');
+                        }
+                        if (! $v->isNodeType('mix:referenceable') && ! $v->isNodeType('mix:versionable')) {
                             throw new \PHPCR\ValueFormatException('Node ' . $v->getPath() . ' is not referencable');
                         }
                         $ret[] = $v->getIdentifier();
