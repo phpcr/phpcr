@@ -136,11 +136,11 @@ But as this is PHP, you don't have to catch them. As long as your content is as 
      */
 
     // get all properties of this node
-    foreach($node->getPropertiesValues() as $name => $value) {
+    foreach ($node->getPropertiesValues() as $name => $value) {
         echo "$name: $value\n";
     }
     // get the properties of this node with a name starting with 'a'
-    foreach($node->getPropertiesValues("a*")) {
+    foreach ($node->getPropertiesValues("a*")) {
         echo "$name: $value\n";
     }
 
@@ -152,7 +152,7 @@ But as this is PHP, you don't have to catch them. As long as your content is as 
 
     // get all child nodes. the $node is Iterable, the iterator being all children
     $node = $session->getNode('/cms/content/static');
-    foreach($node as $name => $node) {
+    foreach ($node as $name => $node) {
         if ($node->hasProperties()) {
             echo "$name has properties\n";
         } else {
@@ -161,12 +161,12 @@ But as this is PHP, you don't have to catch them. As long as your content is as 
     }
 
     // get child nodes with the name starting with 'c'
-    foreach($node->getNodes('c*') as $name => $node) {
+    foreach ($node->getNodes('c*') as $name => $node) {
         echo "$name\n";
     }
 
     // get child nodes with the name starting with 'h' or ending with 'e' or named 'projects'
-    foreach($node->getNodes(array('h*', '*e', 'projects')) as $name => $node) {
+    foreach ($node->getNodes(array('h*', '*e', 'projects')) as $name => $node) {
         echo "$name\n";
     }
 

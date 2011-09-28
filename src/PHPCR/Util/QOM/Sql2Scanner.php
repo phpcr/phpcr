@@ -88,7 +88,7 @@ class Sql2Scanner
      */
     public function expectTokens($tokens, $case_insensitive = true)
     {
-        foreach($tokens as $token) {
+        foreach ($tokens as $token) {
             $this->expectToken($token, $case_insensitive);
         }
     }

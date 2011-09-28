@@ -394,7 +394,7 @@ class Sql2Generator
     {
         $sql2 = '';
 
-        foreach($orderings as $ordering) {
+        foreach ($orderings as $ordering) {
 
             if ($sql2 !== '') {
                 $sql2 .= ', ';
@@ -428,7 +428,7 @@ class Sql2Generator
         }
 
         $sql2 = '';
-        foreach($columns as $column) {
+        foreach ($columns as $column) {
 
             if ($sql2 !== '') {
                 $sql2 .= ', ';

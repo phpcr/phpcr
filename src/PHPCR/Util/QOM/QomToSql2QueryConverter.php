@@ -484,7 +484,7 @@ class QomToSql2QueryConverter
     protected function convertOrderings(array $orderings)
     {
         $list = array(); 
-        foreach($orderings as $ordering) {
+        foreach ($orderings as $ordering) {
 
             $order = $this->generator->evalOrder($ordering->getOrder());
             $operand = $this->convertDynamicOperand($ordering->getOperand());
@@ -509,7 +509,7 @@ class QomToSql2QueryConverter
     protected function convertColumns(array $columns)
     {
         $list = array();
-        foreach($columns as $column) {
+        foreach ($columns as $column) {
             $selector = $column->getSelectorName();
             $property = $column->getPropertyName();
             $colname = $column->getColumnName();
