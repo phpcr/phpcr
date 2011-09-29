@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <!-- To render these slides you need Slippy https://github.com/Seldaek/slippy -->
+
+        <title>Symfony2 CMF Introduction</title>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+        <meta name="author" content="PHPCR" />
+        <meta name="email" content="phpcr-users@googlegroups.com" />
+        <meta name="date" content="2011-09-29" />
+        <meta name="venue" content="The Internets" />
+
+        <!-- Slippy core file and dependencies -->
+        <script type="text/javascript" src="jquery.min.js"></script>
+        <script type="text/javascript" src="jquery.history.js"></script>
+        <script type="text/javascript" src="slippy.js"></script>
+        <!-- Slippy structural styles -->
+        <link type="text/css" rel="stylesheet" href="slippy.css"/>
+        <!-- Slippy theme -->
+        <link type="text/css" rel="stylesheet" href="slippy-pure.css"/>
+        <!-- Syntax highlighting core file  -->
+        <script type="text/javascript" src="highlighter/shCore.js"></script>
+        <!-- Syntax highlighting brushes, remove those you don't need -->
+        <script type="text/javascript" src="highlighter/shBrushPhp.js"></script>
+        <script type="text/javascript" src="highlighter/shBrushPlain.js"></script>
+        <script type="text/javascript" src="highlighter/shBrushXml.js"></script>
+        <!-- Syntax highlighting styles-->
+        <link type="text/css" rel="stylesheet" href="highlighter/shCore.css"/>
+        <link type="text/css" rel="stylesheet" href="highlighter/shThemeEclipse.css"/>
+
+        <style type="text/css">
+            body > * {
+                font-size: 1.2em;
+            }
+
+            body {
+                background: #fff;
+            }
+
+            div.syntaxhighlighter {
+                background: #aaa !important;
+            }
+
+            span.file {
+                font-size: 0.8em;
+                color: #f00;
+                float: right;
+                margin: -.2em .5em 0 0;
+            }
+
+            .smallcode {
+                font-size: 0.8em;
+            }
+
+            strong {
+                color: #662222;
+            }
+        </style>
+        <!-- Slippy init code -->
+        <script type="text/javascript">
+            $(function() {
+                $(".slide").slippy({
+                });
+                SyntaxHighlighter.all();
+            });
+        </script>
+    </head>
+
+    <body>
+        <div class="slide" style="text-align:center">
+            <h1>PHP Content Repository Specification</h1>
+            <h1><a href="http://phpcr.github.com">phpcr.github.com</a></h1>
+        </div>
+
+        <div class="slide" style="text-align:center">
+            <h2>Data in a CMS is mostly unstructured</h2>
+            <h2>RDBMS are not a good fit, hurray for NoSQL</h2>
+            <h2><img src="square_in_a_circle.png" alt="like fitting a square into a circle" /></h2>
+        </div>
+
+        <div class="slide" style="text-align:center">
+            <h2>CMS often organize content as a tree/graph</h2>
+            <h2>Most NoSQL not a good fit, hurray for Graph DBs</h2>
+            <h2><img src="content_graph.png" alt="content graph" /></h2>
+        </div>
+
+        <div class="slide" style="text-align:center">
+            <h2>CMS should be able to store content versions</h2>
+            <h2><img src="versioning.png" alt="multiple versions" /></h2>
+        </div>
+
+        <div class="slide" style="text-align:center">
+            <h2>Complexity shouldn't overwhelm developers</h2>
+            <h2>Need a solution that can scale both from small to large projects and we want to get somewhere within 12 months!</h2>
+        </div>
+
+        <div class="slide" style="text-align:center">
+            <h2>Enter PHPCR (aka PHP-ified JCR specification)</h2>
+            <h2>PHPCR provides a <strong>standardized API</strong> that can be used by any PHP content management system to interface with any content repository.</h2>
+        </div>
+
+        <div class="slide">
+            <h2>PHPCR implementations</h2>
+            <ul>
+                <li>Jackalope
+                    <ul>
+                        <li>Davex (Jackrabbit) transport layer</li>
+                        <li>Doctrine DBAL transport layer</li>
+                    </ul>
+                </li>
+                <li>Midgard2 PHPCR</li>
+                <li>..</li>
+            </ul>
+        </div>
+
+        <div class="slide">
+            <h2>PHPCR has been <a href="http://java.net/jira/browse/JSR_333-28" target="_blank">submitted</a> to the JCR spec at the request of David Nüschler, JCR spec lead</h2>
+        </div>
+
+        <div class="slide">
+            <h2>Workspaces</h2>
+            <ul>
+                <li>Multiple workspaces, each with its own name and root node</li>
+                <li>Is similar to a Unix file system structure</li>
+                <li>Each workspace is independent</li>
+            </ul>
+        </div>
+
+        <div class="slide">
+            <h2>Nodes</h2>
+            <ul>
+                <li>Can be created, deleted, modified, copied...</li>
+                <li>Are identified by their path (*)
+                    <ul><li>ex. “/my/path/under/water/fish”</li></ul>
+                </li>
+                <li>Are typed using namespaced names
+                    <ul><li>nt:unstructured, nt:folder, nt:file ...</li></ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="slide">
+            <h2>Node mixins</h2>
+            <ul>
+                <li>A mixin node type can be assigned to a node during that node's lifetime
+                    <ul>
+                        <li>mix:referenceable implies availability of property
+                            <ul>
+                                <li>jcr:uuid</li>
+                            </ul>
+                        </li>
+                        <li>mix:versionable extends mix:referenceable, implies availability of properties
+                            <ul>
+                                <li>jcr:versionHistory, jcr:predecessors, jcr:baseVersion, jcr:isCheckedOut, jcr:mergeFailed properties)</li>
+                            </ul>
+                        </li>
+                        <li>...</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="slide">
+            <h2>Properties</h2>
+            <ul>
+                <li>Use namespaced names
+                    <ul><li>jcr:created, jcr:mimeType, phpcr:alias</li></ul>
+                </li>
+                <li>Use one of the several type
+                    <ul><li>STRING, URI, BOOLEAN, LONG, DOUBLE, DECIMAL, BINARY, DATE, NAME, PATH, WEAKREFERENCE, REFERENCE</li></ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="slide" style="text-align:center">
+            <h2>PHPCR</h2>
+            <h2><img src="phpcr.png" alt="PHPCR class interaction diagramm" /></h2>
+        </div>
+
+        <div class="slide">
+            <h2>Connecting via PHPCR</h2>
+            <pre class="brush: php">
+                factory ..
+            </pre>
+        </div>
+
+        <div class="slide">
+            <h2>Tree API</h2>
+            <pre class="brush: php">
+                root node
+
+                node creation
+
+                property creation
+
+                node deletion
+            </pre>
+        </div>
+
+        <div class="slide">
+            <h2>Tree API</h2>
+            <pre class="brush: php">
+                $node = $session->getNode('/foo/bar/ding/dong');
+
+                $i = 0;
+                $breadcrumb = array();
+
+                // note this code doesn't handle graphs
+                do {
+                    $i++;
+                    $parent = $node->getAncestor($i);
+                    $breadcrumb[$parent->getPath()] =
+                        $parent->getPropertyValue('label');
+                } while ($parent != $node);
+            </pre>
+        </div>
+
+        <div class="slide">
+            <h2>Versioning API</h2>
+            <pre class="brush: php">
+                // make versionable
+                $node = $session->getNode('/foo/bar/ding/dong');
+                $node->addMixing('mix:versionable');
+                $session->save();
+
+                $vm = $session->getWorkspace()->getVersionManager()
+
+                // create initial version
+                $node->setProperty('foo', 'bar');
+                $session->save();
+                $vm->checkpoint($node->getPath());
+            </pre>
+        </div>
+
+        <div class="slide">
+            <h2>Versioning API</h2>
+            <pre class="brush: php">
+                // update version
+                $node->setProperty('foo', 'lala');
+                $session->save();
+                $vm->checkpoint($node->getPath());
+
+                $base = $vm->getBaseVersion($node->getPath());
+                $previous = array_pop($base->getPredecessors());
+                $vm->restore(true, $previous->getName(), $node->getPath());
+
+                $node = $session->getNode('/foo/bar/ding/dong');
+                var_dump($node->getProperty('foo')) // bar
+            </pre>
+        </div>
+
+        <div class="slide">
+            <h2>Search via SQL2 API</h2>
+            <pre class="brush: php">
+                $queryManager = $workspace->getQueryManager();
+
+                $sql = "SELECT * FROM [nt:unstructured]
+                    WHERE [nt:unstructured].[phpcr:alias] = 'bar'
+                    ORDER BY [nt:unstructured].title";
+                $query = $queryManager->createQuery($sql, 'JCR-SQL2');
+                $query->setLimit($limit);
+                $query->setOffset($offset);
+                $queryResult = $query->execute();
+
+                foreach ($queryResult->getRows() as $row) {
+                    $node = $row->getNode();
+                }
+            </pre>
+        </div>
+
+        <div class="slide">
+            <h2>Search via QOM API</h2>
+            <pre class="brush: php">
+                XXX ?
+            </pre>
+        </div>
+
+        <div class="slide" style="text-align:center">
+            <h2>Doctrine PHPCR ODMr</h2>
+            <h2>Works like MongoDB or CouchDB ODM, but also includes a tree/graph, versioning API</h2>
+            <h2><img src="JCRvsRDBMSvsNoSQL.png" alt="JCR vs. RDBMS/NoSQL" /></h2>
+        </div>
+
+        <div class="slide">
+            <h2>ODM Document class</h2>
+            <pre class="brush: php">
+                namespace Foo;
+
+                use Doctrine\ODM\PHPCR\Mapping as PHPCR
+
+                /** @PHPCR\Document(alias="bar", repositoryClass="Foo\BarRepository") */
+                class Bar
+                {
+                    /** @PHPCR\Id(strategy="repository") */
+                    public $id;
+
+                    /** @PHPCR\Children */
+                    public $children;
+
+                    /** @PHPCR\String(name="name") */
+                    private $name;
+
+                    public function getName()
+                    {
+                        return $this->name;
+                    }
+
+                    public function setName($name)
+                    {
+                        $this->name = $name;
+                    }
+                }
+            </pre>
+        </div>
+
+        <div class="slide">
+            <h2>ODM Document repository (optional)</h2>
+            <pre class="brush: php">
+                namespace Foo;
+
+                use Doctrine\ODM\PHPCR\DocumentRepository,
+                    Doctrine\ODM\PHPCR\Id\RepositoryIdInterface;
+
+                class BarRepository
+                    extends DocumentRepository
+                    implements RepositoryIdInterface
+                {
+                    /**
+                     * Generate a document id
+                     *
+                     * @param Bar $document
+                     * @return string
+                     */
+                    public function generateId(Bar $document)
+                    {
+                        return '/'.$document->getName();
+                    }
+                }
+            </pre>
+        </div>
+
+        <div class="slide">
+            <h2>ODM CRUD API</h2>
+            <pre class="brush: php">
+                // Create
+                $document = new Foo\Bar();
+                $document->setName($name)
+                $documentManager->persist($document);
+                $documentManager->flush();
+                $id = $document->id;
+
+                // Read
+                $repo = $documentManager->getRepository('Foo\Bar');
+                $document = $repo->find($id);
+
+                // Update
+                $document->setName('foo!');
+                $documentManager->flush();
+
+                // Remove
+                $documentManager->remove($document);
+                $documentManager->flush();
+            </pre>
+        </div>
+
+        <div class="slide">
+            <h2>Not all data fits well in PHPCR/JCR</h2>
+            <ul>
+                <li>For example aggregation is better done in an RDBMS</li>
+                <li>Store web store product description in PHPCR/JCR</li>
+                <li>Store web store inventory and orders in RDBMS</li>
+            </ul>
+        </div>
+
+        <div class="slide" style="text-align:center">
+            <h2>Door swings both ways, so remember</h2>
+            <h2><img src="square_in_a_circle.png" alt="like fitting a square into a circle" /></h2>
+        </div>
+
+        <div class="slide" style="text-align:center">
+            <h2>Play with it today! (too Symfony2 specific?)</h2>
+            <h2><a href="https://github.com/symfony-cmf/cmf-sandbox">CMF sandbox</a></h2>
+        </div>
+
+        <div class="slide">
+            <h2>Next steps</h2>
+            <ul>
+                <li>Push the DoctrineDBAL transport</li>
+                <li>Security and ACL support</li>
+                <li>Implement SQL2/OQM search query support</li>
+                <li>Performance optimizations</li>
+            </ul>
+        </div>
+
+        <div class="slide">
+            <h2>Eat your own dog food</h2>
+            <ul>
+                <li>NZZ? Liip.ch?</li>
+            </ul>
+        </div>
+
+        <div class="slide">
+            <h2>Interest is huge!</h2>
+            <ul>
+                <li>XXX</li>
+            </ul>
+        </div>
+
+        <div class="slide" style="text-align:center">
+            <h2>Many companies are committed to the effort</h2>
+            <h2><img src="phpcr_companies.png" alt="Liip, Ideato, XXX" /></h2>
+        </div>
+
+        <div class="slide" style="text-align:center">
+            <h2>Many projects have expressed interest</h2>
+            <h2><img src="phpcr_projects.png" alt="Symfony2 CMF, Midgard, Typo3, Nooku, ez Publish, Drupal" /></h2>
+        </div>
+
+        <div class="slide">
+            <h2>Github projects</h2>
+            <ul>
+                <li><a href="https://github.com/phpcr/phpcr">PHPCR</a></li>
+                <li><a href="https://github.com/jackalope/jackalope">Jackalope</a></li>
+                <li><a href="https://github.com/bergie/phpcr-midgard2">Midgard2 CR</a></li>
+                <li><a href="https://github.com/doctrine/phpcr-odm">PHPCR ODM</a></li>
+            </ul>
+        </div>
+
+        <div class="slide">
+            <h2>Resources</h2>
+            <ul>
+                <li><a href="irc://freenode/#jackalope">#jackalope IRC</a></li>
+                <li><a href="irc://freenode/#phpcr">#phpcr IRC</a></li>
+                <li><a href="http://phpcr.github.com">http://phpcr.github.com</a></li>
+                <li><a href="http://jcp.org/en/jsr/detail?id=283">JSR 283 (aka JCR 2, read Chapter 3)</a></li>
+                <li><a href="http://jcp.org/en/jsr/detail?id=333">JSR 333 (aka JCR 2.1)</a></li>
+            </ul>
+        </div>
+
+        <div class="layout" data-name="default">
+            <div class="vcenter">
+                <content></content>
+            </div>
+        </div>
+
+        <div class="footer">
+            <span class="right"><a href="irc://freenode/#phpcr">#phpcr IRC</a></span>
+            <span class="left"><a href="http://phpcr.github.com">phpcr.github.com</a></span>
+            <hr class="defloat" />
+        </div>
+    </body>
+</html>
