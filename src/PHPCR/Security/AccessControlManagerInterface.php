@@ -270,7 +270,7 @@ interface AccessControlManagerInterface
      *
      * @return void
      *
-     * @throws \HPPCR\PathNotFoundException if no node at absPath exists or the
+     * @throws \PHPCR\PathNotFoundException if no node at absPath exists or the
      *      session does not have sufficent access to retrieve a node at that
      *      location.
      * @throws \PHPCR\Security\AccessControlException if no policy exists.
