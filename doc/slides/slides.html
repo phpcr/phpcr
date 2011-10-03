@@ -94,12 +94,16 @@
 
         <div class="slide" style="text-align:center">
             <h2>Complexity shouldn't overwhelm developers</h2>
-            <h2>Need a solution that can scale both from small to large projects and we want to get somewhere within 12 months!</h2>
+            <p style="font-size:1.3em;">Need a solution that can scale both from small to large projects and we want to get somewhere within 12 months!</p>
         </div>
 
-        <div class="slide" style="text-align:center">
-            <h2>Enter PHPCR (aka PHP-ified JCR specification)</h2>
-            <h2>PHPCR provides a <strong>standardized API</strong> that can be used by any PHP content management system to interface with any content repository.</h2>
+        <div class="slide">
+            <h2 style="text-align:center">Enter PHPCR<br/> (aka PHP-ified JCR specification)</h2><br/>
+            <p style="font-size:1.2em;">PHPCR provides a <strong>standardized API</strong> that can be used by any PHP content management system to interface with any content repository.</p>
+            <ul>
+            <li>Write applications once and use with different storage backends</li>
+            <li>Do not re-invent the content storage wheel (even when you implement both storage and application layer)</li>
+            </ul>
         </div>
 
         <div class="slide">
@@ -121,44 +125,45 @@
         </div>
 
         <div class="slide">
+            <h2>PHPCR Features</h2>
+            <ul>
+                <li>Tree access</li>
+                <li>Access by unique ID</li>
+                <li>Search nodes</li>
+                <li>Versioning</li>
+                <li>XML import and export</li>
+                <li>Permissions &amp; Access Control</li>
+                <li>Capability discovery</li>
+                <li>Observation</li>
+                <li>Locking &amp; Transactions</li>
+            </ul>
+        </div>
+
+        <div class="slide">
+            <ul>
+                <li>All content is stored in a tree of nodes</li>
+                <li>Nodes have a name and a type</li>
+                <li>Nodes can have properties with values and child nodes</li>
+            </ul>
+        </div>
+
+        <div class="slide">
             <h2>Workspaces</h2>
             <ul>
                 <li>Multiple workspaces, each with its own name and root node</li>
                 <li>Is similar to a Unix file system structure</li>
-                <li>Each workspace is independent</li>
+                <li>Workspaces are like branches in git/svn, allowing to clone and merge content</li>
+                <li>But you can also do independent things in different workspaces</li>
             </ul>
         </div>
 
         <div class="slide">
             <h2>Nodes</h2>
             <ul>
+                <li>Think of XML elements</li>
                 <li>Can be created, deleted, modified, copied...</li>
-                <li>Are identified by their path (*)
+                <li>Have a name and are identified by their path
                     <ul><li>ex. “/my/path/under/water/fish”</li></ul>
-                </li>
-                <li>Are typed using namespaced names
-                    <ul><li>nt:unstructured, nt:folder, nt:file ...</li></ul>
-                </li>
-            </ul>
-        </div>
-
-        <div class="slide">
-            <h2>Node mixins</h2>
-            <ul>
-                <li>A mixin node type can be assigned to a node during that node's lifetime
-                    <ul>
-                        <li>mix:referenceable implies availability of property
-                            <ul>
-                                <li>jcr:uuid</li>
-                            </ul>
-                        </li>
-                        <li>mix:versionable extends mix:referenceable, implies availability of properties
-                            <ul>
-                                <li>jcr:versionHistory, jcr:predecessors, jcr:baseVersion, jcr:isCheckedOut, jcr:mergeFailed properties)</li>
-                            </ul>
-                        </li>
-                        <li>...</li>
-                    </ul>
                 </li>
             </ul>
         </div>
@@ -166,11 +171,49 @@
         <div class="slide">
             <h2>Properties</h2>
             <ul>
+                <li>A <em>Node</em> has named <em>Properties</em> with values</li>
                 <li>Use namespaced names
                     <ul><li>jcr:created, jcr:mimeType, phpcr:alias</li></ul>
                 </li>
-                <li>Use one of the several type
+                <li>Use one of the types
                     <ul><li>STRING, URI, BOOLEAN, LONG, DOUBLE, DECIMAL, BINARY, DATE, NAME, PATH, WEAKREFERENCE, REFERENCE</li></ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="slide">
+            <h2>Node Types</h2>
+            <ul>
+                <li>Primary Type
+                    <ul>
+                        <li>Every node must have a type..</li>
+                        <li>... but it can be nt:unstructured is a type that allows everything</li>
+                        <li>Other types define what properties and types of child nodes: nt:address, nt:folder, nt:file ...</li>
+                        <li>You can define your own types or just use unstructured</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="slide">
+            <h2>Node Mixin Types</h2>
+            <ul>
+                <li>No multiple inheritance for primary type. Mixins bring traits to your nodes.</li>
+                <li>Mixin node types can be assigned to a node during that node's lifetime</li>
+
+                    <ul>
+                        <li>mix:referenceable implies availability of property
+                            <ul>
+                                <li>jcr:uuid containing a unique id</li>
+                            </ul>
+                        </li>
+                        <li>mix:versionable extends mix:referenceable, implies availability of additional properties
+                            <ul>
+                                <li>jcr:versionHistory, jcr:predecessors, jcr:baseVersion, jcr:isCheckedOut, jcr:mergeFailed properties)</li>
+                            </ul>
+                        </li>
+                        <li>...</li>
+                    </ul>
                 </li>
             </ul>
         </div>
@@ -183,20 +226,56 @@
         <div class="slide">
             <h2>Connecting via PHPCR</h2>
             <pre class="brush: php">
-                factory ..
+                $factoryclass = '\Jackalope\RepositoryFactoryJackrabbit';
+                $parameters = array('jackalope.jackrabbit_uri' => 'http://localhost:8080/server');
+
+                // end of implementation specific configuration //
+
+                $factory = new $factoryclass();
+                $repository = $factory->getRepository($parameters);
+                $credentials = new \PHPCR\SimpleCredentials('admin','admin');
+                $session = $repository->login($credentials, 'default');
+            </pre>
+        </div>
+
+        <div class="slide">
+            <h2>CRUD operations</h2>
+            <pre class="brush: php">
+                $root = $session->getRootNode();
+
+                // Node always added as child of another node
+                $node = $root->addNode('test', 'nt:unstructured');
+
+                // Create or update a property
+                $node->setProperty('prop', 'value');
+
+                // Persist the changes
+                $session->save();
+
+                // Delete a node and all its children
+                $node->remove();
+                $session->save();
             </pre>
         </div>
 
         <div class="slide">
             <h2>Tree API</h2>
             <pre class="brush: php">
-                root node
+                $node = $session->getNode('/foo/bar');
 
-                node creation
+                foreach ($node->getChildren() as $child) {
+                    var_dump($child->getName());
+                }
 
-                property creation
+                // or in short
+                foreach ($node as $child) {
+                    var_dump($child->getName());
+                }
 
-                node deletion
+                // filter on node names
+                foreach ($node->getChildren('di*' as $child) {
+                    var_dump($child->getName());
+                }
             </pre>
         </div>
 
@@ -223,7 +302,7 @@
             <pre class="brush: php">
                 // make versionable
                 $node = $session->getNode('/foo/bar/ding/dong');
-                $node->addMixing('mix:versionable');
+                $node->addMixin('mix:versionable');
                 $session->save();
 
                 $vm = $session->getWorkspace()->getVersionManager()
@@ -265,8 +344,8 @@
                 $query->setOffset($offset);
                 $queryResult = $query->execute();
 
-                foreach ($queryResult->getRows() as $row) {
-                    $node = $row->getNode();
+                foreach ($queryResult->getNodes() as $node) {
+                    var_dump($node->getPath());
                 }
             </pre>
         </div>
@@ -275,6 +354,37 @@
             <h2>Search via QOM API</h2>
             <pre class="brush: php">
                 XXX ?
+            </pre>
+        </div>
+
+        <div class="slide">
+            <h2>Quality</h2>
+            <p style="font-size:1.2em">A test suite for PHPCR makes sure all implementations interpret the specification the same way.</p>
+            <ul>
+                <li>Higher quality of implementations and interpretation glitches discovered</li>
+                <li>Implementors need to write less tests of their own</li>
+            </ul>
+            <pre style="font-size:0.8em; margin-top:20px">
+                david@wintermute:~/liip/jackalope> phpunit -c tests/
+PHPUnit 3.5.14 by Sebastian Bergmann.
+
+S..II............S...................SSSSSSSSSSSSSSSS..........  63 / 702 (  8%)
+.............................S......S..................S.SSSSSS 126 / 702 ( 17%)
+...............SSS.............I.I.I.I.....I.III..SS.SSS..S.... 189 / 702 ( 26%)
+.......................................SSSSSS.S................ 252 / 702 ( 35%)
+.I...............I..I........SI..................S.......I..... 315 / 702 ( 44%)
+...............S............................................... 378 / 702 ( 53%)
+..........................................I..S................. 441 / 702 ( 62%)
+I.......II..................S.................................. 504 / 702 ( 71%)
+............................................................... 567 / 702 ( 80%)
+............................................................... 630 / 702 ( 89%)
+..................................I....I......S................ 693 / 702 ( 98%)
+..SSS...
+
+Time: 01:06, Memory: 70.50Mb
+
+OK, but incomplete or skipped tests!
+Tests: 701, Assertions: 4299, Incomplete: 21, Skipped: 52.
             </pre>
         </div>
 
@@ -381,8 +491,10 @@
         </div>
 
         <div class="slide" style="text-align:center">
-            <h2>Play with it today! (too Symfony2 specific?)</h2>
-            <h2><a href="https://github.com/symfony-cmf/cmf-sandbox">CMF sandbox</a></h2>
+            <h1>Play with it today!</h1>
+            <h2><a href="https://github.com/phpcr/phpcr/blob/master/doc/Tutorial.md">PHPCR Tutorial</a></h2><br/>
+            <h1>See it in action!</h1>
+            <h2><a href="https://github.com/symfony-cmf/cmf-sandbox">Symfony2 CMF sandbox</a></h2>
         </div>
 
         <div class="slide">
@@ -411,7 +523,7 @@
 
         <div class="slide" style="text-align:center">
             <h2>Many companies are committed to the effort</h2>
-            <h2><img src="phpcr_companies.png" alt="Liip, Ideato, XXX" /></h2>
+            <h2><img src="phpcr_companies.png" alt="Liip, Ideato, Theodo, White October, knp labs, OpenThink Labs" /></h2>
         </div>
 
         <div class="slide" style="text-align:center">
