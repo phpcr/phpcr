@@ -475,12 +475,12 @@ Tests: 701, Assertions: 4299, Incomplete: 21, Skipped: 52.
                     /**
                      * Generate a document id
                      *
-                     * @param Navigation $document
+                     * @param Navigation $doc
                      * @return string
                      */
-                    public function generateId(Navigation $document)
+                    public function generateId(Navigation $doc)
                     {
-                        return '/site/content/'.$document->getLabel();
+                        return '/site/content/'.$doc->getLabel();
                     }
                 }
             </pre>
@@ -490,23 +490,23 @@ Tests: 701, Assertions: 4299, Incomplete: 21, Skipped: 52.
             <h2>ODM CRUD API</h2>
             <pre class="brush: php">
                 // Create
-                $document = new Navigation();
-                $document->setLabel($label)
-                $documentManager->persist($document);
-                $documentManager->flush();
-                $id = $document->id;
+                $doc = new Navigation();
+                $doc->setLabel($label)
+                $docManager->persist($doc);
+                $docManager->flush();
+                $id = $doc->id;
 
                 // Read
-                $repo = $documentManager->getRepository('Navigation');
-                $document = $repo->find($id);
+                $repo = $docManager->getRepository('Navigation');
+                $doc = $repo->find($id);
 
                 // Update
-                $document->setLabel('home');
-                $documentManager->flush();
+                $doc->setLabel('home');
+                $docManager->flush();
 
                 // Remove
-                $documentManager->remove($document);
-                $documentManager->flush();
+                $docManager->remove($doc);
+                $docManager->flush();
             </pre>
         </div>
 
