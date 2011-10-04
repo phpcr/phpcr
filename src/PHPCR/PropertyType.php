@@ -491,7 +491,7 @@ final class PropertyType
                         if ($v->isNew()) {
                             throw new \PHPCR\ValueFormatException('Node ' . $v->getPath() . ' must be persisted before being referencable');
                         }
-                        if (! $v->isNodeType('mix:referenceable') && ! $v->isNodeType('mix:versionable')) {
+                        if (! $v->isNodeType('mix:referenceable')) {
                             throw new \PHPCR\ValueFormatException('Node ' . $v->getPath() . ' is not referencable');
                         }
                         $ret[] = $v->getIdentifier();
