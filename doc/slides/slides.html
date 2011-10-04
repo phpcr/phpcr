@@ -253,15 +253,18 @@
         <div class="slide">
             <h2>Connecting via PHPCR</h2>
             <pre class="brush: php">
-                $factoryclass = '\Jackalope\RepositoryFactoryJackrabbit';
-                $parameters = array('jackalope.jackrabbit_uri' => 'http://localhost:8080/server');
+                $factory = '\Jackalope\RepositoryFactoryJackrabbit';
+                $parameters = array(
+                    'jackalope.jackrabbit_uri'
+                        => 'http://localhost:8080/server'
+                );
 
                 // end of implementation specific configuration //
 
-                $factory = new $factoryclass();
+                $factory = new $factory();
                 $repository = $factory->getRepository($parameters);
-                $credentials = new \PHPCR\SimpleCredentials('admin','admin');
-                $session = $repository->login($credentials, 'default');
+                $creds = new \PHPCR\SimpleCredentials('user','pw');
+                $session = $repository->login($creds, 'default');
             </pre>
         </div>
 
