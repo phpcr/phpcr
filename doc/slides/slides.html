@@ -4,7 +4,7 @@
 
         <!-- To render these slides you need Slippy https://github.com/Seldaek/slippy -->
 
-        <title>Symfony2 CMF Introduction</title>
+        <title>PHPCR Introduction</title>
 
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
@@ -98,11 +98,17 @@
         </div>
 
         <div class="slide">
-            <h2 style="text-align:center">Enter PHPCR<br/> (aka PHP-ified JCR specification)</h2><br/>
+            <h2 style="text-align:center">Enter PHPCR</h2><br/>
             <p style="font-size:1.2em;">PHPCR provides a <strong>standardized API</strong> that can be used by any PHP content management system to interface with any content repository.</p>
+        </div>
+
+        <div class="slide">
+            <h2 style="text-align:center">About PHPCR</h2><br/>
             <ul>
-            <li>Write applications once and use with different storage backends</li>
-            <li>Do not re-invent the content storage wheel (even when you implement both storage and application layer)</li>
+                <li>PHP-ified version of the JCR specification</li>
+                <li>Write applications once and use with different storage backends</li>
+                <li>Do not re-invent the content storage wheel (even when you implement both storage and application layer)</li>
+                <li>PHPCR has been <a href="http://java.net/jira/browse/JSR_333-28" target="_blank">added</a> to the JCR 2.1 spec at the request of David Nüschler, JCR spec lead</li>
             </ul>
         </div>
 
@@ -121,10 +127,6 @@
         </div>
 
         <div class="slide">
-            <h2>PHPCR has been <a href="http://java.net/jira/browse/JSR_333-28" target="_blank">submitted</a> to the JCR spec at the request of David Nüschler, JCR spec lead</h2>
-        </div>
-
-        <div class="slide">
             <h2>PHPCR Features</h2>
             <ul>
                 <li>Tree access</li>
@@ -140,6 +142,7 @@
         </div>
 
         <div class="slide">
+            <h2>Tree of documents (nodes)</h2>
             <ul>
                 <li>All content is stored in a tree of nodes</li>
                 <li>Nodes have a name and a type</li>
@@ -507,13 +510,6 @@ Tests: 701, Assertions: 4299, Incomplete: 21, Skipped: 52.
                 <img src="liip_ch_website.png"/>
                 <i>Liip uses PHPCR and the Symfony CMF for their new website</i>
             </p>
-        </div>
-
-        <div class="slide">
-            <h2>Interest is huge!</h2>
-            <ul>
-                <li>XXX</li>
-            </ul>
         </div>
 
         <div class="slide" style="text-align:center">
