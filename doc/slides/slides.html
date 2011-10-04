@@ -309,7 +309,7 @@
         <div class="slide">
             <h2>Tree API</h2>
             <pre class="brush: php">
-                $node = $session->getNode('/site/content/home/about');
+                $node = $session->getNode('/site/content/about');
 
                 $i = 0;
                 $breadcrumb = array();
@@ -328,7 +328,7 @@
             <h2>Versioning API</h2>
             <pre class="brush: php">
                 // make versionable
-                $node = $session->getNode('/site/content/home/about');
+                $node = $session->getNode('/site/content/about');
                 $node->addMixin('mix:versionable');
                 $session->save();
 
@@ -351,9 +351,12 @@
 
                 $base = $vm->getBaseVersion($node->getPath());
                 $previous = array_pop($base->getPredecessors());
-                $vm->restore(true, $previous->getName(), $node->getPath());
+                $vm->restore(true,
+                             $previous->getName(),
+                             $node->getPath()
+                );
 
-                $node = $session->getNode('/site/content/home/about');
+                $node = $session->getNode('/site/content/about');
                 var_dump($node->getProperty('label')) // About
             </pre>
         </div>
@@ -364,9 +367,10 @@
                 $queryManager = $workspace->getQueryManager();
 
                 $sql = "SELECT * FROM [nt:unstructured]
-                    WHERE [nt:unstructured].[phpcr:alias] = 'navigation'
+                    WHERE [nt:unstructured].[phpcr:alias] = 'nav'
                     ORDER BY [nt:unstructured].title";
-                $query = $queryManager->createQuery($sql, 'JCR-SQL2');
+                $query =
+                    $queryManager->createQuery($sql, 'JCR-SQL2');
                 $query->setLimit($limit);
                 $query->setOffset($offset);
                 $queryResult = $query->execute();
@@ -435,7 +439,7 @@ Tests: 701, Assertions: 4299, Incomplete: 21, Skipped: 52.
             <pre class="brush: php">
                 use Doctrine\ODM\PHPCR\Mapping as PHPCR
 
-                /** @PHPCR\Document(alias="navigation", repositoryClass="NavigationRepository") */
+                /** @PHPCR\Document(alias="nav", repositoryClass="NavigationRepository") */
                 class Navigation
                 {
                     /** @PHPCR\Id(strategy="repository") */
