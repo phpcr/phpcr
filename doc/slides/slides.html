@@ -58,6 +58,10 @@
             strong {
                 color: #662222;
             }
+
+            li {
+                line-height: 1.2em;
+            }
         </style>
         <!-- Slippy init code -->
         <script type="text/javascript">
@@ -94,7 +98,7 @@
 
         <div class="slide" style="text-align:center">
             <h2>Complexity shouldn't overwhelm developers</h2>
-            <p style="font-size:1.3em;">Need a solution that can scale both from small to large projects and we want to get somewhere within 12 months!</p>
+            <p style="font-size:1.3em;">Need a solution that can scale both from small to large projects and we rather not reinvent the wheel!</p>
         </div>
 
         <div class="slide">
@@ -105,9 +109,9 @@
         <div class="slide">
             <h2 style="text-align:center">About PHPCR</h2><br/>
             <ul>
-                <li>PHP-ified version of the JCR specification</li>
-                <li>Write applications once and use with different storage backends</li>
-                <li>Do not re-invent the content storage wheel (even when you implement both storage and application layer)</li>
+                <li>Java Content Repository (JCR) standard adaptation</li>
+                <li>Write applications once, switch storage backends</li>
+                <li>Do not re-invent the content storage wheel</li>
                 <li>PHPCR has been <a href="http://java.net/jira/browse/JSR_333-28" target="_blank">added</a> to the JCR 2.1 spec at the request of David Nüschler, JCR spec lead</li>
             </ul>
         </div>
@@ -117,12 +121,13 @@
             <ul>
                 <li>Jackalope
                     <ul>
-                        <li>Davex (Jackrabbit) transport layer</li>
+                        <li>Jackrabbit (Davex) transport layer</li>
                         <li>Doctrine DBAL transport layer</li>
+                        <li>MongoDB transport layer</li>
                     </ul>
                 </li>
                 <li>Midgard2 PHPCR</li>
-                <li>..</li>
+                <li>...</li>
             </ul>
         </div>
 
@@ -130,33 +135,40 @@
             <h2>PHPCR Features</h2>
             <ul>
                 <li>Tree access</li>
-                <li>Access by unique ID</li>
+                <li>Access by UUID</li>
                 <li>Search nodes</li>
                 <li>Versioning</li>
-                <li>XML import and export</li>
-                <li>Permissions &amp; Access Control</li>
                 <li>Capability discovery</li>
-                <li>Observation</li>
-                <li>Locking &amp; Transactions</li>
+                <li>XML import (*) and export</li>
+                <li>Locking (*) &amp; Transactions</li>
+                <li>Permissions &amp; Access Control (*)</li>
+                <li>Observation (*)</li>
             </ul>
+            <br/>
+            <p>(*) Defined by the API but not yet implemented</p>
         </div>
 
         <div class="slide">
-            <h2>Tree of documents (nodes)</h2>
+            <h1>PHPCR concepts</h1>
+        </div>
+
+        <div class="slide">
+            <h2>Hierarchical document store</h2>
             <ul>
                 <li>All content is stored in a tree of nodes</li>
                 <li>Nodes have a name and a type</li>
-                <li>Nodes can have properties with values and child nodes</li>
+                <li>Nodes have child nodes and properties with values</li>
+                <li>Values can be strings or numbers, but also binary file data or references to other nodes</li>
             </ul>
         </div>
 
         <div class="slide">
             <h2>Workspaces</h2>
             <ul>
-                <li>Multiple workspaces, each with its own name and root node</li>
-                <li>Is similar to a Unix file system structure</li>
+                <li>Multiple workspaces, each with its own node tree</li>
+                <li>Each workspace is similar to a Unix file system</li>
                 <li>Workspaces are like branches in git/svn, allowing to clone and merge content</li>
-                <li>But you can also do independent things in different workspaces</li>
+                <li>But can also be used independently</li>
             </ul>
         </div>
 
@@ -165,8 +177,12 @@
             <ul>
                 <li>Think of XML elements</li>
                 <li>Can be created, deleted, modified, copied...</li>
-                <li>Have a name and are identified by their path
-                    <ul><li>ex. “/my/path/under/water/fish”</li></ul>
+                <li>Identified by the parents path and their own name<br/>&nbsp;
+                    <ul>
+                        <li>For example: <tt>/my/path/under/water/fish</tt><br/>&nbsp;</li>
+                        <li>Parent path: <tt>/my/path/under/water</tt></li>
+                        <li>Node name: <tt>fish</tt></li>
+                    </ul>
                 </li>
             </ul>
         </div>
@@ -174,11 +190,11 @@
         <div class="slide">
             <h2>Properties</h2>
             <ul>
-                <li>A <em>Node</em> has named <em>Properties</em> with values</li>
-                <li>Use namespaced names
+                <li>A <strong>Node</strong> has named <strong>Properties</strong> with values</li>
+                <li>May use namespaces to avoid name collisions
                     <ul><li>jcr:created, jcr:mimeType, phpcr:alias</li></ul>
                 </li>
-                <li>Use one of the types
+                <li>Use one of the following types
                     <ul><li>STRING, URI, BOOLEAN, LONG, DOUBLE, DECIMAL, BINARY, DATE, NAME, PATH, WEAKREFERENCE, REFERENCE</li></ul>
                 </li>
             </ul>
@@ -189,10 +205,11 @@
             <ul>
                 <li>Primary Type
                     <ul>
-                        <li>Every node must have a type..</li>
-                        <li>... but it can be nt:unstructured is a type that allows everything</li>
-                        <li>Other types define what properties and types of child nodes: nt:address, nt:folder, nt:file ...</li>
-                        <li>You can define your own types or just use unstructured</li>
+                        <li>Defines allowed names and types for properties and child nodes</li>
+                        <li>Every node must have a type</li>
+                        <li>Use <tt>nt:unstructured</tt> to allow anything</li>
+                        <li>Some other built-in types: <tt>nt:address, nt:folder, nt:file</tt> ...</li>
+                        <li>Define custom types or just use <tt>nt:unstructured</tt></li>
                     </ul>
                 </li>
             </ul>
@@ -201,21 +218,23 @@
         <div class="slide">
             <h2>Node Mixin Types</h2>
             <ul>
-                <li>No multiple inheritance for primary type. Mixins bring traits to your nodes.</li>
+                <li>No multiple inheritance for primary type.</li>
+                <li>Mixins bring traits to your nodes.</li>
                 <li>Mixin node types can be assigned to a node during that node's lifetime</li>
+            </ul>
+        </div>
 
+        <div class="slide">
+            <h2>Node Mixin Type Examples</h2>
+            <ul>
+                <li>mix:referenceable implies availability of property
                     <ul>
-                        <li>mix:referenceable implies availability of property
-                            <ul>
-                                <li>jcr:uuid containing a unique id</li>
-                            </ul>
-                        </li>
-                        <li>mix:versionable extends mix:referenceable, implies availability of additional properties
-                            <ul>
-                                <li>jcr:versionHistory, jcr:predecessors, jcr:baseVersion, jcr:isCheckedOut, jcr:mergeFailed properties)</li>
-                            </ul>
-                        </li>
-                        <li>...</li>
+                        <li><tt>jcr:uuid</tt> containing a unique id</li>
+                    </ul>
+                </li>
+                <li>mix:versionable extends mix:referenceable, implies availability of additional properties
+                    <ul>
+                        <li><tt>jcr:versionHistory, jcr:predecessors, jcr:baseVersion, jcr:isCheckedOut, jcr:mergeFailed</tt> properties)</li>
                     </ul>
                 </li>
             </ul>
@@ -224,6 +243,10 @@
         <div class="slide" style="text-align:center">
             <h2>PHPCR</h2>
             <h2><img src="phpcr.png" alt="PHPCR class interaction diagramm" /></h2>
+        </div>
+
+        <div class="slide">
+            <h1>PHPCR code examples</h1>
         </div>
 
         <div class="slide">
@@ -357,7 +380,8 @@
             <h2>Quality</h2>
             <p style="font-size:1.2em">A test suite for PHPCR makes sure all implementations interpret the specification the same way.</p>
             <ul>
-                <li>Higher quality of implementations and interpretation glitches discovered</li>
+                <li>Higher quality of implementations</li>
+                <li>Discover interpretation issues, better compatibility</li>
                 <li>Implementors need to write less tests of their own</li>
             </ul>
             <pre style="font-size:0.8em; margin-top:20px">
@@ -384,20 +408,30 @@ Tests: 701, Assertions: 4299, Incomplete: 21, Skipped: 52.
             </pre>
         </div>
 
+        <div class="slide">
+            <h1>Doctrine PHPCR ODM</h1>
+        </div>
+
+        <div class="slide">
+            <h2>Doctrine PHPCR ODM</h2>
+            <ul>
+                <li>Object persistance manager for PHPCR</li>
+                <li>Works like MongoDB or CouchDB ODM</li>
+                <li>Includes a tree/graph and versioning API</li>
+            </ul>
+        </div>
+
         <div class="slide" style="text-align:center">
-            <h2>Doctrine PHPCR ODMr</h2>
-            <h2>Works like MongoDB or CouchDB ODM, but also includes a tree/graph, versioning API</h2>
+            <h2>Doctrine PHPCR ODM</h2>
             <h2><img src="JCRvsRDBMSvsNoSQL.png" alt="JCR vs. RDBMS/NoSQL" /></h2>
         </div>
 
         <div class="slide">
             <h2>ODM Document class</h2>
             <pre class="brush: php">
-                namespace Foo;
-
                 use Doctrine\ODM\PHPCR\Mapping as PHPCR
 
-                /** @PHPCR\Document(alias="bar", repositoryClass="Foo\BarRepository") */
+                /** @PHPCR\Document(alias="bar", repositoryClass="BarRepository") */
                 class Bar
                 {
                     /** @PHPCR\Id(strategy="repository") */
@@ -408,6 +442,8 @@ Tests: 701, Assertions: 4299, Incomplete: 21, Skipped: 52.
 
                     /** @PHPCR\String(name="name") */
                     private $name;
+
+                    private $internal;
 
                     public function getName()
                     {
@@ -425,8 +461,6 @@ Tests: 701, Assertions: 4299, Incomplete: 21, Skipped: 52.
         <div class="slide">
             <h2>ODM Document repository (optional)</h2>
             <pre class="brush: php">
-                namespace Foo;
-
                 use Doctrine\ODM\PHPCR\DocumentRepository,
                     Doctrine\ODM\PHPCR\Id\RepositoryIdInterface;
 
@@ -452,14 +486,14 @@ Tests: 701, Assertions: 4299, Incomplete: 21, Skipped: 52.
             <h2>ODM CRUD API</h2>
             <pre class="brush: php">
                 // Create
-                $document = new Foo\Bar();
+                $document = new Bar();
                 $document->setName($name)
                 $documentManager->persist($document);
                 $documentManager->flush();
                 $id = $document->id;
 
                 // Read
-                $repo = $documentManager->getRepository('Foo\Bar');
+                $repo = $documentManager->getRepository('Bar');
                 $document = $repo->find($id);
 
                 // Update
@@ -470,6 +504,10 @@ Tests: 701, Assertions: 4299, Incomplete: 21, Skipped: 52.
                 $documentManager->remove($document);
                 $documentManager->flush();
             </pre>
+        </div>
+
+        <div class="slide">
+            <h1>Conclusions</h1>
         </div>
 
         <div class="slide">
@@ -513,7 +551,7 @@ Tests: 701, Assertions: 4299, Incomplete: 21, Skipped: 52.
         </div>
 
         <div class="slide" style="text-align:center">
-            <h2>Many companies are committed to the effort</h2>
+            <h2>Many companies and individuals are committed to the effort</h2>
             <h2><img src="phpcr_companies.png" alt="Liip, Ideato, Nemein, IKS" /></h2>
         </div>
 
@@ -538,8 +576,9 @@ Tests: 701, Assertions: 4299, Incomplete: 21, Skipped: 52.
                 <li><a href="irc://freenode/#jackalope">#jackalope IRC</a></li>
                 <li><a href="irc://freenode/#phpcr">#phpcr IRC</a></li>
                 <li><a href="http://phpcr.github.com">http://phpcr.github.com</a></li>
-                <li><a href="http://jcp.org/en/jsr/detail?id=283">JSR 283 (aka JCR 2, read Chapter 3)</a></li>
+                <li><a href="http://jcp.org/en/jsr/detail?id=283">JSR 283 (aka JCR 2, especially Chapter 3)</a></li>
                 <li><a href="http://jcp.org/en/jsr/detail?id=333">JSR 333 (aka JCR 2.1)</a></li>
+                <li><a href="http://wiki.apache.org/jackrabbit/DavidsModel">David's Model</a></li>
             </ul>
         </div>
 
