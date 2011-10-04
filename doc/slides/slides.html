@@ -288,7 +288,7 @@
         <div class="slide">
             <h2>Tree API</h2>
             <pre class="brush: php">
-                $node = $session->getNode('/foo/bar');
+                $node = $session->getNode('/site/content');
 
                 foreach ($node->getChildren() as $child) {
                     var_dump($child->getName());
@@ -309,7 +309,7 @@
         <div class="slide">
             <h2>Tree API</h2>
             <pre class="brush: php">
-                $node = $session->getNode('/foo/bar/ding/dong');
+                $node = $session->getNode('/site/content/home/about');
 
                 $i = 0;
                 $breadcrumb = array();
@@ -328,14 +328,14 @@
             <h2>Versioning API</h2>
             <pre class="brush: php">
                 // make versionable
-                $node = $session->getNode('/foo/bar/ding/dong');
+                $node = $session->getNode('/site/content/home/about');
                 $node->addMixin('mix:versionable');
                 $session->save();
 
                 $vm = $session->getWorkspace()->getVersionManager()
 
                 // create initial version
-                $node->setProperty('foo', 'bar');
+                $node->setProperty('label', 'About');
                 $session->save();
                 $vm->checkpoint($node->getPath());
             </pre>
@@ -345,7 +345,7 @@
             <h2>Versioning API</h2>
             <pre class="brush: php">
                 // update version
-                $node->setProperty('foo', 'lala');
+                $node->setProperty('label', 'Ups');
                 $session->save();
                 $vm->checkpoint($node->getPath());
 
@@ -353,8 +353,8 @@
                 $previous = array_pop($base->getPredecessors());
                 $vm->restore(true, $previous->getName(), $node->getPath());
 
-                $node = $session->getNode('/foo/bar/ding/dong');
-                var_dump($node->getProperty('foo')) // bar
+                $node = $session->getNode('/site/content/home/about');
+                var_dump($node->getProperty('label')) // About
             </pre>
         </div>
 
@@ -364,7 +364,7 @@
                 $queryManager = $workspace->getQueryManager();
 
                 $sql = "SELECT * FROM [nt:unstructured]
-                    WHERE [nt:unstructured].[phpcr:alias] = 'bar'
+                    WHERE [nt:unstructured].[phpcr:alias] = 'navigation'
                     ORDER BY [nt:unstructured].title";
                 $query = $queryManager->createQuery($sql, 'JCR-SQL2');
                 $query->setLimit($limit);
@@ -435,8 +435,8 @@ Tests: 701, Assertions: 4299, Incomplete: 21, Skipped: 52.
             <pre class="brush: php">
                 use Doctrine\ODM\PHPCR\Mapping as PHPCR
 
-                /** @PHPCR\Document(alias="bar", repositoryClass="BarRepository") */
-                class Bar
+                /** @PHPCR\Document(alias="navigation", repositoryClass="NavigationRepository") */
+                class Navigation
                 {
                     /** @PHPCR\Id(strategy="repository") */
                     public $id;
@@ -444,19 +444,19 @@ Tests: 701, Assertions: 4299, Incomplete: 21, Skipped: 52.
                     /** @PHPCR\Children */
                     public $children;
 
-                    /** @PHPCR\String(name="name") */
-                    private $name;
+                    /** @PHPCR\String(label="label") */
+                    private $label;
 
                     private $internal;
 
-                    public function getName()
+                    public function getLabel()
                     {
-                        return $this->name;
+                        return $this->label;
                     }
 
-                    public function setName($name)
+                    public function setLabel($label)
                     {
-                        $this->name = $name;
+                        $this->label = $label;
                     }
                 }
             </pre>
@@ -468,19 +468,19 @@ Tests: 701, Assertions: 4299, Incomplete: 21, Skipped: 52.
                 use Doctrine\ODM\PHPCR\DocumentRepository,
                     Doctrine\ODM\PHPCR\Id\RepositoryIdInterface;
 
-                class BarRepository
+                class NavigationRepository
                     extends DocumentRepository
                     implements RepositoryIdInterface
                 {
                     /**
                      * Generate a document id
                      *
-                     * @param Bar $document
+                     * @param Navigation $document
                      * @return string
                      */
-                    public function generateId(Bar $document)
+                    public function generateId(Navigation $document)
                     {
-                        return '/'.$document->getName();
+                        return '/site/content/'.$document->getLabel();
                     }
                 }
             </pre>
@@ -490,18 +490,18 @@ Tests: 701, Assertions: 4299, Incomplete: 21, Skipped: 52.
             <h2>ODM CRUD API</h2>
             <pre class="brush: php">
                 // Create
-                $document = new Bar();
-                $document->setName($name)
+                $document = new Navigation();
+                $document->setLabel($label)
                 $documentManager->persist($document);
                 $documentManager->flush();
                 $id = $document->id;
 
                 // Read
-                $repo = $documentManager->getRepository('Bar');
+                $repo = $documentManager->getRepository('Navigation');
                 $document = $repo->find($id);
 
                 // Update
-                $document->setName('foo!');
+                $document->setLabel('home');
                 $documentManager->flush();
 
                 // Remove
