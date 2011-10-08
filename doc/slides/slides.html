@@ -145,7 +145,7 @@
                 <li>Observation (*)</li>
             </ul>
             <br/>
-            <p>(*) Defined by the API but not yet implemented</p>
+            <p>(*) Defined by the API but not yet implemented for PHP</p>
         </div>
 
         <div class="slide">
@@ -201,22 +201,18 @@
         </div>
 
         <div class="slide">
-            <h2>Node Types</h2>
+            <h2>Primary Node Types</h2>
             <ul>
-                <li>Primary Type
-                    <ul>
-                        <li>Defines allowed names and types for properties and child nodes</li>
-                        <li>Every node must have a type</li>
-                        <li>Use <tt>nt:unstructured</tt> to allow anything</li>
-                        <li>Some other built-in types: <tt>nt:address, nt:folder, nt:file</tt> ...</li>
-                        <li>Define custom types or just use <tt>nt:unstructured</tt></li>
-                    </ul>
-                </li>
+                <li>Defines allowed names and types for properties and child nodes</li>
+                <li>Every node must have a type</li>
+                <li>Use <tt>nt:unstructured</tt> to allow anything</li>
+                <li>Some other built-in types: <tt>nt:address, nt:folder, nt:file</tt> ...</li>
+                <li>Define custom types or just use <tt>nt:unstructured</tt></li>
             </ul>
         </div>
 
         <div class="slide">
-            <h2>Node Mixin Types</h2>
+            <h2>Mixin Node Types</h2>
             <ul>
                 <li>No multiple inheritance for primary type.</li>
                 <li>Mixins bring traits to your nodes.</li>
@@ -225,7 +221,7 @@
         </div>
 
         <div class="slide">
-            <h2>Node Mixin Type Examples</h2>
+            <h2>Mixin Node Type Examples</h2>
             <ul>
                 <li>mix:referenceable implies availability of property
                     <ul>
@@ -499,6 +495,8 @@ Tests: 701, Assertions: 4299, Incomplete: 21, Skipped: 52.
                 // Create
                 $doc = new Navigation();
                 $doc->setLabel($label)
+                // no active record. newly created document needs
+                // to be registered it with the document manager
                 $docManager->persist($doc);
                 $docManager->flush();
                 $id = $doc->id;
@@ -509,6 +507,8 @@ Tests: 701, Assertions: 4299, Incomplete: 21, Skipped: 52.
 
                 // Update
                 $doc->setLabel('home');
+                // no need to call persist() here, document is
+                // already known to the document manager.
                 $docManager->flush();
 
                 // Remove
@@ -562,17 +562,18 @@ Tests: 701, Assertions: 4299, Incomplete: 21, Skipped: 52.
         </div>
 
         <div class="slide">
-            <h2>Many individuals have contributed to the effort</h2>
-            <table>
+            <h2>Many individuals contribute to the effort</h2>
+            <br />
+            <table style="font-size: 0.85em">
                 <tr>
                     <td>
                         <ul>
                             <li>beberlei (Benjamin Eberlei)</li>
                             <li>bergie (Henri Bergius)</li>
-                            <li>brki</li>
+                            <li>brki (Brian King)</li>
                             <li>chirimoya (Thomas Schedler)</li>
                             <li>chregu (Christian Stocker)</li>
-                            <li>dbu (David)</li>
+                            <li>dbu (David Buchmann)</li>
                             <li>ebi (Tobias Ebnöther)</li>
                             <li>jakuza (Jacopo Romei)</li>
                             <li>justinrainbow (Justin Rainbow)</li>
@@ -600,7 +601,7 @@ Tests: 701, Assertions: 4299, Incomplete: 21, Skipped: 52.
         </div>
 
         <div class="slide" style="text-align:center">
-            <h2>Many companies are committed to the effort</h2>
+            <h2>Several companies and organisations are investing into the effort</h2>
             <h2><img src="phpcr_companies.png" alt="Liip, Ideato, Nemein, IKS" /></h2>
         </div>
 
