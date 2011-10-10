@@ -572,7 +572,10 @@ interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable
     /**
      * Get the value in format default for the PropertyType of this property.
      *
-     * In case of a binary property, this is the stream of binary data.
+     * In case of a (WEAK)REFERENCE, the node is dereferenced and returned. For
+     * all other cases including PATH, the value is returned as is. If you want
+     * to dereference a PATH to a property or node, you need to explicitly call
+     * getNode() resp. getProperty().
      *
      * <b>PHPCR Note:</b> We dropped the Value interface as its unnecessary
      * with weak typing.

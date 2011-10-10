@@ -119,7 +119,8 @@ context of strong typing.
 The PropertyInterface methods directly access the native property values.
 We keep type conversions possible with the type-specific getters.
 
- * PropertyInterface::getValue returns the value in its default format
+ * PropertyInterface::getValue returns the value in its default format,
+    dereferencing (WEAK)REFERENCES but not PATH properties.
  * Multivalue properties use getValue / getLength as well, they just return
     arrays instead of a single value.
  * The type specific getters return a native value or an array of such values
