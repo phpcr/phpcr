@@ -447,7 +447,7 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
      * This includes both those child node definitions actually declared in this
      * node type and those inherited from the supertypes of this node type.
      *
-     * @return array An array of \PHPCR\NodeType\NodeDefinition containing the
+     * @return array An array of \PHPCR\NodeType\NodeDefinitionInterface containing the
      *      child node definitions.
      *
      * @api
@@ -457,8 +457,9 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
     /**
      * Determines if the node type allows to set the value of a property.
      *
-     * Returns true if setting propertyName to value is allowed by this node
-     * type. Otherwise returns false.
+     * Returns true if setting propertyName is allowed and the value is of the
+     * required type or can be converted into that type.
+     * Otherwise returns false.
      *
      * @param string $propertyName The name of the property
      * @param mixed $value A variable or an array of variables
