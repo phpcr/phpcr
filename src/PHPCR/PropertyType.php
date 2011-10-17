@@ -357,6 +357,10 @@ final class PropertyType
             }
         }
 
+        // avoid stumbling over objects with var_export
+        if (is_object($value)) {
+            throw new \PHPCR\ValueFormatException('The class of the value object is not understood by PHPCR: '.get_class($value));
+        }
         throw new \PHPCR\ValueFormatException('Can not determine type of property with value "'.var_export($value, true).'"');
     }
 
@@ -392,6 +396,8 @@ final class PropertyType
      *
      * @param mixed $values The value or value array to check and convert
      * @param int $type Target type to convert into. One of the type constants in \PHPCR\PropertyType
+     * @param int $srctype Source type to convert from, if not specified this is automatically determined, which will miss the string based types that are not strings (DECIMAL, NAME, PATH, URI)
+     *
      * @return the value typecasted into the proper format (throws an exception if conversion is not possible)
      *
      * @throws \PHPCR\ValueFormatException is thrown if the specified value cannot be converted to the specified type
@@ -512,6 +518,7 @@ final class PropertyType
                 break;
             //TODO: more type checks or casts? name, path, uri, decimal. but the backend can handle the checks.
         }
+
         if (isset($typename)) {
             if ($srctype !== self::UNDEFINED) {
                 switch($srctype) {
