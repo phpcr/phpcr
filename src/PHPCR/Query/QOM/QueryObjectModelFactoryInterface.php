@@ -50,10 +50,10 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *      node-tuple Source; non-null
      * @param \PHPCR\Query\QOM\ConstraintInterface $constraint the constraint,
      *      or null if none
-     * @param array $orderings zero or more orderings; null is equivalent to a
-     *      zero-length array
-     * @param array $columns the columns; null is equivalent to a zero-length
-     *      array
+     * @param array $orderings zero (empty array) or more instances of Ordering
+     * @param array $columns the array of Column definitions to return in the
+     *      result. empty array is equivalent to the * in SQL2, meaning some
+     *      fields.
      *
      * @return \PHPCR\Query\QOM\QueryObjectModelInterface the query; non-null
      *
@@ -66,7 +66,10 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    function createQuery(\PHPCR\Query\QOM\SourceInterface $source, $constraint, array $orderings, array $columns);
+    function createQuery(\PHPCR\Query\QOM\SourceInterface $source,
+                         \PHPCR\Query\QOM\ConstraintInterface $constraint = null,
+                         array $orderings,
+                         array $columns);
 
     /**
      * Selects a subset of the nodes in the repository based on node type.
