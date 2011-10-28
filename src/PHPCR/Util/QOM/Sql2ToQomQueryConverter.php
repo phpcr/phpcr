@@ -336,9 +336,9 @@ class Sql2ToQomQueryConverter
             $this->scanner->fetchNextToken();
             $constraint2 = $this->parseConstraint();
             if ($this->scanner->tokenIs($token, 'AND')) {
-                return $this->factory->_and($constraint, $constraint2);
+                return $this->factory->andConstraint($constraint, $constraint2);
             } else {
-                return $this->factory->_or($constraint, $constraint2);
+                return $this->factory->orConstraint($constraint, $constraint2);
             }
         }
 
@@ -353,7 +353,7 @@ class Sql2ToQomQueryConverter
     protected function parseNot()
     {
         $this->scanner->expectToken('NOT');
-        return $this->factory->not($this->parseConstraint());
+        return $this->factory->notConstraint($this->parseConstraint());
     }
 
     /**
