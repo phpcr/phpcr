@@ -43,13 +43,16 @@ class Sql2Generator
      * Selector ::= nodeTypeName ['AS' selectorName]
      * nodeTypeName ::= Name
      * 
-     * @param string $nodeTypeName
+     * @param string $nodeTypeName The node type of the selector. If it does not contain starting and ending brackets ([]) they will be added automatically
      * @param string $selectorName
      * @return string 
      */
     public function evalSelector($nodeTypeName, $selectorName = null)
     {
-        $sql2 = '[' . $nodeTypeName . ']';
+        $sql2 = $nodeTypeName;
+        if (substr($sql2, 0, 1) !== '[' && substr($sql2, -1) !== ']') {
+            $sql2 = '[' . $sql2 . ']';
+        }
 
         $name = $selectorName;
         if (! is_null($name)) {
@@ -461,7 +464,11 @@ class Sql2Generator
     public function evalPath($path)
     {
         if ($path) {
-            return "[$path]";
+            $sql2 = $path;
+            if (substr($path, 0,1) !== '[' && substr($path, -1) !== ']') {
+                $sql2 = '[' . $sql2 . ']';
+            }
+            return $sql2;
         }
         return null;
     }
