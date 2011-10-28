@@ -100,7 +100,11 @@ class Sql2ToQomQueryConverter
     protected function parseSelector()
     {
         $token = $this->scanner->fetchNextToken();
-        $token = substr($token, 1, -1);
+
+        if (substr($token, 0, 1) === '[' && substr($token, -1) === ']') {
+            // Remove brackets around the selector name
+            $token = substr($token, 1, -1);
+        }
 
         if ($this->scanner->lookupNextToken() === 'AS') {
             $this->scanner->fetchNextToken(); // Consume the AS
@@ -234,11 +238,11 @@ class Sql2ToQomQueryConverter
         $token = $this->scanner->lookupNextToken();
         if ($this->scanner->tokenIs($token, ',')) {
             $this->scanner->fetchNextToken(); // consume the coma
-            $path = $this->scanner->fetchNextToken();
+            $path = $this->parsePath();
         }
         $this->scanner->expectToken(')');
 
-        return $this->factory->sameNodeJoinCondition($selector1, $selector2, substr($path, 1, -1));
+        return $this->factory->sameNodeJoinCondition($selector1, $selector2, $path);
     }
 
     /**
@@ -447,15 +451,16 @@ class Sql2ToQomQueryConverter
     protected function parseSameNode()
     {
         $this->scanner->expectTokens(array('ISSAMENODE', '('));
-        $selector = null;
-        $path = $this->scanner->fetchNextToken();
-        if ($this->scanner->tokenIs($this->scanner->lookupNextToken(), ',')) {
-            $selector = $path;
+        if ($this->scanner->tokenIs($this->scanner->lookupNextToken(1), ',')) {
+            $selector = $this->scanner->fetchNextToken();
             $this->scanner->expectToken(',');
-            $path = $this->scanner->fetchNextToken();
+            $path = $this->parsePath();
+        } else {
+            $selector = null;
+            $path = $this->parsePath();
         }
         $this->scanner->expectToken(')');
-        return $this->factory->sameNode(substr($path, 1, -1), $selector);
+        return $this->factory->sameNode($path, $selector);
     }
 
     /**
@@ -464,15 +469,16 @@ class Sql2ToQomQueryConverter
     protected function parseChildNode()
     {
         $this->scanner->expectTokens(array('ISCHILDNODE', '('));
-        $selector = null;
-        $path = $this->scanner->fetchNextToken();
-        if ($this->scanner->tokenIs($this->scanner->lookupNextToken(), ',')) {
-            $selector = $path;
+        if ($this->scanner->tokenIs($this->scanner->lookupNextToken(1), ',')) {
+            $selector = $this->scanner->fetchNextToken();
             $this->scanner->expectToken(',');
-            $path = $this->scanner->fetchNextToken();
+            $path = $this->parsePath();
+        } else {
+            $selector = null;
+            $path = $this->parsePath();
         }
         $this->scanner->expectToken(')');
-        return $this->factory->childNode(substr($path, 1, -1), $selector);
+        return $this->factory->childNode($path, $selector);
     }
 
     /**
@@ -481,15 +487,32 @@ class Sql2ToQomQueryConverter
     protected function parseDescendantNode()
     {
         $this->scanner->expectTokens(array('ISDESCENDANTNODE', '('));
-        $selector = null;
-        $path = $this->scanner->fetchNextToken();
-        if ($this->scanner->tokenIs($this->scanner->lookupNextToken(), ',')) {
-            $selector = $path;
+        if ($this->scanner->tokenIs($this->scanner->lookupNextToken(1), ',')) {
+            $selector = $this->scanner->fetchNextToken();
             $this->scanner->expectToken(',');
-            $path = $this->scanner->fetchNextToken();
+            $path = $this->parsePath();
+        } else {
+            $selector = null;
+            $path = $this->parsePath();
         }
         $this->scanner->expectToken(')');
-        return $this->factory->descendantNode(substr($path, 1, -1), $selector);
+        return $this->factory->descendantNode($path, $selector);
+    }
+
+    /**
+     * Parse a JCR path consisting of either a simple path (a JCR name that contains
+     * only SQL-legal characters) or a path (simple path or quoted path) enclosed in
+     * square brackets. See JCR Spec § 6.7.23.
+     *
+     * 6.7.23. Path
+     */
+    protected function parsePath()
+    {
+        $path = $this->scanner->fetchNextToken();
+        if (substr($path, 0, 1) === '[' && substr($path, -1) === ']') {
+            $path = substr($path, 1, -1);
+        }
+        return $path;
     }
 
     /**
