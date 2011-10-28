@@ -500,6 +500,10 @@ class Sql2ToQomQueryConverter
     }
 
     /**
+     * Parse a JCR path consisting of either a simple path (a JCR name that contains
+     * only SQL-legal characters) or a path (simple path or quoted path) enclosed in
+     * square brackets. See JCR Spec § 6.7.23.
+     *
      * 6.7.23. Path
      */
     protected function parsePath()

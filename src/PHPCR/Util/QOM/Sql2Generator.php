@@ -457,6 +457,9 @@ class Sql2Generator
     }
 
     /**
+     * Path ::= '[' quotedPath ']' | '[' simplePath ']' | simplePath
+     * quotedPath ::= A JCR Path that contains non-SQL-legal characters
+     * simplePath ::= A JCR Name that contains only SQL-legal characters
      *
      * @param string $path
      * @return string
