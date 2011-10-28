@@ -271,7 +271,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    function _and(\PHPCR\Query\QOM\ConstraintInterface $constraint1,
+    function andConstraint(\PHPCR\Query\QOM\ConstraintInterface $constraint1,
                          \PHPCR\Query\QOM\ConstraintInterface $constraint2);
 
     /**
@@ -293,7 +293,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    function _or(\PHPCR\Query\QOM\ConstraintInterface $constraint1,
+    function orConstraint(\PHPCR\Query\QOM\ConstraintInterface $constraint1,
                         \PHPCR\Query\QOM\ConstraintInterface $constraint2);
 
     /**
@@ -312,7 +312,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    function not(\PHPCR\Query\QOM\ConstraintInterface $constraint);
+    function notConstraint(\PHPCR\Query\QOM\ConstraintInterface $constraint);
 
     /**
      * Filters node-tuples based on the outcome of a binary operation.
