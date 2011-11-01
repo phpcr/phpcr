@@ -249,15 +249,14 @@
         <div class="slide">
             <h2>Connecting via PHPCR</h2>
             <pre class="brush: php">
-                $factory = '\Jackalope\RepositoryFactoryJackrabbit';
+                // start of implementation specific configuration //
+                $factory = new \Jackalope\RepositoryFactoryJackrabbit();
                 $parameters = array(
                     'jackalope.jackrabbit_uri'
                         => 'http://localhost:8080/server'
                 );
-
                 // end of implementation specific configuration //
 
-                $factory = new $factory();
                 $repository = $factory->getRepository($parameters);
                 $creds = new \PHPCR\SimpleCredentials('user','pw');
                 $session = $repository->login($creds, 'default');
@@ -549,7 +548,7 @@ Tests: 701, Assertions: 4299, Incomplete: 21, Skipped: 52.
                 <li>Security and ACL support</li>
                 <li>Observation support</li>
                 <li>Implement query object model search support</li>
-                <li>Performance optimizations</li>
+                <li>More performance optimizations</li>
             </ul>
         </div>
 
@@ -579,12 +578,13 @@ Tests: 701, Assertions: 4299, Incomplete: 21, Skipped: 52.
                             <li>justinrainbow (Justin Rainbow)</li>
                             <li>k-fish (Karsten Dambekalns)</li>
                             <li>lapistano (Bastian Feder)</li>
+                            <li>lsmith77 (Lukas K. Smith)</li>
                         </ul>
                     </td>
                     <td>
                         <ul>
-                            <li>lsmith77 (Lukas K. Smith)</li>
                             <li>micheleorselli (Michele Orselli)</li>
+                            <li>nacmartin (Nacho Martín)</li>
                             <li>nicam (Pascal Helfenstein)</li>
                             <li>ornicar (Thibault Duplessis)</li>
                             <li>piotras</li>
@@ -614,6 +614,7 @@ Tests: 701, Assertions: 4299, Incomplete: 21, Skipped: 52.
             <h2>Github projects</h2>
             <ul>
                 <li><a href="https://github.com/phpcr/phpcr">PHPCR</a></li>
+                <li><a href="https://github.com/phpcr/phpcr-api-tests">PHPCR test suite</a></li>
                 <li><a href="https://github.com/jackalope/jackalope">Jackalope</a></li>
                 <li><a href="https://github.com/bergie/phpcr-midgard2">Midgard2 CR</a></li>
                 <li><a href="https://github.com/doctrine/phpcr-odm">PHPCR ODM</a></li>
