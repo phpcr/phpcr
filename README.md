@@ -1,7 +1,8 @@
 Interfaces for the PHP Content Repository PHPCR.
 
 The [JSR-283](http://jcp.org/en/jsr/summary?id=283) specification defines an API for a Content Repository (CR).
-The PHP Content Repository Interfaces aim to provide that API in PHP.
+The PHP Content Repository Interfaces aim to provide that API in PHP. PHPCR is part of JSR-333, the next version
+of the Java Content Repository.
 
 There is a bunch of information here:
 http://phpcr.github.com
@@ -35,7 +36,7 @@ The PHPCR is following the Java Content Repository JCR API closely where
 appropriate. In the points where Java and PHP differ, we tried to follow the
 logic of PHP while keeping the spirit of the original API. The API has the same
 expressivnes as the Java API.
-Most of the JSR-283 documentation and code examples should be usable as-is.
+Most of the JSR-283/JSR-333 documentation and code examples should be usable as-is.
 
 Main differences between PHPCR and JCR are
 * PHP has no method overloading. Same-name methods that differ only by
@@ -67,6 +68,9 @@ are interchangeable with each other.
 
 If you work on your own implementation, please let us know so we can add it here right away. Even if its not yet working, others might want to join in and help.
 
+## Dependencies
+
+PHPCR provides a composer.json for [Composer](http://packagist.org/about-composer) and is available through [Packagist](http://packagist.org/).
 
 # History
 

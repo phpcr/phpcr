@@ -4,12 +4,20 @@
     "description": "PHP Content Repository interfaces",
     "keywords": ["phpcr", "contentrepository"],
     "homepage": "http://phpcr.github.com",
-    "version": "0.0.1",
+    "version": "2.1.0-beta1",
     "license": "Apache License 2.0",
     "authors": [
         {
             "name": "David Buchmann",
             "email": "david@liip.ch"
+        },
+        {
+            "name": "Karsten Dambekalns",
+            "email": "karsten@typo3.org"
+        },
+        {
+            "name": "Lukas Kahwe Smith",
+            "email": "lukas@liip.ch"
         }
     ],
     "require": {
