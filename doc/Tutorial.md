@@ -236,8 +236,6 @@ When reading, Jackalope preserves the order in which the nodes have been added.
         echo $node->getName();
     }
 
-
-
 #### Without building nodes
 
 There can be a little performance boost if you do not need to fetch the nodes
