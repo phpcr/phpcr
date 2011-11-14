@@ -369,8 +369,7 @@ class QomToSql2QueryConverter
             return $this->convertLiteral($literal);
         }
 
-        //TODO: is that correct?
-        return $literal;
+        return "'$literal'";
     }
 
     /**
