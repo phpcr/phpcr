@@ -95,7 +95,7 @@ abstract class TraversingItemVisitor implements \PHPCR\ItemVisitorInterface
      *
      * @api
      */
-    public function TraversingItemVisitor($breadthFirst = false, $maxLevel = -1)
+    public function __construct($breadthFirst = false, $maxLevel = -1)
     {
         $this->breadthFirst = $breadthFirst;
         $this->maxDepth = $maxDepth;
