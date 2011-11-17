@@ -89,13 +89,14 @@ abstract class TraversingItemVisitor implements \PHPCR\ItemVisitorInterface
      * @param boolean $breadthFirst if $breadthFirst is true then traversal is
      *      done in a breadth-first manner; otherwise it is done in a
      *      depth-first manner (which is the default behavior).
-     * @param integer $maxDepth the 0-based depth up to which the hierarchy
-     *      should be traversed (if it's -1, the hierarchy will be traversed
-     *      until there are no more children of the current item).
+     * @param integer $maxDepth the 0-based depth relative to the root node up
+     *      to which the hierarchy should be traversed (if it's -1, the
+     *      hierarchy will be traversed until there are no more children of the
+     *      current item).
      *
      * @api
      */
-    public function __construct($breadthFirst = false, $maxLevel = -1)
+    public function __construct($breadthFirst = false, $maxDepth = -1)
     {
         $this->breadthFirst = $breadthFirst;
         $this->maxDepth = $maxDepth;
