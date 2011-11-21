@@ -66,6 +66,8 @@ are interchangeable with each other.
 * Jackalope-Midgard1 (not online afaik): Read access to the midgard 1.0 server.
 * [Midgard2](https://github.com/bergie/phpcr-midgard2): PHPCR interfaces for the midgard2 content repository.
 
+* [phpcr-utils](https://github.com/phpcr/phpcr-utils): A couple of utility classes and console commands to work with phcpr, independent of the implementation.
+
 If you work on your own implementation, please let us know so we can add it here right away. Even if its not yet working, others might want to join in and help.
 
 ## Dependencies
