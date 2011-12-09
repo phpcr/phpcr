@@ -60,6 +60,12 @@ interface NamespaceRegistryInterface extends \Traversable
     const PREFIX_NT = "nt";
 
     /**
+     * A constant for the predefined namespace prefix "sv"
+     * @api
+     */
+    const PREFIX_SV = "sv";
+
+    /**
      * A constant for the predefined namespace prefix "mix".
      * @api
      */
@@ -88,6 +94,12 @@ interface NamespaceRegistryInterface extends \Traversable
      * @api
      */
     const NAMESPACE_NT = "http://www.jcp.org/jcr/nt/1.0";
+
+    /**
+     * A constant for the predefined namespace mapped by default to the prefix "sv"
+     * @api
+     */
+    const NAMESPACE_SV = "http://www.jcp.org/jcr/sv/1.0";
 
     /**
      * A constant for the predefined namespace mapped by default to the prefix "mix"
