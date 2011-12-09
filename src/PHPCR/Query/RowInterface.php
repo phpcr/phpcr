@@ -43,29 +43,36 @@ interface RowInterface extends \Traversable
      * Returns an array of all the values in the same order as the column names
      * returned by QueryResultInterface::getColumnNames().
      *
+     * @param string $selectorName The selector identifying a node within the
+     *      current result row.
+     *
      * @return array Hashmap of column name to value of each column of the
      *      current result row.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs
+     * @throws \PHPCR\RepositoryException if selectorName is not the alias of a
+     *      selector in this query or if another error occurs.
      *
      * @api
      */
-    function getValues();
+    function getValues($selectorName = null);
 
     /**
      * Returns the value of the indicated column in this Row.
      *
      * @param string $columnName name of query result table column
      *
+     * @param string $selectorName The selector identifying a node within the
+     *      current result row.
+     *
      * @return mixed The value of the given column of the current result row.
      *
-     * @throws \PHPCR\ItemNotFoundException if columnName s not among the
+     * @throws \PHPCR\ItemNotFoundException if columnName is not among the
      *      column names of the query result table.
      * @throws \PHPCR\RepositoryException if another error occurs.
      *
      * @api
      */
-    function getValue($columnName);
+    function getValue($columnName, $selectorName = null);
 
     /**
      * Returns the Node corresponding to this Row and the specified selector,
