@@ -4,7 +4,7 @@
     "description": "PHP Content Repository interfaces",
     "keywords": ["phpcr", "contentrepository"],
     "homepage": "http://phpcr.github.com",
-    "version": "2.1.0-beta1",
+    "version": "2.1.0-beta2",
     "license": "Apache License 2.0",
     "authors": [
         {
