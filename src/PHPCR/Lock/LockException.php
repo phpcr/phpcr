@@ -56,9 +56,9 @@ class LockException extends \PHPCR\RepositoryException
      *
      * @api
      */
-    public function __construct($message, $code, $failureNodePath = null)
+    public function __construct($message, $code = 0, $failureNodePath = null)
     {
-        parent::construct($message, $code);
+        parent::__construct($message, $code);
         $this->failureNodePath = $failureNodePath;
     }
 
