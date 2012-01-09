@@ -112,10 +112,10 @@ interface LockInterface
      * false.
      *
      * Note that this method is intended for those cases where one is holding a
-     * Lock Java object and wants to find out whether the lock (the JCR-level
+     * Lock object and wants to find out whether the lock (the JCR-level
      * entity that is attached to the lockable node) that this object
      * originally represented still exists. For example, a timeout or explicit
-     * unlock will remove a lock from a node but the Lock Java object
+     * unlock will remove a lock from a node but the Lock object
      * corresponding to that lock may still exist, and in that case its isLive
      * method will return false.
      *
