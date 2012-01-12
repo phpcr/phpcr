@@ -140,7 +140,7 @@
                 <li>Versioning</li>
                 <li>Capability discovery</li>
                 <li>XML import (*) and export</li>
-                <li>Locking (*) &amp; Transactions</li>
+                <li>Locking &amp; Transactions</li>
                 <li>Permissions &amp; Access Control (*)</li>
                 <li>Observation (*)</li>
             </ul>
@@ -239,7 +239,7 @@
         <div class="slide" style="text-align:center">
             <h2>PHPCR</h2>
             <p><img src="phpcr.png" alt="PHPCR class interaction diagramm" />
-            <small style="white-space: nowrap; float:right;">Source: phpcr.github.com</small></p>
+            <small style="white-space: nowrap; float:right; font-size: 16pt;">Source: phpcr.github.com</small></p>
         </div>
 
         <div class="slide">
@@ -250,14 +250,14 @@
             <h2>Connecting via PHPCR</h2>
             <pre class="brush: php">
                 // start of implementation specific configuration //
-                $factory = new \Jackalope\RepositoryFactoryJackrabbit();
+                $factory = "\Jackalope\RepositoryFactoryJackrabbit";
                 $parameters = array(
                     'jackalope.jackrabbit_uri'
                         => 'http://localhost:8080/server'
                 );
                 // end of implementation specific configuration //
 
-                $repository = $factory->getRepository($parameters);
+                $repository = $factory::getRepository($parameters);
                 $creds = new \PHPCR\SimpleCredentials('user','pw');
                 $session = $repository->login($creds, 'default');
             </pre>
@@ -315,7 +315,7 @@
                 $vm = $session->getWorkspace()->getVersionManager()
 
                 // create initial version
-                $node->setProperty('label', 'About');
+                $node->setProperty('title', 'About');
                 $session->save();
                 // check-in (create version) and check-out (prepare for further updates)
                 // this is persisted immediately without a save() call
@@ -327,7 +327,7 @@
             <h2>Versioning API</h2>
             <pre class="brush: php">
                 // update node with some changes
-                $node->setProperty('label', 'Ups');
+                $node->setProperty('title', 'Ups');
                 $session->save();
 
                 // create another version, leave in read only state
@@ -343,7 +343,7 @@
                 );
 
                 $node = $session->getNode('/site/content/about');
-                var_dump($node->getProperty('label')) // About
+                var_dump($node->getProperty('title')) // About
             </pre>
         </div>
 
@@ -377,135 +377,38 @@
                 <li>Discover interpretation issues, better compatibility</li>
                 <li>Implementors need to write less tests of their own</li>
             </ul>
-            <pre style="font-size:0.8em; margin-top:20px">
-                Soitgoes:jackalope lsmith$ phpunit -c tests/phpunit_jackrabbit.xml.dist
-PHPUnit 3.6.3 by Sebastian Bergmann.
+            <pre style="font-size:0.8em; margin-top:20px" >
+david@wintermute:~/liip/jackalope> phpunit -c tests/
+PHPUnit 3.5.14 by Sebastian Bergmann.
 
-...SSSSSSSS.........S.....II...............S.S.................  63 / 807 (  7%)
-.......................SSSS.S.......S....SSSSSSSSSSSSSSSS...... 126 / 807 ( 15%)
-.....................................SSS..............I.I.I.I.. 189 / 807 ( 23%)
-.....................I...............I..I........SI............ 252 / 807 ( 31%)
-............................................................... 315 / 807 ( 39%)
-................S.......I....................S..S.............. 378 / 807 ( 46%)
-.....................SS............SSSS..S..................... 441 / 807 ( 54%)
-................................................SSSSS.......... 504 / 807 ( 62%)
-......................I......S..........I...................... 567 / 807 ( 70%)
-.............SSS...........S..................I................ 630 / 807 ( 78%)
-............................................................... 693 / 807 ( 85%)
-............................................................... 756 / 807 ( 93%)
-................................S......S........I
+S..II..................................SSSSSSSSSSSSSSSS........  63 / 813 (  7%)
+...............................S......S.................SSSSSSS 126 / 813 ( 15%)
+...SS.S.......SSS.........S...S......................SSS....... 189 / 813 ( 23%)
+......I.I.I.I.................................................. 252 / 813 ( 30%)
+......S..SS..SSS..S............................................ 315 / 813 ( 38%)
+.............S..................I...............I..I........SI. 378 / 813 ( 46%)
+.................S.......I....................S................ 441 / 813 ( 54%)
+............................................................... 504 / 813 ( 61%)
+..SSSS....I..S...........................I....................S 567 / 813 ( 69%)
+............................................................... 630 / 813 ( 77%)
+............................................................... 693 / 813 ( 85%)
+............................................................... 756 / 813 ( 92%)
+.................I.....I......S.......S..........SSS...
 
-Time: 01:08, Memory: 168.00Mb
+Time: 01:19, Memory: 74.25Mb
 
 OK, but incomplete or skipped tests!
-Tests: 801, Assertions: 5356, Incomplete: 15, Skipped: 59.
+Tests: 808, Assertions: 5598, Incomplete: 15, Skipped: 59.
             </pre>
         </div>
 
         <div class="slide">
             <h1>Doctrine PHPCR ODM</h1>
-        </div>
-
-        <div class="slide">
-            <h2>Doctrine PHPCR ODM</h2>
             <ul>
-                <li>Object persistance manager for PHPCR</li>
-                <li>Works like MongoDB or CouchDB ODM</li>
-                <li>Includes a tree/graph and versioning API</li>
-                <li>Makes it easy for developers to switch to PHPCR</li>
-                <li>But is also convenient for PHPCR experts</li>
+                <li>Object - Document mapper to map plain php objects to phpcr data</li>
+                <li>Supports the phcpr concepts like children and references</li>
+                <li><a href="http://cmf.symfony.com/slides/doctrine-phpcr-odm.html">See the phpcr-odm slides</a></li>
             </ul>
-        </div>
-
-        <div class="slide" style="text-align:center">
-            <h2>Doctrine PHPCR ODM</h2>
-            <p>
-                <img src="JCRvsRDBMSvsNoSQL.png" alt="JCR vs. RDBMS/NoSQL" />
-                <small style="white-space: nowrap; float:right;">Source: cmf.symfony.com</small>
-            </p>
-        </div>
-
-        <div class="slide">
-            <h2>ODM Document class</h2>
-            <pre class="brush: php">
-                use Doctrine\ODM\PHPCR\Mapping as PHPCR
-
-                /** @PHPCR\Document(alias="nav", repositoryClass="NavigationRepository") */
-                class Navigation
-                {
-                    /**
-                     * PHPCR path (not the UUID)
-                     * @PHPCR\Id(strategy="repository")
-                     */
-                    public $id;
-                    /** @PHPCR\Children */
-                    public $children;
-                    /** @PHPCR\String(name="label") */
-                    private $name;
-                    /**
-                     * @PHPCR\Binary()
-                     * @var resource
-                     */
-                    public $image;
-                    private $internal;
-
-                    public function getName() { return $this->name; }
-
-                    public function setName($n) { $this->name = $n; }
-                }
-            </pre>
-        </div>
-
-        <div class="slide">
-            <h2>ODM Document repository (optional)</h2>
-            <pre class="brush: php">
-                use Doctrine\ODM\PHPCR\DocumentRepository,
-                    Doctrine\ODM\PHPCR\Id\RepositoryIdInterface;
-
-                class NavigationRepository
-                    extends DocumentRepository
-                    implements RepositoryIdInterface
-                {
-                    /**
-                     * Generate a document id
-                     *
-                     * @param Navigation $doc
-                     * @return string
-                     */
-                    public function generateId(Navigation $doc)
-                    {
-                        return '/site/content/'.$doc->getName();
-                    }
-                }
-            </pre>
-        </div>
-
-        <div class="slide">
-            <h2>ODM CRUD API</h2>
-            <pre class="brush: php">
-                // Create
-                $doc = new Navigation();
-                $doc->setLabel($label)
-                // no active record. newly created document needs
-                // to be registered it with the document manager
-                $docManager->persist($doc);
-                $docManager->flush();
-                $id = $doc->id;
-
-                // Read
-                $repo = $docManager->getRepository('Navigation');
-                $doc = $repo->find($id);
-
-                // Update
-                $doc->setLabel('home');
-                // no need to call persist() here, document is
-                // already known to the document manager.
-                $docManager->flush();
-
-                // Remove
-                $docManager->remove($doc);
-                $docManager->flush();
-            </pre>
         </div>
 
         <div class="slide">
@@ -539,16 +442,8 @@ Tests: 801, Assertions: 5356, Incomplete: 15, Skipped: 59.
                 <li>Push the DoctrineDBAL transport</li>
                 <li>Security and ACL support</li>
                 <li>Integrate more features into the ODM layer</li>
-                <li>More performance optimizations</li>
+                <li>Observation support</li>
             </ul>
-        </div>
-
-        <div class="slide">
-            <h2>Eat your own dog food</h2>
-            <p>
-                <img src="liip_ch_website.png"/>
-                <i>Liip uses PHPCR and the Symfony CMF for their new website</i>
-            </p>
         </div>
 
         <div class="slide">
