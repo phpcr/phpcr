@@ -288,8 +288,8 @@ The simplest case is to select all `[nt:unstructured]` nodes:
 
 Sometimes you may prefer to build a query in several steps. For that reason, PHPCR provides a fluent interface for QOM: que QueryBuilder. An example of query built with QueryBuilder:
 
-   $qf = $qomFactory;
-   $qb = new QueryBuilder($qomFactory)
+    $qf = $qomFactory;
+    $qb = new QueryBuilder($qomFactory)
          //add the source
          ->from($qomFactory->selector('[nt:unstructured]')
          //some composed constraint
@@ -302,7 +302,7 @@ Sometimes you may prefer to build a query in several steps. For that reason, PHP
          ->setFirstResult(15)
          //and the maximum number of node-tuples to retrieve
          ->setMaxResults(25);
-   $result = $qb->execute;
+    $result = $qb->execute;
 
 ### Writing data
 
