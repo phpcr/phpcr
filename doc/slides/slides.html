@@ -370,6 +370,41 @@
         </div>
 
         <div class="slide">
+            <h2>Search via QOM API</h2>
+            <pre class="brush: php">
+                $qm = $workspace->getQueryManager();
+                $factory = $qm->getQOMFactory();
+
+                // SELECT * FROM nt:file INNER JOIN nt:folder ON ISCHILDNODE(child, parent)
+                $factory->createQuery(
+                    $factory->join(
+                        $factory->selector('nt:file'),
+                        $factory->selector('nt:folder'),
+                        Constants::JCR_JOIN_TYPE_INNER,
+                        $factory->childNodeJoinCondition('child', 'parent')),
+                    null,
+                    array(),
+                    array());
+            </pre>
+        </div>
+
+        <div class="slide">
+            <h2>Search via Fluent Query API</h2>
+            <pre class="brush: php">
+                $qm = $workspace->getQueryManager();
+                $factory = $qm->getQOMFactory();
+
+                // SELECT * FROM nt:unstructured WHERE name NOT IS NULL
+                $qb = new QueryBuilder($factory);
+                $qb->select($factory->selector('nt:unstructured'))
+                   ->where($factory->propertyExistance('name'))
+                   ->setFirstResult(10)
+                   ->setMaxResults(10)
+                   ->execute();
+            </pre>
+        </div>
+
+        <div class="slide">
             <h2>Quality</h2>
             <p style="font-size:1.2em">A test suite for PHPCR makes sure all implementations interpret the specification the same way.</p>
             <ul>
