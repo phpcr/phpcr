@@ -390,6 +390,7 @@
 
         <div class="slide">
             <h2>Search via Fluent Query API</h2>
+            <p>(With phpcr-utils)</p>
             <pre class="brush: php">
                 $qm = $workspace->getQueryManager();
                 $factory = $qm->getQOMFactory();
@@ -397,7 +398,7 @@
                 // SELECT * FROM nt:unstructured WHERE name NOT IS NULL
                 $qb = new QueryBuilder($factory);
                 $qb->select($factory->selector('nt:unstructured'))
-                   ->where($factory->propertyExistance('name'))
+                   ->where($factory->propertyExistence('name'))
                    ->setFirstResult(10)
                    ->setMaxResults(10)
                    ->execute();
