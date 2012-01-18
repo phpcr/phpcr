@@ -288,7 +288,7 @@
             <pre class="brush: php">
                 $node = $session->getNode('/site/content');
 
-                foreach ($node->getChildren() as $child) {
+                foreach ($node->getNodes() as $child) {
                     var_dump($child->getName());
                 }
 
@@ -298,7 +298,7 @@
                 }
 
                 // filter on node names
-                foreach ($node->getChildren('di*') as $child) {
+                foreach ($node->getNodes('di*') as $child) {
                     var_dump($child->getName());
                 }
             </pre>
