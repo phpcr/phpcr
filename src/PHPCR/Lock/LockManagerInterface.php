@@ -164,9 +164,12 @@ interface LockManagerInterface extends \Traversable
      *      current session; if false it expires when explicitly or
      *      automatically unlocked for some other reason.
      * @param integer $timeoutHint Desired lock timeout in seconds (servers are
-     *      free to ignore this value); specify PHP_INT_MAX for no timeout.
+     *      free to ignore this value); specify PHP_INT_MAX for no timeout. If
+     *      not specified, defaults to no timeout.
      * @param string $ownerInfo A string containing owner information supplied
-     *      by the client; servers are free to ignore this value.
+     *      by the client; servers are free to ignore this value. If none is
+     *      specified, the implementation chooses one (i.e. user name of
+     *      current backend authentication credentials)
      *
      * @return \PHPCR\Lock\LockInterface A Lock object containing a lock token.
      *
@@ -182,7 +185,7 @@ interface LockManagerInterface extends \Traversable
      *
      * @api
      */
-    function lock($absPath, $isDeep, $isSessionScoped, $timeoutHint, $ownerInfo);
+    function lock($absPath, $isDeep, $isSessionScoped, $timeoutHint = PHP_INT_MAX, $ownerInfo = null);
 
     /**
      * Determines if the node at absPath is locked.
