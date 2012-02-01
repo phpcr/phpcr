@@ -84,7 +84,7 @@ interface VersionHistoryInterface extends \PHPCR\NodeInterface
      *
      * @return Iterator implementing <b>SeekableIterator</b> and
      *      <b>Countable</b>. Values are the VersionInterface instances. Keys
-     *      have no meaning.
+     *      are the version names.
      *
      * @throws \PHPCR\RepositoryException if an error occurs.
      *
@@ -100,7 +100,7 @@ interface VersionHistoryInterface extends \PHPCR\NodeInterface
      *
      * @return Iterator implementing <b>SeekableIterator</b> and
      *      <b>Countable</b>. Values are the VersionInterface instances. Keys
-     *      have no meaning.
+     *      are the version names.
      *
      * @throws \PHPCR\RepositoryException if an error occurs.
      *
@@ -113,9 +113,8 @@ interface VersionHistoryInterface extends \PHPCR\NodeInterface
      * verison history in the same order as getAllLinearVersions().
      *
      * @return Iterator implementing <b>SeekableIterator</b> and
-     *      <b>Countable</b>. Values are the NodeInterface instances.
-     *
-     * @todo is there a version id to be used as key?
+     *      <b>Countable</b>. Values are the NodeInterface instances. Keys
+     *      are the version names
      *
      * @throws \PHPCR\RepositoryException if an error occurs.
      *
@@ -130,9 +129,8 @@ interface VersionHistoryInterface extends \PHPCR\NodeInterface
      * order is implementation-dependent.
      *
      * @return Iterator implementing <b>SeekableIterator</b> and
-     *      <b>Countable</b>. Values are the NodeInterface instances.
-     *
-     * @todo is there a version id to be used as key?
+     *      <b>Countable</b>. Values are the NodeInterface instances. Keys
+     *      are the version names
      *
      * @throws \PHPCR\RepositoryException if an error occurs.
      *
