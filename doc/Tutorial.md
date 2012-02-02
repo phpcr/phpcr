@@ -390,7 +390,7 @@ at that point, called "frozen node".
     // walk back the versions
     $oldversion = $version->getLinearPredecessor();
     // the version objects are just the meta data. call getFrozenNode on them
-    // to get a snapshot of the data when teh version was created
+    // to get a snapshot of the data when the version was created
     echo $version->getName() . ': ' . $version->getFrozenNode()->getPropertyValue('foo'); // 1.0: bar
     echo $oldversion->getName() . ': ' . $oldversion->getFrozenNode()->getPropertyValue('foo'); // jcr:rootVersion: fafa
 

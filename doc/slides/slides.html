@@ -312,7 +312,7 @@
                 $node->addMixin('mix:versionable');
                 $session->save();
 
-                $vm = $session->getWorkspace()->getVersionManager()
+                $vm = $session->getWorkspace()->getVersionManager();
 
                 // create initial version
                 $node->setProperty('title', 'About');
@@ -334,16 +334,20 @@
                 $vm->checkin($node->getPath());
 
                 $base = $vm->getBaseVersion($node->getPath());
-                $current = array_shift($base->getPredecessors());
-                $previous = array_shift($base->getPredecessors());
-                $vm->restore(
-                    true,
-                    $previous->getName(),
-                    $node->getPath()
-                );
+                $current = $base->getLinearPredecessor();
+                $previous = $current->getLinearPredecessor();
+
+                // get snapshot of old version to look around
+                $frozenNode = $previous->getFrozenNode();
+                // the frozen node has the same fields and values as
+                // the node had at that time.
+                echo $frozenNode->getProperty('title'); // About
+
+                // set the live data back to what is in this version
+                $vm->restore(true, $previous);
 
                 $node = $session->getNode('/site/content/about');
-                var_dump($node->getProperty('title')) // About
+                echo $node->getProperty('title'); // About
             </pre>
         </div>
 
