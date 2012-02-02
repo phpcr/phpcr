@@ -366,6 +366,12 @@ Optional feature. Jackalope preserves the order but the API methods to change th
 
 Versioning is used to track changes in nodes with the possibility to get back to older versions.
 
+A node with the mixin type mix:versionable or mix:simpleVersionable can be
+versioned. Versioned nodes have a version history, containing the root version
+and all versions created. Each version contains the meta data (previous
+versions, next versions and creation date) and provides a snapshot of the node
+at that point, called "frozen node".
+
     $node->setProperty('foo', 'fafa');
     // mark the node as versionable
     $node->addMixin('mix:versionable');

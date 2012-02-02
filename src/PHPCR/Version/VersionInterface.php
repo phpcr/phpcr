@@ -135,7 +135,12 @@ interface VersionInterface extends \PHPCR\NodeInterface
     function getPredecessors();
 
     /**
-     * Returns the frozen node of this version.
+     * Returns a snapshot of the node as it was at this version.
+     *
+     * All properties are at under their original names except for uuid,
+     * primaryType and mixinTypes. The frozen node has his own uuid, and is of
+     * type nt:frozenNode. The original values at the time of the snapshots are
+     * provided as jcr:frozenUuid, jcr:frozenPrimaryType, jcr:frozenMixinTypes
      *
      * @return \PHPCR\NodeInterface a Node object
      *
