@@ -376,25 +376,30 @@ Versioning is used to track changes in nodes with the possibility to get back to
     // put the versionable node into edit mode
     $versionManager->checkout($node->getPath());
     $node->setProperty('foo', 'bar'); // need a change to see something
+    $session->save(); // you can only create versions of saved nodes
     // create a new version of the node with our changes
     $version = $versionManager->checkin($node->getPath());
     // Version extends the Node interface. The version is the node with additional functionality
 
     // walk back the versions
     $oldversion = $version->getLinearPredecessor();
-    echo $version->getPropertyValue('foo'); // bar
-    echo $oldversion->getPropertyValue('foo'); // fafa
+    // the version objects are just the meta data. call getFrozenNode on them
+    // to get a snapshot of the data when teh version was created
+    echo $version->getName() . ': ' . $version->getFrozenNode()->getPropertyValue('foo'); // 1.0: bar
+    echo $oldversion->getName() . ': ' . $oldversion->getFrozenNode()->getPropertyValue('foo'); // jcr:rootVersion: fafa
 
     // get the full version history
     $history = $versionManager->getVersionHistory($node->getPath());
-    foreach ($history->getAllVersions() as $node) {
+    foreach ($history->getAllFrozenNodes() as $node) {
         echo $node->getPropertyValue('foo');
     }
 
     // restore an old version
+    $node->setProperty('foo', 'different');
+    $session->save(); // restoring is only possible if the session is clean
     $current = $versionManager->getBaseVersion($node->getPath());
-    $oldversion = $current->getLinearPredecessor();
-    $versionManager->restore(true, $oldversion);
+    $versionManager->restore(true, $current);
+    echo $node->getProperty('foo'); // fafa
 
 
 ### Transactions
