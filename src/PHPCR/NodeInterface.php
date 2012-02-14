@@ -273,8 +273,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      *
      * @throws \PHPCR\PathNotFoundException if no node exists at the specified
      *      path or the current Session does not read access to the node at
-     *      the specified path.
-     * @throws InvalidArgumentException if $relPath is an absolute path
+     *      the specified path, or if $relPath is an absolute path
      * @throws \PHPCR\RepositoryException if another error occurs.
      *
      * @api
