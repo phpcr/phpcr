@@ -31,7 +31,7 @@ namespace PHPCR\Transaction;
  *
  * @author Johannes Stark <starkj@gmx.de>
  * @package phpcr
- * @subpackage interfaces
+ * @subpackage exceptions
  * @api
  */
 class RollbackException extends \PHPCR\RepositoryException
