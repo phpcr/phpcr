@@ -25,13 +25,13 @@
 namespace PHPCR\Security;
 
 /**
- * An AccessControlEntry represents the association of one or more Privilege
- * objects with a specific Principal.
+ * An AccessControlEntryInterface represents the association of one or more
+ * PrivilegeInterface objects with a specific principal.
  *
  * The \Traversable interface enables the implementation to be addressed with
- * <b>foreach</b>. AccessControlEntry has to implement either \RecursiveIterator
- * or \Iterator.
- * The iterator is equivalent to <b>getPrivileges()</b> returning a list of
+ * <b>foreach</b>. Concrete AccessControlEntry have to implement either
+ * \RecursiveIterator or \Iterator.
+ * The iterator is equivalent to <b>getPrivileges()</b>, returning a list of
  * PrivilegeInterface. The iterator keys have no significant meaning.
  *
  * @package phpcr
@@ -43,9 +43,7 @@ interface AccessControlEntryInterface extends \Traversable
     /**
      * Returns the principal associated with this access control entry.
      *
-     * @return java.security.Principal a Principal.
-     *
-     * @todo find replacement for java.security.Principal
+     * @return PrincipalInterface
      *
      * @api
      */
