@@ -18,6 +18,13 @@ The issue is that you won't be able to load the tutorial test data.
 
 TODO: port the fixtures loading command to PHPCR and don't mention the cmf sandbox anymore.
 
+If you want to run the code of this tutorial without Symfony anyway, you just need to use an autoloader inside your php file and run it then in command line.
+
+    <?php
+    require("../jackalope-jackrabbit/src/autoload.dist.php");
+    //paste the code here
+
+This will bootstrap your shell script.
 
 ## Browser to see what is in the repository
 
@@ -140,7 +147,7 @@ But as this is PHP, you don't have to catch them. As long as your content is as 
         echo "$name: $value\n";
     }
     // get the properties of this node with a name starting with 'a'
-    foreach ($node->getPropertiesValues("a*")) {
+    foreach ($node->getPropertiesValues("a*") as $name => $value) {
         echo "$name: $value\n";
     }
 
@@ -152,8 +159,8 @@ But as this is PHP, you don't have to catch them. As long as your content is as 
 
     // get all child nodes. the $node is Iterable, the iterator being all children
     $node = $session->getNode('/cms/content/static');
-    foreach ($node as $name => $node) {
-        if ($node->hasProperties()) {
+    foreach ($node as $name => $child) {
+        if ($child->hasProperties()) {
             echo "$name has properties\n";
         } else {
             echo "$name does not have properties\n";
@@ -161,12 +168,12 @@ But as this is PHP, you don't have to catch them. As long as your content is as 
     }
 
     // get child nodes with the name starting with 'c'
-    foreach ($node->getNodes('c*') as $name => $node) {
+    foreach ($node->getNodes('c*') as $name => $child) {
         echo "$name\n";
     }
 
     // get child nodes with the name starting with 'h' or ending with 'e' or named 'projects'
-    foreach ($node->getNodes(array('h*', '*e', 'projects')) as $name => $node) {
+    foreach ($node->getNodes(array('h*', '*e', 'projects')) as $name => $child) {
         echo "$name\n";
     }
 
@@ -288,21 +295,24 @@ The simplest case is to select all `[nt:unstructured]` nodes:
 
 Sometimes you may prefer to build a query in several steps. For that reason, PHPCR provides a fluent interface for QOM: que QueryBuilder. An example of query built with QueryBuilder:
 
+    use PHPCR\Query\QOM\QueryObjectModelConstantsInterface;
+    use PHPCR\Util\QOM\QueryBuilder;
+
     $qf = $qomFactory;
-    $qb = new QueryBuilder($qomFactory)
-         //add the source
-         ->from($qomFactory->selector('[nt:unstructured]')
-         //some composed constraint
-         ->andWhere($qf->comparison($qf->propertyValue('[phpcr:someproperty]'),
-                    Constants::JCR_OPERATOR_EQUAL_TO,
-                    $qf->literal($this->documentName)))
-         //orderings
-         ->orderBy($qf->propertyValue['phpcr:anotherproperty'])
-         //set an offset
-         ->setFirstResult(15)
-         //and the maximum number of node-tuples to retrieve
-         ->setMaxResults(25);
-    $result = $qb->execute;
+    $qb = new QueryBuilder($qomFactory);
+    //add the source
+    $qb->from($qomFactory->selector('nt:unstructured'))
+        //some composed constraint
+        ->andWhere($qf->comparison($qf->propertyValue('phpcr:someproperty'),
+            QueryObjectModelConstantsInterface::JCR_OPERATOR_EQUAL_TO,
+            $qf->literal('a-value-you-know-exists')))
+        //orderings
+        ->orderBy($qf->propertyValue('phpcr:anotherproperty'))
+        //set an offset
+        ->setFirstResult(15)
+        //and the maximum number of node-tuples to retrieve
+        ->setMaxResults(25);
+    $result = $qb->execute();
 
 ### Writing data
 
