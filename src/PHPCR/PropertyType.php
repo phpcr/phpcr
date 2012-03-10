@@ -220,6 +220,7 @@ final class PropertyType
 
     /**#@-*/
 
+    // @codeCoverageIgnoreStart
     /**
      * Make instantiation impossible...
      *
@@ -228,6 +229,7 @@ final class PropertyType
     private function __construct()
     {
     }
+    // @codeCoverageIgnoreEnd
 
     /**
      * Returns the name of the specified type, as used in serialization.
@@ -324,9 +326,17 @@ final class PropertyType
      *    $weak is set to true which results in WEAKREFERENCE
      * - if the given $value is a DateTime object, the type will be DATE.
      *
+     * Note that string is converted to date exactly if it matches the jcr
+     * formatting spec for dates (sYYYY-MM-DDThh:mm:ss.sssTZD) according to
+     * http://www.day.com/specs/jcr/2.0/3_Repository_Model.html#3.6.4.3%20From%20DATE%20To
+     *
      * @param mixed $value The variable we need to know the type of
      * @param boolean $weak When a Node is given as $value this can be given as true to create a WEAKREFERENCE.
-     * @return One of the self constants
+     *
+     * @return int One of the type constants
+     *
+     * @throws ValueFormatException if the type can not be determined
+     *
      * @api
      */
     public static function determineType($value, $weak = false)
@@ -334,10 +344,15 @@ final class PropertyType
         // name, path, reference, weak reference, uri are string, explicitly specify type if you need
         // decimal is handled as string, explicitly specify type if you need
         if (is_string($value)) {
-            if (preg_match("/^(\d{4})-(\d{2})-(\d{2})T([01][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])/", $value, $matches)) {
-                return self::DATE;
+            // check if this is a jcr formatted date: sYYYY-MM-DDThh:mm:ss.sssTZD
+            if (preg_match("/^(\\+|-)?(\\d{4})-(\\d{2})-(\\d{2})T([01][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])(\\.[0-9][0-9][0-9])?.*/", $value, $matches)) {
+                try {
+                    new \DateTime($value);
+                    return self::DATE;
+                } catch (\Exception $e) {
+                    // ignore, fall through to the string if its not valid
+                }
             }
-
             return self::STRING;
         } elseif (is_resource($value)) {
             return self::BINARY;
@@ -398,7 +413,7 @@ final class PropertyType
      * @param int $type Target type to convert into. One of the type constants in \PHPCR\PropertyType
      * @param int $srctype Source type to convert from, if not specified this is automatically determined, which will miss the string based types that are not strings (DECIMAL, NAME, PATH, URI)
      *
-     * @return the value typecasted into the proper format (throws an exception if conversion is not possible)
+     * @return mixed the value typecasted into the proper format (throws an exception if conversion is not possible)
      *
      * @throws \PHPCR\ValueFormatException is thrown if the specified value cannot be converted to the specified type
      * @throws \PHPCR\RepositoryException if the specified Node is not referenceable, the current Session is no longer active, or another error occurs.
@@ -433,8 +448,8 @@ final class PropertyType
                         // TODO: The name/path is converted to qualified form according to the current local namespace mapping (see §3.2.5.2 Qualified Form).
                          $ret[] = $v;
                     } else {
-                        settype($v, 'string');
-                        $ret[] = $v;
+                        // TODO: how can we provide ValueFormatException on failure? invalid casting leads to 'catchable fatal error' instead of exception
+                        $ret[] = (string) $v;
                     }
                 }
                 break;
@@ -483,6 +498,9 @@ final class PropertyType
                         }
                     }
                     if ($datetime === false) {
+                        if (is_object($v)) {
+                            throw new \PHPCR\ValueFormatException('Can not convert object of class '.get_class($v).' into a date');
+                        }
                         throw new \PHPCR\ValueFormatException('Can not convert "'.var_export($v, true).'" into a date');
                     }
                     $ret[] = $datetime;
@@ -516,7 +534,7 @@ final class PropertyType
                     $ret[] = $v;
                 }
                 break;
-            //TODO: more type checks or casts? name, path, uri, decimal. but the backend can handle the checks.
+            //TODO: more type checks or casts? name, path, uri, decimal validate
         }
 
         if (isset($typename)) {
@@ -599,6 +617,9 @@ final class PropertyType
 
 
             foreach ($values as $v) {
+                if (is_resource($v)) {
+                    $v = stream_get_contents($v);
+                }
                 if (! settype($v, $typename)) { //TODO: will this work for streams? or should we read them into string and then convert?
                     throw new \PHPCR\ValueFormatException;
                 }
