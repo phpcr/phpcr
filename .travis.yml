@@ -1,0 +1,10 @@
+language: php
+
+php:
+  - 5.3
+  - 5.4
+
+script: phpunit -c tests/phpunit.xml.dist
+
+notifications:
+  irc: "irc.freenode.org#jackalope"

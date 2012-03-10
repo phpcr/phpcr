@@ -2,7 +2,7 @@
 /**
  * This is a bootstrap for phpUnit unit tests
  *
- * @author Nacho Martín <nitram.ohcan@gmail.com> 
+ * @author Nacho Martín <nitram.ohcan@gmail.com>
  * @license http://www.apache.org/licenses/LICENSE-2.0 Apache Software License 2.0
  * @link http://phpcr.github.com/
  */
@@ -40,5 +40,5 @@ function phpcr_autoloader($class)
     }
     return false;
 }
-#spl_autoload_extensions('.php');
+
 spl_autoload_register('phpcr_autoloader');

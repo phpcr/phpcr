@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+  This simply contains unit tests for the few concrete classes in PHPCR.
+  See https://github.com/phpcr/phpcr-api-tests/ for the extensive api test suite.
+-->
+
 <phpunit backupGlobals="false"
          backupStaticAttributes="false"
          colors="false"
@@ -12,7 +18,7 @@
          bootstrap="bootstrap.php">
 
     <testsuites>
-        <testsuite name="PHPCR Util Test Suite">
+        <testsuite name="PHPCR Test Suite">
             <directory>./</directory>
         </testsuite>
     </testsuites>

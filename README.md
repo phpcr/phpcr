@@ -48,7 +48,15 @@ An exhaustive list of the differences between PHPCR and JCR is in the file
 doc/JCR_TO_PHPCR.txt
 
 
-# API Tests
+# Tests
+
+## Unit tests
+
+As PHPCR is an API definition, there is not much to test on it without an
+implementation. Nonetheless, there are a few concrete classes that do have
+unit tests. Simply run them with phpunit -c tests/
+
+## API Tests
 
 An API test suite for the functionality of PHPCR is available at
 https://github.com/phpcr/phpcr-api-tests/
