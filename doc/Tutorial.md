@@ -1,14 +1,15 @@
 # PHPCR Tutorial
 
-This is an introduction into the PHP content repository. You will mostly see code examples. It should work with any PHPCR implementation. We propose using the [Symfony Cmf Sandbox](https://github.com/symfony-cmf/cmf-sandbox).
+This is an introduction into the PHP content repository. You will mostly see code examples. It should work with any PHPCR implementation. We propose using the [Symfony Cmf Sandbox](https://github.com/symfony-cmf/cmf-sandbox) to get started.
 
 
 ## Installing the Cmf Sandbox
 
 Just follow the README of the sandbox repository and run the fixtures import command to have some sample data.
-To do the examples inside Symfony without having to learn symfony, just edit the file
-vendor/symfony-cmf/src/Symfony/Cmf/Bundle/NavigationBundle/Controller/NavigationController.php
-and completely replace the indexAction() with the tutorial code and end the method with a die;
+
+TODO: port the fixtures loading command to PHPCR and don't mention the cmf sandbox anymore.
+
+Look for the folder jackalope-jackrabbit in the vendor folder of the project directory.
 
 
 ## Installing Jackalope standalone
@@ -16,15 +17,6 @@ and completely replace the indexAction() with the tutorial code and end the meth
 Jackalope can of course be set up without Symfony: [Installation guide](https://github.com/jackalope/jackalope/wiki/Downloads).
 The issue is that you won't be able to load the tutorial test data.
 
-TODO: port the fixtures loading command to PHPCR and don't mention the cmf sandbox anymore.
-
-If you want to run the code of this tutorial without Symfony anyway, you just need to use an autoloader inside your php file and run it then in command line.
-
-    <?php
-    require("../jackalope-jackrabbit/src/autoload.dist.php");
-    //paste the code here
-
-This will bootstrap your shell script.
 
 ## Browser to see what is in the repository
 
@@ -34,6 +26,9 @@ We recommend installing the [PhpcrBrowser](https://github.com/symfony-cmf/phpcrb
 # In a nutshell
 
 The shortest self-contained example should output a line with 'value':
+
+    <?php
+    require("/path/to/jackalope-jackrabbit/src/autoload.dist.php");
 
     $factoryclass = '\Jackalope\RepositoryFactoryJackrabbit';
     $parameters = array('jackalope.jackrabbit_uri' => 'http://localhost:8080/server');
@@ -68,6 +63,11 @@ TODO: Not every implementation has to support all chapters of the specification.
 
 
 ### Bootstrapping
+
+You will need to make sure your php classes are available. Usually this means activating an autoloader. Jackalope follows the PSR-0 standard.
+You can either add the code folders to your autoloading or use the provided file src/autoload.dist.php
+
+Once you have autoloading set up, bootstrap jackalope-jackrabbit like this:
 
     // factory (the *only* implementation specific part)
     $factoryclass = '\Jackalope\RepositoryFactoryJackrabbit';
@@ -207,22 +207,19 @@ Properties can only be referenced by path because they can not have a unique id.
     // get a referenced property. TODO: have a property reference in the fixtures
     $otherproperty = $node->getPropertyValue('propref'); // propref has to be a path or name
 
+
 #### Shareable nodes
 
 Optional feature, not yet implemented in Jackalope.
 
 Graph structure instead of a tree, nodes can have more than one parent.
 
+
 #### Same name siblings
 
 Optional feature, not fully tested in Jackalope.
 
 Nodes with the same parent can have the same name. They are distinguished by an index, as in xpath.
-
-#### Orderable child nodes
-
-When reading, Jackalope preserves the order in which the nodes have been added.
-
 
 
 ### Query: Search the database
@@ -256,6 +253,7 @@ but just want to access one value of each node.
 
 Large search results can be dangerous for performance. See below for some
 performance tips.
+
 
 #### Using Query Object Model (QOM) for building complex queries
 
@@ -291,9 +289,12 @@ The simplest case is to select all `[nt:unstructured]` nodes:
    $source = $qomFactory->selector('[nt:unstructured]');
    $query = $qomFactory->createQuery($source, null, array(), array());
 
+
 #### The Query Builder: a fluent interface for QOM
 
-Sometimes you may prefer to build a query in several steps. For that reason, PHPCR provides a fluent interface for QOM: que QueryBuilder. An example of query built with QueryBuilder:
+Sometimes you may prefer to build a query in several steps. For that reason, the phpcr-utils library provides a fluent wrapper for QOM: the QueryBuilder. It works with any PHPCR implementation.
+
+An example of query built with QueryBuilder:
 
     use PHPCR\Query\QOM\QueryObjectModelConstantsInterface;
     use PHPCR\Util\QOM\QueryBuilder;
@@ -313,6 +314,7 @@ Sometimes you may prefer to build a query in several steps. For that reason, PHP
         //and the maximum number of node-tuples to retrieve
         ->setMaxResults(25);
     $result = $qb->execute();
+
 
 ### Writing data
 
@@ -436,6 +438,8 @@ at that point, called "frozen node".
 
 The PHPCR API in itself uses a transaction model by only persisting changes on session save. If you need transactions over more than one save operation or including workspace operations that are dispatched immediatly, you can use transactions.
 
+Note that Jackalope does not support transactions.
+
     // get the transaction manager.
     $workspace = $session->getWorkspace()
     $transactionManager = $workspace->getTransactionManager();
@@ -509,6 +513,7 @@ When getting the properties from a node, you can use Node::getPropertiesValues(f
 If you need to get several nodes where you know the paths, use Session::getNodes with an array of those nodes to get all of them in one batch, saving round trip time to the storage backend.
 
 Also use Node::getNodes with a list of nodes rather than repeatedly calling Node::getNode.
+
 
 ### Search
 
