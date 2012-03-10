@@ -64,9 +64,13 @@ interface LockInterface
     /**
      * Returns the lock holding node.
      *
-     * Note that $n->getLock()->getNode() (where $n is a locked node) will only
-     * return $n if $n is the lock holder. If $n is in the subgraph of the lock
-     * holder, $h, then this call will return $h.
+     * This is not necessarily the node at the path you used to get this lock
+     * instance, if a parent node was deep locked. This method returns the node
+     * that was originally locked.
+     *
+     * I.e. $lockManager->getLock($n->getPath())->getNode() (where $n is a
+     * locked node) will only * return $n if $n is the lock holder. If $n is in
+     * the subgraph of the lock holder, $h, then this call will return $h.
      *
      * @return \PHPCR\NodeInterface a Node
      *

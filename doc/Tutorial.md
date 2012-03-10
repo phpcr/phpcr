@@ -434,6 +434,37 @@ at that point, called "frozen node".
     echo $node->getProperty('foo'); // fafa
 
 
+### Locking
+
+In PHPCR, you can lock nodes to prevent concurrency issues. There is two basic types of locks:
+
+* Session based locks are only kept until your session ends and released automatically on logout.
+* If a lock is not session based, it is identified by a lock token and stays in place until it times out
+
+Note that jackalope currently only implements session based locks.
+
+    // get the lock manager
+    $workspace = $session->getWorkspace();
+    $lockManager = $workspace->getLockManager();
+    var_dump($lockManager->isLocked('/cms/navigation')); // should be false
+    $lockManager->lock('/cms/navigation', true, true); // lock child nodes as well, release when session closed
+    // now only this session may change the node /cms/navigation and its descendants
+    var_dump($lockManager->isLocked('/cms/navigation')); // should be true
+    var_dump($lockManager->isLocked('/cms/navigation/main')); // should be true because we locked deep
+
+    $lock = $lockManager->getLock('/cms/navigation');
+    var_dump($lock->isLockOwningSession()); // true, this is our lock, not somebody else's
+    var_dump($lock->getSecondsRemaining()); // PHP_INT_MAX because this lock has no timeout
+    var_dump($lock->isLive()); // true
+
+    $node = $lock->getNode(); // this gets us node /cms/navigation
+    $node === $lockManager->getLock('/cms/navigation/main')->getNode(); // getnode always returns the lock owning node
+
+    $lockManager->unlock('/cms/navigation'); // we could also let $session->logout() unlock when using session based lock
+    var_dump($lockManager->isLocked('/cms/navigation')); // false
+    var_dump($lock->isLive()); // false
+
+
 ### Transactions
 
 The PHPCR API in itself uses a transaction model by only persisting changes on session save. If you need transactions over more than one save operation or including workspace operations that are dispatched immediatly, you can use transactions.
@@ -541,6 +572,5 @@ A couple of other advanced functionalities are defined by the API. They are not 
 * Permissions and capabilities
 * Observation
 * Access control management
-* Locking
 * Lifecycle managment
 * Retention and hold
