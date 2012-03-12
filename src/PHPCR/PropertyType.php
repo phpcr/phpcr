@@ -469,7 +469,7 @@ final class PropertyType
 
                     $ret[] = $v;
                 }
-
+                break;
             case self::DECIMAL:
                 $typename = 'string';
                 break;
