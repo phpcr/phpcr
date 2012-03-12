@@ -487,7 +487,7 @@ final class PropertyType
                     $datetime = false;
                     if ($v instanceof \DateTime) {
                         $datetime = $v;
-                    } elseif (is_int($v)) {
+                    } elseif (is_int($v) || is_double($v)) {
                         $datetime = new \DateTime();
                         $datetime = $datetime->setTimestamp($v);
                     } elseif (is_string($v)) {

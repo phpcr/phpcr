@@ -151,10 +151,14 @@ class PropertyTypesTest extends \PHPUnit_Framework_TestCase
         fwrite($uuidstream, '38b7cf18-c417-477a-af0b-c1e92a290c9a');
         rewind($uuidstream);
 
+        $datetimeLong = new \DateTime();
+        $datetimeLong->setTimestamp(123);
+
         return array(
+            // string to...
             array('test string', PropertyType::STRING, 0, PropertyType::LONG),
             array('378.37', PropertyType::STRING, 378, PropertyType::LONG),
-            array('test string', PropertyType::STRING, 0, PropertyType::DOUBLE),
+            array('test string', PropertyType::STRING, 0.0, PropertyType::DOUBLE),
             array('249.39', PropertyType::STRING, 249.39, PropertyType::DOUBLE),
             array('test string', PropertyType::STRING, null, PropertyType::DATE),
             array('17.12.2010', PropertyType::STRING, new \DateTime('17.12.2010'), PropertyType::DATE),
@@ -170,6 +174,7 @@ class PropertyTypesTest extends \PHPUnit_Framework_TestCase
             array('http://phpcr.github.com/', PropertyType::STRING, 'http://phpcr.github.com/', PropertyType::URI),
             array('test string', PropertyType::STRING, 'test string', PropertyType::DECIMAL), // up to the decimal functions to validate
 
+            // stream to...
             // TODO: fix stream handling
             // array($stream, PropertyType::BINARY, 'test string', PropertyType::STRING),
             // array($stream, PropertyType::BINARY, 0, PropertyType::LONG),
@@ -186,19 +191,102 @@ class PropertyTypesTest extends \PHPUnit_Framework_TestCase
             // array($uuidstream, PropertyType::BINARY, '38b7cf18-c417-477a-af0b-c1e92a290c9a', PropertyType::REFERENCE),
             // array($stream, PropertyType::STRING, 'test string', PropertyType::DECIMAL), // up to the decimal functions to validate
 
-/*
-            TODO: provide further mappings to test them
-            array(PropertyType::LONG),
-            array(PropertyType::DOUBLE),
-            array(PropertyType::DATE),
-            array(PropertyType::BOOLEAN),
-            array(PropertyType::NAME),
-            array(PropertyType::PATH),
-            array(PropertyType::REFERENCE),
-            array(PropertyType::WEAKREFERENCE),
-            array(PropertyType::URI),
-            array(PropertyType::DECIMAL),
-            */
+            // long to...
+            array(123, PropertyType::LONG, '123', PropertyType::STRING),
+            array(123, PropertyType::LONG, 123.0, PropertyType::DOUBLE),
+            array(123, PropertyType::LONG, $datetimeLong, PropertyType::DATE),
+            array(123, PropertyType::LONG, null, PropertyType::BOOLEAN),
+            // TODO: array(123, PropertyType::LONG, null, PropertyType::NAME),
+            // TODO: array(123, PropertyType::LONG, null, PropertyType::PATH),
+            array(123, PropertyType::LONG, null, PropertyType::REFERENCE),
+            // TODO: array(123, PropertyType::LONG, null, PropertyType::URI),
+            array(123, PropertyType::LONG, '123', PropertyType::DECIMAL),
+
+            // double to...
+            array(123.1, PropertyType::DOUBLE, '123.1', PropertyType::STRING),
+            array(123.1, PropertyType::DOUBLE, 123, PropertyType::LONG),
+            array(123.1, PropertyType::DOUBLE, $datetimeLong, PropertyType::DATE),
+            array(123.1, PropertyType::DOUBLE, null, PropertyType::BOOLEAN),
+            // TODO: array(123.1, PropertyType::DOUBLE, null, PropertyType::NAME),
+            // TODO: array(123.1, PropertyType::DOUBLE, null, PropertyType::PATH),
+            array(123.1, PropertyType::DOUBLE, null, PropertyType::REFERENCE),
+            // TODO: array(123.1, PropertyType::DOUBLE, null, PropertyType::URI),
+            array(123.1, PropertyType::DOUBLE, '123.1', PropertyType::DECIMAL),
+
+            array($datetimeLong, PropertyType::DATE, $datetimeLong->format('Y-m-d\TH:i:s.') . substr($datetimeLong->format('u'), 0, 3) . $datetimeLong->format('P'), PropertyType::STRING),
+            // TODO fix: array($datetimeLong, PropertyType::DATE, 123, PropertyType::LONG),
+            // TODO fix: array($datetimeLong, PropertyType::DATE, 123.0, PropertyType::DOUBLE),
+            array($datetimeLong, PropertyType::DATE, null, PropertyType::BOOLEAN),
+            // TODO fix: array($datetimeLong, PropertyType::DATE, null, PropertyType::NAME),
+            // TODO fix: array($datetimeLong, PropertyType::DATE, null, PropertyType::PATH),
+            // TODO fix: array($datetimeLong, PropertyType::DATE, null, PropertyType::REFERENCE),
+            // TODO fix: array($datetimeLong, PropertyType::DATE, null, PropertyType::URI),
+            // TODO fix: array($datetimeLong, PropertyType::DATE, '123', PropertyType::DECIMAL),
+
+            array(true, PropertyType::BOOLEAN, '1', PropertyType::STRING),
+            array(false, PropertyType::BOOLEAN, '', PropertyType::STRING),
+            array(true, PropertyType::BOOLEAN, null, PropertyType::DATE),
+            array(true, PropertyType::BOOLEAN, null, PropertyType::LONG),
+            array(true, PropertyType::BOOLEAN, null, PropertyType::DOUBLE),
+            // TODO fix: array(true, PropertyType::BOOLEAN, null, PropertyType::NAME),
+            // TODO fix: array(true, PropertyType::BOOLEAN, null, PropertyType::PATH),
+            array(true, PropertyType::BOOLEAN, null, PropertyType::REFERENCE),
+            // TODO fix: array(true, PropertyType::BOOLEAN, null, PropertyType::URI),
+            array(true, PropertyType::BOOLEAN, null, PropertyType::DECIMAL),
+
+            array('name', PropertyType::NAME, 'name', PropertyType::STRING),
+            array('name', PropertyType::NAME, null, PropertyType::DATE),
+            array('name', PropertyType::NAME, null, PropertyType::LONG),
+            array('name', PropertyType::NAME, null, PropertyType::DOUBLE),
+            array('name', PropertyType::NAME, null, PropertyType::BOOLEAN),
+            array('name', PropertyType::NAME, 'name', PropertyType::PATH),
+            array(true, PropertyType::BOOLEAN, null, PropertyType::REFERENCE),
+            // TODO: fix array('name', PropertyType::NAME, '../name', PropertyType::URI),
+            // TODO: fix array('näme', PropertyType::NAME, '../n%C4me', PropertyType::URI),
+            array('name', PropertyType::NAME, null, PropertyType::DECIMAL),
+
+            array('../test/path', PropertyType::PATH, '../test/path', PropertyType::STRING),
+            array('../test/path', PropertyType::PATH, null, PropertyType::DATE),
+            array('../test/path', PropertyType::PATH, null, PropertyType::LONG),
+            array('../test/path', PropertyType::PATH, null, PropertyType::DOUBLE),
+            array('../test/path', PropertyType::PATH, null, PropertyType::BOOLEAN),
+            // TODO: fix array('../test/path', PropertyType::PATH, null, PropertyType::NAME),
+            // TODO: fix array('./path', PropertyType::PATH, 'path', PropertyType::NAME),
+            // TODO: fix array('../test/path', PropertyType::PATH, null, PropertyType::REFERENCE),
+            array('../test/path', PropertyType::PATH, '../test/path', PropertyType::URI),
+            // TODO: fix array('../test/päth', PropertyType::PATH, '../test/p%C4th', PropertyType::URI),
+            // TODO: fix array('test', PropertyType::PATH, './test', PropertyType::URI),
+            array('../test/path', PropertyType::PATH, null, PropertyType::DECIMAL),
+
+            array('38b7cf18-c417-477a-af0b-c1e92a290c9a', PropertyType::REFERENCE, '38b7cf18-c417-477a-af0b-c1e92a290c9a', PropertyType::STRING),
+            array('38b7cf18-c417-477a-af0b-c1e92a290c9a', PropertyType::REFERENCE, null, PropertyType::DATE),
+            array('38b7cf18-c417-477a-af0b-c1e92a290c9a', PropertyType::REFERENCE, null, PropertyType::LONG),
+            array('38b7cf18-c417-477a-af0b-c1e92a290c9a', PropertyType::REFERENCE, null, PropertyType::DOUBLE),
+            array('38b7cf18-c417-477a-af0b-c1e92a290c9a', PropertyType::REFERENCE, null, PropertyType::BOOLEAN),
+            // TODO: fix array('38b7cf18-c417-477a-af0b-c1e92a290c9a', PropertyType::REFERENCE, null, PropertyType::NAME),
+            // TODO: fix array('38b7cf18-c417-477a-af0b-c1e92a290c9a', PropertyType::REFERENCE, null, PropertyType::PATH),
+            // TODO: fix array('38b7cf18-c417-477a-af0b-c1e92a290c9a', PropertyType::REFERENCE, null, PropertyType::URI),
+            array('38b7cf18-c417-477a-af0b-c1e92a290c9a', PropertyType::REFERENCE, null, PropertyType::DECIMAL),
+
+            array('http://phpcr.githbub.com/doc/html', PropertyType::URI, 'http://phpcr.githbub.com/doc/html', PropertyType::STRING),
+            array('http://phpcr.githbub.com/doc/html', PropertyType::URI, null, PropertyType::DATE),
+            array('http://phpcr.githbub.com/doc/html', PropertyType::URI, null, PropertyType::LONG),
+            array('http://phpcr.githbub.com/doc/html', PropertyType::URI, null, PropertyType::DOUBLE),
+            array('http://phpcr.githbub.com/doc/html', PropertyType::URI, null, PropertyType::BOOLEAN),
+            // TODO: fix array('http://phpcr.githbub.com/doc/html', PropertyType::URI, null, PropertyType::NAME),
+            // TODO: fix array('http://phpcr.githbub.com/doc/html', PropertyType::URI, null, PropertyType::PATH),
+            // TODO: fix array('http://phpcr.githbub.com/doc/html', PropertyType::URI, null, PropertyType::REFERENCE),
+            array('http://phpcr.githbub.com/doc/html', PropertyType::URI, null, PropertyType::DECIMAL),
+
+            array('123.4', PropertyType::DECIMAL, '123.4', PropertyType::STRING),
+            // TODO: fix array('123.4', PropertyType::DECIMAL, $datetimeLong, PropertyType::DATE),
+            array('123.4', PropertyType::DECIMAL, 123, PropertyType::LONG),
+            array('123.4', PropertyType::DECIMAL, 123.4, PropertyType::DOUBLE),
+            array('123.4', PropertyType::DECIMAL, null, PropertyType::BOOLEAN),
+            // TODO: fix array('123.4', PropertyType::DECIMAL, null, PropertyType::NAME),
+            // TODO: fix array('123.4', PropertyType::DECIMAL, null, PropertyType::PATH),
+            // TODO: fix array('123.4', PropertyType::DECIMAL, null, PropertyType::URI),
+            // TODO: fix array('123.4', PropertyType::DECIMAL, null, PropertyType::REFERENCE),
         );
     }
 
@@ -221,7 +309,11 @@ class PropertyTypesTest extends \PHPUnit_Framework_TestCase
                 $this->assertTrue(true); // make it assert something
             }
         } else {
-            $this->assertEquals($expected, PropertyType::convertType($value, $targettype, $srctype));
+            if (is_object($expected)) {
+                $this->assertEquals($expected, PropertyType::convertType($value, $targettype, $srctype));
+            } else {
+                $this->assertSame($expected, PropertyType::convertType($value, $targettype, $srctype));
+            }
         }
     }
 
