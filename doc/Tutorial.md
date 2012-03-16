@@ -501,7 +501,7 @@ There are two formats:
 
 In Jackalope, we only implemented exporting so far.
 
-    $file = fopen('/tmp/dump.xml');
+    $file = fopen('/tmp/dump.xml', '+w');
 
     // dump the tree at /foo/bar into a document view file
     $session->exportDocumentView('/cms', $file, true /* skip binary properties */, false /* recursivly output the child nodes as well */);
