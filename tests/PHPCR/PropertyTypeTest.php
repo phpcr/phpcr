@@ -136,7 +136,7 @@ class PropertyTypesTest extends \PHPUnit_Framework_TestCase
         rewind($stream);
 
         $datestream = fopen('php://memory', '+rw');
-        fwrite($datestream, '17.12.2010');
+        fwrite($datestream, '17.12.2010  GMT');
         rewind($datestream);
 
         $numberstream = fopen('php://memory', '+rw');
@@ -175,7 +175,7 @@ class PropertyTypesTest extends \PHPUnit_Framework_TestCase
             array('test string', PropertyType::STRING, 0.0, PropertyType::DOUBLE),
             array('249.39', PropertyType::STRING, 249.39, PropertyType::DOUBLE),
             array('test string', PropertyType::STRING, null, PropertyType::DATE),
-            array('17.12.2010', PropertyType::STRING, new \DateTime('17.12.2010'), PropertyType::DATE),
+            array('17.12.2010 GMT', PropertyType::STRING, new \DateTime('17.12.2010 GMT'), PropertyType::DATE),
             array('test string', PropertyType::STRING, true, PropertyType::BOOLEAN),
             array('false', PropertyType::STRING, true, PropertyType::BOOLEAN),
             array('', PropertyType::STRING, false, PropertyType::BOOLEAN),
@@ -196,7 +196,7 @@ class PropertyTypesTest extends \PHPUnit_Framework_TestCase
             array($stream, PropertyType::BINARY, 0.0, PropertyType::DOUBLE),
             array($numberstream, PropertyType::BINARY, 123.456, PropertyType::DOUBLE),
             array($stream, PropertyType::BINARY, null, PropertyType::DATE),
-            array($datestream, PropertyType::BINARY, new \DateTime('17.12.2010'), PropertyType::DATE),
+            array($datestream, PropertyType::BINARY, new \DateTime('17.12.2010 GMT'), PropertyType::DATE),
             array($stream, PropertyType::BINARY, true, PropertyType::BOOLEAN),
             // TODO: check NAME may not have spaces array($stream, PropertyType::BINARY, null, PropertyType::NAME),
             array($namestream, PropertyType::BINARY, 'test', PropertyType::NAME),
