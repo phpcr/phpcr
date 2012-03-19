@@ -835,7 +835,8 @@ interface SessionInterface
      *
      * @param string $parentAbsPath the absolute path of the node below which
      *      the deserialized subgraph is added.
-     * @param string $in An URI from which the XML to be deserialized is read.
+     * @param resource $in The stream from which the XML to be deserialized is
+     *      read. i.e. acquired with fopen.
      * @param integer $uuidBehavior a four-value flag that governs how incoming
      *      identifiers are handled.
      *
