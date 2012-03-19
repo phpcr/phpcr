@@ -638,8 +638,8 @@ interface WorkspaceInterface {
      *
      * @param string $parentAbsPath the absolute path of the node below which
      *      the deserialized subgraph is added.
-     * @param resource $in The stream from which the XML to be deserialized is
-     *      read. i.e. acquired with fopen.
+     * @param string $uri Source location for the XML to be read, Can be
+     *      anything that works with fopen.
      * @param integer $uuidBehavior a four-value flag that governs how incoming
      *      identifiers are handled.
      *
@@ -671,7 +671,7 @@ interface WorkspaceInterface {
      *
      * @api
      */
-    function importXML($parentAbsPath, $in, $uuidBehavior);
+    function importXML($parentAbsPath, $uri, $uuidBehavior);
 
     /**
      * Creates a new Workspace with the specified name. The new workspace is
