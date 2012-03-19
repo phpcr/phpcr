@@ -282,9 +282,7 @@ backend (if the session is not yet in a transaction).
 Locking
 *******
 
-This is work in progress, as it is not yet implemented in any implementation.
-
-For no timeout, the java Long.MAX_VALUE is changed to PHP_MAX_INT.
+For no timeout, instead of java Long.MAX_VALUE PHP_MAX_INT is used.
 
 
 Drawing the line
