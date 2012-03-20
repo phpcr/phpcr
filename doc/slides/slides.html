@@ -145,7 +145,7 @@
                 <li>Observation (*)</li>
             </ul>
             <br/>
-            <p>(*) Defined by the API but not yet implemented for PHP</p>
+            <p>(*) Currently under work</p>
         </div>
 
         <div class="slide">
@@ -163,21 +163,12 @@
         </div>
 
         <div class="slide">
-            <h2>Workspaces</h2>
-            <ul>
-                <li>Multiple workspaces, each with its own node tree</li>
-                <li>Each workspace is similar to a Unix file system</li>
-                <li>Workspaces are like branches in git/svn, allowing to clone and merge content</li>
-                <li>But can also be used independently</li>
-            </ul>
-        </div>
-
-        <div class="slide">
             <h2>Nodes</h2>
             <ul>
                 <li>Think of XML elements</li>
                 <li>Can be created, deleted, modified, copied...</li>
-                <li>Identified by the parents path and their own name<br/>&nbsp;
+                <li>Must have a path (same name siblings are allowed by default)</li>
+                <li>Path is constructed by the parents path and their own name<br/>&nbsp;
                     <ul>
                         <li>For example: <tt>/my/path/under/water/fish</tt><br/>&nbsp;</li>
                         <li>Parent path: <tt>/my/path/under/water</tt></li>
@@ -236,6 +227,16 @@
             </ul>
         </div>
 
+        <div class="slide">
+            <h2>Workspaces</h2>
+            <ul>
+                <li>Multiple workspaces, each with its own node tree</li>
+                <li>Each workspace is similar to a Unix file system</li>
+                <li>Workspaces are like branches in git/svn, allowing to clone and merge content</li>
+                <li>But can also be used independently</li>
+            </ul>
+        </div>
+
         <div class="slide" style="text-align:center">
             <h2>PHPCR</h2>
             <p><img src="phpcr.png" alt="PHPCR class interaction diagramm" />
@@ -250,14 +251,13 @@
             <h2>Connecting via PHPCR</h2>
             <pre class="brush: php">
                 // start of implementation specific configuration //
-                $factory = "\Jackalope\RepositoryFactoryJackrabbit";
                 $parameters = array(
                     'jackalope.jackrabbit_uri'
                         => 'http://localhost:8080/server'
                 );
+                $repository = \Jackalope\RepositoryFactoryJackrabbit::getRepository($parameters);
                 // end of implementation specific configuration //
 
-                $repository = $factory::getRepository($parameters);
                 $creds = new \PHPCR\SimpleCredentials('user','pw');
                 $session = $repository->login($creds, 'default');
             </pre>
@@ -270,11 +270,13 @@
 
                 // Node always added as child of another node
                 $node = $root->addNode('test', 'nt:unstructured');
+                // new node is immediately available in memory
+                $node = $session->getNode('/test');
 
                 // Create or update a property
                 $node->setProperty('prop', 'value');
 
-                // Persist the changes
+                // Persist the changes, /test is now available for all sessions
                 $session->save();
 
                 // Delete a node and all its children
@@ -314,11 +316,14 @@
 
                 $vm = $session->getWorkspace()->getVersionManager();
 
-                // create initial version
                 $node->setProperty('title', 'About');
+
+                // create initial version
                 $session->save();
-                // check-in (create version) and check-out (prepare for further updates)
-                // this is persisted immediately without a save() call
+
+                // check-in (create version)
+                // and check-out (prepare for further updates)
+                // persisted immediately without a save() call
                 $vm->checkpoint($node->getPath());
             </pre>
         </div>
@@ -339,8 +344,6 @@
 
                 // get snapshot of old version to look around
                 $frozenNode = $previous->getFrozenNode();
-                // the frozen node has the same fields and values as
-                // the node had at that time.
                 echo $frozenNode->getProperty('title'); // About
 
                 // set the live data back to what is in this version
@@ -417,27 +420,69 @@
                 <li>Discover interpretation issues, better compatibility</li>
                 <li>Implementors need to write less tests of their own</li>
             </ul>
-            <pre style="font-size:0.8em; margin-top:20px" >
+        </div>
+
+        <div class="slide">
+            <h2>Quality</h2>
+
+            <p style="font-size:1.2em">Test results using Jackalope with the Jackrabbit backend.</p>
+            <pre style="font-size:0.8em; margin-top:20px">
 Soitgoes:jackalope-jackrabbit lsmith$ phpunit -c tests/phpunit.xml.dist
 PHPUnit 3.6.5 by Sebastian Bergmann.
 
-.........................................SSS..............I.I.I  63 / 744 (  8%)
-.I........................I...............I..I........SI....... 126 / 744 ( 16%)
-............................................................... 189 / 744 ( 25%)
-.....................S.......I....................S..S......... 252 / 744 ( 33%)
-..........................SS...............SSSS..S............. 315 / 744 ( 42%)
-.......................................................SSSSS... 378 / 744 ( 50%)
-....................................I......S..........I........ 441 / 744 ( 59%)
-...............SS..................S..................I........ 504 / 744 ( 67%)
-............................................................... 567 / 744 ( 76%)
-............................................................... 630 / 744 ( 84%)
-........................................S...................... 693 / 744 ( 93%)
-.................................................I
+.........................................SSS..............I.I   61 / 1088 (  5%)
+.I.I........................I...............I..I........SI...  122 / 1088 ( 11%)
+.............................................................  183 / 1088 ( 16%)
+.S.......I....................S..S...........................  244 / 1088 ( 22%)
+........SS...............SSSS..S.............................  305 / 1088 ( 28%)
+.......................................SSSSS.................  366 / 1088 ( 33%)
+.......S..............I......S..........I....................  427 / 1088 ( 39%)
+....SS..................S....................................  488 / 1088 ( 44%)
+.............................................................  549 / 1088 ( 50%)
+.............................................................  610 / 1088 ( 56%)
+......S..............................S.......................  671 / 1088 ( 61%)
+...........................................SSSSSS..S.........  732 / 1088 ( 67%)
+S.....II...............S.S...................................  793 / 1088 ( 72%)
+......SSSS.S.......S.........................................  854 / 1088 ( 78%)
+.............................................................  915 / 1088 ( 84%)
+.............................................................  976 / 1088 ( 89%)
+............................................................. 1037 / 1088 ( 95%)
+..............................................S..
 
-Time: 01:20, Memory: 168.25Mb
+Time: 01:06, Memory: 184.50Mb
 
 OK, but incomplete or skipped tests!
-Tests: 739, Assertions: 5017, Incomplete: 13, Skipped: 24.            </pre>
+Tests: 1077, Assertions: 5979, Incomplete: 13, Skipped: 43.
+            </pre>
+        </div>
+
+        <div class="slide">
+            <h2>Quality</h2>
+
+            <p style="font-size:1.2em">Test results using Jackalope with the Doctrine DBAL backend.</p>
+            <pre style="font-size:0.8em; margin-top:20px">
+Soitgoes:jackalope-doctrine-dbal lsmith$ phpunit -c tests/phpunit.xml.dist
+Updating schema...done.
+PHPUnit 3.6.5 by Sebastian Bergmann.
+
+.......................S.S..............I.I.I.I................  63 / 709 (  8%)
+........I...............I..I........SI.......................S. 126 / 709 ( 17%)
+........................................S.......I.............. 189 / 709 ( 26%)
+......S..S...................................SS.........S.....S 252 / 709 ( 35%)
+SSS..S......SS..............................................S.. 315 / 709 ( 44%)
+...........SSSSS.......S..S..S.........SS.......S....S.I......S 378 / 709 ( 53%)
+..S.......IS................SSSSSSSSSSSSSSSSSSS.......S........ 441 / 709 ( 62%)
+...........S................................................... 504 / 709 ( 71%)
+............................................................... 567 / 709 ( 79%)
+.............................................................SS 630 / 709 ( 88%)
+.SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS 693 / 709 ( 97%)
+SSSSSSSSSSSSI
+
+Time: 13 seconds, Memory: 177.25Mb
+
+OK, but incomplete or skipped tests!
+Tests: 617, Assertions: 4660, Incomplete: 12, Skipped: 130.
+            </pre>
         </div>
 
         <div class="slide">
@@ -491,33 +536,42 @@ Tests: 739, Assertions: 5017, Incomplete: 13, Skipped: 24.            </pre>
                 <tr>
                     <td>
                         <ul>
+                            <li>adou600 (Adrien Nicolet)</li>
                             <li>beberlei (Benjamin Eberlei)</li>
                             <li>bergie (Henri Bergius)</li>
                             <li>brki (Brian King)</li>
                             <li>chirimoya (Thomas Schedler)</li>
                             <li>chregu (Christian Stocker)</li>
+                            <li>cordoval (Luis Cordova)</li>
+                            <li>damz (Damien Tournoud)</li>
                             <li>dbu (David Buchmann)</li>
+                            <li>dotZoki (Zoran)</li>
                             <li>ebi (Tobias Ebnöther)</li>
+                            <li>iambrosi (Ismael Ambrosi)</li>
                             <li>jakuza (Jacopo Romei)</li>
                             <li>justinrainbow (Justin Rainbow)</li>
                             <li>k-fish (Karsten Dambekalns)</li>
-                            <li>lapistano (Bastian Feder)</li>
-                            <li>lsmith77 (Lukas K. Smith)</li>
+                            <li>krizon (Kristian Zondervan)</li>
                         </ul>
                     </td>
                     <td>
                         <ul>
+                            <li>lapistano (Bastian Feder)</li>
+                            <li>lsmith77 (Lukas K. Smith)</li>
                             <li>micheleorselli (Michele Orselli)</li>
                             <li>nacmartin (Nacho Martín)</li>
                             <li>nicam (Pascal Helfenstein)</li>
+                            <li>Ocramius (Marco Pivetta)</li>
                             <li>ornicar (Thibault Duplessis)</li>
                             <li>piotras</li>
+                            <li>pitpit (Damien Pitard)</li>
                             <li>robertlemke (Robert Lemke)</li>
                             <li>rndstr (Roland Schilter)</li>
                             <li>Seldaek (Jordi Boggiano)</li>
                             <li>sixty-nine (Daniel Barsotti)</li>
                             <li>uwej711 (Uwe Jäger)</li>
                             <li>vedranzgela (Vedran Zgela)</li>
+                            <li>videlalvaro (Alvaro Videla)</li>
                         </ul>
                     </td>
                 </tr>
@@ -531,7 +585,7 @@ Tests: 739, Assertions: 5017, Incomplete: 13, Skipped: 24.            </pre>
 
         <div class="slide" style="text-align:center">
             <h2>Many projects have expressed interest</h2>
-            <h2><img src="phpcr_projects.png" alt="Symfony2 CMF, Midgard, Typo3, Nooku, ez Publish, Drupal" /></h2>
+            <h2><img src="phpcr_projects.png" alt="Symfony2 CMF, Midgard, Typo3, Nooku, ezPublish, Drupal" /></h2>
         </div>
 
         <div class="slide">
