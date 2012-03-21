@@ -251,11 +251,14 @@
             <h2>Connecting via PHPCR</h2>
             <pre class="brush: php">
                 // start of implementation specific configuration //
+                use Jackalope\RepositoryFactoryJackrabbit as Factory;
+
                 $parameters = array(
                     'jackalope.jackrabbit_uri'
                         => 'http://localhost:8080/server'
                 );
-                $repository = \Jackalope\RepositoryFactoryJackrabbit::getRepository($parameters);
+
+                $repository = Factory::getRepository($parameters);
                 // end of implementation specific configuration //
 
                 $creds = new \PHPCR\SimpleCredentials('user','pw');
