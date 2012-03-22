@@ -510,6 +510,41 @@ In Jackalope, we only implemented exporting so far.
     $session->exportSystemView('/cms', $file, false /* do not skip binary properties */, false);
 
 
+### Observation
+
+Observation enables an application to receive notifications of persistent changes to a workspace.
+JCR defines a general event model and specific APIs for asynchronous and journaled observation.
+A repository may support asynchronous observation, journaled observation or both.
+
+Note that Jackrabbit supports the full observation API but Jackalope currently only implements event journal reading.
+
+Write operations in Jackalope will generate journal entries as expected.
+
+    use PHPCR\Observation\EventInterface; // Contains the constants for event types
+
+    // Get the observation manager
+    $workspace = $session->getWorkspace()
+    $observationManager = $workspace->getObservationManager();
+
+    // Get the unfiltered event journal and go through its content
+    $journal = $observationManager->getEventJournal();
+    $journal->skipTo(strtotime('-1 day'); // Skip all the events prior to yesterday
+    foreach ($journal as $event) {
+        // Do something with $event (it's a Jackalope\Observation\Event instance)
+        echo $event->getType() . ' - ' . $event->getPath()
+    }
+
+    // Filtering and using the journal as an iterator
+    // You can filter the event journal on several criteria, here we keep events for node and properties added
+    $journal = $observationManager->getEventJournal(EventInterface::NODE_ADDED | EventInterface::PROPERTY_ADDED);
+
+    while ($journal->valid()) {
+        $event = $journal->current();
+        // Do something with $event
+        $journal->next();
+    }
+
+
 ### Node Types
 
 PHPCR supports node types. Node types define what properties and children a node can or must have. The JCR specification explains exhaustivly what node types exist and what they are required to have or not.
@@ -570,7 +605,6 @@ then the [simplifications we did for PHP](https://github.com/phpcr/phpcr/blob/ma
 A couple of other advanced functionalities are defined by the API. They are not yet implemented in any PHPCR implementation. This document will be updated once there is an implementation for them.
 
 * Permissions and capabilities
-* Observation
 * Access control management
 * Lifecycle managment
 * Retention and hold
