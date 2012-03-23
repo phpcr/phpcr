@@ -10,7 +10,7 @@
 
         <meta name="author" content="PHPCR" />
         <meta name="email" content="phpcr-users@googlegroups.com" />
-        <meta name="date" content="2011-09-29" />
+        <meta name="date" content="2012-03-22" />
         <meta name="venue" content="The Internets" />
 
         <!-- Slippy core file and dependencies -->
@@ -195,10 +195,10 @@
             <h2>Primary Node Types</h2>
             <ul>
                 <li>Defines allowed names and types for properties and child nodes</li>
-                <li>Every node must have a type</li>
+                <li>Every node must have a primary node type</li>
                 <li>Use <tt>nt:unstructured</tt> to allow anything</li>
                 <li>Some other built-in types: <tt>nt:address, nt:folder, nt:file</tt> ...</li>
-                <li>Define custom types or just use <tt>nt:unstructured</tt></li>
+                <li>Define custom types to control your "schema"</li>
             </ul>
         </div>
 
@@ -289,7 +289,7 @@
         </div>
 
         <div class="slide">
-            <h2>Tree API</h2>
+            <h2>Tree Traversal API</h2>
             <pre class="brush: php">
                 $node = $session->getNode('/site/content');
 
