@@ -39,7 +39,7 @@ namespace PHPCR;
  * @subpackage interfaces
  * @api
  */
-interface ImportUUIDBehaviourInterface
+interface ImportUUIDBehaviorInterface
 {
     /**
      * When importing remove existing item upon collision.
