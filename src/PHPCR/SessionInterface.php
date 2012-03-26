@@ -800,6 +800,8 @@ interface SessionInterface
      *      addition or upon save (depending on the implementation, see 4.9.1.1
      *      When Identifiers are Assigned in the specification). In either
      *      case, identifier collisions will not occur.
+     *      (Weak)references will point to the original node if existing, to
+     *      the imported node with matching id otherwise.
      * - ImportUUIDBehavior::IMPORT_UUID_COLLISION_REMOVE_EXISTING: If an
      *      incoming node has the same identifier as a node already existing in
      *      the workspace then the already existing node (and its subgraph) is
