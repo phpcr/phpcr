@@ -123,9 +123,9 @@ Now import this into the repository:
 You can wrap any code into try catch blocks. See the [API doc](http://phpcr.github.com/doc/html/index.html) for what exceptions to expect on which calls. With PHPCR being ported from Java, there is a lot of Exceptions defined.
 But as this is PHP, you don't have to catch them. As long as your content is as the code expects, it won't matter.
 
-    $node = $session->getNode('/cms/content/static/home');
-    echo $node->getName(); // will be 'home'
-    echo $node->getPath(); // will be '/cms/content/static/home'
+    $node = $session->getNode('/data/node');
+    echo $node->getName(); // will be 'node'
+    echo $node->getPath(); // will be '/data/node'
 
 
 #### Reading properties
@@ -169,11 +169,11 @@ See the API doc for a list of all supported types.
 
 #### Traversing the hierarchy
 
-    // getting a single node by path relative to the node
+    // getting a node by path relative to the node
     $othernode = $node->getNode('../sibling'); // /sibling
 
     // get all child nodes. the $node is Iterable, the iterator being all children
-    $node = $session->getNode('/sibling');
+    $node = $session->getNode('/data/sibling');
     foreach ($node as $name => $child) {
         if ($child->hasProperties()) {
             echo "$name has properties\n";
@@ -196,7 +196,7 @@ See the API doc for a list of all supported types.
     $parent = $node->getParent(); // /
 
     // build a breadcrumb of the node ancestry
-    $node = $session->getNode('/sibling/yetanother');
+    $node = $session->getNode('/data/sibling/yetanother');
     $i = 0;
     $breadcrumb = array();
     do {
@@ -407,7 +407,7 @@ Everything you do on the Session, Node and Property objects is only visible loca
 
 
     // have a reference
-    $targetnode = $session->getNode('/siblings/yetanother');
+    $targetnode = $session->getNode('/data/siblings/yetanother');
 
     // make sure the target node is referenceable.
     $targetnode->addMixin('mix:referenceable');
@@ -427,7 +427,7 @@ Everything you do on the Session, Node and Property objects is only visible loca
     // the new parent /sibling/child1
     // the target parent must already exist, it is not automatically created
     // as the move includes the target name, it can also be used to rename nodes
-    $session->move('/sibling/yetanother', '/sibling/child1/yetanother');
+    $session->move('/data/sibling/yetanother', '/data/sibling/child1/yetanother');
 
     // for this session, everything that was at /sibling/yetanother is now under /sibling/child1/yetanother
     // i.e. /sibling/child1/yetanother/child
@@ -435,13 +435,13 @@ Everything you do on the Session, Node and Property objects is only visible loca
 
     // immediatly move the node in the persistent storage
     $workspace = $session->getWorkspace();
-    $workspace->move('/sibling/yetanother', '/sibling/child1/yetanother');
+    $workspace->move('/data/sibling/yetanother', '/data/sibling/child1/yetanother');
 
     // copy a node and its children (only available on workspace, not inside session)
-    $workspace->copy('/sibling/yetanother', '/sibling/child1/yetanother');
+    $workspace->copy('/data/sibling/yetanother', '/data/sibling/child1/yetanother');
 
     // delete a node
-    $session->removeItem('/sibling/child1/yetanother');
+    $session->removeItem('/data/sibling/child1/yetanother');
 
 
 #### Orderable child nodes
@@ -521,22 +521,22 @@ Note that jackalope currently only implements session based locks.
     // get the lock manager
     $workspace = $session->getWorkspace();
     $lockManager = $workspace->getLockManager();
-    var_dump($lockManager->isLocked('/sibling')); // should be false
-    $lockManager->lock('/sibling', true, true); // lock child nodes as well, release when session closed
+    var_dump($lockManager->isLocked('/data/sibling')); // should be false
+    $lockManager->lock('/data/sibling', true, true); // lock child nodes as well, release when session closed
     // now only this session may change the node //sibling and its descendants
-    var_dump($lockManager->isLocked('/sibling')); // should be true
-    var_dump($lockManager->isLocked('/sibling/child1')); // should be true because we locked deep
+    var_dump($lockManager->isLocked('/data/sibling')); // should be true
+    var_dump($lockManager->isLocked('/data/sibling/child1')); // should be true because we locked deep
 
-    $lock = $lockManager->getLock('/sibling');
+    $lock = $lockManager->getLock('/data/sibling');
     var_dump($lock->isLockOwningSession()); // true, this is our lock, not somebody else's
     var_dump($lock->getSecondsRemaining()); // PHP_INT_MAX because this lock has no timeout
     var_dump($lock->isLive()); // true
 
     $node = $lock->getNode(); // this gets us the node for /sibling
-    $node === $lockManager->getLock('/sibling')->getNode(); // getnode always returns the lock owning node
+    $node === $lockManager->getLock('/data/sibling')->getNode(); // getnode always returns the lock owning node
 
-    $lockManager->unlock('/sibling'); // we could also let $session->logout() unlock when using session based lock
-    var_dump($lockManager->isLocked('/sibling')); // false
+    $lockManager->unlock('/data/sibling'); // we could also let $session->logout() unlock when using session based lock
+    var_dump($lockManager->isLocked('/data/sibling')); // false
     var_dump($lock->isLive()); // false
 
 
@@ -554,10 +554,10 @@ Note that Jackalope does not support the full transactions.
     $transactionManager = $workspace->getTransactionManager();
     // start a transaction
     $transactionManager->begin();
-    $session->removeNode('/sibling');
+    $session->removeNode('/data/sibling');
     $session->getRootNode()->addNode('insideTransaction');
     $session->save(); // wrote to the backend but not yet visible to other sessions
-    $workspace->move('/node', '/new'); // will only move the new node if session has been saved. still not visible to other sessions
+    $workspace->move('/data/node', '/new'); // will only move the new node if session has been saved. still not visible to other sessions
     $transactionManager->commit(); // now everything become persistent and visible to others
 
     // you can abort a transaction
@@ -593,7 +593,7 @@ When exporting, you tell explicitly to which format you want to export.
 
     // dump the tree at /foo/bar into a document view file
     $session->exportDocumentView(
-        '/sibling',
+        '/data/sibling',
         $file,
         true // skip binary properties to not have large files in the dump
         false // recursivly output the child nodes as well
