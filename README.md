@@ -26,7 +26,7 @@ There exist a couple of implementations for PHPCR that you can use. See below fo
 
 ## Further reading
 
-* [Tutorial](https://github.com/phpcr/phpcr/blob/master/doc/Tutorial.md)
+* [Tutorial](https://github.com/phpcr/phpcr-docs/blob/master/tutorial/Tutorial.md)
 * [API Reference](http://phpcr.github.com/doc/html/index.html)
 
 
