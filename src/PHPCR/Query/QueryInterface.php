@@ -52,11 +52,16 @@ interface QueryInterface
     const JCR_SQL2 = 'JCR-SQL2';
 
     /**
-     * A string constant representing the JCR-XPATH query language.
+     * A string constant representing the (deprecated in JSR-283) JCR-XPATH query language.
      * @api
      */
     const JCR_XPATH = 'JCR-XPATH';
 
+    /**
+     * A string constant representing the (deprecated in JSR-283) JCR-SQL query language.
+     * @api
+     */
+    const JCR_SQL = 'JCR-SQL';
     /**#@-*/
 
     /**
