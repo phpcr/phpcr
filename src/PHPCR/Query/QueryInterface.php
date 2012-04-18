@@ -52,16 +52,16 @@ interface QueryInterface
     const JCR_SQL2 = 'JCR-SQL2';
 
     /**
-     * A string constant representing the (deprecated in JSR-283) JCR-XPATH query language.
+     * A string constant representing the (deprecated in JSR-283) XPATH query language.
      * @api
      */
-    const JCR_XPATH = 'JCR-XPATH';
+    const XPATH = 'xpath';
 
     /**
-     * A string constant representing the (deprecated in JSR-283) JCR-SQL query language.
+     * A string constant representing the (deprecated in JSR-283) SQL query language.
      * @api
      */
-    const JCR_SQL = 'JCR-SQL';
+    const SQL = 'sql';
     /**#@-*/
 
     /**
@@ -72,7 +72,7 @@ interface QueryInterface
      * @return void
      *
      * @throws \InvalidArgumentException if $varName is not a valid variable in this query.
-     * @throws RepositoryException if an error occurs.
+     * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
      */
     function bindValue($varName, $value);

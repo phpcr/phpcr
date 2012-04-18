@@ -93,7 +93,8 @@ interface QueryManagerInterface
      *
      * This set must include at least the strings represented by the constants
      * QueryInterface::JCR_SQL2 and QueryInterface::JCR_JQOM. An implementation
-     * may also support other languages.
+     * may also support other languages including the deprecated languages of
+     * JCR 1.0: QueryInterface::XPATH and QueryInterface::SQL.
      *
      * @return array A list of supported languages by the query.
      *
