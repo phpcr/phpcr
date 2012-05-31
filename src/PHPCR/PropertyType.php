@@ -374,7 +374,7 @@ final class PropertyType
 
         // avoid stumbling over objects with var_export
         if (is_object($value)) {
-            throw new \PHPCR\ValueFormatException('The class of the value object is not understood by PHPCR: '.get_class($value));
+            throw new \PHPCR\ValueFormatException('Object values must implement PHPCR\NodeInterface or be \DateTime, supplied argument is of class: '.get_class($value));
         }
         throw new \PHPCR\ValueFormatException('Can not determine type of property with value "'.var_export($value, true).'"');
     }
