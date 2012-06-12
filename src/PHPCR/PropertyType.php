@@ -365,7 +365,7 @@ final class PropertyType
         } elseif (is_object($value)) {
             if ($value instanceof \DateTime) {
                 return self::DATE;
-            } elseif ($value instanceof \PHPCR\NodeInterface) {
+            } elseif ($value instanceof NodeInterface) {
                 return ($weak) ?
                         self::WEAKREFERENCE :
                         self::REFERENCE;
@@ -374,9 +374,9 @@ final class PropertyType
 
         // avoid stumbling over objects with var_export
         if (is_object($value)) {
-            throw new \PHPCR\ValueFormatException('Object values must implement PHPCR\NodeInterface or be \DateTime, supplied argument is of class: '.get_class($value));
+            throw new ValueFormatException('Object values must implement PHPCR\NodeInterface or be \DateTime, supplied argument is of class: '.get_class($value));
         }
-        throw new \PHPCR\ValueFormatException('Can not determine type of property with value "'.var_export($value, true).'"');
+        throw new ValueFormatException('Can not determine type of property with value "'.var_export($value, true).'"');
     }
 
     /**
@@ -415,13 +415,13 @@ final class PropertyType
         </TABLE>
      *
      * @param mixed $values The value or value array to check and convert
-     * @param int $type Target type to convert into. One of the type constants in \PHPCR\PropertyType
+     * @param int $type Target type to convert into. One of the type constants in PropertyType
      * @param int $srctype Source type to convert from, if not specified this is automatically determined, which will miss the string based types that are not strings (DECIMAL, NAME, PATH, URI)
      *
      * @return mixed the value typecasted into the proper format (throws an exception if conversion is not possible)
      *
-     * @throws \PHPCR\ValueFormatException is thrown if the specified value cannot be converted to the specified type
-     * @throws \PHPCR\RepositoryException if the specified Node is not referenceable, the current Session is no longer active, or another error occurs.
+     * @throws ValueFormatException is thrown if the specified value cannot be converted to the specified type
+     * @throws RepositoryException if the specified Node is not referenceable, the current Session is no longer active, or another error occurs.
      * @throws \InvalidArgumentException if the specified DateTime value cannot be expressed in the ISO 8601-based format defined in the JCR 2.0 specification and the implementation does not support dates incompatible with that format.
      *
      * @see http://www.day.com/specs/jcr/2.0/3_Repository_Model.html#3.6.4%20Property%20Type%20Conversion
@@ -449,13 +449,14 @@ final class PropertyType
         } elseif ((self::REFERENCE == $srctype ||
             self::WEAKREFERENCE == $srctype )
                 && $value instanceof NodeInterface) {
+            /** @var $value NodeInterface */
             // In Jackrabbit a new node cannot be referenced until it has been persisted
             // See: https://issues.apache.org/jira/browse/JCR-1614
             if ($value->isNew()) {
-                throw new \PHPCR\ValueFormatException('Node ' . $value->getPath() . ' must be persisted before being referenceable');
+                throw new ValueFormatException('Node ' . $value->getPath() . ' must be persisted before being referenceable');
             }
             if (! $value->isNodeType('mix:referenceable')) {
-                throw new \PHPCR\ValueFormatException('Node ' . $value->getPath() . ' is not referenceable');
+                throw new ValueFormatException('Node ' . $value->getPath() . ' is not referenceable');
             }
             $value = $value->getIdentifier();
         }
@@ -467,6 +468,7 @@ final class PropertyType
                         if (! $value instanceof \DateTime) {
                             throw new RepositoryException('something weird');
                         }
+                        /** @var $value \DateTime */
                         // Milliseconds formating is not possible in PHP so we
                         // construct it by cutting microseconds to 3 positions.
                         // This might not be as accurate as "real" rounded milliseconds.
@@ -479,9 +481,9 @@ final class PropertyType
                          return $value;
                     default:
                         if (is_object($value)) {
-                            throw new \PHPCR\ValueFormatException('Can not convert object of class '.get_class($value).' to STRING');
+                            throw new ValueFormatException('Can not convert object of class '.get_class($value).' to STRING');
                         } elseif (is_resource($value)) {
-                            throw new \PHPCR\ValueFormatException('Inconsistency: Non-binary property should not have resource stream value');
+                            throw new ValueFormatException('Inconsistency: Non-binary property should not have resource stream value');
                         }
                         // TODO: how can we provide ValueFormatException on failure? invalid casting leads to 'catchable fatal error' instead of exception
                         return (string) $value;
@@ -514,9 +516,9 @@ final class PropertyType
                         return $value->getTimestamp();
                 }
                 if (is_object($value)) {
-                    throw new \PHPCR\ValueFormatException('Can not convert object of class '.get_class($value).' to a LONG');
+                    throw new ValueFormatException('Can not convert object of class '.get_class($value).' to a LONG');
                 }
-                throw new \PHPCR\ValueFormatException('Can not convert '.var_export($value, true).' to a LONG');
+                throw new ValueFormatException('Can not convert '.var_export($value, true).' to a LONG');
 
             case self::DOUBLE:
                 switch ($srctype) {
@@ -533,9 +535,9 @@ final class PropertyType
                         return (double) $value->getTimestamp();
                 }
                 if (is_object($value)) {
-                    throw new \PHPCR\ValueFormatException('Can not convert object of class '.get_class($value).' to a DOUBLE');
+                    throw new ValueFormatException('Can not convert object of class '.get_class($value).' to a DOUBLE');
                 }
-                throw new \PHPCR\ValueFormatException('Can not convert '.var_export($value, true).' to a DOUBLE');
+                throw new ValueFormatException('Can not convert '.var_export($value, true).' to a DOUBLE');
 
             case self::DATE:
                 switch ($srctype) {
@@ -547,7 +549,7 @@ final class PropertyType
                         try {
                             return new \DateTime($value);
                         } catch (\Exception $e) {
-                            throw new \PHPCR\ValueFormatException("String '$value' is not a valid date", null, $e);
+                            throw new ValueFormatException("String '$value' is not a valid date", null, $e);
                         }
                     case self::LONG:
                     case self::DOUBLE:
@@ -557,9 +559,9 @@ final class PropertyType
                         return $datetime;
                 }
                 if (is_object($value)) {
-                    throw new \PHPCR\ValueFormatException('Can not convert object of class '.get_class($value).' to a DATE');
+                    throw new ValueFormatException('Can not convert object of class '.get_class($value).' to a DATE');
                 }
-                throw new \PHPCR\ValueFormatException('Can not convert '.var_export($value, true).' to DATE');
+                throw new ValueFormatException('Can not convert '.var_export($value, true).' to DATE');
 
             case self::BOOLEAN:
                 switch ($srctype) {
@@ -574,9 +576,9 @@ final class PropertyType
                         return (boolean) ((double) $value); // '0' is false too
                 }
                 if (is_object($value)) {
-                    throw new \PHPCR\ValueFormatException('Can not convert object of class '.get_class($value).' to a BOOLEAN');
+                    throw new ValueFormatException('Can not convert object of class '.get_class($value).' to a BOOLEAN');
                 }
-                throw new \PHPCR\ValueFormatException('Can not convert '.var_export($value, true).' to a BOOLEAN');
+                throw new ValueFormatException('Can not convert '.var_export($value, true).' to a BOOLEAN');
 
             case self::NAME:
                 switch ($srctype) {
@@ -590,9 +592,9 @@ final class PropertyType
                         return $value;
                 }
                 if (is_object($value)) {
-                    throw new \PHPCR\ValueFormatException('Can not convert object of class '.get_class($value).' to a NAME');
+                    throw new ValueFormatException('Can not convert object of class '.get_class($value).' to a NAME');
                 }
-                throw new \PHPCR\ValueFormatException('Can not convert '.var_export($value, true).' to NAME');
+                throw new ValueFormatException('Can not convert '.var_export($value, true).' to NAME');
 
             case self::PATH:
                 switch ($srctype) {
@@ -607,9 +609,9 @@ final class PropertyType
                         return $value;
                 }
                 if (is_object($value)) {
-                    throw new \PHPCR\ValueFormatException('Can not convert object of class '.get_class($value).' to a PATH');
+                    throw new ValueFormatException('Can not convert object of class '.get_class($value).' to a PATH');
                 }
-                throw new \PHPCR\ValueFormatException('Can not convert '.var_export($value, true).' to PATH');
+                throw new ValueFormatException('Can not convert '.var_export($value, true).' to PATH');
 
             case self::REFERENCE:
             case self::WEAKREFERENCE:
@@ -619,14 +621,14 @@ final class PropertyType
                     case self::WEAKREFERENCE:
                         if (empty($value)) {
                             //TODO check if string is valid uuid
-                            throw new \PHPCR\ValueFormatException('Value '.var_export($value, true).' is not a valid unique id');
+                            throw new ValueFormatException('Value '.var_export($value, true).' is not a valid unique id');
                         }
                         return $value;
                 }
                 if (is_object($value)) {
-                    throw new \PHPCR\ValueFormatException('Can not convert object of class '.get_class($value).' to a unique id');
+                    throw new ValueFormatException('Can not convert object of class '.get_class($value).' to a unique id');
                 }
-                throw new \PHPCR\ValueFormatException('Can not convert '.var_export($value, true).' to unique id');
+                throw new ValueFormatException('Can not convert '.var_export($value, true).' to unique id');
 
             case self::URI:
                 switch ($srctype) {
@@ -647,9 +649,9 @@ final class PropertyType
                         return $value;
                 }
                 if (is_object($value)) {
-                    throw new \PHPCR\ValueFormatException('Can not convert object of class '.get_class($value).' to a URI');
+                    throw new ValueFormatException('Can not convert object of class '.get_class($value).' to a URI');
                 }
-                throw new \PHPCR\ValueFormatException('Can not convert '.var_export($value, true).' to URI');
+                throw new ValueFormatException('Can not convert '.var_export($value, true).' to URI');
 
             case self::DECIMAL:
                 switch ($srctype) {
@@ -665,12 +667,12 @@ final class PropertyType
                         return (string) $value->getTimestamp();
                 }
                 if (is_object($value)) {
-                    throw new \PHPCR\ValueFormatException('Can not convert object of class '.get_class($value).' to a DECIMAL');
+                    throw new ValueFormatException('Can not convert object of class '.get_class($value).' to a DECIMAL');
                 }
-                throw new \PHPCR\ValueFormatException('Can not convert '.var_export($value, true).' to a DECIMAL');
+                throw new ValueFormatException('Can not convert '.var_export($value, true).' to a DECIMAL');
 
             default:
-                throw new \PHPCR\ValueFormatException("Unexpected target type $type in conversion");
+                throw new ValueFormatException("Unexpected target type $type in conversion");
         }
 
     }

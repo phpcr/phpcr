@@ -24,6 +24,8 @@
 
 namespace PHPCR;
 
+use PHPCR\Security\AccessControlException;
+
 /**
  * Exception to be thrown by access-related methods.
  *
@@ -31,6 +33,6 @@ namespace PHPCR;
  * @subpackage exceptions
  * @api
  */
-class AccessDeniedException extends \PHPCR\Security\AccessControlException
+class AccessDeniedException extends AccessControlException
 {
 }

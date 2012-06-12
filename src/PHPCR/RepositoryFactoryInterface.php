@@ -62,10 +62,10 @@ interface RepositoryFactoryInterface
      *      arguments or null if a client wishes to connect to a default
      *      repository.
      *
-     * @return \PHPCR\RepositoryInterface a repository instance or null if this
+     * @return RepositoryInterface a repository instance or null if this
      *      implementation does not understand the passed parameters
      *
-     * @throws \PHPCR\RepositoryException if no suitable repository is found or
+     * @throws RepositoryException if no suitable repository is found or
      *      another error occurs.
      *
      * @api

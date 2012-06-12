@@ -38,7 +38,7 @@ namespace PHPCR;
  * @subpackage interfaces
  * @api
  */
-interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
+interface NodeInterface extends ItemInterface, \Traversable
 {
     /**
      * A constant for the JCR name jcr:content. This is the name of
@@ -102,12 +102,12 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      * @param string $primaryNodeTypeName The name of the primary node type of
      *      the new node. Optional.
      *
-     * @return \PHPCR\NodeInterface The node that was added.
+     * @return NodeInterface The node that was added.
      *
-     * @throws \PHPCR\ItemExistsException if an item at the specified path
+     * @throws ItemExistsException if an item at the specified path
      *      already exists, same-name siblings are not allowed and this
      *      implementation performs this validation immediately.
-     * @throws \PHPCR\PathNotFoundException if the specified path implies
+     * @throws PathNotFoundException if the specified path implies
      *      intermediary Nodes that do not exist or the last element of relPath
      *      has an index, and this implementation performs this validation
      *      immediately.
@@ -122,7 +122,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      *      node and this implementation performs this validation immediately
      *      instead of waiting until save.
      * @throws \InvalidArgumentException if $relPath is an absolute path
-     * @throws \PHPCR\RepositoryException if the last element of relPath has an
+     * @throws RepositoryException if the last element of relPath has an
      *      index or if another error occurs.
      *
      * @api
@@ -157,22 +157,22 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      *
      * @return void
      *
-     * @throws \PHPCR\UnsupportedRepositoryOperationException if ordering is
+     * @throws UnsupportedRepositoryOperationException if ordering is
      *      not supported on this node.
      * @throws \PHPCR\NodeType\ConstraintViolationException if an implementation-
      *      specific ordering restriction is violated and this implementation
      *      performs this validation immediately instead of waiting until save.
-     * @throws \PHPCR\ItemNotFoundException if either parameter is not the
+     * @throws ItemNotFoundException if either parameter is not the
      *      relative path of a child node of this node.
      * @throws \PHPCR\Version\VersionException if this node is read-only due to
      *      a checked-in node and this implementation performs this validation
      *      immediately.
      * @throws \PHPCR\Lock\LockException if a lock prevents the re-ordering and
      *      this implementation performs this validation immediately.
-     * @throws InvalidArgumentException if $srcChildRelPath is an absolute path
+     * @throws \InvalidArgumentException if $srcChildRelPath is an absolute path
      *      or $destChildRelPath is non-null and any of the two paths is of
      *      depth more than 1.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */
@@ -223,9 +223,9 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      * @param integer $type The type to set for the property, optional. Must be
      *      a constant from {@link PropertyType}
      *
-     * @return \PHPCR\PropertyInterface The new resp. updated Property object
+     * @return PropertyInterface The new resp. updated Property object
      *
-     * @throws \PHPCR\ValueFormatException if the specified property is a DATE
+     * @throws ValueFormatException if the specified property is a DATE
      *      but the value cannot be expressed in the ISO 8601-based format
      *      defined in the JCR 2.0 specification and the implementation does
      *      not support dates incompatible with that format or if value cannot
@@ -241,12 +241,12 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      * @throws \PHPCR\NodeType\ConstraintViolationException if the change would violate
      *      a node-type or other constraint and this implementation performs
      *      this validation immediately instead of waiting until save.
-     * @throws \PHPCR\UnsupportedRepositoryOperationException if the type
+     * @throws UnsupportedRepositoryOperationException if the type
      *      parameter is set and different from the current type and this
      *      implementation does not support dynamic re-binding
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
-     * @see \PHPCR\PropertyInterface::setValue()
+     * @see PropertyInterface::setValue()
      *
      * @api
      */
@@ -269,12 +269,12 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      *
      * @param string $relPath The relative path of the node to retrieve.
      *
-     * @return \PHPCR\NodeInterface The node at relPath.
+     * @return NodeInterface The node at relPath.
      *
-     * @throws \PHPCR\PathNotFoundException if no node exists at the specified
+     * @throws PathNotFoundException if no node exists at the specified
      *      path or the current Session does not read access to the node at
      *      the specified path, or if $relPath is an absolute path
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */
@@ -331,11 +331,11 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      * @param string|array $filter a name pattern or an array of globbing
      *      strings.
      *
-     * @return Iterator over all (matching) child Nodes implementing
+     * @return \Iterator over all (matching) child Nodes implementing
      *      <b>SeekableIterator</b> and <b>Countable</b>. Keys are the Node
      *      names, values the corresponding NodeInterface instances.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      *
      * @api
      */
@@ -348,13 +348,13 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      *
      * @param string $relPath The relative path of the property to retrieve.
      *
-     * @return \PHPCR\PropertyInterface The property at relPath.
+     * @return PropertyInterface The property at relPath.
      *
-     * @throws \PHPCR\PathNotFoundException if no property exists at the
+     * @throws PathNotFoundException if no property exists at the
      *      specified path or if the current Session does not have read access
      *      to the specified property.
-     * @throws InvalidArgumentException if $relPath is an absolute path
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws \InvalidArgumentException if $relPath is an absolute path
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */
@@ -372,12 +372,12 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      *
      * @return mixed The value of the property with $name.
      *
-     * @throws \PHPCR\PathNotFoundException if no property exists at the
+     * @throws PathNotFoundException if no property exists at the
      *      specified path or if the current Session does not have read access
      *      to the specified property.
-     * @throws \PHPCR\ValueFormatException if the type or format of the
+     * @throws ValueFormatException if the type or format of the
      *      property can not be converted to the specified type.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */
@@ -432,11 +432,11 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      *
      * @param string|array $filter a name pattern
      *
-     * @return Iterator implementing <b>SeekableIterator</b> and
+     * @return \Iterator implementing <b>SeekableIterator</b> and
      *      <b>Countable</b>. Keys are the property names, values the
      *      corresponding PropertyInterface instances.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      *
      * @api
      */
@@ -460,9 +460,9 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      *   If $dereference is false, reference properties are uuid strings and
      *   path properties path strings instead of the referenced node instances.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      *
-     * @see \PHPCR\NodeInterface::getProperties()
+     * @see NodeInterface::getProperties()
      *
      * @api
      */
@@ -481,13 +481,13 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      *
      * The same reacquisition semantics apply as with getNode(String).
      *
-     * @return \PHPCR\ItemInterface the primary child item.
+     * @return ItemInterface the primary child item.
      *
-     * @throws \PHPCR\ItemNotFoundException if this node does not have a
+     * @throws ItemNotFoundException if this node does not have a
      *      primary child item, either because none is declared in the node
      *      type or because a declared primary item is not present on this node
      *      instance, or because none accessible through the current Session
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */
@@ -500,7 +500,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      *
      * @return string the identifier of this node
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      *
      * @api
      */
@@ -519,7 +519,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      * @return integer The index of this node within the ordered set of its
      *      same-name sibling nodes.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      *
      * @api
      */
@@ -550,11 +550,11 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      * @param string $name Name of referring REFERENCE properties to be
      *      returned; if null then all referring REFERENCEs are returned.
      *
-     * @return Iterator implementing <b>SeekableIterator</b> and
+     * @return \Iterator implementing <b>SeekableIterator</b> and
      *      <b>Countable</b>. Keys are the property names, values the
      *      corresponding PropertyInterface instances.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -585,11 +585,11 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      * @param string $name name of referring WEAKREFERENCE properties to be
      *      returned; if null then all referring WEAKREFERENCEs are returned
      *
-     * @return Iterator implementing <b>SeekableIterator</b> and
+     * @return \Iterator implementing <b>SeekableIterator</b> and
      *      <b>Countable</b>. Keys are the property names, values the
      *      corresponding PropertyInterface instances.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -605,8 +605,8 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      *
      * @return boolean true if a node exists at relPath; false otherwise.
      *
-     * @throws InvalidArgumentException if $relPath is an absolute path
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws \InvalidArgumentException if $relPath is an absolute path
+     * @throws RepositoryException if an error occurs.
      *
      * @api
      */
@@ -622,8 +622,8 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      *
      * @return boolean true if a property exists at relPath; false otherwise.
      *
-     * @throws InvalidArgumentException if $relPath is an absolute path
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws \InvalidArgumentException if $relPath is an absolute path
+     * @throws RepositoryException if an error occurs.
      *
      * @api
      */
@@ -638,7 +638,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      * @return boolean true if this node has one or more child nodes; false
      *      otherwise.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      *
      * @api
      */
@@ -653,7 +653,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      * @return boolean true if this node has one or more properties; false
      *      otherwise.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      *
      * @api
      */
@@ -667,7 +667,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      *
      * @return \PHPCR\NodeType\NodeTypeInterface a NodeType object.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -684,7 +684,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      *
      * @return array of \PHPCR\NodeType\NodeTypeInterface objects.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -702,7 +702,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      * @return boolean true if this node is of the specified primary node type
      *            or mixin type, or a subtype thereof. Returns false otherwise.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      *
      * @api
      */
@@ -734,7 +734,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      * @throws \PHPCR\Lock\LockException if a lock prevents the change of the
      *      primary node type and this implementation performs this validation
      *      immediately.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */
@@ -779,7 +779,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      * @throws \PHPCR\Lock\LockException if a lock prevents the addition of the
      *      mixin and this implementation performs this validation immediately
      *      instead of waiting until save.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */
@@ -807,7 +807,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      *      immediately.
      * @throws \PHPCR\Lock\LockException if a lock prevents the removal of the
      *      mixin and this implementation performs this validation immediately.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */
@@ -838,7 +838,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      *
      * @throws \PHPCR\NodeType\NoSuchNodeTypeException if the specified mixin
      *      node type name is not recognized.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */
@@ -859,7 +859,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      *
      * @return \PHPCR\NodeType\NodeDefinitionInterface a NodeDefinition object.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      *
      * @api
      */
@@ -885,13 +885,13 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      *
      * @return void
      *
-     * @throws \PHPCR\NoSuchWorkspaceException if srcWorkspace does not exist.
-     * @throws \PHPCR\InvalidItemStateException if this Session (not
+     * @throws NoSuchWorkspaceException if srcWorkspace does not exist.
+     * @throws InvalidItemStateException if this Session (not
      *      necessarily this Node) has pending unsaved changes.
-     * @throws \PHPCR\AccessDeniedException if the current session does not
+     * @throws AccessDeniedException if the current session does not
      *      have sufficient access to perform the operation.
      * @throws \PHPCR\Lock\LockException if a lock prevents the update.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */
@@ -905,11 +905,11 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      *
      * @return string the absolute path to the corresponding node.
      *
-     * @throws \PHPCR\ItemNotFoundException if no corresponding node is found.
-     * @throws \PHPCR\NoSuchWorkspaceException if the workspace is unknown.
-     * @throws \PHPCR\AccessDeniedException if the current session has
+     * @throws ItemNotFoundException if no corresponding node is found.
+     * @throws NoSuchWorkspaceException if the workspace is unknown.
+     * @throws AccessDeniedException if the current session has
      *      insufficient access capabilities to perform this operation.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */
@@ -922,11 +922,11 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      * If this node is not shared then the returned iterator contains only this
      * node.
      *
-     * @return Iterator implementing <b>SeekableIterator</b> and
+     * @return \Iterator implementing <b>SeekableIterator</b> and
      *      <b>Countable</b>. Keys are the Node names, values the corresponding
      *      NodeInterface instances.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      *
      * @api
      */
@@ -952,7 +952,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      * @throws \PHPCR\NodeType\ConstraintViolationException if removing the
      *      specified item would violate a node type or implementation-specific
      *      constraint and this implementation performs this validation immediately.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @see removeShare()
      * @see Item::remove()
@@ -979,7 +979,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      *      specified item would violate a node type or implementation-specific
      *      constraint and this implementation performs this validation
      *      immediately instead of waiting until save.
-     * @throws \PHPCR\RepositoryException if this node cannot be removed
+     * @throws RepositoryException if this node cannot be removed
      *      without removing another node in the shared set of this node or
      *      another error occurs.
      *
@@ -1003,7 +1003,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      *
      * @return boolean
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      *
      * @api
      */
@@ -1019,7 +1019,7 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      *
      * @return boolean.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      *
      * @api
      */
@@ -1040,12 +1040,12 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      *
      * @return void
      *
-     * @throws \PHPCR\UnsupportedRepositoryOperationException if this
+     * @throws UnsupportedRepositoryOperationException if this
      *      implementation does not support lifecycle actions or if this node
      *      does not have the mix:lifecycle mixin.
-     * @throws \PHPCR\InvalidLifecycleTransitionException if the lifecycle
+     * @throws InvalidLifecycleTransitionException if the lifecycle
      *      transition is not successful.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */
@@ -1056,10 +1056,10 @@ interface NodeInterface extends \PHPCR\ItemInterface, \Traversable
      *
      * @return array a string array.
      *
-     * @throws \PHPCR\UnsupportedRepositoryOperationException if this
+     * @throws UnsupportedRepositoryOperationException if this
      *      implementation does not support lifecycle actions or if this node
      *      does not have the mix:lifecycle mixin.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */

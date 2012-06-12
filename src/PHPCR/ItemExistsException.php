@@ -32,6 +32,6 @@ namespace PHPCR;
  * @subpackage exceptions
  * @api
  */
-class ItemExistsException extends \PHPCR\RepositoryException
+class ItemExistsException extends RepositoryException
 {
 }

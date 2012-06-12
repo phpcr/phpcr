@@ -28,7 +28,7 @@ namespace PHPCR;
  * The entry point into the content repository.
  *
  * The Repository object is usually acquired through an implementation of the
- * \PHPCR\RepositoryFactoryInterface.
+ * RepositoryFactoryInterface.
  *
  * <strong>PHPCR Note:</strong> This interface has been simplified compared to
  * JCR:
@@ -434,7 +434,7 @@ interface RepositoryInterface
 
     /**
      * Key to an integer[] descriptor. Returns an array holding the
-     * \PHPCR\PropertyType constants for the property types (including
+     * PropertyType constants for the property types (including
      * UNDEFINED, if supported) that a registered node type can specify, or a
      * zero-length array if registered node types cannot specify property
      * definitions.
@@ -554,18 +554,18 @@ interface RepositoryInterface
      * <b>Note:</b> The Java API defines this method with multiple differing
      * signatures.
      *
-     * @param \PHPCR\CredentialsInterface $credentials The credentials of the
+     * @param CredentialsInterface $credentials The credentials of the
      *      user
      * @param string $workspaceName the name of a workspace
      *
-     * @return \PHPCR\SessionInterface a valid session for the user to access
+     * @return SessionInterface a valid session for the user to access
      *      the repository
      *
-     * @throws \PHPCR\LoginException if authentication or authorization (for
+     * @throws LoginException if authentication or authorization (for
      *      the specified workspace) fails
-     * @throws \PHPCR\NoSuchWorkspaceException if the specified workspaceName
+     * @throws NoSuchWorkspaceException if the specified workspaceName
      *      is not recognized
-     * @throws \PHPCR\RepositoryException if another error occurs
+     * @throws RepositoryException if another error occurs
      *
      * @api
      */

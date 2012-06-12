@@ -36,15 +36,15 @@ namespace PHPCR;
  * <b>foreach</b>. Properties have to implement either \IteratorAggregate or
  * \Iterator.
  * The iterator is equivalent to <b>getValue()</b> returning an iterator
- * of all values of this property (which is exactly one except for multivalue
+ * of all values of this property (which is exactly one except for multi-valued
  * properties). The iterator keys have no significant meaning.
  *
  * <b>PHPCR Note:</b>
  * We removed the Value interface and consequently the getValue() and
  * getValues() methods. If you just want the property value in its native type,
  * use getValue, or just NodeInterface::getPropertyValue.
- * The PropertyInterface::getXX methods also work for multivalue properties.
- * They return arrays in case of multivalue.
+ * The PropertyInterface::getXX methods also work for multi-valued properties.
+ * They return arrays in case of multi-valued.
  * PropertyInterface::setValue completely replaces the
  * ValueFactory::createValue method.
  *
@@ -52,7 +52,7 @@ namespace PHPCR;
  * @subpackage interfaces
  * @api
  */
-interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable
+interface PropertyInterface extends ItemInterface, \Traversable
 {
     /**
      * @var string
@@ -488,7 +488,7 @@ interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable
      * present and different from the current type.
      *
      * If no explicit type is given, then the type is derived from the value.
-     * (First value in case of multivalue property.)
+     * (First value in case of multi-valuedproperty.)
      * If the node type allows the type of the parameter, this property changes
      * its type to the type of the value. Otherwise, a conversion of the value
      * into the required type is attempted with PropertyType::convertType()
@@ -534,7 +534,7 @@ interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable
      *
      * @return void
      *
-     * @throws \PHPCR\ValueFormatException if the type or format of the
+     * @throws ValueFormatException if the type or format of the
      *      specified value is incompatible with the type of this property.
      * @throws \PHPCR\Version\VersionException if this property belongs to a
      *      node that is read-only due to a checked-in node and this
@@ -544,14 +544,14 @@ interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable
      * @throws \PHPCR\NodeType\ConstraintViolationException if the change would
      *      violate a node-type or other constraint and this implementation
      *      performs this validation immediately.
-     * @throws \PHPCR\UnsupportedRepositoryOperationException if the type
+     * @throws UnsupportedRepositoryOperationException if the type
      *      parameter is set and different from the current type and this
      *      implementation does not support dynamic re-binding
      * @throws \InvalidArgumentException if the specified DateTime value
      *      cannot be expressed in the ISO 8601-based format defined in the JCR
      *      2.0 specification and the implementation does not support dates
      *      incompatible with that format.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      * @api
      */
     function setValue($value, $type = null);
@@ -564,8 +564,9 @@ interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable
      * In PHP appending to strings is easy and this is more convenient than
      * getting the property and appending to the array and setting again.
      *
-     * @param mixed value
-     * @throws \PHPCR\ValueFormatException if the property is not multi-value.
+     * @param mixed $value
+     *
+     * @throws ValueFormatException if the property is not multi-value.
      */
     function addValue($value);
 
@@ -587,11 +588,11 @@ interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable
     /**
      * Returns a String representation of the value of this property.
      *
-     * @return string A string representation of the value of this property, or
+     * @return string\array A string representation of the value of this property, or
      *      an array of string for multi-valued properties.
      *
-     * @throws \PHPCR\ValueFormatException if conversion to a String is not possible
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws ValueFormatException if conversion to a String is not possible
+     * @throws RepositoryException if another error occurs.
      * @api
      */
     function getString();
@@ -602,9 +603,9 @@ interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable
      * The Binary object in turn provides methods to access the binary data
      * itself. Uses the standard conversion to binary (see JCR specification).
      *
-     * @return resource A stream resource if the underlying binary
+     * @return resource|array A stream resource if the underlying binary
      *
-     * @throws \PHPCR\RepositoryException if another error occurs
+     * @throws RepositoryException if another error occurs
      * @api
      */
     function getBinary();
@@ -612,12 +613,12 @@ interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable
     /**
      * Returns an integer representation of the value of this property.
      *
-     * @return integer An integer representation of the value of this property,
+     * @return integer|array An integer representation of the value of this property,
      *      or an array of integer for multi-valued properties.
      *
-     * @throws \PHPCR\ValueFormatException if conversion to integer is not
+     * @throws ValueFormatException if conversion to integer is not
      *      possible
-     * @throws \PHPCR\RepositoryException if another error occurs
+     * @throws RepositoryException if another error occurs
      *
      * @api
      */
@@ -626,12 +627,12 @@ interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable
     /**
      * Returns a float representation of the value of this property.
      *
-     * @return float A float representation of the value of this property, or
+     * @return float|array A float representation of the value of this property, or
      *      an array of float for multi-valued properties.
      *
-     * @throws \PHPCR\ValueFormatException if conversion to a double is not possible
+     * @throws ValueFormatException if conversion to a double is not possible
      *
-     * @throws \PHPCR\RepositoryException if another error occurs
+     * @throws RepositoryException if another error occurs
      * @api
      */
     function getDouble();
@@ -643,12 +644,12 @@ interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable
      * The string must be encoded with the C locale because of
      * http://bugs.php.net/bug.php?id=16532
      *
-     * @return string A string representation of the value of this property, or
+     * @return string|array A string representation of the value of this property, or
      *      an array of strings for multi-valued properties.
      *
-     * @throws \PHPCR\ValueFormatException if conversion to a number string is
+     * @throws ValueFormatException if conversion to a number string is
      *      not possible
-     * @throws \PHPCR\RepositoryException if another error occurs
+     * @throws RepositoryException if another error occurs
      *
      * @api
      */
@@ -660,12 +661,12 @@ interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable
      * The object returned is a copy of the stored value, so changes to it are
      * not reflected in internal storage.
      *
-     * @return \DateTime A date representation of the value of this property,
+     * @return \DateTime|array A date representation of the value of this property,
      *      or an array of DateTime for multi-valued properties.
      *
-     * @throws \PHPCR\ValueFormatException if conversion to \DateTime is not
+     * @throws ValueFormatException if conversion to \DateTime is not
      *      possible
-     * @throws \PHPCR\RepositoryException if another error occurs
+     * @throws RepositoryException if another error occurs
      *
      * @api
      */
@@ -676,16 +677,16 @@ interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable
      *
      * <b>PHP Note:</b>Keep in mind that according to the specification, not
      * all property types can be converted to boolean. Most actually can not
-     * be converted - see \PHPCR\PropertyType::convertType().
+     * be converted - see PropertyType::convertType().
      * If you want to know if a value is empty in the PHP sense, use
      * getString() and do your checks on the string.
      *
-     * @return boolean A boolean representation of the value of this property,
+     * @return boolean|array A boolean representation of the value of this property,
      *      or an array of boolean for multi-valued properties.
      *
-     * @throws \PHPCR\ValueFormatException if conversion to a boolean is not
+     * @throws ValueFormatException if conversion to a boolean is not
      *      possible
-     * @throws \PHPCR\RepositoryException if another error occurs
+     * @throws RepositoryException if another error occurs
      *
      * @api
      */
@@ -708,20 +709,20 @@ interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable
      * If its a PATH property, you will need the node of this property and use
      * getNodes to get the nodes with relative or absolute path.
      *
-     * @return \PHPCR\NodeInterface the referenced Node, or an array of Nodes
+     * @return NodeInterface|array the referenced Node, or an array of Nodes
      *      for multi-valued properties.
      *
-     * @throws \PHPCR\ValueFormatException if this property cannot be converted
+     * @throws ValueFormatException if this property cannot be converted
      *      to a referring type (REFERENCE, WEAKREFERENCE or PATH) or if this
      *      property is a referring type but is currently part of the frozen
      *      state of a version in version storage.
-     * @throws \PHPCR\ItemNotFoundException If this property is of type PATH or
+     * @throws ItemNotFoundException If this property is of type PATH or
      *      WEAKREFERENCE and no target node accessible by the current Session
      *      exists in this workspace. Note that this applies even if the
      *      property is a PATH and a property exists at the specified location.
      *      To dereference to a target property (as opposed to a target node),
      *      the method PropertyInterface::getProperty() is used.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */
@@ -741,18 +742,18 @@ interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable
      * For example, if this property is located at /a/b/c and it has a value of
      * "../d" then this method will return the property at /a/d if such exists.
      *
-     * @return \PHPCR\PropertyInterface the referenced property, or an array of
+     * @return PropertyInterface|array the referenced property, or an array of
      *      properties for multi-valued properties.
      *
-     * @throws \PHPCR\ValueFormatException if this property cannot be converted
+     * @throws ValueFormatException if this property cannot be converted
      *      to a PATH or if this property is a referring type but is currently
      *      part of the frozen state of a version in version storage.
-     * @throws \PHPCR\ItemNotFoundException If no property accessible by the
+     * @throws ItemNotFoundException If no property accessible by the
      *      current Session exists in this workspace at the specified path.
      *      Note that this applies even if a node exists at the specified
      *      location. To dereference to a target node, the method
      *      PropertyInterface::getNode() is used.
-     * @throws \PHPCR\RepositoryException if another error occurs
+     * @throws RepositoryException if another error occurs
      *
      * @api
      */
@@ -768,13 +769,13 @@ interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable
      *
      * Returns -1 if the implementation cannot determine the length.
      *
-     * For multivalue properties, the same rules apply, but returns an array of
+     * For multi-valuedproperties, the same rules apply, but returns an array of
      * lengths with the same order as the values have in getValue.
      *
-     * @return mixed integer with the length, for multivalue property array of
-     *      lengths
+     * @return integer|array the length of this value, or an array of lengths
+     *      for multi-valued properties
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      *
      * @api
      */
@@ -794,7 +795,7 @@ interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable
      * @return \PHPCR\NodeType\PropertyDefinitionInterface a PropertyDefinition
      *      object.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      *
      * @api
      */
@@ -825,9 +826,9 @@ interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable
      *
      * @return integer The numerical representation of a property type.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs
+     * @throws RepositoryException if an error occurs
      *
-     * @see \PHPCR\PropertyType
+     * @see PropertyType
      *
      * @api
      */
@@ -841,7 +842,7 @@ interface PropertyInterface extends \PHPCR\ItemInterface, \Traversable
      *
      * @return boolean true if this property is multi-valued; false otherwise.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      *
      * @api
      */

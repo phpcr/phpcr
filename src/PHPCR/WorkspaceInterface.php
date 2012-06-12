@@ -158,7 +158,7 @@ interface WorkspaceInterface {
     /**
      * Returns the Session object through which this Workspace object was acquired.
      *
-     * @return \PHPCR\SessionInterface a Session object.
+     * @return SessionInterface a Session object.
      * @api
      */
     function getSession();
@@ -246,24 +246,24 @@ interface WorkspaceInterface {
      *
      * @return void
      *
-     * @throws \PHPCR\NoSuchWorkspaceException if srcWorkspace does not exist
+     * @throws NoSuchWorkspaceException if srcWorkspace does not exist
      *      or if the current Session does not have permission to access it.
      * @throws \PHPCR\NodeType\ConstraintViolationException if the operation
      *      would violate a node-type or other implementation-specific
      *      constraint.
      * @throws \PHPCR\Version\VersionException if the parent node of
      *      destAbsPath is read-only due to a checked-in node.
-     * @throws \PHPCR\AccessDeniedException if the current session does have
+     * @throws AccessDeniedException if the current session does have
      *      access srcWorkspace but otherwise does not have sufficient access
      *      to complete the operation.
-     * @throws \PHPCR\PathNotFoundException if the node at srcAbsPath in
+     * @throws PathNotFoundException if the node at srcAbsPath in
      *      srcWorkspace or the parent of destAbsPath in this workspace does
      *      not exist.
-     * @throws \PHPCR\ItemExistsException if a node already exists at
+     * @throws ItemExistsException if a node already exists at
      *      destAbsPath and either same-name siblings are not allowed or update
      *      on copy is not supported for the nodes involved.
      * @throws \PHPCR\Lock\LockException if a lock prevents the copy.
-     * @throws \PHPCR\RepositoryException if the last element of destAbsPath
+     * @throws RepositoryException if the last element of destAbsPath
      *      has an index or if another error occurs.
      *
      * @api
@@ -320,7 +320,7 @@ interface WorkspaceInterface {
      *
      * @return void
      *
-     * @throws \PHPCR\NoSuchWorkspaceException if destWorkspace does not exist.
+     * @throws NoSuchWorkspaceException if destWorkspace does not exist.
      * @throws \PHPCR\NodeType\ConstraintViolationException if the operation
      *      would violate a node-type or other implementation-specific
      *      constraint.
@@ -329,16 +329,16 @@ interface WorkspaceInterface {
      *      will also be thrown if removeExisting is true, and an identifier
      *      conflict occurs that would require the moving and/or altering of a
      *      node that is checked-in.
-     * @throws \PHPCR\AccessDeniedException if the current session does not
+     * @throws AccessDeniedException if the current session does not
      *      have sufficient access to complete the operation.
-     * @throws \PHPCR\PathNotFoundException if the node at srcAbsPath in
+     * @throws PathNotFoundException if the node at srcAbsPath in
      *      srcWorkspace or the parent of destAbsPath in this workspace does
      *      not exist.
-     * @throws \PHPCR\ItemExistsException if a node already exists at
+     * @throws ItemExistsException if a node already exists at
      *      destAbsPath and same-name siblings are not allowed or if
      *      removeExisting is false and an identifier conflict occurs.
      * @throws \PHPCR\Lock\LockException if a lock prevents the clone.
-     * @throws \PHPCR\RepositoryException if the last element of destAbsPath
+     * @throws RepositoryException if the last element of destAbsPath
      *      has an index or if another error occurs.
      *
      * @api
@@ -383,15 +383,15 @@ interface WorkspaceInterface {
      *      constraint.
      * @throws \PHPCR\Version\VersionException if the parent node of
      *      destAbsPath is read-only due to a checked-in node.
-     * @throws \PHPCR\AccessDeniedException if the current session (i.e. the
+     * @throws AccessDeniedException if the current session (i.e. the
      *      session that was used to acquire this Workspace object) does not
      *      have sufficient access rights to complete the operation.
-     * @throws \PHPCR\PathNotFoundException if the node at srcAbsPath or the
+     * @throws PathNotFoundException if the node at srcAbsPath or the
      *      parent of destAbsPath does not exist.
-     * @throws \PHPCR\ItemExistsException if a node already exists at
+     * @throws ItemExistsException if a node already exists at
      *      destAbsPath and same-name siblings are not allowed.
      * @throws \PHPCR\Lock\LockException if a lock prevents the move.
-     * @throws \PHPCR\RepositoryException if the last element of destAbsPath
+     * @throws RepositoryException if the last element of destAbsPath
      *      has an index or if another error occurs.
      *
      * @api
@@ -403,9 +403,9 @@ interface WorkspaceInterface {
      *
      * @return \PHPCR\Lock\LockManagerInterface
      *
-     * @throws \PHPCR\UnsupportedRepositoryOperationException if the
+     * @throws UnsupportedRepositoryOperationException if the
      *      implementation does not support locking.
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      *
      * @api
      */
@@ -416,7 +416,7 @@ interface WorkspaceInterface {
      *
      * @return \PHPCR\Query\QueryManagerInterface the QueryManager object.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      *
      * @api
      */
@@ -428,7 +428,7 @@ interface WorkspaceInterface {
      * @return \PHPCR\Transaction\UserTransactionInterface a UserTransaction
      *      object.
      *
-     * @throws \PHPCR\UnsupportedRepositoryOperationException if the
+     * @throws UnsupportedRepositoryOperationException if the
      *      implementation does not support observation.
      *
      * @api
@@ -442,9 +442,9 @@ interface WorkspaceInterface {
      * In level 2 repositories the NamespaceRegistry can also be used to change
      * the namespace mappings.
      *
-     * @return \PHPCR\NamespaceRegistryInterface the NamespaceRegistry.
+     * @return NamespaceRegistryInterface the NamespaceRegistry.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      *
      * @api
      */
@@ -461,7 +461,7 @@ interface WorkspaceInterface {
      *
      * @return \PHPCR\NodeType\NodeTypeManagerInterface a NodeTypeManager object.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      *
      * @api
      */
@@ -473,9 +473,9 @@ interface WorkspaceInterface {
      * @return \PHPCR\Observation\ObservationManagerInterface an
      *      ObservationManager object.
      *
-     * @throws \PHPCR\UnsupportedRepositoryOperationException if the
+     * @throws UnsupportedRepositoryOperationException if the
      *      implementation does not support observation.
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      *
      * @api
      */
@@ -486,9 +486,9 @@ interface WorkspaceInterface {
      *
      * @return \PHPCR\Version\VersionManagerInterface a VersionManager object.
      *
-     * @throws \PHPCR\UnsupportedRepositoryOperationException if the
+     * @throws UnsupportedRepositoryOperationException if the
      *      implementation does not support versioning.
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      *
      * @api
      */
@@ -506,14 +506,14 @@ interface WorkspaceInterface {
      *
      * @return array string array of names of accessible workspaces.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
     function getAccessibleWorkspaceNames();
 
-    /**
-     * Returns an \PHPCR\ContentHandlerInterface which can be used to push SAX events into the repository.
+    /*
+     * Returns an ContentHandlerInterface which can be used to push SAX events into the repository.
      *
      * If the incoming XML stream (in the form of SAX events)
      * does not appear to be a JCR system view XML document then it is interpreted
@@ -571,9 +571,9 @@ interface WorkspaceInterface {
      *
      * @param string $parentAbsPath the absolute path of a node under which (as child) the imported subgraph will be built.
      * @param integer $uuidBehavior a four-value flag that governs how incoming identifiers are handled.
-     * @return \PHPCR\ContentHandlerInterface whose methods may be called to feed SAX events into the deserializer.
+     * @return ContentHandlerInterface whose methods may be called to feed SAX events into the deserializer.
      *
-     * @throws \PHPCR\PathNotFoundException if no node exists at $parentAbsPath.
+     * @throws PathNotFoundException if no node exists at $parentAbsPath.
      * @throws \PHPCR\NodeType\ConstraintViolationException if the new subgraph cannot be added to the node at $parentAbsPath due
      *                                             to node-type or other implementation-specific constraints, and this
      *                                             can be determined before the first SAX event is sent. Unlike
@@ -584,9 +584,9 @@ interface WorkspaceInterface {
      *                                             and this is an implementation-specific issue.
      * @throws \PHPCR\Version\VersionException if the node at $parentAbsPath is read-only due to a checked-in node.
      * @throws \PHPCR\Lock\LockException if a lock prevents the addition of the subgraph.
-     * @throws \PHPCR\AccessDeniedException if the session associated with this Workspace object does not have
+     * @throws AccessDeniedException if the session associated with this Workspace object does not have
      *                                      sufficient access to perform the import.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */
@@ -646,7 +646,7 @@ interface WorkspaceInterface {
      * @return void
      *
      * @throws \RuntimeException if an error during an I/O operation occurs.
-     * @throws \PHPCR\PathNotFoundException if no node exists at parentAbsPath.
+     * @throws PathNotFoundException if no node exists at parentAbsPath.
      * @throws \PHPCR\NodeType\ConstraintViolationException if node-type or
      *      other implementation-specific constraints prevent the addition of
      *      the subgraph or if uuidBehavior is set to
@@ -655,19 +655,19 @@ interface WorkspaceInterface {
      *      ancestors.
      * @throws \PHPCR\Version\VersionException if the node at parentAbsPath is
      *      read-only due to a checked-in node.
-     * @throws \PHPCR\InvalidSerializedDataException if incoming stream is not
+     * @throws InvalidSerializedDataException if incoming stream is not
      *      a valid XML document.
-     * @throws \PHPCR\ItemExistsException if the top-most element of the
+     * @throws ItemExistsException if the top-most element of the
      *      incoming XML would deserialize to a node with the same name as an
      *      existing child of parentAbsPath and that child does not allow
      *      same-name siblings, or if a uuidBehavior is set to
      *      IMPORT_UUID_COLLISION_THROW and an identifier collision occurs.
      * @throws \PHPCR\Lock\LockException if a lock prevents the addition of the
      *      subgraph.
-     * @throws \PHPCR\AccessDeniedException if the session associated with this
+     * @throws AccessDeniedException if the session associated with this
      *      Workspace object does not have sufficient access to perform the
      *      import.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */
@@ -693,13 +693,13 @@ interface WorkspaceInterface {
      *
      * @return void
      *
-     * @throws \PHPCR\AccessDeniedException if the session through which this
+     * @throws AccessDeniedException if the session through which this
      *      Workspace object was acquired does not have sufficient access to
      *      create the new workspace.
-     * @throws \PHPCR\UnsupportedRepositoryOperationException if the repository
+     * @throws UnsupportedRepositoryOperationException if the repository
      *      does not support the creation of workspaces.
-     * @throws \PHPCR\NoSuchWorkspaceException if $srcWorkspace does not exist.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws NoSuchWorkspaceException if $srcWorkspace does not exist.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */
@@ -713,13 +713,13 @@ interface WorkspaceInterface {
      *
      * @return void
      *
-     * @throws \PHPCR\AccessDeniedException if the session through which this
+     * @throws AccessDeniedException if the session through which this
      *      Workspace object was acquired does not have sufficient access to
      *      remove the workspace.
-     * @throws \PHPCR\UnsupportedRepositoryOperationException if the repository
+     * @throws UnsupportedRepositoryOperationException if the repository
      *      does not support the removal of workspaces.
-     * @throws \PHPCR\NoSuchWorkspaceException if $name does not exist.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws NoSuchWorkspaceException if $name does not exist.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */

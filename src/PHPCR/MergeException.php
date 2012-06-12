@@ -31,6 +31,6 @@ namespace PHPCR;
  * @subpackage exceptions
  * @api
  */
-class MergeException extends \PHPCR\RepositoryException
+class MergeException extends RepositoryException
 {
 }

@@ -31,6 +31,6 @@ namespace PHPCR;
  * @subpackage exceptions
  * @api
  */
-class ReferentialIntegrityException extends \PHPCR\RepositoryException
+class ReferentialIntegrityException extends RepositoryException
 {
 }

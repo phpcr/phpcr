@@ -41,6 +41,6 @@ namespace PHPCR;
  * @subpackage exceptions
  * @api
  */
-class InvalidItemStateException extends \PHPCR\RepositoryException
+class InvalidItemStateException extends RepositoryException
 {
 }
