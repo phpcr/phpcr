@@ -664,7 +664,7 @@ interface SessionInterface
      * will result in $b === false if a child node called foo cannot be added
      * to the node $n within the session $s.
      *
-     * @param string $methodName the nakme of the method.
+     * @param string $methodName the name of the method.
      * @param object $target the target object of the operation.
      * @param array $arguments the arguments of the operation.
      *
