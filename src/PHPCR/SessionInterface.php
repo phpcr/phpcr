@@ -93,7 +93,7 @@ interface SessionInterface
     /**
      * Returns the Repository object through which this session was acquired.
      *
-     * @return \PHPCR\RepositoryInterface a Repository object.
+     * @return RepositoryInterface a Repository object.
      *
      * @api
      */
@@ -145,7 +145,7 @@ interface SessionInterface
     /**
      * Returns the Workspace attached to this Session.
      *
-     * @return \PHPCR\WorkspaceInterface a Workspace object.
+     * @return WorkspaceInterface a Workspace object.
      *
      * @api
      */
@@ -156,7 +156,7 @@ interface SessionInterface
      *
      * This node is the main access point to the content of the workspace.
      *
-     * @return \PHPCR\NodeInterface The root node of the workspace: a Node object.
+     * @return NodeInterface The root node of the workspace: a Node object.
      *
      * @throws RepositoryException if an error occurs.
      *
@@ -177,17 +177,17 @@ interface SessionInterface
      * in the repository as is represented by the Workspace object tied to this
      * Session.
      *
-     * @param \PHPCR\CredentialsInterface $credentials A Credentials object
+     * @param CredentialsInterface $credentials A Credentials object
      *
-     * @return \PHPCR\SessionInterface a Session object
+     * @return SessionInterface a Session object
      *
-     * @throws \PHPCR\LoginException if the current session does not have
+     * @throws LoginException if the current session does not have
      *      sufficient access to perform the operation.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */
-    function impersonate(\PHPCR\CredentialsInterface $credentials);
+    function impersonate(CredentialsInterface $credentials);
 
     /**
      * Returns the node specified by the given identifier.
@@ -196,12 +196,12 @@ interface SessionInterface
      *
      * @param string $id An identifier.
      *
-     * @return \PHPCR\NodeInterface A Node.
+     * @return NodeInterface A Node.
      *
-     * @throws \PHPCR\ItemNotFoundException if no node with the specified
+     * @throws ItemNotFoundException if no node with the specified
      *      identifier exists or if this Session does not have read access to
      *      the node with the specified identifier.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */
@@ -217,9 +217,9 @@ interface SessionInterface
      *
      * @param array $ids An array of identifiers.
      *
-     * @return array containing all found \PHPCR\NodeInterface keyed by uuid
+     * @return array containing all found NodeInterface keyed by uuid
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      *
      * @api
      */
@@ -238,11 +238,11 @@ interface SessionInterface
      *
      * @param string $absPath An absolute path.
      *
-     * @return \PHPCR\ItemInterface
+     * @return ItemInterface
      *
-     * @throws \PHPCR\PathNotFoundException if no accessible item is found at
+     * @throws PathNotFoundException if no accessible item is found at
      *      the specified path.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */
@@ -253,10 +253,10 @@ interface SessionInterface
      *
      * @param string $absPath An absolute path.
      *
-     * @return \PHPCR\NodeInterface A node
+     * @return NodeInterface A node
      *
-     * @throws \PHPCR\PathNotFoundException if no accessible node is found at the specified path.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws PathNotFoundException if no accessible node is found at the specified path.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */
@@ -270,9 +270,9 @@ interface SessionInterface
      *
      * @param array $absPaths An array containing absolute paths.
      *
-     * @return array containing all found \PHPCR\NodeInterface keyed by path
+     * @return array containing all found NodeInterface keyed by path
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      *
      * @api
      */
@@ -283,11 +283,11 @@ interface SessionInterface
      *
      * @param string $absPath An absolute path.
      *
-     * @return \PHPCR\PropertyInterface A property
+     * @return PropertyInterface A property
      *
-     * @throws \PHPCR\PathNotFoundException if no accessible property is found
+     * @throws PathNotFoundException if no accessible property is found
      *      at the specified path.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */
@@ -303,7 +303,7 @@ interface SessionInterface
      *
      * @return boolean True if the item exists, else false.
      *
-     * @throws \PHPCR\RepositoryException if absPath is not a well-formed
+     * @throws RepositoryException if absPath is not a well-formed
      *      absolute path.
      *
      * @api
@@ -320,7 +320,7 @@ interface SessionInterface
      *
      * @return boolean True if the item does esist
      *
-     * @throws \PHPCR\RepositoryException if absPath is not a well-formed
+     * @throws RepositoryException if absPath is not a well-formed
      *      absolute path.
      *
      * @api
@@ -337,7 +337,7 @@ interface SessionInterface
      *
      * @return boolean True if the property is available.
      *
-     * @throws \PHPCR\RepositoryException if absPath is not a well-formed
+     * @throws RepositoryException if absPath is not a well-formed
      *      absolute path.
      *
      * @api
@@ -381,9 +381,9 @@ interface SessionInterface
      *
      * @return void
      *
-     * @throws \PHPCR\ItemExistsException if a node already exists at
+     * @throws ItemExistsException if a node already exists at
      *      destAbsPath and same-name siblings are not allowed.
-     * @throws \PHPCR\PathNotFoundException if either srcAbsPath or destAbsPath
+     * @throws PathNotFoundException if either srcAbsPath or destAbsPath
      *      cannot be found and this implementation performs this validation
      *      immediately.
      * @throws \PHPCR\Version\VersionException if the parent node of
@@ -396,7 +396,7 @@ interface SessionInterface
      *      implementation performs this validation immediately.
      * @throws \PHPCR\Lock\LockException if the move operation would violate a
      *      lock and this implementation performs this validation immediately.
-     * @throws \PHPCR\RepositoryException if the last element of destAbsPath
+     * @throws RepositoryException if the last element of destAbsPath
      *      has an index or if another error occurs.
      *
      * @api
@@ -429,13 +429,13 @@ interface SessionInterface
      *      specified item would violate a node type or implementation-specific
      *      constraint and this implementation performs this validation
      *      immediately.
-     * @throws \PHPCR\PathNotFoundException if no accessible item is found at
+     * @throws PathNotFoundException if no accessible item is found at
      *      $absPath property or if the specified item or an item in its
      *      subgraph is currently the target of a REFERENCE property located in
      *      this workspace but outside the specified item's subgraph and the
      *      current Session does not have read access to that REFERENCE
      *      property.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @see Item::remove()
      *
@@ -461,24 +461,24 @@ interface SessionInterface
      *
      * @return void
      *
-     * @throws \PHPCR\AccessDeniedException if any of the changes to be
+     * @throws AccessDeniedException if any of the changes to be
      *      persisted would violate the access privileges of the this Session.
      *      Also thrown if any of the changes to be persisted would cause the
      *      removal of a node that is currently referenced by a REFERENCE
      *      property that this Session does not have read access to.
-     * @throws \PHPCR\ItemExistsException if any of the changes to be persisted
+     * @throws ItemExistsException if any of the changes to be persisted
      *      would be prevented by the presence of an already existing item in
      *      the workspace.
      * @throws \PHPCR\NodeType\ConstraintViolationException if any of the
      *      changes to be persisted would violate a node type or restriction.
      *      Additionally, a repository may use this exception to enforce
      *      implementation- or configuration-dependent restrictions.
-     * @throws \PHPCR\InvalidItemStateException if any of the changes to be
+     * @throws InvalidItemStateException if any of the changes to be
      *      persisted conflicts with a change already persisted through another
      *      session and the implementation is such that this conflict can only
      *      be detected at save-time and therefore was not detected earlier, at
      *      change-time.
-     * @throws \PHPCR\ReferentialIntegrityException if any of the changes to be
+     * @throws ReferentialIntegrityException if any of the changes to be
      *      persisted would cause the removal of a node that is currently
      *      referenced by a REFERENCE property that this Session has read
      *      access to.
@@ -489,7 +489,7 @@ interface SessionInterface
      *      to persistent storage that would violate a lock.
      * @throws \PHPCR\NodeType\NoSuchNodeTypeException if the save would result
      *      in the addition of a node with an unrecognized node type.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */
@@ -518,7 +518,7 @@ interface SessionInterface
      *
      * @return void
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      *
      * @api
      */
@@ -532,7 +532,7 @@ interface SessionInterface
      *
      * @return boolean a boolean
      *
-     * @throws \PHPCR\RepositoryException if an error occurs
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -576,7 +576,7 @@ interface SessionInterface
      * @return boolean true if this Session has permission to perform the
      *      specified actions at the specified absPath.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      *
      * @api
      */
@@ -623,7 +623,7 @@ interface SessionInterface
      * @return void
      *
      * @throws \PHPCR\Security\AccessControlException If permission is denied.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */
@@ -664,7 +664,7 @@ interface SessionInterface
      * will result in $b === false if a child node called foo cannot be added
      * to the node $n within the session $s.
      *
-     * @param string $methodName the nakme of the method.
+     * @param string $methodName the name of the method.
      * @param object $target the target object of the operation.
      * @param array $arguments the arguments of the operation.
      *
@@ -672,16 +672,16 @@ interface SessionInterface
      *      operation can be performed or if the repository cannot determine
      *      whether the operation can be performed.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
     function hasCapability($methodName, $target, array $arguments);
 
-    /**
+    /*
      * Fetches a content handler without altering the session.
      *
-     * Returns an \PHPCR\ContentHandlerInterface which is used to push SAX
+     * Returns an ContentHandlerInterface which is used to push SAX
      * events to the repository. If the incoming XML (in the form of SAX
      * events) does not appear to be a JCR system view XML document then it is
      * interpreted as a JCR document view XML document.
@@ -753,10 +753,10 @@ interface SessionInterface
      * @param integer $uuidBehavior a four-value flag that governs how incoming
      *      identifiers are handled.
      *
-     * @return \PHPCR\ContentHandlerInterface whose methods may be called to
+     * @return ContentHandlerInterface whose methods may be called to
      *      feed SAX events into the deserializer.
      *
-     * @throws \PHPCR\PathNotFoundException if no node exists at parentAbsPath
+     * @throws PathNotFoundException if no node exists at parentAbsPath
      *      and this implementation performs this validation immediately.
      * @throws \PHPCR\NodeType\ConstraintViolationException if the new subgraph
      *      cannot be added to the node at parentAbsPath due to node-type or
@@ -768,7 +768,7 @@ interface SessionInterface
      * @throws \PHPCR\Lock\LockException if a lock prevents the addition of the
      *      subgraph and this implementation performs this validation
      *      immediately.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */
@@ -800,6 +800,8 @@ interface SessionInterface
      *      addition or upon save (depending on the implementation, see 4.9.1.1
      *      When Identifiers are Assigned in the specification). In either
      *      case, identifier collisions will not occur.
+     *      (Weak)references will point to the original node if existing, to
+     *      the imported node with matching id otherwise.
      * - ImportUUIDBehavior::IMPORT_UUID_COLLISION_REMOVE_EXISTING: If an
      *      incoming node has the same identifier as a node already existing in
      *      the workspace then the already existing node (and its subgraph) is
@@ -835,16 +837,17 @@ interface SessionInterface
      *
      * @param string $parentAbsPath the absolute path of the node below which
      *      the deserialized subgraph is added.
-     * @param string $in An URI from which the XML to be deserialized is read.
+     * @param string $uri Source location for the XML to be read, Can be
+     *      anything that works with fopen.
      * @param integer $uuidBehavior a four-value flag that governs how incoming
      *      identifiers are handled.
      *
      * @return void
      *
      * @throws \RuntimeException if an error during an I/O operation occurs.
-     * @throws \PHPCR\PathNotFoundException if no node exists at parentAbsPath
+     * @throws PathNotFoundException if no node exists at parentAbsPath
      *      and this implementation performs this validation immediately.
-     * @throws \PHPCR\ItemExistsException if deserialization would overwrite an
+     * @throws ItemExistsException if deserialization would overwrite an
      *      existing item and this implementation performs this validation
      *      immediately.
      * @throws \PHPCR\NodeType\ConstraintViolationException if a node type or
@@ -855,16 +858,16 @@ interface SessionInterface
      * @throws \PHPCR\Version\VersionException if the node at $parentAbsPath is
      *      read-only due to a checked-in node and this implementation performs
      *      this validation immediately.
-     * @throws \PHPCR\InvalidSerializedDataException if incoming stream is not
+     * @throws InvalidSerializedDataException if incoming stream is not
      *      a valid XML document.
      * @throws \PHPCR\Lock\LockException if a lock prevents the addition of the
      *      subgraph and this implementation performs this validation
      *      immediately.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */
-    function importXML($parentAbsPath, $in, $uuidBehavior);
+    function importXML($parentAbsPath, $uri, $uuidBehavior);
 
     /**
      * Serializes the node (and if $noRecurse is false, the whole subgraph) at
@@ -909,9 +912,9 @@ interface SessionInterface
      *
      * @return void
      *
-     * @throws \PHPCR\PathNotFoundException if no node exists at absPath.
+     * @throws PathNotFoundException if no node exists at absPath.
      * @throws \RuntimeException if an error during an I/O operation occurs.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */
@@ -959,9 +962,9 @@ interface SessionInterface
      *
      * @return void
      *
-     * @throws \PHPCR\PathNotFoundException if no node exists at absPath.
+     * @throws PathNotFoundException if no node exists at absPath.
      * @throws \RuntimeException if an error during an I/O operation occurs.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */
@@ -983,12 +986,12 @@ interface SessionInterface
      *
      * @return void
      *
-     * @throws \PHPCR\NamespaceException if an attempt is made to map a
+     * @throws NamespaceException if an attempt is made to map a
      *      namespace URI to a prefix beginning with the characters "xml" (in
      *      any combination of case) or if an attempt is made to map either the
      *      empty prefix or the empty namespace (i.e., if either $prefix or
      *      $uri are the empty string).
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */
@@ -999,7 +1002,7 @@ interface SessionInterface
      *
      * @return array The list of currently registered namespace prefixes.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -1015,8 +1018,8 @@ interface SessionInterface
      * @return string The location of the namespace definition identified by
      *      its prefix.
      *
-     * @throws \PHPCR\NamespaceException if the specified prefix is unknown.
-     * @throws \PHPCR\RepositoryException if another error occurs
+     * @throws NamespaceException if the specified prefix is unknown.
+     * @throws RepositoryException if another error occurs
      *
      * @api
      */
@@ -1031,8 +1034,8 @@ interface SessionInterface
      *
      * @return string The prefix of a namespace identified by its uri.
      *
-     * @throws \PHPCR\NamespaceException if the specified uri is unknown.
-     * @throws \PHPCR\RepositoryException if another error occurs
+     * @throws NamespaceException if the specified uri is unknown.
+     * @throws RepositoryException if another error occurs
      *
      * @api
      */
@@ -1070,9 +1073,9 @@ interface SessionInterface
      * @return \PHPCR\Security\AccessControlManager the access control manager
      *      for this Session
      *
-     * @throws \PHPCR\UnsupportedRepositoryOperationException if access control
+     * @throws UnsupportedRepositoryOperationException if access control
      *      is not supported.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */
@@ -1084,9 +1087,9 @@ interface SessionInterface
      * @return \PHPCR\Retention\RetentionManagerInterface the retention manager
      *      for this Session.
      *
-     * @throws \PHPCR\UnsupportedRepositoryOperationException if retention and
+     * @throws UnsupportedRepositoryOperationException if retention and
      *      hold are not supported.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */

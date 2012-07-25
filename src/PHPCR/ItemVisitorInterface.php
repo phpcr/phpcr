@@ -51,11 +51,12 @@ interface ItemVisitorInterface
      * PHPCR Note: you need to distinguish between Node and Property objects
      * being visited in your implementation.
      *
-     * @param \PHPCR\ItemInterface $item a node or property accepting this
+     * @param ItemInterface $item a node or property accepting this
      *      visitor
-     * @throws \PHPCR\RepositoryException if an error occurs
+     *
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
-    function visit(\PHPCR\ItemInterface $item);
+    function visit(ItemInterface $item);
 }

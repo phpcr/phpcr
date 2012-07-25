@@ -34,6 +34,6 @@ namespace PHPCR;
  * @subpackage prototypes
  * @scope prototype
  */
-final class GuestCredentials implements \PHPCR\CredentialsInterface
+final class GuestCredentials implements CredentialsInterface
 {
 }

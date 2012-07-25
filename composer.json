@@ -4,8 +4,7 @@
     "description": "PHP Content Repository interfaces",
     "keywords": ["phpcr", "contentrepository"],
     "homepage": "http://phpcr.github.com",
-    "version": "2.1.0-beta3",
-    "license": "Apache License 2.0",
+    "license": "Apache-2.0",
     "authors": [
         {
             "name": "David Buchmann",
@@ -26,6 +25,11 @@
     "autoload": {
         "psr-0": {
             "PHPCR": "src"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.1-dev"
         }
     }
 }

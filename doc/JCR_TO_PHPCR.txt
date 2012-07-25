@@ -26,7 +26,7 @@ Basic conversion
 ****************
 
 Most PHP coding standards require that interfaces have the Interface in their
-name. We followed this, thus Node becomes NodeInterface and so on.
+name. This has been followed, thus Node becomes NodeInterface and so on.
 
 PHP does not allow method overloading (having the same method name with
 different parameter numbers and/or types). PHP uses optional parameters with
@@ -38,8 +38,8 @@ The implementing visitor will have to do a type-check.
  * In PHP you can not have a class method called "clone" because it is a
     reserved keyword. Workspace::clone is named Workspace::cloneFrom as it clones
     a node from a workspace into the current workspace.
- * For java.io.InputStream we use PHP streams (resources). For java.util.Calendar
-    we use the DateTime class. For the java.math.BigDecimal, we use strings that
+ * For java.io.InputStream PHP streams (resources) are used. For java.util.Calendar
+    we use the DateTime class. For the java.math.BigDecimal, strings are used that
     can be used with the bcmath PHP extension.
 
 For some notes about value conversion, see the Value section below.
@@ -70,7 +70,7 @@ ArrayIterator from the array. Client code must not forget however that the API
 does *not* require the ArrayAccess interface with random access by key.
 
 
-Additionally, we declared API elements as Traversable where it makes sense.
+Additionally, API elements have been declared as Traversable where it makes sense.
 This allows to directly use the objects in a foreach statement.
 The implementation either has to implement IteratorAggregate::getIterator to
 return a suitable iterator, or be an iterator itselves.
@@ -104,7 +104,7 @@ Do NOT put 'implements Traversable' into the class signature, it confuses PHP.
  * Security/AccessControlListInterface iterates over all entries, like
     getAccessControlEntries(). The iterator keys have no significant meaning.
 
-For other interfaces, there is no obvious default iterator, so we left them without.
+For other interfaces, there is no obvious default iterator, so they are left without.
 Version/VersionHistoryInterface extends the NodeInterface. Even though iterating
 over the versions seems natural, we did not want to change the behaviour for
 this subclass of NodeInterface.
@@ -117,7 +117,7 @@ PHPCR got rid of both Value and ValueFactory. They only make sense in the
 context of strong typing.
 
 The PropertyInterface methods directly access the native property values.
-We keep type conversions possible with the type-specific getters.
+Type conversions are still possible with the type-specific getters.
 
  * PropertyInterface::getValue returns the value in its default format,
     dereferencing (WEAK)REFERENCES but not PATH properties.
@@ -174,8 +174,8 @@ dereference reference properties for this array.
 For performance reason, implementations should delay instantiating the
 PropertyInterface objects until they are actually needed.
 
-We dropped the getValues and getLengths methods for *multivalue properties* in
-favor of returning either a single value or an array of values in the same
+The getValues and getLengths methods for *multivalue properties* where dropped
+in favor of returning either a single value or an array of values in the same
 method.
 
 PropertyInterface::addValue() has been added to quickly append a value to
@@ -283,15 +283,16 @@ Locking
 *******
 
 This works exactly as with JCR. For no timeout, instead of the java
-Long.MAX_VALUE we use PHP_MAX_INT.
+Long.MAX_VALUE the PHP constant PHP_MAX_INT is used.
 
 
 Security
 ********
 
-JCR provides an ACL model built on top of the java.security.Principal interface.
-The interfaces have been ported to PHPCR, and we added a PrincipalInterface as
-well, as there is no equivalent in PHPCR.
+JCR provides an ACL model built on top of the java.security.Principal
+interface. The interfaces have been ported to PHPCR, and a PrincipalInterface
+similar to the Java one had to be added to PHPCR as well, as there is no
+equivalent in PHP.
 
 This chapter has not been implemented yet and might still need to be adjusted
 to fit PHP.

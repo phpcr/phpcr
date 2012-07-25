@@ -34,7 +34,7 @@ namespace PHPCR;
  * @scope prototype
  * @api
  */
-final class SimpleCredentials implements \PHPCR\CredentialsInterface
+final class SimpleCredentials implements CredentialsInterface
 {
 
     /**

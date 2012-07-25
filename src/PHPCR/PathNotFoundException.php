@@ -32,6 +32,6 @@ namespace PHPCR;
  * @subpackage exceptions
  * @api
  */
-class PathNotFoundException extends \PHPCR\RepositoryException
+class PathNotFoundException extends RepositoryException
 {
 }

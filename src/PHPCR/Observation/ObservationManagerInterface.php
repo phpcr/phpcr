@@ -31,7 +31,7 @@ namespace PHPCR\Observation;
  * registration and deregistration of event listeners.
  *
  * The \Traversable interface enables the implementation to be addressed with
- * <b>foreach</b>. ObservationManager has to implement either \RecursiveIterator
+ * <b>foreach</b>. ObservationManager has to implement either \IteratorAggregate
  * or \Iterator.
  * The iterator is equivalent to <b>getRegisteredEventListeners()</b> returning
  * a list of all registered event listeners. The iterator keys have no

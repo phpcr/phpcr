@@ -37,7 +37,7 @@ interface ItemInterface
      * Returns the normalized absolute path to this item.
      *
      * @return string the normalized absolute path of this Item.
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      * @api
      */
     function getPath();
@@ -50,7 +50,7 @@ interface ItemInterface
      * @return string the name of this Item in qualified form or an empty
      *      string if this Item is the root node of a workspace.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      *
      * @api
      */
@@ -77,14 +77,14 @@ interface ItemInterface
      * @param integer $depth An integer, 0 <= depth <= n where n is the depth
      *      of this Item.
      *
-     * @return \PHPCR\ItemInterface The ancestor of this Item at the specified
+     * @return ItemInterface The ancestor of this Item at the specified
      *      depth.
      *
-     * @throws \PHPCR\ItemNotFoundException if depth < 0 or depth > n
+     * @throws ItemNotFoundException if depth < 0 or depth > n
      *      where n is the depth of this item.
-     * @throws \PHPCR\AccessDeniedException if the current session does not
+     * @throws AccessDeniedException if the current session does not
      *      have sufficient access to retrieve the specified node.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */
@@ -93,13 +93,13 @@ interface ItemInterface
     /**
      * Returns the parent of this Item.
      *
-     * @return \PHPCR\NodeInterface The parent of this Item.
+     * @return NodeInterface The parent of this Item.
      *
-     * @throws \PHPCR\ItemNotFoundException if this Item is the root node of a
+     * @throws ItemNotFoundException if this Item is the root node of a
      *      workspace.
-     * @throws \PHPCR\AccessDeniedException if the current session does not
+     * @throws AccessDeniedException if the current session does not
      *      have sufficent access to retrieve the parent of this item.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */
@@ -115,7 +115,7 @@ interface ItemInterface
      *
      * @return integer The depth of this Item in the workspace item graph.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      *
      * @api
      */
@@ -124,9 +124,9 @@ interface ItemInterface
     /**
      * Returns the Session through which this Item was acquired.
      *
-     * @return \PHPCR\SessionInterface the Session through which this Item was
+     * @return SessionInterface the Session through which this Item was
      *      acquired.
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      *
      * @api
      */
@@ -210,17 +210,17 @@ interface ItemInterface
      * retrieved through the same session they will always reflect the same
      * state.
      *
-     * @param \PHPCR\ItemInterface $otherItem the Item object to be tested for
+     * @param ItemInterface $otherItem the Item object to be tested for
      *      identity with this Item.
      *
      * @return boolean true if this Item object and otherItem represent the
      *      same actual repository item; false otherwise.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      *
      * @api
      */
-    function isSame(\PHPCR\ItemInterface $otherItem);
+    function isSame(ItemInterface $otherItem);
 
     /**
      * Call the ItemVisitor::visit() method.
@@ -229,14 +229,14 @@ interface ItemInterface
      * visitor). We leave it here, to allow sanity checks or other operations
      * an implementation might wants to do.
      *
-     * @param \PHPCR\ItemVisitorInterface $visitor The ItemVisitor to be
+     * @param ItemVisitorInterface $visitor The ItemVisitor to be
      *      accepted.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      *
      * @api
      */
-    function accept(\PHPCR\ItemVisitorInterface $visitor);
+    function accept(ItemVisitorInterface $visitor);
 
     /**
      * Updates the state of the current item.
@@ -259,10 +259,10 @@ interface ItemInterface
      *
      * @return void
      *
-     * @throws \PHPCR\InvalidItemStateException if this Item object represents
+     * @throws InvalidItemStateException if this Item object represents
      *      a workspace item that has been removed (either by this session or
      *      another).
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */
@@ -299,7 +299,7 @@ interface ItemInterface
      *      Session does not have read access to that REFERENCE property or if
      *      the current Session does not have sufficent privileges to remove
      *      the item.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @see SessionInterface::removeItem(String)
      *

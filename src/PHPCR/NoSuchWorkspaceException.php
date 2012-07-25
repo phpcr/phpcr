@@ -32,6 +32,6 @@ namespace PHPCR;
  * @subpackage exceptions
  * @api
  */
-class NoSuchWorkspaceException extends \PHPCR\RepositoryException
+class NoSuchWorkspaceException extends RepositoryException
 {
 }

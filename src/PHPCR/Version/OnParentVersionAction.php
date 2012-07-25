@@ -145,6 +145,7 @@ final class OnParentVersionAction
 
     /**#@-*/
 
+    // @codeCoverageIgnoreStart
     /**
      * Make instantiation impossible...
      *
@@ -153,6 +154,7 @@ final class OnParentVersionAction
     private function __construct()
     {
     }
+    // @codeCoverageIgnoreEnd
 
     /**
      * Returns the name of the specified action, as used in serialization.

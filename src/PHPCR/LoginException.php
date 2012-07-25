@@ -34,6 +34,6 @@ namespace PHPCR;
  * @subpackage exceptions
  * @api
  */
-class LoginException extends \PHPCR\RepositoryException
+class LoginException extends RepositoryException
 {
 }

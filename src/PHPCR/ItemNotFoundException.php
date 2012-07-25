@@ -31,6 +31,6 @@ namespace PHPCR;
  * @subpackage exceptions
  * @api
  */
-class ItemNotFoundException extends \PHPCR\RepositoryException
+class ItemNotFoundException extends RepositoryException
 {
 }

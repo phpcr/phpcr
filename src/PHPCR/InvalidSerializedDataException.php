@@ -34,6 +34,6 @@ namespace PHPCR;
  * @subpackage exceptions
  * @api
  */
-class InvalidSerializedDataException extends \PHPCR\RepositoryException
+class InvalidSerializedDataException extends RepositoryException
 {
 }

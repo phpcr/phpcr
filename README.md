@@ -26,7 +26,7 @@ There exist a couple of implementations for PHPCR that you can use. See below fo
 
 ## Further reading
 
-* [Tutorial](https://github.com/phpcr/phpcr/blob/master/doc/Tutorial.md)
+* [Tutorial](https://github.com/phpcr/phpcr-docs/blob/master/tutorial/Tutorial.md)
 * [API Reference](http://phpcr.github.com/doc/html/index.html)
 
 
@@ -35,20 +35,29 @@ There exist a couple of implementations for PHPCR that you can use. See below fo
 The PHPCR is following the Java Content Repository JCR API closely where
 appropriate. In the points where Java and PHP differ, we tried to follow the
 logic of PHP while keeping the spirit of the original API. The API has the same
-expressivnes as the Java API.
+expressiveness as the Java API.
 Most of the JSR-283/JSR-333 documentation and code examples should be usable as-is.
 
 Main differences between PHPCR and JCR are
+
 * PHP has no method overloading. Same-name methods that differ only by
-   parameter number and/or type have been merged into one method.
+  parameter number and/or type have been merged into one method.
 * PHP is weak typed, which makes the Value interface and the large number of
-   almost-identical iterators obsolete.
+  almost-identical iterators obsolete.
 
 An exhaustive list of the differences between PHPCR and JCR is in the file
 doc/JCR_TO_PHPCR.txt
 
 
-# API Tests
+# Tests
+
+## Unit tests
+
+As PHPCR is an API definition, there is not much to test on it without an
+implementation. Nonetheless, there are a few concrete classes that do have
+unit tests. Simply run them with phpunit -c tests/
+
+## API Tests
 
 An API test suite for the functionality of PHPCR is available at
 https://github.com/phpcr/phpcr-api-tests/

@@ -31,6 +31,6 @@ namespace PHPCR;
  * @subpackage exceptions
  * @api
  */
-class UnsupportedRepositoryOperationException extends \PHPCR\RepositoryException
+class UnsupportedRepositoryOperationException extends RepositoryException
 {
 }

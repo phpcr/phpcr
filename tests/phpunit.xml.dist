@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  This simply contains unit tests for the few concrete classes in PHPCR.
+  See https://github.com/phpcr/phpcr-api-tests/ for the extensive api test suite.
+-->
+
+<phpunit backupGlobals="false"
+         backupStaticAttributes="false"
+         colors="false"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         processIsolation="false"
+         stopOnFailure="false"
+         syntaxCheck="true"
+         strict="true"
+         bootstrap="bootstrap.php">
+
+    <testsuites>
+        <testsuite name="PHPCR Test Suite">
+            <directory>./</directory>
+        </testsuite>
+    </testsuites>
+
+    <!-- configuration for code coverage report -->
+    <filter>
+        <whitelist>
+            <file>../src/PHPCR/PropertyType.php</file>
+            <file>../src/PHPCR/GuestCredentials.php</file>
+            <file>../src/PHPCR/SimpleCredentials.php</file>
+            <file>../src/PHPCR/Version/OnParentVersionAction.php</file>
+        </whitelist>
+    </filter>
+
+</phpunit>

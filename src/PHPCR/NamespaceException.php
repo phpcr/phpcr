@@ -35,6 +35,6 @@ namespace PHPCR;
  * @subpackage exceptions
  * @api
  */
-class NamespaceException extends \PHPCR\RepositoryException
+class NamespaceException extends RepositoryException
 {
 }

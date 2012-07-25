@@ -31,6 +31,6 @@ namespace PHPCR;
  * @subpackage exceptions
  * @api
  */
-class InvalidLifecycleTransitionException extends \PHPCR\RepositoryException
+class InvalidLifecycleTransitionException extends RepositoryException
 {
 }

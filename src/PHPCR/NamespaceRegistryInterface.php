@@ -135,29 +135,29 @@ interface NamespaceRegistryInterface extends \Traversable
      *
      * - Attempting to re-assign a built-in prefix (jcr, nt, mix, sv, xml,
      *   or the empty prefix) to a new URI will throw a
-     *   \PHPCR\NamespaceException.
+     *   NamespaceException.
      * - Attempting to register a namespace with a prefix that begins with
      *   the characters "xml" (in any combination of case) will throw a
-     *   \PHPCR\NamespaceException.
+     *   NamespaceException.
      * - An implementation may prevent the re-assignment of any other namespace
      *   prefixes for implementation-specific reasons by throwing a
-     *   \PHPCR\NamespaceException.
+     *   NamespaceException.
      *
      * @param string $prefix The prefix to be mapped.
      * @param string $uri The URI to be mapped.
      *
      * @return void
      *
-     * @throws \PHPCR\NamespaceException If an attempt is made to re-assign a
+     * @throws NamespaceException If an attempt is made to re-assign a
      *      built-in prefix to a new URI or, to register a namespace with a
      *      prefix that begins with the characters "xml" (in any combination of
      *      case) or an attempt is made to perform a prefix re-assignment that
      *      is forbidden for implementation-specific reasons.
-     * @throws \PHPCR\UnsupportedRepositoryOperationException if this
+     * @throws UnsupportedRepositoryOperationException if this
      *      repository does not support namespace registry changes.
-     * @throws \PHPCR\AccessDeniedException if the current session does not
+     * @throws AccessDeniedException if the current session does not
      *      have sufficient access to register the namespace.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */
@@ -169,25 +169,25 @@ interface NamespaceRegistryInterface extends \Traversable
      * The following restrictions apply:
      *
      * - Attempting to unregister a built-in namespace (jcr, nt, mix, sv, xml or
-     *   the empty namespace) will throw a \PHPCR\NamespaceException.
+     *   the empty namespace) will throw a NamespaceException.
      * - An attempt to unregister a namespace that is not currently registered
-     *   will throw a \PHPCR\NamespaceException.
+     *   will throw a NamespaceException.
      * - An implementation may prevent the unregistering of any other namespace
      *   for implementation-specific reasons by throwing a
-     *   \PHPCR\NamespaceException.
+     *   NamespaceException.
      *
      * @param string $prefix The prefix of the mapping to be removed.
      *
      * @return void
      *
-     * @throws \PHPCR\NamespaceException unregister a built-in namespace or a
+     * @throws NamespaceException unregister a built-in namespace or a
      *      namespace that is not currently registered or a namespace whose
      *      unregistration is forbidden for implementation-specific reasons.
-     * @throws \PHPCR\UnsupportedRepositoryOperationException if this
+     * @throws UnsupportedRepositoryOperationException if this
      *      repository does not support namespace registry changes.
-     * @throws \PHPCR\AccessDeniedException if the current session does not
+     * @throws AccessDeniedException if the current session does not
      *      have sufficient access to unregister the namespace.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */
@@ -198,7 +198,7 @@ interface NamespaceRegistryInterface extends \Traversable
      *
      * @return array a string array
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      *
      * @api
      */
@@ -209,7 +209,7 @@ interface NamespaceRegistryInterface extends \Traversable
      *
      * @return array a string array
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      *
      * @api
      */
@@ -222,9 +222,9 @@ interface NamespaceRegistryInterface extends \Traversable
      *
      * @return string a string
      *
-     * @throws \PHPCR\NamespaceException if a mapping with the specified prefix
+     * @throws NamespaceException if a mapping with the specified prefix
      *      does not exist.
-     * @throws \PHPCR\RepositoryException if another error occurs
+     * @throws RepositoryException if another error occurs
      *
      * @api
      */
@@ -237,9 +237,9 @@ interface NamespaceRegistryInterface extends \Traversable
      *
      * @return string a string
      *
-     * @throws \PHPCR\NamespaceException if a mapping with the specified uri
+     * @throws NamespaceException if a mapping with the specified uri
      *      does not exist.
-     * @throws \PHPCR\RepositoryException if another error occurs
+     * @throws RepositoryException if another error occurs
      *
      * @api
      */

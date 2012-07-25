@@ -34,6 +34,6 @@ namespace PHPCR;
  * @subpackage exceptions
  * @api
  */
-class ValueFormatException extends \PHPCR\RepositoryException
+class ValueFormatException extends RepositoryException
 {
 }
