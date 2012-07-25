@@ -286,6 +286,20 @@ This works exactly as with JCR. For no timeout, instead of the java
 Long.MAX_VALUE the PHP constant PHP_MAX_INT is used.
 
 
+Observation
+***********
+
+JCR observation has two models: The event journal allows to poll for events,
+event listeners are callbacks that happen when an event happens. While the
+journal translates naturally to PHP, the event listeners do not at all.
+Events in PHPCR always are about all users of the repository, not only about
+the current session. To get and handle events from others without polling, the
+code would have to be multithreaded, which PHP usually is not.
+
+The Interfaces for event listener have been translated, but we have to decide
+what to do with them: https://github.com/phpcr/phpcr/issues/41
+
+
 Security
 ********
 
@@ -310,7 +324,7 @@ hashmap into a property if you really need it.
 Another idea was to return a node with all its properties as an array instead
 of the node object. But with Node::getPropertiesValues, the implementation can
 instantiate just the Node and keep the overhead minimal, but preserve the
-expressivnes of the API.
+expressiveness of the API.
 
 
 Changes & Improvements
