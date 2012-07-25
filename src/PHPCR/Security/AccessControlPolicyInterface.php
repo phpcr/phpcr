@@ -25,11 +25,11 @@
 namespace PHPCR\Security;
 
 /**
- * The AccessControlPolicy is a marker interface for all kind of access control
- * policies. This API defines two subinterfaces:
+ * The AccessControlPolicyInterface is a marker interface for all kind of
+ * access control policies. This API defines two subinterfaces:
  *
- * - NamedAccessControlPolicy
- * - AccessControlList
+ * - NamedAccessControlPolicyInterface
+ * - AccessControlListInterface
  *
  * @package phpcr
  * @subpackage interfaces

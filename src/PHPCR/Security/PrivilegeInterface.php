@@ -50,10 +50,6 @@ namespace PHPCR\Security;
  */
 interface PrivilegeInterface
 {
-    /**#@+
-     * @var string
-     */
-
     /**
      * A constant representing jcr:read (in extended form), the privilege to
      * retrieve a node and get its properties and their values.
@@ -201,8 +197,6 @@ interface PrivilegeInterface
      * @api
      */
     const JCR_ALL = "{http://www.jcp.org/jcr/1.0}all";
-
-    /**#@-*/
 
     /**
      * Returns the name of this privilege.

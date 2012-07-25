@@ -25,18 +25,19 @@
 namespace PHPCR\Security;
 
 /**
- * The AccessControlList is an AccessControlPolicy representing a list of
- * access control entries.
+ * The AccessControlListInterface is an AccessControlPolicyInterface
+ * representing a list of access control entries.
  *
- * It is mutable before being set to the AccessControlManager and consequently
- * defines methods to read and mutate the list i.e. to get, add or remove
- * individual entries.
+ * It is mutable before being set to the AccessControlManagerInterface and
+ * consequently defines methods to read and mutate the list i.e. to get, add or
+ * remove individual AccessControlEntryInterface instances.
  *
  * The \Traversable interface enables the implementation to be addressed with
  * <b>foreach</b>. AccessControlList has to implement either \RecursiveIterator
  * or \Iterator.
- * The iterator is equivalent to <b>getAccessControlEntries()</b> returning a
- * list of AccessControlEntry. The iterator keys have no significant meaning.
+ * The iterator is equivalent to <b>getAccessControlEntries()</b> returning
+ * AccessControlEntryInterface instances. The iterator keys have no significant
+ * meaning.
  *
  * @package phpcr
  * @subpackage interfaces
@@ -45,14 +46,12 @@ namespace PHPCR\Security;
 interface AccessControlListInterface extends \PHPCR\Security\AccessControlPolicyInterface, \Traversable
 {
     /**
-     * Gets every registered access control entry.
-     *
      * Returns all access control entries present with this policy.
-     * This method is only guaranteed to return an AccessControlEntry if that
-     * AccessControlEntry has been assigned through this API.
      *
-     * @return array Lis of all AccessControlEntry objects present with this
-     *      policy.
+     * This method is only guaranteed to return an access control entry object
+     * if that access control entry object has been assigned through this API.
+     *
+     * @return array all AccessControlEntry objects present with this policy.
      *
      * @throws \PHPCR\RepositoryException - if an error occurs.
      *
@@ -74,10 +73,11 @@ interface AccessControlListInterface extends \PHPCR\Security\AccessControlPolicy
      * Principal can never remove a Privilege added by a previous call.
      *
      * The modification does not take effect until this policy has been set to
-     * a node by calling AccessControlManagerInterface::setPolicy() and save is
-     * performed.
+     * a node by calling AccessControlManagerInterface::setPolicy() and
+     * Session::save is performed.
      *
-     * @param ? $principal - a Principal. TODO: define a type for this. JCR has javax.security.Principal
+     * @param PrincipalInterface $principal the entity that should have this
+     *      privilege
      * @param array $privileges - an array of Privileges.
      *
      * @return boolean true if this policy was modify; false otherwise.
@@ -87,18 +87,16 @@ interface AccessControlListInterface extends \PHPCR\Security\AccessControlPolicy
      *      access control related exception occurs.
      * @throws \PHPCR\RepositoryException - if another error occurs.
      *
-     * @todo find replacement for java.security.Principal
-     *
      * @api
      */
-    function addAccessControlEntry($principal, array $privileges);
+    function addAccessControlEntry(PrincipalInterface $principal, array $privileges);
 
     /**
      * Removes the specified access control entry object from this policy.
      *
      * Only exactly those entries obtained through getAccessControlEntries can
      * be removed. This method does not take effect until this policy has been
-     * re-set to a node by calling AccessControlManagerInterface::setPolicy()
+     * re-assigned to a node by calling AccessControlManagerInterface::setPolicy()
      * and save is performed.
      *
      * @param \PHPCR\Security\AccessControlEntryInterface $ace the access

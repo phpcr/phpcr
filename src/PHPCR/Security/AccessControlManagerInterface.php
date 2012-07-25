@@ -86,7 +86,7 @@ interface AccessControlManagerInterface
      * the set returned by calling PrivilegeInterface::getAggregatePrivileges()
      * for that privilege.
      *
-     * The results reported by the this method reflect the net effect of the
+     * The results reported by this method reflect the net effect of the
      * currently applied control mechanisms. It does not reflect unsaved access
      * control policies or unsaved access control entries. Changes to access
      * control status caused by these mechanisms only take effect on
@@ -195,7 +195,7 @@ interface AccessControlManagerInterface
      * @param string $absPath The absolute path to the node of which privileges
      *      are requested.
      *
-     * @return Iterator over the applicable access control policies
+     * @return \Iterator over the applicable access control policies
      *      implementing <b>SeekableIterator</b> and <b>Countable</b>. Values
      *      are the AccessControlPolicyInterface instances. Keys have no
      *      meaning. Returns an empty iterator if no policies are applicable.
@@ -214,18 +214,20 @@ interface AccessControlManagerInterface
     /**
      * Binds the policy to the node at absPath.
      *
-     * The behavior of the call $acm->setPolicy($absPath, $policy) differs
+     * The behavior of AccessControlManagerInterface::setPolicy() differs
      * depending on how the policy object was originally acquired.
      *
-     * If policy was acquired through $acm->getApplicablePolicies($absPath)
-     * then that policy object is added to the node at absPath.
+     * If the policy was acquired through
+     * AccessControlManagerInterface::getApplicablePolicies() then that policy
+     * object is added to the node at absPath.
      *
-     * On the other hand, if <code>$policy</code> was acquired through
-     * $acm->getPolicies(absPath) then that policy object (usually after being
-     * altered) replaces its former version on the node at $absPath.
+     * On the other hand, if the policy was acquired through
+     * AccessControlManagerInterface::getPolicies() then that policy object
+     * (usually after being altered) replaces its former version on the node at
+     * $absPath.
      *
-     * This is session-write method and therefore the access control policy
-     * is only dispatched on <code>save()</code> and will only take effect upon
+     * This is a session-write method and therefore the access control policy
+     * is only dispatched on Session::save() and will only take effect upon
      * persist.
      *
      * @param string $absPath The absolute path to the node of which privileges
@@ -255,12 +257,12 @@ interface AccessControlManagerInterface
     function setPolicy($absPath, \PHPCR\Security\AccessControlPolicyInterface $policy);
 
     /**
-     * Removes the specified AccessControlPolicy from the node at $absPath.
+     * Removes the specified AccessControlPolicyInterface from the node at $absPath.
      *
-     * An AccessControlPolicy can only be removed if it was bound to the
+     * An AccessControlPolicyInterface can only be removed if it was bound to the
      * specified node through this API before. The effect of the removal only
      * takes place upon SessionInterface::save(). Note, that an implementation
-     * default or any other effective AccessControlPolicy that has not been
+     * default or any other effective AccessControlPolicyInterface that has not been
      * applied to the node before may never be removed using this method.
      *
      * @param string $absPath The absolute path to the node of which privileges
@@ -273,7 +275,8 @@ interface AccessControlManagerInterface
      * @throws \PHPCR\PathNotFoundException if no node at absPath exists or the
      *      session does not have sufficent access to retrieve a node at that
      *      location.
-     * @throws \PHPCR\Security\AccessControlException if no policy exists.
+     * @throws \PHPCR\Security\AccessControlException if the policy to remove
+     *      does not exist at the node at absPath.
      * @throws \PHPCR\AccessDeniedException if the session lacks
      *      MODIFY_ACCESS_CONTROL privilege for the absPath node.
      * @throws \PHPCR\Lock\LockException if a lock applies at the node at
