@@ -60,7 +60,7 @@ since Java 1.5.)
 
 Wherever the iterators are used, PHPCR requires iterators implementing
 SeekableIterator and Countable. Together, those iterators have the same
-expressivnes as the JCR RangeIterator.
+expressiveness as the JCR RangeIterator.
 
 Note: Plain PHP arrays would be even simpler than any interfaces, while still
 allowing to use foreach. But they would have the major drawback that no lazy
@@ -282,9 +282,19 @@ backend (if the session is not yet in a transaction).
 Locking
 *******
 
-This is work in progress, as it is not yet implemented in any implementation.
+This works exactly as with JCR. For no timeout, instead of the java
+Long.MAX_VALUE we use PHP_MAX_INT.
 
-For no timeout, the java Long.MAX_VALUE is changed to PHP_MAX_INT.
+
+Security
+********
+
+JCR provides an ACL model built on top of the java.security.Principal interface.
+The interfaces have been ported to PHPCR, and we added a PrincipalInterface as
+well, as there is no equivalent in PHPCR.
+
+This chapter has not been implemented yet and might still need to be adjusted
+to fit PHP.
 
 
 Drawing the line
@@ -312,9 +322,9 @@ At the time of this writing, some JCR features have not been implemented in any
 PHPCR implementation. In those areas, changes are more likely to happen, once
 implementation starts and people figure out what needs to be done. Those areas
 are:
-* Lock
-* Observation
-* Retention
+
+* Observation (partially)
+* Retention and Hold
 * Security
 
 
@@ -338,3 +348,4 @@ Contributors:
 * Henri Bergius <henri.bergius (at) iki.fi>
 * Jordi Boggiano <j.boggiano (at) seld.be>
 * Christian Stocker <chregu (at) liip.ch>
+* And others: https://github.com/phpcr/phpcr/graphs/contributors
