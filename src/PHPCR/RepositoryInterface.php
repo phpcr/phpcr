@@ -471,11 +471,11 @@ interface RepositoryInterface
      * Key to boolean descriptor. Indicates that you can change node definitions
      * that are in-use by existing nodes
      *
-     * Note the typo is also in JCR. see https://github.com/phpcr/phpcr/pull/43#issuecomment-8727677
+     * Note the typo of the value is also in JCR. see https://github.com/phpcr/phpcr/pull/43#issuecomment-8727677
      *
      * @api
      */
-    const NODE_TYPE_MANAGEMENT_UPDATE_IN_USE_SUPORTED = "node.type.management.update.in.use.suported";
+    const NODE_TYPE_MANAGEMENT_UPDATE_IN_USE_SUPPORTED = "node.type.management.update.in.use.suported";
 
     /**
      * Key to a string[] descriptor. Returns an array holding the constants
