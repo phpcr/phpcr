@@ -30,8 +30,7 @@ namespace PHPCR\Query\QOM;
  *
  * To be included in the query results, a node-tuple must satisfy the constraint.
  *
- * @package phpcr
- * @subpackage interfaces
+ * @api
  */
 interface ConstraintInterface
 {

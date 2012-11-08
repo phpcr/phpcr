@@ -27,8 +27,6 @@ namespace PHPCR\Observation;
 /**
  * An event fired by the observation mechanism.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface EventInterface
@@ -131,7 +129,7 @@ interface EventInterface
      * @return integer the type of this event.
      * @api
      */
-    function getType();
+    public function getType();
 
     /**
      * Returns the absolute path associated with this event or null if this
@@ -145,7 +143,7 @@ interface EventInterface
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
      */
-    function getPath();
+    public function getPath();
 
     /**
      * Returns the user ID connected with this event.
@@ -155,7 +153,7 @@ interface EventInterface
      * @return string The identifier of the user connected to the event.
      * @api
      */
-    function getUserID();
+    public function getUserID();
 
     /**
      * Returns the identifier associated with this event or null if this event
@@ -169,7 +167,7 @@ interface EventInterface
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
      */
-    function getIdentifier();
+    public function getIdentifier();
 
     /**
      * Returns the information map associated with this event.
@@ -182,7 +180,7 @@ interface EventInterface
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
      */
-    function getInfo();
+    public function getInfo();
 
     /**
      * Returns the user data set through ObservationManagerInterface::setUserData() on the
@@ -192,7 +190,7 @@ interface EventInterface
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
      */
-    function getUserData();
+    public function getUserData();
 
     /**
      * Returns the date when the change was persisted that caused this event.
@@ -206,5 +204,5 @@ interface EventInterface
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
      */
-    function getDate();
+    public function getDate();
 }

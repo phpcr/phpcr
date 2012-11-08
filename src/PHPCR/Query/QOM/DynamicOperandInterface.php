@@ -27,8 +27,7 @@ namespace PHPCR\Query\QOM;
 /**
  * An operand whose value can only be determined in evaluating the query.
  *
- * @package phpcr
- * @subpackage interfaces
+ * @api
  */
 interface DynamicOperandInterface extends OperandInterface
 {

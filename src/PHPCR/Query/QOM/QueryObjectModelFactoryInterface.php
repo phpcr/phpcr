@@ -30,8 +30,6 @@ namespace PHPCR\Query\QOM;
  * Refer to QueryObjectModelInterface for a description of the query object
  * model.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInterface
@@ -66,7 +64,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    function createQuery(\PHPCR\Query\QOM\SourceInterface $source,
+    public function createQuery(\PHPCR\Query\QOM\SourceInterface $source,
                          \PHPCR\Query\QOM\ConstraintInterface $constraint = null,
                          array $orderings = array(),
                          array $columns = array());
@@ -97,7 +95,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    function selector($nodeTypeName, $selectorName = null);
+    public function selector($nodeTypeName, $selectorName = null);
 
     /**
      * Performs a join between two node-tuple sources.
@@ -122,7 +120,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    function join(\PHPCR\Query\QOM\SourceInterface $left, \PHPCR\Query\QOM\SourceInterface $right,
+    public function join(\PHPCR\Query\QOM\SourceInterface $left, \PHPCR\Query\QOM\SourceInterface $right,
                          $joinType, \PHPCR\Query\QOM\JoinConditionInterface $joinCondition);
 
     /**
@@ -161,7 +159,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    function equiJoinCondition($selector1Name, $property1Name, $selector2Name, $property2Name);
+    public function equiJoinCondition($selector1Name, $property1Name, $selector2Name, $property2Name);
 
     /**
      * Tests whether a first selector's node is the same as a node identified
@@ -194,7 +192,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    function sameNodeJoinCondition($selector1Name, $selector2Name, $selector2Path = null);
+    public function sameNodeJoinCondition($selector1Name, $selector2Name, $selector2Path = null);
 
     /**
      * Tests whether a first selector's node is a child of a second selector's
@@ -223,7 +221,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    function childNodeJoinCondition($childSelectorName, $parentSelectorName);
+    public function childNodeJoinCondition($childSelectorName, $parentSelectorName);
 
     /**
      * Tests whether a first selector's node is a descendant of a second
@@ -251,7 +249,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    function descendantNodeJoinCondition($descendantSelectorName, $ancestorSelectorName);
+    public function descendantNodeJoinCondition($descendantSelectorName, $ancestorSelectorName);
 
     /**
      * Performs a logical conjunction of two other constraints.
@@ -271,7 +269,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    function andConstraint(\PHPCR\Query\QOM\ConstraintInterface $constraint1,
+    public function andConstraint(\PHPCR\Query\QOM\ConstraintInterface $constraint1,
                          \PHPCR\Query\QOM\ConstraintInterface $constraint2);
 
     /**
@@ -293,7 +291,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    function orConstraint(\PHPCR\Query\QOM\ConstraintInterface $constraint1,
+    public function orConstraint(\PHPCR\Query\QOM\ConstraintInterface $constraint1,
                         \PHPCR\Query\QOM\ConstraintInterface $constraint2);
 
     /**
@@ -312,7 +310,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    function notConstraint(\PHPCR\Query\QOM\ConstraintInterface $constraint);
+    public function notConstraint(\PHPCR\Query\QOM\ConstraintInterface $constraint);
 
     /**
      * Filters node-tuples based on the outcome of a binary operation.
@@ -334,7 +332,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    function comparison(\PHPCR\Query\QOM\DynamicOperandInterface $operand1, $operator,
+    public function comparison(\PHPCR\Query\QOM\DynamicOperandInterface $operand1, $operator,
                                \PHPCR\Query\QOM\StaticOperandInterface $operand2);
 
     /**
@@ -359,7 +357,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    function propertyExistence($propertyName, $selectorName = null);
+    public function propertyExistence($propertyName, $selectorName = null);
 
     /**
      * Performs a full-text search against the specified or default selector.
@@ -393,7 +391,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    function fullTextSearch($propertyName, $fullTextSearchExpression, $selectorName = null);
+    public function fullTextSearch($propertyName, $fullTextSearchExpression, $selectorName = null);
 
     /**
      * Tests whether a node in the specified or default selector is reachable
@@ -419,7 +417,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    function sameNode($path, $selectorName = null);
+    public function sameNode($path, $selectorName = null);
 
     /**
      * Tests whether a node in the specified or default selector is a child of
@@ -448,7 +446,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    function childNode($path, $selectorName = null);
+    public function childNode($path, $selectorName = null);
 
     /**
      * Tests whether a node in the specified or default selector is a
@@ -478,7 +476,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    function descendantNode($path, $selectorName = null);
+    public function descendantNode($path, $selectorName = null);
 
     /**
      * Evaluates to the value (or values, if multi-valued) of a property in the
@@ -498,7 +496,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    function propertyValue($propertyName, $selectorName = null);
+    public function propertyValue($propertyName, $selectorName = null);
 
     /**
      * Evaluates to the length (or lengths, if multi-valued) of a property.
@@ -516,7 +514,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    function length(\PHPCR\Query\QOM\PropertyValueInterface $propertyValue);
+    public function length(\PHPCR\Query\QOM\PropertyValueInterface $propertyValue);
 
     /**
      * Evaluates to a NAME value equal to the prefix-qualified name of a node
@@ -537,7 +535,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    function nodeName($selectorName = null);
+    public function nodeName($selectorName = null);
 
     /**
      * Evaluates to a NAME value equal to the local (unprefixed) name of a node
@@ -555,7 +553,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    function nodeLocalName($selectorName = null);
+    public function nodeLocalName($selectorName = null);
 
     /**
      * Evaluates to a DOUBLE value equal to the full-text search score of a
@@ -577,7 +575,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    function fullTextSearchScore($selectorName = null);
+    public function fullTextSearchScore($selectorName = null);
 
     /**
      * Evaluates to the lower-case string value (or values, if multi-valued) of an operand.
@@ -595,7 +593,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    function lowerCase(\PHPCR\Query\QOM\DynamicOperandInterface $operand);
+    public function lowerCase(\PHPCR\Query\QOM\DynamicOperandInterface $operand);
 
     /**
      * Evaluates to the upper-case string value (or values, if multi-valued) of
@@ -614,7 +612,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    function upperCase(\PHPCR\Query\QOM\DynamicOperandInterface $operand);
+    public function upperCase(\PHPCR\Query\QOM\DynamicOperandInterface $operand);
 
     /**
      * Evaluates to the value of a bind variable.
@@ -634,7 +632,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    function bindVariable($bindVariableName);
+    public function bindVariable($bindVariableName);
 
     /**
      * Evaluates to a literal value.
@@ -653,7 +651,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    function literal($literalValue);
+    public function literal($literalValue);
 
     /**
      * Orders by the value of the specified operand, in ascending order.
@@ -670,7 +668,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    function ascending(\PHPCR\Query\QOM\DynamicOperandInterface $operand);
+    public function ascending(\PHPCR\Query\QOM\DynamicOperandInterface $operand);
 
     /**
      * Orders by the value of the specified operand, in descending order.
@@ -687,7 +685,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    function descending(\PHPCR\Query\QOM\DynamicOperandInterface $operand);
+    public function descending(\PHPCR\Query\QOM\DynamicOperandInterface $operand);
 
     /**
      * Identifies a property in the specified or default selector to include in
@@ -725,5 +723,5 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    function column($propertyName, $columnName = null, $selectorName = null);
+    public function column($propertyName, $columnName = null, $selectorName = null);
 }

@@ -32,8 +32,6 @@ namespace PHPCR\Query\QOM;
  * would return true, where $childSelectorNode is the node for childSelector
  * and $parentSelectorNode is the node for parentSelector.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface ChildNodeJoinConditionInterface extends JoinConditionInterface
@@ -45,7 +43,7 @@ interface ChildNodeJoinConditionInterface extends JoinConditionInterface
      *
      * @api
      */
-    function getChildSelectorName();
+    public function getChildSelectorName();
 
     /**
      * Gets the name of the parent selector.
@@ -54,5 +52,5 @@ interface ChildNodeJoinConditionInterface extends JoinConditionInterface
      *
      * @api
      */
-    function getParentSelectorName();
+    public function getParentSelectorName();
 }

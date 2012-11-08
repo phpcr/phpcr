@@ -70,8 +70,6 @@ namespace PHPCR\Query\QOM;
  * - the string "\x" matches the character "x", and
  * - all other characters match themselves.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface ComparisonInterface extends ConstraintInterface
@@ -84,7 +82,7 @@ interface ComparisonInterface extends ConstraintInterface
      *
      * @api
      */
-    function getOperand1();
+    public function getOperand1();
 
     /**
      * Gets the operator.
@@ -94,7 +92,7 @@ interface ComparisonInterface extends ConstraintInterface
      *
      * @api
      */
-    function getOperator();
+    public function getOperator();
 
     /**
      * Gets the second operand.
@@ -103,5 +101,5 @@ interface ComparisonInterface extends ConstraintInterface
      *
      * @api
      */
-    function getOperand2();
+    public function getOperand2();
 }

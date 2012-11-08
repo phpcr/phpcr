@@ -32,8 +32,6 @@ namespace PHPCR\Query\QOM;
  *
  * If propertyValue evaluates to null, the Length operand also evaluates to null.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface LengthInterface extends DynamicOperandInterface
@@ -46,5 +44,5 @@ interface LengthInterface extends DynamicOperandInterface
      *
      * @api
      */
-    function getPropertyValue();
+    public function getPropertyValue();
 }

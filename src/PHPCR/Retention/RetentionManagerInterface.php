@@ -27,8 +27,6 @@ namespace PHPCR\Retention;
 /**
  * The RetentionManager object is accessed via SessionInterface::getRetentionManager().
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface RetentionManagerInterface
@@ -53,7 +51,7 @@ interface RetentionManagerInterface
      *
      * @api
      */
-    function getHolds($absPath);
+    public function getHolds($absPath);
 
     /**
      * Places a hold on the existing node at $absPath.
@@ -84,7 +82,7 @@ interface RetentionManagerInterface
      *
      * @api
      */
-    function addHold($absPath, $name, $isDeep);
+    public function addHold($absPath, $name, $isDeep);
 
     /**
      * Removes the specified hold from the node at $absPath.
@@ -110,7 +108,7 @@ interface RetentionManagerInterface
      *
      * @api
      */
-    function removeHold($absPath, \PHPCR\Retention\HoldInterface $hold);
+    public function removeHold($absPath, \PHPCR\Retention\HoldInterface $hold);
 
     /**
      * Gets the retention poilcy of a node identified by its path.
@@ -133,7 +131,7 @@ interface RetentionManagerInterface
      *
      * @api
      */
-    function getRetentionPolicy($absPath);
+    public function getRetentionPolicy($absPath);
 
     /**
      * Sets a retention policy of a node identified by the given path.
@@ -163,7 +161,7 @@ interface RetentionManagerInterface
      *
      * @api
      */
-    function setRetentionPolicy($absPath, RetentionPolicyInterface $retentionPolicy);
+    public function setRetentionPolicy($absPath, RetentionPolicyInterface $retentionPolicy);
 
     /**
      * Removes a previously set retention policy.
@@ -189,5 +187,5 @@ interface RetentionManagerInterface
      *
      * @api
      */
-    function removeRetentionPolicy($absPath);
+    public function removeRetentionPolicy($absPath);
 }

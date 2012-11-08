@@ -69,8 +69,6 @@ namespace PHPCR\Query\QOM;
  * - Within a term, each double quote ("), "-" (minus sign), and "\"
  *      (backslash) must be escaped by a preceding "\" (backslash).
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface FullTextSearchInterface extends ConstraintInterface
@@ -82,7 +80,7 @@ interface FullTextSearchInterface extends ConstraintInterface
      *
      * @api
      */
-    function getSelectorName();
+    public function getSelectorName();
 
     /**
      * Gets the name of the property.
@@ -93,7 +91,7 @@ interface FullTextSearchInterface extends ConstraintInterface
      *
      * @api
      */
-    function getPropertyName();
+    public function getPropertyName();
 
     /**
      * Gets the full-text search expression.
@@ -103,5 +101,5 @@ interface FullTextSearchInterface extends ConstraintInterface
      *
      * @api
      */
-    function getFullTextSearchExpression();
+    public function getFullTextSearchExpression();
 }

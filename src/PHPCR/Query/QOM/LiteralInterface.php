@@ -27,8 +27,6 @@ namespace PHPCR\Query\QOM;
 /**
  * Evaluates to a literal value.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface LiteralInterface extends StaticOperandInterface
@@ -39,5 +37,5 @@ interface LiteralInterface extends StaticOperandInterface
      * @return string the literal value; non-null
      * @api
      */
-    function getLiteralValue();
+    public function getLiteralValue();
 }

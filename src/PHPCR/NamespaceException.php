@@ -31,8 +31,6 @@ namespace PHPCR;
  * Exception thrown by SessionInterface::setNamespacePrefix()
  * if the specified uri is not registered in the NamespaceRegistry.
  *
- * @package phpcr
- * @subpackage exceptions
  * @api
  */
 class NamespaceException extends RepositoryException

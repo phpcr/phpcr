@@ -29,8 +29,6 @@ namespace PHPCR\Query;
  *
  * Provides methods for the creation and retrieval of search queries.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface QueryManagerInterface
@@ -53,7 +51,7 @@ interface QueryManagerInterface
      *
      * @api
      */
-    function createQuery($statement, $language);
+    public function createQuery($statement, $language);
 
     /**
      * Returns a QueryObjectModelFactory with which a JCR-JQOM query can be
@@ -64,7 +62,7 @@ interface QueryManagerInterface
      *
      * @api
      */
-    function getQOMFactory();
+    public function getQOMFactory();
 
     /**
      * Retrieves an existing persistent query.
@@ -85,7 +83,7 @@ interface QueryManagerInterface
      *
      * @api
      */
-    function getQuery($node);
+    public function getQuery($node);
 
     /**
      * Returns an array of strings representing all query languages supported
@@ -102,5 +100,5 @@ interface QueryManagerInterface
      *
      * @api
      */
-    function getSupportedQueryLanguages();
+    public function getSupportedQueryLanguages();
 }

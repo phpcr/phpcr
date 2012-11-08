@@ -33,8 +33,6 @@ namespace PHPCR\Query\QOM;
  *  selector2 has a property named property2, and
  *  the value of property1 equals the value of property2
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface EquiJoinConditionInterface extends JoinConditionInterface
@@ -46,7 +44,7 @@ interface EquiJoinConditionInterface extends JoinConditionInterface
      *
      * @api
      */
-    function getSelector1Name();
+    public function getSelector1Name();
 
     /**
      * Gets the property name in the first selector.
@@ -55,7 +53,7 @@ interface EquiJoinConditionInterface extends JoinConditionInterface
      *
      * @api
      */
-    function getProperty1Name();
+    public function getProperty1Name();
 
     /**
      * Gets the name of the second selector.
@@ -64,7 +62,7 @@ interface EquiJoinConditionInterface extends JoinConditionInterface
      *
      * @api
      */
-    function getSelector2Name();
+    public function getSelector2Name();
 
     /**
      * Gets the property name in the second selector.
@@ -73,5 +71,5 @@ interface EquiJoinConditionInterface extends JoinConditionInterface
      *
      * @api
      */
-    function getProperty2Name();
+    public function getProperty2Name();
 }

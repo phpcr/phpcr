@@ -28,8 +28,6 @@ namespace PHPCR\NodeType;
  * Exception thrown when an attempt is made to register an invalid node
  * type definition template.
  *
- * @package phpcr
- * @subpackage exceptions
  * @api
  */
 class InvalidNodeTypeDefinitionException extends \PHPCR\RepositoryException

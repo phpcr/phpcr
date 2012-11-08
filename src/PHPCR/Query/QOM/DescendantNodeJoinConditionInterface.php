@@ -34,8 +34,6 @@ namespace PHPCR\Query\QOM;
  * $descendantSelectorNode is the node for descendantSelector and
  * $ancestorSelectorNode is the node for ancestorSelector.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface DescendantNodeJoinConditionInterface extends JoinConditionInterface
@@ -47,7 +45,7 @@ interface DescendantNodeJoinConditionInterface extends JoinConditionInterface
      *
      * @api
      */
-    function getDescendantSelectorName();
+    public function getDescendantSelectorName();
 
     /**
      * Gets the name of the ancestor selector.
@@ -56,5 +54,5 @@ interface DescendantNodeJoinConditionInterface extends JoinConditionInterface
      *
      * @api
      */
-    function getAncestorSelectorName();
+    public function getAncestorSelectorName();
 }

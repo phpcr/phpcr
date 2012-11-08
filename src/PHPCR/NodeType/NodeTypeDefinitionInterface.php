@@ -39,8 +39,6 @@ namespace PHPCR\NodeType;
  * registration, only objects implementing the subinterface NodeType will
  * be encountered.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface NodeTypeDefinitionInterface
@@ -56,7 +54,7 @@ interface NodeTypeDefinitionInterface
      *
      * @api
      */
-    function getName();
+    public function getName();
 
     /**
      * Returns the names of the supertypes actually declared in this node type.
@@ -70,7 +68,7 @@ interface NodeTypeDefinitionInterface
      *
      * @api
      */
-    function getDeclaredSupertypeNames();
+    public function getDeclaredSupertypeNames();
 
     /**
      * Reports if this is an abstract node type.
@@ -88,7 +86,7 @@ interface NodeTypeDefinitionInterface
      *
      * @api
      */
-    function isAbstract();
+    public function isAbstract();
 
     /**
      * Reports if this is a mixin node type.
@@ -102,7 +100,7 @@ interface NodeTypeDefinitionInterface
      *
      * @api
      */
-    function isMixin();
+    public function isMixin();
 
     /**
      * Determines if nodes of this type must support orderable child nodes.
@@ -125,7 +123,7 @@ interface NodeTypeDefinitionInterface
      *
      * @api
      */
-    function hasOrderableChildNodes();
+    public function hasOrderableChildNodes();
 
     /**
      * Determins if the node type is queryable.
@@ -145,7 +143,7 @@ interface NodeTypeDefinitionInterface
      *
      * @api
      */
-    function isQueryable();
+    public function isQueryable();
 
     /**
      * Returns the name of the primary item (one of the child items of the nodes
@@ -162,7 +160,7 @@ interface NodeTypeDefinitionInterface
      *
      * @api
      */
-    function getPrimaryItemName();
+    public function getPrimaryItemName();
 
     /**
      * Returns an array containing the property definitions actually declared
@@ -176,7 +174,7 @@ interface NodeTypeDefinitionInterface
      *
      * @api
      */
-    function getDeclaredPropertyDefinitions();
+    public function getDeclaredPropertyDefinitions();
 
     /**
      * Returns an array containing the child node definitions actually
@@ -190,5 +188,5 @@ interface NodeTypeDefinitionInterface
      *
      * @api
      */
-    function getDeclaredChildNodeDefinitions();
+    public function getDeclaredChildNodeDefinitions();
 }

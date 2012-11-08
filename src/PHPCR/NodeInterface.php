@@ -34,8 +34,6 @@ namespace PHPCR;
  * a list of all child nodes. Keys are the node names, values the node
  * instances.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface NodeInterface extends ItemInterface, \Traversable
@@ -127,7 +125,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @api
      */
-    function addNode($relPath, $primaryNodeTypeName = null);
+    public function addNode($relPath, $primaryNodeTypeName = null);
 
     /**
      * Insert a child node before another child identified by its path.
@@ -176,7 +174,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @api
      */
-    function orderBefore($srcChildRelPath, $destChildRelPath);
+    public function orderBefore($srcChildRelPath, $destChildRelPath);
 
     /**
      * Defines a value for a property identified by its name.
@@ -250,7 +248,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @api
      */
-    function setProperty($name, $value, $type = null);
+    public function setProperty($name, $value, $type = null);
 
     /**
      * Returns the node at relPath relative to this node.
@@ -278,7 +276,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @api
      */
-    function getNode($relPath);
+    public function getNode($relPath);
 
     /**
      * Get a set of nodes gathered by the definition of a filter.
@@ -339,7 +337,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @api
      */
-    function getNodes($filter = null);
+    public function getNodes($filter = null);
 
     /**
      * Returns the property at relPath relative to this node.
@@ -358,7 +356,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @api
      */
-    function getProperty($relPath);
+    public function getProperty($relPath);
 
     /**
      * Returns the property of this node with name $name.
@@ -381,7 +379,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @api
      */
-    function getPropertyValue($name, $type=null);
+    public function getPropertyValue($name, $type=null);
 
     /**
      * Get an iteratable set of properties gathered on behalf of a filter.
@@ -440,7 +438,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @api
      */
-    function getProperties($filter = null);
+    public function getProperties($filter = null);
 
     /**
      * Shortcut for getProperties and then getting the values of the properties.
@@ -466,7 +464,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @api
      */
-    function getPropertiesValues($filter=null, $dereference=true);
+    public function getPropertiesValues($filter=null, $dereference=true);
 
     /**
      * Returns the primary child item of the current node.
@@ -491,7 +489,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @api
      */
-    function getPrimaryItem();
+    public function getPrimaryItem();
 
     /**
      * Returns the identifier of the current node.
@@ -504,7 +502,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @api
      */
-    function getIdentifier();
+    public function getIdentifier();
 
     /**
      * This method returns the index of this node within the ordered set of its
@@ -523,7 +521,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @api
      */
-    function getIndex();
+    public function getIndex();
 
     /**
      * This method returns all REFERENCE properties that refer to this node,
@@ -558,7 +556,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @api
      */
-    function getReferences($name = null);
+    public function getReferences($name = null);
 
     /**
      * This method returns all WEAKREFERENCE properties that refer to this
@@ -593,7 +591,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @api
      */
-    function getWeakReferences($name = null);
+    public function getWeakReferences($name = null);
 
     /**
      * Indicates whether a node exists at relPath
@@ -610,7 +608,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @api
      */
-    function hasNode($relPath);
+    public function hasNode($relPath);
 
     /**
      * Indicates whether a property exists at relPath.
@@ -627,7 +625,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @api
      */
-    function hasProperty($relPath);
+    public function hasProperty($relPath);
 
     /**
      * Indicates whether this node has any child nodes.
@@ -642,7 +640,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @api
      */
-    function hasNodes();
+    public function hasNodes();
 
     /**
      * Indicates whether this node has properties.
@@ -657,7 +655,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @api
      */
-    function hasProperties();
+    public function hasProperties();
 
     /**
      * Returns the primary node type in effect for this node.
@@ -671,7 +669,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @api
      */
-    function getPrimaryNodeType();
+    public function getPrimaryNodeType();
 
     /**
      * Returns an array of NodeType objects representing the mixin node types
@@ -688,7 +686,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @api
      */
-    function getMixinNodeTypes();
+    public function getMixinNodeTypes();
 
     /**
      * Returns true if this node is of the specified primary node type or mixin
@@ -706,7 +704,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @api
      */
-    function isNodeType($nodeTypeName);
+    public function isNodeType($nodeTypeName);
 
     /**
      * Changes the primary node type of this node to nodeTypeName.
@@ -738,7 +736,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @api
      */
-    function setPrimaryType($nodeTypeName);
+    public function setPrimaryType($nodeTypeName);
 
     /**
      * Adds the mixin node type named $mixinName to this node.
@@ -783,7 +781,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @api
      */
-    function addMixin($mixinName);
+    public function addMixin($mixinName);
 
     /**
      * Removes the specified mixin node type from this node and removes
@@ -811,7 +809,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @api
      */
-    function removeMixin($mixinName);
+    public function removeMixin($mixinName);
 
     /**
      * Determine if a mixin node type may be added to the current node.
@@ -842,7 +840,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @api
      */
-    function canAddMixin($mixinName);
+    public function canAddMixin($mixinName);
 
     /**
      * Returns the node definition that applies to this node.
@@ -863,7 +861,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @api
      */
-    function getDefinition();
+    public function getDefinition();
 
     /**
      * Updates a node corresponding to the current one in the given workspace.
@@ -895,7 +893,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @api
      */
-    function update($srcWorkspace);
+    public function update($srcWorkspace);
 
     /**
      * Returns the absolute path of the node in the specified workspace that
@@ -913,7 +911,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @api
      */
-    function getCorrespondingNodePath($workspaceName);
+    public function getCorrespondingNodePath($workspaceName);
 
     /**
      * Returns an iterator over all nodes that are in the shared set of this
@@ -930,7 +928,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @api
      */
-    function getSharedSet();
+    public function getSharedSet();
 
     /**
      * Removes this node and every other node in the shared set of this node.
@@ -960,7 +958,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @api
      */
-    function removeSharedSet();
+    public function removeSharedSet();
 
     /**
      * Removes this node, but does not remove any other node in the shared set
@@ -989,7 +987,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @api
      */
-    function removeShare();
+    public function removeShare();
 
     /**
      * Determine if the current node is currently checked out.
@@ -1007,7 +1005,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @api
      */
-    function isCheckedOut();
+    public function isCheckedOut();
 
     /**
      * Determine if the current node has been locked.
@@ -1023,7 +1021,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @api
      */
-    function isLocked();
+    public function isLocked();
 
     /**
      * Causes the lifecycle state of this node to undergo the specified
@@ -1049,7 +1047,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @api
      */
-    function followLifecycleTransition($transition);
+    public function followLifecycleTransition($transition);
 
     /**
      * Returns the list of valid state transitions for this node.
@@ -1063,5 +1061,5 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @api
      */
-    function getAllowedLifecycleTransitions();
+    public function getAllowedLifecycleTransitions();
 }

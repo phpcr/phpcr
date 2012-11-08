@@ -56,8 +56,6 @@ namespace PHPCR\Query\QOM;
  * The query object model representation of a query is created by factory
  * methods in the QueryObjectModelFactory.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface QueryObjectModelInterface extends \PHPCR\Query\QueryInterface
@@ -68,7 +66,7 @@ interface QueryObjectModelInterface extends \PHPCR\Query\QueryInterface
      * @return \PHPCR\Query\QOM\SourceInterface the node-tuple source; non-null
      * @api
     */
-    function getSource();
+    public function getSource();
 
     /**
      * Gets the constraint for this query.
@@ -78,7 +76,7 @@ interface QueryObjectModelInterface extends \PHPCR\Query\QueryInterface
      *
      * @api
     */
-    function getConstraint();
+    public function getConstraint();
 
     /**
      * Gets the orderings for this query.
@@ -86,7 +84,7 @@ interface QueryObjectModelInterface extends \PHPCR\Query\QueryInterface
      * @return array a list of zero or more OrderingInterface; non-null
      * @api
     */
-    function getOrderings();
+    public function getOrderings();
 
     /**
      * Gets the columns for this query.
@@ -94,5 +92,5 @@ interface QueryObjectModelInterface extends \PHPCR\Query\QueryInterface
      * @return array a list of zero or more ColumnInterface; non-null
      * @api
     */
-    function getColumns();
+    public function getColumns();
 }

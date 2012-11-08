@@ -34,8 +34,6 @@ namespace PHPCR\Query\QOM;
  * in a repository that does not support full-text search scoring or has no
  * full-text indexed properties.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface FullTextSearchScoreInterface extends DynamicOperandInterface
@@ -47,5 +45,5 @@ interface FullTextSearchScoreInterface extends DynamicOperandInterface
      *
      * @api
      */
-    function getSelectorName();
+    public function getSelectorName();
 }

@@ -32,8 +32,6 @@ namespace PHPCR\Version;
  * children and not over versions. If you want to use a foreach, you can use
  * getAllVersions() to retrieve an iterator over versions.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface VersionHistoryInterface extends \PHPCR\NodeInterface
@@ -49,7 +47,7 @@ interface VersionHistoryInterface extends \PHPCR\NodeInterface
      *
      * @api
      */
-    function getVersionableIdentifier();
+    public function getVersionableIdentifier();
 
     /**
      * Returns the root version of this version history.
@@ -60,7 +58,7 @@ interface VersionHistoryInterface extends \PHPCR\NodeInterface
      *
      * @api
      */
-    function getRootVersion();
+    public function getRootVersion();
 
     /**
      * This method returns an iterator over all the versions in the line of
@@ -90,7 +88,7 @@ interface VersionHistoryInterface extends \PHPCR\NodeInterface
      *
      * @api
      */
-    function getAllLinearVersions();
+    public function getAllLinearVersions();
 
     /**
      * Returns an iterator over all the versions within this version history.
@@ -106,7 +104,7 @@ interface VersionHistoryInterface extends \PHPCR\NodeInterface
      *
      * @api
      */
-    function getAllVersions();
+    public function getAllVersions();
 
     /**
      * This method returns all the frozen nodes of all the versions in this
@@ -120,7 +118,7 @@ interface VersionHistoryInterface extends \PHPCR\NodeInterface
      *
      * @api
      */
-    function getAllLinearFrozenNodes();
+    public function getAllLinearFrozenNodes();
 
     /**
      * Returns an iterator over all the frozen nodes of all the versions of
@@ -136,7 +134,7 @@ interface VersionHistoryInterface extends \PHPCR\NodeInterface
      *
      * @api
      */
-    function getAllFrozenNodes();
+    public function getAllFrozenNodes();
 
     /**
      * Retrieves a particular version from this version history by version
@@ -152,7 +150,7 @@ interface VersionHistoryInterface extends \PHPCR\NodeInterface
      *
      * @api
      */
-    function getVersion($versionName);
+    public function getVersion($versionName);
 
     /**
      * Retrieves a particular version from this version history by version
@@ -168,7 +166,7 @@ interface VersionHistoryInterface extends \PHPCR\NodeInterface
      *
      * @api
      */
-    function getVersionByLabel($label);
+    public function getVersionByLabel($label);
 
     /**
      * Adds the specified label to the specified version.
@@ -219,7 +217,7 @@ interface VersionHistoryInterface extends \PHPCR\NodeInterface
      *
      * @api
      */
-    function addVersionLabel($versionName, $label, $moveLabel);
+    public function addVersionLabel($versionName, $label, $moveLabel);
 
     /**
      * Removes the specified label from among the labels of this version
@@ -243,7 +241,7 @@ interface VersionHistoryInterface extends \PHPCR\NodeInterface
      *
      * @api
      */
-    function removeVersionLabel($label);
+    public function removeVersionLabel($label);
 
     /**
      * Returns true if the given version has the given label. If no $version is
@@ -266,7 +264,7 @@ interface VersionHistoryInterface extends \PHPCR\NodeInterface
      *
      * @api
      */
-    function hasVersionLabel($label, $version = null);
+    public function hasVersionLabel($label, $version = null);
 
     /**
      * Returns all version labels of the given version - empty array if none.
@@ -288,7 +286,7 @@ interface VersionHistoryInterface extends \PHPCR\NodeInterface
      *
      * @api
      */
-    function getVersionLabels($version = null);
+    public function getVersionLabels($version = null);
 
     /**
      * Removes the named version from this version history and automatically
@@ -328,5 +326,5 @@ interface VersionHistoryInterface extends \PHPCR\NodeInterface
      *
      * @api
      */
-    function removeVersion($versionName);
+    public function removeVersion($versionName);
 }

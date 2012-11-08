@@ -27,8 +27,6 @@ namespace PHPCR\Query;
 /**
  * Thrown by methods of Query.
  *
- * @package phpcr
- * @subpackage exceptions
  * @api
  */
 class InvalidQueryException extends \PHPCR\RepositoryException

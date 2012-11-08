@@ -32,8 +32,6 @@ namespace PHPCR\Observation;
  * the transaction is committed. An event listener only sees events for which
  * the session that registered it has sufficient access rights.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface EventListenerInterface
@@ -45,5 +43,5 @@ interface EventListenerInterface
      * @return void
      * @api
      */
-    function onEvent(\Traversable $events);
+    public function onEvent(\Traversable $events);
 }

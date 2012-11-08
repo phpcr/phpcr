@@ -27,8 +27,6 @@ namespace PHPCR;
 /**
  * Exception thrown by Lifecycle management-related methods.
  *
- * @package phpcr
- * @subpackage exceptions
  * @api
  */
 class InvalidLifecycleTransitionException extends RepositoryException

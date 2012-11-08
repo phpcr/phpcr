@@ -27,8 +27,6 @@ namespace PHPCR;
 /**
  * Exception thrown by NodeInterface::merge()
  *
- * @package phpcr
- * @subpackage exceptions
  * @api
  */
 class MergeException extends RepositoryException

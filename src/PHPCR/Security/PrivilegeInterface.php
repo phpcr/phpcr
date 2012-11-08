@@ -44,8 +44,6 @@ namespace PHPCR\Security;
  *
  * A privilege can be both aggregate and abstract.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface PrivilegeInterface
@@ -205,7 +203,7 @@ interface PrivilegeInterface
      *
      * @api
      */
-    function getName();
+    public function getName();
 
     /**
      * Returns whether this privilege is an abstract privilege.
@@ -215,7 +213,7 @@ interface PrivilegeInterface
      *
      * @api
      */
-    function isAbstract();
+    public function isAbstract();
 
     /**
      * Returns whether this privilege is an aggregate privilege.
@@ -225,7 +223,7 @@ interface PrivilegeInterface
      *
      * @api
      */
-    function isAggregate();
+    public function isAggregate();
 
     /**
      * If this privilege is an aggregate privilege, returns the privileges
@@ -236,7 +234,7 @@ interface PrivilegeInterface
      *
      * @api
      */
-    function getDeclaredAggregatePrivileges();
+    public function getDeclaredAggregatePrivileges();
 
     /**
      * If this privilege is an aggregate privilege, returns the privileges it
@@ -248,5 +246,5 @@ interface PrivilegeInterface
      *
      * @api
      */
-    function getAggregatePrivileges();
+    public function getAggregatePrivileges();
 }

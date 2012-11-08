@@ -28,8 +28,6 @@ namespace PHPCR;
  * Exception thrown by RepositoryInterface::login() when a specific workspace
  * is not found.
  *
- * @package phpcr
- * @subpackage exceptions
  * @api
  */
 class NoSuchWorkspaceException extends RepositoryException

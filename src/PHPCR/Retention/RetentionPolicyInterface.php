@@ -27,8 +27,6 @@ namespace PHPCR\Retention;
 /**
  * A RetentionPolicy is an object with a name and an optional description.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface RetentionPolicyInterface
@@ -41,5 +39,5 @@ interface RetentionPolicyInterface
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
      */
-    function getName();
+    public function getName();
 }

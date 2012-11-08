@@ -35,8 +35,6 @@ namespace PHPCR\Query\QOM;
  * in the tabular results. If property is not specified, columnName must not be
  * specified, and the included columns will be named "selector.propertyName".
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface ColumnInterface
@@ -48,7 +46,7 @@ interface ColumnInterface
      *
      * @api
      */
-    function getSelectorName();
+    public function getSelectorName();
 
     /**
      * Gets the name of the property.
@@ -58,7 +56,7 @@ interface ColumnInterface
      *
      * @api
      */
-    function getPropertyName();
+    public function getPropertyName();
 
     /**
      * Gets the column name.
@@ -68,5 +66,5 @@ interface ColumnInterface
      *
      * @api
      */
-    function getColumnName();
+    public function getColumnName();
 }

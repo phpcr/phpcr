@@ -30,8 +30,6 @@ namespace PHPCR;
  * Exception thrown by RepositoryInterface::login() and
  * SessionInterface::impersonate() if the specified credentials are invalid.
  *
- * @package phpcr
- * @subpackage exceptions
  * @api
  */
 class LoginException extends RepositoryException

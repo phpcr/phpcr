@@ -43,8 +43,6 @@ namespace PHPCR\Query\QOM;
  *  would return true, where $selector1Node is the node for selector1 and
  *  $selector2Node is the node for selector2.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface SameNodeJoinConditionInterface extends JoinConditionInterface
@@ -55,7 +53,7 @@ interface SameNodeJoinConditionInterface extends JoinConditionInterface
      * @return string the selector name; non-null
      * @api
      */
-    function getSelector1Name();
+    public function getSelector1Name();
 
     /**
      * Gets the name of the second selector.
@@ -63,7 +61,7 @@ interface SameNodeJoinConditionInterface extends JoinConditionInterface
      * @return string the selector name; non-null
      * @api
      */
-    function getSelector2Name();
+    public function getSelector2Name();
 
     /**
      * Gets the path relative to the second selector.
@@ -71,5 +69,5 @@ interface SameNodeJoinConditionInterface extends JoinConditionInterface
      * @return string the relative path, or null for none
      * @api
      */
-    function getSelector2Path();
+    public function getSelector2Path();
 }

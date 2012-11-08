@@ -27,8 +27,6 @@ namespace PHPCR\Query\QOM;
 /**
  * Performs a join between two node-tuple sources.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface JoinInterface extends SourceInterface
@@ -40,7 +38,7 @@ interface JoinInterface extends SourceInterface
      *
      * @api
      */
-    function getLeft();
+    public function getLeft();
 
     /**
      * Gets the right node-tuple source.
@@ -49,7 +47,7 @@ interface JoinInterface extends SourceInterface
      *
      * @api
      */
-    function getRight();
+    public function getRight();
 
     /**
      * Gets the join type.
@@ -58,7 +56,7 @@ interface JoinInterface extends SourceInterface
      *
      * @api
      */
-    function getJoinType();
+    public function getJoinType();
 
     /**
      * Gets the join condition.
@@ -67,5 +65,5 @@ interface JoinInterface extends SourceInterface
      *
      * @api
      */
-    function getJoinCondition();
+    public function getJoinCondition();
 }

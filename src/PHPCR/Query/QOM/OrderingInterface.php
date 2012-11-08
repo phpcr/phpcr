@@ -53,8 +53,6 @@ namespace PHPCR\Query\QOM;
  *   the relative order of nt1 and nt2 is implementation determined and may be
  *   arbitrary.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface OrderingInterface
@@ -65,7 +63,7 @@ interface OrderingInterface
      * @return \PHPCR\Query\QOM\DynamicOperandInterface the operand; non-null
      * @api
      */
-    function getOperand();
+    public function getOperand();
 
     /**
      * Gets the order.
@@ -74,5 +72,5 @@ interface OrderingInterface
      *      QueryObjectModelConstants.JCR_ORDER_DESCENDING
      * @api
      */
-    function getOrder();
+    public function getOrder();
 }
