@@ -27,8 +27,6 @@ namespace PHPCR;
 /**
  * The Item is the base interface of Node and Property.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface ItemInterface
@@ -40,7 +38,7 @@ interface ItemInterface
      * @throws RepositoryException if an error occurs.
      * @api
      */
-    function getPath();
+    public function getPath();
 
     /**
      * Returns the name of this Item in qualified form.
@@ -54,7 +52,7 @@ interface ItemInterface
      *
      * @api
      */
-    function getName();
+    public function getName();
 
     /**
      * Returns the ancestor of this Item at the specified depth.
@@ -88,7 +86,7 @@ interface ItemInterface
      *
      * @api
      */
-    function getAncestor($depth);
+    public function getAncestor($depth);
 
     /**
      * Returns the parent of this Item.
@@ -103,7 +101,7 @@ interface ItemInterface
      *
      * @api
      */
-    function getParent();
+    public function getParent();
 
     /**
      * Returns the depth of this Item in the workspace item graph.
@@ -119,7 +117,7 @@ interface ItemInterface
      *
      * @api
      */
-    function getDepth();
+    public function getDepth();
 
     /**
      * Returns the Session through which this Item was acquired.
@@ -130,7 +128,7 @@ interface ItemInterface
      *
      * @api
      */
-    function getSession();
+    public function getSession();
 
     /**
      * Indicates whether this Item is a Node or a Property.
@@ -142,7 +140,7 @@ interface ItemInterface
      *
      * @api
      */
-    function isNode();
+    public function isNode();
 
     /**
      * Determines if the current item is a new one.
@@ -163,7 +161,7 @@ interface ItemInterface
      *
      * @api
      */
-    function isNew();
+    public function isNew();
 
     /**
      * Indicates if the current item has been modified.
@@ -183,7 +181,7 @@ interface ItemInterface
      *
      * @api
      */
-    function isModified();
+    public function isModified();
 
     /**
      * Determines if this Item object represents the same actual workspace item
@@ -220,7 +218,7 @@ interface ItemInterface
      *
      * @api
      */
-    function isSame(ItemInterface $otherItem);
+    public function isSame(ItemInterface $otherItem);
 
     /**
      * Call the ItemVisitor::visit() method.
@@ -236,7 +234,7 @@ interface ItemInterface
      *
      * @api
      */
-    function accept(ItemVisitorInterface $visitor);
+    public function accept(ItemVisitorInterface $visitor);
 
     /**
      * Updates the state of the current item.
@@ -266,7 +264,7 @@ interface ItemInterface
      *
      * @api
      */
-    function refresh($keepChanges);
+    public function refresh($keepChanges);
 
     /**
      * Removes this item (and its subgraph).
@@ -305,5 +303,5 @@ interface ItemInterface
      *
      * @api
      */
-    function remove();
+    public function remove();
 }

@@ -36,8 +36,6 @@ namespace PHPCR\Query;
  * single selector, you can either do foreach on getNodes or call getNode on the
  * rows.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface QueryResultInterface extends \Traversable
@@ -50,7 +48,7 @@ interface QueryResultInterface extends \Traversable
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
      */
-    function getColumnNames();
+    public function getColumnNames();
 
     /**
      * Returns an iterator over the Rows of the result table.
@@ -63,7 +61,7 @@ interface QueryResultInterface extends \Traversable
      *                                    has been called on the same QueryResult object or if another error occurs.
      * @api
     */
-    function getRows();
+    public function getRows();
 
     /**
      * Returns an iterator over all nodes that match the query.
@@ -80,7 +78,7 @@ interface QueryResultInterface extends \Traversable
      *                                    same QueryResult object or if another error occurs.
      * @api
      */
-    function getNodes($prefetch = false);
+    public function getNodes($prefetch = false);
 
     /**
      * Returns an array of all the selector names that were used in the query
@@ -93,5 +91,5 @@ interface QueryResultInterface extends \Traversable
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
      */
-    function getSelectorNames();
+    public function getSelectorNames();
 }

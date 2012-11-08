@@ -35,8 +35,6 @@ namespace PHPCR\Query\QOM;
  * - selector is not the name of a selector in the query
  * - property is not a syntactically valid JCR name
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface PropertyValueInterface extends DynamicOperandInterface
@@ -47,7 +45,7 @@ interface PropertyValueInterface extends DynamicOperandInterface
      * @return string the selector name; non-null
      * @api
      */
-    function getSelectorName();
+    public function getSelectorName();
 
     /**
      * Gets the name of the property.
@@ -55,5 +53,5 @@ interface PropertyValueInterface extends DynamicOperandInterface
      * @return string the property name; non-null
      * @api
      */
-    function getPropertyName();
+    public function getPropertyName();
 }

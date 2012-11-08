@@ -34,8 +34,6 @@ namespace PHPCR\Security;
  * The iterator is equivalent to <b>getPrivileges()</b>, returning a list of
  * PrivilegeInterface. The iterator keys have no significant meaning.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface AccessControlEntryInterface extends \Traversable
@@ -47,7 +45,7 @@ interface AccessControlEntryInterface extends \Traversable
      *
      * @api
      */
-    function getPrincipal();
+    public function getPrincipal();
 
     /**
      * Returns the privileges associated with this access control entry.
@@ -56,5 +54,5 @@ interface AccessControlEntryInterface extends \Traversable
      *
      * @api
      */
-    function getPrivileges();
+    public function getPrivileges();
 }

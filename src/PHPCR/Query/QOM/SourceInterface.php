@@ -27,8 +27,6 @@ namespace PHPCR\Query\QOM;
 /**
  * Evaluates to a set of node-tuples.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface SourceInterface

@@ -33,8 +33,6 @@ namespace PHPCR\Security;
  *  - Access control discovery
  *  - Assigning access control policies
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface AccessControlManagerInterface
@@ -58,7 +56,7 @@ interface AccessControlManagerInterface
      *
      * @api
      */
-    function getSupportedPrivileges($absPath);
+    public function getSupportedPrivileges($absPath);
 
     /**
      * Returns the privilege with the specified privilegeName.
@@ -74,7 +72,7 @@ interface AccessControlManagerInterface
      *
      * @api
      */
-    function privilegeFromName($privilegeName);
+    public function privilegeFromName($privilegeName);
 
     /**
      * Determines if the node identified its path has the given set of
@@ -107,7 +105,7 @@ interface AccessControlManagerInterface
      *
      * @api
      */
-    function hasPrivileges($absPath, array $privileges);
+    public function hasPrivileges($absPath, array $privileges);
 
     /**
      * Reads the privileges of an existing node identfied by its path.
@@ -135,7 +133,7 @@ interface AccessControlManagerInterface
      *
      * @api
      */
-    function getPrivileges($absPath);
+    public function getPrivileges($absPath);
 
     /**
      * Gets the access control policies previously set to the node identified
@@ -162,7 +160,7 @@ interface AccessControlManagerInterface
      *
      * @api
      */
-    function getPolicies($absPath);
+    public function getPolicies($absPath);
 
     /**
      * Gets the access control policies currently in effect on the node
@@ -186,7 +184,7 @@ interface AccessControlManagerInterface
      *
      * @api
      */
-    function getEffectivePolicies($absPath);
+    public function getEffectivePolicies($absPath);
 
     /**
      * Returns the access control policies that are capable of being applied to
@@ -209,7 +207,7 @@ interface AccessControlManagerInterface
      *
      * @api
      */
-    function getApplicablePolicies($absPath);
+    public function getApplicablePolicies($absPath);
 
     /**
      * Binds the policy to the node at absPath.
@@ -254,7 +252,7 @@ interface AccessControlManagerInterface
      *
      * @api
      */
-    function setPolicy($absPath, \PHPCR\Security\AccessControlPolicyInterface $policy);
+    public function setPolicy($absPath, \PHPCR\Security\AccessControlPolicyInterface $policy);
 
     /**
      * Removes the specified AccessControlPolicyInterface from the node at $absPath.
@@ -290,5 +288,5 @@ interface AccessControlManagerInterface
      *
      * @api
      */
-    function removePolicy($absPath, \PHPCR\Security\AccessControlPolicyInterface $policy);
+    public function removePolicy($absPath, \PHPCR\Security\AccessControlPolicyInterface $policy);
 }

@@ -27,8 +27,6 @@ namespace PHPCR\NodeType;
 /**
  * Superclass of NodeDefinition and PropertyDefinition.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface ItemDefinitionInterface
@@ -45,7 +43,7 @@ interface ItemDefinitionInterface
      *
      * @api
      */
-    function getDeclaringNodeType();
+    public function getDeclaringNodeType();
 
     /**
      * Gets the name of the child item.
@@ -63,7 +61,7 @@ interface ItemDefinitionInterface
      *
      * @api
      */
-    function getName();
+    public function getName();
 
     /**
      * Reports whether the item is to be automatically created when its parent
@@ -92,7 +90,7 @@ interface ItemDefinitionInterface
      *
      * @api
      */
-    function isAutoCreated();
+    public function isAutoCreated();
 
     /**
      * Reports whether the item is mandatory.
@@ -117,7 +115,7 @@ interface ItemDefinitionInterface
      *
      * @api
      */
-    function isMandatory();
+    public function isMandatory();
 
     /**
      * Gets the OnParentVersion status of the child item.
@@ -141,7 +139,7 @@ interface ItemDefinitionInterface
      *
      * @api
      */
-    function getOnParentVersion();
+    public function getOnParentVersion();
 
     /**
      * Reports whether the child item is protected.
@@ -165,5 +163,5 @@ interface ItemDefinitionInterface
      * @return boolean True, if the child item is protected, else false.
      * @api
      */
-    function isProtected();
+    public function isProtected();
 }

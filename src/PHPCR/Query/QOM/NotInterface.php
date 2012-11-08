@@ -29,8 +29,6 @@ namespace PHPCR\Query\QOM;
  *
  * To satisfy the Not constraint, the node-tuple must not satisfy constraint.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface NotInterface extends ConstraintInterface
@@ -41,5 +39,5 @@ interface NotInterface extends ConstraintInterface
      * @return \PHPCR\Query\QOM\ConstraintInterface the constraint; non-null
      * @api
      */
-    function getConstraint();
+    public function getConstraint();
 }

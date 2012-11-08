@@ -58,7 +58,8 @@ namespace PHPCR;
  *
  * @author Sebastian Kurfürst <sebastian@typo3.org>
  * @author Karsten Dambekalns <karsten@typo3.org>
- * @package phpcr
+ * @author David Buchmann <mail@davidbu.ch>
+ *
  * @api
  */
 final class PropertyType

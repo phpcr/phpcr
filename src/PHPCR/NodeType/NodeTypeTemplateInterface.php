@@ -41,8 +41,6 @@ namespace PHPCR\NodeType;
  * NodeTypeTemplateInterface is created (as opposed to one extracted from an
  * existing NodeTypeInterface).
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface NodeTypeTemplateInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
@@ -56,7 +54,7 @@ interface NodeTypeTemplateInterface extends \PHPCR\NodeType\NodeTypeDefinitionIn
      *
      * @api
      */
-    function setName($name);
+    public function setName($name);
 
     /**
      * Sets the names of the supertypes of the node type.
@@ -67,7 +65,7 @@ interface NodeTypeTemplateInterface extends \PHPCR\NodeType\NodeTypeDefinitionIn
      *
      * @api
      */
-    function setDeclaredSuperTypeNames(array $names);
+    public function setDeclaredSuperTypeNames(array $names);
 
     /**
      * Sets the abstract flag of the node type.
@@ -78,7 +76,7 @@ interface NodeTypeTemplateInterface extends \PHPCR\NodeType\NodeTypeDefinitionIn
      *
      * @api
      */
-    function setAbstract($abstractStatus);
+    public function setAbstract($abstractStatus);
 
     /**
      * Sets the mixin flag of the node type.
@@ -90,7 +88,7 @@ interface NodeTypeTemplateInterface extends \PHPCR\NodeType\NodeTypeDefinitionIn
      *
      * @api
      */
-    function setMixin($mixin);
+    public function setMixin($mixin);
 
     /**
      * Sets the orderable child nodes flag of the node type.
@@ -102,7 +100,7 @@ interface NodeTypeTemplateInterface extends \PHPCR\NodeType\NodeTypeDefinitionIn
      *
      * @api
      */
-    function setOrderableChildNodes($orderable);
+    public function setOrderableChildNodes($orderable);
 
     /**
      * Sets the name of the primary item.
@@ -113,7 +111,7 @@ interface NodeTypeTemplateInterface extends \PHPCR\NodeType\NodeTypeDefinitionIn
      *
      * @api
      */
-    function setPrimaryItemName($name);
+    public function setPrimaryItemName($name);
 
     /**
      * Sets the queryable status of the node type.
@@ -124,7 +122,7 @@ interface NodeTypeTemplateInterface extends \PHPCR\NodeType\NodeTypeDefinitionIn
      *
      * @api
      */
-    function setQueryable($queryable);
+    public function setQueryable($queryable);
 
     /**
      * Returns a mutable List of PropertyDefinitionTemplate objects.
@@ -138,7 +136,7 @@ interface NodeTypeTemplateInterface extends \PHPCR\NodeType\NodeTypeDefinitionIn
      *
      * @api
      */
-    function getPropertyDefinitionTemplates();
+    public function getPropertyDefinitionTemplates();
 
     /**
      * Returns a mutable List of NodeDefinitionTemplate objects.
@@ -152,5 +150,5 @@ interface NodeTypeTemplateInterface extends \PHPCR\NodeType\NodeTypeDefinitionIn
      *
      * @api
      */
-    function getNodeDefinitionTemplates();
+    public function getNodeDefinitionTemplates();
 }

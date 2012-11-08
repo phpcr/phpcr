@@ -29,10 +29,6 @@ namespace PHPCR;
  *
  * Note that the characteristics of the session created from the
  * GuestCredentials remain implementation specific.
- *
- * @package phpcr
- * @subpackage prototypes
- * @scope prototype
  */
 final class GuestCredentials implements CredentialsInterface
 {

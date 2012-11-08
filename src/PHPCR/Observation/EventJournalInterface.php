@@ -33,8 +33,6 @@ namespace PHPCR\Observation;
  * <b>PHPCR Note:</b> This is the only iterator interface we kept, as it adds
  * additional value (performance).
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface EventJournalInterface extends \Countable, \SeekableIterator
@@ -49,5 +47,5 @@ interface EventJournalInterface extends \Countable, \SeekableIterator
      * @return void
      * @api
      */
-    function skipTo($date);
+    public function skipTo($date);
 }

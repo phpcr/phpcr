@@ -27,8 +27,6 @@ namespace PHPCR\Lock;
 /**
  * Represents a lock placed on an item.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface LockInterface
@@ -50,7 +48,7 @@ interface LockInterface
      *
      * @api
      */
-    function getLockOwner();
+    public function getLockOwner();
 
     /**
      * Returns true if this is a deep lock; false otherwise.
@@ -59,7 +57,7 @@ interface LockInterface
      *
      * @api
      */
-    function isDeep();
+    public function isDeep();
 
     /**
      * Returns the lock holding node.
@@ -76,7 +74,7 @@ interface LockInterface
      *
      * @api
      */
-    function getNode();
+    public function getNode();
 
     /**
      * May return the lock token for this lock.
@@ -90,7 +88,7 @@ interface LockInterface
      *
      * @api
      */
-    function getLockToken();
+    public function getLockToken();
 
     /**
      * Returns the number of seconds remaining until this locks times out.
@@ -105,7 +103,7 @@ interface LockInterface
      *
      * @api
      */
-    function getSecondsRemaining();
+    public function getSecondsRemaining();
 
     /**
      * Determines if the lock is still in effect.
@@ -129,7 +127,7 @@ interface LockInterface
      *
      * @api
      */
-    function isLive();
+    public function isLive();
 
     /**
      * Determines if this lock is session-scoped.
@@ -141,7 +139,7 @@ interface LockInterface
      *
      * @api
      */
-    function isSessionScoped();
+    public function isSessionScoped();
 
     /**
      * Determines if the current session owns this lock.
@@ -156,7 +154,7 @@ interface LockInterface
      *
      * @api
      */
-    function isLockOwningSession();
+    public function isLockOwningSession();
 
     /**
      * If this lock's time-to-live is governed by a timer, this method resets
@@ -171,5 +169,5 @@ interface LockInterface
      *
      * @api
      */
-    function refresh();
+    public function refresh();
 }

@@ -27,8 +27,6 @@ namespace PHPCR\Query\QOM;
 /**
  * Evaluates to a NAME value equal to the local (unprefixed) name of a node.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface NodeLocalNameInterface extends DynamicOperandInterface
@@ -39,5 +37,5 @@ interface NodeLocalNameInterface extends DynamicOperandInterface
      * @return string the selector name; non-null
      * @api
      */
-    function getSelectorName();
+    public function getSelectorName();
 }

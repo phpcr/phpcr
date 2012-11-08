@@ -27,8 +27,6 @@ namespace PHPCR;
 /**
  * Thrown by methods that are not supported by a particular implementation.
  *
- * @package phpcr
- * @subpackage exceptions
  * @api
  */
 class UnsupportedRepositoryOperationException extends RepositoryException

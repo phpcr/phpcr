@@ -32,8 +32,6 @@ namespace PHPCR\Query\QOM;
  * would return true, where selectorNode is the node for the specified
  * selector.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface SameNodeInterface extends ConstraintInterface
@@ -44,7 +42,7 @@ interface SameNodeInterface extends ConstraintInterface
      * @return string the selector name; non-null
      * @api
      */
-    function getSelectorName();
+    public function getSelectorName();
 
     /**
      * Gets the absolute path.
@@ -52,5 +50,5 @@ interface SameNodeInterface extends ConstraintInterface
      * @return string the path; non-null
      * @api
      */
-    function getPath();
+    public function getPath();
 }

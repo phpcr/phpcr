@@ -27,8 +27,6 @@ namespace PHPCR;
 /**
  * Exception thrown on referential integrity violation.
  *
- * @package phpcr
- * @subpackage exceptions
  * @api
  */
 class ReferentialIntegrityException extends RepositoryException

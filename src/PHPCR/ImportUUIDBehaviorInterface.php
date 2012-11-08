@@ -35,8 +35,6 @@ namespace PHPCR;
  * - WorkspaceInterface::getImportContentHandler()
  * - SessionInterface::getImportContentHandler()
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface ImportUUIDBehaviorInterface

@@ -28,8 +28,6 @@ namespace PHPCR\Version;
  * A Version object wraps an nt:version node. It provides convenient access to
  * version information.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface VersionInterface extends \PHPCR\NodeInterface
@@ -44,7 +42,7 @@ interface VersionInterface extends \PHPCR\NodeInterface
      *
      * @api
      */
-    function getContainingHistory();
+    public function getContainingHistory();
 
     /**
      * Returns the date this version was created. This corresponds to the
@@ -57,7 +55,7 @@ interface VersionInterface extends \PHPCR\NodeInterface
      *
      * @api
      */
-    function getCreated();
+    public function getCreated();
 
     /**
      * Get the next linear successor version of this version.
@@ -79,7 +77,7 @@ interface VersionInterface extends \PHPCR\NodeInterface
      *
      * @api
      */
-    function getLinearSuccessor();
+    public function getLinearSuccessor();
 
     /**
      * Returns the successor versions of this version.
@@ -94,7 +92,7 @@ interface VersionInterface extends \PHPCR\NodeInterface
      *
      * @api
      */
-    function getSuccessors();
+    public function getSuccessors();
 
     /**
      * Get the next linear predecessor version of this version.
@@ -116,7 +114,7 @@ interface VersionInterface extends \PHPCR\NodeInterface
      *
      * @api
      */
-    function getLinearPredecessor();
+    public function getLinearPredecessor();
 
     /**
      * Returns the predecessor versions of this version.
@@ -132,7 +130,7 @@ interface VersionInterface extends \PHPCR\NodeInterface
      *
      * @api
      */
-    function getPredecessors();
+    public function getPredecessors();
 
     /**
      * Returns a snapshot of the node as it was at this version.
@@ -148,5 +146,5 @@ interface VersionInterface extends \PHPCR\NodeInterface
      *
      * @api
      */
-    function getFrozenNode();
+    public function getFrozenNode();
 }

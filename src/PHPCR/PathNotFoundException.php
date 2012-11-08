@@ -28,8 +28,6 @@ namespace PHPCR;
  * Exception thrown when no Item exists at the specified path or when the
  * specified path implies intermediary Nodes that do not exist.
  *
- * @package phpcr
- * @subpackage exceptions
  * @api
  */
 class PathNotFoundException extends RepositoryException

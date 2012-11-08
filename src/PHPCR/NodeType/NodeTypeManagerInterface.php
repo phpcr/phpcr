@@ -34,8 +34,6 @@ namespace PHPCR\NodeType;
  * The iterator is equivalent to <b>getAllNodeTypes()</b> returning a list of
  * all node types. The iterator keys have no significant meaning.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface NodeTypeManagerInterface extends \Traversable
@@ -53,7 +51,7 @@ interface NodeTypeManagerInterface extends \Traversable
      *
      * @api
      */
-    function getNodeType($nodeTypeName);
+    public function getNodeType($nodeTypeName);
 
     /**
      * Determines if the given node type is registered.
@@ -70,7 +68,7 @@ interface NodeTypeManagerInterface extends \Traversable
      *
      * @api
      */
-    function hasNodeType($name);
+    public function hasNodeType($name);
 
     /**
      * Returns an iterator over all available node types (primary and mixin).
@@ -83,7 +81,7 @@ interface NodeTypeManagerInterface extends \Traversable
      *
      * @api
      */
-    function getAllNodeTypes();
+    public function getAllNodeTypes();
 
     /**
      * Returns an iterator over all available primary node types.
@@ -96,7 +94,7 @@ interface NodeTypeManagerInterface extends \Traversable
      *
      * @api
      */
-    function getPrimaryNodeTypes();
+    public function getPrimaryNodeTypes();
 
     /**
      * Returns an iterator over all available mixin node types.
@@ -111,7 +109,7 @@ interface NodeTypeManagerInterface extends \Traversable
      *
      * @api
      */
-    function getMixinNodeTypes();
+    public function getMixinNodeTypes();
 
     /**
      * Returns an empty NodeTypeTemplateInterface which can then be used to
@@ -133,7 +131,7 @@ interface NodeTypeManagerInterface extends \Traversable
      *
      * @api
      */
-    function createNodeTypeTemplate($ntd = null);
+    public function createNodeTypeTemplate($ntd = null);
 
     /**
      * Returns an empty NodeDefinitionTemplate which can then be used to create
@@ -147,7 +145,7 @@ interface NodeTypeManagerInterface extends \Traversable
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
      */
-    function createNodeDefinitionTemplate();
+    public function createNodeDefinitionTemplate();
 
     /**
      * Returns an empty PropertyDefinitionTemplateInterface which can then be
@@ -163,7 +161,7 @@ interface NodeTypeManagerInterface extends \Traversable
      *
      * @api
      */
-    function createPropertyDefinitionTemplate();
+    public function createPropertyDefinitionTemplate();
 
     /**
      * Registers a new node type or updates an existing node type using the
@@ -192,7 +190,7 @@ interface NodeTypeManagerInterface extends \Traversable
      *
      * @api
      */
-    function registerNodeType(\PHPCR\NodeType\NodeTypeDefinitionInterface $ntd, $allowUpdate);
+    public function registerNodeType(\PHPCR\NodeType\NodeTypeDefinitionInterface $ntd, $allowUpdate);
 
     /**
      * Registers or updates the specified array of NodeTypeDefinition objects.
@@ -223,7 +221,7 @@ interface NodeTypeManagerInterface extends \Traversable
      *
      * @api
      */
-    function registerNodeTypes(array $definitions, $allowUpdate);
+    public function registerNodeTypes(array $definitions, $allowUpdate);
 
     /**
      * Unregisters the specified node type.
@@ -241,7 +239,7 @@ interface NodeTypeManagerInterface extends \Traversable
      *
      * @api
      */
-    function unregisterNodeType($name);
+    public function unregisterNodeType($name);
 
     /**
      * Unregisters the specified set of node types. Used to unregister a set of
@@ -260,5 +258,5 @@ interface NodeTypeManagerInterface extends \Traversable
      *
      * @api
      */
-    function unregisterNodeTypes(array $names);
+    public function unregisterNodeTypes(array $names);
 }

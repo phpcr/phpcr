@@ -48,8 +48,6 @@ namespace PHPCR;
  * PropertyInterface::setValue completely replaces the
  * ValueFactory::createValue method.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface PropertyInterface extends ItemInterface, \Traversable
@@ -554,7 +552,7 @@ interface PropertyInterface extends ItemInterface, \Traversable
      * @throws RepositoryException if another error occurs.
      * @api
      */
-    function setValue($value, $type = null);
+    public function setValue($value, $type = null);
 
     /**
      * Appends a value to a multi-value property. It is added at the end of the
@@ -568,7 +566,7 @@ interface PropertyInterface extends ItemInterface, \Traversable
      *
      * @throws ValueFormatException if the property is not multi-value.
      */
-    function addValue($value);
+    public function addValue($value);
 
     /**
      * Get the value in format default for the PropertyType of this property.
@@ -583,7 +581,7 @@ interface PropertyInterface extends ItemInterface, \Traversable
      *
      * @return mixed value of this property, or array in case of multi-value.
      */
-    function getValue();
+    public function getValue();
 
     /**
      * Returns a String representation of the value of this property.
@@ -595,7 +593,7 @@ interface PropertyInterface extends ItemInterface, \Traversable
      * @throws RepositoryException if another error occurs.
      * @api
      */
-    function getString();
+    public function getString();
 
     /**
      * Returns a Binary representation of the value of this property.
@@ -608,7 +606,7 @@ interface PropertyInterface extends ItemInterface, \Traversable
      * @throws RepositoryException if another error occurs
      * @api
      */
-    function getBinary();
+    public function getBinary();
 
     /**
      * Returns an integer representation of the value of this property.
@@ -622,7 +620,7 @@ interface PropertyInterface extends ItemInterface, \Traversable
      *
      * @api
      */
-    function getLong();
+    public function getLong();
 
     /**
      * Returns a float representation of the value of this property.
@@ -635,7 +633,7 @@ interface PropertyInterface extends ItemInterface, \Traversable
      * @throws RepositoryException if another error occurs
      * @api
      */
-    function getDouble();
+    public function getDouble();
 
     /**
      * Returns an arbitrary precision number (encoded as string) representation
@@ -653,7 +651,7 @@ interface PropertyInterface extends ItemInterface, \Traversable
      *
      * @api
      */
-    function getDecimal();
+    public function getDecimal();
 
     /**
      * Returns a \DateTime representation of the value of this property.
@@ -670,7 +668,7 @@ interface PropertyInterface extends ItemInterface, \Traversable
      *
      * @api
      */
-    function getDate();
+    public function getDate();
 
     /**
      * Returns a boolean representation of the value of this property.
@@ -690,7 +688,7 @@ interface PropertyInterface extends ItemInterface, \Traversable
      *
      * @api
      */
-    function getBoolean();
+    public function getBoolean();
 
     /**
      * Gets the node the property refers to by its type.
@@ -726,7 +724,7 @@ interface PropertyInterface extends ItemInterface, \Traversable
      *
      * @api
      */
-    function getNode();
+    public function getNode();
 
     /**
      * Gets the property the property refers to by its type.
@@ -757,7 +755,7 @@ interface PropertyInterface extends ItemInterface, \Traversable
      *
      * @api
      */
-    function getProperty();
+    public function getProperty();
 
     /**
      * Returns the length(s) of the value(s) of this property.
@@ -779,7 +777,7 @@ interface PropertyInterface extends ItemInterface, \Traversable
      *
      * @api
      */
-    function getLength();
+    public function getLength();
 
     /**
      * Returns the property definition that applies to this property.
@@ -799,7 +797,7 @@ interface PropertyInterface extends ItemInterface, \Traversable
      *
      * @api
      */
-    function getDefinition();
+    public function getDefinition();
 
     /**
      * Returns the type of this Property.
@@ -832,7 +830,7 @@ interface PropertyInterface extends ItemInterface, \Traversable
      *
      * @api
      */
-    function getType();
+    public function getType();
 
     /**
      * Determines if the current property is multi-valued.
@@ -846,5 +844,5 @@ interface PropertyInterface extends ItemInterface, \Traversable
      *
      * @api
      */
-    function isMultiple();
+    public function isMultiple();
 }

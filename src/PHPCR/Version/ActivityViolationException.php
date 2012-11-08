@@ -34,8 +34,6 @@ namespace PHPCR\Version;
  * - There is a version in the version history of N that is not a predecessor
  *   of N but whose jcr:activity references A.
  *
- * @package phpcr
- * @subpackage exceptions
  * @api
  */
 class ActivityViolationException extends \PHPCR\Version\VersionException

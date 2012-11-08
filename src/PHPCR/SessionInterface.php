@@ -44,8 +44,6 @@ namespace PHPCR;
  *   been removed. To set properties, use NodeInterface::setProperty() or
  *   PropertyInterface::setValue() with native PHP variables.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface SessionInterface
@@ -97,7 +95,7 @@ interface SessionInterface
      *
      * @api
      */
-    function getRepository();
+    public function getRepository();
 
     /**
      * Gets the user ID associated with this Session.
@@ -111,7 +109,7 @@ interface SessionInterface
      *
      * @api
      */
-    function getUserID();
+    public function getUserID();
 
     /**
      * Returns the names of the attributes set in this session as a result of
@@ -126,7 +124,7 @@ interface SessionInterface
      *
      * @api
      */
-    function getAttributeNames();
+    public function getAttributeNames();
 
     /**
      * Returns the value of the named attribute, or null if no
@@ -140,7 +138,7 @@ interface SessionInterface
      *
      * @api
      */
-    function getAttribute($name);
+    public function getAttribute($name);
 
     /**
      * Returns the Workspace attached to this Session.
@@ -149,7 +147,7 @@ interface SessionInterface
      *
      * @api
      */
-    function getWorkspace();
+    public function getWorkspace();
 
     /**
      * Returns the root node of the workspace, "/".
@@ -162,7 +160,7 @@ interface SessionInterface
      *
      * @api
      */
-    function getRootNode();
+    public function getRootNode();
 
     /**
      * Returns a new session in accordance with the specified (new)
@@ -187,7 +185,7 @@ interface SessionInterface
      *
      * @api
      */
-    function impersonate(CredentialsInterface $credentials);
+    public function impersonate(CredentialsInterface $credentials);
 
     /**
      * Returns the node specified by the given identifier.
@@ -205,7 +203,7 @@ interface SessionInterface
      *
      * @api
      */
-    function getNodeByIdentifier($id);
+    public function getNodeByIdentifier($id);
 
     /**
      * Returns the nodes specified by the given identifiers.
@@ -223,7 +221,7 @@ interface SessionInterface
      *
      * @api
      */
-    function getNodesByIdentifier($ids);
+    public function getNodesByIdentifier($ids);
 
     /**
      * Returns the node at the specified absolute path in the workspace. If no
@@ -246,7 +244,7 @@ interface SessionInterface
      *
      * @api
      */
-    function getItem($absPath);
+    public function getItem($absPath);
 
     /**
      * Returns the node at the specified absolute path in the workspace.
@@ -260,7 +258,7 @@ interface SessionInterface
      *
      * @api
      */
-    function getNode($absPath);
+    public function getNode($absPath);
 
     /**
      * Returns all nodes specified in the absPath array.
@@ -276,7 +274,7 @@ interface SessionInterface
      *
      * @api
      */
-    function getNodes($absPaths);
+    public function getNodes($absPaths);
 
     /**
      * Returns the property at the specified absolute path in the workspace.
@@ -291,7 +289,7 @@ interface SessionInterface
      *
      * @api
      */
-    function getProperty($absPath);
+    public function getProperty($absPath);
 
     /**
      * Determines if the item identified by a path does exists.
@@ -308,7 +306,7 @@ interface SessionInterface
      *
      * @api
      */
-    function itemExists($absPath);
+    public function itemExists($absPath);
 
     /**
      * Determines if the node identified by the given absolute path does exist.
@@ -325,7 +323,7 @@ interface SessionInterface
      *
      * @api
      */
-    function nodeExists($absPath);
+    public function nodeExists($absPath);
 
     /**
      * Determines the existance of a property.
@@ -342,7 +340,7 @@ interface SessionInterface
      *
      * @api
      */
-    function propertyExists($absPath);
+    public function propertyExists($absPath);
 
     /**
      * Moves the node at srcAbsPath (and its entire subgraph) to the new
@@ -401,7 +399,7 @@ interface SessionInterface
      *
      * @api
      */
-    function move($srcAbsPath, $destAbsPath);
+    public function move($srcAbsPath, $destAbsPath);
 
     /**
      * Removes the specified item and its subgraph.
@@ -441,7 +439,7 @@ interface SessionInterface
      *
      * @api
      */
-    function removeItem($absPath);
+    public function removeItem($absPath);
 
     /**
      * Validates all pending changes currently recorded in this Session.
@@ -493,7 +491,7 @@ interface SessionInterface
      *
      * @api
      */
-    function save();
+    public function save();
 
     /**
      * Reloads the current session.
@@ -522,7 +520,7 @@ interface SessionInterface
      *
      * @api
      */
-    function refresh($keepChanges);
+    public function refresh($keepChanges);
 
     /**
      * Determines if the current session has pending changes.
@@ -536,7 +534,7 @@ interface SessionInterface
      *
      * @api
      */
-    function hasPendingChanges();
+    public function hasPendingChanges();
 
     /**
      * Determines if the current session is permitted to run the passed
@@ -580,7 +578,7 @@ interface SessionInterface
      *
      * @api
      */
-    function hasPermission($absPath, $actions);
+    public function hasPermission($absPath, $actions);
 
     /**
      * Determines whether this Session has permission to perform the specified
@@ -627,7 +625,7 @@ interface SessionInterface
      *
      * @api
      */
-    function checkPermission($absPath, $actions);
+    public function checkPermission($absPath, $actions);
 
     /**
      * Checks whether an operation can be performed given as much context as
@@ -676,7 +674,7 @@ interface SessionInterface
      *
      * @api
      */
-    function hasCapability($methodName, $target, array $arguments);
+    public function hasCapability($methodName, $target, array $arguments);
 
     /*
      * Fetches a content handler without altering the session.
@@ -867,7 +865,7 @@ interface SessionInterface
      *
      * @api
      */
-    function importXML($parentAbsPath, $uri, $uuidBehavior);
+    public function importXML($parentAbsPath, $uri, $uuidBehavior);
 
     /**
      * Serializes the node (and if $noRecurse is false, the whole subgraph) at
@@ -918,7 +916,7 @@ interface SessionInterface
      *
      * @api
      */
-    function exportSystemView($absPath, $stream, $skipBinary, $noRecurse);
+    public function exportSystemView($absPath, $stream, $skipBinary, $noRecurse);
 
     /**
      * Serializes the node (and if $noRecurse is false, the whole subgraph) at
@@ -968,7 +966,7 @@ interface SessionInterface
      *
      * @api
      */
-    function exportDocumentView($absPath, $stream, $skipBinary, $noRecurse);
+    public function exportDocumentView($absPath, $stream, $skipBinary, $noRecurse);
 
     /**
      * Sets the name of a namespace prefix.
@@ -995,7 +993,7 @@ interface SessionInterface
      *
      * @api
      */
-    function setNamespacePrefix($prefix, $uri);
+    public function setNamespacePrefix($prefix, $uri);
 
     /**
      * Returns all prefixes currently mapped to URIs in this Session.
@@ -1006,7 +1004,7 @@ interface SessionInterface
      *
      * @api
      */
-    function getNamespacePrefixes();
+    public function getNamespacePrefixes();
 
     /**
      * Returns the URI to which the given prefix is mapped as currently set in
@@ -1023,7 +1021,7 @@ interface SessionInterface
      *
      * @api
      */
-    function getNamespaceURI($prefix);
+    public function getNamespaceURI($prefix);
 
     /**
      * Returns the prefix to which the given uri is mapped as currently set in
@@ -1039,7 +1037,7 @@ interface SessionInterface
      *
      * @api
      */
-    function getNamespacePrefix($uri);
+    public function getNamespacePrefix($uri);
 
     /**
      * Releases all resources associated with this Session.
@@ -1050,7 +1048,7 @@ interface SessionInterface
      *
      * @api
      */
-    function logout();
+    public function logout();
 
     /**
      * Determines if the current session is still valid.
@@ -1065,7 +1063,7 @@ interface SessionInterface
      *
      * @api
      */
-    function isLive();
+    public function isLive();
 
     /**
      * Returns the access control manager for this Session.
@@ -1079,7 +1077,7 @@ interface SessionInterface
      *
      * @api
      */
-    function getAccessControlManager();
+    public function getAccessControlManager();
 
     /**
      * Returns the retention and hold manager for this Session.
@@ -1093,5 +1091,5 @@ interface SessionInterface
      *
      * @api
      */
-    function getRetentionManager();
+    public function getRetentionManager();
 }

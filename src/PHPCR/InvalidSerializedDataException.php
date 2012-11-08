@@ -30,8 +30,6 @@ namespace PHPCR;
  * This exception shall be thrown by the deserialization methods of Session if
  * the serialized data being input has an invalid format.
  *
- * @package phpcr
- * @subpackage exceptions
  * @api
  */
 class InvalidSerializedDataException extends RepositoryException

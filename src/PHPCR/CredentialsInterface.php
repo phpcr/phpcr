@@ -32,8 +32,7 @@ namespace PHPCR;
  * providing a credentials class. See {@link SimpleCredentials} and
  * {@link GuestCredentials} for examples of such a class.
  *
- * @package phpcr
- * @subpackage interfaces
+ * @api
  */
 interface CredentialsInterface
 {

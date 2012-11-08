@@ -32,8 +32,6 @@ namespace PHPCR\Query\QOM;
  *  <code>$selectorNode->getParent()->isSame($session->getNode($path))</code>
  * would return true, where selectorNode is the node for the specified selector.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface ChildNodeInterface extends ConstraintInterface
@@ -45,7 +43,7 @@ interface ChildNodeInterface extends ConstraintInterface
      *
      * @api
      */
-    function getSelectorName();
+    public function getSelectorName();
 
     /**
      * Gets the absolute path.
@@ -54,5 +52,5 @@ interface ChildNodeInterface extends ConstraintInterface
      *
      * @api
      */
-    function getParentPath();
+    public function getParentPath();
 }

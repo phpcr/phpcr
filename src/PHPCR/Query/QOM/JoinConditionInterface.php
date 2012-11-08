@@ -27,8 +27,6 @@ namespace PHPCR\Query\QOM;
 /**
  * Filters the set of node-tuples formed from a join.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface JoinConditionInterface

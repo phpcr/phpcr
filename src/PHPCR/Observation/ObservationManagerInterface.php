@@ -37,8 +37,6 @@ namespace PHPCR\Observation;
  * a list of all registered event listeners. The iterator keys have no
  * significant meaning.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface ObservationManagerInterface extends \Traversable
@@ -97,7 +95,7 @@ interface ObservationManagerInterface extends \Traversable
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
      */
-    function addEventListener(\PHPCR\Observation\EventListenerInterface $listener, $eventTypes, $absPath,
+    public function addEventListener(\PHPCR\Observation\EventListenerInterface $listener, $eventTypes, $absPath,
                                      $isDeep, array $uuid, array $nodeTypeName, $noLocal);
 
     /**
@@ -115,7 +113,7 @@ interface ObservationManagerInterface extends \Traversable
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
      */
-    function removeEventListener(\PHPCR\Observation\EventListenerInterface $listener);
+    public function removeEventListener(\PHPCR\Observation\EventListenerInterface $listener);
 
     /**
      * Returns all event listeners that have been registered through this session.
@@ -128,7 +126,7 @@ interface ObservationManagerInterface extends \Traversable
      * @throws \PHPCR\RepositoryException if an error occurs
      * @api
      */
-    function getRegisteredEventListeners();
+    public function getRegisteredEventListeners();
 
     /**
      * Sets the user data information that will be returned by EventInterface::getUserData().
@@ -139,7 +137,7 @@ interface ObservationManagerInterface extends \Traversable
      * @throws \PHPCR\RepositoryException if an error occurs
      * @api
      */
-    function setUserData($userData);
+    public function setUserData($userData);
 
     /**
      * Retrieves the event journal for this workspace.
@@ -165,6 +163,6 @@ interface ObservationManagerInterface extends \Traversable
      * @throws \PHPCR\RepositoryException if an error occurs
      * @api
      */
-    function getEventJournal($eventTypes = null, $absPath = null, $isDeep = null, array $uuid = null,
+    public function getEventJournal($eventTypes = null, $absPath = null, $isDeep = null, array $uuid = null,
                                     array $nodeTypeName = null);
 }

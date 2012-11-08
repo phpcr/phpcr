@@ -33,8 +33,6 @@ namespace PHPCR\Lock;
  * The iterator is equivalent to <b>getLockTokens()</b> returning a list of all
  * locks. The iterator keys have no significant meaning.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface LockManagerInterface extends \Traversable
@@ -56,7 +54,7 @@ interface LockManagerInterface extends \Traversable
      *
      * @api
      */
-    function addLockToken($lockToken);
+    public function addLockToken($lockToken);
 
     /**
      * Returns the Lock object that applies to the node at the specified
@@ -78,7 +76,7 @@ interface LockManagerInterface extends \Traversable
      *
      * @api
      */
-    function getLock($absPath);
+    public function getLock($absPath);
 
     /**
      * Gets the list of previously registered tokens.
@@ -93,7 +91,7 @@ interface LockManagerInterface extends \Traversable
      *
      * @api
      */
-    function getLockTokens();
+    public function getLockTokens();
 
     /**
      * Determines if the node identified by the passed path holds a lock.
@@ -113,7 +111,7 @@ interface LockManagerInterface extends \Traversable
      *
      * @api
      */
-    function holdsLock($absPath);
+    public function holdsLock($absPath);
 
     /**
      * Places a lock on the node at absPath.
@@ -185,7 +183,7 @@ interface LockManagerInterface extends \Traversable
      *
      * @api
      */
-    function lock($absPath, $isDeep, $isSessionScoped, $timeoutHint = PHP_INT_MAX, $ownerInfo = null);
+    public function lock($absPath, $isDeep, $isSessionScoped, $timeoutHint = PHP_INT_MAX, $ownerInfo = null);
 
     /**
      * Determines if the node at absPath is locked.
@@ -203,7 +201,7 @@ interface LockManagerInterface extends \Traversable
      *
      * @api
      */
-    function isLocked($absPath);
+    public function isLocked($absPath);
 
     /**
      * Removes the specified lock token from this Session.
@@ -218,7 +216,7 @@ interface LockManagerInterface extends \Traversable
      *
      * @api
      */
-    function removeLockToken($lockToken);
+    public function removeLockToken($lockToken);
 
     /**
      * Removes the lock on the node at absPath.
@@ -255,5 +253,5 @@ interface LockManagerInterface extends \Traversable
      *
      * @api
      */
-    function unlock($absPath);
+    public function unlock($absPath);
 }

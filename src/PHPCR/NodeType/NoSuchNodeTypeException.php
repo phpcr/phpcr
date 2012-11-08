@@ -27,8 +27,6 @@ namespace PHPCR\NodeType;
 /**
  * Exception thrown by node type-related methods.
  *
- * @package phpcr
- * @subpackage exceptions
  * @api
  */
 class NoSuchNodeTypeException extends \PHPCR\RepositoryException

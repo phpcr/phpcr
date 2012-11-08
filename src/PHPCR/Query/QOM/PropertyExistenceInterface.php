@@ -30,8 +30,6 @@ namespace PHPCR\Query\QOM;
  * A node-tuple satisfies the constraint if the selector node has a property
  * named property.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface PropertyExistenceInterface extends ConstraintInterface
@@ -42,7 +40,7 @@ interface PropertyExistenceInterface extends ConstraintInterface
      * @return string the selector name; non-null
      * @api
      */
-    function getSelectorName();
+    public function getSelectorName();
 
     /**
      * Gets the name of the property.
@@ -50,5 +48,5 @@ interface PropertyExistenceInterface extends ConstraintInterface
      * @return string the property name; non-null
      * @api
      */
-    function getPropertyName();
+    public function getPropertyName();
 }

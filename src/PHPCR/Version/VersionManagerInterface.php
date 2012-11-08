@@ -37,8 +37,6 @@ namespace PHPCR\Version;
  * - Configuration feature
  * - Activity feature
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface VersionManagerInterface
@@ -89,7 +87,7 @@ interface VersionManagerInterface
      *
      * @api
      */
-    function checkin($absPath);
+    public function checkin($absPath);
 
     /**
      * Sets the versionable node at $absPath to checked-out status by setting
@@ -120,7 +118,7 @@ interface VersionManagerInterface
      *
      * @api
      */
-    function checkout($absPath);
+    public function checkout($absPath);
 
     /**
      * Performs a checkin() followed by a checkout() on the versionable node at
@@ -145,7 +143,7 @@ interface VersionManagerInterface
      *
      * @api
      */
-    function checkpoint($absPath);
+    public function checkpoint($absPath);
 
     /**
      * Check whether the node at path is checked out.
@@ -171,7 +169,7 @@ interface VersionManagerInterface
      *
      * @api
      */
-    function isCheckedOut($absPath);
+    public function isCheckedOut($absPath);
 
     /**
      * Returns the VersionHistory object of the node at $absPath. This object
@@ -189,7 +187,7 @@ interface VersionManagerInterface
      *
      * @api
      */
-    function getVersionHistory($absPath);
+    public function getVersionHistory($absPath);
 
     /**
      * Returns the current base version of the versionable node at absPath.
@@ -205,7 +203,7 @@ interface VersionManagerInterface
      *
      * @api
      */
-    function getBaseVersion($absPath);
+    public function getBaseVersion($absPath);
 
     /**
      * Attempt to restore an old version of a node.
@@ -302,7 +300,7 @@ interface VersionManagerInterface
      *
      * @api
      */
-    function restore($removeExisting, $version, $absPath = null);
+    public function restore($removeExisting, $version, $absPath = null);
 
     /**
      * Restores the version of the node at absPath with the specified version
@@ -349,7 +347,7 @@ interface VersionManagerInterface
      *
      * @api
      */
-    function restoreByLabel($absPath, $versionLabel, $removeExisting);
+    public function restoreByLabel($absPath, $versionLabel, $removeExisting);
 
     /**
      * If an nt:activity Node is given:
@@ -440,7 +438,7 @@ interface VersionManagerInterface
      *
      * @api
      */
-    function merge($source, $srcWorkspace = null, $bestEffort = null, $isShallow = false);
+    public function merge($source, $srcWorkspace = null, $bestEffort = null, $isShallow = false);
 
     /**
      * Completes the merge process with respect to the node at absPath and the
@@ -524,7 +522,7 @@ interface VersionManagerInterface
      *
      * @api
      */
-    function doneMerge($absPath, \PHPCR\Version\VersionInterface $version);
+    public function doneMerge($absPath, \PHPCR\Version\VersionInterface $version);
 
     /**
      * Cancels the merge process with respect to the node at absPath and the
@@ -554,7 +552,7 @@ interface VersionManagerInterface
      *
      * @api
      */
-    function cancelMerge($absPath, \PHPCR\Version\VersionInterface $version);
+    public function cancelMerge($absPath, \PHPCR\Version\VersionInterface $version);
 
     /**
      * Calling createConfiguration on the node N at absPath creates, in the
@@ -583,7 +581,7 @@ interface VersionManagerInterface
      *
      * @api
      */
-    function createConfiguration($absPath, \PHPCR\Version\VersionInterface $baseline);
+    public function createConfiguration($absPath, \PHPCR\Version\VersionInterface $baseline);
 
     /**
      * This method is called by the client to set the current activity on the
@@ -602,7 +600,7 @@ interface VersionManagerInterface
      *
      * @api
      */
-    function setActivity(\PHPCR\NodeInterface $activity);
+    public function setActivity(\PHPCR\NodeInterface $activity);
 
     /**
      * Returns the node representing the current activity or null if there is no
@@ -616,7 +614,7 @@ interface VersionManagerInterface
      *
      * @api
      */
-    function getActivity();
+    public function getActivity();
 
     /**
      * This method creates a new nt:activity at an implementation-determined
@@ -637,7 +635,7 @@ interface VersionManagerInterface
      *
      * @api
      */
-    function createActivity($title);
+    public function createActivity($title);
 
     /**
      * This method removes the given $activityNode.
@@ -654,5 +652,5 @@ interface VersionManagerInterface
      *
      * @api
      */
-    function removeActivity(\PHPCR\NodeInterface $activityNode);
+    public function removeActivity(\PHPCR\NodeInterface $activityNode);
 }

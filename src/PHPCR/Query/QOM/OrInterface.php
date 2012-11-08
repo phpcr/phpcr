@@ -33,8 +33,6 @@ namespace PHPCR\Query\QOM;
  * - satisfy constraint2 but not constraint1, or
  * - satisfy both constraint1 and constraint2.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface OrInterface extends ConstraintInterface
@@ -46,7 +44,7 @@ interface OrInterface extends ConstraintInterface
      *
      * @api
      */
-    function getConstraint1();
+    public function getConstraint1();
 
     /**
      * Gets the second constraint.
@@ -55,5 +53,5 @@ interface OrInterface extends ConstraintInterface
      *
      * @api
      */
-    function getConstraint2();
+    public function getConstraint2();
 }

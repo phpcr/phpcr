@@ -28,8 +28,6 @@ namespace PHPCR\NodeType;
  * A NodeType object represents a "live" node type that is registered in the
  * repository.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
@@ -367,7 +365,7 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
      *
      * @api
      */
-    function getSupertypes();
+    public function getSupertypes();
 
     /**
      * Returns the direct supertypes of this node type in the node type
@@ -382,7 +380,7 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
      *
      * @api
      */
-    function getDeclaredSupertypes();
+    public function getDeclaredSupertypes();
 
     /**
      * Returns all subtypes of this node type in the node type inheritance
@@ -396,7 +394,7 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
      *
      * @api
      */
-    function getSubtypes();
+    public function getSubtypes();
 
     /**
      * Returns the direct subtypes of this node type in the node type inheritance
@@ -411,7 +409,7 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
      *
      * @api
      */
-    function getDeclaredSubtypes();
+    public function getDeclaredSubtypes();
 
     /**
      * Reports if the name of this node type or any of its direct or indirect
@@ -426,7 +424,7 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
      *
      * @api
      */
-    function isNodeType($nodeTypeName);
+    public function isNodeType($nodeTypeName);
 
     /**
      * Returns an array containing the property definitions of this node type.
@@ -439,7 +437,7 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
      *
      * @api
      */
-    function getPropertyDefinitions();
+    public function getPropertyDefinitions();
 
     /**
      * Returns an array containing the child node definitions of this node type.
@@ -452,7 +450,7 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
      *
      * @api
      */
-    function getChildNodeDefinitions();
+    public function getChildNodeDefinitions();
 
     /**
      * Determines if the node type allows to set the value of a property.
@@ -469,7 +467,7 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
      *
      * @api
      */
-    function canSetProperty($propertyName, $value);
+    public function canSetProperty($propertyName, $value);
 
     /**
      * Determines if this node type allows the addition of a child node.
@@ -490,7 +488,7 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
      *
      * @api
      */
-    function canAddChildNode($childNodeName, $nodeTypeName = null);
+    public function canAddChildNode($childNodeName, $nodeTypeName = null);
 
     /**
      * Reports if the node type allows the removal of the given node.
@@ -505,7 +503,7 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
      *
      * @api
      */
-    function canRemoveNode($nodeName);
+    public function canRemoveNode($nodeName);
 
     /**
      * Determines if the node type allows to remove the property identified by
@@ -521,5 +519,5 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
      *
      * @api
      */
-    function canRemoveProperty($propertyName);
+    public function canRemoveProperty($propertyName);
 }

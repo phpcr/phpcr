@@ -27,8 +27,6 @@ namespace PHPCR\NodeType;
 /**
  * A node definition. Used in node type definitions.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface NodeDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInterface
@@ -54,7 +52,7 @@ interface NodeDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInterfac
      *
      * @api
      */
-    function getRequiredPrimaryTypes();
+    public function getRequiredPrimaryTypes();
 
     /**
      * Returns the names of the required primary node types.
@@ -71,7 +69,7 @@ interface NodeDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInterfac
      *
      * @api
      */
-    function getRequiredPrimaryTypeNames();
+    public function getRequiredPrimaryTypeNames();
 
     /**
      * Gets the default primary node type that will be assigned to the child node
@@ -90,7 +88,7 @@ interface NodeDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInterfac
      *
      * @api
      */
-    function getDefaultPrimaryType();
+    public function getDefaultPrimaryType();
 
     /**
      * Returns the name of the default primary node type.
@@ -107,7 +105,7 @@ interface NodeDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInterfac
      *
      * @api
      */
-    function getDefaultPrimaryTypeName();
+    public function getDefaultPrimaryTypeName();
 
     /**
      * Reports whether this child node can have same-name siblings.
@@ -123,5 +121,5 @@ interface NodeDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInterfac
      *
      * @api
      */
-    function allowsSameNameSiblings();
+    public function allowsSameNameSiblings();
 }

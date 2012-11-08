@@ -30,8 +30,6 @@ namespace PHPCR;
  * if an attempt is made to read the value of a property using a type-specific
  * read method of a type into which it is not convertible.
  *
- * @package phpcr
- * @subpackage exceptions
  * @api
  */
 class ValueFormatException extends RepositoryException

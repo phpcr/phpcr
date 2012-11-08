@@ -27,8 +27,6 @@ namespace PHPCR\Query\QOM;
 /**
  * An operand to a binary operation specified by a Comparison.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface OperandInterface

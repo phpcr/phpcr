@@ -29,8 +29,6 @@ namespace PHPCR;
  *
  * May contain an error message and/or another nested exception.
  *
- * @package phpcr
- * @subpackage exceptions
  * @api
  */
 class RepositoryException extends \RuntimeException

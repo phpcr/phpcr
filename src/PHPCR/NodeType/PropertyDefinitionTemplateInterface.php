@@ -34,8 +34,6 @@ namespace PHPCR\NodeType;
  * the default values assumed when a new empty PropertyDefinitionTemplate is
  * created (as opposed to one extracted from an existing NodeType).
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface PropertyDefinitionTemplateInterface extends \PHPCR\NodeType\PropertyDefinitionInterface
@@ -49,7 +47,7 @@ interface PropertyDefinitionTemplateInterface extends \PHPCR\NodeType\PropertyDe
      *
      * @api
      */
-    function setName($name);
+    public function setName($name);
 
     /**
      * Sets the auto-create status of the property.
@@ -61,7 +59,7 @@ interface PropertyDefinitionTemplateInterface extends \PHPCR\NodeType\PropertyDe
      *
      * @api
      */
-    function setAutoCreated($autoCreated);
+    public function setAutoCreated($autoCreated);
 
     /**
      * Sets the mandatory status of the property.
@@ -72,7 +70,7 @@ interface PropertyDefinitionTemplateInterface extends \PHPCR\NodeType\PropertyDe
      *
      * @api
      */
-    function setMandatory($mandatory);
+    public function setMandatory($mandatory);
 
     /**
      * Sets the on-parent-version status of the property.
@@ -83,7 +81,7 @@ interface PropertyDefinitionTemplateInterface extends \PHPCR\NodeType\PropertyDe
      *
      * @api
      */
-    function setOnParentVersion($opv);
+    public function setOnParentVersion($opv);
 
     /**
      * Sets the protected status of the property.
@@ -94,7 +92,7 @@ interface PropertyDefinitionTemplateInterface extends \PHPCR\NodeType\PropertyDe
      *
      * @api
      */
-    function setProtected($protectedStatus);
+    public function setProtected($protectedStatus);
 
     /**
      * Sets the required type of the property.
@@ -105,7 +103,7 @@ interface PropertyDefinitionTemplateInterface extends \PHPCR\NodeType\PropertyDe
      *
      * @api
      */
-    function setRequiredType($type);
+    public function setRequiredType($type);
 
     /**
      * Sets the value constraints of the property.
@@ -116,7 +114,7 @@ interface PropertyDefinitionTemplateInterface extends \PHPCR\NodeType\PropertyDe
      *
      * @api
      */
-    function setValueConstraints(array $constraints);
+    public function setValueConstraints(array $constraints);
 
     /**
      * Sets the default value (or values, in the case of a multi-value property)
@@ -129,7 +127,7 @@ interface PropertyDefinitionTemplateInterface extends \PHPCR\NodeType\PropertyDe
      *
      * @api
      */
-    function setDefaultValues(array $defaultValues);
+    public function setDefaultValues(array $defaultValues);
 
     /**
      * Sets the multi-value status of the property.
@@ -141,7 +139,7 @@ interface PropertyDefinitionTemplateInterface extends \PHPCR\NodeType\PropertyDe
      *
      * @api
      */
-    function setMultiple($multiple);
+    public function setMultiple($multiple);
 
     /**
      * Sets the queryable status of the property.
@@ -153,7 +151,7 @@ interface PropertyDefinitionTemplateInterface extends \PHPCR\NodeType\PropertyDe
      *
      * @api
      */
-    function setAvailableQueryOperators(array $operators);
+    public function setAvailableQueryOperators(array $operators);
 
     /**
      * Sets the full-text-searchable status of the property.
@@ -165,7 +163,7 @@ interface PropertyDefinitionTemplateInterface extends \PHPCR\NodeType\PropertyDe
      *
      * @api
      */
-    function setFullTextSearchable($fullTextSearchable);
+    public function setFullTextSearchable($fullTextSearchable);
 
     /**
      * Sets the query-orderable status of the property.
@@ -177,5 +175,5 @@ interface PropertyDefinitionTemplateInterface extends \PHPCR\NodeType\PropertyDe
      *
      * @api
      */
-    function setQueryOrderable($queryOrderable);
+    public function setQueryOrderable($queryOrderable);
 }
