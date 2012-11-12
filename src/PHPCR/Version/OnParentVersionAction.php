@@ -164,7 +164,7 @@ final class OnParentVersionAction
      *
      * @api
      */
-    static public function nameFromValue($action)
+    public static function nameFromValue($action)
     {
         switch (intval($action)) {
             case self::COPY :
@@ -200,7 +200,7 @@ final class OnParentVersionAction
      *
      * @api
      */
-    static public function valueFromName($name)
+    public static function valueFromName($name)
     {
         switch ($name) {
             case self::ACTIONNAME_COPY :

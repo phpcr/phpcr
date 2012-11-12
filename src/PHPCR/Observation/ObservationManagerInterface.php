@@ -83,16 +83,18 @@ interface ObservationManagerInterface extends \Traversable
      * repositories observation of changes in the jcr:system subgraph may not be
      * supported
      *
-     * @param \PHPCR\Observation\EventListenerInterface $listener An EventListener object.
-     * @param integer $eventTypes A combination of one or more event type constants encoded as a bitmask.
-     * @param string $absPath The absolute path identifying the node to be observed.
-     * @param boolean $isDeep Switch to define the given path as a reference to a child node.
-     * @param array $uuid List of identifiers of events to be recieved.
-     * @param array $nodeTypeName List of node type names to identify the events to be recieved.
-     * @param boolean $noLocal switch to handle local events.
+     * @param EventListenerInterface $listener     An EventListener object.
+     * @param integer                $eventTypes   A combination of one or more event type constants encoded as a bitmask.
+     * @param string                 $absPath      The absolute path identifying the node to be observed.
+     * @param boolean                $isDeep       Switch to define the given path as a reference to a child node.
+     * @param array                  $uuid         List of identifiers of events to be recieved.
+     * @param array                  $nodeTypeName List of node type names to identify the events to be recieved.
+     * @param boolean                $noLocal      switch to handle local events.
+     *
      * @return void
      *
      * @throws \PHPCR\RepositoryException if an error occurs.
+     *
      * @api
      */
     public function addEventListener(\PHPCR\Observation\EventListenerInterface $listener, $eventTypes, $absPath,
@@ -107,10 +109,12 @@ interface ObservationManagerInterface extends \Traversable
      * method. In this case, the deregistration method returns immediately, but
      * deregistration will effectively be delayed until the listener completes.
      *
-     * @param \PHPCR\Observation\EventListenerInterface $listener The listener to deregister.
+     * @param EventListenerInterface $listener The listener to deregister.
+     *
      * @return void
      *
      * @throws \PHPCR\RepositoryException if an error occurs.
+     *
      * @api
      */
     public function removeEventListener(\PHPCR\Observation\EventListenerInterface $listener);
@@ -120,10 +124,11 @@ interface ObservationManagerInterface extends \Traversable
      *
      * If no listeners have been registered, an empty iterator is returned.
      *
-     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>.
+     * @return \Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>.
      *                  Values are the EventListenerInterface instances. Keys have no meaning.
      *
      * @throws \PHPCR\RepositoryException if an error occurs
+     *
      * @api
      */
     public function getRegisteredEventListeners();
@@ -132,9 +137,11 @@ interface ObservationManagerInterface extends \Traversable
      * Sets the user data information that will be returned by EventInterface::getUserData().
      *
      * @param string $userData the user data
+     *
      * @return void
      *
      * @throws \PHPCR\RepositoryException if an error occurs
+     *
      * @api
      */
     public function setUserData($userData);
@@ -153,14 +160,16 @@ interface ObservationManagerInterface extends \Traversable
      * The parameters of this method filter the event set in the same way as
      * they do in addEventListener().
      *
-     * @param integer $eventTypes A combination of one or more event type constants encoded as a bitmask.
-     * @param string $absPath an absolute path.
-     * @param boolean $isDeep Switch to define the given path as a reference to a child node.
-     * @param array $uuid array of identifiers.
-     * @param array $nodeTypeName array of node type names.
-     * @return \PHPCR\Observation\EventJournalInterface an EventJournal (or null).
+     * @param integer $eventTypes   A combination of one or more event type constants encoded as a bitmask.
+     * @param string  $absPath      an absolute path.
+     * @param boolean $isDeep       Switch to define the given path as a reference to a child node.
+     * @param array   $uuid         array of identifiers.
+     * @param array   $nodeTypeName array of node type names.
+     *
+     * @return EventJournalInterface an EventJournal (or null).
      *
      * @throws \PHPCR\RepositoryException if an error occurs
+     *
      * @api
      */
     public function getEventJournal($eventTypes = null, $absPath = null, $isDeep = null, array $uuid = null,

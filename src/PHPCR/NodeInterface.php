@@ -96,7 +96,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      * transactions) or on persist (save without transactions, commit within
      * a transaction), depending on the implementation.
      *
-     * @param string $relPath The path of the new node to be created.
+     * @param string $relPath             The path of the new node to be created.
      * @param string $primaryNodeTypeName The name of the primary node type of
      *      the new node. Optional.
      *
@@ -120,7 +120,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      *      node and this implementation performs this validation immediately
      *      instead of waiting until save.
      * @throws \InvalidArgumentException if $relPath is an absolute path
-     * @throws RepositoryException if the last element of relPath has an
+     * @throws RepositoryException       if the last element of relPath has an
      *      index or if another error occurs.
      *
      * @api
@@ -216,9 +216,9 @@ interface NodeInterface extends ItemInterface, \Traversable
      * on what is supposed to happen for different types of values being passed
      * to this method.
      *
-     * @param string $name The name of a property of this node
-     * @param mixed $value The value to be assigned
-     * @param integer $type The type to set for the property, optional. Must be
+     * @param string  $name  The name of a property of this node
+     * @param mixed   $value The value to be assigned
+     * @param integer $type  The type to set for the property, optional. Must be
      *      a constant from {@link PropertyType}
      *
      * @return PropertyInterface The new resp. updated Property object
@@ -352,7 +352,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      *      specified path or if the current Session does not have read access
      *      to the specified property.
      * @throws \InvalidArgumentException if $relPath is an absolute path
-     * @throws RepositoryException if another error occurs.
+     * @throws RepositoryException       if another error occurs.
      *
      * @api
      */
@@ -364,7 +364,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      * If $type is set, attempts to convert the value to the specified type.
      * This is a shortcut for getProperty()->getXX()
      *
-     * @param string $name Name of this property
+     * @param string  $name Name of this property
      * @param integer $type Type conversion request, optional. Must be a
      *      constant from {@link PropertyType}
      *
@@ -449,8 +449,8 @@ interface NodeInterface extends ItemInterface, \Traversable
      * To improve performance, implementations should avoid instantiating the
      * property objects for this method
      *
-     * @param string|array $filter a name pattern
-     * @param boolean $dereference whether to dereference REFERENCE,
+     * @param string|array $filter      a name pattern
+     * @param boolean      $dereference whether to dereference REFERENCE,
      *      WEAKREFERENCE and PATH properties or just return id/path strings
      *
      * @return array Keys are the property names, values the corresponding
@@ -604,7 +604,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      * @return boolean true if a node exists at relPath; false otherwise.
      *
      * @throws \InvalidArgumentException if $relPath is an absolute path
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException       if an error occurs.
      *
      * @api
      */
@@ -621,7 +621,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      * @return boolean true if a property exists at relPath; false otherwise.
      *
      * @throws \InvalidArgumentException if $relPath is an absolute path
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException       if an error occurs.
      *
      * @api
      */
@@ -883,13 +883,13 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @return void
      *
-     * @throws NoSuchWorkspaceException if srcWorkspace does not exist.
+     * @throws NoSuchWorkspaceException  if srcWorkspace does not exist.
      * @throws InvalidItemStateException if this Session (not
      *      necessarily this Node) has pending unsaved changes.
      * @throws AccessDeniedException if the current session does not
      *      have sufficient access to perform the operation.
      * @throws \PHPCR\Lock\LockException if a lock prevents the update.
-     * @throws RepositoryException if another error occurs.
+     * @throws RepositoryException       if another error occurs.
      *
      * @api
      */
@@ -903,9 +903,9 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @return string the absolute path to the corresponding node.
      *
-     * @throws ItemNotFoundException if no corresponding node is found.
+     * @throws ItemNotFoundException    if no corresponding node is found.
      * @throws NoSuchWorkspaceException if the workspace is unknown.
-     * @throws AccessDeniedException if the current session has
+     * @throws AccessDeniedException    if the current session has
      *      insufficient access capabilities to perform this operation.
      * @throws RepositoryException if another error occurs.
      *

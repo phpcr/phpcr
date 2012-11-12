@@ -56,7 +56,7 @@ final class SimpleCredentials implements CredentialsInterface
      * The constructor creates a new SimpleCredentials object, given a user ID
      * and password.
      *
-     * @param string $userID the user ID
+     * @param string $userID   the user ID
      * @param string $password the user's password
      *
      * @api
@@ -97,8 +97,8 @@ final class SimpleCredentials implements CredentialsInterface
      * <b>Note:</b>
      * If no value is passed, the attribute will be removed.
      *
-     * @param string $name the name of the attribute
-     * @param mixed $value the value to be stored
+     * @param string $name  the name of the attribute
+     * @param mixed  $value the value to be stored
      *
      * @return void
      *
@@ -134,6 +134,7 @@ final class SimpleCredentials implements CredentialsInterface
         if (isset($this->attributes[$name])) {
             return $this->attributes[$name];
         }
+
         return null;
     }
 

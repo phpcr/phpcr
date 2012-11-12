@@ -43,12 +43,13 @@ class PropertyTypesTest extends \PHPUnit_Framework_TestCase
         'UNDEFINED'      => 'undefined',
     );
 
-    static public function dataValueFromName()
+    public static function dataValueFromName()
     {
         $data = array();
         foreach (self::$names as $key => $value) {
             $data[] = array($key,$value);
         }
+
         return $data;
     }
 
@@ -345,7 +346,6 @@ class PropertyTypesTest extends \PHPUnit_Framework_TestCase
             array('38b7cf18-c417-477a-af0b-c1e92a290c9a', PropertyType::WEAKREFERENCE, null, PropertyType::DECIMAL),
             array($nodemock, PropertyType::WEAKREFERENCE, null, PropertyType::DECIMAL),
 
-
             // uri to...
             array('http://phpcr.githbub.com/doc/html', PropertyType::URI, 'http://phpcr.githbub.com/doc/html', PropertyType::STRING),
             array('http://phpcr.githbub.com/doc/html', PropertyType::URI, null, PropertyType::DATE),
@@ -387,7 +387,7 @@ class PropertyTypesTest extends \PHPUnit_Framework_TestCase
             try {
                 PropertyType::convertType($value, $targettype, $srctype);
                 $this->fail('Excpected that this conversion would throw an exception');
-            } catch(\PHPCR\ValueFormatException $e) {
+            } catch (\PHPCR\ValueFormatException $e) {
                 // expected
                 $this->assertTrue(true); // make it assert something
             }

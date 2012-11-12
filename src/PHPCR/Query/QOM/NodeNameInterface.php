@@ -37,5 +37,5 @@ interface NodeNameInterface extends DynamicOperandInterface
     * @return string the selector name; non-null
     * @api
     */
-   function getSelectorName();
+   public function getSelectorName();
 }

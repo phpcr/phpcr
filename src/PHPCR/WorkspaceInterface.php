@@ -35,8 +35,8 @@ namespace PHPCR;
  *
  * @api
  */
-interface WorkspaceInterface {
-
+interface WorkspaceInterface
+{
     /**#@+
      * @var string
      */
@@ -236,7 +236,7 @@ interface WorkspaceInterface {
      * copies an entire node and its subgraph (including, of course, any
      * properties contained therein).
      *
-     * @param string $srcAbsPath the path of the node to be copied.
+     * @param string $srcAbsPath  the path of the node to be copied.
      * @param string $destAbsPath the location to which the node at srcAbsPath
      *      is to be copied in this workspace.
      * @param string $srcWorkspace the name of the workspace from which the
@@ -261,7 +261,7 @@ interface WorkspaceInterface {
      *      destAbsPath and either same-name siblings are not allowed or update
      *      on copy is not supported for the nodes involved.
      * @throws \PHPCR\Lock\LockException if a lock prevents the copy.
-     * @throws RepositoryException if the last element of destAbsPath
+     * @throws RepositoryException       if the last element of destAbsPath
      *      has an index or if another error occurs.
      *
      * @api
@@ -318,7 +318,7 @@ interface WorkspaceInterface {
      *
      * @return void
      *
-     * @throws NoSuchWorkspaceException if destWorkspace does not exist.
+     * @throws NoSuchWorkspaceException                     if destWorkspace does not exist.
      * @throws \PHPCR\NodeType\ConstraintViolationException if the operation
      *      would violate a node-type or other implementation-specific
      *      constraint.
@@ -336,7 +336,7 @@ interface WorkspaceInterface {
      *      destAbsPath and same-name siblings are not allowed or if
      *      removeExisting is false and an identifier conflict occurs.
      * @throws \PHPCR\Lock\LockException if a lock prevents the clone.
-     * @throws RepositoryException if the last element of destAbsPath
+     * @throws RepositoryException       if the last element of destAbsPath
      *      has an index or if another error occurs.
      *
      * @api
@@ -370,7 +370,7 @@ interface WorkspaceInterface {
      * The identifiers of referenceable nodes must not be changed by a move. The
      * identifiers of non-referenceable nodes may change.
      *
-     * @param string $srcAbsPath the path of the node to be moved.
+     * @param string $srcAbsPath  the path of the node to be moved.
      * @param string $destAbsPath the location to which the node at srcAbsPath
      *      is to be moved.
      *
@@ -389,7 +389,7 @@ interface WorkspaceInterface {
      * @throws ItemExistsException if a node already exists at
      *      destAbsPath and same-name siblings are not allowed.
      * @throws \PHPCR\Lock\LockException if a lock prevents the move.
-     * @throws RepositoryException if the last element of destAbsPath
+     * @throws RepositoryException       if the last element of destAbsPath
      *      has an index or if another error occurs.
      *
      * @api
@@ -567,11 +567,11 @@ interface WorkspaceInterface {
      * and an incoming node has the same identifier as the node at parentAbsPath or
      * one of its ancestors.
      *
-     * @param string $parentAbsPath the absolute path of a node under which (as child) the imported subgraph will be built.
-     * @param integer $uuidBehavior a four-value flag that governs how incoming identifiers are handled.
+     * @param  string                  $parentAbsPath the absolute path of a node under which (as child) the imported subgraph will be built.
+     * @param  integer                 $uuidBehavior  a four-value flag that governs how incoming identifiers are handled.
      * @return ContentHandlerInterface whose methods may be called to feed SAX events into the deserializer.
      *
-     * @throws PathNotFoundException if no node exists at $parentAbsPath.
+     * @throws PathNotFoundException                        if no node exists at $parentAbsPath.
      * @throws \PHPCR\NodeType\ConstraintViolationException if the new subgraph cannot be added to the node at $parentAbsPath due
      *                                             to node-type or other implementation-specific constraints, and this
      *                                             can be determined before the first SAX event is sent. Unlike
@@ -581,8 +581,8 @@ interface WorkspaceInterface {
      *                                             whether node type information in the imported data is respected,
      *                                             and this is an implementation-specific issue.
      * @throws \PHPCR\Version\VersionException if the node at $parentAbsPath is read-only due to a checked-in node.
-     * @throws \PHPCR\Lock\LockException if a lock prevents the addition of the subgraph.
-     * @throws AccessDeniedException if the session associated with this Workspace object does not have
+     * @throws \PHPCR\Lock\LockException       if a lock prevents the addition of the subgraph.
+     * @throws AccessDeniedException           if the session associated with this Workspace object does not have
      *                                      sufficient access to perform the import.
      * @throws RepositoryException if another error occurs.
      *
@@ -643,8 +643,8 @@ interface WorkspaceInterface {
      *
      * @return void
      *
-     * @throws \RuntimeException if an error during an I/O operation occurs.
-     * @throws PathNotFoundException if no node exists at parentAbsPath.
+     * @throws \RuntimeException                            if an error during an I/O operation occurs.
+     * @throws PathNotFoundException                        if no node exists at parentAbsPath.
      * @throws \PHPCR\NodeType\ConstraintViolationException if node-type or
      *      other implementation-specific constraints prevent the addition of
      *      the subgraph or if uuidBehavior is set to
@@ -685,7 +685,7 @@ interface WorkspaceInterface {
      *
      * The new workspace can be accessed through a login specifying its name.
      *
-     * @param string $name A String, the name of the new workspace.
+     * @param string $name         A String, the name of the new workspace.
      * @param string $srcWorkspace The name of the workspace from which the new
      *      workspace is to be cloned.
      *
@@ -697,7 +697,7 @@ interface WorkspaceInterface {
      * @throws UnsupportedRepositoryOperationException if the repository
      *      does not support the creation of workspaces.
      * @throws NoSuchWorkspaceException if $srcWorkspace does not exist.
-     * @throws RepositoryException if another error occurs.
+     * @throws RepositoryException      if another error occurs.
      *
      * @api
      */
@@ -717,7 +717,7 @@ interface WorkspaceInterface {
      * @throws UnsupportedRepositoryOperationException if the repository
      *      does not support the removal of workspaces.
      * @throws NoSuchWorkspaceException if $name does not exist.
-     * @throws RepositoryException if another error occurs.
+     * @throws RepositoryException      if another error occurs.
      *
      * @api
      */
