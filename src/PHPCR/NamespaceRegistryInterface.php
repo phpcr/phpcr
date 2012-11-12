@@ -141,7 +141,7 @@ interface NamespaceRegistryInterface extends \Traversable
      *   NamespaceException.
      *
      * @param string $prefix The prefix to be mapped.
-     * @param string $uri The URI to be mapped.
+     * @param string $uri    The URI to be mapped.
      *
      * @return void
      *

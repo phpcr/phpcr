@@ -34,7 +34,7 @@ interface ItemInterface
     /**
      * Returns the normalized absolute path to this item.
      *
-     * @return string the normalized absolute path of this Item.
+     * @return string              the normalized absolute path of this Item.
      * @throws RepositoryException if an error occurs.
      * @api
      */

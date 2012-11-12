@@ -235,13 +235,13 @@ final class PropertyType
     /**
      * Returns the name of the specified type, as used in serialization.
      *
-     * @param integer $type type the property type
+     * @param  integer $type type the property type
      * @return string  name of the specified type
      *
      * @throws \InvalidArgumentException if the given type is unknown.
      * @api
      */
-    static public function nameFromValue($type)
+    public static function nameFromValue($type)
     {
         switch (intval($type)) {
             case self::UNDEFINED :
@@ -278,13 +278,13 @@ final class PropertyType
     /**
      * Returns the numeric constant value of the type with the specified name.
      *
-     * @param string $name The name of the property type
-     * @return int The numeric constant value
+     * @param  string $name The name of the property type
+     * @return int    The numeric constant value
      *
      * @throws \InvalidArgumentException if the given name is unknown.
      * @api
      */
-    static public function valueFromName($name)
+    public static function valueFromName($name)
     {
         switch (strtolower($name)) {
             case 'undefined':
@@ -331,8 +331,8 @@ final class PropertyType
      * formatting spec for dates (sYYYY-MM-DDThh:mm:ss.sssTZD) according to
      * http://www.day.com/specs/jcr/2.0/3_Repository_Model.html#3.6.4.3%20From%20DATE%20To
      *
-     * @param mixed $value The variable we need to know the type of
-     * @param boolean $weak When a Node is given as $value this can be given as true to create a WEAKREFERENCE.
+     * @param mixed   $value The variable we need to know the type of
+     * @param boolean $weak  When a Node is given as $value this can be given as true to create a WEAKREFERENCE.
      *
      * @return int One of the type constants
      *
@@ -349,11 +349,13 @@ final class PropertyType
             if (preg_match("/^(\\+|-)?(\\d{4})-(\\d{2})-(\\d{2})T([01][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])(\\.[0-9][0-9][0-9])?.*/", $value, $matches)) {
                 try {
                     new \DateTime($value);
+
                     return self::DATE;
                 } catch (\Exception $e) {
                     // ignore, fall through to the string if its not valid
                 }
             }
+
             return self::STRING;
         } elseif (is_resource($value)) {
             return self::BINARY;
@@ -415,14 +417,14 @@ final class PropertyType
         <TR><TD>DECIMAL</TD><TD>noop</TD><TD>Utf-8 encoded</TD><TD>cast to int</TD><TD>cast to float</TD><TD>Unix Time</TD><TD><I>0 false else true</I></TD><TD>ValueFormatException</TD><TD>ValueFormatException</TD><TD>ValueFormatException</TD><TD>ValueFormatException</TD><TD>x</TD></TR>
         </TABLE>
      *
-     * @param mixed $values The value or value array to check and convert
-     * @param int $type Target type to convert into. One of the type constants in PropertyType
-     * @param int $srctype Source type to convert from, if not specified this is automatically determined, which will miss the string based types that are not strings (DECIMAL, NAME, PATH, URI)
+     * @param mixed $values  The value or value array to check and convert
+     * @param int   $type    Target type to convert into. One of the type constants in PropertyType
+     * @param int   $srctype Source type to convert from, if not specified this is automatically determined, which will miss the string based types that are not strings (DECIMAL, NAME, PATH, URI)
      *
      * @return mixed the value typecasted into the proper format (throws an exception if conversion is not possible)
      *
-     * @throws ValueFormatException is thrown if the specified value cannot be converted to the specified type
-     * @throws RepositoryException if the specified Node is not referenceable, the current Session is no longer active, or another error occurs.
+     * @throws ValueFormatException      is thrown if the specified value cannot be converted to the specified type
+     * @throws RepositoryException       if the specified Node is not referenceable, the current Session is no longer active, or another error occurs.
      * @throws \InvalidArgumentException if the specified DateTime value cannot be expressed in the ISO 8601-based format defined in the JCR 2.0 specification and the implementation does not support dates incompatible with that format.
      *
      * @see http://www.day.com/specs/jcr/2.0/3_Repository_Model.html#3.6.4%20Property%20Type%20Conversion
@@ -431,9 +433,10 @@ final class PropertyType
     {
         if (is_array($value)) {
             $ret = array();
-            foreach($value as $v) {
+            foreach ($value as $v) {
                 $ret[] = self::convertType($v, $type, $srctype);
             }
+
             return $ret;
         }
 
@@ -500,6 +503,7 @@ final class PropertyType
                 $f = fopen('php://memory', 'rwb+');
                 fwrite($f, $value);
                 rewind($f);
+
                 return $f;
 
             case self::LONG:
@@ -514,6 +518,7 @@ final class PropertyType
                         if (! $value instanceof \DateTime) {
                             throw new RepositoryException('something weird');
                         }
+
                         return $value->getTimestamp();
                 }
                 if (is_object($value)) {
@@ -533,6 +538,7 @@ final class PropertyType
                         if (! $value instanceof \DateTime) {
                             throw new RepositoryException('something weird');
                         }
+
                         return (double) $value->getTimestamp();
                 }
                 if (is_object($value)) {
@@ -557,6 +563,7 @@ final class PropertyType
                     case self::DECIMAL:
                         $datetime = new \DateTime();
                         $datetime = $datetime->setTimestamp($value);
+
                         return $datetime;
                 }
                 if (is_object($value)) {
@@ -624,6 +631,7 @@ final class PropertyType
                             //TODO check if string is valid uuid
                             throw new ValueFormatException('Value '.var_export($value, true).' is not a valid unique id');
                         }
+
                         return $value;
                 }
                 if (is_object($value)) {
@@ -645,6 +653,7 @@ final class PropertyType
                         ) {
                             $value = './'.$value;
                         }
+
                         return str_replace('%2F', '/', rawurlencode($value));
                     case self::URI:
                         return $value;

@@ -200,7 +200,7 @@ interface NodeTypeManagerInterface extends \Traversable
      * The effect of the method is "all or nothing"; if an error occurs, no node
      * types are registered or updated.
      *
-     * @param array $definitions an array of NodeTypeDefinitions.
+     * @param array   $definitions an array of NodeTypeDefinitions.
      * @param boolean $allowUpdate whether to fail if node already exists or to
      *      update it.
      *

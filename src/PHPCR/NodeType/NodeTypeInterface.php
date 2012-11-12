@@ -460,7 +460,7 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
      * Otherwise returns false.
      *
      * @param string $propertyName The name of the property
-     * @param mixed $value A variable or an array of variables
+     * @param mixed  $value        A variable or an array of variables
      *
      * @return boolean True if setting propertyName to value is allowed by this
      *      node type, else false.
@@ -481,7 +481,7 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
      * Returns false otherwise.
      *
      * @param string $childNodeName The name of the child node.
-     * @param string $nodeTypeName The name of the node type of the child node.
+     * @param string $nodeTypeName  The name of the node type of the child node.
      *
      * @return boolean True, if the node type allows the addition of a child
      *      node, else false.

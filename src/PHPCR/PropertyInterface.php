@@ -526,8 +526,8 @@ interface PropertyInterface extends ItemInterface, \Traversable
      * <strong>PHPCR Note:</strong> Because we removed the Value interface,
      *      this method replaces ValueFactory::createValue.
      *
-     * @param mixed $value The value to set
-     * @param integer $type Type request for the property, optional. Must be a
+     * @param mixed   $value The value to set
+     * @param integer $type  Type request for the property, optional. Must be a
      *      constant from PropertyType
      *
      * @return void
@@ -590,7 +590,7 @@ interface PropertyInterface extends ItemInterface, \Traversable
      *      an array of string for multi-valued properties.
      *
      * @throws ValueFormatException if conversion to a String is not possible
-     * @throws RepositoryException if another error occurs.
+     * @throws RepositoryException  if another error occurs.
      * @api
      */
     public function getString();

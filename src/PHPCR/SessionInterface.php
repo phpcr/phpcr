@@ -254,7 +254,7 @@ interface SessionInterface
      * @return NodeInterface A node
      *
      * @throws PathNotFoundException if no accessible node is found at the specified path.
-     * @throws RepositoryException if another error occurs.
+     * @throws RepositoryException   if another error occurs.
      *
      * @api
      */
@@ -373,7 +373,7 @@ interface SessionInterface
      * This method cannot be used to move an individual property by itself. It
      * moves an entire node and its subgraph.
      *
-     * @param string $srcAbsPath the root of the subgraph to be moved.
+     * @param string $srcAbsPath  the root of the subgraph to be moved.
      * @param string $destAbsPath the location to which the subgraph is to be
      *      moved.
      *
@@ -621,7 +621,7 @@ interface SessionInterface
      * @return void
      *
      * @throws \PHPCR\Security\AccessControlException If permission is denied.
-     * @throws RepositoryException if another error occurs.
+     * @throws RepositoryException                    if another error occurs.
      *
      * @api
      */
@@ -663,8 +663,8 @@ interface SessionInterface
      * to the node $n within the session $s.
      *
      * @param string $methodName the name of the method.
-     * @param object $target the target object of the operation.
-     * @param array $arguments the arguments of the operation.
+     * @param object $target     the target object of the operation.
+     * @param array  $arguments  the arguments of the operation.
      *
      * @return boolean false if the operation cannot be performed, true if the
      *      operation can be performed or if the repository cannot determine
@@ -842,7 +842,7 @@ interface SessionInterface
      *
      * @return void
      *
-     * @throws \RuntimeException if an error during an I/O operation occurs.
+     * @throws \RuntimeException     if an error during an I/O operation occurs.
      * @throws PathNotFoundException if no node exists at parentAbsPath
      *      and this implementation performs this validation immediately.
      * @throws ItemExistsException if deserialization would overwrite an
@@ -911,8 +911,8 @@ interface SessionInterface
      * @return void
      *
      * @throws PathNotFoundException if no node exists at absPath.
-     * @throws \RuntimeException if an error during an I/O operation occurs.
-     * @throws RepositoryException if another error occurs.
+     * @throws \RuntimeException     if an error during an I/O operation occurs.
+     * @throws RepositoryException   if another error occurs.
      *
      * @api
      */
@@ -961,8 +961,8 @@ interface SessionInterface
      * @return void
      *
      * @throws PathNotFoundException if no node exists at absPath.
-     * @throws \RuntimeException if an error during an I/O operation occurs.
-     * @throws RepositoryException if another error occurs.
+     * @throws \RuntimeException     if an error during an I/O operation occurs.
+     * @throws RepositoryException   if another error occurs.
      *
      * @api
      */
@@ -979,7 +979,7 @@ interface SessionInterface
      * mapping is added.
      *
      * @param string $prefix The namespace prefix to be set as identifier.
-     * @param string $uri The loaction of the namespace definition (usually an
+     * @param string $uri    The loaction of the namespace definition (usually an
      *      uri).
      *
      * @return void
@@ -1016,7 +1016,7 @@ interface SessionInterface
      * @return string The location of the namespace definition identified by
      *      its prefix.
      *
-     * @throws NamespaceException if the specified prefix is unknown.
+     * @throws NamespaceException  if the specified prefix is unknown.
      * @throws RepositoryException if another error occurs
      *
      * @api
@@ -1032,7 +1032,7 @@ interface SessionInterface
      *
      * @return string The prefix of a namespace identified by its uri.
      *
-     * @throws NamespaceException if the specified uri is unknown.
+     * @throws NamespaceException  if the specified uri is unknown.
      * @throws RepositoryException if another error occurs
      *
      * @api

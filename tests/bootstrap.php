@@ -35,9 +35,11 @@ function phpcr_autoloader($class)
             if (file_exists($file)) {
                 require $file;
             }
+
             return;
         }
     }
+
     return false;
 }
 

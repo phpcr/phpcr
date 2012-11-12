@@ -12,6 +12,7 @@ class SimpleCredentialsTest extends \PHPUnit_Framework_TestCase
     {
         $credentials = new SimpleCredentials('user', 'password');
         $this->assertInstanceOf('PHPCR\\CredentialsInterface', $credentials);
+
         return $credentials;
     }
 
@@ -51,7 +52,6 @@ class SimpleCredentialsTest extends \PHPUnit_Framework_TestCase
     {
         $credentials->setAttribute(null, 'test');
     }
-
 
     /**
      * @depends testConstructor

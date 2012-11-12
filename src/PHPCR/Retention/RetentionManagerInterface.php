@@ -61,12 +61,12 @@ interface RetentionManagerInterface
      * more than one hold. The format and interpretation of the name are not
      * specified. They are application-dependent.
      *
-     * @param string $absPath The absolute path to a node.
-     * @param string $name An application-dependent string.
-     * @param boolean $isDeep A boolean indicating if the hold applies to the
+     * @param string  $absPath The absolute path to a node.
+     * @param string  $name    An application-dependent string.
+     * @param boolean $isDeep  A boolean indicating if the hold applies to the
      *      subgraph.
      *
-     * @return \PHPCR\Retention\HoldInterface The Hold applied.
+     * @return HoldInterface The Hold applied.
      *
      * @throws \PHPCR\PathNotFoundException if no node at $absPath exists or
      *      the session does not have sufficient access to retrieve the node.
@@ -89,8 +89,8 @@ interface RetentionManagerInterface
      *
      * The removal does not take effect until a save is performed.
      *
-     * @param string $absPath an absolute path.
-     * @param \PHPCR\Retention\HoldInterface $hold the hold to be removed.
+     * @param string        $absPath an absolute path.
+     * @param HoldInterface $hold    the hold to be removed.
      *
      * @return void
      *
@@ -141,8 +141,8 @@ interface RetentionManagerInterface
      * an implementation issue. In any case the policy does does not take
      * effect until a save is performed.
      *
-     * @param string $absPath an absolute path to an existing node.
-     * @param \PHPCR\Retention\RetentionPolicyInterface $retentionPolicy a
+     * @param string                   $absPath         an absolute path to an existing node.
+     * @param RetentionPolicyInterface $retentionPolicy a
      *      retention policy.
      *
      * @return void

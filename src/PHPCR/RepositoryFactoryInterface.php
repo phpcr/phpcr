@@ -68,7 +68,7 @@ interface RepositoryFactoryInterface
      *
      * @api
      */
-    static function getRepository(array $parameters = null);
+    public static function getRepository(array $parameters = null);
 
     /**
      * Get the list of configuration options that can be passed to
@@ -81,5 +81,5 @@ interface RepositoryFactoryInterface
      *
      * @api
      */
-    static function getConfigurationKeys();
+    public static function getConfigurationKeys();
 }
