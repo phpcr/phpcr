@@ -27,8 +27,6 @@ namespace PHPCR;
 /**
  * Exception thrown by methods of Item, Node and Workspace when an item is not found.
  *
- * @package phpcr
- * @subpackage exceptions
  * @api
  */
 class ItemNotFoundException extends RepositoryException

@@ -29,8 +29,6 @@ use PHPCR\Security\AccessControlException;
 /**
  * Exception to be thrown by access-related methods.
  *
- * @package phpcr
- * @subpackage exceptions
  * @api
  */
 class AccessDeniedException extends AccessControlException

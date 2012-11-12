@@ -27,8 +27,6 @@ namespace PHPCR\Query\QOM;
 /**
  * Evaluates to a NAME value equal to the namespace-qualified name of a node.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface NodeNameInterface extends DynamicOperandInterface

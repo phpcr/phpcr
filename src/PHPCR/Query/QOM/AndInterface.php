@@ -30,8 +30,6 @@ namespace PHPCR\Query\QOM;
  * To satisfy the And constraint, a node-tuple must satisfy both constraint1 and
  * constraint2.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface AndInterface extends ConstraintInterface
@@ -42,7 +40,7 @@ interface AndInterface extends ConstraintInterface
      * @return \PHPCR\Query\QOM\ConstraintInterface the constraint; non-null
      * @api
      */
-    function getConstraint1();
+    public function getConstraint1();
 
     /**
      * Gets the second constraint.
@@ -50,5 +48,5 @@ interface AndInterface extends ConstraintInterface
      * @return \PHPCR\Query\QOM\ConstraintInterface the constraint; non-null
      * @api
      */
-    function getConstraint2();
+    public function getConstraint2();
 }

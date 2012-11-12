@@ -35,8 +35,6 @@ namespace PHPCR\Query\QOM;
  * would return true for some non-negative integer n, where selectorNode is the
  * node for the specified selector.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface DescendantNodeInterface extends ConstraintInterface
@@ -48,7 +46,7 @@ interface DescendantNodeInterface extends ConstraintInterface
      *
      * @api
      */
-    function getSelectorName();
+    public function getSelectorName();
 
     /**
      * Gets the absolute path.
@@ -57,5 +55,5 @@ interface DescendantNodeInterface extends ConstraintInterface
      *
      * @api
      */
-    function getAncestorPath();
+    public function getAncestorPath();
 }

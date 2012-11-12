@@ -28,8 +28,7 @@ namespace PHPCR\Lock;
  * Exception thrown when a lock-related error occurs.
  *
  * @author Karsten Dambekalns <karsten@typo3.org>
- * @package phpcr
- * @subpackage exceptions
+ *
  * @api
  */
 class LockException extends \PHPCR\RepositoryException

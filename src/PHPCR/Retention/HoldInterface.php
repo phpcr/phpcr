@@ -32,8 +32,6 @@ namespace PHPCR\Retention;
  * If isDeep() is true, the hold applies to the node and its entire subgraph.
  * Otherwise the hold applies to the node and its properties only.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface HoldInterface
@@ -46,7 +44,7 @@ interface HoldInterface
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
      */
-    function isDeep();
+    public function isDeep();
 
     /**
      * Returns the name of this Hold. A JCR name.
@@ -56,5 +54,5 @@ interface HoldInterface
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
      */
-    function getName();
+    public function getName();
 }

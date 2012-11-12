@@ -36,8 +36,6 @@ namespace PHPCR;
  * method to call accept on the children of the passed node and thus recurse
  * through the tree performing some operation on each Item.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface ItemVisitorInterface
@@ -58,5 +56,5 @@ interface ItemVisitorInterface
      *
      * @api
      */
-    function visit(ItemInterface $item);
+    public function visit(ItemInterface $item);
 }

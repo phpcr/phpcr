@@ -27,8 +27,6 @@ namespace PHPCR\Query\QOM;
 /**
  * Defines constants used in the query object model.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface QueryObjectModelConstantsInterface

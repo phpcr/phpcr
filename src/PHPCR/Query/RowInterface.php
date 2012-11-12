@@ -33,8 +33,6 @@ namespace PHPCR\Query;
  * The iterator is similar to <b>getValues()</b> with keys being the column
  * names and the values the corresponding entry in that column for this row.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface RowInterface extends \Traversable
@@ -50,7 +48,7 @@ interface RowInterface extends \Traversable
      *
      * @api
      */
-    function getValues();
+    public function getValues();
 
     /**
      * Returns the value of the indicated column in this Row.
@@ -65,7 +63,7 @@ interface RowInterface extends \Traversable
      *
      * @api
      */
-    function getValue($columnName);
+    public function getValue($columnName);
 
     /**
      * Returns the Node corresponding to this Row and the specified selector,
@@ -81,7 +79,7 @@ interface RowInterface extends \Traversable
      *
      * @api
      */
-    function getNode($selectorName = null);
+    public function getNode($selectorName = null);
 
     /**
      * Get the path of a node identified by a selector.
@@ -101,7 +99,7 @@ interface RowInterface extends \Traversable
      *
      * @api
      */
-    function getPath($selectorName = null);
+    public function getPath($selectorName = null);
 
     /**
      * Returns the full text search score for this row associated with the
@@ -132,5 +130,5 @@ interface RowInterface extends \Traversable
      *
      * @api
      */
-    function getScore($selectorName = null);
+    public function getScore($selectorName = null);
 }

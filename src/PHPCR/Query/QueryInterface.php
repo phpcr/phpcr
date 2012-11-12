@@ -29,8 +29,6 @@ namespace PHPCR\Query;
  *
  * <b>PHPCR Note:</b> Instead of the dropped ValueInterface, bindValue uses native php variables
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface QueryInterface
@@ -75,7 +73,7 @@ interface QueryInterface
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
      */
-    function bindValue($varName, $value);
+    public function bindValue($varName, $value);
 
     /**
      * Executes this query and returns a QueryResult object.
@@ -86,7 +84,7 @@ interface QueryInterface
      * @throws \PHPCR\RepositoryException if an error occurs
      * @api
      */
-    function execute();
+    public function execute();
 
     /**
      * Returns the names of the bind variables in this query.
@@ -98,7 +96,7 @@ interface QueryInterface
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
      */
-    function getBindVariableNames();
+    public function getBindVariableNames();
 
     /**
      * Sets the maximum size of the result set to limit.
@@ -107,7 +105,7 @@ interface QueryInterface
      * @return void
      * @api
      */
-    function setLimit($limit);
+    public function setLimit($limit);
 
     /**
      * Sets the start offset of the result set to offset.
@@ -116,7 +114,7 @@ interface QueryInterface
      * @return void
      * @api
      */
-    function setOffset($offset);
+    public function setOffset($offset);
 
     /**
      * Returns the statement defined for this query.
@@ -133,7 +131,7 @@ interface QueryInterface
      * @return string The query statement.
      * @api
      */
-    function getStatement();
+    public function getStatement();
 
     /**
      * Returns the language set for this query.
@@ -144,7 +142,7 @@ interface QueryInterface
      * @return string The query language.
      * @api
      */
-    function getLanguage();
+    public function getLanguage();
 
     /**
      * Fetches the path of the node representing this query.
@@ -160,7 +158,7 @@ interface QueryInterface
      * @throws \PHPCR\RepositoryException if another error occurs.
      * @api
      */
-    function getStoredQueryPath();
+    public function getStoredQueryPath();
 
     /**
      * Creates a node of type nt:query holding this query at $absPath and
@@ -196,5 +194,5 @@ interface QueryInterface
      *                                    element.
      * @api
      */
-    function storeAsNode($absPath);
+    public function storeAsNode($absPath);
 }

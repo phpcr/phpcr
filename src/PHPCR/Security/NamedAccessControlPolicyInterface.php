@@ -31,8 +31,6 @@ namespace PHPCR\Security;
  * NamedAccessControlPolicy are immutable and can therefore be directly applied
  * to a node without additional configuration step.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface NamedAccessControlPolicyInterface extends \PHPCR\Security\AccessControlPolicyInterface
@@ -47,5 +45,5 @@ interface NamedAccessControlPolicyInterface extends \PHPCR\Security\AccessContro
      *
      * @api
      */
-    function getName();
+    public function getName();
 }

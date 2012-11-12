@@ -29,9 +29,6 @@ namespace PHPCR;
  * user ID/password credentials.
  *
  * @author Karsten Dambekalns <karsten@typo3.org>
- * @package phpcr
- * @subpackage prototypes
- * @scope prototype
  * @api
  */
 final class SimpleCredentials implements CredentialsInterface

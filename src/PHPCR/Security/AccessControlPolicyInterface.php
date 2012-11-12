@@ -31,8 +31,6 @@ namespace PHPCR\Security;
  * - NamedAccessControlPolicyInterface
  * - AccessControlListInterface
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface AccessControlPolicyInterface

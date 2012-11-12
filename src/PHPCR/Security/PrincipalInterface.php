@@ -35,6 +35,8 @@ namespace PHPCR\Security;
  *
  * The reason to have this interface is that the PHPCR implementation needs to
  * store the principals and use them on later requests.
+ *
+ * @api
  */
 interface PrincipalInterface
 {
@@ -51,7 +53,7 @@ interface PrincipalInterface
      * @return boolean true if the principal passed to the method is the same
      *      as this object
      */
-    function equals($object);
+    public function equals($object);
 
     /**
      * The hash code must be the same for the same principal.
@@ -61,12 +63,12 @@ interface PrincipalInterface
      *
      * @return int a hashcode for this principal.
      */
-    function hashCode();
+    public function hashCode();
 
     /**
      * Returns the name of this principal.
      *
      * @return string name of this principal
      */
-    function getName();
+    public function getName();
 }

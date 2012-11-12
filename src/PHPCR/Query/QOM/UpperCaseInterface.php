@@ -33,8 +33,6 @@ namespace PHPCR\Query\QOM;
  *
  * If operand evaluates to null, the UpperCase operand also evaluates to null.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface UpperCaseInterface extends DynamicOperandInterface
@@ -45,5 +43,5 @@ interface UpperCaseInterface extends DynamicOperandInterface
      * @return \PHPCR\Query\QOM\DynamicOperandInterface the operand; non-null
      * @api
      */
-    function getOperand();
+    public function getOperand();
 }

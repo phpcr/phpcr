@@ -33,8 +33,6 @@ namespace PHPCR;
  * associated one-to-one with a Session object. The Workspace object can be
  * acquired by calling $session->getWorkspace() on the associated Session object.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface WorkspaceInterface {
@@ -161,7 +159,7 @@ interface WorkspaceInterface {
      * @return SessionInterface a Session object.
      * @api
      */
-    function getSession();
+    public function getSession();
 
     /**
      * Returns the name of the actual persistent workspace represented by this Workspace object.
@@ -171,7 +169,7 @@ interface WorkspaceInterface {
      * @return string the name of this workspace.
      * @api
      */
-    function getName();
+    public function getName();
 
     /**
      * Copies a Node including its children to a new location to the given workspace.
@@ -268,7 +266,7 @@ interface WorkspaceInterface {
      *
      * @api
      */
-    function copy($srcAbsPath, $destAbsPath, $srcWorkspace = null);
+    public function copy($srcAbsPath, $destAbsPath, $srcWorkspace = null);
 
     /**
      * Clones the subgraph at the node srcAbsPath in srcWorkspace to the new
@@ -343,7 +341,7 @@ interface WorkspaceInterface {
      *
      * @api
      */
-    function cloneFrom($srcWorkspace, $srcAbsPath, $destAbsPath, $removeExisting);
+    public function cloneFrom($srcWorkspace, $srcAbsPath, $destAbsPath, $removeExisting);
 
     /**
      * Moves the node at srcAbsPath (and its entire subgraph) to the new
@@ -396,7 +394,7 @@ interface WorkspaceInterface {
      *
      * @api
      */
-    function move($srcAbsPath, $destAbsPath);
+    public function move($srcAbsPath, $destAbsPath);
 
     /**
      * Returns the LockManager object, through which locking methods are accessed.
@@ -409,7 +407,7 @@ interface WorkspaceInterface {
      *
      * @api
      */
-    function getLockManager();
+    public function getLockManager();
 
     /**
      * Returns the QueryManager object, through search methods are accessed.
@@ -420,7 +418,7 @@ interface WorkspaceInterface {
      *
      * @api
      */
-    function getQueryManager();
+    public function getQueryManager();
 
     /**
      * Returns the UserTransaction object associated with this session
@@ -433,7 +431,7 @@ interface WorkspaceInterface {
      *
      * @api
      */
-    function getTransactionManager();
+    public function getTransactionManager();
 
     /**
      * Returns the NamespaceRegistry object, which is used to access the
@@ -448,7 +446,7 @@ interface WorkspaceInterface {
      *
      * @api
      */
-    function getNamespaceRegistry();
+    public function getNamespaceRegistry();
 
     /**
      * Returns the NodeTypeManager through which node type information can be
@@ -465,7 +463,7 @@ interface WorkspaceInterface {
      *
      * @api
      */
-    function getNodeTypeManager();
+    public function getNodeTypeManager();
 
     /**
      * Returns the ObservationManager object.
@@ -479,7 +477,7 @@ interface WorkspaceInterface {
      *
      * @api
      */
-    function getObservationManager();
+    public function getObservationManager();
 
     /**
      * Returns the VersionManager object.
@@ -492,7 +490,7 @@ interface WorkspaceInterface {
      *
      * @api
      */
-    function getVersionManager();
+    public function getVersionManager();
 
     /**
      * Gets a set of workspace accessible to the current user.
@@ -510,7 +508,7 @@ interface WorkspaceInterface {
      *
      * @api
      */
-    function getAccessibleWorkspaceNames();
+    public function getAccessibleWorkspaceNames();
 
     /*
      * Returns an ContentHandlerInterface which can be used to push SAX events into the repository.
@@ -671,7 +669,7 @@ interface WorkspaceInterface {
      *
      * @api
      */
-    function importXML($parentAbsPath, $uri, $uuidBehavior);
+    public function importXML($parentAbsPath, $uri, $uuidBehavior);
 
     /**
      * Creates a new Workspace with the specified name. The new workspace is
@@ -703,7 +701,7 @@ interface WorkspaceInterface {
      *
      * @api
      */
-    function createWorkspace($name, $srcWorkspace = null);
+    public function createWorkspace($name, $srcWorkspace = null);
 
     /**
      * Deletes the workspace with the specified name from the repository,
@@ -723,5 +721,5 @@ interface WorkspaceInterface {
      *
      * @api
      */
-    function deleteWorkspace($name);
+    public function deleteWorkspace($name);
 }

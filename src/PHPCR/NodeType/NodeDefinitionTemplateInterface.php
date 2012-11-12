@@ -33,8 +33,6 @@ namespace PHPCR\NodeType;
  * default values assumed when a new empty NodeDefinitionTemplate is created (as
  * opposed to one extracted from an existing NodeType).
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface NodeDefinitionTemplateInterface extends \PHPCR\NodeType\NodeDefinitionInterface
@@ -48,7 +46,7 @@ interface NodeDefinitionTemplateInterface extends \PHPCR\NodeType\NodeDefinition
      *
      * @api
      */
-    function setName($name);
+    public function setName($name);
 
     /**
      * Sets the auto-create status of the node.
@@ -60,7 +58,7 @@ interface NodeDefinitionTemplateInterface extends \PHPCR\NodeType\NodeDefinition
      *
      * @api
      */
-    function setAutoCreated($autoCreated);
+    public function setAutoCreated($autoCreated);
 
     /**
      * Sets the mandatory status of the node.
@@ -71,7 +69,7 @@ interface NodeDefinitionTemplateInterface extends \PHPCR\NodeType\NodeDefinition
      *
      * @api
      */
-    function setMandatory($mandatory);
+    public function setMandatory($mandatory);
 
     /**
      * Sets the on-parent-version status of the node.
@@ -82,7 +80,7 @@ interface NodeDefinitionTemplateInterface extends \PHPCR\NodeType\NodeDefinition
      *
      * @api
      */
-    function setOnParentVersion($opv);
+    public function setOnParentVersion($opv);
 
     /**
      * Sets the protected status of the node.
@@ -93,7 +91,7 @@ interface NodeDefinitionTemplateInterface extends \PHPCR\NodeType\NodeDefinition
      *
      * @api
      */
-    function setProtected($protectedStatus);
+    public function setProtected($protectedStatus);
 
     /**
      * Sets the names of the required primary types of this node.
@@ -105,7 +103,7 @@ interface NodeDefinitionTemplateInterface extends \PHPCR\NodeType\NodeDefinition
      *
      * @api
      */
-    function setRequiredPrimaryTypeNames(Array $requiredPrimaryTypeNames);
+    public function setRequiredPrimaryTypeNames(Array $requiredPrimaryTypeNames);
 
     /**
      * Sets the name of the default primary type of this node.
@@ -117,7 +115,7 @@ interface NodeDefinitionTemplateInterface extends \PHPCR\NodeType\NodeDefinition
      *
      * @api
      */
-    function setDefaultPrimaryTypeName($defaultPrimaryTypeName);
+    public function setDefaultPrimaryTypeName($defaultPrimaryTypeName);
 
     /**
      * Sets the same-name sibling status of this node.
@@ -129,5 +127,5 @@ interface NodeDefinitionTemplateInterface extends \PHPCR\NodeType\NodeDefinition
      *
      * @api
      */
-    function setSameNameSiblings($allowSameNameSiblings);
+    public function setSameNameSiblings($allowSameNameSiblings);
 }

@@ -31,8 +31,6 @@ namespace PHPCR\NodeType;
  * For example, when an attempt is made to persistently add an item to a node
  * that would violate that node's node type.
  *
- * @package phpcr
- * @subpackage exceptions
  * @api
  */
 class ConstraintViolationException extends \PHPCR\RepositoryException

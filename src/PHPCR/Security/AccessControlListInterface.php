@@ -39,8 +39,6 @@ namespace PHPCR\Security;
  * AccessControlEntryInterface instances. The iterator keys have no significant
  * meaning.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface AccessControlListInterface extends \PHPCR\Security\AccessControlPolicyInterface, \Traversable
@@ -57,7 +55,7 @@ interface AccessControlListInterface extends \PHPCR\Security\AccessControlPolicy
      *
      * @api
      */
-    function getAccessControlEntries();
+    public function getAccessControlEntries();
 
     /**
      * Registers an access control entry object to the registry.
@@ -89,7 +87,7 @@ interface AccessControlListInterface extends \PHPCR\Security\AccessControlPolicy
      *
      * @api
      */
-    function addAccessControlEntry(PrincipalInterface $principal, array $privileges);
+    public function addAccessControlEntry(PrincipalInterface $principal, array $privileges);
 
     /**
      * Removes the specified access control entry object from this policy.
@@ -110,5 +108,5 @@ interface AccessControlListInterface extends \PHPCR\Security\AccessControlPolicy
      *
      * @api
      */
-    function removeAccessControlEntry(\PHPCR\Security\AccessControlEntryInterface $ace);
+    public function removeAccessControlEntry(\PHPCR\Security\AccessControlEntryInterface $ace);
 }

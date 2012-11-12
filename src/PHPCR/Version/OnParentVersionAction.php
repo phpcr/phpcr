@@ -43,8 +43,7 @@ namespace PHPCR\Version;
  * or NodeDefinition that applies to the item in question.
  *
  * @author Karsten Dambekalns <karsten@typo3.org>
- * @package phpcr
- * @subpackage interfaces
+ *
  * @api
  */
 final class OnParentVersionAction

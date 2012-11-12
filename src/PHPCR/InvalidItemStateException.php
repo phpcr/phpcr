@@ -37,8 +37,6 @@ namespace PHPCR;
  * Also thrown by methods of Node and Property if that object represents an
  * item that has been removed from the workspace.
  *
- * @package phpcr
- * @subpackage exceptions
  * @api
  */
 class InvalidItemStateException extends RepositoryException

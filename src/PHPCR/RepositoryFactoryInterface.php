@@ -35,8 +35,6 @@ namespace PHPCR;
  *    $repository = \SomeRepository\RepositoryFactory::getRepository($parameters);
  * </pre>
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface RepositoryFactoryInterface

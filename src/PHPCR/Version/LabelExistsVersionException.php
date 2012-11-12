@@ -29,8 +29,6 @@ namespace PHPCR\Version;
  * is set to false and an attempt is made to add a label that already exists in
  * the VersionHistory.
  *
- * @package phpcr
- * @subpackage exceptions
  * @api
  */
 class LabelExistsVersionException extends \PHPCR\Version\VersionException

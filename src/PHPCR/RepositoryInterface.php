@@ -38,9 +38,6 @@ namespace PHPCR;
  * - removed getDescriptorValue and getDescriptorValues as ValueInterface has
  *      been dropped. Use getDescriptor to get the variable value.
  *
- *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface RepositoryInterface
@@ -579,7 +576,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    function login(CredentialsInterface $credentials = null, $workspaceName = null);
+    public function login(CredentialsInterface $credentials = null, $workspaceName = null);
 
     /**
      * Returns a string array holding all descriptor keys available for this
@@ -594,7 +591,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    function getDescriptorKeys();
+    public function getDescriptorKeys();
 
     /**
      * Determines if the given identifier is a standard descriptor.
@@ -609,7 +606,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    function isStandardDescriptor($key);
+    public function isStandardDescriptor($key);
 
     /**
      * Get the value(s) for this key.
@@ -624,5 +621,5 @@ interface RepositoryInterface
      *
      * @api
      */
-    function getDescriptor($key);
+    public function getDescriptor($key);
 }

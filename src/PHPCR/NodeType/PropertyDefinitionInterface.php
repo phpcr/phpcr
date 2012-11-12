@@ -27,8 +27,6 @@ namespace PHPCR\NodeType;
 /**
  * A property definition. Used in node type definitions.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface PropertyDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInterface
@@ -62,7 +60,7 @@ interface PropertyDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInte
      *
      * @api
      */
-    function getRequiredType();
+    public function getRequiredType();
 
     /**
      * Gets the array of constraint strings.
@@ -202,7 +200,7 @@ interface PropertyDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInte
      *
      * @api
      */
-    function getValueConstraints();
+    public function getValueConstraints();
 
     /**
      * Gets the default value(s) of the property.
@@ -235,7 +233,7 @@ interface PropertyDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInte
      *
      * @api
      */
-    function getDefaultValues();
+    public function getDefaultValues();
 
     /**
      * Reports whether this property can have multiple values.
@@ -256,7 +254,7 @@ interface PropertyDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInte
      *
      * @api
      */
-    function isMultiple();
+    public function isMultiple();
 
     /**
      * Returns the set of query comparison operators supported by this
@@ -286,7 +284,7 @@ interface PropertyDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInte
      *
      * @api
      */
-    function getAvailableQueryOperators();
+    public function getAvailableQueryOperators();
 
     /**
      * Determines if this property is full-text searchable.
@@ -302,7 +300,7 @@ interface PropertyDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInte
      *
      * @api
      */
-    function isFullTextSearchable();
+    public function isFullTextSearchable();
 
     /**
      * Report this property is orderable by a query.
@@ -318,5 +316,5 @@ interface PropertyDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInte
      *
      * @api
      */
-    function isQueryOrderable();
+    public function isQueryOrderable();
 }

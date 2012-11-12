@@ -40,9 +40,6 @@ namespace PHPCR;
  * The iterator lets you iterate over all namespaces, with the prefixes as keys
  * and corresponding url as value.
  *
- *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface NamespaceRegistryInterface extends \Traversable
@@ -161,7 +158,7 @@ interface NamespaceRegistryInterface extends \Traversable
      *
      * @api
      */
-    function registerNamespace($prefix, $uri);
+    public function registerNamespace($prefix, $uri);
 
     /**
      * Removes a namespace mapping from the registry.
@@ -191,7 +188,7 @@ interface NamespaceRegistryInterface extends \Traversable
      *
      * @api
      */
-    function unregisterNamespace($prefix);
+    public function unregisterNamespace($prefix);
 
     /**
      * Returns an array holding all currently registered namespace prefixes.
@@ -202,7 +199,7 @@ interface NamespaceRegistryInterface extends \Traversable
      *
      * @api
      */
-    function getPrefixes();
+    public function getPrefixes();
 
     /**
      * Returns an array holding all currently registered namespace URIs.
@@ -213,7 +210,7 @@ interface NamespaceRegistryInterface extends \Traversable
      *
      * @api
      */
-    function getURIs();
+    public function getURIs();
 
     /**
      * Returns the namespace URI to which the given prefix is mapped.
@@ -228,7 +225,7 @@ interface NamespaceRegistryInterface extends \Traversable
      *
      * @api
      */
-    function getURI($prefix);
+    public function getURI($prefix);
 
     /**
      * Returns the prefix which is mapped to the given uri.
@@ -243,5 +240,5 @@ interface NamespaceRegistryInterface extends \Traversable
      *
      * @api
      */
-    function getPrefix($uri);
+    public function getPrefix($uri);
 }

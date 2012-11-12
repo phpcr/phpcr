@@ -27,8 +27,6 @@ namespace PHPCR\Query\QOM;
 /**
  * Evaluates to the value of a bind variable.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface BindVariableValueInterface extends StaticOperandInterface
@@ -39,5 +37,5 @@ interface BindVariableValueInterface extends StaticOperandInterface
      * @return string the bind variable name; non-null
      * @api
      */
-    function getBindVariableName();
+    public function getBindVariableName();
 }

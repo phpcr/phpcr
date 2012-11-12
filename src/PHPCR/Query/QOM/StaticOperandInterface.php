@@ -28,8 +28,6 @@ namespace PHPCR\Query\QOM;
  * An operand whose value can be determined from static analysis of the query,
  * prior to its evaluation.
  *
- * @package phpcr
- * @subpackage interfaces
  * @api
  */
 interface StaticOperandInterface extends OperandInterface
