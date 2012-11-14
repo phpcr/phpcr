@@ -48,9 +48,9 @@ class LockException extends \PHPCR\RepositoryException
      * must have no trailing slash, no self or parent segments and no [1]
      * indexes.
      *
-     * @param string $message The exception message
-     * @param integer $code The exception error code
-     * @param string $failureNodePath the absolute path of the node that caused the error or  null if the implementation
+     * @param string  $message         The exception message
+     * @param integer $code            The exception error code
+     * @param string  $failureNodePath the absolute path of the node that caused the error or  null if the implementation
      *                                chooses not to, or cannot, return a path.
      *
      * @api

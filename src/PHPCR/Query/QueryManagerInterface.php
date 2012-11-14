@@ -41,7 +41,7 @@ interface QueryManagerInterface
      * QueryManagerInterface::getSupportedQueryLanguages().
      *
      * @param string $statement The query statement to be executed.
-     * @param string $language The language of the query to be created.
+     * @param string $language  The language of the query to be created.
      *
      * @return \PHPCR\Query\QueryInterface a Query object
      *

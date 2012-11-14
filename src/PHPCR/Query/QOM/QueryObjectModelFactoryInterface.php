@@ -49,7 +49,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @param \PHPCR\Query\QOM\ConstraintInterface $constraint the constraint,
      *      or null if none
      * @param array $orderings zero (empty array) or more instances of Ordering
-     * @param array $columns the array of Column definitions to return in the
+     * @param array $columns   the array of Column definitions to return in the
      *      result. empty array is equivalent to the * in SQL2, meaning some
      *      fields.
      *
@@ -106,7 +106,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *      source; non-null
      * @param \PHPCR\Query\QOM\SourceInterface $right the right node-tuple
      *      source; non-null
-     * @param string $joinType one of QueryObjectModelConstants.JCR_JOIN_TYPE_*
+     * @param string                                  $joinType      one of QueryObjectModelConstants.JCR_JOIN_TYPE_*
      * @param \PHPCR\Query\QOM\JoinConditionInterface $joinCondition the join
      *      condition; non-null
      *
@@ -407,13 +407,13 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *   because of access control constraints), the query is valid but the
      *   constraint is not satisfied.
      *
-     * @param string $path an absolute path; non-null
+     * @param string $path         an absolute path; non-null
      * @param string $selectorName the selector name; non-null
      *
      * @return \PHPCR\Query\QOM\SameNodeInterface the constraint; non-null
      *
      * @throws \PHPCR\Query\InvalidQueryException if the query is invalid
-     * @throws \PHPCR\RepositoryException if the operation otherwise fails
+     * @throws \PHPCR\RepositoryException         if the operation otherwise fails
      *
      * @api
      */
@@ -433,7 +433,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *   because of access control constraints), the query is valid but the
      *   constraint is not satisfied.
      *
-     * @param string $path an absolute path; non-null
+     * @param string $path         an absolute path; non-null
      * @param string $selectorName the selector name; non-null
      *
      * @return \PHPCR\Query\QOM\ChildNodeInterface the constraint; non-null
@@ -462,7 +462,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *   because of access control constraints), the query is valid but the
      *   constraint is not satisfied.
      *
-     * @param string $path an absolute path; non-null
+     * @param string $path         an absolute path; non-null
      * @param string $selectorName the selector name; non-null
      *
      * @return \PHPCR\Query\QOM\DescendantNodeInterface the constraint;
@@ -492,7 +492,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @return \PHPCR\Query\QOM\PropertyValueInterface the operand; non-null
      *
      * @throws \PHPCR\Query\InvalidQueryException if the query is invalid
-     * @throws \PHPCR\RepositoryException if the operation otherwise fails
+     * @throws \PHPCR\RepositoryException         if the operation otherwise fails
      *
      * @api
      */
@@ -549,7 +549,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @return \PHPCR\Query\QOM\NodeLocalNameInterface the operand; non-null
      *
      * @throws \PHPCR\Query\InvalidQueryException if the query is invalid
-     * @throws \PHPCR\RepositoryException if the operation otherwise fails
+     * @throws \PHPCR\RepositoryException         if the operation otherwise fails
      *
      * @api
      */
@@ -664,7 +664,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @return \PHPCR\Query\QOM\OrderingInterface the ordering
      *
      * @throws \PHPCR\Query\InvalidQueryException if the query is invalid
-     * @throws \PHPCR\RepositoryException if the operation otherwise fails
+     * @throws \PHPCR\RepositoryException         if the operation otherwise fails
      *
      * @api
      */
@@ -681,7 +681,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @return \PHPCR\Query\QOM\OrderingInterface the ordering
      *
      * @throws \PHPCR\Query\InvalidQueryException if the query is invalid
-     * @throws \PHPCR\RepositoryException if the operation otherwise fails
+     * @throws \PHPCR\RepositoryException         if the operation otherwise fails
      *
      * @api
      */

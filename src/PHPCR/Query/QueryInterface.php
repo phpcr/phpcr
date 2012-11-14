@@ -65,11 +65,11 @@ interface QueryInterface
     /**
      * Binds the given value to the variable named $varName.
      *
-     * @param string $varName name of variable in query
-     * @param mixed $value value to bind
+     * @param  string $varName name of variable in query
+     * @param  mixed  $value   value to bind
      * @return void
      *
-     * @throws \InvalidArgumentException if $varName is not a valid variable in this query.
+     * @throws \InvalidArgumentException  if $varName is not a valid variable in this query.
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
      */
@@ -81,7 +81,7 @@ interface QueryInterface
      * @return \PHPCR\Query\QueryResultInterface a QueryResult object
      *
      * @throws \PHPCR\Query\InvalidQueryException if the query contains an unbound variable.
-     * @throws \PHPCR\RepositoryException if an error occurs
+     * @throws \PHPCR\RepositoryException         if an error occurs
      * @api
      */
     public function execute();
@@ -101,7 +101,7 @@ interface QueryInterface
     /**
      * Sets the maximum size of the result set to limit.
      *
-     * @param integer $limit The amount of result items to be fetched.
+     * @param  integer $limit The amount of result items to be fetched.
      * @return void
      * @api
      */
@@ -110,7 +110,7 @@ interface QueryInterface
     /**
      * Sets the start offset of the result set to offset.
      *
-     * @param integer $offset The start point of the result set from when the item shall be fetched.
+     * @param  integer $offset The start point of the result set from when the item shall be fetched.
      * @return void
      * @api
      */
@@ -155,7 +155,7 @@ interface QueryInterface
      * @return string Path of the node representing this query.
      *
      * @throws \PHPCR\ItemNotFoundException if this query is not a stored query.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws \PHPCR\RepositoryException   if another error occurs.
      * @api
      */
     public function getStoredQueryPath();
@@ -171,7 +171,7 @@ interface QueryInterface
      * ordering is supported by the node type of the parent node then the new
      * node is appended to the end of the child node list.
      *
-     * @param string $absPath absolute path the query should be stored at
+     * @param  string               $absPath absolute path the query should be stored at
      * @return \PHPCR\NodeInterface the newly created node.
      *
      * @throws \PHPCR\ItemExistsException if an item at the specified path already exists,
@@ -190,7 +190,7 @@ interface QueryInterface
      * @throws \PHPCR\Lock\LockException if a lock prevents the addition of the node and this implementation performs
      *                                   this validation immediately instead of waiting until save.
      * @throws \PHPCR\UnsupportedRepositoryOperationException in a level 1 implementation.
-     * @throws \PHPCR\RepositoryException if another error occurs or if the absPath provided has an index on its final
+     * @throws \PHPCR\RepositoryException                     if another error occurs or if the absPath provided has an index on its final
      *                                    element.
      * @api
      */

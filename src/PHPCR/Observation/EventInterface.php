@@ -186,7 +186,7 @@ interface EventInterface
      * Returns the user data set through ObservationManagerInterface::setUserData() on the
      * ObservationManager bound to the Session that caused the event.
      *
-     * @return string The user data string.
+     * @return string                     The user data string.
      * @throws \PHPCR\RepositoryException if an error occurs.
      * @api
      */

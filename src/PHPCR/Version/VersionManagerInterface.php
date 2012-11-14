@@ -82,7 +82,7 @@ interface VersionManagerInterface
      *      $absPath is not versionable.
      * @throws \PHPCR\InvalidItemStateException If unsaved changes exist on the
      *      node at $absPath.
-     * @throws \PHPCR\Lock\LockException if a lock prevents the operation.
+     * @throws \PHPCR\Lock\LockException  if a lock prevents the operation.
      * @throws \PHPCR\RepositoryException If another error occurs.
      *
      * @api
@@ -111,7 +111,7 @@ interface VersionManagerInterface
      *
      * @throws \PHPCR\UnsupportedRepositoryOperationException If the node at
      *      absPath is not versionable.
-     * @throws \PHPCR\Lock\LockException if a lock prevents the checkout.
+     * @throws \PHPCR\Lock\LockException                 if a lock prevents the checkout.
      * @throws \PHPCR\Version\ActivityViolationException If the checkout
      *      conflicts with the activity present on the current session.
      * @throws \PHPCR\RepositoryException If another error occurs.
@@ -138,7 +138,7 @@ interface VersionManagerInterface
      *      absPath is not versionable.
      * @throws \PHPCR\InvalidItemStateException if there are unsaved changes
      *      pending on the node at absPath.
-     * @throws \PHPCR\Lock\LockException if a lock prevents the operation.
+     * @throws \PHPCR\Lock\LockException  if a lock prevents the operation.
      * @throws \PHPCR\RepositoryException if another error occurs.
      *
      * @api
@@ -295,7 +295,7 @@ interface VersionManagerInterface
      *      unsaved changes.
      * @throws \PHPCR\UnsupportedRepositoryOperationException if versioning is
      *      not supported.
-     * @throws \PHPCR\Lock\LockException if a lock prevents the restore.
+     * @throws \PHPCR\Lock\LockException  if a lock prevents the restore.
      * @throws \PHPCR\RepositoryException if another error occurs.
      *
      * @api
@@ -328,7 +328,7 @@ interface VersionManagerInterface
      *
      * @param string $absPath The absolute path to a node the privileges shall
      *      be fetched of.
-     * @param string $versionLabel a String
+     * @param string  $versionLabel   a String
      * @param boolean $removeExisting a boolean flag that governs what happens
      *      in case of an identifier collision.
      *
@@ -340,7 +340,7 @@ interface VersionManagerInterface
      *      does not exist in this node's version history.
      * @throws \PHPCR\ItemExistsException if removeExisting is false and an
      *      identifier collision occurs.
-     * @throws \PHPCR\Lock\LockException if a lock prevents the restore.
+     * @throws \PHPCR\Lock\LockException        if a lock prevents the restore.
      * @throws \PHPCR\InvalidItemStateException if this Session (not
      *      necessarily the Node at absPath) has pending unsaved changes.
      * @throws \PHPCR\RepositoryException If another error occurs.
@@ -415,7 +415,7 @@ interface VersionManagerInterface
      * @param string $srcWorkspace the name of the source workspace (optional
      *      if $source is a Node).
      * @param boolean $bestEffort a boolean (optional if $source is a Node)
-     * @param boolean $isShallow a boolean (optional)
+     * @param boolean $isShallow  a boolean (optional)
      *
      * @return Iterator implementing <b>SeekableIterator</b> and
      *      <b>Countable</b>. Keys are the Node names, values the corresponding
@@ -427,9 +427,9 @@ interface VersionManagerInterface
      * @throws \PHPCR\InvalidItemStateException if this session (not
      *      necessarily the node at absPath) has pending unsaved changes.
      * @throws \PHPCR\NoSuchWorkspaceException if srcWorkspace does not exist.
-     * @throws \PHPCR\AccessDeniedException if the current session does not
+     * @throws \PHPCR\AccessDeniedException    if the current session does not
      *      have sufficient rights to perform the operation.
-     * @throws \PHPCR\Lock\LockException if a lock prevents the merge.
+     * @throws \PHPCR\Lock\LockException       if a lock prevents the merge.
      * @throws \PHPCR\Version\VersionException if the specified node is not an
      *      nt:activity node.
      * @throws \PHPCR\UnsupportedRepositoryOperationException if this operation

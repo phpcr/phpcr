@@ -20,12 +20,13 @@ class OnParentVersionActionTest extends \PHPUnit_Framework_TestCase
         'ABORT'      => 6,
     );
 
-    static public function data()
+    public static function data()
     {
         $data = array();
         foreach (self::$types as $key => $value) {
             $data[] = array($key,$value);
         }
+
         return $data;
     }
 

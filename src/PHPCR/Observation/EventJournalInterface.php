@@ -43,7 +43,7 @@ interface EventJournalInterface extends \Countable, \SeekableIterator
      * If an attempt is made to skip past the last element of the iterator, no
      * exception is thrown but the subsequent next() will fail.
      *
-     * @param integer $date Value that represents an offset in milliseconds from the epoch.
+     * @param  integer $date Value that represents an offset in milliseconds from the epoch.
      * @return void
      * @api
      */
