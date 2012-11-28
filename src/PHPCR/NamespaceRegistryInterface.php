@@ -161,7 +161,7 @@ interface NamespaceRegistryInterface extends \Traversable
     public function registerNamespace($prefix, $uri);
 
     /**
-     * Removes a namespace mapping from the registry.
+     * Removes the specified namespace URI from namespace registry.
      *
      * The following restrictions apply:
      *
@@ -173,7 +173,7 @@ interface NamespaceRegistryInterface extends \Traversable
      *   for implementation-specific reasons by throwing a
      *   NamespaceException.
      *
-     * @param string $prefix The prefix of the mapping to be removed.
+     * @param string $uri The URI to be removed.
      *
      * @return void
      *
@@ -188,7 +188,7 @@ interface NamespaceRegistryInterface extends \Traversable
      *
      * @api
      */
-    public function unregisterNamespace($prefix);
+    public function unregisterNamespaceByURI($uri);
 
     /**
      * Returns an array holding all currently registered namespace prefixes.
