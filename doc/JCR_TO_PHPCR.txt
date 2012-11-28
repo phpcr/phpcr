@@ -162,10 +162,12 @@ UnsupportedRepositoryOperationException.
 Property
 ********
 
-Instantiating property objects is often not needed. The Node interface got a
+Instantiating property objects is often not needed. Instead of the JSR-333
+getPropertyAs and getPropertyAsString and so on, we defined the
 getPropertyValue($name, $type=false) that returns the native property value
 (or array of values in case of a multivalue property).
-Additionally, there is a NodeInterface::getPropertiesValues() function with the
+
+Additionally, we added the NodeInterface::getPropertiesValues() method with the
 same logic as NodeInterface::getProperties($filter) to get an array of all
 property name => property value (resp value array for multivalue properties).
 To further increase performance, an optional parameter allows to not
