@@ -166,13 +166,17 @@ interface SessionInterface
      * Returns a new session in accordance with the specified (new)
      * Credentials.
      *
-     * Allows the current user to "impersonate" another using incomplete or
+     * Allows the current user to acquire a new session using incomplete or
      * relaxed credentials requirements (perhaps including a user name but no
      * password, for example), assuming that this Session gives them that
-     * permission. The new Session is tied to a new Workspace instance. In
-     * other words, Workspace instances are not re-used. However, the Workspace
-     * instance returned represents the same actual persistent workspace entity
-     * in the repository as is represented by the Workspace object tied to this
+     * permission. This method can be used to "impersonate" another user or to
+     * clone the current session by passing in the same credentials that were
+     * used to acquire the current session.
+     *
+     * The new Session is tied to a new Workspace instance. In other words,
+     * Workspace instances are not re-used. However, the Workspace instance
+     * returned represents the same actual persistent workspace entity in the
+     * repository as is represented by the Workspace object tied to the current
      * Session.
      *
      * @param CredentialsInterface $credentials A Credentials object
@@ -206,18 +210,22 @@ interface SessionInterface
     public function getNodeByIdentifier($id);
 
     /**
-     * Returns the nodes specified by the given identifiers.
+     * Returns an iterator over the set of nodes specified by the given
+     * identifiers in this workspace that are accessible to this session.
      *
      * Applies to both referenceable and non-referenceable nodes.
-     *
-     * Uuids that cannot be found will be ignored and missing from the
-     * returned array.
+     * If none of the specified identifiers refer to an existing and accessible
+     * node then an empty iterator is returned.
      *
      * @param array $ids An array of identifiers.
      *
-     * @return array containing all found NodeInterface keyed by uuid
+     * @return \Iterator over all (matching) child Nodes implementing
+     *      <b>SeekableIterator</b> and <b>Countable</b>. Keys are the
+     *      identifiers, values the corresponding NodeInterface instances.
      *
      * @throws RepositoryException if an error occurs.
+     *
+     * @since JCR 2.1
      *
      * @api
      */
@@ -249,7 +257,40 @@ interface SessionInterface
     /**
      * Returns the node at the specified absolute path in the workspace.
      *
-     * @param string $absPath An absolute path.
+     * If $depthHint is set, the implementation may cache the subtree rooted at
+     * $absPath to depth $depthHint in preparation for possible future access
+     * requests by the client.
+     *
+     * The parameter $depthHint <i>may</i> be used by an implementation to
+     * improve the efficiency of access for nodes in the subtree rooted at
+     * $absPath. This may, for example, be advantageous to client-server
+     * implementations by reducing round-trips to the server. An implementation
+     * is free to ignore the $depthHint parameter.
+     *
+     * If the implementation does not ignore $depthHint then the following
+     * rules apply:
+     *
+     * $depthHint &lt; 0: Equivalent to omitting the $deptHint
+     * $depthHint = 0: The node at $absPath and all its properties are
+     * retrieved. No child nodes (nor any further descendants) are retrieved.
+     * This is referred to as a <i>shallow</i> getNode.
+     *
+     * $depthHint &gt; 0: The node at absPath and all its properties are
+     * retrieved as well as all descendant nodes (and their respective
+     * properties) up to degree $depthHint. A $depthHint of 1 retrieves the
+     * node at $absPath and all its child nodes.
+     * A $depthHint of 2 retrieves the node at $absPath, all its child nodes
+     * and all <i>their</i> child nodes in turn. And so on.
+     *
+     * An implementation is free to set a limit on the amount of data cached
+     * due to the $depthHint parameter. Thus, the implementation may fail to
+     * retrieve to the full depth requested in cases where that depth is large
+     * and the data size of the nodes and properties in the subtree is also
+     * large. In order to guarantee a retrieval to the maximum depth possible,
+     * the client can set $depthHint to PHP_INT_MAX.
+     *
+     * @param string $absPath   An absolute path.
+     * @param int    $depthHint The requested caching depth
      *
      * @return NodeInterface A node
      *
@@ -258,19 +299,24 @@ interface SessionInterface
      *
      * @api
      */
-    public function getNode($absPath);
+    public function getNode($absPath, $depthHint = -1);
 
     /**
-     * Returns all nodes specified in the absPath array.
+     * Returns an iterator over all the nodes at the specified absolute paths
+     * in the workspace that exist and are accessible to this session.
      *
-     * Paths that cannot be found will be ignored and missing in the returned
-     * array
+     * If none of the specified paths leads to an existing and accessible
+     * node then an empty iterator is returned.
      *
      * @param array $absPaths An array containing absolute paths.
      *
-     * @return array containing all found NodeInterface keyed by path
+     * @return \Iterator over all (matching) child Nodes implementing
+     *      <b>SeekableIterator</b> and <b>Countable</b>. Keys are the
+     *      paths, values the corresponding NodeInterface instances.
      *
      * @throws RepositoryException if an error occurs.
+     *
+     * @since JCR 2.1
      *
      * @api
      */
@@ -290,6 +336,28 @@ interface SessionInterface
      * @api
      */
     public function getProperty($absPath);
+
+    /**
+     * Returns an iterator over all the properties at the specified absolute
+     * paths in the workspace that exist and are accessible to this session.
+     *
+     * If none of the specified paths leads to an existing and accessible
+     * property then an empty iterator is returned.
+     *
+     * @param string[] $absPaths An array of absolute paths.
+     *
+     * @return \Iterator over all (matching) child Nodes implementing
+     *      <b>SeekableIterator</b> and <b>Countable</b>. Keys are the
+     *      paths, values the corresponding NodeInterface instances.
+     *
+     * @throws RepositoryException If an error occurs.
+     *
+     * @since JCR 2.1
+     *
+     * @api
+     */
+    public function getProperties($absPaths);
+
 
     /**
      * Determines if the item identified by a path does exists.
@@ -449,7 +517,7 @@ interface SessionInterface
      *
      * If the save occurs outside a transaction, the changes are dispatched and
      * persisted. Upon being persisted the changes become potentially visible
-     * to other Sessions bound to the same persitent workspace.
+     * to other Sessions bound to the same persistent workspace.
      *
      * If the save occurs within a transaction, the changes are dispatched but
      * are not persisted until the transaction is committed.
@@ -979,7 +1047,7 @@ interface SessionInterface
      * mapping is added.
      *
      * @param string $prefix The namespace prefix to be set as identifier.
-     * @param string $uri    The loaction of the namespace definition (usually an
+     * @param string $uri    The location of the namespace definition (usually an
      *      uri).
      *
      * @return void
@@ -1068,7 +1136,7 @@ interface SessionInterface
     /**
      * Returns the access control manager for this Session.
      *
-     * @return \PHPCR\Security\AccessControlManager the access control manager
+     * @return \PHPCR\Security\AccessControlManagerInterface the access control manager
      *      for this Session
      *
      * @throws UnsupportedRepositoryOperationException if access control
