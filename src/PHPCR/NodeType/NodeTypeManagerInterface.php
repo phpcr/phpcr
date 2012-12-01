@@ -179,7 +179,7 @@ interface NodeTypeManagerInterface extends \Traversable
      *
      * @return \PHPCR\NodeType\NodeTypeInterface the registered node type.
      *
-     * @throws \PHPCR\InvalidNodeTypeDefinitionException if the
+     * @throws \PHPCR\NodeType\InvalidNodeTypeDefinitionException if the
      *      NodeTypeDefinitionInterface is invalid.
      * @throws \PHPCR\NodeType\NodeTypeExistsException if allowUpdate is false
      *      and the NodeTypeDefinition specifies a node type name that is
@@ -208,7 +208,7 @@ interface NodeTypeManagerInterface extends \Traversable
      *      <b>SeekableIterator</b> and <b>Countable</b>. Keys are the node
      *      type names, values the corresponding NodeTypeInterface instances.
      *
-     * @throws \PHPCR\InvalidNodeTypeDefinitionException if a
+     * @throws \PHPCR\NodeType\InvalidNodeTypeDefinitionException if a
      *      NodeTypeDefinitionInterface within the Collection is invalid or if
      *      the Collection contains an object of a type other than
      *      NodeTypeDefinitionInterface.
@@ -222,6 +222,48 @@ interface NodeTypeManagerInterface extends \Traversable
      * @api
      */
     public function registerNodeTypes(array $definitions, $allowUpdate);
+
+    /**
+     * Registers or updates the node type definitions as per the Compact Node
+     * Definition (CND) given by the supplied string. This method is used to
+     * register or update a set of node types with mutual dependencies. Returns
+     * an iterator over the resulting NodeType objects.
+     *
+     * The effect of the method is "all or nothing"; if an error occurs, no node
+     * types are registered or updated.
+     *
+     * A simple example is
+     *   <'phpcr'='http://www.doctrine-project.org/projects/phpcr_odm'>
+     *   [phpcr:managed]
+     *     mixin
+     *     - phpcr:class (string)
+     *
+     * For full documentation of the format, see
+     * http://jackrabbit.apache.org/node-type-notation.html
+     *
+     * PHPCR Note: Rather than doing mixed arguments we decided to name this
+     * method explicitly different, as we have no operator overloading in PHP.
+     *
+     * @param string $cnd containing the node type definitions in CND format
+     * @param boolean $allowUpdate whether existing node type definitions
+     *      should be modified/updated.
+     *
+     * @return \Iterator over the registered node types implementing
+     *      <b>SeekableIterator</b> and <b>Countable</b>. Keys are the node
+     *      type names, values the corresponding NodeTypeInterface instances.
+     *
+     * @throws \PHPCR\NodeType\InvalidNodeTypeDefinitionException if a
+     *      NodeTypeDefinition within the CND is invalid.
+     * @throws NodeTypeExistsException if allowUpdate is false
+     *      and a the NodeTypeDefinition within the CND string specifies a node
+     *      type name that is already registered.
+     * @throws \PHPCR\UnsupportedRepositoryOperationException if this
+     *      implementation does not support node type registration.
+     * @throws \PHPCR\RepositoryException if another error occurs.
+     *
+     * @since JCR 2.1
+     */
+    public function registerNodeTypesCnd($cnd, $allowUpdate);
 
     /**
      * Unregisters the specified node type.

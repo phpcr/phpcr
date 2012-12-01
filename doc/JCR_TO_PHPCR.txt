@@ -290,6 +290,7 @@ Long.MAX_VALUE the PHP constant PHP_MAX_INT is used.
 LockManager::lock has operator overloading in Java. For PHP, the variant with
 LockInfo is called lockWithInfo.
 
+
 Observation
 ***********
 
