@@ -397,6 +397,78 @@ interface WorkspaceInterface
     public function move($srcAbsPath, $destAbsPath);
 
     /**
+     * Removes the specified item and its subgraph.
+     *
+     * This is a workspace-write method and therefore is dispatched immediately.
+     * A save is not required. In the absence of a transaction, the changes made
+     * by this method will also be persisted immediately. In the presence of a
+     * transaction the changes will be persisted upon commit of the transaction.
+     *
+     * If a node with same-name siblings is removed, this decrements by one the
+     * indices of all the siblings with indices greater than that of the removed
+     * node. In other words, a removal compacts the array of same-name siblings
+     * and causes the minimal re-numbering required to maintain the original
+     * order but leave no gaps in the numbering.
+     *
+     * A ReferentialIntegrityException will be thrown if the specified item or
+     * an item in its subgraph is currently the target of a REFERENCE property
+     * located in this workspace but outside the specified item's subgraph and
+     * the current Session has read access to that REFERENCE property.
+     *
+     * A ConstraintViolationException will be thrown either on dispatch or on
+     * persist, if removing the specified item would violate a node type or
+     * implementation-specific constraint. Implementations may differ on when
+     * this validation is performed.
+     *
+     * A VersionException will be thrown either on dispatch or on persist, if
+     * the parent node of the specified item is read-only due to a checked-in
+     * node. Implementations may differ on when this validation is performed.
+     *
+     * A LockException will be thrown either on dispatch or on persist, if a
+     * lock prevents the removal of the specified item. Implementations may
+     * differ on when this validation is performed.
+     *
+     * A PathNotFoundException will be thrown either on dispatch or on persist,
+     * if no accessible item is found at at $absPath.
+     *
+     * A AccessDeniedException will be thrown either on dispatch or on persist,
+     * if the specified item or an item in its subgraph is currently the target
+     * of a REFERENCE property located in this workspace but outside the
+     * specified item's subgraph and the current Session <i>does not</i> have
+     * read access to that REFERENCE property.
+     *
+     * @param string $absPath the absolute path of the item to be removed.
+     *
+     * @throws \PHPCR\Version\VersionException if the parent node of the item
+     *      at $absPath is read-only due to a checked-in node and this
+     *      implementation performs this validation immediately.
+     * @throws \PHPCR\Lock\LockException if a lock prevents the removal of the
+     *      specified item and this implementation performs this validation
+     *      immediately.
+     * @throws \PHPCR\NodeType\ConstraintViolationException if removing the
+     *      specified item would violate a node type or implementation-specific
+     *      constraint and this implementation performs this validation
+     *      immediately.
+     * @throws PathNotFoundException if no accessible item is found at $absPath
+     *      and this implementation performs this validation immediately.
+     * @throws AccessDeniedException if the specified item or an item in its
+     *      subgraph is currently the target of a REFERENCE property located in
+     *      this workspace but outside the specified item's subgraph and the
+     *      current Session <i>does not</i> have read access to that REFERENCE
+     *      property and this implementation performs this validation
+     *      immediately.
+     * @throws RepositoryException if another error occurs.
+     *
+     * @see Session::removeItem()
+     *
+     * @since JCR 2.1
+     *
+     * @api
+     */
+    public function removeItem($absPath);
+
+
+    /**
      * Returns the LockManager object, through which locking methods are accessed.
      *
      * @return \PHPCR\Lock\LockManagerInterface
@@ -478,6 +550,20 @@ interface WorkspaceInterface
      * @api
      */
     public function getObservationManager();
+
+    /**
+     * Return a RepositoryManager that can be used to administer the repository
+     * instance through which this workspace's session was acquired.
+     *
+     * @return RepositoryManagerInterface
+     *
+     * @throws AccessDeniedException if the caller does not have authorization
+     *      to obtain the manager.
+     * @throws RepositoryException if another error occurred.
+     *
+     * @since JCR 2.1
+     */
+    public function getRepositoryManager();
 
     /**
      * Returns the VersionManager object.

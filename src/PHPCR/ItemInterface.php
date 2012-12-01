@@ -96,7 +96,7 @@ interface ItemInterface
      * @throws ItemNotFoundException if this Item is the root node of a
      *      workspace.
      * @throws AccessDeniedException if the current session does not
-     *      have sufficent access to retrieve the parent of this item.
+     *      have sufficient access to retrieve the parent of this item.
      * @throws RepositoryException if another error occurs.
      *
      * @api
@@ -237,34 +237,24 @@ interface ItemInterface
     public function accept(ItemVisitorInterface $visitor);
 
     /**
-     * Updates the state of the current item.
+     * Discard all pending changes on this item and its children.
      *
-     * If keepChanges is false, this method discards all pending changes
-     * currently recorded in this Session that apply to this Item or any
-     * of its descendants (that is, the subgraph rooted at this Item) and
-     * returns all items to reflect the current saved state. Outside a
-     * transaction this state is simple the current state of persistent
-     * storage. Within a transaction, this state will reflect persistent
-     * storage as modified by changes that have been saved but not yet
-     * committed.
+     * This method discards all pending changes currently recorded in this
+     * <code>Session</code> that apply to this Item or any of its child nodes
+     * and properties and returns these items to reflect the current saved
+     * state. Outside a transaction this state is simply the current state of
+     * persistent storage. Within a transaction, this state will reflect
+     * persistent storage as modified by changes that have been saved but not
+     * yet committed.
      *
-     * If keepChanges is true then pending change are not discarded but
-     * items that do not have changes pending have their state refreshed
-     * to reflect the current saved state, thus revealing changes made by
-     * other sessions.
-     *
-     * @param boolean $keepChanges a boolean
-     *
-     * @return void
-     *
-     * @throws InvalidItemStateException if this Item object represents
-     *      a workspace item that has been removed (either by this session or
-     *      another).
+     * @throws InvalidItemStateException if this <code>Item</code> object
+     *      represents a workspace item that has been removed (either by this
+     *      session or another).
      * @throws RepositoryException if another error occurs.
      *
-     * @api
+     * @since JCR 2.1
      */
-    public function refresh($keepChanges);
+    public function revert();
 
     /**
      * Removes this item (and its subgraph).
@@ -295,7 +285,7 @@ interface ItemInterface
      *      subgraph is currently the target of a REFERENCE property located in
      *      this workspace but outside this item's subgraph and the current
      *      Session does not have read access to that REFERENCE property or if
-     *      the current Session does not have sufficent privileges to remove
+     *      the current Session does not have sufficient privileges to remove
      *      the item.
      * @throws RepositoryException if another error occurs.
      *

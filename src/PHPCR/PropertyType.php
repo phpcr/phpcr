@@ -278,10 +278,14 @@ final class PropertyType
     /**
      * Returns the numeric constant value of the type with the specified name.
      *
+     * This method is case-insensitive
+     *
      * @param  string $name The name of the property type
+     *
      * @return int    The numeric constant value
      *
      * @throws \InvalidArgumentException if the given name is unknown.
+     *
      * @api
      */
     public static function valueFromName($name)

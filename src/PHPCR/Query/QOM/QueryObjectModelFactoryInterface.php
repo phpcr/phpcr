@@ -56,7 +56,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @return \PHPCR\Query\QOM\QueryObjectModelInterface the query; non-null
      *
      * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
-     *      is possible on this method, the implemention chooses to perform
+     *      is possible on this method, the implementation chooses to perform
      *      that test and the parameters given fail that test. See the
      *      individual QOM factory methods for the validity criteria of each
      *      query element.
@@ -88,7 +88,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @return \PHPCR\Query\QOM\SelectorInterface the selector; non-null
      *
      * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
-     *      is possible on this method, the implemention chooses to perform
+     *      is possible on this method, the implementation chooses to perform
      *      that test (and not leave it until later) on createQuery, and the
      *      parameters given fail that test
      * @throws \PHPCR\RepositoryException if the operation otherwise fails
@@ -113,7 +113,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @return \PHPCR\Query\QOM\JoinInterface the join; non-null
      *
      * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
-     *      is possible on this method, the implemention chooses to perform
+     *      is possible on this method, the implementation chooses to perform
      *      that test (and not leave it until later) on createQuery, and the
      *      parameters given fail that test
      * @throws \PHPCR\RepositoryException if the operation otherwise fails
@@ -152,7 +152,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *      non-null
      *
      * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
-     *      is possible on this method, the implemention chooses to perform
+     *      is possible on this method, the implementation chooses to perform
      *      that test (and not leave it until later) on createQuery, and the
      *      parameters given fail that test
      * @throws \PHPCR\RepositoryException if the operation otherwise fails
@@ -185,7 +185,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *      non-null
      *
      * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
-     *      is possible on this method, the implemention chooses to perform
+     *      is possible on this method, the implementation chooses to perform
      *      that test (and not leave it until later) on createQuery, and the
      *      parameters given fail that test
      * @throws \PHPCR\RepositoryException if the operation otherwise fails
@@ -213,7 +213,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *      non-null
      *
      * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
-     *      is possible on this method, the implemention chooses to perform
+     *      is possible on this method, the implementation chooses to perform
      *      that test (and not leave it until later) on createQuery, and the
      *      parameters given fail that test
      *
@@ -242,7 +242,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *      constraint; non-null
      *
      * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
-     *      is possible on this method, the implemention chooses to perform
+     *      is possible on this method, the implementation chooses to perform
      *      that test (and not leave it until later) on createQuery, and the
      *      parameters given fail that test
      * @throws \PHPCR\RepositoryException if the operation otherwise fails
@@ -262,7 +262,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @return \PHPCR\Query\QOM\AndInterface the And constraint; non-null
      *
      * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
-     *      is possible on this method, the implemention chooses to perform
+     *      is possible on this method, the implementation chooses to perform
      *      that test (and not leave it until later) on createQuery, and the
      *      parameters given fail that test
      * @throws \PHPCR\RepositoryException if the operation otherwise fails
@@ -283,7 +283,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @return \PHPCR\Query\QOM\OrInterface the Or constraint; non-null
      *
      * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
-     *      is possible on this method, the implemention chooses to perform
+     *      is possible on this method, the implementation chooses to perform
      *      that test (and not leave it until later) on createQuery, and the
      *      parameters given fail that test
      *
@@ -303,7 +303,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @return \PHPCR\Query\QOM\NotInterface the Not constraint; non-null
      *
      * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
-     *      is possible on this method, the implemention chooses to perform
+     *      is possible on this method, the implementation chooses to perform
      *      that test (and not leave it until later) on createQuery, and the
      *      parameters given fail that test
      * @throws \PHPCR\RepositoryException if the operation otherwise fails
@@ -325,7 +325,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @return \PHPCR\Query\QOM\ComparisonInterface the constraint; non-null
      *
      * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
-     *      is possible on this method, the implemention chooses to perform
+     *      is possible on this method, the implementation chooses to perform
      *      that test (and not leave it until later) on createQuery, and the
      *      parameters given fail that test
      * @throws \PHPCR\RepositoryException if the operation otherwise fails
@@ -350,7 +350,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *      non-null
      *
      * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
-     *      is possible on this method, the implemention chooses to perform
+     *      is possible on this method, the implementation chooses to perform
      *      that test (and not leave it until later) on createQuery, and the
      *      parameters given fail that test
      * @throws \PHPCR\RepositoryException if the operation otherwise fails
@@ -384,7 +384,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *      non-null
      *
      * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
-     *      is possible on this method, the implemention chooses to perform
+     *      is possible on this method, the implementation chooses to perform
      *      that test (and not leave it until later) on createQuery, and the
      *      parameters given fail that test
      * @throws \PHPCR\RepositoryException if the operation otherwise fails
@@ -439,7 +439,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @return \PHPCR\Query\QOM\ChildNodeInterface the constraint; non-null
      *
      * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
-     *      is possible on this method, the implemention chooses to perform
+     *      is possible on this method, the implementation chooses to perform
      *      that test (and not leave it until later) on createQuery, and the
      *      parameters given fail that test
      * @throws \PHPCR\RepositoryException if the operation otherwise fails
@@ -469,7 +469,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *      non-null
      *
      * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
-     *      is possible on this method, the implemention chooses to perform
+     *      is possible on this method, the implementation chooses to perform
      *      that test (and not leave it until later) on createQuery, and the
      *      parameters given fail that test
      * @throws \PHPCR\RepositoryException if the operation otherwise fails
@@ -507,7 +507,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @return \PHPCR\Query\QOM\LengthInterface the operand; non-null
      *
      * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
-     *      is possible on this method, the implemention chooses to perform
+     *      is possible on this method, the implementation chooses to perform
      *      that test (and not leave it until later) on createQuery, and the
      *      parameters given fail that test
      * @throws \PHPCR\RepositoryException if the operation otherwise fails
@@ -528,7 +528,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @return \PHPCR\Query\QOM\NodeNameInterface the operand; non-null
      *
      * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
-     *      is possible on this method, the implemention chooses to perform
+     *      is possible on this method, the implementation chooses to perform
      *      that test (and not leave it until later) on createQuery, and the
      *      parameters given fail that test
      * @throws \PHPCR\RepositoryException if the operation otherwise fails
@@ -568,7 +568,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *      non-null
      *
      * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
-     *      is possible on this method, the implemention chooses to perform
+     *      is possible on this method, the implementation chooses to perform
      *      that test (and not leave it until later) on createQuery, and the
      *      parameters given fail that test
      * @throws \PHPCR\RepositoryException if the operation otherwise fails
@@ -586,7 +586,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @return \PHPCR\Query\QOM\LowerCaseInterface the operand; non-null
      *
      * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
-     *      is possible on this method, the implemention chooses to perform
+     *      is possible on this method, the implementation chooses to perform
      *      that test (and not leave it until later) on createQuery, and the
      *      parameters given fail that test
      * @throws \PHPCR\RepositoryException if the operation otherwise fails
@@ -605,7 +605,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @return \PHPCR\Query\QOM\UpperCaseInterface the operand; non-null
      *
      * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
-     *      is possible on this method, the implemention chooses to perform
+     *      is possible on this method, the implementation chooses to perform
      *      that test (and not leave it until later) on createQuery, and the
      *      parameters given fail that test
      * @throws \PHPCR\RepositoryException if the operation otherwise fails
@@ -625,7 +625,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *      non-null
      *
      * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
-     *      is possible on this method, the implemention chooses to perform
+     *      is possible on this method, the implementation chooses to perform
      *      that test (and not leave it until later) on createQuery, and the
      *      parameters given fail that test
      * @throws \PHPCR\RepositoryException if the operation otherwise fails
@@ -644,7 +644,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @return mixed the operand; non-null
      *
      * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
-     *      is possible on this method, the implemention chooses to perform
+     *      is possible on this method, the implementation chooses to perform
      *      that test (and not leave it until later) on createQuery, and the
      *      parameters given fail that test
      * @throws \PHPCR\RepositoryException if the operation otherwise fails

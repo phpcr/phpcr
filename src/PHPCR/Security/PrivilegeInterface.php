@@ -177,6 +177,25 @@ interface PrivilegeInterface
     const JCR_LIFECYCLE_MANAGEMENT = "{http://www.jcp.org/jcr/1.0}lifecycleManagement";
 
     /**
+     * A constant representing <code>jcr:workspaceManagement</code> (in expanded
+     * form), the privilege to create and remove workspaces in the repository.
+     */
+    const JCR_WORKSPACE_MANAGEMENT = "{http://www.jcp.org/jcr/1.0}workspaceManagement";
+
+    /**
+     * A constant representing <code>jcr:nodeTypeDefinitionManagement</code> (in expanded
+     * form), the privilege to register, unregister and change the definitions
+     * of node type in the repository.
+     */
+    const JCR_NODE_TYPE_DEFINITION_MANAGEMENT = "{http://www.jcp.org/jcr/1.0}nodeTypeDefinitionManagement";
+
+    /**
+     * A constant representing <code>jcr:namespaceManagement</code> (in expanded
+     * form), the privilege to register, unregister and modify namespace definitions.
+     */
+    const JCR_NAMESPACE_MANAGEMENT = "{http://www.jcp.org/jcr/1.0}namespaceManagement";
+
+    /**
      * A constant representing jcr:all (in extended form), an aggregate
      * privilege that contains all predefined privileges.
      *
@@ -189,6 +208,9 @@ interface PrivilegeInterface
      * - jcr:nodeTypeManagement
      * - jcr:retentionManagement
      * - jcr:lifecycleManagement
+     * - jcr:workspaceManagement
+     * - jcr:nodeTypeDefinitionManagement
+     * - jcr:namespaceManagement
      *
      * It should, in addition, include all implementation-defined privileges.
      *
