@@ -40,23 +40,31 @@ interface AccessControlManagerInterface
     /**
      * Gets privileges of an existing node identified by its path.
      *
-     * Returns the privileges supported for absolute path $absPath, which must
-     * be an existing node. This method does not return the privileges held by
-     * the session. Instead, it returns the privileges that the repository
+     * Returns the privileges supported for absolute path $absPath, or, if
+     * $absPath is null, the privileges supported by the repository that are
+     * not associated with any particular node (for example, the privilege of
+     * being able to administer the node type registry).
+     *
+     * If $absPath is neither the absolute path of an accessible node nor null,
+     * then this method throws a PathNotFoundException.
+     *
+     * Note that this method does not return the privileges held by the current
+     * session, but rather the privileges supported by the repository.
      * supports.
      *
-     * @param string $absPath The absolute path to a node the privileges shall
+     * @param string|null $absPath The absolute path to a node the privileges shall
      *      be fetched of.
      *
      * @return array An array of Privileges.
      *
-     * @throws \PHPCR\PathNotFoundException if no node at absPath exists or the
-     *      session does not have privilege to retrieve the node.
+     * @throws \PHPCR\PathNotFoundException if $absPath is non-null and either
+     *      no node exists at that path or the session does not have sufficient
+     *      access to retrieve a node at that path.
      * @throws \PHPCR\RepositoryException if another error occurs.
      *
      * @api
      */
-    public function getSupportedPrivileges($absPath);
+    public function getSupportedPrivileges($absPath = null);
 
     /**
      * Returns the privilege with the specified privilegeName.
