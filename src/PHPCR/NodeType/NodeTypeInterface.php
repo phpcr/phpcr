@@ -368,6 +368,21 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
     public function getSupertypes();
 
     /**
+     * Returns the names of all supertypes of this node type in the node type
+     * inheritance hierarchy.
+     *
+     * For primary types apart from nt:base, this list will always
+     * include at least nt:base. For mixin types, there is no required supertype.
+     *
+     * @see getSupertypes()
+     * @see NodeTypeDefinition::getDeclaredSupertypeNames()
+     *
+     * @return string[] the names of all supertypes
+     * @since JCR 2.1
+     */
+    public function getSupertypeNames();
+
+    /**
      * Returns the direct supertypes of this node type in the node type
      * inheritance hierarchy, that is, those actually declared in this node
      * type.
