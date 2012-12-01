@@ -440,7 +440,7 @@ interface NodeInterface extends ItemInterface, \Traversable
     /**
      * Get a set of nodes gathered by the definition of a filter.
      *
-     * If $filter is a string:
+     * <strong>If $filter is a string:</strong>
      * Gets all child nodes of this node accessible through the current Session
      * that match namePattern (if no pattern is given, all accessible child
      * nodes are returned). Does not include properties of this Node. The
@@ -461,7 +461,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      * Note that leading and trailing whitespace around a glob is ignored, but
      * whitespace within a disjunct forms part of the pattern to be matched.
      *
-     *If $filter is an array:
+     * <strong>If $filter is an array:</strong>
      * Gets all child nodes of this node accessible through the current
      * Session that match one or more of the $filter strings in the passed
      * array.
@@ -479,6 +479,9 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * The pattern is matched against the names (not the paths) of the
      * immediate child nodes of this node.
+     *
+     * If the child nodes of this node have an order then the names are
+     * returned in that order, otherwise the order is undefined.
      *
      * If this node has no accessible matching child nodes, then an empty
      * iterator is returned.
@@ -949,9 +952,9 @@ interface NodeInterface extends ItemInterface, \Traversable
      * occurs when a node is first created.
      *
      * A ConstraintViolationException is thrown either immediately or on save
-     * if a conflict with another assigned mixin or the primary node type or
-     * for an implementation-specific reason. Implementations may differ on
-     * when this validation is done.
+     * if a conflict with another assigned mixin or the primary node type
+     * occurs or for an implementation-specific reason. Implementations may
+     * differ on when this validation is done.
      *
      * In some implementations it may only be possible to add mixin types
      * before a a node is persisted for the first time. In such cases any
