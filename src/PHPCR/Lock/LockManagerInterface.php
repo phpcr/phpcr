@@ -186,6 +186,28 @@ interface LockManagerInterface extends \Traversable
     public function lock($absPath, $isDeep, $isSessionScoped, $timeoutHint = PHP_INT_MAX, $ownerInfo = null);
 
     /**
+     * Alternative method to lock with all the options in one configuration class.
+     *
+     * @param string  $absPath The absolute path of node to be locked
+     * @param \PHPCR\Lock\LockInfoInterface $lockInfo configured with the desired
+     *      characteristics for this lock.
+     *
+     * @return \PHPCR\Lock\LockInterface A Lock object containing a lock token.
+     *
+     * @throws \PHPCR\Lock\LockException if this node is not mix:lockable or
+     *      this node is already locked or isDeep is true and a descendant node
+     *      of this node already holds a lock.
+     * @throws \PHPCR\AccessDeniedException if this session does not have
+     *      sufficient access to lock this node.
+     * @throws \PHPCR\InvalidItemStateException if this node has pending
+     *      unsaved changes.
+     * @throws \PHPCR\PathNotFoundException if no node is found at $absPath
+     * @throws \PHPCR\RepositoryException   if another error occurs.
+     *
+     */
+    public function lockWithInfo($absPath, LockInfoInterface $lockInfo);
+
+    /**
      * Determines if the node at absPath is locked.
      *
      * Returns true if the node at absPath is locked either as a result of a
@@ -254,4 +276,14 @@ interface LockManagerInterface extends \Traversable
      * @api
      */
     public function unlock($absPath);
+
+    /**
+     * Creates a ockInfo object that can then be configured and passed to the
+     * method lockWithInfo
+     *
+     * @return LockInfoInterface the object instance to be configured
+     *
+     * @api
+     */
+    public function createLockInfo();
 }
