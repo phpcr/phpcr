@@ -421,11 +421,11 @@ final class PropertyType
         <TR><TD>DECIMAL</TD><TD>noop</TD><TD>Utf-8 encoded</TD><TD>cast to int</TD><TD>cast to float</TD><TD>Unix Time</TD><TD><I>0 false else true</I></TD><TD>ValueFormatException</TD><TD>ValueFormatException</TD><TD>ValueFormatException</TD><TD>ValueFormatException</TD><TD>x</TD></TR>
         </TABLE>
      *
-     * @param mixed $values  The value or value array to check and convert
+     * @param mixed $value   The value or value array to check and convert
      * @param int   $type    Target type to convert into. One of the type constants in PropertyType
      * @param int   $srctype Source type to convert from, if not specified this is automatically determined, which will miss the string based types that are not strings (DECIMAL, NAME, PATH, URI)
      *
-     * @return mixed the value typecasted into the proper format (throws an exception if conversion is not possible)
+     * @return mixed the value casted into the proper format (throws an exception if conversion is not possible)
      *
      * @throws ValueFormatException      is thrown if the specified value cannot be converted to the specified type
      * @throws RepositoryException       if the specified Node is not referenceable, the current Session is no longer active, or another error occurs.
