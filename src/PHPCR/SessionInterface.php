@@ -217,7 +217,7 @@ interface SessionInterface
      * If none of the specified identifiers refer to an existing and accessible
      * node then an empty iterator is returned.
      *
-     * @param array $ids An array of identifiers.
+     * @param array|\Traversable $ids A list of identifiers.
      *
      * @return \Iterator over all (matching) child Nodes implementing
      *      <b>SeekableIterator</b> and <b>Countable</b>. Keys are the
@@ -308,7 +308,7 @@ interface SessionInterface
      * If none of the specified paths leads to an existing and accessible
      * node then an empty iterator is returned.
      *
-     * @param array $absPaths An array containing absolute paths.
+     * @param array|\Traversable $absPaths A list of absolute paths.
      *
      * @return \Iterator over all (matching) child Nodes implementing
      *      <b>SeekableIterator</b> and <b>Countable</b>. Keys are the
@@ -344,7 +344,7 @@ interface SessionInterface
      * If none of the specified paths leads to an existing and accessible
      * property then an empty iterator is returned.
      *
-     * @param string[] $absPaths An array of absolute paths.
+     * @param array|\Traversable $absPaths A list of absolute paths to properties.
      *
      * @return \Iterator over all (matching) child Nodes implementing
      *      <b>SeekableIterator</b> and <b>Countable</b>. Keys are the
