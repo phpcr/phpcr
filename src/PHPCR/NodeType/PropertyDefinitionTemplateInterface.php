@@ -144,7 +144,7 @@ interface PropertyDefinitionTemplateInterface extends \PHPCR\NodeType\PropertyDe
     /**
      * Sets the queryable status of the property.
      *
-     * @param array operators An array of String constants
+     * @param array $operators An array of String constants
      *      {@link PropertyDefinition::getAvailableQueryOperators()}.
      *
      * @return void

@@ -123,7 +123,7 @@ interface LockInterface
      *
      * @return boolean True, if the lock still counts, else false.
      *
-     * @throws RepositoryException if an error occurs
+     * @throws \PHPCR\RepositoryException if an error occurs
      *
      * @api
      */
@@ -163,8 +163,8 @@ interface LockInterface
      * If this lock's time-to-live is not governed by a timer, then this method
      * has no effect.
      *
-     * @throws \PHPCR\Lock\LockException if this Session does not hold the
-     *      correct lock token for this lock.
+     * @throws LockException if this Session does not hold the correct lock
+     *      token for this lock.
      * @throws \PHPCR\RepositoryException if another error occurs.
      *
      * @api

@@ -60,7 +60,8 @@ interface OrderingInterface
     /**
      * The operand by which to order.
      *
-     * @return \PHPCR\Query\QOM\DynamicOperandInterface the operand; non-null
+     * @return DynamicOperandInterface the operand; non-null
+     *
      * @api
      */
     public function getOperand();
@@ -70,6 +71,7 @@ interface OrderingInterface
      *
      * @return string either QueryObjectModelConstants.JCR_ORDER_ASCENDING or
      *      QueryObjectModelConstants.JCR_ORDER_DESCENDING
+     *
      * @api
      */
     public function getOrder();

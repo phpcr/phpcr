@@ -35,6 +35,7 @@ interface NodeLocalNameInterface extends DynamicOperandInterface
      * Gets the name of the selector against which to evaluate this operand.
      *
      * @return string the selector name; non-null
+     *
      * @api
      */
     public function getSelectorName();

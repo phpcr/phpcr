@@ -36,6 +36,6 @@ namespace PHPCR\Version;
  *
  * @api
  */
-class ActivityViolationException extends \PHPCR\Version\VersionException
+class ActivityViolationException extends VersionException
 {
 }

@@ -40,7 +40,7 @@ interface UpperCaseInterface extends DynamicOperandInterface
     /**
      * Gets the operand whose value is converted to a upper-case string.
      *
-     * @return \PHPCR\Query\QOM\DynamicOperandInterface the operand; non-null
+     * @return DynamicOperandInterface the operand; non-null
      * @api
      */
     public function getOperand();

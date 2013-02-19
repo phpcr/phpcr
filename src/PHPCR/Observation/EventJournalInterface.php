@@ -44,7 +44,7 @@ interface EventJournalInterface extends \Countable, \SeekableIterator
      * exception is thrown but the subsequent next() will fail.
      *
      * @param  integer $date Value that represents an offset in milliseconds from the epoch.
-     * @return void
+     *
      * @api
      */
     public function skipTo($date);

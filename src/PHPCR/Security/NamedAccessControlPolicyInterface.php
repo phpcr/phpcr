@@ -33,7 +33,7 @@ namespace PHPCR\Security;
  *
  * @api
  */
-interface NamedAccessControlPolicyInterface extends \PHPCR\Security\AccessControlPolicyInterface
+interface NamedAccessControlPolicyInterface extends AccessControlPolicyInterface
 {
     /**
      * Returns the name of the access control policy, which is JCR name and

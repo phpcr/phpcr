@@ -41,7 +41,7 @@ namespace PHPCR\Security;
  *
  * @api
  */
-interface AccessControlListInterface extends \PHPCR\Security\AccessControlPolicyInterface, \Traversable
+interface AccessControlListInterface extends AccessControlPolicyInterface, \Traversable
 {
     /**
      * Returns all access control entries present with this policy.
@@ -80,9 +80,9 @@ interface AccessControlListInterface extends \PHPCR\Security\AccessControlPolicy
      *
      * @return boolean true if this policy was modify; false otherwise.
      *
-     * @throws \PHPCR\Security\AccessControlException if the specified
-     *      principal or any of the privileges does not exist or if some other
-     *      access control related exception occurs.
+     * @throws AccessControlException if the specified principal or any of the
+     *      privileges does not exist or if some other access control related
+     *      exception occurs.
      * @throws \PHPCR\RepositoryException - if another error occurs.
      *
      * @api
@@ -97,16 +97,16 @@ interface AccessControlListInterface extends \PHPCR\Security\AccessControlPolicy
      * re-assigned to a node by calling AccessControlManagerInterface::setPolicy()
      * and save is performed.
      *
-     * @param \PHPCR\Security\AccessControlEntryInterface $ace the access
-     *      control entry to be removed.
+     * @param AccessControlEntryInterface $ace the access control entry to be
+     *      removed.
      *
      * @return void
      *
-     * @throws \PHPCR\Security\AccessControlException if the specified entry is
-     *      not present on the specified node.
+     * @throws AccessControlException if the specified entry is not present on
+     *      the specified node.
      * @throws \PHPCR\RepositoryException if another error occurs.
      *
      * @api
      */
-    public function removeAccessControlEntry(\PHPCR\Security\AccessControlEntryInterface $ace);
+    public function removeAccessControlEntry(AccessControlEntryInterface $ace);
 }

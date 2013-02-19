@@ -401,7 +401,7 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
      * Returns all subtypes of this node type in the node type inheritance
      * hierarchy.
      *
-     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>.
+     * @return \Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>.
      *      Keys are the node type names, values the corresponding
      *      NodeTypeInterface instances.
      *
@@ -416,7 +416,7 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
      * hierarchy, that is, those which actually declared this node type in their
      * list of supertypes.
      *
-     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>.
+     * @return \Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>.
      *      Keys are the node type names, values the corresponding
      *      NodeTypeInterface instances.
      *
@@ -475,7 +475,7 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
      * Otherwise returns false.
      *
      * @param string $propertyName The name of the property
-     * @param mixed  $value        A variable or an array of variables
+     * @param mixed  $value        A value or an array of values
      *
      * @return boolean True if setting propertyName to value is allowed by this
      *      node type, else false.

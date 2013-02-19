@@ -35,7 +35,7 @@ interface VersionInterface extends \PHPCR\NodeInterface
     /**
      * Returns the VersionHistory that contains this Version
      *
-     * @return \PHPCR\Version\VersionHistoryInterface the VersionHistory that
+     * @return VersionHistoryInterface the VersionHistory that
      *      contains this Version
      *
      * @throws \PHPCR\RepositoryException if an error occurs
@@ -68,7 +68,7 @@ interface VersionInterface extends \PHPCR\NodeInterface
      * Note that under simple versioning the behavior of this method is
      * equivalent to getting the unique successor (if any) of this version.
      *
-     * @return \PHPCR\VersionInterface a Version or null if no linear successor
+     * @return VersionInterface a Version or null if no linear successor
      *      exists.
      *
      * @throws \PHPCR\RepositoryException if an error occurs.
@@ -86,7 +86,7 @@ interface VersionInterface extends \PHPCR\NodeInterface
      * jcr:successors multi-value property in the nt:version node that
      * represents this version.
      *
-     * @return array of \PHPCR\Version\VersionInterface
+     * @return array of VersionInterface
      *
      * @throws \PHPCR\RepositoryException if an error occurs
      *
@@ -105,7 +105,7 @@ interface VersionInterface extends \PHPCR\NodeInterface
      * Note that under simple versioning the behavior of this method is
      * equivalent to getting the unique predecessor (if any) of this version.
      *
-     * @return \PHPCR\Version\VersionInterface a Version or null if no linear
+     * @return VersionInterface a Version or null if no linear
      *      predecessor exists.
      *
      * @throws \PHPCR\RepositoryException if an error occurs.
@@ -124,7 +124,7 @@ interface VersionInterface extends \PHPCR\NodeInterface
      * the nt:version nodes whose jcr:successors property includes a reference
      * to the nt:version node that represents this version.
      *
-     * @return array of \PHPCR\Version\VersionInterface
+     * @return array of VersionInterface
      *
      * @throws \PHPCR\RepositoryException if an error occurs
      *
