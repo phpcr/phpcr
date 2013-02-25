@@ -17,7 +17,7 @@ Short Summary of the important changes
  * Drop the RangeIterator and Sub-Interfaces in favor of declaring return types
     implementing PHP iterators. The type specific iterators again are only
     relevant with strong typing.
- * Provide shortcut methods Node::getPropertyValue and Node::getPropertyValues
+ * Provide shortcut methods Node::getPropertyValue and Node::getPropertiesValues
     to avoid instantiating property objects when not needed.
  * NOTE: All deprecated methods coming from JSR-170 have been completely left
     out
