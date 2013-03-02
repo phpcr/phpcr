@@ -103,7 +103,7 @@ interface NodeDefinitionTemplateInterface extends \PHPCR\NodeType\NodeDefinition
      *
      * @api
      */
-    public function setRequiredPrimaryTypeNames(Array $requiredPrimaryTypeNames);
+    public function setRequiredPrimaryTypeNames(array $requiredPrimaryTypeNames);
 
     /**
      * Sets the name of the default primary type of this node.

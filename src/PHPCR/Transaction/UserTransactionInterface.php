@@ -97,8 +97,8 @@ interface UserTransactionInterface
      *
      * @return void
      *
-     * @throws \PHPCR\Transaction\RollbackException Thrown to indicate that the
-     *      transaction has been rolled back rather than committed.
+     * @throws RollbackException Thrown to indicate that the transaction has
+     *      been rolled back rather than committed.
      * @throws \PHPCR\AccessDeniedException Thrown to indicate that the
      *      session is not allowed to commit the transaction.
      * @throws \LogicException Thrown if the current

@@ -34,7 +34,7 @@ interface JoinInterface extends SourceInterface
     /**
      * Gets the left node-tuple source.
      *
-     * @return \PHPCR\Query\QOM\SourceInterface the left source; non-null
+     * @return SourceInterface the left source; non-null
      *
      * @api
      */
@@ -43,7 +43,7 @@ interface JoinInterface extends SourceInterface
     /**
      * Gets the right node-tuple source.
      *
-     * @return \PHPCR\Query\QOM\SourceInterface the right source; non-null
+     * @return SourceInterface the right source; non-null
      *
      * @api
      */
@@ -61,7 +61,7 @@ interface JoinInterface extends SourceInterface
     /**
      * Gets the join condition.
      *
-     * @return JoinCondition the join condition; non-null
+     * @return JoinConditionInterface the join condition; non-null
      *
      * @api
      */

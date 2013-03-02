@@ -38,6 +38,7 @@ interface PropertyExistenceInterface extends ConstraintInterface
      * Gets the name of the selector against which to apply this constraint.
      *
      * @return string the selector name; non-null
+     *
      * @api
      */
     public function getSelectorName();
@@ -46,6 +47,7 @@ interface PropertyExistenceInterface extends ConstraintInterface
      * Gets the name of the property.
      *
      * @return string the property name; non-null
+     *
      * @api
      */
     public function getPropertyName();

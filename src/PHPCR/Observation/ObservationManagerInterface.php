@@ -65,7 +65,7 @@ interface ObservationManagerInterface extends \Traversable
      * @param EventListenerInterface $listener
      * @param EventFilterInterface   $filter
      *
-     * @throws RepositoryException If an error occurs.
+     * @throws \PHPCR\RepositoryException If an error occurs.
      *
      * @since JCR 2.1
      *

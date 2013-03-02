@@ -96,8 +96,7 @@ interface FullTextSearchInterface extends ConstraintInterface
     /**
      * Gets the full-text search expression.
      *
-     * @return \PHPCR\Query\QOM\StaticOperandInterface the full-text search
-     *      expression; non-null
+     * @return StaticOperandInterface the full-text search expression; non-null
      *
      * @api
      */

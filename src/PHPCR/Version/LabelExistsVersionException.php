@@ -31,6 +31,6 @@ namespace PHPCR\Version;
  *
  * @api
  */
-class LabelExistsVersionException extends \PHPCR\Version\VersionException
+class LabelExistsVersionException extends VersionException
 {
 }

@@ -36,7 +36,8 @@ interface NotInterface extends ConstraintInterface
     /**
      * Gets the constraint negated by this Not constraint.
      *
-     * @return \PHPCR\Query\QOM\ConstraintInterface the constraint; non-null
+     * @return ConstraintInterface the constraint; non-null
+     *
      * @api
      */
     public function getConstraint();
