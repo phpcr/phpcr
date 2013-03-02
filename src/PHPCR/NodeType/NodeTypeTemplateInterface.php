@@ -116,7 +116,7 @@ interface NodeTypeTemplateInterface extends \PHPCR\NodeType\NodeTypeDefinitionIn
     /**
      * Sets the queryable status of the node type.
      *
-     * @param booolean $queryable Whether this node is queryable.
+     * @param bool $queryable Whether this node is queryable.
      *
      * @return void
      *

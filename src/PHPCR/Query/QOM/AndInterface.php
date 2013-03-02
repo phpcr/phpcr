@@ -37,7 +37,8 @@ interface AndInterface extends ConstraintInterface
     /**
      * Gets the first constraint.
      *
-     * @return \PHPCR\Query\QOM\ConstraintInterface the constraint; non-null
+     * @return ConstraintInterface the constraint; non-null
+     *
      * @api
      */
     public function getConstraint1();
@@ -45,7 +46,8 @@ interface AndInterface extends ConstraintInterface
     /**
      * Gets the second constraint.
      *
-     * @return \PHPCR\Query\QOM\ConstraintInterface the constraint; non-null
+     * @return ConstraintInterface the constraint; non-null
+     *
      * @api
      */
     public function getConstraint2();

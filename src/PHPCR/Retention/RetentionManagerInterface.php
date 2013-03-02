@@ -108,7 +108,7 @@ interface RetentionManagerInterface
      *
      * @api
      */
-    public function removeHold($absPath, \PHPCR\Retention\HoldInterface $hold);
+    public function removeHold($absPath, HoldInterface $hold);
 
     /**
      * Gets the retention poilcy of a node identified by its path.
@@ -119,9 +119,8 @@ interface RetentionManagerInterface
      *
      * @param string $absPath an absolute path to an existing node.
      *
-     * @return \PHPCR\Retention\RetentionPolicyInterface The retention policy
-     *      that applies to the existing node at $absPath or null if no policy
-     *      applies.
+     * @return RetentionPolicyInterface The retention policy that applies to
+     *      the existing node at $absPath or null if no policy applies.
      *
      * @throws \PHPCR\PathNotFoundException if no node at $absPath exists or
      *      the session does not have sufficient access to retrieve the node.

@@ -43,10 +43,10 @@ interface QueryManagerInterface
      * @param string $statement The query statement to be executed.
      * @param string $language  The language of the query to be created.
      *
-     * @return \PHPCR\Query\QueryInterface a Query object
+     * @return QueryInterface a Query object
      *
-     * @throws \PHPCR\Query\InvalidQueryException if the query statement is
-     *      syntactically invalid or the specified language is not supported
+     * @throws InvalidQueryException if the query statement is syntactically
+     *      invalid or the specified language is not supported
      * @throws \PHPCR\RepositoryException if another error occurs
      *
      * @api
@@ -75,10 +75,10 @@ interface QueryManagerInterface
      * @param \PHPCR\NodeInterface $node a persisted query (that is, a node of
      *      type nt:query).
      *
-     * @return \PHPCR\Query\QueryInterface a Query object.
+     * @return QueryInterface a Query object.
      *
-     * @throws \PHPCR\Query\InvalidQueryException If node is not a valid
-     *      persisted query (that is, a node of type nt:query).
+     * @throws InvalidQueryException If node is not a valid persisted query
+     *      (that is, a node of type nt:query).
      * @throws \PHPCR\RepositoryException if another error occurs
      *
      * @api

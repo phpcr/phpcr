@@ -586,7 +586,7 @@ interface PropertyInterface extends ItemInterface, \Traversable
     /**
      * Returns a String representation of the value of this property.
      *
-     * @return string\array A string representation of the value of this property, or
+     * @return string|array A string representation of the value of this property, or
      *      an array of string for multi-valued properties.
      *
      * @throws ValueFormatException if conversion to a String is not possible

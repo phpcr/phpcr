@@ -78,7 +78,7 @@ interface ComparisonInterface extends ConstraintInterface
      *
      * Gets the first operand.
      *
-     * @return \PHPCR\Query\QOM\DynamicOperandInterface the operand; non-null
+     * @return DynamicOperandInterface the operand; non-null
      *
      * @api
      */
@@ -87,8 +87,7 @@ interface ComparisonInterface extends ConstraintInterface
     /**
      * Gets the operator.
      *
-     * @return string one of
-     *      \PHPCR\Query\QOM\QueryObjectModelConstantsInterface.JCR_OPERATOR_*
+     * @return string one of QueryObjectModelConstantsInterface.JCR_OPERATOR_*
      *
      * @api
      */
@@ -97,7 +96,7 @@ interface ComparisonInterface extends ConstraintInterface
     /**
      * Gets the second operand.
      *
-     * @return \PHPCR\Query\QOM\StaticOperandInterface the operand; non-null
+     * @return StaticOperandInterface the operand; non-null
      *
      * @api
      */

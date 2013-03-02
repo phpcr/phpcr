@@ -43,6 +43,7 @@ interface PropertyValueInterface extends DynamicOperandInterface
      * Gets the name of the selector against which to evaluate this operand.
      *
      * @return string the selector name; non-null
+     *
      * @api
      */
     public function getSelectorName();
@@ -51,6 +52,7 @@ interface PropertyValueInterface extends DynamicOperandInterface
      * Gets the name of the property.
      *
      * @return string the property name; non-null
+     *
      * @api
      */
     public function getPropertyName();

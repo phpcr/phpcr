@@ -52,7 +52,7 @@ interface VersionHistoryInterface extends \PHPCR\NodeInterface
     /**
      * Returns the root version of this version history.
      *
-     * @return \PHPCR\Version\VersionInterface a Version object.
+     * @return VersionInterface a Version object.
      *
      * @throws \PHPCR\RepositoryException if an error occurs.
      *
@@ -80,7 +80,7 @@ interface VersionHistoryInterface extends \PHPCR\NodeInterface
      * equivalent to returning all versions in the version history in order from
      * oldest to newest.
      *
-     * @return Iterator implementing <b>SeekableIterator</b> and
+     * @return \Iterator implementing <b>SeekableIterator</b> and
      *      <b>Countable</b>. Values are the VersionInterface instances. Keys
      *      are the version names.
      *
@@ -96,7 +96,7 @@ interface VersionHistoryInterface extends \PHPCR\NodeInterface
      * returned in order of creation date, from oldest to newest. Otherwise the
      * order of the returned versions is implementation-dependent.
      *
-     * @return Iterator implementing <b>SeekableIterator</b> and
+     * @return \Iterator implementing <b>SeekableIterator</b> and
      *      <b>Countable</b>. Values are the VersionInterface instances. Keys
      *      are the version names.
      *
@@ -110,7 +110,7 @@ interface VersionHistoryInterface extends \PHPCR\NodeInterface
      * This method returns all the frozen nodes of all the versions in this
      * verison history in the same order as getAllLinearVersions().
      *
-     * @return Iterator implementing <b>SeekableIterator</b> and
+     * @return \Iterator implementing <b>SeekableIterator</b> and
      *      <b>Countable</b>. Values are the NodeInterface instances. Keys
      *      are the version names
      *
@@ -126,7 +126,7 @@ interface VersionHistoryInterface extends \PHPCR\NodeInterface
      * nodes will be the order of their creation. Under full versioning the
      * order is implementation-dependent.
      *
-     * @return Iterator implementing <b>SeekableIterator</b> and
+     * @return \Iterator implementing <b>SeekableIterator</b> and
      *      <b>Countable</b>. Values are the NodeInterface instances. Keys
      *      are the version names
      *
@@ -142,10 +142,10 @@ interface VersionHistoryInterface extends \PHPCR\NodeInterface
      *
      * @param string $versionName a version name
      *
-     * @return \PHPCR\Version\VersionInterface a Version object.
+     * @return VersionInterface a Version object.
      *
-     * @throws \PHPCR\Version\VersionException if the specified version is not
-     *      in this version history.
+     * @throws VersionException if the specified version is not in this version
+     *      history.
      * @throws \PHPCR\RepositoryException if an error occurs.
      *
      * @api
@@ -158,10 +158,10 @@ interface VersionHistoryInterface extends \PHPCR\NodeInterface
      *
      * @param string $label a version label
      *
-     * @return \PHPCR\Version\VersionInterface a Version object.
+     * @return VersionInterface a Version object.
      *
-     * @throws \PHPCR\Version\VersionException if the specified label is not in
-     *      this version history.
+     * @throws VersionException if the specified label is not in this version
+     *      history.
      * @throws \PHPCR\RepositoryException if an error occurs.
      *
      * @api
@@ -207,12 +207,12 @@ interface VersionHistoryInterface extends \PHPCR\NodeInterface
      *
      * @return void
      *
-     * @throws \PHPCR\Version\LabelExistsVersionException if moveLabel is
-     *      false, and an attempt is made to add a label that already exists in
-     *      this version history
-     * @throws \PHPCR\Version\VersionException if the specified version does
-     *      not exist in this version history or if the specified version is
-     *      the root version (jcr:rootVersion).
+     * @throws LabelExistsVersionException if moveLabel is false, and an
+     *      attempt is made to add a label that already exists in this version
+     *      history
+     * @throws VersionException if the specified version does not exist in this
+     *      version history or if the specified version is the root version
+     *      (jcr:rootVersion).
      * @throws \PHPCR\RepositoryException if another error occurs.
      *
      * @api
@@ -235,8 +235,8 @@ interface VersionHistoryInterface extends \PHPCR\NodeInterface
      *
      * @return void
      *
-     * @throws \PHPCR\Version\VersionException if the name label does not exist
-     *      in this version history.
+     * @throws VersionException if the name label does not exist in this
+     *      version history.
      * @throws \PHPCR\RepositoryException if another error occurs.
      *
      * @api
@@ -254,12 +254,12 @@ interface VersionHistoryInterface extends \PHPCR\NodeInterface
      *
      * @param string $label a version label. A JCR name in either extended or
      *      qualified form.
-     * @param \PHPCR\Version\VersionInterface $version a Version object
+     * @param VersionInterface $version a Version object
      *
      * @return boolean a boolean.
      *
-     * @throws \PHPCR\Version\VersionException if the specified version is not
-     *      of this version history.
+     * @throws VersionException if the specified version is not of this version
+     *      history.
      * @throws \PHPCR\RepositoryException if another error occurs.
      *
      * @api
@@ -280,8 +280,8 @@ interface VersionHistoryInterface extends \PHPCR\NodeInterface
      * @return array a string array containing all the labels of the (given)
      *      version (history)
      *
-     * @throws \PHPCR\Version\VersionException if the specified version is not
-     *      in this version history.
+     * @throws VersionException if the specified version is not in this version
+     *      history.
      * @throws \PHPCR\RepositoryException if another error occurs.
      *
      * @api
@@ -320,8 +320,8 @@ interface VersionHistoryInterface extends \PHPCR\NodeInterface
      *      Session does not have read access to that REFERENCE property.
      * @throws \PHPCR\UnsupportedRepositoryOperationException if this operation
      *      is not supported by the implementation.
-     * @throws \PHPCR\Version\VersionException if the named version is not in
-     *      this version history.
+     * @throws VersionException if the named version is not in this version
+     *      history.
      * @throws \PHPCR\RepositoryException if another error occurs.
      *
      * @api

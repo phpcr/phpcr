@@ -47,8 +47,8 @@ interface LockManagerInterface extends \Traversable
      *
      * @return void
      *
-     * @throws \PHPCR\Lock\LockException if the specified lock token is already
-     *      held by another Session and the implementation does not support
+     * @throws LockException if the specified lock token is already held by
+     *      another Session and the implementation does not support
      *      simultaneous ownership of open-scoped locks.
      * @throws \PHPCR\RepositoryException if another error occurs.
      *
@@ -66,9 +66,9 @@ interface LockManagerInterface extends \Traversable
      * @param string $absPath absolute path of node for which to obtain the
      *      lock.
      *
-     * @return \PHPCR\Lock\LockInterface The applicable Lock object.
+     * @return LockInterface The applicable Lock object.
      *
-     * @throws \PHPCR\Lock\LockException    if no lock applies to this node.
+     * @throws LockException    if no lock applies to this node.
      * @throws \PHPCR\AccessDeniedException if the current session does not
      *      have sufficient access to get the lock.
      * @throws \PHPCR\PathNotFoundException if no node is found at $absPath
@@ -169,11 +169,11 @@ interface LockManagerInterface extends \Traversable
      *      specified, the implementation chooses one (i.e. user name of
      *      current backend authentication credentials)
      *
-     * @return \PHPCR\Lock\LockInterface A Lock object containing a lock token.
+     * @return LockInterface A Lock object containing a lock token.
      *
-     * @throws \PHPCR\Lock\LockException if this node is not mix:lockable or
-     *      this node is already locked or isDeep is true and a descendant node
-     *      of this node already holds a lock.
+     * @throws LockException if this node is not mix:lockable or this node is
+     *      already locked or isDeep is true and a descendant node of this node
+     *      already holds a lock.
      * @throws \PHPCR\AccessDeniedException if this session does not have
      *      sufficient access to lock this node.
      * @throws \PHPCR\InvalidItemStateException if this node has pending
@@ -189,14 +189,14 @@ interface LockManagerInterface extends \Traversable
      * Alternative method to lock with all the options in one configuration class.
      *
      * @param string  $absPath The absolute path of node to be locked
-     * @param \PHPCR\Lock\LockInfoInterface $lockInfo configured with the desired
+     * @param LockInfoInterface $lockInfo configured with the desired
      *      characteristics for this lock.
      *
-     * @return \PHPCR\Lock\LockInterface A Lock object containing a lock token.
+     * @return LockInterface A Lock object containing a lock token.
      *
-     * @throws \PHPCR\Lock\LockException if this node is not mix:lockable or
-     *      this node is already locked or isDeep is true and a descendant node
-     *      of this node already holds a lock.
+     * @throws LockException if this node is not mix:lockable or this node is
+     *      already locked or isDeep is true and a descendant node of this node
+     *      already holds a lock.
      * @throws \PHPCR\AccessDeniedException if this session does not have
      *      sufficient access to lock this node.
      * @throws \PHPCR\InvalidItemStateException if this node has pending
@@ -232,7 +232,7 @@ interface LockManagerInterface extends \Traversable
      *
      * @return void
      *
-     * @throws \PHPCR\Lock\LockException if the current Session does not hold
+     * @throws LockException if the current Session does not hold
      *      the specified lock token.
      * @throws \PHPCR\RepositoryException if another error occurs.
      *
@@ -263,7 +263,7 @@ interface LockManagerInterface extends \Traversable
      *
      * @return void
      *
-     * @throws \PHPCR\Lock\LockException If this node does not currently hold a
+     * @throws LockException If this node does not currently hold a
      *      lock or holds a lock for which this Session does not have the
      *      correct lock token.
      * @throws \PHPCR\AccessDeniedException if the current session does not
