@@ -511,13 +511,19 @@ interface NodeInterface extends ItemInterface, \Traversable
      * If this node has no accessible child nodes, then an empty iterator is
      * returned.
      *
+     * The optional $filter follows the same semantics as the $filter parameter
+     * of NodeInterface::getNodes()
+     *
+     * @param string|array $filter a name pattern or an array of globbing
+     *      strings.
+     *
      * @return \Iterator over all child node names
      *
      * @throws RepositoryException if an error occurs.
      *
      * @since JCR 2.1
      */
-    public function getNodeNames();
+    public function getNodeNames($filter = null);
 
     /**
      * Returns the property at relPath relative to this node.
