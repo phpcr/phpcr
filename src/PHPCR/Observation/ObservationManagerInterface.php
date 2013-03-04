@@ -84,8 +84,6 @@ interface ObservationManagerInterface extends \Traversable
      *
      * @param EventListenerInterface $listener The listener to deregister.
      *
-     * @return void
-     *
      * @throws \PHPCR\RepositoryException if an error occurs.
      *
      * @api
@@ -110,8 +108,6 @@ interface ObservationManagerInterface extends \Traversable
      * Sets the user data information that will be returned by EventInterface::getUserData().
      *
      * @param string $userData the user data
-     *
-     * @return void
      *
      * @throws \PHPCR\RepositoryException if an error occurs
      *

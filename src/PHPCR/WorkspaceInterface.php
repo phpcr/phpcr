@@ -242,8 +242,6 @@ interface WorkspaceInterface
      * @param string $srcWorkspace the name of the workspace from which the
      *      copy is to be made.
      *
-     * @return void
-     *
      * @throws NoSuchWorkspaceException if srcWorkspace does not exist
      *      or if the current Session does not have permission to access it.
      * @throws \PHPCR\NodeType\ConstraintViolationException if the operation
@@ -316,8 +314,6 @@ interface WorkspaceInterface
      *      existing node from its location in this workspace and cloning
      *      (copying in) the one from srcWorkspace.
      *
-     * @return void
-     *
      * @throws NoSuchWorkspaceException                     if destWorkspace does not exist.
      * @throws \PHPCR\NodeType\ConstraintViolationException if the operation
      *      would violate a node-type or other implementation-specific
@@ -373,8 +369,6 @@ interface WorkspaceInterface
      * @param string $srcAbsPath  the path of the node to be moved.
      * @param string $destAbsPath the location to which the node at srcAbsPath
      *      is to be moved.
-     *
-     * @return void
      *
      * @throws \PHPCR\NodeType\ConstraintViolationException if the operation
      *      would violate a node-type or other implementation-specific
@@ -727,8 +721,6 @@ interface WorkspaceInterface
      * @param integer $uuidBehavior a four-value flag that governs how incoming
      *      identifiers are handled.
      *
-     * @return void
-     *
      * @throws \RuntimeException                            if an error during an I/O operation occurs.
      * @throws PathNotFoundException                        if no node exists at parentAbsPath.
      * @throws \PHPCR\NodeType\ConstraintViolationException if node-type or
@@ -775,8 +767,6 @@ interface WorkspaceInterface
      * @param string $srcWorkspace The name of the workspace from which the new
      *      workspace is to be cloned.
      *
-     * @return void
-     *
      * @throws AccessDeniedException if the session through which this
      *      Workspace object was acquired does not have sufficient access to
      *      create the new workspace.
@@ -794,8 +784,6 @@ interface WorkspaceInterface
      * deleting all content within it.
      *
      * @param string $name A String, the name of the workspace to be deleted.
-     *
-     * @return void
      *
      * @throws AccessDeniedException if the session through which this
      *      Workspace object was acquired does not have sufficient access to

@@ -271,8 +271,6 @@ interface NodeTypeManagerInterface extends \Traversable
      * @param string $name The name of the node type to be removed from the
      *      registry.
      *
-     * @return void
-     *
      * @throws \PHPCR\UnsupportedRepositoryOperationException if this
      *      implementation does not support node type registration.
      * @throws \PHPCR\NodeType\NoSuchNodeTypeException if no registered node
@@ -289,8 +287,6 @@ interface NodeTypeManagerInterface extends \Traversable
      *
      * @param array $names List of node type names to be removed from the
      *      registry.
-     *
-     * @return void
      *
      * @throws \PHPCR\UnsupportedRepositoryOperationException if this
      *      implementation does not support node type registration.

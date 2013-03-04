@@ -261,8 +261,6 @@ interface AccessControlManagerInterface
      * @param AccessControlPolicyInterface $policy The AccessControlPolicy to
      *      be applied.
      *
-     * @return void
-     *
      * @throws \PHPCR\PathNotFoundException if $absPath is non-null and no node
      *      at $absPath exists or the session does not have sufficient access
      *      to retrieve a node at that location.
@@ -297,8 +295,6 @@ interface AccessControlManagerInterface
      *      privileges are removed or null for the repository as a whole.
 
      * @param AccessControlPolicyInterface $policy the policy to be removed.
-     *
-     * @return void
      *
      * @throws \PHPCR\PathNotFoundException if $absPath is non-null and no node
      *      at $absPath exists or the session does not have sufficient access

@@ -530,8 +530,6 @@ interface PropertyInterface extends ItemInterface, \Traversable
      * @param integer $type  Type request for the property, optional. Must be a
      *      constant from PropertyType
      *
-     * @return void
-     *
      * @throws ValueFormatException if the type or format of the
      *      specified value is incompatible with the type of this property.
      * @throws \PHPCR\Version\VersionException if this property belongs to a

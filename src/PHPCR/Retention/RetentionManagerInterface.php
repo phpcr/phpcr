@@ -92,8 +92,6 @@ interface RetentionManagerInterface
      * @param string        $absPath an absolute path.
      * @param HoldInterface $hold    the hold to be removed.
      *
-     * @return void
-     *
      * @throws \PHPCR\PathNotFoundException if no node at $absPath exists or
      *      the session does not have sufficient access to retrieve the node.
      * @throws \PHPCR\AccessDeniedException if the current session does not
@@ -144,8 +142,6 @@ interface RetentionManagerInterface
      * @param RetentionPolicyInterface $retentionPolicy a
      *      retention policy.
      *
-     * @return void
-     *
      * @throws \PHPCR\PathNotFoundException if no node at $absPath exists or
      *      the session does not have sufficient access to retrieve the node.
      * @throws \PHPCR\AccessDeniedException if the current session does not
@@ -169,8 +165,6 @@ interface RetentionManagerInterface
      * apply. The removal does not take effect until a save is performed.
      *
      * @param string $absPath an absolute path to an existing node.
-     *
-     * @return void
      *
      * @throws \PHPCR\PathNotFoundException if no node at $absPath exists or
      *      the session does not have sufficient access to retrieve the node.

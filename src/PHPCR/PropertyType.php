@@ -224,8 +224,6 @@ final class PropertyType
     // @codeCoverageIgnoreStart
     /**
      * Make instantiation impossible...
-     *
-     * @return void
      */
     private function __construct()
     {

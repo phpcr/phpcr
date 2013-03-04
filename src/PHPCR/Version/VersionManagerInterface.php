@@ -107,8 +107,6 @@ interface VersionManagerInterface
      *
      * @param string $absPath an absolute path.
      *
-     * @return void
-     *
      * @throws \PHPCR\UnsupportedRepositoryOperationException If the node at
      *      absPath is not versionable.
      * @throws \PHPCR\Lock\LockException                 if a lock prevents the checkout.
@@ -283,8 +281,6 @@ interface VersionManagerInterface
      * @param string $absPath The absolute path to a node the privileges shall
      *      be fetched of.
      *
-     * @return void
-     *
      * @throws \PHPCR\Version\VersionException if the specified version does
      *      not have a corresponding node in the workspace this VersionManager
      *      has been created for or if an attempt is made to restore the root
@@ -331,8 +327,6 @@ interface VersionManagerInterface
      * @param string  $versionLabel   a String
      * @param boolean $removeExisting a boolean flag that governs what happens
      *      in case of an identifier collision.
-     *
-     * @return void
      *
      * @throws \PHPCR\UnsupportedRepositoryOperationException if the node at
      *      absPath is not versionable.
@@ -509,8 +503,6 @@ interface VersionManagerInterface
      * @param \PHPCR\Version\VersionInterface $version a version referred to by
      *      the jcr:mergeFailed  property of the node at absPath.
      *
-     * @return void
-     *
      * @throws \PHPCR\Version\VersionException if the version specified is not
      *      among those referenced in this node's jcr:mergeFailed or if the
      *      node is currently checked-in.
@@ -539,14 +531,12 @@ interface VersionManagerInterface
      * @param \PHPCR\Version\VersionInterface $version a version referred to by
      *      the jcr:mergeFailed  property of the node at absPath.
      *
-     * @return void
-     *
      * @throws \PHPCR\Version\VersionException if the version specified is not
      *      among those referenced in the jcr:mergeFailed  property of the node
      *      at absPath  or if the node is currently checked-in.
-     * @throws \PHPCR\InvalidItemStateExceptionif there are unsaved changes
+     * @throws \PHPCR\InvalidItemStateException if there are unsaved changes
      *      pending on the node at absPath.
-     * @throws \PHPCR\UnsupportedRepositoryOperationExceptionif the node at
+     * @throws \PHPCR\UnsupportedRepositoryOperationException if the node at
      *      absPath is not versionable.
      * @throws \PHPCR\RepositoryException if another error occurs.
      *
@@ -643,8 +633,6 @@ interface VersionManagerInterface
      * The change is dispatched immediately and does not require a save.
      *
      * @param \PHPCR\NodeInterface $activityNode an activity Node
-     *
-     * @return void
      *
      * @throws \PHPCR\UnsupportedRepositoryOperationException if the repository
      *      does not support activities.

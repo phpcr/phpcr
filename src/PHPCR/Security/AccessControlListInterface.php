@@ -100,8 +100,6 @@ interface AccessControlListInterface extends AccessControlPolicyInterface, \Trav
      * @param AccessControlEntryInterface $ace the access control entry to be
      *      removed.
      *
-     * @return void
-     *
      * @throws AccessControlException if the specified entry is not present on
      *      the specified node.
      * @throws \PHPCR\RepositoryException if another error occurs.
