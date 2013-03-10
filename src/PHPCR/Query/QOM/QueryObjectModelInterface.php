@@ -63,7 +63,8 @@ interface QueryObjectModelInterface extends \PHPCR\Query\QueryInterface
     /**
      * Gets the node-tuple source for this query.
      *
-     * @return \PHPCR\Query\QOM\SourceInterface the node-tuple source; non-null
+     * @return SourceInterface the node-tuple source; non-null
+     *
      * @api
     */
     public function getSource();
@@ -71,8 +72,7 @@ interface QueryObjectModelInterface extends \PHPCR\Query\QueryInterface
     /**
      * Gets the constraint for this query.
      *
-     * @return \PHPCR\Query\QOM\ConstraintInterface the constraint, or null if
-     *      none
+     * @return ConstraintInterface the constraint, or null if none
      *
      * @api
     */

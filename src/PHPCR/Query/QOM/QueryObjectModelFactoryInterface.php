@@ -44,16 +44,15 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * See the individual QOM factory methods for the validity criteria of each
      * query element.
      *
-     * @param \PHPCR\Query\QOM\SourceInterface $source the Selector or the
-     *      node-tuple Source; non-null
-     * @param \PHPCR\Query\QOM\ConstraintInterface $constraint the constraint,
-     *      or null if none
+     * @param SourceInterface $source the Selector or the node-tuple Source;
+     *      non-null
+     * @param ConstraintInterface $constraint the constraint, or null if none
      * @param array $orderings zero (empty array) or more instances of Ordering
      * @param array $columns   the array of Column definitions to return in the
      *      result. empty array is equivalent to the * in SQL2, meaning some
      *      fields.
      *
-     * @return \PHPCR\Query\QOM\QueryObjectModelInterface the query; non-null
+     * @return QueryObjectModelInterface the query; non-null
      *
      * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
      *      is possible on this method, the implementation chooses to perform
@@ -64,8 +63,8 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    public function createQuery(\PHPCR\Query\QOM\SourceInterface $source,
-                         \PHPCR\Query\QOM\ConstraintInterface $constraint = null,
+    public function createQuery(SourceInterface $source,
+                         ConstraintInterface $constraint = null,
                          array $orderings = array(),
                          array $columns = array());
 
@@ -85,7 +84,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @param string $nodeTypeName the name of the required node type; non-null
      * @param string $selectorName the selector name; non-null
      *
-     * @return \PHPCR\Query\QOM\SelectorInterface the selector; non-null
+     * @return SelectorInterface the selector; non-null
      *
      * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
      *      is possible on this method, the implementation chooses to perform
@@ -102,15 +101,12 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * The query is invalid if $left is the same source as $right.
      *
-     * @param \PHPCR\Query\QOM\SourceInterface $left the left node-tuple
-     *      source; non-null
-     * @param \PHPCR\Query\QOM\SourceInterface $right the right node-tuple
-     *      source; non-null
-     * @param string                                  $joinType      one of QueryObjectModelConstants.JCR_JOIN_TYPE_*
-     * @param \PHPCR\Query\QOM\JoinConditionInterface $joinCondition the join
-     *      condition; non-null
+     * @param SourceInterface        $left          the left node-tuple source; non-null
+     * @param SourceInterface        $right         the right node-tuple source; non-null
+     * @param string                 $joinType      one of QueryObjectModelConstants.JCR_JOIN_TYPE_*
+     * @param JoinConditionInterface $joinCondition the join condition; non-null
      *
-     * @return \PHPCR\Query\QOM\JoinInterface the join; non-null
+     * @return JoinInterface the join; non-null
      *
      * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
      *      is possible on this method, the implementation chooses to perform
@@ -120,8 +116,8 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    public function join(\PHPCR\Query\QOM\SourceInterface $left, \PHPCR\Query\QOM\SourceInterface $right,
-                         $joinType, \PHPCR\Query\QOM\JoinConditionInterface $joinCondition);
+    public function join(SourceInterface $left, SourceInterface $right,
+                         $joinType, JoinConditionInterface $joinCondition);
 
     /**
      * Tests whether the value of a property in a first selector is equal to
@@ -148,8 +144,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @param string $property2Name the property name in the second selector;
      *       non-null
      *
-     * @return \PHPCR\Query\QOM\EquiJoinConditionInterface the constraint;
-     *      non-null
+     * @return EquiJoinConditionInterface the constraint; non-null
      *
      * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
      *      is possible on this method, the implementation chooses to perform
@@ -181,7 +176,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @param string $selector2Path the path relative to the second selector;
      *      non-null
      *
-     * @return \PHPCR\Query\QOM\SameNodeJoinConditionInterface the constraint;
+     * @return SameNodeJoinConditionInterface the constraint;
      *      non-null
      *
      * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
@@ -209,8 +204,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @param string $parentSelectorName the name of the parent selector;
      *      non-null
      *
-     * @return \PHPCR\Query\QOM\ChildNodeJoinConditionInterface the constraint;
-     *      non-null
+     * @return ChildNodeJoinConditionInterface the constraint; non-null
      *
      * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
      *      is possible on this method, the implementation chooses to perform
@@ -238,8 +232,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @param string $ancestorSelectorName the name of the ancestor selector;
      *      non-null
      *
-     * @return \PHPCR\Query\QOM\DescendantNodeJoinConditionInterface the
-     *      constraint; non-null
+     * @return DescendantNodeJoinConditionInterface the constraint; non-null
      *
      * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
      *      is possible on this method, the implementation chooses to perform
@@ -254,12 +247,10 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
     /**
      * Performs a logical conjunction of two other constraints.
      *
-     * @param \PHPCR\Query\QOM\ConstraintInterface $constraint1 the first
-     *      constraint; non-null
-     * @param \PHPCR\Query\QOM\ConstraintInterface $constraint2 the second
-     *      constraint; non-null
+     * @param ConstraintInterface $constraint1 the first constraint; non-null
+     * @param ConstraintInterface $constraint2 the second constraint; non-null
      *
-     * @return \PHPCR\Query\QOM\AndInterface the And constraint; non-null
+     * @return AndInterface the And constraint; non-null
      *
      * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
      *      is possible on this method, the implementation chooses to perform
@@ -269,18 +260,16 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    public function andConstraint(\PHPCR\Query\QOM\ConstraintInterface $constraint1,
-                         \PHPCR\Query\QOM\ConstraintInterface $constraint2);
+    public function andConstraint(ConstraintInterface $constraint1,
+                         ConstraintInterface $constraint2);
 
     /**
      * Performs a logical disjunction of two other constraints.
      *
-     * @param \PHPCR\Query\QOM\ConstraintInterface $constraint1 the first
-     *      constraint; non-null
-     * @param \PHPCR\Query\QOM\ConstraintInterface $constraint2 the second
-     *      constraint; non-null
+     * @param ConstraintInterface $constraint1 the first constraint; non-null
+     * @param ConstraintInterface $constraint2 the second constraint; non-null
      *
-     * @return \PHPCR\Query\QOM\OrInterface the Or constraint; non-null
+     * @return OrInterface the Or constraint; non-null
      *
      * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
      *      is possible on this method, the implementation chooses to perform
@@ -291,16 +280,16 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    public function orConstraint(\PHPCR\Query\QOM\ConstraintInterface $constraint1,
-                        \PHPCR\Query\QOM\ConstraintInterface $constraint2);
+    public function orConstraint(ConstraintInterface $constraint1,
+                        ConstraintInterface $constraint2);
 
     /**
      * Performs a logical negation of another constraint.
      *
-     * @param \PHPCR\Query\QOM\ConstraintInterface $constraint the constraint
-     *      to be negated; non-null
+     * @param ConstraintInterface $constraint the constraint to be negated;
+     *      non-null
      *
-     * @return \PHPCR\Query\QOM\NotInterface the Not constraint; non-null
+     * @return NotInterface the Not constraint; non-null
      *
      * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
      *      is possible on this method, the implementation chooses to perform
@@ -310,17 +299,15 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    public function notConstraint(\PHPCR\Query\QOM\ConstraintInterface $constraint);
+    public function notConstraint(ConstraintInterface $constraint);
 
     /**
      * Filters node-tuples based on the outcome of a binary operation.
      *
-     * @param \PHPCR\Query\QOM\DynamicOperandInterface $operand1 the first
-     *      operand; non-null
+     * @param DynamicOperandInterface $operand1 the first operand; non-null
      * @param string $operator the operator; one of
      *      QueryObjectModelConstants.JCR_OPERATOR_*
-     * @param \PHPCR\Query\QOM\StaticOperandInterface $operand2 the second
-     *      operand; non-null
+     * @param StaticOperandInterface $operand2 the second operand; non-null
      *
      * @return \PHPCR\Query\QOM\ComparisonInterface the constraint; non-null
      *
@@ -332,8 +319,8 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    public function comparison(\PHPCR\Query\QOM\DynamicOperandInterface $operand1, $operator,
-                               \PHPCR\Query\QOM\StaticOperandInterface $operand2);
+    public function comparison(DynamicOperandInterface $operand1, $operator,
+                               StaticOperandInterface $operand2);
 
     /**
      * Tests the existence of a property in the specified or default selector.
@@ -346,8 +333,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @param string $propertyName the property name; non-null
      * @param string $selectorName the selector name; non-null
      *
-     * @return \PHPCR\Query\QOM\PropertyExistenceInterface the constraint;
-     *      non-null
+     * @return PropertyExistenceInterface the constraint; non-null
      *
      * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
      *      is possible on this method, the implementation chooses to perform
@@ -380,8 +366,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *      non-null
      * @param string $selectorName the selector name; non-null
      *
-     * @return \PHPCR\Query\QOM\FullTextSearchInterface the constraint;
-     *      non-null
+     * @return FullTextSearchInterface the constraint; non-null
      *
      * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
      *      is possible on this method, the implementation chooses to perform
@@ -465,8 +450,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @param string $path         an absolute path; non-null
      * @param string $selectorName the selector name; non-null
      *
-     * @return \PHPCR\Query\QOM\DescendantNodeInterface the constraint;
-     *      non-null
+     * @return DescendantNodeInterface the constraint; non-null
      *
      * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
      *      is possible on this method, the implementation chooses to perform
@@ -489,7 +473,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @param string $propertyName the property name; non-null
      * @param string $selectorName the selector name; non-null
      *
-     * @return \PHPCR\Query\QOM\PropertyValueInterface the operand; non-null
+     * @return PropertyValueInterface the operand; non-null
      *
      * @throws \PHPCR\Query\InvalidQueryException if the query is invalid
      * @throws \PHPCR\RepositoryException         if the operation otherwise fails
@@ -501,10 +485,10 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
     /**
      * Evaluates to the length (or lengths, if multi-valued) of a property.
      *
-     * @param \PHPCR\Query\QOM\PropertyValueInterface $propertyValue the
-     *      property value for which to compute the length; non-null
+     * @param PropertyValueInterface $propertyValue the property value for
+     *      which to compute the length; non-null
      *
-     * @return \PHPCR\Query\QOM\LengthInterface the operand; non-null
+     * @return LengthInterface the operand; non-null
      *
      * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
      *      is possible on this method, the implementation chooses to perform
@@ -514,7 +498,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    public function length(\PHPCR\Query\QOM\PropertyValueInterface $propertyValue);
+    public function length(PropertyValueInterface $propertyValue);
 
     /**
      * Evaluates to a NAME value equal to the prefix-qualified name of a node
@@ -525,7 +509,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @param string $selectorName the selector name; non-null
      *
-     * @return \PHPCR\Query\QOM\NodeNameInterface the operand; non-null
+     * @return NodeNameInterface the operand; non-null
      *
      * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
      *      is possible on this method, the implementation chooses to perform
@@ -546,7 +530,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @param string $selectorName the selector name; non-null
      *
-     * @return \PHPCR\Query\QOM\NodeLocalNameInterface the operand; non-null
+     * @return NodeLocalNameInterface the operand; non-null
      *
      * @throws \PHPCR\Query\InvalidQueryException if the query is invalid
      * @throws \PHPCR\RepositoryException         if the operation otherwise fails
@@ -564,7 +548,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @param string $selectorName the selector name; non-null
      *
-     * @return \PHPCR\Query\QOM\FullTextSearchScoreInterface the operand;
+     * @return FullTextSearchScoreInterface the operand;
      *      non-null
      *
      * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
@@ -578,12 +562,13 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
     public function fullTextSearchScore($selectorName = null);
 
     /**
-     * Evaluates to the lower-case string value (or values, if multi-valued) of an operand.
+     * Evaluates to the lower-case string value (or values, if multi-valued) of
+     * an operand.
      *
-     * @param \PHPCR\Query\QOM\DynamicOperandInterface $operand the operand
-     *      whose value is converted to a lower-case string; non-null
+     * @param DynamicOperandInterface $operand the operand whose value is
+     *      converted to a lower-case string; non-null
      *
-     * @return \PHPCR\Query\QOM\LowerCaseInterface the operand; non-null
+     * @return LowerCaseInterface the operand; non-null
      *
      * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
      *      is possible on this method, the implementation chooses to perform
@@ -593,16 +578,16 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    public function lowerCase(\PHPCR\Query\QOM\DynamicOperandInterface $operand);
+    public function lowerCase(DynamicOperandInterface $operand);
 
     /**
      * Evaluates to the upper-case string value (or values, if multi-valued) of
      * an operand.
      *
-     * @param \PHPCR\Query\QOM\DynamicOperandInterface $operand the operand
-     *      whose value is converted to a upper-case string; non-null
+     * @param DynamicOperandInterface $operand the operand whose value is
+     *      converted to a upper-case string; non-null
      *
-     * @return \PHPCR\Query\QOM\UpperCaseInterface the operand; non-null
+     * @return UpperCaseInterface the operand; non-null
      *
      * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
      *      is possible on this method, the implementation chooses to perform
@@ -612,7 +597,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    public function upperCase(\PHPCR\Query\QOM\DynamicOperandInterface $operand);
+    public function upperCase(DynamicOperandInterface $operand);
 
     /**
      * Evaluates to the value of a bind variable.
@@ -621,8 +606,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @param string $bindVariableName the bind variable name; non-null
      *
-     * @return \PHPCR\Query\QOM\BindVariableValueInterface the operand;
-     *      non-null
+     * @return BindVariableValueInterface the operand; non-null
      *
      * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
      *      is possible on this method, the implementation chooses to perform
@@ -658,34 +642,34 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * The query is invalid if $operand does not evaluate to a scalar value.
      *
-     * @param \PHPCR\Query\QOM\DynamicOperandInterface $operand the operand by
-     *      which to order; non-null
+     * @param DynamicOperandInterface $operand the operand by which to order;
+     *      non-null
      *
-     * @return \PHPCR\Query\QOM\OrderingInterface the ordering
+     * @return OrderingInterface the ordering
      *
      * @throws \PHPCR\Query\InvalidQueryException if the query is invalid
      * @throws \PHPCR\RepositoryException         if the operation otherwise fails
      *
      * @api
      */
-    public function ascending(\PHPCR\Query\QOM\DynamicOperandInterface $operand);
+    public function ascending(DynamicOperandInterface $operand);
 
     /**
      * Orders by the value of the specified operand, in descending order.
      *
      * The query is invalid if $operand does not evaluate to a scalar value.
      *
-     * @param \PHPCR\Query\QOM\DynamicOperandInterface $operand the operand by
-     *      which to order; non-null
+     * @param DynamicOperandInterface $operand the operand by which to order;
+     *      non-null
      *
-     * @return \PHPCR\Query\QOM\OrderingInterface the ordering
+     * @return OrderingInterface the ordering
      *
      * @throws \PHPCR\Query\InvalidQueryException if the query is invalid
      * @throws \PHPCR\RepositoryException         if the operation otherwise fails
      *
      * @api
      */
-    public function descending(\PHPCR\Query\QOM\DynamicOperandInterface $operand);
+    public function descending(DynamicOperandInterface $operand);
 
     /**
      * Identifies a property in the specified or default selector to include in
@@ -715,7 +699,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *      is null
      * @param string $selectorName the selector name; non-null
      *
-     * @return \PHPCR\Query\QOM\ColumnInterface the column; non-null
+     * @return ColumnInterface the column; non-null
      *
      * @throws \PHPCR\Query\InvalidQueryException if the query has no default
      *      selector or is otherwise invalid

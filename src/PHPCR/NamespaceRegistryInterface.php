@@ -143,8 +143,6 @@ interface NamespaceRegistryInterface extends \Traversable
      * @param string $prefix The prefix to be mapped.
      * @param string $uri    The URI to be mapped.
      *
-     * @return void
-     *
      * @throws NamespaceException If an attempt is made to re-assign a
      *      built-in prefix to a new URI or, to register a namespace with a
      *      prefix that begins with the characters "xml" (in any combination of
@@ -174,8 +172,6 @@ interface NamespaceRegistryInterface extends \Traversable
      *   NamespaceException.
      *
      * @param string $uri The URI to be removed.
-     *
-     * @return void
      *
      * @throws NamespaceException unregister a built-in namespace or a
      *      namespace that is not currently registered or a namespace whose

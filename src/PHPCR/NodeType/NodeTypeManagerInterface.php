@@ -73,7 +73,7 @@ interface NodeTypeManagerInterface extends \Traversable
     /**
      * Returns an iterator over all available node types (primary and mixin).
      *
-     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>.
+     * @return \Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>.
      *      Keys are the node type names, values the corresponding
      *      NodeTypeInterface instances.
      *
@@ -86,7 +86,7 @@ interface NodeTypeManagerInterface extends \Traversable
     /**
      * Returns an iterator over all available primary node types.
      *
-     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>.
+     * @return \Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>.
      *      Keys are the node type names, values the corresponding
      *      NodeTypeInterface instances.
      *
@@ -101,7 +101,7 @@ interface NodeTypeManagerInterface extends \Traversable
      *
      * If none are available, an empty iterator is returned.
      *
-     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>.
+     * @return \Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>.
      *      Keys are the node type names, values the corresponding
      *      NodeTypeInterface instances.
      *
@@ -204,7 +204,7 @@ interface NodeTypeManagerInterface extends \Traversable
      * @param boolean $allowUpdate whether to fail if node already exists or to
      *      update it.
      *
-     * @return Iterator over the registered node types implementing
+     * @return \Iterator over the registered node types implementing
      *      <b>SeekableIterator</b> and <b>Countable</b>. Keys are the node
      *      type names, values the corresponding NodeTypeInterface instances.
      *
@@ -271,8 +271,6 @@ interface NodeTypeManagerInterface extends \Traversable
      * @param string $name The name of the node type to be removed from the
      *      registry.
      *
-     * @return void
-     *
      * @throws \PHPCR\UnsupportedRepositoryOperationException if this
      *      implementation does not support node type registration.
      * @throws \PHPCR\NodeType\NoSuchNodeTypeException if no registered node
@@ -289,8 +287,6 @@ interface NodeTypeManagerInterface extends \Traversable
      *
      * @param array $names List of node type names to be removed from the
      *      registry.
-     *
-     * @return void
      *
      * @throws \PHPCR\UnsupportedRepositoryOperationException if this
      *      implementation does not support node type registration.

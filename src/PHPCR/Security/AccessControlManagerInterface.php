@@ -71,11 +71,10 @@ interface AccessControlManagerInterface
      *
      * @param string $privilegeName The name of an existing privilege.
      *
-     * @return \PHPCR\Security\PrivilegeInterface the Privilege with the
-     *      specified $privilegeName.
+     * @return PrivilegeInterface the Privilege with the specified name.
      *
-     * @throws \PHPCR\Security\AccessControlException if no privilege with the
-     *      specified name exists.
+     * @throws AccessControlException if no privilege with the specified name
+     *      exists.
      * @throws \PHPCR\RepositoryException if another error occurs.
      *
      * @api
@@ -259,16 +258,13 @@ interface AccessControlManagerInterface
      * @param string|null $absPath The absolute path to the node to which
      *      privileges are to be set or null for the repository as a whole.
 
-     * @param \PHPCR\Security\AccessControlPolicyInterface $policy The
-     *      AccessControlPolicy to be applied.
-     *
-     * @return void
+     * @param AccessControlPolicyInterface $policy The AccessControlPolicy to
+     *      be applied.
      *
      * @throws \PHPCR\PathNotFoundException if $absPath is non-null and no node
      *      at $absPath exists or the session does not have sufficient access
      *      to retrieve a node at that location.
-     * @throws \PHPCR\Security\AccessControlException if the policy is not
-     *      applicable.
+     * @throws AccessControlException if the policy is not applicable.
      * @throws \PHPCR\AccessDeniedException if the session lacks
      *      MODIFY_ACCESS_CONTROL privilege for $absPath.
      * @throws \PHPCR\Lock\LockException if a lock prevents the assignment and
@@ -281,7 +277,7 @@ interface AccessControlManagerInterface
      *
      * @api
      */
-    public function setPolicy($absPath, \PHPCR\Security\AccessControlPolicyInterface $policy);
+    public function setPolicy($absPath, AccessControlPolicyInterface $policy);
 
     /**
      * Removes the specified AccessControlPolicy from the object specified by
@@ -298,16 +294,13 @@ interface AccessControlManagerInterface
      * @param string|null $absPath The absolute path to the node from which
      *      privileges are removed or null for the repository as a whole.
 
-     * @param \PHPCR\Security\AccessControlPolicyInterface $policy the policy
-     *      to be removed.
-     *
-     * @return void
+     * @param AccessControlPolicyInterface $policy the policy to be removed.
      *
      * @throws \PHPCR\PathNotFoundException if $absPath is non-null and no node
      *      at $absPath exists or the session does not have sufficient access
      *      to retrieve a node at that location.
-     * @throws \PHPCR\Security\AccessControlException if the policy to remove
-     *      does not exist at the node at absPath.
+     * @throws AccessControlException if the policy to remove does not exist at
+     *      the node at absPath.
      * @throws \PHPCR\AccessDeniedException if the session lacks
      *      MODIFY_ACCESS_CONTROL privilege for the absPath node.
      * @throws \PHPCR\Lock\LockException if $absPath specifies a locked node
@@ -320,5 +313,5 @@ interface AccessControlManagerInterface
      *
      * @api
      */
-    public function removePolicy($absPath, \PHPCR\Security\AccessControlPolicyInterface $policy);
+    public function removePolicy($absPath, AccessControlPolicyInterface $policy);
 }

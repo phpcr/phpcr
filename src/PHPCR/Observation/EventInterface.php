@@ -127,6 +127,7 @@ interface EventInterface
      * - PERSIST
      *
      * @return integer the type of this event.
+     *
      * @api
      */
     public function getType();
@@ -141,6 +142,7 @@ interface EventInterface
      * @return string The absolute path associated with this event or null.
      *
      * @throws \PHPCR\RepositoryException if an error occurs.
+     *
      * @api
      */
     public function getPath();
@@ -151,6 +153,7 @@ interface EventInterface
      * This is the string returned by SessionInterface::getUserID() of the session that caused the event.
      *
      * @return string The identifier of the user connected to the event.
+     *
      * @api
      */
     public function getUserID();
@@ -165,6 +168,7 @@ interface EventInterface
      * @return string The identifier associated with this event or null.
      *
      * @throws \PHPCR\RepositoryException if an error occurs.
+     *
      * @api
      */
     public function getIdentifier();
@@ -178,6 +182,7 @@ interface EventInterface
      * @return array A list containing parameter information for instances of a NODE_MOVED event.
      *
      * @throws \PHPCR\RepositoryException if an error occurs.
+     *
      * @api
      */
     public function getInfo();
@@ -187,7 +192,9 @@ interface EventInterface
      * ObservationManager bound to the Session that caused the event.
      *
      * @return string                     The user data string.
+     *
      * @throws \PHPCR\RepositoryException if an error occurs.
+     *
      * @api
      */
     public function getUserData();
@@ -202,6 +209,7 @@ interface EventInterface
      * @return integer The date when the change was persisted that caused this event (milliseconds since epoch).
      *
      * @throws \PHPCR\RepositoryException if an error occurs.
+     *
      * @api
      */
     public function getDate();

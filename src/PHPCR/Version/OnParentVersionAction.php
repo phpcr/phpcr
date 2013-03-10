@@ -147,8 +147,6 @@ final class OnParentVersionAction
     // @codeCoverageIgnoreStart
     /**
      * Make instantiation impossible...
-     *
-     * @return void
      */
     private function __construct()
     {

@@ -530,8 +530,6 @@ interface PropertyInterface extends ItemInterface, \Traversable
      * @param integer $type  Type request for the property, optional. Must be a
      *      constant from PropertyType
      *
-     * @return void
-     *
      * @throws ValueFormatException if the type or format of the
      *      specified value is incompatible with the type of this property.
      * @throws \PHPCR\Version\VersionException if this property belongs to a
@@ -586,7 +584,7 @@ interface PropertyInterface extends ItemInterface, \Traversable
     /**
      * Returns a String representation of the value of this property.
      *
-     * @return string\array A string representation of the value of this property, or
+     * @return string|array A string representation of the value of this property, or
      *      an array of string for multi-valued properties.
      *
      * @throws ValueFormatException if conversion to a String is not possible

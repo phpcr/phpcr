@@ -67,10 +67,10 @@ interface QueryInterface
      *
      * @param  string $varName name of variable in query
      * @param  mixed  $value   value to bind
-     * @return void
      *
      * @throws \InvalidArgumentException  if $varName is not a valid variable in this query.
      * @throws \PHPCR\RepositoryException if an error occurs.
+     *
      * @api
      */
     public function bindValue($varName, $value);
@@ -78,10 +78,11 @@ interface QueryInterface
     /**
      * Executes this query and returns a QueryResult object.
      *
-     * @return \PHPCR\Query\QueryResultInterface a QueryResult object
+     * @return QueryResultInterface a QueryResult object
      *
-     * @throws \PHPCR\Query\InvalidQueryException if the query contains an unbound variable.
-     * @throws \PHPCR\RepositoryException         if an error occurs
+     * @throws InvalidQueryException      if the query contains an unbound variable.
+     * @throws \PHPCR\RepositoryException if an error occurs
+     *
      * @api
      */
     public function execute();
@@ -94,6 +95,7 @@ interface QueryInterface
      * @return array the names of the bind variables in this query.
      *
      * @throws \PHPCR\RepositoryException if an error occurs.
+     *
      * @api
      */
     public function getBindVariableNames();
@@ -102,7 +104,7 @@ interface QueryInterface
      * Sets the maximum size of the result set to limit.
      *
      * @param  integer $limit The amount of result items to be fetched.
-     * @return void
+     *
      * @api
      */
     public function setLimit($limit);
@@ -111,7 +113,7 @@ interface QueryInterface
      * Sets the start offset of the result set to offset.
      *
      * @param  integer $offset The start point of the result set from when the item shall be fetched.
-     * @return void
+     *
      * @api
      */
     public function setOffset($offset);
@@ -129,6 +131,7 @@ interface QueryInterface
      * in the jcr:statement property if the query is persisted. See storeAsNode($absPath).
      *
      * @return string The query statement.
+     *
      * @api
      */
     public function getStatement();
@@ -140,6 +143,7 @@ interface QueryInterface
      * QueryManagerInterface::getSupportedQueryLanguages().
      *
      * @return string The query language.
+     *
      * @api
      */
     public function getLanguage();
@@ -156,6 +160,7 @@ interface QueryInterface
      *
      * @throws \PHPCR\ItemNotFoundException if this query is not a stored query.
      * @throws \PHPCR\RepositoryException   if another error occurs.
+     *
      * @api
      */
     public function getStoredQueryPath();
@@ -172,6 +177,7 @@ interface QueryInterface
      * node is appended to the end of the child node list.
      *
      * @param  string               $absPath absolute path the query should be stored at
+     *
      * @return \PHPCR\NodeInterface the newly created node.
      *
      * @throws \PHPCR\ItemExistsException if an item at the specified path already exists,

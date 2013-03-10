@@ -65,7 +65,7 @@ interface ObservationManagerInterface extends \Traversable
      * @param EventListenerInterface $listener
      * @param EventFilterInterface   $filter
      *
-     * @throws RepositoryException If an error occurs.
+     * @throws \PHPCR\RepositoryException If an error occurs.
      *
      * @since JCR 2.1
      *
@@ -83,8 +83,6 @@ interface ObservationManagerInterface extends \Traversable
      * deregistration will effectively be delayed until the listener completes.
      *
      * @param EventListenerInterface $listener The listener to deregister.
-     *
-     * @return void
      *
      * @throws \PHPCR\RepositoryException if an error occurs.
      *
@@ -110,8 +108,6 @@ interface ObservationManagerInterface extends \Traversable
      * Sets the user data information that will be returned by EventInterface::getUserData().
      *
      * @param string $userData the user data
-     *
-     * @return void
      *
      * @throws \PHPCR\RepositoryException if an error occurs
      *

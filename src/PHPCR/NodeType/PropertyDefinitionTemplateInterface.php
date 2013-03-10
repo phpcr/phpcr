@@ -43,8 +43,6 @@ interface PropertyDefinitionTemplateInterface extends \PHPCR\NodeType\PropertyDe
      *
      * @param string $name The name of the property definition template.
      *
-     * @return void
-     *
      * @api
      */
     public function setName($name);
@@ -55,8 +53,6 @@ interface PropertyDefinitionTemplateInterface extends \PHPCR\NodeType\PropertyDe
      * @param boolean $autoCreated Flag to set the ability to be automatically
      *      created.
      *
-     * @return void
-     *
      * @api
      */
     public function setAutoCreated($autoCreated);
@@ -65,8 +61,6 @@ interface PropertyDefinitionTemplateInterface extends \PHPCR\NodeType\PropertyDe
      * Sets the mandatory status of the property.
      *
      * @param boolean $mandatory The mandatory status of the property.
-     *
-     * @return void
      *
      * @api
      */
@@ -77,8 +71,6 @@ interface PropertyDefinitionTemplateInterface extends \PHPCR\NodeType\PropertyDe
      *
      * @param integer $opv an int constant member of OnParentVersionAction.
      *
-     * @return void
-     *
      * @api
      */
     public function setOnParentVersion($opv);
@@ -87,8 +79,6 @@ interface PropertyDefinitionTemplateInterface extends \PHPCR\NodeType\PropertyDe
      * Sets the protected status of the property.
      *
      * @param boolean $protectedStatus The protection status of the property.
-     *
-     * @return void
      *
      * @api
      */
@@ -99,8 +89,6 @@ interface PropertyDefinitionTemplateInterface extends \PHPCR\NodeType\PropertyDe
      *
      * @param integer $type An integer constant member of PropertyType.
      *
-     * @return void
-     *
      * @api
      */
     public function setRequiredType($type);
@@ -109,8 +97,6 @@ interface PropertyDefinitionTemplateInterface extends \PHPCR\NodeType\PropertyDe
      * Sets the value constraints of the property.
      *
      * @param array $constraints List of constrains registered on the property.
-     *
-     * @return void
      *
      * @api
      */
@@ -123,8 +109,6 @@ interface PropertyDefinitionTemplateInterface extends \PHPCR\NodeType\PropertyDe
      * @param array $defaultValues A List of values in the correct type for
      *      this property.
      *
-     * @return void
-     *
      * @api
      */
     public function setDefaultValues(array $defaultValues);
@@ -135,8 +119,6 @@ interface PropertyDefinitionTemplateInterface extends \PHPCR\NodeType\PropertyDe
      * @param boolean $multiple The status of the ability to store multiple
      *      values.
      *
-     * @return void
-     *
      * @api
      */
     public function setMultiple($multiple);
@@ -144,10 +126,8 @@ interface PropertyDefinitionTemplateInterface extends \PHPCR\NodeType\PropertyDe
     /**
      * Sets the queryable status of the property.
      *
-     * @param array operators An array of String constants
+     * @param array $operators An array of String constants
      *      {@link PropertyDefinition::getAvailableQueryOperators()}.
-     *
-     * @return void
      *
      * @api
      */
@@ -159,8 +139,6 @@ interface PropertyDefinitionTemplateInterface extends \PHPCR\NodeType\PropertyDe
      * @param boolean $fullTextSearchable The status of the ability to be
      *      fulltext-searchable..
      *
-     * @return void
-     *
      * @api
      */
     public function setFullTextSearchable($fullTextSearchable);
@@ -170,8 +148,6 @@ interface PropertyDefinitionTemplateInterface extends \PHPCR\NodeType\PropertyDe
      *
      * @param boolean $queryOrderable The status of the ability being
      *      query-orderable.
-     *
-     * @return void
      *
      * @api
      */

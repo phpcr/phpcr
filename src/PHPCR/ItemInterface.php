@@ -268,8 +268,6 @@ interface ItemInterface
      * and causes the minimal re-numbering required to maintain the original
      * order but leave no gaps in the numbering.
      *
-     * @return void
-     *
      * @throws \PHPCR\Version\VersionException if the parent node of this item
      *      is versionable and checked-in or is non-versionable but its nearest
      *      versionable ancestor is checked-in and this implementation performs

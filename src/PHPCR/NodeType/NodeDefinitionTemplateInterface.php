@@ -42,8 +42,6 @@ interface NodeDefinitionTemplateInterface extends \PHPCR\NodeType\NodeDefinition
      *
      * @param string $name The name of the node.
      *
-     * @return void
-     *
      * @api
      */
     public function setName($name);
@@ -54,8 +52,6 @@ interface NodeDefinitionTemplateInterface extends \PHPCR\NodeType\NodeDefinition
      * @param boolean $autoCreated The status the autocreate attribute of the
      *      node shall have.
      *
-     * @return void
-     *
      * @api
      */
     public function setAutoCreated($autoCreated);
@@ -64,8 +60,6 @@ interface NodeDefinitionTemplateInterface extends \PHPCR\NodeType\NodeDefinition
      * Sets the mandatory status of the node.
      *
      * @param boolean $mandatory The status of the mandatory attribute.
-     *
-     * @return void
      *
      * @api
      */
@@ -76,8 +70,6 @@ interface NodeDefinitionTemplateInterface extends \PHPCR\NodeType\NodeDefinition
      *
      * @param integer $opv An integer constant member of OnParentVersionAction.
      *
-     * @return void
-     *
      * @api
      */
     public function setOnParentVersion($opv);
@@ -86,8 +78,6 @@ interface NodeDefinitionTemplateInterface extends \PHPCR\NodeType\NodeDefinition
      * Sets the protected status of the node.
      *
      * @param boolean $protectedStatus The status of the protected attribute.
-     *
-     * @return void
      *
      * @api
      */
@@ -99,19 +89,15 @@ interface NodeDefinitionTemplateInterface extends \PHPCR\NodeType\NodeDefinition
      * @param array $requiredPrimaryTypeNames List of primary type names to be
      *      registered.
      *
-     * @return void
-     *
      * @api
      */
-    public function setRequiredPrimaryTypeNames(Array $requiredPrimaryTypeNames);
+    public function setRequiredPrimaryTypeNames(array $requiredPrimaryTypeNames);
 
     /**
      * Sets the name of the default primary type of this node.
      *
      * @param string $defaultPrimaryTypeName The name of a primary type name to
      *      be registered.
-     *
-     * @return void
      *
      * @api
      */
@@ -122,8 +108,6 @@ interface NodeDefinitionTemplateInterface extends \PHPCR\NodeType\NodeDefinition
      *
      * @param boolean $allowSameNameSiblings Whether same-name siblings of this
      *      node should be allowed
-     *
-     * @return void
      *
      * @api
      */

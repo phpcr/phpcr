@@ -224,8 +224,6 @@ final class PropertyType
     // @codeCoverageIgnoreStart
     /**
      * Make instantiation impossible...
-     *
-     * @return void
      */
     private function __construct()
     {
@@ -522,7 +520,7 @@ final class PropertyType
                         if (! $value instanceof \DateTime) {
                             throw new RepositoryException('something weird');
                         }
-
+                        /** @var $value \DateTime */
                         return $value->getTimestamp();
                 }
                 if (is_object($value)) {
@@ -543,6 +541,7 @@ final class PropertyType
                             throw new RepositoryException('something weird');
                         }
 
+                        /** @var $value \DateTime */
                         return (double) $value->getTimestamp();
                 }
                 if (is_object($value)) {
@@ -583,6 +582,7 @@ final class PropertyType
                     case self::BOOLEAN:
                         return (boolean) $value;
                     case self::DATE:
+                        /** @var $value \DateTime */
                         return (boolean) $value->getTimestamp();
                     case self::DECIMAL:
                         return (boolean) ((double) $value); // '0' is false too
@@ -678,6 +678,7 @@ final class PropertyType
                     case self::DECIMAL:
                         return (string) $value;
                     case self::DATE:
+                        /** @var $value \DateTime */
                         return (string) $value->getTimestamp();
                 }
                 if (is_object($value)) {
