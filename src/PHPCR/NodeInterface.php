@@ -1064,7 +1064,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @since JCR 2.1
      */
-    public function setMixins($mixinNames);
+    public function setMixins(array $mixinNames);
 
     /**
      * Determine if a mixin node type may be added to the current node.
