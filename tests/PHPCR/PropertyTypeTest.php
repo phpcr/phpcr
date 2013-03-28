@@ -27,21 +27,6 @@ class PropertyTypesTest extends \PHPUnit_Framework_TestCase
         'URI'            => 'URI',
         'DECIMAL'        => 'Decimal'
     );
-    /** key = numeric type constant names as defined by api
-     *  value = string for valueFromType
-     */
-    protected static $types = array(
-        'STRING'         => 'String',
-        'LONG'           => 'int',
-        'LONG'           => 'Integer',
-        'DOUBLE'         => 'Double',
-        'DOUBLE'         => 'Float',
-        'DATE'           => 'Datetime',
-        'BOOLEAN'        => 'Boolean',
-        'BOOLEAN'        => 'Bool',
-        'UNDEFINED'      => 'something',
-        'UNDEFINED'      => 'undefined',
-    );
 
     public static function dataValueFromName()
     {
@@ -61,7 +46,7 @@ class PropertyTypesTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($name, PropertyType::nameFromValue(constant("PHPCR\\PropertyType::$field")));
     }
     /**
-     * @expectedException InvalidArgumentException
+     * @expectedException \InvalidArgumentException
      */
     public function testNameFromValueInvalid()
     {
@@ -77,7 +62,7 @@ class PropertyTypesTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException InvalidArgumentException
+     * @expectedException \InvalidArgumentException
      */
     public function testValueFromNameInvalid()
     {
@@ -115,7 +100,7 @@ class PropertyTypesTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException PHPCR\ValueFormatException
+     * @expectedException \PHPCR\ValueFormatException
      */
     public function testDetermineTypeObject()
     {
@@ -123,7 +108,7 @@ class PropertyTypesTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException PHPCR\ValueFormatException
+     * @expectedException \PHPCR\ValueFormatException
      */
     public function testDetermineTypeNull()
     {
@@ -462,7 +447,7 @@ class PropertyTypesTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException PHPCR\ValueFormatException
+     * @expectedException \PHPCR\ValueFormatException
      */
     public function testConvertTypeArrayInvalid()
     {
@@ -470,21 +455,21 @@ class PropertyTypesTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException PHPCR\ValueFormatException
+     * @expectedException \PHPCR\ValueFormatException
      */
     public function testConvertInvalidString()
     {
         PropertyType::convertType($this, PropertyType::STRING);
     }
     /**
-     * @expectedException PHPCR\ValueFormatException
+     * @expectedException \PHPCR\ValueFormatException
      */
     public function testConvertInvalidBinary()
     {
         PropertyType::convertType($this, PropertyType::BINARY);
     }
     /**
-     * @expectedException PHPCR\ValueFormatException
+     * @expectedException \PHPCR\ValueFormatException
      */
     public function testConvertInvalidDate()
     {
@@ -492,7 +477,7 @@ class PropertyTypesTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException PHPCR\ValueFormatException
+     * @expectedException \PHPCR\ValueFormatException
      */
     public function testConvertNewNode()
     {
@@ -505,7 +490,7 @@ class PropertyTypesTest extends \PHPUnit_Framework_TestCase
         PropertyType::convertType($nodemock, PropertyType::STRING);
     }
     /**
-     * @expectedException PHPCR\ValueFormatException
+     * @expectedException \PHPCR\ValueFormatException
      */
     public function testConvertNonrefNode()
     {
@@ -535,7 +520,7 @@ class PropertyTypesTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Check if the util will survive a broken implementation
-     * @expectedException PHPCR\RepositoryException
+     * @expectedException \PHPCR\RepositoryException
      * @dataProvider dataDateTargetType
      */
     public function testConvertInvalidDateValue($targettype)
@@ -544,7 +529,7 @@ class PropertyTypesTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException PHPCR\ValueFormatException
+     * @expectedException \PHPCR\ValueFormatException
      */
     public function testConvertTypeInvalidTarget()
     {
