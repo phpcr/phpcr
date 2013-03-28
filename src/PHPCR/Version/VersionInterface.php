@@ -86,7 +86,7 @@ interface VersionInterface extends \PHPCR\NodeInterface
      * jcr:successors multi-value property in the nt:version node that
      * represents this version.
      *
-     * @return array of VersionInterface
+     * @return VersionInterface[] an array of Versions
      *
      * @throws \PHPCR\RepositoryException if an error occurs
      *
@@ -124,7 +124,7 @@ interface VersionInterface extends \PHPCR\NodeInterface
      * the nt:version nodes whose jcr:successors property includes a reference
      * to the nt:version node that represents this version.
      *
-     * @return array of VersionInterface
+     * @return VersionInterface[] an array of Versions
      *
      * @throws \PHPCR\RepositoryException if an error occurs
      *

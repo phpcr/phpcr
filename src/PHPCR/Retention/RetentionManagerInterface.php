@@ -39,8 +39,8 @@ interface RetentionManagerInterface
      *
      * @param string $absPath The absolute path to a node.
      *
-     * @return array All hold objects that have been added to the existing node
-     *      at absPath through this API or an empty array if no hold has been
+     * @return HoldInterface[] All holds that have been added to the existing
+     *      node at absPath through this API. Empty array if no hold has been
      *      set.
      *
      * @throws \PHPCR\PathNotFoundException if no node at absPath exists or the

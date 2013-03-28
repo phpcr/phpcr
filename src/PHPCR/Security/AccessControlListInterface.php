@@ -49,7 +49,8 @@ interface AccessControlListInterface extends AccessControlPolicyInterface, \Trav
      * This method is only guaranteed to return an access control entry object
      * if that access control entry object has been assigned through this API.
      *
-     * @return array all AccessControlEntry objects present with this policy.
+     * @return AccessControlEntryInterface[] an array of all
+     *      AccessControlEntries present with this policy.
      *
      * @throws \PHPCR\RepositoryException - if an error occurs.
      *

@@ -55,7 +55,7 @@ interface AccessControlManagerInterface
      * @param string|null $absPath The absolute path to a node the privileges shall
      *      be fetched of.
      *
-     * @return array An array of Privileges.
+     * @return PrivilegeInterface[] An array of Privileges.
      *
      * @throws \PHPCR\PathNotFoundException if $absPath is non-null and either
      *      no node exists at that path or the session does not have sufficient
@@ -140,7 +140,7 @@ interface AccessControlManagerInterface
      * @param string|null $absPath The absolute path to a node the privileges shall
      *      be fetched of or null to fetch non-node privileges.
      *
-     * @return array an array of Privileges.
+     * @return PrivilegeInterface[] an array of Privileges.
      *
      * @throws \PHPCR\PathNotFoundException if $absPath is non-null and no node
      *      at $absPath exists or the session does not have sufficient access
@@ -167,8 +167,8 @@ interface AccessControlManagerInterface
      * @param string|null $absPath The absolute path to a node the privileges shall
      *      be fetched of or null to fetch non-node privileges.
      *
-     * @return array an array of AccessControlPolicy objects or an empty array
-     *      if no policy has been set.
+     * @return AccessControlPolicyInterface[] an array of AccessControlPolicies, if
+     *      no policy has been set the array is empty.
      *
      * @throws \PHPCR\PathNotFoundException if $absPath is non-null and no node
      *      at $absPath exists or the session does not have sufficient access
@@ -195,7 +195,7 @@ interface AccessControlManagerInterface
      * @param string|null $absPath The absolute path to the node of which privileges
      *      are requested or null for non-node privileges.
      *
-     * @return array an array of AccessControlPolicy objects.
+     * @return AccessControlPolicyInterface[] an array of AccessControlPolices.
      *
      * @throws \PHPCR\PathNotFoundException if $absPath is non-null and no node
      *      at $absPath exists or the session does not have sufficient access

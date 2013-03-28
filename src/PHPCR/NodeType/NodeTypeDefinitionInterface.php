@@ -64,7 +64,7 @@ interface NodeTypeDefinitionInterface
      * NodeTypeTemplate, then this method will return an array containing a
      * single string indicating the node type nt:base.
      *
-     * @return array List of names of declared supertypes.
+     * @return array the names of the declared supertypes.
      *
      * @api
      */
@@ -170,7 +170,7 @@ interface NodeTypeDefinitionInterface
      * NodeTypeDefinition object is actually a newly-created empty
      * NodeTypeTemplate, then this method will return null.
      *
-     * @return array An array of PropertyDefinitions.
+     * @return PropertyDefinitionInterface[] An array of PropertyDefinitions.
      *
      * @api
      */
@@ -184,7 +184,7 @@ interface NodeTypeDefinitionInterface
      * NodeTypeDefinition object is actually a newly-created empty
      * NodeTypeTemplate, then this method will return null.
      *
-     * @return array An array of NodeDefinitions.
+     * @return NodeDefinitionInterface[] An array of NodeDefinitions.
      *
      * @api
      */

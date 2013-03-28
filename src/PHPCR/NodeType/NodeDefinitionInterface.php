@@ -48,7 +48,7 @@ interface NodeDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInterfac
      * object may be acquired (in the form of a NodeDefinitionTemplate) that is
      * not attached to a live NodeType. In such cases this method returns null.
      *
-     * @return \PHPCR\NodeType\NodeTypeInterface An array of NodeType objects.
+     * @return NodeTypeInterface[] An array of NodeType objects.
      *
      * @api
      */
@@ -65,7 +65,7 @@ interface NodeDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInterfac
      * primary types as set in that template. If that template is a newly-created
      * empty one, then this method will return null.
      *
-     * @return array a String array
+     * @return array the names of the required primary types
      *
      * @api
      */
@@ -84,7 +84,7 @@ interface NodeDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInterfac
      * object may be acquired (in the form of a NodeDefinitionTemplate) that is
      * not attached to a live NodeType. In such cases this method returns null.
      *
-     * @return \PHPCR\NodeType\NodeTypeInterface A NodeType.
+     * @return NodeTypeInterface A NodeType.
      *
      * @api
      */
