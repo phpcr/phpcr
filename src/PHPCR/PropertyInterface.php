@@ -486,7 +486,7 @@ interface PropertyInterface extends ItemInterface, \Traversable
      * present and different from the current type.
      *
      * If no explicit type is given, then the type is derived from the value.
-     * (First value in case of multi-valuedproperty.)
+     * (First value in case of multi-valued property.)
      * If the node type allows the type of the parameter, this property changes
      * its type to the type of the value. Otherwise, a conversion of the value
      * into the required type is attempted with PropertyType::convertType()
@@ -496,7 +496,7 @@ interface PropertyInterface extends ItemInterface, \Traversable
      * converted into this type, otherwise the type of the property is used
      * as in the case of no explicit type).
      * This can be used to copy a binary from one property into another without
-     * getting the stream. The implemenation should take care to detect the
+     * getting the stream. The implementation should take care to detect the
      * case and copy the binary data directly in the backend for optimal
      * performance.
      *

@@ -135,8 +135,10 @@ variables. This is true even for the Binary interface, as it adds no value over
 plain streams. PropertyInterface::getBinaryStream returns a PHP resource which
 is compatible with fpassthru and stream_get_contents.
 If you need the data size, you can use the PropertyInterface::getLength method.
-To copy a binary property without loading the stream to the backend, you can
-assign the property to an other property.
+To allow optimizing copying binary properties, PHPCR allows to use a
+PropertyInterface as $value argument, which will copy the property value.
+Implementations should optimize this case to avoid unnecessarily transferring
+binary data.
 
 Note that the boolean conversion follows PHP conventions, which are different
 from Java. java.lang.Boolean.valueOf(String) compares the String with "true",

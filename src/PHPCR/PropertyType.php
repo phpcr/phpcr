@@ -374,6 +374,8 @@ final class PropertyType
                 return ($weak) ?
                         self::WEAKREFERENCE :
                         self::REFERENCE;
+            } elseif ($value instanceof PropertyInterface) {
+                return $value->getType();
             }
         }
 
@@ -398,6 +400,11 @@ final class PropertyType
      *
      * Note that for converting to boolean, we follow the PHP convention of
      * treating any non-empty string as true, not just the word "true".
+     *
+     * Note for implementors: You should handle the special case of $value
+     * being a PropertyInterface with a binary value. If you go through this
+     * method, the stream will have to be loaded and rewritten, instead of
+     * being directly copied.
      *
      * Table based on <a href="http://www.day.com/specs/jcr/2.0/3_Repository_Model.html#3.6.4%20Property%20Type%20Conversion">JCR spec</a>
      *
@@ -444,6 +451,10 @@ final class PropertyType
 
         if (self::UNDEFINED == $srctype) {
             $srctype = self::determineType($value);
+        }
+
+        if ($value instanceof PropertyInterface) {
+            $value = $value->getValue();
         }
 
         // except on noop, stream needs to be read into string first
