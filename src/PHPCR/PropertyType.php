@@ -359,28 +359,34 @@ final class PropertyType
             }
 
             return self::STRING;
-        } elseif (is_resource($value)) {
+        }
+        if (is_resource($value)) {
             return self::BINARY;
-        } elseif (is_int($value)) {
+        }
+        if (is_int($value)) {
             return self::LONG;
-        } elseif (is_float($value)) {
+        }
+        if (is_float($value)) {
             return self::DOUBLE;
-        } elseif (is_bool($value)) {
+        }
+        if (is_bool($value)) {
             return self::BOOLEAN;
-        } elseif (is_object($value)) {
+        }
+        if (is_object($value)) {
             if ($value instanceof \DateTime) {
                 return self::DATE;
-            } elseif ($value instanceof NodeInterface) {
+            }
+            if ($value instanceof NodeInterface) {
                 return ($weak) ?
                         self::WEAKREFERENCE :
                         self::REFERENCE;
             }
+            if ($value instanceof PropertyInterface) {
+                return $value->getType();
+            }
+            throw new ValueFormatException('Object values must implement PHPCR\NodeInterface, PHPCR\PropertyInterface or be \DateTime, supplied argument is of class: '.get_class($value));
         }
 
-        // avoid stumbling over objects with var_export
-        if (is_object($value)) {
-            throw new ValueFormatException('Object values must implement PHPCR\NodeInterface or be \DateTime, supplied argument is of class: '.get_class($value));
-        }
         throw new ValueFormatException('Can not determine type of property with value "'.var_export($value, true).'"');
     }
 
@@ -398,6 +404,11 @@ final class PropertyType
      *
      * Note that for converting to boolean, we follow the PHP convention of
      * treating any non-empty string as true, not just the word "true".
+     *
+     * Note for implementors: You should handle the special case of $value
+     * being a PropertyInterface with a binary value. If you go through this
+     * method, the stream will have to be loaded and rewritten, instead of
+     * being directly copied.
      *
      * Table based on <a href="http://www.day.com/specs/jcr/2.0/3_Repository_Model.html#3.6.4%20Property%20Type%20Conversion">JCR spec</a>
      *
@@ -444,6 +455,10 @@ final class PropertyType
 
         if (self::UNDEFINED == $srctype) {
             $srctype = self::determineType($value);
+        }
+
+        if ($value instanceof PropertyInterface) {
+            $value = $value->getValue();
         }
 
         // except on noop, stream needs to be read into string first
