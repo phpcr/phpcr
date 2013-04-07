@@ -359,30 +359,34 @@ final class PropertyType
             }
 
             return self::STRING;
-        } elseif (is_resource($value)) {
+        }
+        if (is_resource($value)) {
             return self::BINARY;
-        } elseif (is_int($value)) {
+        }
+        if (is_int($value)) {
             return self::LONG;
-        } elseif (is_float($value)) {
+        }
+        if (is_float($value)) {
             return self::DOUBLE;
-        } elseif (is_bool($value)) {
+        }
+        if (is_bool($value)) {
             return self::BOOLEAN;
-        } elseif (is_object($value)) {
+        }
+        if (is_object($value)) {
             if ($value instanceof \DateTime) {
                 return self::DATE;
-            } elseif ($value instanceof NodeInterface) {
+            }
+            if ($value instanceof NodeInterface) {
                 return ($weak) ?
                         self::WEAKREFERENCE :
                         self::REFERENCE;
-            } elseif ($value instanceof PropertyInterface) {
+            }
+            if ($value instanceof PropertyInterface) {
                 return $value->getType();
             }
+            throw new ValueFormatException('Object values must implement PHPCR\NodeInterface, PHPCR\PropertyInterface or be \DateTime, supplied argument is of class: '.get_class($value));
         }
 
-        // avoid stumbling over objects with var_export
-        if (is_object($value)) {
-            throw new ValueFormatException('Object values must implement PHPCR\NodeInterface or be \DateTime, supplied argument is of class: '.get_class($value));
-        }
         throw new ValueFormatException('Can not determine type of property with value "'.var_export($value, true).'"');
     }
 
