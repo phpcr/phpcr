@@ -81,7 +81,9 @@ interface QueryObjectModelInterface extends \PHPCR\Query\QueryInterface
     /**
      * Gets the orderings for this query.
      *
-     * @return array a list of zero or more OrderingInterface; non-null
+     * @return OrderingInterface[] an array of the orderings, if no orderings
+     *      defined an empty array.
+     *
      * @api
     */
     public function getOrderings();
@@ -89,7 +91,9 @@ interface QueryObjectModelInterface extends \PHPCR\Query\QueryInterface
     /**
      * Gets the columns for this query.
      *
-     * @return array a list of zero or more ColumnInterface; non-null
+     * @return ColumnInterface[] an array of the columns to get, if none
+     *      specified an empty array.
+     *
      * @api
     */
     public function getColumns();

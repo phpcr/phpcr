@@ -24,6 +24,8 @@
 
 namespace PHPCR;
 
+use PHPCR\NodeType\NodeTypeInterface;
+
 /**
  * The Node interface represents a node in a workspace.
  *
@@ -884,7 +886,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      * supertypes to the primary type hierarchy or through the addition of
      * supertypes to the type hierarchy of any of the declared mixin types.
      *
-     * @return array of \PHPCR\NodeType\NodeTypeInterface objects.
+     * @return NodeTypeInterface[] an array of mixin node types
      *
      * @throws RepositoryException if an error occurs
      *

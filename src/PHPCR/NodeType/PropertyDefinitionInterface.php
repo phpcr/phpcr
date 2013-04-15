@@ -196,7 +196,7 @@ interface PropertyDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInte
      * PropertyDefinition object is actually a newly-created empty
      * PropertyDefinitionTemplate, then this method will return null.
      *
-     * @return array a String array.
+     * @return array the value constraint strings
      *
      * @api
      */
@@ -229,7 +229,7 @@ interface PropertyDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInte
      * PropertyDefinition object is actually a newly-created empty
      * PropertyDefinitionTemplate, then this method will return null.
      *
-     * @return array An array of php values.
+     * @return array An array of mixed php values.
      *
      * @api
      */
@@ -266,7 +266,7 @@ interface PropertyDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInte
      * JCR defines the comparison operators
      * \PHPCR\Query\QueryObjectModelConstantsInterface::JCR_OPERATOR_*
      *
-     *  An implementation may define additional comparison operators.
+     * An implementation may define additional comparison operators.
      *
      * Note that the set of operators that can appear in this attribute may be
      * limited by implementation-specific constraints that differ across
@@ -280,7 +280,10 @@ interface PropertyDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInte
      * comparison semantics defined in the specification document (see 3.6.5
      * Comparison of Values).
      *
-     * @return array List of query operators.
+     * @return array an array of query operator constants as defined in
+     *      \PHPCR\Query\QueryObjectModelConstantsInterface
+     *
+     * @see \PHPCR\Query\QueryObjectModelConstantsInterface
      *
      * @api
      */

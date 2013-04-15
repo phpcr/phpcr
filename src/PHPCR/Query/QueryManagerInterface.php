@@ -94,7 +94,7 @@ interface QueryManagerInterface
      * may also support other languages including the deprecated languages of
      * JCR 1.0: QueryInterface::XPATH and QueryInterface::SQL.
      *
-     * @return array A list of supported languages by the query.
+     * @return array A list of query languages supported by this repository.
      *
      * @throws \PHPCR\RepositoryException if an error occurs.
      *
