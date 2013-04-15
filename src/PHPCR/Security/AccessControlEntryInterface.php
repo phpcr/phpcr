@@ -50,7 +50,7 @@ interface AccessControlEntryInterface extends \Traversable
     /**
      * Returns the privileges associated with this access control entry.
      *
-     * @return array an array of Privileges.
+     * @return PrivilegeInterface[] an array of Privileges.
      *
      * @api
      */

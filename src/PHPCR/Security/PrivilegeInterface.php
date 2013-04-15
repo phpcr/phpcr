@@ -252,7 +252,7 @@ interface PrivilegeInterface
      * directly contained by the aggregate privilege. Otherwise returns an empty
      * array.
      *
-     * @return array an array of Privileges
+     * @return PrivilegeInterface[] an array of Privileges
      *
      * @api
      */
@@ -264,7 +264,7 @@ interface PrivilegeInterface
      * those, and so on (the transitive closure of privileges contained by this
      * privilege). Otherwise returns an empty array.
      *
-     * @return array an array of Privileges
+     * @return PrivilegeInterface[] an array of Privileges
      *
      * @api
      */

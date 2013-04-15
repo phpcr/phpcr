@@ -361,7 +361,7 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
      * For primary types apart from nt:base, this list will always
      * include at least nt:base. For mixin types, there is no required supertype.
      *
-     * @return array List of \PHPCR\NodeType\NodeType objects.
+     * @return NodeTypeInterface[] an array of all parent NodeTypes
      *
      * @api
      */
@@ -377,7 +377,8 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
      * @see getSupertypes()
      * @see NodeTypeDefinition::getDeclaredSupertypeNames()
      *
-     * @return string[] the names of all supertypes
+     * @return array the names of all supertypes
+     *
      * @since JCR 2.1
      */
     public function getSupertypeNames();
@@ -391,7 +392,8 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
      * size 0 or 1. In systems that support multiple inheritance of node
      * types this array may be of size greater than 1.
      *
-     * @return array List of \PHPCR\NodeType\NodeTypeInterface objects.
+     * @return NodeTypeInterface[] an array of NodeTypes that are direct
+     *      parents of this type.
      *
      * @api
      */
@@ -447,8 +449,7 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
      * This includes both those property definitions actually declared
      * in this node type and those inherited from the supertypes of this type.
      *
-     * @return array An array of \PHPCR\NodeType\PropertyDefinition containing
-     *      the property definitions.
+     * @return PropertyDefinitionInterface[] an array of property definitions
      *
      * @api
      */
@@ -460,8 +461,7 @@ interface NodeTypeInterface extends \PHPCR\NodeType\NodeTypeDefinitionInterface
      * This includes both those child node definitions actually declared in this
      * node type and those inherited from the supertypes of this node type.
      *
-     * @return array An array of \PHPCR\NodeType\NodeDefinitionInterface containing the
-     *      child node definitions.
+     * @return NodeDefinitionInterface[] An array of child node definitions
      *
      * @api
      */
