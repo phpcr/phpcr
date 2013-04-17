@@ -32,7 +32,8 @@ namespace PHPCR;
  *
  * <pre>
  *    $parameters = array('com.vendor.address' => 'vendor://localhost:9999/myrepo');
- *    $repository = \SomeRepository\RepositoryFactory::getRepository($parameters);
+ *    $factory = new \SomeRepository\RepositoryFactory;
+ *    $repository = $factory->getRepository($parameters);
  * </pre>
  *
  * @api
@@ -68,7 +69,7 @@ interface RepositoryFactoryInterface
      *
      * @api
      */
-    public static function getRepository(array $parameters = null);
+    public function getRepository(array $parameters = null);
 
     /**
      * Get the list of configuration options that can be passed to
@@ -81,5 +82,5 @@ interface RepositoryFactoryInterface
      *
      * @api
      */
-    public static function getConfigurationKeys();
+    public function getConfigurationKeys();
 }
