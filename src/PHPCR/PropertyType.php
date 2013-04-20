@@ -487,10 +487,10 @@ final class PropertyType
                 switch ($srctype) {
                     case self::DATE:
                         if (! $value instanceof \DateTime) {
-                            throw new RepositoryException('something weird');
+                            throw new RepositoryException('Can not convert a date that is not a \DateTime instance to string');
                         }
                         /** @var $value \DateTime */
-                        // Milliseconds formating is not possible in PHP so we
+                        // Milliseconds formatting is not possible in PHP so we
                         // construct it by cutting microseconds to 3 positions.
                         // This might not be as accurate as "real" rounded milliseconds.
                         return $value->format('Y-m-d\TH:i:s.') .
@@ -503,7 +503,8 @@ final class PropertyType
                     default:
                         if (is_object($value)) {
                             throw new ValueFormatException('Can not convert object of class '.get_class($value).' to STRING');
-                        } elseif (is_resource($value)) {
+                        }
+                        if (is_resource($value)) {
                             throw new ValueFormatException('Inconsistency: Non-binary property should not have resource stream value');
                         }
                         // TODO: how can we provide ValueFormatException on failure? invalid casting leads to 'catchable fatal error' instead of exception
