@@ -377,9 +377,7 @@ final class PropertyType
                 return self::DATE;
             }
             if ($value instanceof NodeInterface) {
-                return ($weak) ?
-                        self::WEAKREFERENCE :
-                        self::REFERENCE;
+                return ($weak) ? self::WEAKREFERENCE : self::REFERENCE;
             }
             if ($value instanceof PropertyInterface) {
                 return $value->getType();
@@ -467,9 +465,9 @@ final class PropertyType
             rewind($value);
             $value = $t;
             $srctype = self::STRING;
-        } elseif ((self::REFERENCE == $srctype ||
-            self::WEAKREFERENCE == $srctype )
-                && $value instanceof NodeInterface) {
+        } elseif ((self::REFERENCE == $srctype || self::WEAKREFERENCE == $srctype )
+            && $value instanceof NodeInterface
+        ) {
             /** @var $value NodeInterface */
             // In Jackrabbit a new node cannot be referenced until it has been persisted
             // See: https://issues.apache.org/jira/browse/JCR-1614
@@ -705,6 +703,5 @@ final class PropertyType
             default:
                 throw new ValueFormatException("Unexpected target type $type in conversion");
         }
-
     }
 }
