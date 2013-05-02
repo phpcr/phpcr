@@ -28,6 +28,10 @@ namespace PHPCR;
  * RepositoryFactory is an interface for factory class implementations for
  * Repositories.
  *
+ * Classes implementing this interface *MUST* have a zero-argument constructor.
+ * All repository instantiation parameters must be expected as arguments to the
+ * getRepository method.
+ *
  * Examples how to obtain repository instances
  *
  * <pre>
