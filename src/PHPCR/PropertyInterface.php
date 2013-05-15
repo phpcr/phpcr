@@ -476,9 +476,8 @@ interface PropertyInterface extends ItemInterface, \Traversable
      *
      * If the type parameter is present and this implementation supports
      * dynamic re-binding of properties, this property changes its type.
-     * First, a conversion of value into that type is attempted with
-     * PropertyType::convertType() and if there is no ValueFormatException,
-     * the property type changes to the new type.
+     * First, a conversion of value into that type should be attempted
+     * which maybe throw a ValueFormatException.
      * If the node type does not allow the requested type, a
      * ConstraintViolationException is thrown.
      * If the implementation does not support dynamic re-binding, an
@@ -489,7 +488,7 @@ interface PropertyInterface extends ItemInterface, \Traversable
      * (First value in case of multi-valued property.)
      * If the node type allows the type of the parameter, this property changes
      * its type to the type of the value. Otherwise, a conversion of the value
-     * into the required type is attempted with PropertyType::convertType()
+     * should be attempted.
      *
      * If value is of type PropertyInterface, the value of the property is
      * copied into this property. (If type is set, the property value is
@@ -673,7 +672,7 @@ interface PropertyInterface extends ItemInterface, \Traversable
      *
      * <b>PHP Note:</b>Keep in mind that according to the specification, not
      * all property types can be converted to boolean. Most actually can not
-     * be converted - see PropertyType::convertType().
+     * be converted.
      * If you want to know if a value is empty in the PHP sense, use
      * getString() and do your checks on the string.
      *

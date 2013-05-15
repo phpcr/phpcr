@@ -214,28 +214,6 @@ easily use different implementations. We kept the getRepository method and
 added a getConfigurationKeys() method to allow for generic interactive setup.
 
 
-Helpers
-*******
-
-The PropertyType (a final class implemented in the API, not an interface) does
-basic type detection and conversion (in addition to the constants definition
-according to the JCR specification). This has to be used for all conversions to
-ensure compatibility between implementations. This is the only part of the
-ValueFactory that we need to use in PHP.
-
-PropertyType::determineType($type) returns the PHPCR numeric constant value of
-the type for the given PHP type name as returned by gettype().
-
-PropertyType::convertType($values, $type) converts the value or values into the
-target type.
-
-We added a UUIDHelper that can determine whether a string is a valid UUID.
-Implementations can use it to generate UUIDs as there is no built-in PHP code
-to do that.
-Note that clients of PHPCR can not control what UUID a new node gets. It is up
-to the implementation how to assign UUIDs.
-
-
 Transactions
 ************
 
