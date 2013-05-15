@@ -44,6 +44,11 @@ The implementing visitor will have to do a type-check.
 
 For some notes about value conversion, see the Value section below.
 
+Note that the effort for implementing PHPCR can be reduced by relying on
+https://github.com/phpcr/phpcr-utils which provides several helpers, f.e. for
+property value conversion and UUID generation. This repository also provides high
+level features like classes to walk a PHPCR tree, a fluent QOM interface, support
+for CND files and CLI scripts to manage workspaces and PHPCR trees.
 
 Iterators
 *********
@@ -331,7 +336,7 @@ are:
 Remark
 ******
 
-If you don't agree with these choices what is superflous in PHP, you can re-add
+If you don't agree with the choices of what was left out, you can re-add
 methods and classes in your implementation. Thanks to the weak typing, PHP
 won't complain when using those methods even if they are not declared in the
 PHPCR interfaces. Of course, your implementation would no longer be compatible
