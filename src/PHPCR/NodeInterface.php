@@ -438,44 +438,40 @@ interface NodeInterface extends ItemInterface, \Traversable
     public function getNode($relPath);
 
     /**
-     * Get a set of nodes gathered by the definition of a filter.
+     * Get a set of direct child nodes, optionally filtered by node name and/or
+     * primary or mixin node type.
      *
-     * <strong>If $filter is a string:</strong>
-     * Gets all child nodes of this node accessible through the current Session
-     * that match namePattern (if no pattern is given, all accessible child
-     * nodes are returned). Does not include properties of this Node. The
-     * pattern may be a full name or a partial name with one or more wildcard
-     * characters ("*"), or a disjunction (using the "|" character to represent
-     * logical OR) of these.
+     * This method only returns child nodes, never properties of this node.
+     * If no filters are specified, all accessible child nodes are returned.
+     *
+     * Get all child nodes C of this node where:
+     * <ul>
+     *    <li>C is accessible through the current Session</li>
+     *    <li>If the nameFilter is not null, C must match at least one of the
+     *      filter expressions.</li>
+     *   <li>If the typeFilter is not null, C must be isNodeType of at least
+     *      one of the types in typeFilter.
+     *   </li>
+     * </ul>
+     *
+     * The filter can be a single filter expression or an array of filters. The
+     * filter pattern syntax is simply full or partial names with one or more
+     * wildcard characters ("*", also called glob).
+     * Note that leading and trailing whitespace around a filter pattern is
+     * taken into account.
+     *
      * For example,
      *
-     *  <code>N->getNodes("jcr:* | myapp:report | my doc")</code>
+     *  <code>N->getNodes("jcr:*")</code>
+     *
+     * would return an iterator holding all accessible child nodes of N that
+     * are begin with the prefix 'jcr:'.
+     *
+     *  <code>N->getNodes(array("jcr:*", "myapp:report", "my doc"))</code>
      *
      * would return an iterator holding all accessible child nodes of N that
      * are either called 'myapp:report', begin with the prefix 'jcr:' or are
      * called 'my doc'.
-     *
-     * The substrings within the pattern that are delimited by "|" characters
-     * and which may contain wildcard characters ("*") are called "globs".
-     *
-     * Note that leading and trailing whitespace around a glob is ignored, but
-     * whitespace within a disjunct forms part of the pattern to be matched.
-     *
-     * <strong>If $filter is an array:</strong>
-     * Gets all child nodes of this node accessible through the current
-     * Session that match one or more of the $filter strings in the passed
-     * array.
-     *
-     * A glob may be a full name or a partial name with one or more wildcard
-     * characters ("*"). For example,
-     *  N->getNodes(array("jcr:*", "myapp:report", "my doc"))
-     * would return an iterator holding all accessible child nodes of N that
-     * are either called 'myapp:report', begin with the prefix 'jcr:' or are
-     * called 'my doc'.
-     *
-     * Note that unlike in the case of the getNodes(<string>) leading and
-     * trailing whitespace around a glob is not ignored.
-     *
      *
      * The pattern is matched against the names (not the paths) of the
      * immediate child nodes of this node.
@@ -486,10 +482,15 @@ interface NodeInterface extends ItemInterface, \Traversable
      * If this node has no accessible matching child nodes, then an empty
      * iterator is returned.
      *
+     * Note that a match succeeds against a given name if a glob matches either
+     * or both of its qualified or expanded forms.
+     *
      * The same reacquisition semantics apply as with getNode($relPath).
      *
-     * @param string|array $filter a name pattern or an array of globbing
-     *      strings.
+     * @param string|array $nameFilter a filter or an array of filters for the
+     *      node names to find.
+     * @param string|array $typeFilter a filter or an array of filters for the
+     *      node type names to find.
      *
      * @return \Iterator over all (matching) child Nodes implementing
      *      <b>SeekableIterator</b> and <b>Countable</b>. Keys are the Node
@@ -499,7 +500,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @api
      */
-    public function getNodes($filter = null);
+    public function getNodes($nameFilter = null, $typeFilter = null);
 
     /**
      * Returns the names of all child nodes of this node accessible through the
@@ -511,11 +512,22 @@ interface NodeInterface extends ItemInterface, \Traversable
      * If this node has no accessible child nodes, then an empty iterator is
      * returned.
      *
-     * The optional $filter follows the same semantics as the $filter parameter
-     * of NodeInterface::getNodes()
+     * The optional $nameFilter and $typeFilter follow the same semantics as
+     * the corresponding parameters of NodeInterface::getNodes()
      *
-     * @param string|array $filter a name pattern or an array of globbing
-     *      strings.
+     * If the child nodes of this node have an order then the names are
+     * returned in that order, otherwise the order is undefined.
+     *
+     * If this node has no accessible matching child nodes, then an empty
+     * iterator is returned.
+     *
+     * Note that a match succeeds against a given name if a glob matches either
+     * or both of its qualified or expanded forms.
+     *
+     * @param string|array $nameFilter a filter or an array of filters for the
+     *      node names to find.
+     * @param string|array $typeFilter a filter or an array of filters for the
+     *      node type names to find.
      *
      * @return \Iterator over all child node names
      *
@@ -523,7 +535,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @since JCR 2.1
      */
-    public function getNodeNames($filter = null);
+    public function getNodeNames($nameFilter = null, $typeFilter = null);
 
     /**
      * Returns the property at relPath relative to this node.
@@ -588,53 +600,40 @@ interface NodeInterface extends ItemInterface, \Traversable
     public function getPropertyValueWithDefault($relPath, $defaultValue);
 
     /**
-     * Get an iteratable set of properties gathered on behalf of a filter.
+     * Get an iterator of properties of this node, potentially filtered by
+     * name.
      *
-     * If $filter is a string:
-     * Gets all properties of this node accessible through the current Session
-     * that match namePattern (if no pattern is given, all accessible
-     * properties are returned). Does not include child nodes of this node. The
-     * pattern may be a full name or a partial name with one or more wildcard
-     * characters ("*"), or a disjunction (using the "|" character to represent
-     * logical OR) of these. For example,
+     * This method only returns properties, never child nodes of this node.
+     * If no filters are specified, all accessible properties are returned.
      *
-     *  <code>$n->getProperties("jcr:* | myapp:name | my doc")</code>
+     * Gets all properties of this node accessible through the current Session.
+     * If $nameFilter is specified, the property names must match the pattern.
+     * A pattern may be a full name or a partial name with one or more wildcard
+     * characters ("*"). For example,
      *
-     * would return an iterator holding all accessible properties of N
-     * that are either called 'myapp:name', begin with the prefix 'jcr:' or are
+     *  <code>$n->getProperties("jcr:*")</code>
+     *
+     * would return an iterator holding all accessible properties of $n that
+     * begin with the prefix 'jcr:'.
+     *
+     *  <code>$n->getProperties(array("jcr:*", "myapp:report", "my doc"))</code>
+     *
+     * would return an iterator holding all accessible properties of $n that
+     * are either called 'myapp:report', begin with the prefix 'jcr:' or are
      * called 'my doc'.
      *
-     * The substrings within the pattern that are delimited by "|" characters
-     * and which may contain wildcard characters ("*") are called globs.
-     *
-     * Note that leading and trailing whitespace around a glob is ignored, but
-     * whitespace within a disjunct forms part of the pattern to be matched.
-     *
-     * If $filter is an array:
-     * Gets all properties of this node accessible through the current
-     * Session that match one or more of the $filter strings in the passed
-     * array.
-     *
-     * A glob may be a full name or a partial name with one or more wildcard
-     * characters ("*"). For example,
-     *  N->getProperties(array("jcr:*", "myapp:report", "my doc"))
-     * would return an iterator holding all accessible properties of N
-     * that are either called 'myapp:report', begin with the prefix 'jcr:' or
-     * are called 'my doc'.
-     *
-     * Note that unlike in the case of getProperties(<string>) leading and
-     * trailing whitespace around a glob is not ignored.
-     *
-     *
      * The pattern is matched against the names (not the paths) of the
-     * immediate child properties of this node.
+     * properties of this node.
+     *
+     * Note that a match succeeds against a given name if a glob matches either
+     * or both of its qualified or expanded forms.
      *
      * If this node has no accessible matching properties, then an empty
      * iterator is returned.
      *
-     * The same reacquisition semantics apply as with getNode(String).
+     * The same reacquisition semantics apply as with getProperty().
      *
-     * @param string|array $filter a name pattern
+     * @param string|array $nameFilter a name pattern
      *
      * @return \Iterator implementing <b>SeekableIterator</b> and
      *      <b>Countable</b>. Keys are the property names, values the
@@ -644,7 +643,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @api
      */
-    public function getProperties($filter = null);
+    public function getProperties($nameFilter = null);
 
     /**
      * Shortcut for getProperties and then getting the values of the properties.
@@ -655,7 +654,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      * To improve performance, implementations should avoid instantiating the
      * property objects for this method
      *
-     * @param string|array $filter      a name pattern
+     * @param string|array $nameFilter      a name pattern
      * @param boolean      $dereference whether to dereference REFERENCE,
      *      WEAKREFERENCE and PATH properties or just return id/path strings
      *
@@ -670,7 +669,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @api
      */
-    public function getPropertiesValues($filter=null, $dereference=true);
+    public function getPropertiesValues($nameFilter=null, $dereference=true);
 
     /**
      * Returns the primary child item of the current node.

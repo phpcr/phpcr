@@ -88,6 +88,25 @@ interface QueryInterface
     public function execute();
 
     /**
+     * This method is used from another thread to halt a currently executing
+     * query.
+     *
+     * This method returns immediately with a boolean return value indicating
+     * whether the query <i>will</i> or <i>will not</i> be cancelled. The
+     * actual cancellation may take place after the method has returned and
+     * will do so by throwing a RepositoryException on the thread where
+     * $query->execute() is currently blocking.
+     *
+     * @return boolean true if the query was executing and will be cancelled,
+     *      or false if the query cannot not be cancelled because it has either
+     *      already finished executing, it has already been cancelled, or the
+     *      implementation does not support canceling queries.
+     *
+     * @since JCR 2.1
+     */
+    public function cancel();
+
+    /**
      * Returns the names of the bind variables in this query.
      *
      * If this query does not contains any bind variables then an empty array is returned.
