@@ -540,6 +540,14 @@ interface RepositoryInterface
     const QUERY_JOINS_INNER_OUTER = "query.joins.inner.outer";
 
     /**
+     * Key to a boolean descriptor. Returns true if
+     * and only if query cancellation is supported.
+     *
+     * @since JCR 2.1
+     */
+    const QUERY_CANCEL_SUPPORTED = "query.cancel.supported";
+
+    /**
      * Authenticates the user using the supplied credentials.
      *
      * If workspaceName is recognized as the name of an existing workspace in

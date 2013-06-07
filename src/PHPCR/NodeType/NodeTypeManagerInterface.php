@@ -190,7 +190,7 @@ interface NodeTypeManagerInterface extends \Traversable
      *
      * @api
      */
-    public function registerNodeType(\PHPCR\NodeType\NodeTypeDefinitionInterface $ntd, $allowUpdate);
+    public function registerNodeType(NodeTypeDefinitionInterface $ntd, $allowUpdate);
 
     /**
      * Registers or updates the specified array of NodeTypeDefinition objects.

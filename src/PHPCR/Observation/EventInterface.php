@@ -213,4 +213,53 @@ interface EventInterface
      * @api
      */
     public function getDate();
+
+    /**
+     * Return the type of the property this property related event is about.
+     *
+     * If this event is of type PROPERTY_ADDED or PROPERTY_REMOVED then this
+     * method returns the property type * of the property at (or formerly at)
+     * the path returned by getPath(). The property type is one of the
+     * constants defined in PropertyType.
+     *
+     * @return int constant from PropertyType
+     *
+     * @throws \PHPCR\RepositoryException
+     */
+    public function getPropertyType();
+
+    /**
+     * Return the primary type of the node this node related event is about,
+     * or the primary type of the parent of the property this property related
+     * event is about.
+     *
+     * If this event is of type NODE_ADDED, NODE_REMOVED or NODE_MOVED then
+     * this method returns the declared primary node type of the node at (or
+     * formerly at) the path returned by getPath(). If this event is of type
+     * PROPERTY_ADDED or PROPERTY_REMOVED then this method returns the declared
+     * primary node type of the parent node of the property affected.
+     *
+     * @return \PHPCR\NodeType\NodeTypeInterface
+     *
+     * @throws \PHPCR\RepositoryException if an error occurs.
+     */
+    public function getPrimaryNodeType();
+
+    /**
+     * Return the mixin types of the node this node related event is about,
+     * or the mixin types of the parent of the property this property related
+     * event is about.
+     *
+     * If this event is of type NODE_ADDED, NODE_REMOVED or NODE_MOVED then
+     * this method returns the declared mixin node types of the node at (or
+     * formerly at) the path returned by getPath(). If this event is of type
+     * PROPERTY_ADDED or PROPERTY_REMOVED then this method returns the declared
+     * mixin node types of the parent node of the property affected.
+     *
+     * @return \PHPCR\NodeType\NodeTypeInterface[]
+     *
+     * @throws \PHPCR\RepositoryException if an error occurs.
+     */
+    public function getMixinNodeTypes();
+
 }

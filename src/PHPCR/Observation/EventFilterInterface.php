@@ -56,7 +56,7 @@ namespace PHPCR\Observation;
  * listened to. The term "UUID" is used for compatibility with JCR 1.0.
  * </li>
  * <li>
- * nodeTypeName: Only events whose associated parent node has one of the node
+ * nodeTypes: Only events whose associated parent node has one of the node
  * types (or a subtype of one of the node types) in this list will be received.
  * If his parameter is null then no node type-related restriction is placed on
  * events received. Note that specifying an empty array instead of null would
@@ -150,7 +150,7 @@ interface EventFilterInterface
     public function getIdentifiers();
 
     /**
-     * Sets the nodeTypeName parameter of the filter.
+     * Sets the nodeTypes parameter of the filter.
      *
      * If left unset, this parameter defaults to null.
      *
@@ -161,7 +161,7 @@ interface EventFilterInterface
     public function setNodeTypes(array $nodeTypes);
 
     /**
-     * Returns the nodeTypeName parameter of the filter.
+     * Returns the nodeTypes parameter of the filter.
      *
      * @return string[]
      */

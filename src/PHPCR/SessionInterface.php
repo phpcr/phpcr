@@ -305,6 +305,9 @@ interface SessionInterface
      * Returns an iterator over all the nodes at the specified absolute paths
      * in the workspace that exist and are accessible to this session.
      *
+     * Paths that do not lead to a accessible node are ignored, just as if the
+     * node did not exist.
+     *
      * If none of the specified paths leads to an existing and accessible
      * node then an empty iterator is returned.
      *
