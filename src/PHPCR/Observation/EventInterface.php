@@ -240,6 +240,7 @@ interface EventInterface
      * primary node type of the parent node of the property affected.
      *
      * @return \PHPCR\NodeType\NodeTypeInterface
+     *
      * @throws \PHPCR\RepositoryException if an error occurs.
      */
     public function getPrimaryNodeType();
