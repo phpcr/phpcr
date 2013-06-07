@@ -182,6 +182,16 @@ interface VersionManagerInterface
      * provides access to the nt:versionHistory node holding this node's
      * versions.
      *
+     * Note that, as with all cases where a JCR path is passed, this method may
+     * be called with either the normal name-path of a version history node or
+     * its identifier (in square brackets), that is, "[id]" where id is the raw
+     * identifier string (see JCR 2.1 specification, section 3.4.4.1.2
+     * Identifier-Based Absolute Paths).
+     *
+     * Version histories of nodes that have been removed must remain accessible
+     * via that node's identifier, thus ensuring continued access. Note that
+     * the application is responsible for saving the identifier in such cases.
+     *
      * @param string $absPath The absolute path to a node the privileges shall
      *      be fetched of.
      *
@@ -212,6 +222,34 @@ interface VersionManagerInterface
      * @api
      */
     public function getBaseVersion($absPath);
+
+    /**
+     * In those implementations that support it, this method removes the entire
+     * specified VersionHistory.
+     *
+     * Note that, as with all cases where a JCR path is passed, this method may
+     * be called with either the normal name-path of a version history node or
+     * its identifier (in square brackets), that is, "[id]" where id is the raw
+     * identifier string. (see JCR 2.1 specification, section 3.4.4.1.2
+     * Identifier-Based Absolute Paths).
+     *
+     * Even in implementations that do permit version history removal, this
+     * method will only remove a version history that has no corresponding
+     * versionable node in any workspace.
+     *
+     * This change is a workspace-write; there is no need to call save.
+     *
+     * @param string $absPath an absolute path.
+     *
+     * @throws VersionException if the version history has an existing
+     *      corresponding versionable node in some workspace.
+     * @throws \PHPCR\UnsupportedRepositoryOperationException if the operation
+     *      is not supported by this implementation.
+     * @throws \PHPCR\RepositoryException If another error occurs.
+     *
+     * @since JCR 2.1
+     */
+    public function removeVersionHistory($absPath);
 
     /**
      * Attempt to restore an old version of a node.
