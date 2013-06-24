@@ -27,8 +27,8 @@ namespace PHPCR\Observation;
 /**
  * The ObservationManager object.
  *
- * Acquired via WorkspaceInterface::getObservationManager(). Allows for the
- * registration and deregistration of event listeners.
+ * Acquired via WorkspaceInterface::getObservationManager(). Provides the event
+ * journal and allows to register and unregister event listeners.
  *
  * The \Traversable interface enables the implementation to be addressed with
  * <b>foreach</b>. ObservationManager has to implement either \IteratorAggregate
