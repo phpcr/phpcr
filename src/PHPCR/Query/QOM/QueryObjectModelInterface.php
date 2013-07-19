@@ -63,7 +63,7 @@ interface QueryObjectModelInterface extends \PHPCR\Query\QueryInterface
     /**
      * Gets the node-tuple source for this query.
      *
-     * @return SourceInterface the node-tuple source; non-null
+     * @return SourceInterface the node-tuple source
      *
      * @api
     */
@@ -72,7 +72,8 @@ interface QueryObjectModelInterface extends \PHPCR\Query\QueryInterface
     /**
      * Gets the constraint for this query.
      *
-     * @return ConstraintInterface the constraint, or null if none
+     * @return ConstraintInterface|null the constraint, or null if there is no
+     *      constraint
      *
      * @api
     */
@@ -81,8 +82,8 @@ interface QueryObjectModelInterface extends \PHPCR\Query\QueryInterface
     /**
      * Gets the orderings for this query.
      *
-     * @return OrderingInterface[] an array of the orderings, if no orderings
-     *      defined an empty array.
+     * @return OrderingInterface[] an array of the orderings. If no orderings
+     *      defined an empty array is returned.
      *
      * @api
     */
@@ -91,8 +92,8 @@ interface QueryObjectModelInterface extends \PHPCR\Query\QueryInterface
     /**
      * Gets the columns for this query.
      *
-     * @return ColumnInterface[] an array of the columns to get, if none
-     *      specified an empty array.
+     * @return ColumnInterface[] an array of the columns to get. If none
+     *      specified an empty array is returned.
      *
      * @api
     */

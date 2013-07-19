@@ -78,7 +78,7 @@ interface ComparisonInterface extends ConstraintInterface
      *
      * Gets the first operand.
      *
-     * @return DynamicOperandInterface the operand; non-null
+     * @return DynamicOperandInterface the operand
      *
      * @api
      */
@@ -96,7 +96,7 @@ interface ComparisonInterface extends ConstraintInterface
     /**
      * Gets the second operand.
      *
-     * @return StaticOperandInterface the operand; non-null
+     * @return StaticOperandInterface the operand
      *
      * @api
      */

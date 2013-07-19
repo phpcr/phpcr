@@ -60,7 +60,7 @@ interface OrderingInterface
     /**
      * The operand by which to order.
      *
-     * @return DynamicOperandInterface the operand; non-null
+     * @return DynamicOperandInterface the operand
      *
      * @api
      */

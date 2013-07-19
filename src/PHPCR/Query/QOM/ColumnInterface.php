@@ -42,7 +42,7 @@ interface ColumnInterface
     /**
      * Gets the name of the selector.
      *
-     * @return string the selector name; non-null
+     * @return string the selector name
      *
      * @api
      */
@@ -51,8 +51,8 @@ interface ColumnInterface
     /**
      * Gets the name of the property.
      *
-     * @return string the property name, or null to include a column for each
-     *      single-value non-residual property of the selector's node type
+     * @return string|null the property name, or null to include a column for
+     *      each single-value non-residual property of the selector's node type
      *
      * @api
      */
@@ -61,8 +61,8 @@ interface ColumnInterface
     /**
      * Gets the column name.
      *
-     * @return string the column name; must be null if getPropertyName is null
-     *      and non-null otherwise
+     * @return string|null the column name; must be null if getPropertyName is
+     *      null and contain the name for this column otherwise.
      *
      * @api
      */

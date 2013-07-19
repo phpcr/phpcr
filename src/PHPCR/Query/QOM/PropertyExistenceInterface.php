@@ -37,7 +37,7 @@ interface PropertyExistenceInterface extends ConstraintInterface
     /**
      * Gets the name of the selector against which to apply this constraint.
      *
-     * @return string the selector name; non-null
+     * @return string the selector name
      *
      * @api
      */
@@ -46,7 +46,7 @@ interface PropertyExistenceInterface extends ConstraintInterface
     /**
      * Gets the name of the property.
      *
-     * @return string the property name; non-null
+     * @return string the property name
      *
      * @api
      */

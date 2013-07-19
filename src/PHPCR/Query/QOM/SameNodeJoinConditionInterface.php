@@ -50,7 +50,8 @@ interface SameNodeJoinConditionInterface extends JoinConditionInterface
     /**
      * Gets the name of the first selector.
      *
-     * @return string the selector name; non-null
+     * @return string the selector name
+     *
      * @api
      */
     public function getSelector1Name();
@@ -58,7 +59,8 @@ interface SameNodeJoinConditionInterface extends JoinConditionInterface
     /**
      * Gets the name of the second selector.
      *
-     * @return string the selector name; non-null
+     * @return string the selector name
+     *
      * @api
      */
     public function getSelector2Name();
@@ -66,7 +68,8 @@ interface SameNodeJoinConditionInterface extends JoinConditionInterface
     /**
      * Gets the path relative to the second selector.
      *
-     * @return string the relative path, or null for none
+     * @return string|null the relative path, or null if no path specified
+     *
      * @api
      */
     public function getSelector2Path();

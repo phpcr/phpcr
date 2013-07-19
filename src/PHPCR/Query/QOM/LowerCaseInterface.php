@@ -40,7 +40,7 @@ interface LowerCaseInterface extends DynamicOperandInterface
     /**
      * Gets the operand whose value is converted to a lower-case string.
      *
-     * @return DynamicOperandInterface the operand; non-null
+     * @return DynamicOperandInterface the operand
      *
      * @api
      */

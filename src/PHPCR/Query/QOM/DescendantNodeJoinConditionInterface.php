@@ -41,7 +41,7 @@ interface DescendantNodeJoinConditionInterface extends JoinConditionInterface
     /**
      * Gets the name of the descendant selector.
      *
-     * @return string the selector name; non-null
+     * @return string the selector name
      *
      * @api
      */
@@ -50,7 +50,7 @@ interface DescendantNodeJoinConditionInterface extends JoinConditionInterface
     /**
      * Gets the name of the ancestor selector.
      *
-     * @return string the selector name; non-null
+     * @return string the selector name
      *
      * @api
      */

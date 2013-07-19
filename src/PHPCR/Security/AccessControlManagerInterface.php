@@ -108,9 +108,9 @@ interface AccessControlManagerInterface
      * @return boolean true if the session has the specified privileges; false
      *      otherwise.
      *
-     * @throws \PHPCR\PathNotFoundException if $absPath is non-null and no node
-     *      at $absPath exists or the session does not have sufficient access
-     *      to retrieve a node at that location
+     * @throws \PHPCR\PathNotFoundException if no node at $absPath exists or
+     *      the session does not have sufficient access to retrieve a node at
+     *      that location
      * @throws \PHPCR\RepositoryException if another error occurs.
      *
      * @api
@@ -170,9 +170,9 @@ interface AccessControlManagerInterface
      * @return AccessControlPolicyInterface[] an array of AccessControlPolicies, if
      *      no policy has been set the array is empty.
      *
-     * @throws \PHPCR\PathNotFoundException if $absPath is non-null and no node
-     *      at $absPath exists or the session does not have sufficient access
-     *      to retrieve a node at that location.
+     * @throws \PHPCR\PathNotFoundException if no node at $absPath exists or
+     *      the session does not have sufficient access to retrieve a node at
+     *      that location
      * @throws \PHPCR\AccessDeniedException if the session lacks
      *      READ_ACCESS_CONTROL privilege for the absPath node.
      * @throws \PHPCR\RepositoryException if another error occurs.
@@ -197,9 +197,9 @@ interface AccessControlManagerInterface
      *
      * @return AccessControlPolicyInterface[] an array of AccessControlPolices.
      *
-     * @throws \PHPCR\PathNotFoundException if $absPath is non-null and no node
-     *      at $absPath exists or the session does not have sufficient access
-     *      to retrieve a node at that location.
+     * @throws \PHPCR\PathNotFoundException if no node at $absPath exists or
+     *      the session does not have sufficient access to retrieve a node at
+     *      that location
      * @throws \PHPCR\AccessDeniedException if the session lacks
      *      READ_ACCESS_CONTROL privilege for the absPath node.
      * @throws \PHPCR\RepositoryException if another error occurs.
@@ -222,9 +222,9 @@ interface AccessControlManagerInterface
      *      are the AccessControlPolicyInterface instances. Keys have no
      *      meaning. Returns an empty iterator if no policies are applicable.
      *
-     * @throws \PHPCR\PathNotFoundException if $absPath is non-null and no node
-     *      at $absPath exists or the session does not have sufficient access
-     *      to retrieve a node at that location.
+     * @throws \PHPCR\PathNotFoundException if no node at $absPath exists or
+     *      the session does not have sufficient access to retrieve a node at
+     *      that location
      * @throws \PHPCR\AccessDeniedException if the session lacks
      *      READ_ACCESS_CONTROL privilege for the absPath node.
      * @throws \PHPCR\RepositoryException if another error occurs.
@@ -261,9 +261,9 @@ interface AccessControlManagerInterface
      * @param AccessControlPolicyInterface $policy The AccessControlPolicy to
      *      be applied.
      *
-     * @throws \PHPCR\PathNotFoundException if $absPath is non-null and no node
-     *      at $absPath exists or the session does not have sufficient access
-     *      to retrieve a node at that location.
+     * @throws \PHPCR\PathNotFoundException if no node at $absPath exists or
+     *      the session does not have sufficient access to retrieve a node at
+     *      that location
      * @throws AccessControlException if the policy is not applicable.
      * @throws \PHPCR\AccessDeniedException if the session lacks
      *      MODIFY_ACCESS_CONTROL privilege for $absPath.
@@ -296,9 +296,9 @@ interface AccessControlManagerInterface
 
      * @param AccessControlPolicyInterface $policy the policy to be removed.
      *
-     * @throws \PHPCR\PathNotFoundException if $absPath is non-null and no node
-     *      at $absPath exists or the session does not have sufficient access
-     *      to retrieve a node at that location.
+     * @throws \PHPCR\PathNotFoundException if no node at $absPath exists or
+     *      the session does not have sufficient access to retrieve a node at
+     *      that location
      * @throws AccessControlException if the policy to remove does not exist at
      *      the node at absPath.
      * @throws \PHPCR\AccessDeniedException if the session lacks

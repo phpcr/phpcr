@@ -34,7 +34,7 @@ interface BindVariableValueInterface extends StaticOperandInterface
     /**
      * Gets the name of the bind variable.
      *
-     * @return string the bind variable name; non-null
+     * @return string the bind variable name
      *
      * @api
      */

@@ -34,7 +34,7 @@ interface LiteralInterface extends StaticOperandInterface
     /**
      * Gets the value of the literal.
      *
-     * @return string the literal value; non-null
+     * @return string the literal value
      *
      * @api
      */

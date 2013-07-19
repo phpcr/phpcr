@@ -39,7 +39,7 @@ interface ChildNodeJoinConditionInterface extends JoinConditionInterface
     /**
      * Gets the name of the child selector.
      *
-     * @return string the selector name; non-null
+     * @return string the selector name
      *
      * @api
      */
@@ -48,7 +48,7 @@ interface ChildNodeJoinConditionInterface extends JoinConditionInterface
     /**
      * Gets the name of the parent selector.
      *
-     * @return string the selector name; non-null
+     * @return string the selector name
      *
      * @api
      */

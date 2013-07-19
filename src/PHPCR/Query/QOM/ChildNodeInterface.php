@@ -39,7 +39,7 @@ interface ChildNodeInterface extends ConstraintInterface
     /**
      * Gets the name of the selector against which to apply this constraint.
      *
-     * @return string the selector name; non-null
+     * @return string the selector name
      *
      * @api
      */
@@ -48,7 +48,7 @@ interface ChildNodeInterface extends ConstraintInterface
     /**
      * Gets the absolute path.
      *
-     * @return string the path; non-null
+     * @return string the path
      *
      * @api
      */

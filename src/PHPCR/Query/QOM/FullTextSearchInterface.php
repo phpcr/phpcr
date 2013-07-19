@@ -76,7 +76,7 @@ interface FullTextSearchInterface extends ConstraintInterface
     /**
      * Gets the name of the selector against which to apply this constraint.
      *
-     * @return string the selector name; non-null
+     * @return string the selector name
      *
      * @api
      */
@@ -85,7 +85,7 @@ interface FullTextSearchInterface extends ConstraintInterface
     /**
      * Gets the name of the property.
      *
-     * @return string the property name if the full-text search scope is a
+     * @return string|null the property name if the full-text search scope is a
      *      property, otherwise null if the full-text search scope is the node
      *      (or node subgraph, in some implementations).
      *
@@ -96,7 +96,7 @@ interface FullTextSearchInterface extends ConstraintInterface
     /**
      * Gets the full-text search expression.
      *
-     * @return StaticOperandInterface the full-text search expression; non-null
+     * @return StaticOperandInterface the full-text search expression
      *
      * @api
      */

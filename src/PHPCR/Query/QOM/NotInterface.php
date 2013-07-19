@@ -36,7 +36,7 @@ interface NotInterface extends ConstraintInterface
     /**
      * Gets the constraint negated by this Not constraint.
      *
-     * @return ConstraintInterface the constraint; non-null
+     * @return ConstraintInterface the constraint
      *
      * @api
      */

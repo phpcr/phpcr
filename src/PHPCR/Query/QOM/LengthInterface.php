@@ -39,7 +39,7 @@ interface LengthInterface extends DynamicOperandInterface
     /**
      * Gets the property value for which to compute the length.
      *
-     * @return PropertyValueInterface the property value; non-null
+     * @return PropertyValueInterface the property value
      *
      * @api
      */

@@ -40,7 +40,7 @@ interface OrInterface extends ConstraintInterface
     /**
      * Gets the first constraint.
      *
-     * @return ConstraintInterface the constraint; non-null
+     * @return ConstraintInterface the constraint
      *
      * @api
      */
@@ -49,7 +49,7 @@ interface OrInterface extends ConstraintInterface
     /**
      * Gets the second constraint.
      *
-     * @return ConstraintInterface the constraint; non-null
+     * @return ConstraintInterface the constraint
      *
      * @api
      */
