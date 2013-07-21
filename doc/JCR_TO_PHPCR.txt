@@ -285,9 +285,10 @@ journal translates naturally to PHP, the event listeners do not at all.
 Events in PHPCR always are about all users of the repository, not only about
 the current session. To get and handle events from others without polling, the
 code would have to be multithreaded, which PHP usually is not.
-
-The Interfaces for event listener have been translated, but we have to decide
-what to do with them: https://github.com/phpcr/phpcr/issues/41
+It is left to the PHPCR implementation how to implement event listeners.
+The easiest is probably to offer a "poll" method on the ObservationManager and
+let the application set up the listeners, then trigger the poll. This could be
+done in a cronjob, or a long running process, or with multiple threads.
 
 
 Security
