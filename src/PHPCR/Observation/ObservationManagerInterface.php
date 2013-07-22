@@ -30,6 +30,11 @@ namespace PHPCR\Observation;
  * Acquired via WorkspaceInterface::getObservationManager(). Provides the event
  * journal and allows to register and unregister event listeners.
  *
+ * <strong>Note</strong>: Event listeners will need some sort of polling
+ * mechanism that is specific to your implementation. Consult your PHPCR
+ * implementation documentation to learn how to use event listeners.
+ * Alternatively, you can simply use getEventJournal to find events.
+ *
  * The \Traversable interface enables the implementation to be addressed with
  * <b>foreach</b>. ObservationManager has to implement either \IteratorAggregate
  * or \Iterator.
