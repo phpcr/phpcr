@@ -83,8 +83,8 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * available in the repository, the query is valid but the selector selects
      * no nodes.
      *
+     * @param string $selectorName the selector name
      * @param string $nodeTypeName the name of the required node type
-     * @param string $selectorName the selector name; non-null
      *
      * @return SelectorInterface the selector
      *
@@ -96,7 +96,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    public function selector($nodeTypeName, $selectorName = null);
+    public function selector($selectorName, $nodeTypeName);
 
     /**
      * Performs a join between two node-tuple sources.
@@ -324,8 +324,8 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * - $propertyName is not a syntactically valid JCR name
      * - $selectorName is not the name of a selector in the query
      *
+     * @param string $selectorName the selector name
      * @param string $propertyName the property name
-     * @param string $selectorName the selector name; non-null
      *
      * @return PropertyExistenceInterface the constraint
      *
@@ -337,7 +337,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    public function propertyExistence($propertyName, $selectorName = null);
+    public function propertyExistence($selectorName, $propertyName);
 
     /**
      * Performs a full-text search against the specified or default selector.
@@ -353,11 +353,11 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * does not have a property named $propertyName, the query is valid but the
      * constraint is not satisfied.
      *
+     * @param string $selectorName the selector name
      * @param string|null $propertyName the property name, or null to search all
      *      full-text indexed properties of the node (or node subgraph, in some
      *      implementations);
      * @param string $fullTextSearchExpression the full-text search expression
-     * @param string $selectorName the selector name; non-null
      *
      * @return FullTextSearchInterface the constraint
      *
@@ -369,7 +369,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    public function fullTextSearch($propertyName, $fullTextSearchExpression, $selectorName = null);
+    public function fullTextSearch($selectorName, $propertyName, $fullTextSearchExpression);
 
     /**
      * Tests whether a node in the specified or default selector is reachable
@@ -385,8 +385,8 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *   because of access control constraints), the query is valid but the
      *   constraint is not satisfied.
      *
+     * @param string $selectorName the selector name
      * @param string $path         an absolute path
-     * @param string $selectorName the selector name; non-null
      *
      * @return \PHPCR\Query\QOM\SameNodeInterface the constraint
      *
@@ -395,7 +395,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    public function sameNode($path, $selectorName = null);
+    public function sameNode($selectorName, $path);
 
     /**
      * Tests whether a node in the specified or default selector is a child of
@@ -411,8 +411,8 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *   because of access control constraints), the query is valid but the
      *   constraint is not satisfied.
      *
+     * @param string $selectorName the selector name
      * @param string $path         an absolute path
-     * @param string $selectorName the selector name; non-null
      *
      * @return \PHPCR\Query\QOM\ChildNodeInterface the constraint
      *
@@ -424,7 +424,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    public function childNode($path, $selectorName = null);
+    public function childNode($selectorName, $path);
 
     /**
      * Tests whether a node in the specified or default selector is a
@@ -440,8 +440,8 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *   because of access control constraints), the query is valid but the
      *   constraint is not satisfied.
      *
+     * @param string $selectorName the selector name
      * @param string $path         an absolute path
-     * @param string $selectorName the selector name; non-null
      *
      * @return DescendantNodeInterface the constraint
      *
@@ -453,7 +453,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    public function descendantNode($path, $selectorName = null);
+    public function descendantNode($selectorName, $path);
 
     /**
      * Evaluates to the value (or values, if multi-valued) of a property in the
@@ -463,8 +463,8 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * - $selectorName is not the name of a selector in the query
      * - $propertyName is not a syntactically valid JCR name
      *
+     * @param string $selectorName the selector name
      * @param string $propertyName the property name
-     * @param string $selectorName the selector name; non-null
      *
      * @return PropertyValueInterface the operand
      *
@@ -473,7 +473,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    public function propertyValue($propertyName, $selectorName = null);
+    public function propertyValue($selectorName, $propertyName);
 
     /**
      * Evaluates to the length (or lengths, if multi-valued) of a property.
@@ -500,7 +500,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * The query is invalid if $selectorName is not the name of a selector in
      * the query.
      *
-     * @param string $selectorName the selector name; non-null
+     * @param string $selectorName the selector name
      *
      * @return NodeNameInterface the operand
      *
@@ -512,7 +512,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    public function nodeName($selectorName = null);
+    public function nodeName($selectorName);
 
     /**
      * Evaluates to a NAME value equal to the local (unprefixed) name of a node
@@ -521,7 +521,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * The query is invalid if $selectorName is not the name of a selector in
      * the query.
      *
-     * @param string $selectorName the selector name; non-null
+     * @param string $selectorName the selector name
      *
      * @return NodeLocalNameInterface the operand
      *
@@ -530,7 +530,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    public function nodeLocalName($selectorName = null);
+    public function nodeLocalName($selectorName);
 
     /**
      * Evaluates to a DOUBLE value equal to the full-text search score of a
@@ -539,7 +539,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * The query is invalid if $selectorName is not the name of a selector in
      * the query.
      *
-     * @param string $selectorName the selector name; non-null
+     * @param string $selectorName the selector name
      *
      * @return FullTextSearchScoreInterface the operand
      *
@@ -551,7 +551,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    public function fullTextSearchScore($selectorName = null);
+    public function fullTextSearchScore($selectorName);
 
     /**
      * Evaluates to the lower-case string value (or values, if multi-valued) of
@@ -682,12 +682,13 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * does not have a property named $propertyName, the query is valid and the
      * column has null value.
      *
+     * @param string $selectorName the selector name
      * @param string|null $propertyName the property name, or null to include a
      *      column for each single-value non-residual property of the
      *      selector's node type
      * @param string|null $columnName   the column name; must be null if
-     *      propertyName is null
-     * @param string $selectorName the selector name; non-null
+     *      propertyName is null, otherwise must be the the column name for
+     *      this property.
      *
      * @return ColumnInterface the column
      *
@@ -697,5 +698,5 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    public function column($propertyName, $columnName = null, $selectorName = null);
+    public function column($selectorName, $propertyName = null, $columnName = null);
 }
