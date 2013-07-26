@@ -49,9 +49,9 @@ namespace PHPCR\Transaction;
  *
  *    $tm = $session->getTransactionManager();
  *    $tm->begin();
- *    //do stuff with the session
+ *    // do stuff with the session
  *    $session->save();
- *    //do more stuff
+ *    // do more stuff
  *    if (problem) {
  *        $tm->rollback();
  *    } else {

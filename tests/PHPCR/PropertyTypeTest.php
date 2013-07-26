@@ -1,10 +1,12 @@
 <?php
 namespace PHPCR\Tests;
 
+use PHPCR\NodeInterface;
+use PHPCR\PropertyInterface;
 use PHPCR\PropertyType;
 
 /**
- * a test for the PHPCR\PropertyType class
+ * @covers \PHPCR\PropertyType
  */
 class PropertyTypesTest extends \PHPUnit_Framework_TestCase
 {
@@ -71,6 +73,11 @@ class PropertyTypesTest extends \PHPUnit_Framework_TestCase
 
     public function dataValueTypes()
     {
+        $property = $this->getMock('PHPCR\Tests\PropertyMock');
+        $property->expects($this->once())
+            ->method('getType')
+            ->will($this->returnValue(PropertyType::BINARY))
+        ;
         return array(
             array('test', PropertyType::STRING),
             array(fopen('php://memory', 'w+'), PropertyType::BINARY),
@@ -84,7 +91,7 @@ class PropertyTypesTest extends \PHPUnit_Framework_TestCase
             array(true, PropertyType::BOOLEAN),
             array(false, PropertyType::BOOLEAN),
             // NAME is never found, its just a string
-            // TODO: PATH for property
+            array($property, PropertyType::BINARY),
             array($this->getMock('PHPCR\Tests\NodeMock'), PropertyType::REFERENCE),
             // URI is never found, its just a string
             // DECIMAL is never found, its just a string
@@ -116,5 +123,7 @@ class PropertyTypesTest extends \PHPUnit_Framework_TestCase
     }
 }
 
-interface NodeMock extends \Iterator, \PHPCR\NodeInterface
+interface NodeMock extends \Iterator, NodeInterface
+{}
+interface PropertyMock extends \Iterator, PropertyInterface
 {}
