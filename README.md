@@ -5,8 +5,12 @@ The PHP Content Repository Interfaces aim to provide that API in PHP. PHPCR is p
 of the Java Content Repository.
 
 There is a bunch of information here:
-http://phpcr.github.com
+http://phpcr.github.io
 
+# License
+
+This code is dual licensed under the MIT license and the Apache License Version 2.0.
+Please see the file LICENSE.txt in this folder.
 
 # Documentation
 
