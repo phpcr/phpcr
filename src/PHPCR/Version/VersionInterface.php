@@ -99,7 +99,7 @@ interface VersionInterface extends \PHPCR\NodeInterface
      *
      * Assuming that this Version object was acquired through a Workspace $w
      * and is within the VersionHistory $h, this method returns the predecessor
-     * ofthis version along the same line of descent as is returned by
+     * of this version along the same line of descent as is returned by
      * $h->getAllLinearVersions() where $h was also acquired through $w.
      *
      * Note that under simple versioning the behavior of this method is

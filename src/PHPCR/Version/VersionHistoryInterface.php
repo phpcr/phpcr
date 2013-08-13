@@ -108,7 +108,7 @@ interface VersionHistoryInterface extends \PHPCR\NodeInterface
 
     /**
      * This method returns all the frozen nodes of all the versions in this
-     * verison history in the same order as getAllLinearVersions().
+     * version history in the same order as getAllLinearVersions().
      *
      * @return \Iterator implementing <b>SeekableIterator</b> and
      *      <b>Countable</b>. Values are the NodeInterface instances. Keys

@@ -54,7 +54,7 @@ namespace PHPCR;
  *
  * PHP Note on date formatting:
  *   Since there is no formatting for milliseconds in PHP we construct the date formatting by cutting the microseconds
- *   to 3 positions. Unfortunately this might cause an inacuracy of one millisecond in the worst case.
+ *   to 3 positions. Unfortunately this might cause an inaccuracy of one millisecond in the worst case.
  *
  * @author Sebastian Kurfürst <sebastian@typo3.org>
  * @author Karsten Dambekalns <karsten@typo3.org>

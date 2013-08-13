@@ -144,7 +144,7 @@ interface PrivilegeInterface
     const JCR_LOCK_MANAGEMENT = "{http://www.jcp.org/jcr/1.0}lockManagement";
 
     /**
-     * A constant representing jcr:versionManagment (in extended form), the
+     * A constant representing jcr:versionManagement (in extended form), the
      * privilege to perform versioning operations on a node.
      *
      * @api

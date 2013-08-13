@@ -78,7 +78,7 @@ does *not* require the ArrayAccess interface with random access by key.
 Additionally, API elements have been declared as Traversable where it makes sense.
 This allows to directly use the objects in a foreach statement.
 The implementation either has to implement IteratorAggregate::getIterator to
-return a suitable iterator, or be an iterator itselves.
+return a suitable iterator, or be an iterator itself.
 
 PHP NOTE: When implementing the interfaces, you have to declare either
 implements Iterator or IteratorAggregate explicitly in your class signature.
@@ -250,14 +250,14 @@ Main differences to the original Java UserTransaction:
    - java.lang.SecurityException -> \PHPCR\AccessDeniedException
  * New PHPCR exception specified by the Java spec:
    - RollbackException -> \PHPCR\Transaction\RollbackException
- * Standrad Java exception exchanged by SPL PHP exception:
+ * Standard Java exception exchanged by SPL PHP exception:
    - java.lang.IllegalStateException -> LogicException
  * Two Java exceptions were dropped:
    - HeuristicMixedException
    - HeuristicRollbackException
 
 An implementation of the UserTransaction interface has to take care of that if
-a transaction is startet every following request to the repository will be
+a transaction is started every following request to the repository will be
 done in the transactions context.
 
 It shall also be possible to use the UserTransaction interface on a deeper
