@@ -43,7 +43,7 @@ namespace PHPCR\Query\QOM;
  * - a list of zero or more orderings. The orderings specify the order in which
  *   the node-tuples appear in the query results. The relative order of two
  *   node-tuples is determined by evaluating the specified orderings, in list
- *   order, untilencountering an ordering for which one node-tuple precedes the
+ *   order, until encountering an ordering for which one node-tuple precedes the
  *   other. If no orderings are specified, or if for none of the specified
  *   orderings does one node-tuple precede the other, then the relative order
  *   of the node-tuples is implementation determined (and may be arbitrary).

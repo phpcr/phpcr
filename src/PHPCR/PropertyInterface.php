@@ -760,7 +760,7 @@ interface PropertyInterface extends ItemInterface, \Traversable
      * For a BINARY property, getLength returns the number of bytes.
      * For other property types, getLength returns the same value that would be
      * returned by calling strlen() on the value when it has been converted to
-     * a STRING according to standard JCR propety type conversion.
+     * a STRING according to standard JCR property type conversion.
      *
      * Returns -1 if the implementation cannot determine the length.
      *

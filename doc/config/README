@@ -22,7 +22,7 @@ How to use the configuration file to generate the documentation
    to render the documentation when your working directory is the phpcr root directory.
 
 NOTE:
-Please do not commit your copy of the configuration file or the generated documenation.
+Please do not commit your copy of the configuration file or the generated documentation.
 
 
 Links

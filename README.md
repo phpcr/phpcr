@@ -67,7 +67,7 @@ are interchangeable with each other.
 
 # Implementations
 
-*Jackalope separates the content repository logic from the storage backend. Several backend drivers are currently being developped.*
+*Jackalope separates the content repository logic from the storage backend. Several backend drivers are currently being developed.*
 
 * [Jackalope-Jackrabbit](https://jackalope.github.com/): Mapping requests to a java Jackrabbit instance. To day the most feature complete implementation.
 * [Jackalope-DoctrineDBAL](https://jackalope.github.com/): Storing data in a relational database using the Doctrine Database Abstraction Layer.

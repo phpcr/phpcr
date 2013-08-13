@@ -442,7 +442,7 @@ interface VersionManagerInterface
      * is encountered whose corresponding node's base version is on a divergent
      * branch from the base version of the node at absPath.
      *
-     * This is a worksapce-write method and therefore any changes are dispatched
+     * This is a workspace-write method and therefore any changes are dispatched
      * immediately.
      *
      * This method returns an iterator over all versionable nodes in the
@@ -682,7 +682,7 @@ interface VersionManagerInterface
      *
      * The new node is dispatched immediately and does not require a save.
      *
-     * @param string $title The tilte of the activity to be created.
+     * @param string $title The title of the activity to be created.
      *
      * @return \PHPCR\NodeInterface the new activity Node.
      *
