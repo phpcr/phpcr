@@ -1,9 +1,16 @@
 <?php
 /**
- * This is a bootstrap for phpUnit unit tests
+ * This file is part of the PHPCR API and was originally ported from the Java
+ * JCR API to PHP by Karsten Dambekalns for the FLOW3 project.
+ *
+ * Copyright 2008-2013 Karsten Dambekalns <karsten@typo3.org>
+ *
+ * For the full copyright and license information, please view the LICENSE.txt
+ * file that was distributed with this source code.
  *
  * @author Nacho Martín <nitram.ohcan@gmail.com>
  * @license http://www.apache.org/licenses/LICENSE-2.0 Apache Software License 2.0
+ * @license http://opensource.org/licenses/MIT MIT License
  * @link http://phpcr.github.com/
  */
 if (!class_exists('PHPUnit_Framework_TestCase') ||
