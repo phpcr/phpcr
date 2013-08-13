@@ -79,7 +79,7 @@ interface SessionInterface
 
     /**
      * A constant representing the set_property action string, used to
-     * determine ifthis Session has permission to set (add or modify) a
+     * determine if this Session has permission to set (add or modify) a
      * property.
      *
      * @api
@@ -397,7 +397,7 @@ interface SessionInterface
     public function nodeExists($absPath);
 
     /**
-     * Determines the existance of a property.
+     * Determines the existence of a property.
      *
      * Returns true if a property exists at absPath and this Session has read
      * access to it; otherwise returns false.
@@ -959,7 +959,7 @@ interface SessionInterface
      *
      * @param string $absPath The path of the root of the subgraph to be
      *      serialized. This must be the path to a node, not a property
-     * @param resource $stream The stream resource (i.e. aquired with fopen) to
+     * @param resource $stream The stream resource (i.e. acquired with fopen) to
      *      which the XML serialization of the subgraph will be output. Must
      *      support the fwrite method.
      * @param boolean $skipBinary A boolean governing whether binary properties
@@ -1007,7 +1007,7 @@ interface SessionInterface
      *
      * @param string $absPath The path of the root of the subgraph to be
      *      serialized. This must be the path to a node, not a property
-     * @param resource $stream The stream resource (i.e. aquired with fopen) to
+     * @param resource $stream The stream resource (i.e. acquired with fopen) to
      *      which the XML serialization of the subgraph will be output. Must
      *      support the fwrite method.
      * @param boolean $skipBinary A boolean governing whether binary properties
@@ -1080,7 +1080,7 @@ interface SessionInterface
      * Returns the prefix to which the given uri is mapped as currently set in
      * this Session.
      *
-     * @param string $uri The loaction of the namespace definition (usually a
+     * @param string $uri The location of the namespace definition (usually a
      *      uri).
      *
      * @return string The prefix of a namespace identified by its uri.

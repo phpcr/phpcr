@@ -109,7 +109,7 @@ interface RetentionManagerInterface
     public function removeHold($absPath, HoldInterface $hold);
 
     /**
-     * Gets the retention poilcy of a node identified by its path.
+     * Gets the retention policy of a node identified by its path.
      *
      * Returns the retention policy that has been set using
      * setRetentionPolicy() on the node at $absPath or null if no policy has

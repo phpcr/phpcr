@@ -118,11 +118,11 @@ interface RepositoryInterface
      *
      * - IDENTIFIER_STABILITY_METHOD_DURATION - Identifiers may change between
      *      method calls.
-     * - IDENTIFIER_STABILITY_SAVE_DURATION - Identifers are guaranteed stable
+     * - IDENTIFIER_STABILITY_SAVE_DURATION - Identifiers are guaranteed stable
      *      within a single save/refresh cycle.
      * - IDENTIFIER_STABILITY_SESSION_DURATION - Identifiers are guaranteed
      *      stable within a single session.
-     * - IDENTIFIER_STABILITY_INDEFINITE_DURATION - Identifers are guaranteed
+     * - IDENTIFIER_STABILITY_INDEFINITE_DURATION - Identifiers are guaranteed
      *      to be stable forever.
      *
      * @api
@@ -329,7 +329,7 @@ interface RepositoryInterface
      * type inheritance:
      *
      * - NODE_TYPE_MANAGEMENT_INHERITANCE_MINIMAL Registration of primary node
-     *      types is limited to those which have onlynt:base as supertype.
+     *      types is limited to those which have only nt:base as supertype.
      *      Registration of mixin node types is limited to those without any
      *      supertypes.
      *

@@ -126,7 +126,7 @@ interface NodeTypeDefinitionInterface
     public function hasOrderableChildNodes();
 
     /**
-     * Determins if the node type is queryable.
+     * Determines if the node type is queryable.
      *
      * Returns true if the node type is queryable, meaning that the
      * available-query-operators, full-text-searchable and query-orderable
