@@ -45,7 +45,7 @@ class SimpleCredentialsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException InvalidArgumentException
+     * @expectedException \InvalidArgumentException
      * @depends testConstructor
      */
     public function testSetAttributeInvalid(SimpleCredentials $credentials)
