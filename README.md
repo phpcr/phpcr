@@ -1,18 +1,25 @@
-Interfaces for the PHP Content Repository PHPCR.
+# PHP Content Repository PHPCR [![Build Status](https://secure.travis-ci.org/phpcr/phpcr.png)](http://travis-ci.org/phpcr/phpcr)
 
-The [JSR-283](http://jcp.org/en/jsr/summary?id=283) specification defines an API for a Content Repository (CR).
-The PHP Content Repository Interfaces aim to provide that API in PHP. PHPCR is part of JSR-333, the next version
-of the Java Content Repository.
+This repository contains interfaces for the PHPCR standard.
 
-There is a bunch of information here:
-http://phpcr.github.com
+The [JSR-283](http://jcp.org/en/jsr/summary?id=283) specification defines an
+API for a Content Repository (CR). The PHP Content Repository Interfaces aims
+to provide that API in PHP. PHPCR is part of JSR-333, the next version of the
+Java Content Repository.
+
+There is a bunch of information here: http://phpcr.github.io
 
 
 # Documentation
 
 ## Introduction
 
-PHP content repository is an API. That is, it defines a standardized way how to access and manipulate content. As with any general API, the main goal is to [decouple the backend from the frontend](http://bergie.iki.fi/blog/decoupling_content_management/). If you code against the PHPCR API, your code should run with all PHPCR implementations. David Nuescheler, the lead of JCR, provides the following [advantages of using a content repository](http://www.slideshare.net/uncled/introduction-to-jcr)
+PHP content repository is an API. That is, it defines a standardized way how to
+access and manipulate content. As with any general API, the main goal is to
+[decouple the backend from the frontend](http://bergie.iki.fi/blog/decoupling_content_management/).
+If you code against the PHPCR API, your code should run with all PHPCR
+implementations. David Nuescheler, the lead of JCR, provides the following
+[advantages of using a content repository](http://www.slideshare.net/uncled/introduction-to-jcr).
 
 * Functional Definition of a “Content Repository”
 * Common Vocabulary!
@@ -21,8 +28,10 @@ PHP content repository is an API. That is, it defines a standardized way how to 
 * Compare Repository Functionality
 * No more information silos and vendor Lock-in Content-Centric Infrastructure
 
-PHPCR is adapted from the Java Content Repository (JCR) standard because that is a widely used and well thought through standard.
-There exist a couple of implementations for PHPCR that you can use. See below for a list of known implementations.
+PHPCR is adapted from the Java Content Repository (JCR) standard because that
+is a widely used and well thought through standard. There exist a couple of
+implementations for PHPCR that you can use. See below for a list of known
+implementations.
 
 ## Further reading
 
@@ -77,17 +86,21 @@ are interchangeable with each other.
 
 * [phpcr-utils](https://github.com/phpcr/phpcr-utils): A couple of utility classes and console commands to work with phcpr, independent of the implementation.
 
-If you work on your own implementation, please let us know so we can add it here right away. Even if its not yet working, others might want to join in and help.
+If you work on your own implementation, please let us know so we can add it
+here right away. Even if its not yet working, others might want to join in and
+help.
 
 ## Dependencies
 
-PHPCR provides a composer.json for [Composer](http://packagist.org/about-composer) and is available through [Packagist](http://packagist.org/).
+PHPCR provides a composer.json for [Composer](http://packagist.org/about-composer)
+and is available through [Packagist](http://packagist.org/).
 
 # History
 
 The API was originally ported from Java to PHP by Karsten Dambekalns
 with the help of others for the typo3/flow3 project.
 
-A first attempt at a port of JSR-170 to php has been made by [SimPCoRe](http://www.simpcore.org/), but it
-seems no applications have been published. That version never tried to provide an API, but just implemented the Java
-interfaces literally.
+A first attempt at a port of JSR-170 to php has been made by
+[SimPCoRe](http://www.simpcore.org/), but it seems no applications have been
+published. That version never tried to provide an API, but just implemented the
+Java interfaces literally.
