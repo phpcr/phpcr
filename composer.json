@@ -3,8 +3,11 @@
     "type": "library",
     "description": "PHP Content Repository interfaces",
     "keywords": ["phpcr", "contentrepository"],
-    "homepage": "http://phpcr.github.com",
-    "license": "Apache-2.0",
+    "homepage": "http://phpcr.github.io",
+    "license": [
+        "MIT",
+        "Apache-2.0"
+    ],
     "authors": [
         {
             "name": "David Buchmann",
