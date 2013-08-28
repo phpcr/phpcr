@@ -25,15 +25,12 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * See the individual QOM factory methods for the validity criteria of each
      * query element.
      *
-     * @param SourceInterface          $source     the Selector or the
-     *      node-tuple Source
-     * @param ConstraintInterface|null $constraint the constraint, null to have
-     *      no constraint
-     * @param array                    $orderings  zero (empty array) or more
-     *      instances of Ordering
-     * @param array                    $columns    the array of Column
-     *      definitions to return in the result. empty array is equivalent to
-     *      the * in SQL2, meaning some fields.
+     * @param SourceInterface          $source     the Selector or the node-tuple Source
+     * @param ConstraintInterface|null $constraint the constraint, null to have no constraint
+     * @param array                    $orderings  zero (empty array) or more instances of Ordering
+     * @param array                    $columns    the array of Column definitions to return in the
+     *                                             result. empty array is equivalent to the * in
+     *                                             SQL2, meaning some fields.
      *
      * @return QueryObjectModelInterface the query
      *
@@ -178,7 +175,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * - $parentSelector is not the name of a selector in the query
      * - $childSelector is the same as $parentSelector
      *
-     * @param string $childSelectorName the name of the child selector
+     * @param string $childSelectorName  the name of the child selector
      * @param string $parentSelectorName the name of the parent selector
      *
      * @return ChildNodeJoinConditionInterface the constraint
@@ -280,9 +277,8 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * Filters node-tuples based on the outcome of a binary operation.
      *
      * @param DynamicOperandInterface $operand1 the first operand
-     * @param string $operator the operator; one of
-     *      QueryObjectModelConstants.JCR_OPERATOR_*
-     * @param StaticOperandInterface $operand2 the second operand
+     * @param string                  $operator the operator; one of QueryObjectModelConstants.JCR_OPERATOR_*
+     * @param StaticOperandInterface  $operand2 the second operand
      *
      * @return \PHPCR\Query\QOM\ComparisonInterface the constraint
      *
@@ -334,7 +330,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * does not have a property named $propertyName, the query is valid but the
      * constraint is not satisfied.
      *
-     * @param string $selectorName the selector name
+     * @param string      $selectorName the selector name
      * @param string|null $propertyName the property name, or null to search all
      *      full-text indexed properties of the node (or node subgraph, in some
      *      implementations);
@@ -663,7 +659,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * does not have a property named $propertyName, the query is valid and the
      * column has null value.
      *
-     * @param string $selectorName the selector name
+     * @param string      $selectorName the selector name
      * @param string|null $propertyName the property name, or null to include a
      *      column for each single-value non-residual property of the
      *      selector's node type

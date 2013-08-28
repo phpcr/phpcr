@@ -259,9 +259,9 @@ final class PropertyType
      *
      * This method is case-insensitive
      *
-     * @param  string $name The name of the property type
+     * @param string $name The name of the property type
      *
-     * @return int    The numeric constant value
+     * @return int The numeric constant value
      *
      * @throws \InvalidArgumentException if the given name is unknown.
      *

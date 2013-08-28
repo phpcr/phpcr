@@ -245,7 +245,7 @@ interface AccessControlManagerInterface
      * @throws \PHPCR\PathNotFoundException if no node at $absPath exists or
      *      the session does not have sufficient access to retrieve a node at
      *      that location
-     * @throws AccessControlException if the policy is not applicable.
+     * @throws AccessControlException       if the policy is not applicable.
      * @throws \PHPCR\AccessDeniedException if the session lacks
      *      MODIFY_ACCESS_CONTROL privilege for $absPath.
      * @throws \PHPCR\Lock\LockException if a lock prevents the assignment and

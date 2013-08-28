@@ -442,7 +442,6 @@ interface WorkspaceInterface
      */
     public function removeItem($absPath);
 
-
     /**
      * Returns the LockManager object, through which locking methods are accessed.
      *

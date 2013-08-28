@@ -225,7 +225,7 @@ interface NodeTypeManagerInterface extends \Traversable
      * PHPCR Note: Rather than doing mixed arguments we decided to name this
      * method explicitly different, as we have no operator overloading in PHP.
      *
-     * @param string $cnd containing the node type definitions in CND format
+     * @param string  $cnd         containing the node type definitions in CND format
      * @param boolean $allowUpdate whether existing node type definitions
      *      should be modified/updated.
      *

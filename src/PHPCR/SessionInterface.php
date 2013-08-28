@@ -342,7 +342,6 @@ interface SessionInterface
      */
     public function getProperties($absPaths);
 
-
     /**
      * Determines if the item identified by a path does exists.
      *

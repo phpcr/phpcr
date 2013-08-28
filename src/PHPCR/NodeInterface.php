@@ -259,7 +259,6 @@ interface NodeInterface extends ItemInterface, \Traversable
      */
     public function orderBefore($srcChildRelPath, $destChildRelPath);
 
-
     /**
      * Renames this node to the specified newName. The ordering (if any) of
      * this node among it siblings remains unchanged.
@@ -569,8 +568,8 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * The same reacquisition semantics apply as with getProperty()
      *
-     * @param string $relPath the relative path to the desired property
-     * @param mixed $defaultValue the default value if no property $name exists
+     * @param string $relPath      the relative path to the desired property
+     * @param mixed  $defaultValue the default value if no property $name exists
      *
      * @return mixed the value of the property at $relPath or $defaultValue
      *
@@ -635,7 +634,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      * To improve performance, implementations should avoid instantiating the
      * property objects for this method
      *
-     * @param string|array $nameFilter      a name pattern
+     * @param string|array $nameFilter  a name pattern
      * @param boolean      $dereference whether to dereference REFERENCE,
      *      WEAKREFERENCE and PATH properties or just return id/path strings
      *

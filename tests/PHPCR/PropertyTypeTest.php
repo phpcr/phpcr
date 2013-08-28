@@ -78,6 +78,7 @@ class PropertyTypesTest extends \PHPUnit_Framework_TestCase
             ->method('getType')
             ->will($this->returnValue(PropertyType::BINARY))
         ;
+
         return array(
             array('test', PropertyType::STRING),
             array(fopen('php://memory', 'w+'), PropertyType::BINARY),

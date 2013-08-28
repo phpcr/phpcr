@@ -47,7 +47,7 @@ interface LockManagerInterface extends \Traversable
      *
      * @return LockInterface The applicable Lock object.
      *
-     * @throws LockException    if no lock applies to this node.
+     * @throws LockException                if no lock applies to this node.
      * @throws \PHPCR\AccessDeniedException if the current session does not
      *      have sufficient access to get the lock.
      * @throws \PHPCR\PathNotFoundException if no node is found at $absPath
@@ -167,7 +167,7 @@ interface LockManagerInterface extends \Traversable
     /**
      * Alternative method to lock with all the options in one configuration class.
      *
-     * @param string  $absPath The absolute path of node to be locked
+     * @param string            $absPath  The absolute path of node to be locked
      * @param LockInfoInterface $lockInfo configured with the desired
      *      characteristics for this lock.
      *

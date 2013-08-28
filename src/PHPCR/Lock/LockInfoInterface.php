@@ -2,7 +2,6 @@
 
 namespace PHPCR\Lock;
 
-
 /**
  * A storage object for lock configuration. A blank
  * <code>LockInfoInterface</code> is acquired through

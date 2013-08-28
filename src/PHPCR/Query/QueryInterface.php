@@ -46,8 +46,8 @@ interface QueryInterface
     /**
      * Binds the given value to the variable named $varName.
      *
-     * @param  string $varName name of variable in query
-     * @param  mixed  $value   value to bind
+     * @param string $varName name of variable in query
+     * @param mixed  $value   value to bind
      *
      * @throws \InvalidArgumentException  if $varName is not a valid variable in this query.
      * @throws \PHPCR\RepositoryException if an error occurs.
@@ -103,7 +103,7 @@ interface QueryInterface
     /**
      * Sets the maximum size of the result set to limit.
      *
-     * @param  integer $limit The amount of result items to be fetched.
+     * @param integer $limit The amount of result items to be fetched.
      *
      * @api
      */
@@ -112,7 +112,7 @@ interface QueryInterface
     /**
      * Sets the start offset of the result set to offset.
      *
-     * @param  integer $offset The start point of the result set from when the item shall be fetched.
+     * @param integer $offset The start point of the result set from when the item shall be fetched.
      *
      * @api
      */
@@ -176,7 +176,7 @@ interface QueryInterface
      * ordering is supported by the node type of the parent node then the new
      * node is appended to the end of the child node list.
      *
-     * @param  string               $absPath absolute path the query should be stored at
+     * @param string $absPath absolute path the query should be stored at
      *
      * @return \PHPCR\NodeInterface the newly created node.
      *

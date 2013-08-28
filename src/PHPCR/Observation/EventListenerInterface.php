@@ -20,7 +20,7 @@ interface EventListenerInterface
     /**
      * This method is called when a bundle of events is dispatched.
      *
-     * @param  \Traversable $events The event set received.
+     * @param \Traversable $events The event set received.
      *
      * @api
      */
