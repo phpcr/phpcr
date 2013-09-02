@@ -217,8 +217,9 @@ interface EventInterface
      * If this event is of type NODE_ADDED, NODE_REMOVED or NODE_MOVED then
      * this method returns the declared primary node type of the node at (or
      * formerly at) the path returned by getPath(). If this event is of type
-     * PROPERTY_ADDED or PROPERTY_REMOVED then this method returns the declared
-     * primary node type of the parent node of the property affected.
+     * PROPERTY_ADDED, PROPERTY_REMOVED or PROPERTY_CHANGED then this method
+     * returns the declared primary node type of the parent node of the
+     * property affected.
      *
      * @return \PHPCR\NodeType\NodeTypeInterface
      *
@@ -234,8 +235,9 @@ interface EventInterface
      * If this event is of type NODE_ADDED, NODE_REMOVED or NODE_MOVED then
      * this method returns the declared mixin node types of the node at (or
      * formerly at) the path returned by getPath(). If this event is of type
-     * PROPERTY_ADDED or PROPERTY_REMOVED then this method returns the declared
-     * mixin node types of the parent node of the property affected.
+     * PROPERTY_ADDED, PROPERTY_REMOVED or PROPERTY_CHANGED then this method
+     * returns the declared mixin node types of the parent node of the property
+     * affected.
      *
      * @return \PHPCR\NodeType\NodeTypeInterface[]
      *

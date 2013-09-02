@@ -429,8 +429,8 @@ interface NodeInterface extends ItemInterface, \Traversable
      *    <li>C is accessible through the current Session</li>
      *    <li>If the nameFilter is not null, C must match at least one of the
      *      filter expressions.</li>
-     *   <li>If the typeFilter is not null, C must be isNodeType of at least
-     *      one of the types in typeFilter.
+     *   <li>If the typeFilter is not null, C must be of a node type T that
+     *      matches (by wildcard expansion) at least one of the typeFilters.
      *   </li>
      * </ul>
      *
