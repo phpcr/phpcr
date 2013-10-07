@@ -483,8 +483,8 @@ interface NodeInterface extends ItemInterface, \Traversable
     public function getNodes($nameFilter = null, $typeFilter = null);
 
     /**
-     * Returns the names of all child nodes of this node accessible through the
-     * current <code>Session</code>. Does <i>not</i> include the names of the
+     * Returns the names of direct child nodes of this node accessible through
+     * the current <code>Session</code>. Does <i>not</i> include the names of the
      * properties of this <code>Node</code>. If the child nodes of this node
      * have an order then the names are returned in that order, otherwise the
      * order is undefined.
@@ -495,14 +495,14 @@ interface NodeInterface extends ItemInterface, \Traversable
      * The optional $nameFilter and $typeFilter follow the same semantics as
      * the corresponding parameters of NodeInterface::getNodes()
      *
-     * If the child nodes of this node have an order then the names are
+     * If the child nodes of this node are ordered, then the names are
      * returned in that order, otherwise the order is undefined.
      *
      * If this node has no accessible matching child nodes, then an empty
      * iterator is returned.
      *
-     * Note that a match succeeds against a given name if a glob matches either
-     * or both of its qualified or expanded forms.
+     * Note that a match succeeds against a given name respectively type if a
+     * glob matches either or both of its qualified or expanded forms.
      *
      * @param string|array $nameFilter a filter or an array of filters for the
      *      node names to find.
