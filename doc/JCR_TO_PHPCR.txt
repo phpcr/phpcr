@@ -195,6 +195,14 @@ separation between Node and Property does make sense, plus allows for things
 like the ItemVisitor.
 
 
+NamespaceRegistry
+*****************
+
+In PHP, arrays are actually hashmaps, that is keys can be any values. This
+makes it natural to have a getNamespaces method with the prefixes as keys and
+the URIs as values, in addition to the getURIs and getPrefixes methods.
+
+
 Import and export
 *****************
 
