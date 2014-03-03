@@ -168,6 +168,18 @@ interface NamespaceRegistryInterface extends \Traversable
     public function unregisterNamespaceByURI($uri);
 
     /**
+     * Returns an array with the keys being the namespace prefixes and the
+     * values being the namespaces URIs.
+     *
+     * @return array a hashmap of prefix => namespace uri
+     *
+     * @since 2.1.1
+     *
+     * @api
+     */
+    public function getNamespaces();
+
+    /**
      * Returns an array holding all currently registered namespace prefixes.
      *
      * @return array a string array
