@@ -50,11 +50,7 @@ final class SimpleCredentials implements CredentialsInterface
     }
 
     /**
-     * Returns the user password.
-     *
-     * @return string the password
-     *
-     * @api
+     * {@inheritDoc}
      */
     public function getPassword()
     {
@@ -62,11 +58,7 @@ final class SimpleCredentials implements CredentialsInterface
     }
 
     /**
-     * Returns the user ID.
-     *
-     * @return string the user ID.
-     *
-     * @api
+     * {@inheritDoc}
      */
     public function getUserID()
     {
@@ -74,15 +66,7 @@ final class SimpleCredentials implements CredentialsInterface
     }
 
     /**
-     * Stores an attribute in this credentials instance.
-     *
-     * <b>Note:</b>
-     * If no value is passed, the attribute will be removed.
-     *
-     * @param string $name  the name of the attribute
-     * @param mixed  $value the value to be stored
-     *
-     * @api
+     * {@inheritDoc}
      */
     public function setAttribute($name, $value)
     {
@@ -99,15 +83,7 @@ final class SimpleCredentials implements CredentialsInterface
     }
 
     /**
-     * Returns the value of the named attribute, or null if no attribute of the
-     * given name exists.
-     *
-     * @param string $name the name of the attribute
-     *
-     * @return mixed the value of the attribute, or null if the attribute does
-     *      not exist
-     *
-     * @api
+     * {@inheritDoc}
      */
     public function getAttribute($name)
     {
@@ -119,11 +95,7 @@ final class SimpleCredentials implements CredentialsInterface
     }
 
     /**
-     * Removes an attribute from this credentials instance.
-     *
-     * @param string $name the name of the attribute to remove
-     *
-     * @api
+     * {@inheritDoc}
      */
     public function removeAttribute($name)
     {
@@ -133,13 +105,7 @@ final class SimpleCredentials implements CredentialsInterface
     }
 
     /**
-     * Returns the names of the attributes available to this
-     * credentials instance. This method returns an empty array
-     * if the credentials instance has no attributes available to it.
-     *
-     * @return array a string array containing the names of the stored attributes
-     *
-     * @api
+     * {@inheritDoc}
      */
     public function getAttributeNames()
     {
