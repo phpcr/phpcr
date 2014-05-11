@@ -10,7 +10,7 @@ namespace PHPCR\Query\QOM;
  *
  * @api
  */
-interface QueryObjectModelConstantsInterface
+interface QueryObjectModelConstants
 {
     /**#@+
      * @var string
@@ -89,4 +89,10 @@ interface QueryObjectModelConstantsInterface
     const JCR_ORDER_DESCENDING = 'jcr.order.descending';
 
     /**#@-*/
+
+    public function nameFromValue($value)
+    {
+        // ... 
+        return $value; 
+    }
 }
