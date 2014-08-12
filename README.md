@@ -36,7 +36,7 @@ implementations.
 ## Further reading
 
 * [Tutorial](https://github.com/phpcr/phpcr-docs/blob/master/tutorial/Tutorial.md)
-* [API Reference](http://phpcr.github.com/doc/html/index.html)
+* [API Reference](http://phpcr.github.io/doc/html/index.html)
 
 
 # Port Status
@@ -80,17 +80,25 @@ are interchangeable with each other.
 
 * [Jackalope-Jackrabbit](https://jackalope.github.com/): Mapping requests to a java Jackrabbit instance. To day the most feature complete implementation.
 * [Jackalope-DoctrineDBAL](https://jackalope.github.com/): Storing data in a relational database using the Doctrine Database Abstraction Layer.
-* [Jackalope-MongoDB](https://github.com/chirimoya/jackalope/tree/MongoDB): Storing data in a MongoDB database.
+
+The following are a work in progress:
+
+* [Jackalope-MongoDB](https://github.com/jackalope/jackalope-mongodb): Storing data in a MongoDB database.
+* [Jackalope-Prismic](https://github.com/jackalope/jackalope-prismic): Storing data in the Prismic.io content repository as a service.
 * Jackalope-Midgard1 (not online afaik): Read access to the midgard 1.0 server.
 * [Midgard2](https://github.com/bergie/phpcr-midgard2): PHPCR interfaces for the midgard2 content repository.
-
-* [phpcr-utils](https://github.com/phpcr/phpcr-utils): A couple of utility classes and console commands to work with phcpr, independent of the implementation.
 
 If you work on your own implementation, please let us know so we can add it
 here right away. Even if its not yet working, others might want to join in and
 help.
 
-## Dependencies
+# Utilities
+
+* [phpcr-utils](https://github.com/phpcr/phpcr-utils): A couple of utility classes and console commands to work with phcpr, independent of the implementation.
+* [PHPCR Shell](https://github.com/phpcr/phpcr-shell): The PHPCR Shell aims to provide a complete shell interface to any PHPCR repository.
+* [Marmelab PHPCR Browser](https://github.com/marmelab/phpcr-browser):  Angular JS based PHPCR repository browser. Currently only supports Jackalope-Jackrabbit and Jackalope-Doctrine-DBAL.
+
+# Dependencies
 
 PHPCR provides a composer.json for [Composer](http://packagist.org/about-composer)
 and is available through [Packagist](http://packagist.org/).
