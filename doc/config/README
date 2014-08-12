@@ -8,7 +8,7 @@ Since the API documentation changes constantly and it is easy to build, a
 rendered documentation is not part of the repository.
 
 You can find a (hopefully up-to-date) version online at
-http://phpcr.github.com/doc/html/index.html
+http://phpcr.github.io/doc/html/index.html
 
 
 How to use the configuration file to generate the documentation

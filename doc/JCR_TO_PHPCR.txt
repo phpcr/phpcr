@@ -1,5 +1,5 @@
 Version: 2011-06-29
-http://phpcr.github.com
+http://phpcr.github.io
 
 
 The Java Content Repository specification is targeted at strongly typed
