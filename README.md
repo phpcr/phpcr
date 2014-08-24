@@ -35,7 +35,7 @@ implementations.
 
 ## Further reading
 
-* [Tutorial](https://github.com/phpcr/phpcr-docs/blob/master/tutorial/Tutorial.md)
+* [The PHPCR Book](http://phpcr.readthedocs.org/en/latest/book/index.html)
 * [API Reference](http://phpcr.github.io/doc/html/index.html)
 
 
