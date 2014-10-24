@@ -153,11 +153,12 @@ interface WorkspaceInterface
     public function getName();
 
     /**
-     * Copies a Node including its children to a new location to the given workspace.
+     * Copies a Node including its children to a new location.
      *
      * This method copies the subgraph rooted at, and including, the node at
-     * $srcWorkspace (if given) and $srcAbsPath to the new location in this
-     * Workspace at $destAbsPath.
+     * $srcAbsPath to the new location in this Workspace at $destAbsPath.
+     * If $srcWorkspace is specified, the node is copied from that workspace
+     * instead of the current workspace.
      *
      * This is a workspace-write operation and therefore dispatches changes
      * immediately and does not require a save.
