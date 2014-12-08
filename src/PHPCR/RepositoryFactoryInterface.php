@@ -46,9 +46,10 @@ interface RepositoryFactoryInterface
      *      arguments or null if a client wishes to connect to a default
      *      repository.
      *
-     * @return RepositoryInterface a repository instance or null if this
-     *      implementation does not understand the passed parameters
+     * @return RepositoryInterface The repository for these parameters.
      *
+     * @throws ConfigurationException if a required parameter is missing from
+     *      the parameters or an unknown parameter is found in the list.
      * @throws RepositoryException if no suitable repository is found or
      *      another error occurs.
      *
