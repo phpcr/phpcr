@@ -397,7 +397,7 @@ interface SessionInterface
      * Moves the node at srcAbsPath (and its entire subgraph) to the new
      * location at destAbsPath.
      *
-     * This is a session-write method and therefor requires a save to dispatch
+     * This is a session-write method and therefore requires a save to dispatch
      * the change.
      *
      * The identifiers of referenceable nodes must not be changed by a move.
