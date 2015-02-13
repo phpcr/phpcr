@@ -198,6 +198,9 @@ interface SessionInterface
      * If none of the specified identifiers refer to an existing and accessible
      * node then an empty iterator is returned.
      *
+     * Duplicate IDs passed to this method will be eliminated by nature of
+     * using the IDs as keys.
+     *
      * @param array|\Traversable $ids A list of identifiers.
      *
      * @return \Iterator over all (matching) child Nodes implementing
