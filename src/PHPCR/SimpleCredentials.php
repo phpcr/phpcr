@@ -15,7 +15,6 @@ namespace PHPCR;
  */
 final class SimpleCredentials implements CredentialsInterface
 {
-
     /**
      * Unique identifier of a user.
      * @var string

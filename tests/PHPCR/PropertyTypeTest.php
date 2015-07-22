@@ -10,7 +10,6 @@ use PHPCR\PropertyType;
  */
 class PropertyTypesTest extends \PHPUnit_Framework_TestCase
 {
-
     /** key = numeric type constant names as defined by api
      *  value = expected value of the TYPENAME_<TYPE> constants
      */
@@ -125,6 +124,8 @@ class PropertyTypesTest extends \PHPUnit_Framework_TestCase
 }
 
 interface NodeMock extends \Iterator, NodeInterface
-{}
+{
+}
 interface PropertyMock extends \Iterator, PropertyInterface
-{}
+{
+}

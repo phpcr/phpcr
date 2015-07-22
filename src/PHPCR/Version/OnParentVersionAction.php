@@ -29,7 +29,6 @@ namespace PHPCR\Version;
  */
 final class OnParentVersionAction
 {
-
     /**#@+
      * @var integer
      */
