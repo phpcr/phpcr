@@ -10,7 +10,7 @@ namespace PHPCR\NodeType;
  *
  * @api
  */
-interface PropertyDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInterface
+interface PropertyDefinitionInterface extends ItemDefinitionInterface
 {
     /**
      * Gets the required type of the property.

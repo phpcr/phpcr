@@ -17,7 +17,7 @@ namespace PHPCR\NodeType;
  *
  * @api
  */
-interface PropertyDefinitionTemplateInterface extends \PHPCR\NodeType\PropertyDefinitionInterface
+interface PropertyDefinitionTemplateInterface extends PropertyDefinitionInterface
 {
     /**
      * Sets the name of the property.

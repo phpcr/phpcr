@@ -10,7 +10,7 @@ namespace PHPCR\NodeType;
  *
  * @api
  */
-interface NodeDefinitionInterface extends \PHPCR\NodeType\ItemDefinitionInterface
+interface NodeDefinitionInterface extends ItemDefinitionInterface
 {
     /**
      * Gets the minimum set of primary node types that the child node must have.

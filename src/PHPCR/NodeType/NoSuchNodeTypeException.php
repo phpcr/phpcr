@@ -2,6 +2,8 @@
 
 namespace PHPCR\NodeType;
 
+use PHPCR\RepositoryException;
+
 /**
  * Exception thrown by node type-related methods.
  *
@@ -10,6 +12,6 @@ namespace PHPCR\NodeType;
  *
  * @api
  */
-class NoSuchNodeTypeException extends \PHPCR\RepositoryException
+class NoSuchNodeTypeException extends RepositoryException
 {
 }
