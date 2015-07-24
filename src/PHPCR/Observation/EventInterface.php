@@ -244,5 +244,4 @@ interface EventInterface
      * @throws \PHPCR\RepositoryException if an error occurs.
      */
     public function getMixinNodeTypes();
-
 }

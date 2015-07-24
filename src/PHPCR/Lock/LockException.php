@@ -1,6 +1,7 @@
 <?php
 
 namespace PHPCR\Lock;
+
 use PHPCR\RepositoryException;
 
 /**
@@ -55,5 +56,4 @@ class LockException extends RepositoryException
     {
         return $this->failureNodePath;
     }
-
 }

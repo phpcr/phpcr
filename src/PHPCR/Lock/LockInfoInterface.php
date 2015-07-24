@@ -57,7 +57,6 @@ namespace PHPCR\Lock;
  */
 interface LockInfoInterface
 {
-
     /**
      * Sets the <code>isDeep</code> parameter of the <code>LockInfo</code>
      * object. If left unset, this parameter defaults to <code>true</code>.
