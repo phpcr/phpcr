@@ -2,6 +2,8 @@
 
 namespace PHPCR\NodeType;
 
+use PHPCR\RepositoryException;
+
 /**
  * Exception thrown when an attempt is made to register a node type that
  * already exists, and allowUpdate has not been set to true.
@@ -11,6 +13,6 @@ namespace PHPCR\NodeType;
  *
  * @api
  */
-class NodeTypeExistsException extends \PHPCR\RepositoryException
+class NodeTypeExistsException extends RepositoryException
 {
 }

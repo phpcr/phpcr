@@ -20,7 +20,7 @@ interface ItemDefinitionInterface
      * PropertyDefinitionTemplate) that is not attached to a live NodeType. In
      * such cases this method returns null.
      *
-     * @return \PHPCR\NodeType\NodeTypeInterface A NodeType object.
+     * @return NodeTypeInterface A NodeType object.
      *
      * @api
      */

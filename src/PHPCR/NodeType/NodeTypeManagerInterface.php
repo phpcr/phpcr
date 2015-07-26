@@ -24,9 +24,9 @@ interface NodeTypeManagerInterface extends \Traversable
      *
      * @param string $nodeTypeName the name of an existing node type.
      *
-     * @return \PHPCR\NodeType\NodeTypeInterface A NodeType object.
+     * @return NodeTypeInterface A NodeType object.
      *
-     * @throws \PHPCR\NodeType\NoSuchNodeTypeException if no node type of the
+     * @throws NoSuchNodeTypeException if no node type of the
      *      given name exists.
      * @throws \PHPCR\RepositoryException if another error occurs.
      *
@@ -101,10 +101,9 @@ interface NodeTypeManagerInterface extends \Traversable
      * specified node type definition. This template can then be altered and
      * passed to NodeTypeManagerInterface::registerNodeType().
      *
-     * @param \PHPCR\NodeType\NodeTypeDefinitionInterface $ntd a
-     *      NodeTypeDefinition.
+     * @param NodeTypeDefinitionInterface $ntd a NodeTypeDefinition.
      *
-     * @return \PHPCR\NodeType\NodeTypeTemplateInterface A NodeTypeTemplate.
+     * @return NodeTypeTemplateInterface A NodeTypeTemplate.
      *
      * @throws \PHPCR\UnsupportedRepositoryOperationException if this
      *      implementation does not support node type registration.
@@ -118,8 +117,7 @@ interface NodeTypeManagerInterface extends \Traversable
      * Returns an empty NodeDefinitionTemplate which can then be used to create
      * a child node definition and attached to a NodeTypeTemplate.
      *
-     * @return \PHPCR\NodeType\NodeDefinitionTemplateInterface A
-     *      NodeDefinitionTemplate.
+     * @return NodeDefinitionTemplateInterface A NodeDefinitionTemplate.
      *
      * @throws \PHPCR\UnsupportedRepositoryOperationException if this
      *      implementation does not support node type registration.
@@ -133,7 +131,7 @@ interface NodeTypeManagerInterface extends \Traversable
      * used to create a property definition and attached to a
      * NodeTypeTemplateInterface.
      *
-     * @return \PHPCR\NodeType\PropertyDefinitionTemplateInterface An empty
+     * @return PropertyDefinitionTemplateInterface An empty
      *      PropertyDefinitionTemplateInterface instance.
      *
      * @throws \PHPCR\UnsupportedRepositoryOperationException if this
@@ -153,18 +151,18 @@ interface NodeTypeManagerInterface extends \Traversable
      * acquired from NodeTypeManagerInterface::createNodeTypeTemplate()
      * and then filled-in with definition information.
      *
-     * @param \PHPCR\NodeType\NodeTypeDefinitionInterface $ntd a
+     * @param NodeTypeDefinitionInterface $ntd a
      *      NodeTypeDefinitionInterface instance.
      * @param boolean $allowUpdate whether to fail if node already exists or to
      *      update it.
      *
-     * @return \PHPCR\NodeType\NodeTypeInterface the registered node type.
+     * @return NodeTypeInterface the registered node type.
      *
-     * @throws \PHPCR\NodeType\InvalidNodeTypeDefinitionException if the
+     * @throws InvalidNodeTypeDefinitionException if the
      *      NodeTypeDefinitionInterface is invalid.
-     * @throws \PHPCR\NodeType\NodeTypeExistsException if allowUpdate is false
-     *      and the NodeTypeDefinition specifies a node type name that is
-     *      already registered.
+     * @throws NodeTypeExistsException if allowUpdate is false and the
+     *      NodeTypeDefinition specifies a node type name that is already
+     *      registered.
      * @throws \PHPCR\UnsupportedRepositoryOperationException if this
      *      implementation does not support node type registration.
      * @throws \PHPCR\RepositoryException if another error occurs.
@@ -189,13 +187,13 @@ interface NodeTypeManagerInterface extends \Traversable
      *      <b>SeekableIterator</b> and <b>Countable</b>. Keys are the node
      *      type names, values the corresponding NodeTypeInterface instances.
      *
-     * @throws \PHPCR\NodeType\InvalidNodeTypeDefinitionException if a
+     * @throws InvalidNodeTypeDefinitionException if a
      *      NodeTypeDefinitionInterface within the Collection is invalid or if
      *      the Collection contains an object of a type other than
      *      NodeTypeDefinitionInterface.
-     * @throws \PHPCR\NodeType\NodeTypeExistsException if allowUpdate is false
-     *      and a NodeTypeDefinition within the Collection specifies a node
-     *      type name that is already registered.
+     * @throws NodeTypeExistsException if allowUpdate is false and a
+     *      NodeTypeDefinition within the Collection specifies a node type name
+     *      that is already registered.
      * @throws \PHPCR\UnsupportedRepositoryOperationException if this
      *      implementation does not support node type registration.
      * @throws \PHPCR\RepositoryException if another error occurs.
@@ -233,11 +231,11 @@ interface NodeTypeManagerInterface extends \Traversable
      *      <b>SeekableIterator</b> and <b>Countable</b>. Keys are the node
      *      type names, values the corresponding NodeTypeInterface instances.
      *
-     * @throws \PHPCR\NodeType\InvalidNodeTypeDefinitionException if a
-     *      NodeTypeDefinition within the CND is invalid.
-     * @throws NodeTypeExistsException if allowUpdate is false
-     *      and a the NodeTypeDefinition within the CND string specifies a node
-     *      type name that is already registered.
+     * @throws InvalidNodeTypeDefinitionException if a NodeTypeDefinition
+     *      within the CND is invalid.
+     * @throws NodeTypeExistsException if allowUpdate is false and a the
+     *      NodeTypeDefinition within the CND string specifies a node type name
+     *      that is already registered.
      * @throws \PHPCR\UnsupportedRepositoryOperationException if this
      *      implementation does not support node type registration.
      * @throws \PHPCR\RepositoryException if another error occurs.
@@ -254,8 +252,8 @@ interface NodeTypeManagerInterface extends \Traversable
      *
      * @throws \PHPCR\UnsupportedRepositoryOperationException if this
      *      implementation does not support node type registration.
-     * @throws \PHPCR\NodeType\NoSuchNodeTypeException if no registered node
-     *      type exists with the specified name.
+     * @throws NoSuchNodeTypeException if no registered node type exists with
+     *      the specified name.
      * @throws \PHPCR\RepositoryException if another error occurs.
      *
      * @api
@@ -271,8 +269,8 @@ interface NodeTypeManagerInterface extends \Traversable
      *
      * @throws \PHPCR\UnsupportedRepositoryOperationException if this
      *      implementation does not support node type registration.
-     * @throws \PHPCR\NodeType\NoSuchNodeTypeException if one of the names
-     *      listed is not a registered node type.
+     * @throws NoSuchNodeTypeException if one of the names listed is not a
+     *      registered node type.
      * @throws \PHPCR\RepositoryException if another error occurs.
      *
      * @api

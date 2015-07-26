@@ -16,7 +16,7 @@ namespace PHPCR\NodeType;
  *
  * @api
  */
-interface NodeDefinitionTemplateInterface extends \PHPCR\NodeType\NodeDefinitionInterface
+interface NodeDefinitionTemplateInterface extends NodeDefinitionInterface
 {
     /**
      * Sets the name of the node.

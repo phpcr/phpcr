@@ -2,6 +2,8 @@
 
 namespace PHPCR\NodeType;
 
+use PHPCR\RepositoryException;
+
 /**
  * Exception thrown when an action would violate a constraint on repository
  * structure.
@@ -14,6 +16,6 @@ namespace PHPCR\NodeType;
  *
  * @api
  */
-class ConstraintViolationException extends \PHPCR\RepositoryException
+class ConstraintViolationException extends RepositoryException
 {
 }
