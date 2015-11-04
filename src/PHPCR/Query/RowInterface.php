@@ -53,7 +53,7 @@ interface RowInterface extends \Traversable
      * @param string $selectorName The selector identifying a node within the
      *      current result row.
      *
-     * @return \PHPCR\NodeInterface a Node
+     * @return \PHPCR\NodeInterface|null The result node or null on incomplete outer joins.
      *
      * @throws \PHPCR\RepositoryException If selectorName is not the alias of a
      *      selector in this query or if another error occurs.
@@ -72,8 +72,8 @@ interface RowInterface extends \Traversable
      * @param string $selectorName The selector identifying a node within the
      *      current result row.
      *
-     * @return string The path representing the node identified by the given
-     *      selector.
+     * @return string|null The path representing the node identified by the given
+     *      selector or null on incomplete outer joins.
      *
      * @throws \PHPCR\RepositoryException if selectorName is not the alias of a
      *      selector in this query or if another error occurs.
