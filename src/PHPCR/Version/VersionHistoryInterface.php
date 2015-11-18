@@ -241,7 +241,7 @@ interface VersionHistoryInterface extends \PHPCR\NodeInterface
      *
      * @api
      */
-    public function hasVersionLabel($label, $version = null);
+    public function hasVersionLabel($label, VersionInterface $version = null);
 
     /**
      * Returns all version labels of the given version - empty array if none.
@@ -263,7 +263,7 @@ interface VersionHistoryInterface extends \PHPCR\NodeInterface
      *
      * @api
      */
-    public function getVersionLabels($version = null);
+    public function getVersionLabels(VersionInterface $version = null);
 
     /**
      * Removes the named version from this version history and automatically
