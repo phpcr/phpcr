@@ -130,6 +130,11 @@ final class PropertyType
      */
     const DECIMAL = 12;
 
+    /**
+     * The DECIMAL property type is used to store precise decimal numbers.
+     */
+    const UUID = 13;
+
     /**#@-*/
 
     /**#@+
@@ -200,6 +205,11 @@ final class PropertyType
      */
     const TYPENAME_DECIMAL = 'Decimal';
 
+    /**
+     * String constant for type name as used in serialization.
+     */
+    const TYPENAME_UUID = 'Uuid';
+
     /**#@-*/
 
     // @codeCoverageIgnoreStart
@@ -249,6 +259,8 @@ final class PropertyType
                 return self::TYPENAME_WEAKREFERENCE;
             case self::URI :
                 return self::TYPENAME_URI;
+            case self::UUID :
+                return self::TYPENAME_UUID;
             default:
                 throw new \InvalidArgumentException('Unknown type (' . $type . ') given.');
         }
@@ -296,6 +308,8 @@ final class PropertyType
                 return self::URI;
             case 'decimal':
                 return self::DECIMAL;
+            case 'uuid' :
+                return self::UUID;
             default:
                 throw new \InvalidArgumentException('Unknown type name (' . $name . ') given.');
         }
