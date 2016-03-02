@@ -131,7 +131,7 @@ final class PropertyType
     const DECIMAL = 12;
 
     /**
-     * The DECIMAL property type is used to store precise decimal numbers.
+     * The UUID property used for referencing other documents.
      */
     const UUID = 13;
 
