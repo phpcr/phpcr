@@ -2,6 +2,8 @@
 
 namespace PHPCR\Retention;
 
+use PHPCR\RepositoryException;
+
 /**
  * Hold represents a hold that can be applied to an existing node in order to
  * prevent the node from being modified or removed. The format and interpretation
@@ -22,7 +24,7 @@ interface HoldInterface
      *
      * @return boolean true if this Hold is deep.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      * @api
      */
     public function isDeep();
@@ -32,7 +34,7 @@ interface HoldInterface
      *
      * @return string the name of this Hold. A JCR name.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      * @api
      */
     public function getName();

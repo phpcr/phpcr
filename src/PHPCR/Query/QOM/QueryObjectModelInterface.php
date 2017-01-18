@@ -2,6 +2,8 @@
 
 namespace PHPCR\Query\QOM;
 
+use PHPCR\Query\QueryInterface;
+
 /**
  * A query in the JCR/PHPCR query object model.
  *
@@ -39,7 +41,7 @@ namespace PHPCR\Query\QOM;
  *
  * @api
  */
-interface QueryObjectModelInterface extends \PHPCR\Query\QueryInterface
+interface QueryObjectModelInterface extends QueryInterface
 {
     /**
      * Gets the node-tuple source for this query.

@@ -2,6 +2,8 @@
 
 namespace PHPCR\Transaction;
 
+use PHPCR\RepositoryException;
+
 /**
  * RollbackException exception is thrown when the transaction has been rolled back instead of committed.
  *
@@ -12,6 +14,6 @@ namespace PHPCR\Transaction;
  *
  * @api
  */
-class RollbackException extends \PHPCR\RepositoryException
+class RollbackException extends RepositoryException
 {
 }

@@ -2,6 +2,17 @@
 
 namespace PHPCR;
 
+use PHPCR\Lock\LockException;
+use PHPCR\Lock\LockManagerInterface;
+use PHPCR\NodeType\ConstraintViolationException;
+use PHPCR\NodeType\NodeTypeManagerInterface;
+use PHPCR\Observation\ObservationManagerInterface;
+use PHPCR\Query\QueryManagerInterface;
+use PHPCR\Transaction\UserTransactionInterface;
+use PHPCR\Version\VersionException;
+use PHPCR\Version\VersionManagerInterface;
+use RuntimeException;
+
 /**
  * Interface representing a view onto a persistent workspace within a repository.
  *
@@ -226,10 +237,10 @@ interface WorkspaceInterface
      *
      * @throws NoSuchWorkspaceException if srcWorkspace does not exist
      *      or if the current Session does not have permission to access it.
-     * @throws \PHPCR\NodeType\ConstraintViolationException if the operation
+     * @throws ConstraintViolationException if the operation
      *      would violate a node-type or other implementation-specific
      *      constraint.
-     * @throws \PHPCR\Version\VersionException if the parent node of
+     * @throws VersionException if the parent node of
      *      destAbsPath is read-only due to a checked-in node.
      * @throws AccessDeniedException if the current session does have
      *      access srcWorkspace but otherwise does not have sufficient access
@@ -240,8 +251,8 @@ interface WorkspaceInterface
      * @throws ItemExistsException if a node already exists at
      *      destAbsPath and either same-name siblings are not allowed or update
      *      on copy is not supported for the nodes involved.
-     * @throws \PHPCR\Lock\LockException if a lock prevents the copy.
-     * @throws RepositoryException       if the last element of destAbsPath
+     * @throws LockException       if a lock prevents the copy.
+     * @throws RepositoryException if the last element of destAbsPath
      *      has an index or if another error occurs.
      *
      * @api
@@ -296,11 +307,11 @@ interface WorkspaceInterface
      *      existing node from its location in this workspace and cloning
      *      (copying in) the one from srcWorkspace.
      *
-     * @throws NoSuchWorkspaceException                     if destWorkspace does not exist.
-     * @throws \PHPCR\NodeType\ConstraintViolationException if the operation
+     * @throws NoSuchWorkspaceException     if destWorkspace does not exist.
+     * @throws ConstraintViolationException if the operation
      *      would violate a node-type or other implementation-specific
      *      constraint.
-     * @throws \PHPCR\Version\VersionException if the parent node of
+     * @throws VersionException if the parent node of
      *      destAbsPath is read-only due to a checked-in node. This exception
      *      will also be thrown if removeExisting is true, and an identifier
      *      conflict occurs that would require the moving and/or altering of a
@@ -352,10 +363,10 @@ interface WorkspaceInterface
      * @param string $destAbsPath the location to which the node at srcAbsPath
      *      is to be moved.
      *
-     * @throws \PHPCR\NodeType\ConstraintViolationException if the operation
+     * @throws ConstraintViolationException if the operation
      *      would violate a node-type or other implementation-specific
      *      constraint.
-     * @throws \PHPCR\Version\VersionException if the parent node of
+     * @throws VersionException if the parent node of
      *      destAbsPath is read-only due to a checked-in node.
      * @throws AccessDeniedException if the current session (i.e. the
      *      session that was used to acquire this Workspace object) does not
@@ -364,8 +375,8 @@ interface WorkspaceInterface
      *      parent of destAbsPath does not exist.
      * @throws ItemExistsException if a node already exists at
      *      destAbsPath and same-name siblings are not allowed.
-     * @throws \PHPCR\Lock\LockException if a lock prevents the move.
-     * @throws RepositoryException       if the last element of destAbsPath
+     * @throws LockException       if a lock prevents the move.
+     * @throws RepositoryException if the last element of destAbsPath
      *      has an index or if another error occurs.
      *
      * @api
@@ -415,13 +426,13 @@ interface WorkspaceInterface
      *
      * @param string $absPath the absolute path of the item to be removed.
      *
-     * @throws \PHPCR\Version\VersionException if the parent node of the item
+     * @throws VersionException if the parent node of the item
      *      at $absPath is read-only due to a checked-in node and this
      *      implementation performs this validation immediately.
-     * @throws \PHPCR\Lock\LockException if a lock prevents the removal of the
+     * @throws LockException if a lock prevents the removal of the
      *      specified item and this implementation performs this validation
      *      immediately.
-     * @throws \PHPCR\NodeType\ConstraintViolationException if removing the
+     * @throws ConstraintViolationException if removing the
      *      specified item would violate a node type or implementation-specific
      *      constraint and this implementation performs this validation
      *      immediately.
@@ -446,7 +457,7 @@ interface WorkspaceInterface
     /**
      * Returns the LockManager object, through which locking methods are accessed.
      *
-     * @return \PHPCR\Lock\LockManagerInterface
+     * @return LockManagerInterface
      *
      * @throws UnsupportedRepositoryOperationException if the
      *      implementation does not support locking.
@@ -459,7 +470,7 @@ interface WorkspaceInterface
     /**
      * Returns the QueryManager object, through search methods are accessed.
      *
-     * @return \PHPCR\Query\QueryManagerInterface the QueryManager object.
+     * @return QueryManagerInterface the QueryManager object.
      *
      * @throws RepositoryException if an error occurs.
      *
@@ -470,7 +481,7 @@ interface WorkspaceInterface
     /**
      * Returns the UserTransaction object associated with this session
      *
-     * @return \PHPCR\Transaction\UserTransactionInterface a UserTransaction
+     * @return UserTransactionInterface a UserTransaction
      *      object.
      *
      * @throws UnsupportedRepositoryOperationException if the
@@ -504,7 +515,7 @@ interface WorkspaceInterface
      * repository-wide set of available node types. In repositories that support it,
      * the NodeTypeManager can also be used to register new node types.
      *
-     * @return \PHPCR\NodeType\NodeTypeManagerInterface a NodeTypeManager object.
+     * @return NodeTypeManagerInterface a NodeTypeManager object.
      *
      * @throws RepositoryException if an error occurs.
      *
@@ -515,7 +526,7 @@ interface WorkspaceInterface
     /**
      * Returns the ObservationManager object.
      *
-     * @return \PHPCR\Observation\ObservationManagerInterface an
+     * @return ObservationManagerInterface an
      *      ObservationManager object.
      *
      * @throws UnsupportedRepositoryOperationException if the
@@ -543,7 +554,7 @@ interface WorkspaceInterface
     /**
      * Returns the VersionManager object.
      *
-     * @return \PHPCR\Version\VersionManagerInterface a VersionManager object.
+     * @return VersionManagerInterface a VersionManager object.
      *
      * @throws UnsupportedRepositoryOperationException if the
      *      implementation does not support versioning.
@@ -632,19 +643,19 @@ interface WorkspaceInterface
      * @param  integer                 $uuidBehavior  a four-value flag that governs how incoming identifiers are handled.
      * @return ContentHandlerInterface whose methods may be called to feed SAX events into the deserializer.
      *
-     * @throws PathNotFoundException                        if no node exists at $parentAbsPath.
-     * @throws \PHPCR\NodeType\ConstraintViolationException if the new subgraph cannot be added to the node at $parentAbsPath due
-     *                                             to node-type or other implementation-specific constraints, and this
-     *                                             can be determined before the first SAX event is sent. Unlike
-     *                                             Session#getImportContentHandler, this method also enforces node type
-     *                                             constraints by throwing SAXExceptions during deserialization.
-     *                                             However, which node type constraints are enforced depends upon
-     *                                             whether node type information in the imported data is respected,
+     * @throws PathNotFoundException        if no node exists at $parentAbsPath.
+     * @throws ConstraintViolationException if the new subgraph cannot be added to the node at $parentAbsPath due
+     *                                      to node-type or other implementation-specific constraints, and this
+     *                                      can be determined before the first SAX event is sent. Unlike
+     *                                      Session#getImportContentHandler, this method also enforces node type
+     *                                      constraints by throwing SAXExceptions during deserialization.
+     *                                      However, which node type constraints are enforced depends upon
+     *                                      whether node type information in the imported data is respected,
      *                                             and this is an implementation-specific issue.
-     * @throws \PHPCR\Version\VersionException if the node at $parentAbsPath is read-only due to a checked-in node.
-     * @throws \PHPCR\Lock\LockException       if a lock prevents the addition of the subgraph.
-     * @throws AccessDeniedException           if the session associated with this Workspace object does not have
-     *                                      sufficient access to perform the import.
+     * @throws VersionException      if the node at $parentAbsPath is read-only due to a checked-in node.
+     * @throws LockException         if a lock prevents the addition of the subgraph.
+     * @throws AccessDeniedException if the session associated with this Workspace object does not have
+     *                               sufficient access to perform the import.
      * @throws RepositoryException if another error occurs.
      *
      * @api
@@ -702,15 +713,15 @@ interface WorkspaceInterface
      * @param integer $uuidBehavior a four-value flag that governs how incoming
      *      identifiers are handled.
      *
-     * @throws \RuntimeException                            if an error during an I/O operation occurs.
-     * @throws PathNotFoundException                        if no node exists at parentAbsPath.
-     * @throws \PHPCR\NodeType\ConstraintViolationException if node-type or
+     * @throws RuntimeException             if an error during an I/O operation occurs.
+     * @throws PathNotFoundException        if no node exists at parentAbsPath.
+     * @throws ConstraintViolationException if node-type or
      *      other implementation-specific constraints prevent the addition of
      *      the subgraph or if uuidBehavior is set to
      *      IMPORT_UUID_COLLISION_REMOVE_EXISTING and an incoming node has the
      *      same identifier as the node at parentAbsPath or one of its
      *      ancestors.
-     * @throws \PHPCR\Version\VersionException if the node at parentAbsPath is
+     * @throws VersionException if the node at parentAbsPath is
      *      read-only due to a checked-in node.
      * @throws InvalidSerializedDataException if incoming stream is not
      *      a valid XML document.
@@ -719,7 +730,7 @@ interface WorkspaceInterface
      *      existing child of parentAbsPath and that child does not allow
      *      same-name siblings, or if a uuidBehavior is set to
      *      IMPORT_UUID_COLLISION_THROW and an identifier collision occurs.
-     * @throws \PHPCR\Lock\LockException if a lock prevents the addition of the
+     * @throws LockException if a lock prevents the addition of the
      *      subgraph.
      * @throws AccessDeniedException if the session associated with this
      *      Workspace object does not have sufficient access to perform the

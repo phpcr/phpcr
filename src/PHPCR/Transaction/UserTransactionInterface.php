@@ -2,6 +2,11 @@
 
 namespace PHPCR\Transaction;
 
+use LogicException;
+use PHPCR\AccessDeniedException;
+use PHPCR\RepositoryException;
+use PHPCR\UnsupportedRepositoryOperationException;
+
 /**
  * As there is no transaction standard in PHP this interface provides a
  * transaction interface similar to the
@@ -44,7 +49,7 @@ namespace PHPCR\Transaction;
  * reset the transaction but keep the current session changes. If you want to
  * get rid of them too, use \PHPCR\SessionInterface::refresh()
  *
- * @see \PHPCR\SessionInterface::getTransactionManager()
+ * @see SessionInterface::getTransactionManager()
  *
  * @author Johannes Stark <starkj@gmx.de>
  *
@@ -58,11 +63,11 @@ interface UserTransactionInterface
     /**
      * Begin new transaction associated with current session.
      *
-     * @throws \PHPCR\UnsupportedRepositoryOperationException Thrown if a
+     * @throws UnsupportedRepositoryOperationException Thrown if a
      *      transaction is already started and the transaction implementation
      *      or backend does not support nested transactions.
      *
-     * @throws \PHPCR\RepositoryException Thrown if the transaction
+     * @throws RepositoryException Thrown if the transaction
      *      implementation encounters an unexpected error condition.
      */
     public function begin();
@@ -73,11 +78,11 @@ interface UserTransactionInterface
      *
      * @throws RollbackException Thrown to indicate that the transaction has
      *      been rolled back rather than committed.
-     * @throws \PHPCR\AccessDeniedException Thrown to indicate that the
+     * @throws AccessDeniedException Thrown to indicate that the
      *      session is not allowed to commit the transaction.
-     * @throws \LogicException Thrown if the current
+     * @throws LogicException Thrown if the current
      *      session is not associated with a transaction.
-     * @throws \PHPCR\RepositoryException Thrown if the transaction
+     * @throws RepositoryException Thrown if the transaction
      *      implementation encounters an unexpected error condition.
      */
     public function commit();
@@ -88,7 +93,7 @@ interface UserTransactionInterface
      *
      * @return boolean
      *
-     * @throws \PHPCR\RepositoryException Thrown if the transaction
+     * @throws RepositoryException Thrown if the transaction
      *      implementation encounters an unexpected error condition.
      */
     public function inTransaction();
@@ -96,11 +101,11 @@ interface UserTransactionInterface
     /**
      * Rollback the transaction associated with the current session.
      *
-     * @throws \PHPCR\AccessDeniedException Thrown to indicate that the
+     * @throws AccessDeniedException Thrown to indicate that the
      *      application is not allowed to roll back the transaction.
-     * @throws \LogicException Thrown if the current session is not associated
+     * @throws LogicException Thrown if the current session is not associated
      *      with a transaction.
-     * @throws \PHPCR\RepositoryException Thrown if the transaction
+     * @throws RepositoryException Thrown if the transaction
      *      implementation encounters an unexpected error condition.
      */
     public function rollback();
@@ -117,7 +122,7 @@ interface UserTransactionInterface
      *      zero, the transaction service restores the default value. If the
      *      value is negative a RepositoryException is thrown.
      *
-     * @throws \PHPCR\RepositoryException Thrown if the transaction
+     * @throws RepositoryException Thrown if the transaction
      *      implementation encounters an unexpected error condition.
      */
     public function setTransactionTimeout($seconds = 0);

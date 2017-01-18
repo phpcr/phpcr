@@ -2,6 +2,11 @@
 
 namespace PHPCR\Query;
 
+use PHPCR\ItemNotFoundException;
+use PHPCR\NodeInterface;
+use PHPCR\RepositoryException;
+use Traversable;
+
 /**
  * A row in the query result table.
  *
@@ -16,7 +21,7 @@ namespace PHPCR\Query;
  *
  * @api
  */
-interface RowInterface extends \Traversable
+interface RowInterface extends Traversable
 {
     /**
      * Returns an array of all the values in the same order as the column names
@@ -25,7 +30,7 @@ interface RowInterface extends \Traversable
      * @return array Hashmap of column name to value of each column of the
      *      current result row.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -38,9 +43,9 @@ interface RowInterface extends \Traversable
      *
      * @return mixed The value of the given column of the current result row.
      *
-     * @throws \PHPCR\ItemNotFoundException if columnName s not among the
+     * @throws ItemNotFoundException if columnName s not among the
      *      column names of the query result table.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */
@@ -53,9 +58,9 @@ interface RowInterface extends \Traversable
      * @param string $selectorName The selector identifying a node within the
      *      current result row.
      *
-     * @return \PHPCR\NodeInterface|null The result node or null on incomplete outer joins.
+     * @return NodeInterface|null The result node or null on incomplete outer joins.
      *
-     * @throws \PHPCR\RepositoryException If selectorName is not the alias of a
+     * @throws RepositoryException If selectorName is not the alias of a
      *      selector in this query or if another error occurs.
      *
      * @api
@@ -75,7 +80,7 @@ interface RowInterface extends \Traversable
      * @return string|null The path representing the node identified by the given
      *      selector or null on incomplete outer joins.
      *
-     * @throws \PHPCR\RepositoryException if selectorName is not the alias of a
+     * @throws RepositoryException if selectorName is not the alias of a
      *      selector in this query or if another error occurs.
      *
      * @api
@@ -104,7 +109,7 @@ interface RowInterface extends \Traversable
      *
      * @return float The full text search score for this row.
      *
-     * @throws \PHPCR\RepositoryException if selectorName is not the alias of a
+     * @throws RepositoryException if selectorName is not the alias of a
      *      selector in this query or (in case of no given selectorName) if
      *      this query has more than one selector (and therefore, this Row
      *      corresponds to more than one Node) or if another error occurs.

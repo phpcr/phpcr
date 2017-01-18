@@ -2,6 +2,9 @@
 
 namespace PHPCR\Observation;
 
+use PHPCR\NodeType\NodeTypeInterface;
+use PHPCR\RepositoryException;
+
 /**
  * An event fired by the observation mechanism.
  *
@@ -122,7 +125,7 @@ interface EventInterface
      *
      * @return string The absolute path associated with this event or null.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      *
      * @api
      */
@@ -148,7 +151,7 @@ interface EventInterface
      *
      * @return string The identifier associated with this event or null.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      *
      * @api
      */
@@ -162,7 +165,7 @@ interface EventInterface
      *
      * @return array A list containing parameter information for instances of a NODE_MOVED event.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      *
      * @api
      */
@@ -174,7 +177,7 @@ interface EventInterface
      *
      * @return string The user data string.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      *
      * @api
      */
@@ -189,7 +192,7 @@ interface EventInterface
      *
      * @return integer The date when the change was persisted that caused this event (milliseconds since epoch).
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      *
      * @api
      */
@@ -205,7 +208,7 @@ interface EventInterface
      *
      * @return int constant from PropertyType
      *
-     * @throws \PHPCR\RepositoryException
+     * @throws RepositoryException
      */
     public function getPropertyType();
 
@@ -221,9 +224,9 @@ interface EventInterface
      * returns the declared primary node type of the parent node of the
      * property affected.
      *
-     * @return \PHPCR\NodeType\NodeTypeInterface
+     * @return NodeTypeInterface
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      */
     public function getPrimaryNodeType();
 
@@ -239,9 +242,9 @@ interface EventInterface
      * returns the declared mixin node types of the parent node of the property
      * affected.
      *
-     * @return \PHPCR\NodeType\NodeTypeInterface[]
+     * @return NodeTypeInterface[]
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      */
     public function getMixinNodeTypes();
 }

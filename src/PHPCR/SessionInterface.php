@@ -2,6 +2,17 @@
 
 namespace PHPCR;
 
+use Iterator;
+use PHPCR\Lock\LockException;
+use PHPCR\NodeType\ConstraintViolationException;
+use PHPCR\NodeType\NoSuchNodeTypeException;
+use PHPCR\Retention\RetentionManagerInterface;
+use PHPCR\Security\AccessControlException;
+use PHPCR\Security\AccessControlManagerInterface;
+use PHPCR\Version\VersionException;
+use RuntimeException;
+use Traversable;
+
 /**
  * Describes the implementation of a session class.
  *
@@ -295,9 +306,9 @@ interface SessionInterface
      * If none of the specified paths leads to an existing and accessible
      * node then an empty iterator is returned.
      *
-     * @param array|\Traversable $absPaths A list of absolute paths.
+     * @param array|Traversable $absPaths A list of absolute paths.
      *
-     * @return \Iterator over all (matching) child Nodes implementing
+     * @return Iterator over all (matching) child Nodes implementing
      *      <b>SeekableIterator</b> and <b>Countable</b>. Keys are the
      *      paths, values the corresponding NodeInterface instances.
      *
@@ -331,9 +342,9 @@ interface SessionInterface
      * If none of the specified paths leads to an existing and accessible
      * property then an empty iterator is returned.
      *
-     * @param array|\Traversable $absPaths A list of absolute paths to properties.
+     * @param array|Traversable $absPaths A list of absolute paths to properties.
      *
-     * @return \Iterator over all (matching) child Nodes implementing
+     * @return Iterator over all (matching) child Nodes implementing
      *      <b>SeekableIterator</b> and <b>Countable</b>. Keys are the
      *      paths, values the corresponding NodeInterface instances.
      *
@@ -436,15 +447,15 @@ interface SessionInterface
      * @throws PathNotFoundException if either srcAbsPath or destAbsPath
      *      cannot be found and this implementation performs this validation
      *      immediately.
-     * @throws \PHPCR\Version\VersionException if the parent node of
+     * @throws VersionException if the parent node of
      *      destAbsPath or the parent node of srcAbsPath is versionable and
      *      checked-in, or or is non-versionable and its nearest versionable
      *      ancestor is checked-in and this implementation performs this
      *      validation immediately.
-     * @throws \PHPCR\NodeType\ConstraintViolationException if a node-type or
+     * @throws ConstraintViolationException if a node-type or
      *      other constraint violation is detected immediately and this
      *      implementation performs this validation immediately.
-     * @throws \PHPCR\Lock\LockException if the move operation would violate a
+     * @throws LockException if the move operation would violate a
      *      lock and this implementation performs this validation immediately.
      * @throws RepositoryException if the last element of destAbsPath
      *      has an index or if another error occurs.
@@ -467,13 +478,13 @@ interface SessionInterface
      *
      * @param string $absPath the absolute path of the item to be removed.
      *
-     * @throws \PHPCR\Version\VersionException if the parent node of the item
+     * @throws VersionException if the parent node of the item
      *      at absPath is read-only due to a checked-in node and this
      *      implementation performs this validation immediately.
-     * @throws \PHPCR\Lock\LockException if a lock prevents the removal of the
+     * @throws LockException if a lock prevents the removal of the
      *      specified item and this implementation performs this validation
      *      immediately instead.
-     * @throws \PHPCR\NodeType\ConstraintViolationException if removing the
+     * @throws ConstraintViolationException if removing the
      *      specified item would violate a node type or implementation-specific
      *      constraint and this implementation performs this validation
      *      immediately.
@@ -515,7 +526,7 @@ interface SessionInterface
      * @throws ItemExistsException if any of the changes to be persisted
      *      would be prevented by the presence of an already existing item in
      *      the workspace.
-     * @throws \PHPCR\NodeType\ConstraintViolationException if any of the
+     * @throws ConstraintViolationException if any of the
      *      changes to be persisted would violate a node type or restriction.
      *      Additionally, a repository may use this exception to enforce
      *      implementation- or configuration-dependent restrictions.
@@ -528,12 +539,12 @@ interface SessionInterface
      *      persisted would cause the removal of a node that is currently
      *      referenced by a REFERENCE property that this Session has read
      *      access to.
-     * @throws \PHPCR\Version\VersionException if the save would make a result
+     * @throws VersionException if the save would make a result
      *      in a change to persistent storage that would violate the read-only
      *      status of a checked-in node.
-     * @throws \PHPCR\Lock\LockException if the save would result in a change
+     * @throws LockException if the save would result in a change
      *      to persistent storage that would violate a lock.
-     * @throws \PHPCR\NodeType\NoSuchNodeTypeException if the save would result
+     * @throws NoSuchNodeTypeException if the save would result
      *      in the addition of a node with an unrecognized node type.
      * @throws RepositoryException if another error occurs.
      *
@@ -664,8 +675,8 @@ interface SessionInterface
      * @param string $absPath an absolute path.
      * @param string $actions a comma separated list of action strings.
      *
-     * @throws \PHPCR\Security\AccessControlException If permission is denied.
-     * @throws RepositoryException                    if another error occurs.
+     * @throws AccessControlException if permission is denied.
+     * @throws RepositoryException    if another error occurs.
      *
      * @api
      */
@@ -800,14 +811,14 @@ interface SessionInterface
      *
      * @throws PathNotFoundException if no node exists at parentAbsPath
      *      and this implementation performs this validation immediately.
-     * @throws \PHPCR\NodeType\ConstraintViolationException if the new subgraph
+     * @throws ConstraintViolationException if the new subgraph
      *      cannot be added to the node at parentAbsPath due to node-type or
      *      other implementation-specific constraints, and this implementation
      *      performs this validation immediately.
-     * @throws \PHPCR\Version\VersionException if the node at $parentAbsPath is
+     * @throws VersionException if the node at $parentAbsPath is
      *      read-only due to a checked-in node and this implementation performs
      *      this validation immediately.
-     * @throws \PHPCR\Lock\LockException if a lock prevents the addition of the
+     * @throws LockException if a lock prevents the addition of the
      *      subgraph and this implementation performs this validation
      *      immediately.
      * @throws RepositoryException if another error occurs.
@@ -884,23 +895,23 @@ interface SessionInterface
      * @param integer $uuidBehavior a four-value flag that governs how incoming
      *      identifiers are handled.
      *
-     * @throws \RuntimeException     if an error during an I/O operation occurs.
+     * @throws RuntimeException     if an error during an I/O operation occurs.
      * @throws PathNotFoundException if no node exists at parentAbsPath
      *      and this implementation performs this validation immediately.
      * @throws ItemExistsException if deserialization would overwrite an
      *      existing item and this implementation performs this validation
      *      immediately.
-     * @throws \PHPCR\NodeType\ConstraintViolationException if a node type or
+     * @throws ConstraintViolationException if a node type or
      *      other implementation-specific constraint is violated that would be
      *      checked on a session write method or if uuidBehavior is set to
      *      IMPORT_UUID_COLLISION_REMOVE_EXISTING and an incoming node has the
      *      same UUID as the node at parentAbsPath or one of its ancestors.
-     * @throws \PHPCR\Version\VersionException if the node at $parentAbsPath is
+     * @throws VersionException if the node at $parentAbsPath is
      *      read-only due to a checked-in node and this implementation performs
      *      this validation immediately.
      * @throws InvalidSerializedDataException if incoming stream is not
      *      a valid XML document.
-     * @throws \PHPCR\Lock\LockException if a lock prevents the addition of the
+     * @throws LockException if a lock prevents the addition of the
      *      subgraph and this implementation performs this validation
      *      immediately.
      * @throws RepositoryException if another error occurs.
@@ -951,7 +962,7 @@ interface SessionInterface
      *      absPath is to be recursed.
      *
      * @throws PathNotFoundException if no node exists at absPath.
-     * @throws \RuntimeException     if an error during an I/O operation occurs.
+     * @throws RuntimeException      if an error during an I/O operation occurs.
      * @throws RepositoryException   if another error occurs.
      *
      * @api
@@ -999,7 +1010,7 @@ interface SessionInterface
      *      absPath is to be recursed.
      *
      * @throws PathNotFoundException if no node exists at absPath.
-     * @throws \RuntimeException     if an error during an I/O operation occurs.
+     * @throws RuntimeException      if an error during an I/O operation occurs.
      * @throws RepositoryException   if another error occurs.
      *
      * @api
@@ -1102,7 +1113,7 @@ interface SessionInterface
     /**
      * Returns the access control manager for this Session.
      *
-     * @return \PHPCR\Security\AccessControlManagerInterface the access control manager
+     * @return AccessControlManagerInterface the access control manager
      *      for this Session
      *
      * @throws UnsupportedRepositoryOperationException if access control
@@ -1116,7 +1127,7 @@ interface SessionInterface
     /**
      * Returns the retention and hold manager for this Session.
      *
-     * @return \PHPCR\Retention\RetentionManagerInterface the retention manager
+     * @return RetentionManagerInterface the retention manager
      *      for this Session.
      *
      * @throws UnsupportedRepositoryOperationException if retention and

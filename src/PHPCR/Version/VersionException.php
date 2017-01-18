@@ -2,6 +2,8 @@
 
 namespace PHPCR\Version;
 
+use PHPCR\RepositoryException;
+
 /**
  * Exception thrown by VersionInterface::addSuccessor() if an invalid version
  * graph operation is attempted.
@@ -11,6 +13,6 @@ namespace PHPCR\Version;
  *
  * @api
  */
-class VersionException extends \PHPCR\RepositoryException
+class VersionException extends RepositoryException
 {
 }

@@ -2,6 +2,10 @@
 
 namespace PHPCR\Query;
 
+use PHPCR\NodeInterface;
+use PHPCR\Query\QOM\QueryObjectModelFactoryInterface;
+use PHPCR\RepositoryException;
+
 /**
  * This interface encapsulates methods for the management of search queries.
  *
@@ -28,7 +32,7 @@ interface QueryManagerInterface
      *
      * @throws InvalidQueryException if the query statement is syntactically
      *      invalid or the specified language is not supported
-     * @throws \PHPCR\RepositoryException if another error occurs
+     * @throws RepositoryException if another error occurs
      *
      * @api
      */
@@ -38,7 +42,7 @@ interface QueryManagerInterface
      * Returns a QueryObjectModelFactory with which a JCR-JQOM query can be
      * built programmatically.
      *
-     * @return \PHPCR\Query\QOM\QueryObjectModelFactoryInterface a
+     * @return QueryObjectModelFactoryInterface a
      *      QueryObjectModelFactory object
      *
      * @api
@@ -53,14 +57,14 @@ interface QueryManagerInterface
      * calling QueryInterface::save() to persist the query to a location in the
      * workspace.
      *
-     * @param \PHPCR\NodeInterface $node a persisted query (that is, a node of
+     * @param NodeInterface $node a persisted query (that is, a node of
      *      type nt:query).
      *
      * @return QueryInterface a Query object.
      *
      * @throws InvalidQueryException If node is not a valid persisted query
      *      (that is, a node of type nt:query).
-     * @throws \PHPCR\RepositoryException if another error occurs
+     * @throws RepositoryException if another error occurs
      *
      * @api
      */
@@ -77,7 +81,7 @@ interface QueryManagerInterface
      *
      * @return array A list of query languages supported by this repository.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      *
      * @api
      */

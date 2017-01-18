@@ -2,6 +2,9 @@
 
 namespace PHPCR\Observation;
 
+use Iterator;
+use PHPCR\RepositoryException;
+
 /**
  * The ObservationManager object.
  *
@@ -51,7 +54,7 @@ interface ObservationManagerInterface extends \Traversable
      * @param EventListenerInterface $listener
      * @param EventFilterInterface   $filter
      *
-     * @throws \PHPCR\RepositoryException If an error occurs.
+     * @throws RepositoryException If an error occurs.
      *
      * @since JCR 2.1
      *
@@ -70,7 +73,7 @@ interface ObservationManagerInterface extends \Traversable
      *
      * @param EventListenerInterface $listener The listener to deregister.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      *
      * @api
      */
@@ -81,10 +84,10 @@ interface ObservationManagerInterface extends \Traversable
      *
      * If no listeners have been registered, an empty iterator is returned.
      *
-     * @return \Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>.
+     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>.
      *                  Values are the EventListenerInterface instances. Keys have no meaning.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -95,7 +98,7 @@ interface ObservationManagerInterface extends \Traversable
      *
      * @param string $userData the user data
      *
-     * @throws \PHPCR\RepositoryException if an error occurs
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -118,7 +121,7 @@ interface ObservationManagerInterface extends \Traversable
      *
      * @return EventJournalInterface an EventJournal (or null).
      *
-     * @throws \PHPCR\RepositoryException if an error occurs
+     * @throws RepositoryException if an error occurs
      *
      * @since JCR 2.1
      *

@@ -2,7 +2,15 @@
 
 namespace PHPCR;
 
+use InvalidArgumentException;
+use Iterator;
+use PHPCR\Lock\LockException;
+use PHPCR\NodeType\ConstraintViolationException;
+use PHPCR\NodeType\NodeDefinitionInterface;
 use PHPCR\NodeType\NodeTypeInterface;
+use PHPCR\NodeType\NoSuchNodeTypeException;
+use PHPCR\Version\VersionException;
+use Traversable;
 
 /**
  * The Node interface represents a node in a workspace.
@@ -19,7 +27,7 @@ use PHPCR\NodeType\NodeTypeInterface;
  *
  * @api
  */
-interface NodeInterface extends ItemInterface, \Traversable
+interface NodeInterface extends ItemInterface, Traversable
 {
     /**
      * A constant for the JCR name jcr:content. This is the name of
@@ -27,37 +35,37 @@ interface NodeInterface extends ItemInterface, \Traversable
      * nt:linkedFile.
      * @api
      */
-    const JCR_CONTENT = "{http://www.jcp.org/jcr/1.0}content";
+    const JCR_CONTENT = '{http://www.jcp.org/jcr/1.0}content';
 
     /**
      * A constant for the node name jcr:propertyDefinition declared in nt:nodeType.
      * @api
      */
-    const JCR_PROPERTY_DEFINITION = "{http://www.jcp.org/jcr/1.0}propertyDefinition";
+    const JCR_PROPERTY_DEFINITION = '{http://www.jcp.org/jcr/1.0}propertyDefinition';
 
     /**
      * A constant for the node name jcr:childNodeDefinition declared in nt:nodeType.
      * @api
      */
-    const JCR_CHILD_NODE_DEFINITION = "{http://www.jcp.org/jcr/1.0}childNodeDefinition";
+    const JCR_CHILD_NODE_DEFINITION = '{http://www.jcp.org/jcr/1.0}childNodeDefinition';
 
     /**
      * A constant for the node name jcr:rootVersion declared in nt:versionHistory.
      * @api
      */
-    const JCR_ROOT_VERSION = "{http://www.jcp.org/jcr/1.0}rootVersion";
+    const JCR_ROOT_VERSION = '{http://www.jcp.org/jcr/1.0}rootVersion';
 
     /**
      * A constant for the node name jcr:versionLabels declared in nt:versionHistory.
      * @api
      */
-    const JCR_VERSION_LABELS = "{http://www.jcp.org/jcr/1.0}versionLabels";
+    const JCR_VERSION_LABELS = '{http://www.jcp.org/jcr/1.0}versionLabels';
 
     /**
      * A constant for the node name jcr:frozenNode declared in nt:version.
      * @api
      */
-    const JCR_FROZEN_NODE = "{http://www.jcp.org/jcr/1.0}frozenNode";
+    const JCR_FROZEN_NODE = '{http://www.jcp.org/jcr/1.0}frozenNode';
 
     /**
      * Creates a new node at the specified $relPath
@@ -92,17 +100,17 @@ interface NodeInterface extends ItemInterface, \Traversable
      *      intermediary Nodes that do not exist or the last element of relPath
      *      has an index, and this implementation performs this validation
      *      immediately.
-     * @throws \PHPCR\NodeType\ConstraintViolationException if a node type or
+     * @throws ConstraintViolationException if a node type or
      *      implementation-specific constraint is violated or if an attempt is
      *      made to add a node as the child of a property and this
      *      implementation performs this validation immediately.
-     * @throws \PHPCR\Version\VersionException if the node to which the new
+     * @throws VersionException if the node to which the new
      *      child is being added is read-only due to a checked-in node and this
      *      implementation performs this validation immediately.
-     * @throws \PHPCR\Lock\LockException if a lock prevents the addition of the
+     * @throws LockException if a lock prevents the addition of the
      *      node and this implementation performs this validation immediately
      *      instead of waiting until save.
-     * @throws \InvalidArgumentException if $relPath is an absolute path
+     * @throws InvalidArgumentException if $relPath is an absolute path
      * @throws RepositoryException       if the last element of relPath has an
      *      index or if another error occurs.
      *
@@ -196,13 +204,13 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @return NodeInterface The newly created node.
      *
-     * @throws \PHPCR\NodeType\ConstraintViolationException if this node does
+     * @throws ConstraintViolationException if this node does
      *      not allow residual child nodes and this implementation performs
      *      this validation immediately.
-     * @throws \PHPCR\Version\VersionException if this node is read-only due to
+     * @throws VersionException if this node is read-only due to
      *      a checked-in node and this implementation performs this validation
      *      immediately.
-     * @throws \PHPCR\Lock\LockException if a lock prevents the addition of the
+     * @throws LockException if a lock prevents the addition of the
      *      node and this implementation performs this validation immediately.
      * @throws NamespaceException if a namespace prefix is provided in the
      *      $nameHint which does not exist and this implementation performs
@@ -240,17 +248,17 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @throws UnsupportedRepositoryOperationException if ordering is
      *      not supported on this node.
-     * @throws \PHPCR\NodeType\ConstraintViolationException if an implementation-
+     * @throws ConstraintViolationException if an implementation-
      *      specific ordering restriction is violated and this implementation
      *      performs this validation immediately instead of waiting until save.
      * @throws ItemNotFoundException if either parameter is not the
      *      relative path of a child node of this node.
-     * @throws \PHPCR\Version\VersionException if this node is read-only due to
+     * @throws VersionException if this node is read-only due to
      *      a checked-in node and this implementation performs this validation
      *      immediately.
-     * @throws \PHPCR\Lock\LockException if a lock prevents the re-ordering and
+     * @throws LockException if a lock prevents the re-ordering and
      *      this implementation performs this validation immediately.
-     * @throws \InvalidArgumentException if $srcChildRelPath is an absolute path
+     * @throws InvalidArgumentException if $srcChildRelPath is an absolute path
      *      or $destChildRelPath is non-null and any of the two paths is of
      *      depth more than 1.
      * @throws RepositoryException if another error occurs.
@@ -300,13 +308,13 @@ interface NodeInterface extends ItemInterface, \Traversable
      * @throws ItemExistsException if there already exists a sibling item of
      *      this node with the specified name, same-name siblings are not
      *      allowed and this implementation performs this validation immediately.
-     * @throws \PHPCR\NodeType\ConstraintViolationException if a node type or
+     * @throws ConstraintViolationException if a node type or
      *      implementation-specific constraint is violated and this
      *      implementation performs this validation immediately.
-     * @throws \PHPCR\Version\VersionException if this node is read-only due to
+     * @throws VersionException if this node is read-only due to
      *      a checked-in node and this implementation performs this validation
      *      immediately.
-     * @throws \PHPCR\Lock\LockException if a lock prevents the name change and
+     * @throws LockException if a lock prevents the name change and
      *      this implementation performs this validation immediately.
      * @throws RepositoryException If $newName has an index or if another error
      *      occurs.
@@ -368,14 +376,14 @@ interface NodeInterface extends ItemInterface, \Traversable
      *      not support dates incompatible with that format or if value cannot
      *      be converted to the type of the specified property or if the
      *      property already exists and is multi-valued.
-     * @throws \PHPCR\Version\VersionException if this node is versionable and
+     * @throws VersionException if this node is versionable and
      *      checked-in or is non-versionable but its nearest versionable
      *      ancestor is checked-in and this implementation performs this
      *      validation immediately instead of waiting until save.
-     * @throws \PHPCR\Lock\LockException if a lock prevents the setting of the
+     * @throws LockException if a lock prevents the setting of the
      *      property and this implementation performs this validation
      *      immediately instead of waiting until save.
-     * @throws \PHPCR\NodeType\ConstraintViolationException if the change would violate
+     * @throws ConstraintViolationException if the change would violate
      *      a node-type or other constraint and this implementation performs
      *      this validation immediately instead of waiting until save.
      * @throws UnsupportedRepositoryOperationException if the type
@@ -472,7 +480,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      * @param string|array $typeFilter a filter or an array of filters for the
      *      node type names to find.
      *
-     * @return \Iterator over all (matching) child Nodes implementing
+     * @return Iterator over all (matching) child Nodes implementing
      *      <b>SeekableIterator</b> and <b>Countable</b>. Keys are the Node
      *      names, values the corresponding NodeInterface instances.
      *
@@ -509,7 +517,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      * @param string|array $typeFilter a filter or an array of filters for the
      *      node type names to find.
      *
-     * @return \Iterator over all child node names
+     * @return Iterator over all child node names
      *
      * @throws RepositoryException if an error occurs.
      *
@@ -529,8 +537,8 @@ interface NodeInterface extends ItemInterface, \Traversable
      * @throws PathNotFoundException if no property exists at the
      *      specified path or if the current Session does not have read access
      *      to the specified property.
-     * @throws \InvalidArgumentException if $relPath is an absolute path
-     * @throws RepositoryException       if another error occurs.
+     * @throws InvalidArgumentException if $relPath is an absolute path
+     * @throws RepositoryException      if another error occurs.
      *
      * @api
      */
@@ -615,7 +623,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @param string|array $nameFilter a name pattern
      *
-     * @return \Iterator implementing <b>SeekableIterator</b> and
+     * @return Iterator implementing <b>SeekableIterator</b> and
      *      <b>Countable</b>. Keys are the property names, values the
      *      corresponding PropertyInterface instances.
      *
@@ -733,7 +741,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      * @param string $name Name of referring REFERENCE properties to be
      *      returned; if null then all referring REFERENCEs are returned.
      *
-     * @return \Iterator implementing <b>SeekableIterator</b> and
+     * @return Iterator implementing <b>SeekableIterator</b> and
      *      <b>Countable</b>. Keys are the property names, values the
      *      corresponding PropertyInterface instances.
      *
@@ -768,7 +776,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      * @param string $name name of referring WEAKREFERENCE properties to be
      *      returned; if null then all referring WEAKREFERENCEs are returned
      *
-     * @return \Iterator implementing <b>SeekableIterator</b> and
+     * @return Iterator implementing <b>SeekableIterator</b> and
      *      <b>Countable</b>. Keys are the property names, values the
      *      corresponding PropertyInterface instances.
      *
@@ -788,8 +796,8 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @return boolean true if a node exists at relPath; false otherwise.
      *
-     * @throws \InvalidArgumentException if $relPath is an absolute path
-     * @throws RepositoryException       if an error occurs.
+     * @throws InvalidArgumentException if $relPath is an absolute path
+     * @throws RepositoryException      if an error occurs.
      *
      * @api
      */
@@ -805,8 +813,8 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @return boolean true if a property exists at relPath; false otherwise.
      *
-     * @throws \InvalidArgumentException if $relPath is an absolute path
-     * @throws RepositoryException       if an error occurs.
+     * @throws InvalidArgumentException if $relPath is an absolute path
+     * @throws RepositoryException      if an error occurs.
      *
      * @api
      */
@@ -848,7 +856,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      * Which NodeType is returned when this method is called on the root node
      * of a workspace is up to the implementation.
      *
-     * @return \PHPCR\NodeType\NodeTypeInterface a NodeType object.
+     * @return NodeTypeInterface a NodeType object.
      *
      * @throws RepositoryException if an error occurs
      *
@@ -903,16 +911,16 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @param string $nodeTypeName the name of the new node type.
      *
-     * @throws \PHPCR\NodeType\ConstraintViolationException if the specified primary
+     * @throws ConstraintViolationException if the specified primary
      *      node type creates a type conflict and this implementation performs
      *      this validation immediately.
-     * @throws \PHPCR\NodeType\NoSuchNodeTypeException if the specified
+     * @throws NoSuchNodeTypeException if the specified
      *      nodeTypeName is not recognized and this implementation performs
      *      this validation immediately.
-     * @throws \PHPCR\Version\VersionException if this node is read-only due to
+     * @throws VersionException if this node is read-only due to
      *      a checked-in node and this implementation performs this validation
      *      immediately.
-     * @throws \PHPCR\Lock\LockException if a lock prevents the change of the
+     * @throws LockException if a lock prevents the change of the
      *      primary node type and this implementation performs this validation
      *      immediately.
      * @throws RepositoryException if another error occurs.
@@ -946,16 +954,16 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @param string $mixinName the name of the mixin node type to be added
      *
-     * @throws \PHPCR\NodeType\NoSuchNodeTypeException if the specified
+     * @throws NoSuchNodeTypeException if the specified
      *      mixinName is not recognized and this implementation performs this
      *      validation immediately instead of waiting until save.
-     * @throws \PHPCR\NodeType\ConstraintViolationException if the specified mixin node
+     * @throws ConstraintViolationException if the specified mixin node
      *      type is prevented from being assigned.
-     * @throws \PHPCR\Version\VersionException if this node is versionable and
+     * @throws VersionException if this node is versionable and
      *      checked-in or is non-versionable but its nearest versionable
      *      ancestor is checked-in and this implementation performs this
      *      validation immediately instead of waiting until save.
-     * @throws \PHPCR\Lock\LockException if a lock prevents the addition of the
+     * @throws LockException if a lock prevents the addition of the
      *      mixin and this implementation performs this validation immediately
      *      instead of waiting until save.
      * @throws RepositoryException if another error occurs.
@@ -973,16 +981,16 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @param string $mixinName the name of the mixin node type to be removed.
      *
-     * @throws \PHPCR\NodeType\NoSuchNodeTypeException if the specified
+     * @throws NoSuchNodeTypeException if the specified
      *      mixinName is not currently assigned to this node and this
      *      implementation performs this validation immediately.
-     * @throws \PHPCR\NodeType\ConstraintViolationException if the specified mixin node
+     * @throws ConstraintViolationException if the specified mixin node
      *      type is prevented from being removed and this implementation
      *      performs this validation immediately.
-     * @throws \PHPCR\Version\VersionException if this node is read-only due to
+     * @throws VersionException if this node is read-only due to
      *      a checked-in node and this implementation performs this validation
      *      immediately.
-     * @throws \PHPCR\Lock\LockException if a lock prevents the removal of the
+     * @throws LockException if a lock prevents the removal of the
      *      mixin and this implementation performs this validation immediately.
      * @throws RepositoryException if another error occurs.
      *
@@ -1029,16 +1037,16 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * @param array $mixinNames the names of the mixin node types to be set
      *
-     * @throws \PHPCR\NodeType\NoSuchNodeTypeException If one or more of the
+     * @throws NoSuchNodeTypeException If one or more of the
      *      specified $mixinNames are not recognized and this implementation
      *      performs this validation immediately.
-     * @throws \PHPCR\NodeType\ConstraintViolationException if the specified
+     * @throws ConstraintViolationException if the specified
      *      mixin node types create a conflict and this implementation performs
      *      this validation immediately.
-     * @throws \PHPCR\Version\VersionException if this node is read-only due to
+     * @throws VersionException if this node is read-only due to
      *      a checked-in node and this implementation performs this validation
      *      immediately.
-     * @throws \PHPCR\Lock\LockException if a lock prevents the assignment of
+     * @throws LockException if a lock prevents the assignment of
      *      the mixins and this implementation performs this validation
      *      immediately.
      * @throws RepositoryException if another error occurs.
@@ -1070,7 +1078,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      * @return boolean true if the specified mixin node type, mixinName, can be
      *      added to this node; false otherwise.
      *
-     * @throws \PHPCR\NodeType\NoSuchNodeTypeException if the specified mixin
+     * @throws NoSuchNodeTypeException if the specified mixin
      *      node type name is not recognized.
      * @throws RepositoryException if another error occurs.
      *
@@ -1091,7 +1099,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      * method is called on the root node of a workspace is also up to the
      * implementation.
      *
-     * @return \PHPCR\NodeType\NodeDefinitionInterface a NodeDefinition object.
+     * @return NodeDefinitionInterface a NodeDefinition object.
      *
      * @throws RepositoryException if an error occurs.
      *
@@ -1122,7 +1130,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      *      necessarily this Node) has pending unsaved changes.
      * @throws AccessDeniedException if the current session does not
      *      have sufficient access to perform the operation.
-     * @throws \PHPCR\Lock\LockException if a lock prevents the update.
+     * @throws LockException if a lock prevents the update.
      * @throws RepositoryException       if another error occurs.
      *
      * @api
@@ -1154,7 +1162,7 @@ interface NodeInterface extends ItemInterface, \Traversable
      * If this node is not shared then the returned iterator contains only this
      * node.
      *
-     * @return \Iterator implementing <b>SeekableIterator</b> and
+     * @return Iterator implementing <b>SeekableIterator</b> and
      *      <b>Countable</b>. Keys are the Node names, values the corresponding
      *      NodeInterface instances.
      *
@@ -1173,13 +1181,13 @@ interface NodeInterface extends ItemInterface, \Traversable
      *
      * If this node is not shared this method removes only this node.
      *
-     * @throws \PHPCR\Version\VersionException if the parent node of this item
+     * @throws VersionException if the parent node of this item
      *      is versionable and checked-in or is non-versionable but its nearest
      *      versionable ancestor is checked-in and this implementation performs
      *      this validation immediately.
-     * @throws \PHPCR\Lock\LockException if a lock prevents the removal of this
+     * @throws LockException if a lock prevents the removal of this
      *      item and this implementation performs this validation immediately.
-     * @throws \PHPCR\NodeType\ConstraintViolationException if removing the
+     * @throws ConstraintViolationException if removing the
      *      specified item would violate a node type or implementation-specific
      *      constraint and this implementation performs this validation immediately.
      * @throws RepositoryException if another error occurs.
@@ -1196,14 +1204,14 @@ interface NodeInterface extends ItemInterface, \Traversable
      * Removes this node, but does not remove any other node in the shared set
      * of this node.
      *
-     * @throws \PHPCR\Version\VersionException if the parent node of this item
+     * @throws VersionException if the parent node of this item
      *      is versionable and checked-in or is non-versionable but its nearest
      *      versionable ancestor is checked-in and this implementation performs
      *      this validation immediately instead of waiting until save.
-     * @throws \PHPCR\Lock\LockException if a lock prevents the removal of this
+     * @throws LockException if a lock prevents the removal of this
      *      item and this implementation performs this validation immediately
      *      instead of waiting until save.
-     * @throws \PHPCR\NodeType\ConstraintViolationException if removing the
+     * @throws ConstraintViolationException if removing the
      *      specified item would violate a node type or implementation-specific
      *      constraint and this implementation performs this validation
      *      immediately instead of waiting until save.

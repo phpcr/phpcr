@@ -35,7 +35,7 @@ interface PrivilegeInterface
      *
      * @api
      */
-    const JCR_READ = "{http://www.jcp.org/jcr/1.0}read";
+    const JCR_READ = '{http://www.jcp.org/jcr/1.0}read';
 
     /**
      * A constant representing jcr:modifyProperties (in extended form), the
@@ -43,7 +43,7 @@ interface PrivilegeInterface
      *
      * @api
      */
-    const JCR_MODIFY_PROPERTIES = "{http://www.jcp.org/jcr/1.0}modifyProperties";
+    const JCR_MODIFY_PROPERTIES = '{http://www.jcp.org/jcr/1.0}modifyProperties';
 
     /**
      * A constant representing jcr:addChildNodes (in extended form), the
@@ -51,7 +51,7 @@ interface PrivilegeInterface
      *
      * @api
      */
-    const JCR_ADD_CHILD_NODES = "{http://www.jcp.org/jcr/1.0}addChildNodes";
+    const JCR_ADD_CHILD_NODES = '{http://www.jcp.org/jcr/1.0}addChildNodes';
 
     /**
      * A constant representing jcr:removeNode (in extended form), the privilege
@@ -68,7 +68,7 @@ interface PrivilegeInterface
      *
      * @api
      */
-    const JCR_REMOVE_NODE = "{http://www.jcp.org/jcr/1.0}removeNode";
+    const JCR_REMOVE_NODE = '{http://www.jcp.org/jcr/1.0}removeNode';
 
     /**
      * A constant representing jcr:removeChildNodes (in extended form), the
@@ -85,7 +85,7 @@ interface PrivilegeInterface
      *
      * @api
      */
-    const JCR_REMOVE_CHILD_NODES = "{http://www.jcp.org/jcr/1.0}removeChildNodes";
+    const JCR_REMOVE_CHILD_NODES = '{http://www.jcp.org/jcr/1.0}removeChildNodes';
 
     /**
      * A constant representing jcr:write (in extended form), an aggregate
@@ -98,7 +98,7 @@ interface PrivilegeInterface
      *
      * @api
      */
-    const JCR_WRITE = "{http://www.jcp.org/jcr/1.0}write";
+    const JCR_WRITE = '{http://www.jcp.org/jcr/1.0}write';
 
     /**
      * A constant representing jcr:readAccessControl (in extended form), the
@@ -106,7 +106,7 @@ interface PrivilegeInterface
      *
      * @api
      */
-    const JCR_READ_ACCESS_CONTROL = "{http://www.jcp.org/jcr/1.0}readAccessControl";
+    const JCR_READ_ACCESS_CONTROL = '{http://www.jcp.org/jcr/1.0}readAccessControl';
 
     /**
      * A constant representing jcr:modifyAccessControl (in extended form), the
@@ -114,7 +114,7 @@ interface PrivilegeInterface
      *
      * @api
      */
-    const JCR_MODIFY_ACCESS_CONTROL = "{http://www.jcp.org/jcr/1.0}modifyAccessControl";
+    const JCR_MODIFY_ACCESS_CONTROL = '{http://www.jcp.org/jcr/1.0}modifyAccessControl';
 
     /**
      * A constant representing jcr:lockManagement (in extended form), the
@@ -122,7 +122,7 @@ interface PrivilegeInterface
      *
      * @api
      */
-    const JCR_LOCK_MANAGEMENT = "{http://www.jcp.org/jcr/1.0}lockManagement";
+    const JCR_LOCK_MANAGEMENT = '{http://www.jcp.org/jcr/1.0}lockManagement';
 
     /**
      * A constant representing jcr:versionManagement (in extended form), the
@@ -130,7 +130,7 @@ interface PrivilegeInterface
      *
      * @api
      */
-    const JCR_VERSION_MANAGEMENT = "{http://www.jcp.org/jcr/1.0}versionManagement";
+    const JCR_VERSION_MANAGEMENT = '{http://www.jcp.org/jcr/1.0}versionManagement';
 
     /**
      * A constant representing jcr:nodeTypeManagement (in extended form), the
@@ -139,7 +139,7 @@ interface PrivilegeInterface
      *
      * @api
      */
-    const JCR_NODE_TYPE_MANAGEMENT = "{http://www.jcp.org/jcr/1.0}nodeTypeManagement";
+    const JCR_NODE_TYPE_MANAGEMENT = '{http://www.jcp.org/jcr/1.0}nodeTypeManagement';
 
     /**
      * A constant representing jcr:retentionManagement (in extended form), the
@@ -147,7 +147,7 @@ interface PrivilegeInterface
      *
      * @api
      */
-    const JCR_RETENTION_MANAGEMENT = "{http://www.jcp.org/jcr/1.0}retentionManagement";
+    const JCR_RETENTION_MANAGEMENT = '{http://www.jcp.org/jcr/1.0}retentionManagement';
 
     /**
      * A constant representing jcr:lifecycleManagement (in extended form), the
@@ -155,26 +155,26 @@ interface PrivilegeInterface
      *
      * @api
      */
-    const JCR_LIFECYCLE_MANAGEMENT = "{http://www.jcp.org/jcr/1.0}lifecycleManagement";
+    const JCR_LIFECYCLE_MANAGEMENT = '{http://www.jcp.org/jcr/1.0}lifecycleManagement';
 
     /**
      * A constant representing <code>jcr:workspaceManagement</code> (in expanded
      * form), the privilege to create and remove workspaces in the repository.
      */
-    const JCR_WORKSPACE_MANAGEMENT = "{http://www.jcp.org/jcr/1.0}workspaceManagement";
+    const JCR_WORKSPACE_MANAGEMENT = '{http://www.jcp.org/jcr/1.0}workspaceManagement';
 
     /**
      * A constant representing <code>jcr:nodeTypeDefinitionManagement</code> (in expanded
      * form), the privilege to register, unregister and change the definitions
      * of node type in the repository.
      */
-    const JCR_NODE_TYPE_DEFINITION_MANAGEMENT = "{http://www.jcp.org/jcr/1.0}nodeTypeDefinitionManagement";
+    const JCR_NODE_TYPE_DEFINITION_MANAGEMENT = '{http://www.jcp.org/jcr/1.0}nodeTypeDefinitionManagement';
 
     /**
      * A constant representing <code>jcr:namespaceManagement</code> (in expanded
      * form), the privilege to register, unregister and modify namespace definitions.
      */
-    const JCR_NAMESPACE_MANAGEMENT = "{http://www.jcp.org/jcr/1.0}namespaceManagement";
+    const JCR_NAMESPACE_MANAGEMENT = '{http://www.jcp.org/jcr/1.0}namespaceManagement';
 
     /**
      * A constant representing jcr:all (in extended form), an aggregate
@@ -197,7 +197,7 @@ interface PrivilegeInterface
      *
      * @api
      */
-    const JCR_ALL = "{http://www.jcp.org/jcr/1.0}all";
+    const JCR_ALL = '{http://www.jcp.org/jcr/1.0}all';
 
     /**
      * Returns the name of this privilege.
