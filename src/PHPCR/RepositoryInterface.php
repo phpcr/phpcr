@@ -35,7 +35,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const SPEC_VERSION_DESC = "jcr.specification.version";
+    const SPEC_VERSION_DESC = 'jcr.specification.version';
 
     /**
      * The descriptor key for the name of the specification this repository
@@ -46,7 +46,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const SPEC_NAME_DESC = "jcr.specification.name";
+    const SPEC_NAME_DESC = 'jcr.specification.name';
 
     /**
      * The descriptor key for the name of the repository vendor.
@@ -55,7 +55,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const REP_VENDOR_DESC = "jcr.repository.vendor";
+    const REP_VENDOR_DESC = 'jcr.repository.vendor';
 
     /**
      * The descriptor key for the URL of the repository vendor.
@@ -64,7 +64,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const REP_VENDOR_URL_DESC = "jcr.repository.vendor.url";
+    const REP_VENDOR_URL_DESC = 'jcr.repository.vendor.url';
 
     /**
      * The descriptor key for the name of this repository implementation.
@@ -73,7 +73,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const REP_NAME_DESC = "jcr.repository.name";
+    const REP_NAME_DESC = 'jcr.repository.name';
 
     /**
      * The descriptor key for the version of this repository implementation.
@@ -82,7 +82,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const REP_VERSION_DESC = "jcr.repository.version";
+    const REP_VERSION_DESC = 'jcr.repository.version';
 
     /**
      * Key to a boolean descriptor. Returns true if and only if repository
@@ -91,7 +91,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const WRITE_SUPPORTED = "write.supported";
+    const WRITE_SUPPORTED = 'write.supported';
 
     /**
      * Key to a String descriptor. Returns one of the following
@@ -108,7 +108,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const IDENTIFIER_STABILITY = "identifier.stability";
+    const IDENTIFIER_STABILITY = 'identifier.stability';
 
     /**
      * One of four possible values for the descriptor IDENTIFIER_STABILITY.
@@ -116,7 +116,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const IDENTIFIER_STABILITY_METHOD_DURATION = "identifier.stability.method.duration";
+    const IDENTIFIER_STABILITY_METHOD_DURATION = 'identifier.stability.method.duration';
 
     /**
      * One of four possible values for the descriptor IDENTIFIER_STABILITY.
@@ -125,7 +125,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const IDENTIFIER_STABILITY_SAVE_DURATION = "identifier.stability.save.duration";
+    const IDENTIFIER_STABILITY_SAVE_DURATION = 'identifier.stability.save.duration';
 
     /**
      * One of four possible values for the descriptor IDENTIFIER_STABILITY.
@@ -134,7 +134,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const IDENTIFIER_STABILITY_SESSION_DURATION = "identifier.stability.session.duration";
+    const IDENTIFIER_STABILITY_SESSION_DURATION = 'identifier.stability.session.duration';
 
     /**
      * One of four possible values for the descriptor IDENTIFIER_STABILITY.
@@ -142,7 +142,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const IDENTIFIER_STABILITY_INDEFINITE_DURATION = "identifier.stability.indefinite.duration";
+    const IDENTIFIER_STABILITY_INDEFINITE_DURATION = 'identifier.stability.indefinite.duration';
 
     /**
      * Key to a boolean descriptor. Returns true if and only if XML export is
@@ -150,7 +150,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const OPTION_XML_EXPORT_SUPPORTED = "option.xml.export.supported";
+    const OPTION_XML_EXPORT_SUPPORTED = 'option.xml.export.supported';
 
     /**
      * Key to a boolean descriptor. Returns true if and only if XML import is
@@ -158,7 +158,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const OPTION_XML_IMPORT_SUPPORTED = "option.xml.import.supported";
+    const OPTION_XML_IMPORT_SUPPORTED = 'option.xml.import.supported';
 
     /**
      * Key to a boolean descriptor. Returns true if and only if unfiled content
@@ -166,7 +166,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const OPTION_UNFILED_CONTENT_SUPPORTED = "option.unfiled.content.supported";
+    const OPTION_UNFILED_CONTENT_SUPPORTED = 'option.unfiled.content.supported';
 
     /**
      * Key to a boolean descriptor. Returns true if and only if full versioning
@@ -174,7 +174,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const OPTION_VERSIONING_SUPPORTED = "option.versioning.supported";
+    const OPTION_VERSIONING_SUPPORTED = 'option.versioning.supported';
 
     /**
      * Key to a boolean descriptor. Returns true if and only if simple
@@ -182,7 +182,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const OPTION_SIMPLE_VERSIONING_SUPPORTED = "option.simple.versioning.supported";
+    const OPTION_SIMPLE_VERSIONING_SUPPORTED = 'option.simple.versioning.supported';
 
     /**
      * Key to a boolean descriptor. Returns true if and only if activities are
@@ -190,7 +190,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const OPTION_ACTIVITIES_SUPPORTED = "option.activities.supported";
+    const OPTION_ACTIVITIES_SUPPORTED = 'option.activities.supported';
 
     /**
      * Key to a boolean descriptor. Returns true if and only if configurations
@@ -198,7 +198,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const OPTION_BASELINES_SUPPORTED = "option.baselines.supported";
+    const OPTION_BASELINES_SUPPORTED = 'option.baselines.supported';
 
     /**
      * Key to a boolean descriptor. Returns true if and only if access control
@@ -206,7 +206,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const OPTION_ACCESS_CONTROL_SUPPORTED = "option.access.control.supported";
+    const OPTION_ACCESS_CONTROL_SUPPORTED = 'option.access.control.supported';
 
     /**
      * Key to a boolean descriptor. Returns true if and only if locking is
@@ -214,7 +214,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const OPTION_LOCKING_SUPPORTED = "option.locking.supported";
+    const OPTION_LOCKING_SUPPORTED = 'option.locking.supported';
 
     /**
      * Key to a boolean descriptor. Returns true if and only if asynchronous
@@ -222,7 +222,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const OPTION_OBSERVATION_SUPPORTED = "option.observation.supported";
+    const OPTION_OBSERVATION_SUPPORTED = 'option.observation.supported';
 
     /**
      * Key to a boolean descriptor. Returns true if and only if journaled
@@ -230,7 +230,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const OPTION_JOURNALED_OBSERVATION_SUPPORTED = "option.journaled.observation.supported";
+    const OPTION_JOURNALED_OBSERVATION_SUPPORTED = 'option.journaled.observation.supported';
 
     /**
      * Key to a boolean descriptor. Returns true if and only if retention and
@@ -238,7 +238,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const OPTION_RETENTION_SUPPORTED = "option.retention.supported";
+    const OPTION_RETENTION_SUPPORTED = 'option.retention.supported';
 
     /**
      * Key to a boolean descriptor. Returns true if and only if lifecycles are
@@ -246,7 +246,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const OPTION_LIFECYCLE_SUPPORTED = "option.lifecycle.supported";
+    const OPTION_LIFECYCLE_SUPPORTED = 'option.lifecycle.supported';
 
     /**
      * Key to a boolean descriptor. Returns true if and only if transactions
@@ -254,7 +254,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const OPTION_TRANSACTIONS_SUPPORTED = "option.transactions.supported";
+    const OPTION_TRANSACTIONS_SUPPORTED = 'option.transactions.supported';
 
     /**
      * Key to a boolean descriptor. Returns true if and only if workspace
@@ -262,7 +262,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const OPTION_WORKSPACE_MANAGEMENT_SUPPORTED = "option.workspace.management.supported";
+    const OPTION_WORKSPACE_MANAGEMENT_SUPPORTED = 'option.workspace.management.supported';
 
     /**
      * Key to a boolean descriptor. Returns true if and only if the primary
@@ -270,7 +270,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const OPTION_UPDATE_PRIMARY_NODETYPE_SUPPORTED = "option.update.primary.nodetype.supported";
+    const OPTION_UPDATE_PRIMARY_NODETYPE_SUPPORTED = 'option.update.primary.nodetype.supported';
 
     /**
      * Key to a boolean descriptor. Returns true if and only if the mixin node
@@ -278,7 +278,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const OPTION_UPDATE_MIXIN_NODETYPES_SUPPORTED = "option.update.mixin.nodetypes.supported";
+    const OPTION_UPDATE_MIXIN_NODETYPES_SUPPORTED = 'option.update.mixin.nodetypes.supported';
 
     /**
      * Key to a boolean descriptor. Returns true if and only if the creation of
@@ -286,7 +286,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const OPTION_SHAREABLE_NODES_SUPPORTED = "option.shareable.nodes.supported";
+    const OPTION_SHAREABLE_NODES_SUPPORTED = 'option.shareable.nodes.supported';
 
     /**
      * Key to a boolean descriptor. Returns true if and only if node type
@@ -294,7 +294,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const OPTION_NODE_TYPE_MANAGEMENT_SUPPORTED = "option.node.type.management.supported";
+    const OPTION_NODE_TYPE_MANAGEMENT_SUPPORTED = 'option.node.type.management.supported';
 
     /**
      * Key to a boolean descriptor. Returns true if and only if node and
@@ -302,7 +302,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const OPTION_NODE_AND_PROPERTY_WITH_SAME_NAME_SUPPORTED = "option.node.and.property.with.same.name.supported";
+    const OPTION_NODE_AND_PROPERTY_WITH_SAME_NAME_SUPPORTED = 'option.node.and.property.with.same.name.supported';
 
     /**
      * Key to string descriptor. Returns one of the following
@@ -324,7 +324,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const NODE_TYPE_MANAGEMENT_INHERITANCE = "node.type.management.inheritance";
+    const NODE_TYPE_MANAGEMENT_INHERITANCE = 'node.type.management.inheritance';
 
     /**
      * One of three possible values for the descriptor
@@ -336,7 +336,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const NODE_TYPE_MANAGEMENT_INHERITANCE_MINIMAL = "node.type.management.inheritance.minimal";
+    const NODE_TYPE_MANAGEMENT_INHERITANCE_MINIMAL = 'node.type.management.inheritance.minimal';
 
     /**
      * One of three possible values for the descriptor
@@ -348,7 +348,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const NODE_TYPE_MANAGEMENT_INHERITANCE_SINGLE = "node.type.management.inheritance.single";
+    const NODE_TYPE_MANAGEMENT_INHERITANCE_SINGLE = 'node.type.management.inheritance.single';
 
     /**
      * One of three possible values for the descriptor
@@ -360,7 +360,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const NODE_TYPE_MANAGEMENT_INHERITANCE_MULTIPLE = "node.type.management.inheritance.multiple";
+    const NODE_TYPE_MANAGEMENT_INHERITANCE_MULTIPLE = 'node.type.management.inheritance.multiple';
 
     /**
      * Key to a boolean descriptor. Returns true if and only if override of
@@ -368,7 +368,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const NODE_TYPE_MANAGEMENT_OVERRIDES_SUPPORTED = "node.type.management.overrides.supported";
+    const NODE_TYPE_MANAGEMENT_OVERRIDES_SUPPORTED = 'node.type.management.overrides.supported';
 
     /**
      * Key to a boolean descriptor. Returns true if and only if primary items
@@ -376,7 +376,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const NODE_TYPE_MANAGEMENT_PRIMARY_ITEM_NAME_SUPPORTED = "node.type.management.primary.item.name.supported";
+    const NODE_TYPE_MANAGEMENT_PRIMARY_ITEM_NAME_SUPPORTED = 'node.type.management.primary.item.name.supported';
 
     /**
      * Key to a boolean descriptor. Returns true if and only if preservation of
@@ -384,7 +384,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const NODE_TYPE_MANAGEMENT_ORDERABLE_CHILD_NODES_SUPPORTED = "node.type.management.orderable.child.nodes.supported";
+    const NODE_TYPE_MANAGEMENT_ORDERABLE_CHILD_NODES_SUPPORTED = 'node.type.management.orderable.child.nodes.supported';
 
     /**
      * Key to a boolean descriptor. Returns true if and only if residual
@@ -392,7 +392,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const NODE_TYPE_MANAGEMENT_RESIDUAL_DEFINITIONS_SUPPORTED = "node.type.management.residual.definitions.supported";
+    const NODE_TYPE_MANAGEMENT_RESIDUAL_DEFINITIONS_SUPPORTED = 'node.type.management.residual.definitions.supported';
 
     /**
      * Key to a boolean descriptor. Returns true if and only if autocreated
@@ -400,7 +400,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const NODE_TYPE_MANAGEMENT_AUTOCREATED_DEFINITIONS_SUPPORTED = "node.type.management.autocreated.definitions.supported";
+    const NODE_TYPE_MANAGEMENT_AUTOCREATED_DEFINITIONS_SUPPORTED = 'node.type.management.autocreated.definitions.supported';
 
     /**
      * Key to a boolean descriptor. Returns true if and only if same-name
@@ -408,7 +408,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const NODE_TYPE_MANAGEMENT_SAME_NAME_SIBLINGS_SUPPORTED = "node.type.management.same.name.siblings.supported";
+    const NODE_TYPE_MANAGEMENT_SAME_NAME_SIBLINGS_SUPPORTED = 'node.type.management.same.name.siblings.supported';
 
     /**
      * Key to an integer[] descriptor. Returns an array holding the
@@ -419,7 +419,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const NODE_TYPE_MANAGEMENT_PROPERTY_TYPES = "node.type.management.property.types";
+    const NODE_TYPE_MANAGEMENT_PROPERTY_TYPES = 'node.type.management.property.types';
 
     /**
      * Key to a boolean descriptor. Returns true if and only if multivalue
@@ -427,7 +427,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const NODE_TYPE_MANAGEMENT_MULTIVALUED_PROPERTIES_SUPPORTED = "node.type.management.multivalued.properties.supported";
+    const NODE_TYPE_MANAGEMENT_MULTIVALUED_PROPERTIES_SUPPORTED = 'node.type.management.multivalued.properties.supported';
 
     /**
      * Key to a boolean descriptor. Returns true if and only if registration of
@@ -435,7 +435,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const NODE_TYPE_MANAGEMENT_MULTIPLE_BINARY_PROPERTIES_SUPPORTED = "node.type.management.multiple.binary.properties.supported";
+    const NODE_TYPE_MANAGEMENT_MULTIPLE_BINARY_PROPERTIES_SUPPORTED = 'node.type.management.multiple.binary.properties.supported';
 
     /**
      * Key to a boolean descriptor. Returns true if and only value-constraints
@@ -443,7 +443,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const NODE_TYPE_MANAGEMENT_VALUE_CONSTRAINTS_SUPPORTED = "node.type.management.value.constraints.supported";
+    const NODE_TYPE_MANAGEMENT_VALUE_CONSTRAINTS_SUPPORTED = 'node.type.management.value.constraints.supported';
 
     /**
      * Key to boolean descriptor. Indicates that you can change node definitions
@@ -455,7 +455,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const NODE_TYPE_MANAGEMENT_UPDATE_IN_USE_SUPPORTED = "node.type.management.update.in.use.supported";
+    const NODE_TYPE_MANAGEMENT_UPDATE_IN_USE_SUPPORTED = 'node.type.management.update.in.use.supported';
 
     /**
      * Key to a string[] descriptor. Returns an array holding the constants
@@ -464,7 +464,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const QUERY_LANGUAGES = "query.languages";
+    const QUERY_LANGUAGES = 'query.languages';
 
     /**
      * Key to a boolean descriptor. Returns true if and only if stored queries
@@ -472,7 +472,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const QUERY_STORED_QUERIES_SUPPORTED = "query.stored.queries.supported";
+    const QUERY_STORED_QUERIES_SUPPORTED = 'query.stored.queries.supported';
 
     /**
      * Key to a boolean descriptor. Returns true if and only if full-text
@@ -480,7 +480,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const QUERY_FULL_TEXT_SEARCH_SUPPORTED = "query.full.text.search.supported";
+    const QUERY_FULL_TEXT_SEARCH_SUPPORTED = 'query.full.text.search.supported';
 
     /**
      * Key to String descriptor. Returns one of the following
@@ -494,7 +494,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const QUERY_JOINS = "query.joins";
+    const QUERY_JOINS = 'query.joins';
 
     /**
      * One of three possible values for the descriptor QUERY_JOINS . Indicates
@@ -502,7 +502,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const QUERY_JOINS_NONE = "query.joins.none";
+    const QUERY_JOINS_NONE = 'query.joins.none';
 
     /**
      * One of three possible values for the descriptor QUERY_JOINS . Indicates
@@ -510,7 +510,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const QUERY_JOINS_INNER = "query.joins.inner";
+    const QUERY_JOINS_INNER = 'query.joins.inner';
 
     /**
      * One of three possible values for the descriptor QUERY_JOINS . Indicates
@@ -518,7 +518,7 @@ interface RepositoryInterface
      *
      * @api
      */
-    const QUERY_JOINS_INNER_OUTER = "query.joins.inner.outer";
+    const QUERY_JOINS_INNER_OUTER = 'query.joins.inner.outer';
 
     /**
      * Key to a boolean descriptor. Returns true if
@@ -526,7 +526,7 @@ interface RepositoryInterface
      *
      * @since JCR 2.1
      */
-    const QUERY_CANCEL_SUPPORTED = "query.cancel.supported";
+    const QUERY_CANCEL_SUPPORTED = 'query.cancel.supported';
 
     /**
      * Authenticates the user using the supplied credentials.

@@ -2,6 +2,9 @@
 
 namespace PHPCR\NodeType;
 
+use Iterator;
+use PHPCR\NamespaceRegistryInterface;
+
 /**
  * A NodeType object represents a "live" node type that is registered in the
  * repository.
@@ -26,19 +29,19 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const NT_BASE = "{http://www.jcp.org/jcr/nt/1.0}base";
+    const NT_BASE = '{http://www.jcp.org/jcr/nt/1.0}base';
 
     /**
      * A constant for the node type name nt:hierarchyNode (in extended form).
      * @api
      */
-    const NT_HIERARCHY_NODE = "{http://www.jcp.org/jcr/nt/1.0}hierarchyNode";
+    const NT_HIERARCHY_NODE = '{http://www.jcp.org/jcr/nt/1.0}hierarchyNode';
 
     /**
      * A constant for the node type name nt:folder (in extended form).
      * @api
      */
-    const NT_FOLDER = "{http://www.jcp.org/jcr/nt/1.0}folder";
+    const NT_FOLDER = '{http://www.jcp.org/jcr/nt/1.0}folder';
 
     /**
      * A constant for the node type name nt:file (in extended form).
@@ -47,7 +50,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const NT_FILE = "{http://www.jcp.org/jcr/nt/1.0}file";
+    const NT_FILE = '{http://www.jcp.org/jcr/nt/1.0}file';
 
     /**
      * A constant for the node type name nt:linkedFile (in extended form).
@@ -56,7 +59,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const NT_LINKED_FILE = "{http://www.jcp.org/jcr/nt/1.0}linkedFile";
+    const NT_LINKED_FILE = '{http://www.jcp.org/jcr/nt/1.0}linkedFile';
 
     /**
      * A constant for the node type name nt:resource (in extended form).
@@ -65,13 +68,13 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const NT_RESOURCE = "{http://www.jcp.org/jcr/nt/1.0}resource";
+    const NT_RESOURCE = '{http://www.jcp.org/jcr/nt/1.0}resource';
 
     /**
      * A constant for the node type name nt:unstructured (in extended form).
      * @api
      */
-    const NT_UNSTRUCTURED = "{http://www.jcp.org/jcr/nt/1.0}unstructured";
+    const NT_UNSTRUCTURED = '{http://www.jcp.org/jcr/nt/1.0}unstructured';
 
     /**
      * A constant for the node type name nt:address (in extended form).
@@ -87,7 +90,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const NT_ADDRESS = "{http://www.jcp.org/jcr/nt/1.0}address";
+    const NT_ADDRESS = '{http://www.jcp.org/jcr/nt/1.0}address';
 
     /**
      * A constant for the node type name mix:referenceable (in extended form).
@@ -96,7 +99,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const MIX_REFERENCEABLE = "{http://www.jcp.org/mix/1.0}referenceable";
+    const MIX_REFERENCEABLE = '{http://www.jcp.org/mix/1.0}referenceable';
 
     /**
      * A constant for the node type name mix:title (in extended form).
@@ -107,7 +110,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const MIX_TITLE = "{http://www.jcp.org/mix/1.0}title";
+    const MIX_TITLE = '{http://www.jcp.org/mix/1.0}title';
 
     /**
      * A constant for the node type name mix:created (in extended form).
@@ -118,7 +121,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const MIX_CREATED = "{http://www.jcp.org/mix/1.0}created";
+    const MIX_CREATED = '{http://www.jcp.org/mix/1.0}created';
 
     /**
      * A constant for the node type name mix:lastModified (in extended form).
@@ -129,7 +132,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const MIX_LAST_MODIFIED = "{http://www.jcp.org/mix/1.0}lastModified";
+    const MIX_LAST_MODIFIED = '{http://www.jcp.org/mix/1.0}lastModified';
 
     /**
      * A constant for the node type name mix:language (in extended form).
@@ -138,7 +141,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const MIX_LANGUAGE = "{http://www.jcp.org/mix/1.0}language";
+    const MIX_LANGUAGE = '{http://www.jcp.org/mix/1.0}language';
 
     /**
      * A constant for the node type name mix:mimeType (in extended form).
@@ -149,7 +152,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const MIX_MIMETYPE = "{http://www.jcp.org/mix/1.0}mimeType";
+    const MIX_MIMETYPE = '{http://www.jcp.org/mix/1.0}mimeType';
 
     /**
      * A constant for the node type name nt:nodeType (in extended form).
@@ -166,7 +169,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const NT_NODE_TYPE = "{http://www.jcp.org/jcr/nt/1.0}nodeType";
+    const NT_NODE_TYPE = '{http://www.jcp.org/jcr/nt/1.0}nodeType';
 
     /**
      * A constant for the node type name nt:propertyDefinition (in extended form).
@@ -184,7 +187,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const NT_PROPERTY_DEFINITION = "{http://www.jcp.org/jcr/nt/1.0}propertyDefinition";
+    const NT_PROPERTY_DEFINITION = '{http://www.jcp.org/jcr/nt/1.0}propertyDefinition';
 
     /**
      * A constant for the node type name nt:childNodeDefinition (in extended form).
@@ -201,14 +204,14 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const NT_CHILD_NODE_DEFINITION = "{http://www.jcp.org/jcr/nt/1.0}childNodeDefinition";
+    const NT_CHILD_NODE_DEFINITION = '{http://www.jcp.org/jcr/nt/1.0}childNodeDefinition';
 
     /**
      * A constant for the node type name mix:shareable (in extended form).
      *
      * @api
      */
-    const MIX_SHAREABLE = "{http://www.jcp.org/mix/1.0}shareable";
+    const MIX_SHAREABLE = '{http://www.jcp.org/mix/1.0}shareable';
 
     /**
      * A constant for the node type name mix:lockable (in extended form).
@@ -219,7 +222,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const MIX_LOCKABLE = "{http://www.jcp.org/mix/1.0}lockable";
+    const MIX_LOCKABLE = '{http://www.jcp.org/mix/1.0}lockable';
 
     /**
      * A constant for the node type name mix:lifecycle (in extended form).
@@ -230,7 +233,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const MIX_LIFECYCLE = "{http://www.jcp.org/mix/1.0}lifecycle";
+    const MIX_LIFECYCLE = '{http://www.jcp.org/mix/1.0}lifecycle';
 
     /**
      * A constant for the node type name mix:simpleVersionable (in extended form).
@@ -239,7 +242,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const MIX_SIMPLE_VERSIONABLE = "{http://www.jcp.org/mix/1.0}simpleVersionable";
+    const MIX_SIMPLE_VERSIONABLE = '{http://www.jcp.org/mix/1.0}simpleVersionable';
 
     /**
      * A constant for the node type name mix:versionable (in extended form).
@@ -254,7 +257,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const MIX_VERSIONABLE = "{http://www.jcp.org/mix/1.0}versionable";
+    const MIX_VERSIONABLE = '{http://www.jcp.org/mix/1.0}versionable';
 
     /**
      * A constant for the node type name nt:versionHistory (in extended form).
@@ -267,7 +270,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const NT_VERSION_HISTORY = "{http://www.jcp.org/jcr/nt/1.0}versionHistory";
+    const NT_VERSION_HISTORY = '{http://www.jcp.org/jcr/nt/1.0}versionHistory';
 
     /**
      * A constant for the node type name nt:version (in extended form).
@@ -281,7 +284,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const NT_VERSION = "{http://www.jcp.org/jcr/nt/1.0}version";
+    const NT_VERSION = '{http://www.jcp.org/jcr/nt/1.0}version';
 
     /**
      * A constant for the node type name nt:frozenNode (in extended form).
@@ -293,7 +296,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const NT_FROZEN_NODE = "{http://www.jcp.org/jcr/nt/1.0}frozenNode";
+    const NT_FROZEN_NODE = '{http://www.jcp.org/jcr/nt/1.0}frozenNode';
 
     /**
      * A constant for the node type name nt:versionedChild (in extended form).
@@ -302,7 +305,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const NT_VERSIONED_CHILD = "{http://www.jcp.org/jcr/nt/1.0}versionedChild";
+    const NT_VERSIONED_CHILD = '{http://www.jcp.org/jcr/nt/1.0}versionedChild';
 
     /**
      * A constant for the node type name nt:activity (in extended form).
@@ -311,7 +314,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const NT_ACTIVITY = "{http://www.jcp.org/jcr/nt/1.0}activity";
+    const NT_ACTIVITY = '{http://www.jcp.org/jcr/nt/1.0}activity';
 
     /**
      * A constant for the node type name nt:configuration (in extended form).
@@ -320,7 +323,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const NT_CONFIGURATION = "{http://www.jcp.org/jcr/nt/1.0}configuration";
+    const NT_CONFIGURATION = '{http://www.jcp.org/jcr/nt/1.0}configuration';
 
     /**
      * A constant for the node type name nt:query (in extended form).
@@ -331,7 +334,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const NT_QUERY = "{http://www.jcp.org/jcr/nt/1.0}query";
+    const NT_QUERY = '{http://www.jcp.org/jcr/nt/1.0}query';
 
     /**#@-*/
 
@@ -384,7 +387,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      * Returns all subtypes of this node type in the node type inheritance
      * hierarchy.
      *
-     * @return \Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>.
+     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>.
      *      Keys are the node type names, values the corresponding
      *      NodeTypeInterface instances.
      *

@@ -2,6 +2,9 @@
 
 namespace PHPCR\Query\QOM;
 
+use PHPCR\Query\InvalidQueryException;
+use PHPCR\RepositoryException;
+
 /**
  * A QueryObjectModelFactory creates instances of the JCR query object model.
  *
@@ -34,12 +37,12 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @return QueryObjectModelInterface the query
      *
-     * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
+     * @throws InvalidQueryException if a particular validity test
      *      is possible on this method, the implementation chooses to perform
      *      that test and the parameters given fail that test. See the
      *      individual QOM factory methods for the validity criteria of each
      *      query element.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */
@@ -66,11 +69,11 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @return SelectorInterface the selector
      *
-     * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
+     * @throws InvalidQueryException if a particular validity test
      *      is possible on this method, the implementation chooses to perform
      *      that test (and not leave it until later) on createQuery, and the
      *      parameters given fail that test
-     * @throws \PHPCR\RepositoryException if the operation otherwise fails
+     * @throws RepositoryException if the operation otherwise fails
      *
      * @api
      */
@@ -88,11 +91,11 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @return JoinInterface the join
      *
-     * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
+     * @throws InvalidQueryException if a particular validity test
      *      is possible on this method, the implementation chooses to perform
      *      that test (and not leave it until later) on createQuery, and the
      *      parameters given fail that test
-     * @throws \PHPCR\RepositoryException if the operation otherwise fails
+     * @throws RepositoryException if the operation otherwise fails
      *
      * @api
      */
@@ -124,11 +127,11 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @return EquiJoinConditionInterface the constraint
      *
-     * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
+     * @throws InvalidQueryException if a particular validity test
      *      is possible on this method, the implementation chooses to perform
      *      that test (and not leave it until later) on createQuery, and the
      *      parameters given fail that test
-     * @throws \PHPCR\RepositoryException if the operation otherwise fails
+     * @throws RepositoryException if the operation otherwise fails
      *
      * @api
      */
@@ -155,11 +158,11 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @return SameNodeJoinConditionInterface the constraint
      *
-     * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
+     * @throws InvalidQueryException if a particular validity test
      *      is possible on this method, the implementation chooses to perform
      *      that test (and not leave it until later) on createQuery, and the
      *      parameters given fail that test
-     * @throws \PHPCR\RepositoryException if the operation otherwise fails
+     * @throws RepositoryException if the operation otherwise fails
      *
      * @api
      */
@@ -180,12 +183,12 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @return ChildNodeJoinConditionInterface the constraint
      *
-     * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
+     * @throws InvalidQueryException if a particular validity test
      *      is possible on this method, the implementation chooses to perform
      *      that test (and not leave it until later) on createQuery, and the
      *      parameters given fail that test
      *
-     * @throws \PHPCR\RepositoryException if the operation otherwise fails
+     * @throws RepositoryException if the operation otherwise fails
      *
      * @api
      */
@@ -207,11 +210,11 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @return DescendantNodeJoinConditionInterface the constraint
      *
-     * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
+     * @throws InvalidQueryException if a particular validity test
      *      is possible on this method, the implementation chooses to perform
      *      that test (and not leave it until later) on createQuery, and the
      *      parameters given fail that test
-     * @throws \PHPCR\RepositoryException if the operation otherwise fails
+     * @throws RepositoryException if the operation otherwise fails
      *
      * @api
      */
@@ -225,11 +228,11 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @return AndInterface the And constraint
      *
-     * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
+     * @throws InvalidQueryException if a particular validity test
      *      is possible on this method, the implementation chooses to perform
      *      that test (and not leave it until later) on createQuery, and the
      *      parameters given fail that test
-     * @throws \PHPCR\RepositoryException if the operation otherwise fails
+     * @throws RepositoryException if the operation otherwise fails
      *
      * @api
      */
@@ -244,12 +247,12 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @return OrInterface the Or constraint
      *
-     * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
+     * @throws InvalidQueryException if a particular validity test
      *      is possible on this method, the implementation chooses to perform
      *      that test (and not leave it until later) on createQuery, and the
      *      parameters given fail that test
      *
-     * @throws \PHPCR\RepositoryException if the operation otherwise fails
+     * @throws RepositoryException if the operation otherwise fails
      *
      * @api
      */
@@ -263,11 +266,11 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @return NotInterface the Not constraint
      *
-     * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
+     * @throws InvalidQueryException if a particular validity test
      *      is possible on this method, the implementation chooses to perform
      *      that test (and not leave it until later) on createQuery, and the
      *      parameters given fail that test
-     * @throws \PHPCR\RepositoryException if the operation otherwise fails
+     * @throws RepositoryException if the operation otherwise fails
      *
      * @api
      */
@@ -280,13 +283,13 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @param string                  $operator the operator; one of QueryObjectModelConstants.JCR_OPERATOR_*
      * @param StaticOperandInterface  $operand2 the second operand
      *
-     * @return \PHPCR\Query\QOM\ComparisonInterface the constraint
+     * @return ComparisonInterface the constraint
      *
-     * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
+     * @throws InvalidQueryException if a particular validity test
      *      is possible on this method, the implementation chooses to perform
      *      that test (and not leave it until later) on createQuery, and the
      *      parameters given fail that test
-     * @throws \PHPCR\RepositoryException if the operation otherwise fails
+     * @throws RepositoryException if the operation otherwise fails
      *
      * @api
      */
@@ -306,11 +309,11 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @return PropertyExistenceInterface the constraint
      *
-     * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
+     * @throws InvalidQueryException if a particular validity test
      *      is possible on this method, the implementation chooses to perform
      *      that test (and not leave it until later) on createQuery, and the
      *      parameters given fail that test
-     * @throws \PHPCR\RepositoryException if the operation otherwise fails
+     * @throws RepositoryException if the operation otherwise fails
      *
      * @api
      */
@@ -338,11 +341,11 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @return FullTextSearchInterface the constraint
      *
-     * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
+     * @throws InvalidQueryException if a particular validity test
      *      is possible on this method, the implementation chooses to perform
      *      that test (and not leave it until later) on createQuery, and the
      *      parameters given fail that test
-     * @throws \PHPCR\RepositoryException if the operation otherwise fails
+     * @throws RepositoryException if the operation otherwise fails
      *
      * @api
      */
@@ -365,10 +368,10 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @param string $selectorName the selector name
      * @param string $path         an absolute path
      *
-     * @return \PHPCR\Query\QOM\SameNodeInterface the constraint
+     * @return SameNodeInterface the constraint
      *
-     * @throws \PHPCR\Query\InvalidQueryException if the query is invalid
-     * @throws \PHPCR\RepositoryException         if the operation otherwise fails
+     * @throws InvalidQueryException if the query is invalid
+     * @throws RepositoryException if the operation otherwise fails
      *
      * @api
      */
@@ -391,13 +394,13 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @param string $selectorName the selector name
      * @param string $path         an absolute path
      *
-     * @return \PHPCR\Query\QOM\ChildNodeInterface the constraint
+     * @return ChildNodeInterface the constraint
      *
-     * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
+     * @throws InvalidQueryException if a particular validity test
      *      is possible on this method, the implementation chooses to perform
      *      that test (and not leave it until later) on createQuery, and the
      *      parameters given fail that test
-     * @throws \PHPCR\RepositoryException if the operation otherwise fails
+     * @throws RepositoryException if the operation otherwise fails
      *
      * @api
      */
@@ -422,11 +425,11 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @return DescendantNodeInterface the constraint
      *
-     * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
+     * @throws InvalidQueryException if a particular validity test
      *      is possible on this method, the implementation chooses to perform
      *      that test (and not leave it until later) on createQuery, and the
      *      parameters given fail that test
-     * @throws \PHPCR\RepositoryException if the operation otherwise fails
+     * @throws RepositoryException if the operation otherwise fails
      *
      * @api
      */
@@ -445,8 +448,8 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @return PropertyValueInterface the operand
      *
-     * @throws \PHPCR\Query\InvalidQueryException if the query is invalid
-     * @throws \PHPCR\RepositoryException         if the operation otherwise fails
+     * @throws InvalidQueryException if the query is invalid
+     * @throws RepositoryException if the operation otherwise fails
      *
      * @api
      */
@@ -460,11 +463,11 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @return LengthInterface the operand
      *
-     * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
+     * @throws InvalidQueryException if a particular validity test
      *      is possible on this method, the implementation chooses to perform
      *      that test (and not leave it until later) on createQuery, and the
      *      parameters given fail that test
-     * @throws \PHPCR\RepositoryException if the operation otherwise fails
+     * @throws RepositoryException if the operation otherwise fails
      *
      * @api
      */
@@ -481,11 +484,11 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @return NodeNameInterface the operand
      *
-     * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
+     * @throws InvalidQueryException if a particular validity test
      *      is possible on this method, the implementation chooses to perform
      *      that test (and not leave it until later) on createQuery, and the
      *      parameters given fail that test
-     * @throws \PHPCR\RepositoryException if the operation otherwise fails
+     * @throws RepositoryException if the operation otherwise fails
      *
      * @api
      */
@@ -502,8 +505,8 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @return NodeLocalNameInterface the operand
      *
-     * @throws \PHPCR\Query\InvalidQueryException if the query is invalid
-     * @throws \PHPCR\RepositoryException         if the operation otherwise fails
+     * @throws InvalidQueryException if the query is invalid
+     * @throws RepositoryException if the operation otherwise fails
      *
      * @api
      */
@@ -520,11 +523,11 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @return FullTextSearchScoreInterface the operand
      *
-     * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
+     * @throws InvalidQueryException if a particular validity test
      *      is possible on this method, the implementation chooses to perform
      *      that test (and not leave it until later) on createQuery, and the
      *      parameters given fail that test
-     * @throws \PHPCR\RepositoryException if the operation otherwise fails
+     * @throws RepositoryException if the operation otherwise fails
      *
      * @api
      */
@@ -539,11 +542,11 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @return LowerCaseInterface the operand
      *
-     * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
+     * @throws InvalidQueryException if a particular validity test
      *      is possible on this method, the implementation chooses to perform
      *      that test (and not leave it until later) on createQuery, and the
      *      parameters given fail that test
-     * @throws \PHPCR\RepositoryException if the operation otherwise fails
+     * @throws RepositoryException if the operation otherwise fails
      *
      * @api
      */
@@ -558,11 +561,11 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @return UpperCaseInterface the operand
      *
-     * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
+     * @throws InvalidQueryException if a particular validity test
      *      is possible on this method, the implementation chooses to perform
      *      that test (and not leave it until later) on createQuery, and the
      *      parameters given fail that test
-     * @throws \PHPCR\RepositoryException if the operation otherwise fails
+     * @throws RepositoryException if the operation otherwise fails
      *
      * @api
      */
@@ -577,11 +580,11 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @return BindVariableValueInterface the operand
      *
-     * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
+     * @throws InvalidQueryException if a particular validity test
      *      is possible on this method, the implementation chooses to perform
      *      that test (and not leave it until later) on createQuery, and the
      *      parameters given fail that test
-     * @throws \PHPCR\RepositoryException if the operation otherwise fails
+     * @throws RepositoryException if the operation otherwise fails
      *
      * @api
      */
@@ -596,11 +599,11 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @return mixed the operand
      *
-     * @throws \PHPCR\Query\InvalidQueryException if a particular validity test
+     * @throws InvalidQueryException if a particular validity test
      *      is possible on this method, the implementation chooses to perform
      *      that test (and not leave it until later) on createQuery, and the
      *      parameters given fail that test
-     * @throws \PHPCR\RepositoryException if the operation otherwise fails
+     * @throws RepositoryException if the operation otherwise fails
      *
      * @api
      */
@@ -615,8 +618,8 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @return OrderingInterface the ordering
      *
-     * @throws \PHPCR\Query\InvalidQueryException if the query is invalid
-     * @throws \PHPCR\RepositoryException         if the operation otherwise fails
+     * @throws InvalidQueryException if the query is invalid
+     * @throws RepositoryException   if the operation otherwise fails
      *
      * @api
      */
@@ -631,8 +634,8 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @return OrderingInterface the ordering
      *
-     * @throws \PHPCR\Query\InvalidQueryException if the query is invalid
-     * @throws \PHPCR\RepositoryException         if the operation otherwise fails
+     * @throws InvalidQueryException if the query is invalid
+     * @throws RepositoryException   if the operation otherwise fails
      *
      * @api
      */
@@ -669,9 +672,9 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @return ColumnInterface the column
      *
-     * @throws \PHPCR\Query\InvalidQueryException if the query has no default
+     * @throws InvalidQueryException if the query has no default
      *      selector or is otherwise invalid
-     * @throws \PHPCR\RepositoryException if the operation otherwise fails
+     * @throws RepositoryException   if the operation otherwise fails
      *
      * @api
      */

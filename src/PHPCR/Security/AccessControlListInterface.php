@@ -2,6 +2,9 @@
 
 namespace PHPCR\Security;
 
+use PHPCR\RepositoryException;
+use Traversable;
+
 /**
  * The AccessControlListInterface is an AccessControlPolicyInterface
  * representing a list of access control entries.
@@ -22,7 +25,7 @@ namespace PHPCR\Security;
  *
  * @api
  */
-interface AccessControlListInterface extends AccessControlPolicyInterface, \Traversable
+interface AccessControlListInterface extends AccessControlPolicyInterface, Traversable
 {
     /**
      * Returns all access control entries present with this policy.
@@ -33,7 +36,7 @@ interface AccessControlListInterface extends AccessControlPolicyInterface, \Trav
      * @return AccessControlEntryInterface[] an array of all
      *      AccessControlEntries present with this policy.
      *
-     * @throws \PHPCR\RepositoryException - if an error occurs.
+     * @throws RepositoryException - if an error occurs.
      *
      * @api
      */
@@ -65,7 +68,7 @@ interface AccessControlListInterface extends AccessControlPolicyInterface, \Trav
      * @throws AccessControlException if the specified principal or any of the
      *      privileges does not exist or if some other access control related
      *      exception occurs.
-     * @throws \PHPCR\RepositoryException - if another error occurs.
+     * @throws RepositoryException - if another error occurs.
      *
      * @api
      */
@@ -84,7 +87,7 @@ interface AccessControlListInterface extends AccessControlPolicyInterface, \Trav
      *
      * @throws AccessControlException if the specified entry is not present on
      *      the specified node.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */

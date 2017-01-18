@@ -2,6 +2,11 @@
 
 namespace PHPCR\NodeType;
 
+use Iterator;
+use PHPCR\RepositoryException;
+use PHPCR\UnsupportedRepositoryOperationException;
+use Traversable;
+
 /**
  * Allows for the retrieval and (in implementations that support it) the
  * registration of node types. Accessed via WorkspaceInterface::getNodeTypeManager().
@@ -17,7 +22,7 @@ namespace PHPCR\NodeType;
  *
  * @api
  */
-interface NodeTypeManagerInterface extends \Traversable
+interface NodeTypeManagerInterface extends Traversable
 {
     /**
      * Returns the named node type.
@@ -28,7 +33,7 @@ interface NodeTypeManagerInterface extends \Traversable
      *
      * @throws NoSuchNodeTypeException if no node type of the
      *      given name exists.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */
@@ -45,7 +50,7 @@ interface NodeTypeManagerInterface extends \Traversable
      * @return boolean True, if the node type identified by its name is
      *      registered, else false.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      *
      * @api
      */
@@ -54,11 +59,11 @@ interface NodeTypeManagerInterface extends \Traversable
     /**
      * Returns an iterator over all available node types (primary and mixin).
      *
-     * @return \Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>.
+     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>.
      *      Keys are the node type names, values the corresponding
      *      NodeTypeInterface instances.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      *
      * @api
      */
@@ -67,11 +72,11 @@ interface NodeTypeManagerInterface extends \Traversable
     /**
      * Returns an iterator over all available primary node types.
      *
-     * @return \Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>.
+     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>.
      *      Keys are the node type names, values the corresponding
      *      NodeTypeInterface instances.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      *
      * @api
      */
@@ -82,11 +87,11 @@ interface NodeTypeManagerInterface extends \Traversable
      *
      * If none are available, an empty iterator is returned.
      *
-     * @return \Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>.
+     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>.
      *      Keys are the node type names, values the corresponding
      *      NodeTypeInterface instances.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      *
      * @api
      */
@@ -105,9 +110,9 @@ interface NodeTypeManagerInterface extends \Traversable
      *
      * @return NodeTypeTemplateInterface A NodeTypeTemplate.
      *
-     * @throws \PHPCR\UnsupportedRepositoryOperationException if this
+     * @throws UnsupportedRepositoryOperationException if this
      *      implementation does not support node type registration.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */
@@ -119,9 +124,9 @@ interface NodeTypeManagerInterface extends \Traversable
      *
      * @return NodeDefinitionTemplateInterface A NodeDefinitionTemplate.
      *
-     * @throws \PHPCR\UnsupportedRepositoryOperationException if this
+     * @throws UnsupportedRepositoryOperationException if this
      *      implementation does not support node type registration.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      * @api
      */
     public function createNodeDefinitionTemplate();
@@ -134,9 +139,9 @@ interface NodeTypeManagerInterface extends \Traversable
      * @return PropertyDefinitionTemplateInterface An empty
      *      PropertyDefinitionTemplateInterface instance.
      *
-     * @throws \PHPCR\UnsupportedRepositoryOperationException if this
+     * @throws UnsupportedRepositoryOperationException if this
      *      implementation does not support node type registration.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */
@@ -163,9 +168,9 @@ interface NodeTypeManagerInterface extends \Traversable
      * @throws NodeTypeExistsException if allowUpdate is false and the
      *      NodeTypeDefinition specifies a node type name that is already
      *      registered.
-     * @throws \PHPCR\UnsupportedRepositoryOperationException if this
+     * @throws UnsupportedRepositoryOperationException if this
      *      implementation does not support node type registration.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */
@@ -183,7 +188,7 @@ interface NodeTypeManagerInterface extends \Traversable
      * @param boolean $allowUpdate whether to fail if node already exists or to
      *      update it.
      *
-     * @return \Iterator over the registered node types implementing
+     * @return Iterator over the registered node types implementing
      *      <b>SeekableIterator</b> and <b>Countable</b>. Keys are the node
      *      type names, values the corresponding NodeTypeInterface instances.
      *
@@ -194,9 +199,9 @@ interface NodeTypeManagerInterface extends \Traversable
      * @throws NodeTypeExistsException if allowUpdate is false and a
      *      NodeTypeDefinition within the Collection specifies a node type name
      *      that is already registered.
-     * @throws \PHPCR\UnsupportedRepositoryOperationException if this
+     * @throws UnsupportedRepositoryOperationException if this
      *      implementation does not support node type registration.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */
@@ -227,7 +232,7 @@ interface NodeTypeManagerInterface extends \Traversable
      * @param boolean $allowUpdate whether existing node type definitions
      *      should be modified/updated.
      *
-     * @return \Iterator over the registered node types implementing
+     * @return Iterator over the registered node types implementing
      *      <b>SeekableIterator</b> and <b>Countable</b>. Keys are the node
      *      type names, values the corresponding NodeTypeInterface instances.
      *
@@ -236,9 +241,9 @@ interface NodeTypeManagerInterface extends \Traversable
      * @throws NodeTypeExistsException if allowUpdate is false and a the
      *      NodeTypeDefinition within the CND string specifies a node type name
      *      that is already registered.
-     * @throws \PHPCR\UnsupportedRepositoryOperationException if this
+     * @throws UnsupportedRepositoryOperationException if this
      *      implementation does not support node type registration.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @since JCR 2.1
      */
@@ -250,11 +255,11 @@ interface NodeTypeManagerInterface extends \Traversable
      * @param string $name The name of the node type to be removed from the
      *      registry.
      *
-     * @throws \PHPCR\UnsupportedRepositoryOperationException if this
+     * @throws UnsupportedRepositoryOperationException if this
      *      implementation does not support node type registration.
      * @throws NoSuchNodeTypeException if no registered node type exists with
      *      the specified name.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */
@@ -267,11 +272,11 @@ interface NodeTypeManagerInterface extends \Traversable
      * @param array $names List of node type names to be removed from the
      *      registry.
      *
-     * @throws \PHPCR\UnsupportedRepositoryOperationException if this
+     * @throws UnsupportedRepositoryOperationException if this
      *      implementation does not support node type registration.
      * @throws NoSuchNodeTypeException if one of the names listed is not a
      *      registered node type.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */

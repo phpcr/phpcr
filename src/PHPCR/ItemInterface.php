@@ -2,6 +2,10 @@
 
 namespace PHPCR;
 
+use PHPCR\Lock\LockException;
+use PHPCR\NodeType\ConstraintViolationException;
+use PHPCR\Version\VersionException;
+
 /**
  * The Item is the base interface of Node and Property.
  *
@@ -249,18 +253,18 @@ interface ItemInterface
      * and causes the minimal re-numbering required to maintain the original
      * order but leave no gaps in the numbering.
      *
-     * @throws \PHPCR\Version\VersionException if the parent node of this item
+     * @throws VersionException if the parent node of this item
      *      is versionable and checked-in or is non-versionable but its nearest
      *      versionable ancestor is checked-in and this implementation performs
      *      this validation immediately instead of waiting until save.
-     * @throws \PHPCR\Lock\LockException if a lock prevents the removal of this
+     * @throws LockException if a lock prevents the removal of this
      *      item and this implementation performs this validation immediately
      *      instead of waiting until save.
-     * @throws \PHPCR\NodeType\ConstraintViolationException if removing the
+     * @throws ConstraintViolationException if removing the
      *      specified item would violate a node type or implementation-specific
      *      constraint and this implementation performs this validation
      *      immediately instead of waiting until save.
-     * @throws \PHPCR\AccessDeniedException if this item or an item in its
+     * @throws AccessDeniedException if this item or an item in its
      *      subgraph is currently the target of a REFERENCE property located in
      *      this workspace but outside this item's subgraph and the current
      *      Session does not have read access to that REFERENCE property or if

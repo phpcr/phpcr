@@ -2,6 +2,12 @@
 
 namespace PHPCR\Lock;
 
+use PHPCR\AccessDeniedException;
+use PHPCR\InvalidItemStateException;
+use PHPCR\PathNotFoundException;
+use PHPCR\RepositoryException;
+use Traversable;
+
 /**
  * This interface encapsulates methods for the management of locks.
  *
@@ -16,7 +22,7 @@ namespace PHPCR\Lock;
  *
  * @api
  */
-interface LockManagerInterface extends \Traversable
+interface LockManagerInterface extends Traversable
 {
     /**
      * Adds the specified lock token to the current Session.
@@ -29,7 +35,7 @@ interface LockManagerInterface extends \Traversable
      * @throws LockException if the specified lock token is already held by
      *      another Session and the implementation does not support
      *      simultaneous ownership of open-scoped locks.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */
@@ -48,10 +54,10 @@ interface LockManagerInterface extends \Traversable
      * @return LockInterface The applicable Lock object.
      *
      * @throws LockException                if no lock applies to this node.
-     * @throws \PHPCR\AccessDeniedException if the current session does not
+     * @throws AccessDeniedException if the current session does not
      *      have sufficient access to get the lock.
-     * @throws \PHPCR\PathNotFoundException if no node is found at $absPath
-     * @throws \PHPCR\RepositoryException   if another error occurs.
+     * @throws PathNotFoundException if no node is found at $absPath
+     * @throws RepositoryException   if another error occurs.
      *
      * @api
      */
@@ -66,7 +72,7 @@ interface LockManagerInterface extends \Traversable
      *
      * @return array an array of lock tokens (strings)
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      *
      * @api
      */
@@ -85,8 +91,8 @@ interface LockManagerInterface extends \Traversable
      * @return boolean True, if the node identified by the given path holds a
      *      lock, else false.
      *
-     * @throws \PHPCR\PathNotFoundException if no node is found at $absPath
-     * @throws \PHPCR\RepositoryException   if an error occurs.
+     * @throws PathNotFoundException if no node is found at $absPath
+     * @throws RepositoryException   if an error occurs.
      *
      * @api
      */
@@ -153,12 +159,12 @@ interface LockManagerInterface extends \Traversable
      * @throws LockException if this node is not mix:lockable or this node is
      *      already locked or isDeep is true and a descendant node of this node
      *      already holds a lock.
-     * @throws \PHPCR\AccessDeniedException if this session does not have
+     * @throws AccessDeniedException if this session does not have
      *      sufficient access to lock this node.
-     * @throws \PHPCR\InvalidItemStateException if this node has pending
+     * @throws InvalidItemStateException if this node has pending
      *      unsaved changes.
-     * @throws \PHPCR\PathNotFoundException if no node is found at $absPath
-     * @throws \PHPCR\RepositoryException   if another error occurs.
+     * @throws PathNotFoundException if no node is found at $absPath
+     * @throws RepositoryException   if another error occurs.
      *
      * @api
      */
@@ -176,12 +182,12 @@ interface LockManagerInterface extends \Traversable
      * @throws LockException if this node is not mix:lockable or this node is
      *      already locked or isDeep is true and a descendant node of this node
      *      already holds a lock.
-     * @throws \PHPCR\AccessDeniedException if this session does not have
+     * @throws AccessDeniedException if this session does not have
      *      sufficient access to lock this node.
-     * @throws \PHPCR\InvalidItemStateException if this node has pending
+     * @throws InvalidItemStateException if this node has pending
      *      unsaved changes.
-     * @throws \PHPCR\PathNotFoundException if no node is found at $absPath
-     * @throws \PHPCR\RepositoryException   if another error occurs.
+     * @throws PathNotFoundException if no node is found at $absPath
+     * @throws RepositoryException   if another error occurs.
      *
      */
     public function lockWithInfo($absPath, LockInfoInterface $lockInfo);
@@ -197,8 +203,8 @@ interface LockManagerInterface extends \Traversable
      *
      * @return boolean True, if the identified node has a lock.
      *
-     * @throws \PHPCR\PathNotFoundException if no node is found at $absPath.
-     * @throws \PHPCR\RepositoryException   if an error occurs.
+     * @throws PathNotFoundException if no node is found at $absPath.
+     * @throws RepositoryException   if an error occurs.
      *
      * @api
      */
@@ -211,7 +217,7 @@ interface LockManagerInterface extends \Traversable
      *
      * @throws LockException if the current Session does not hold
      *      the specified lock token.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */
@@ -241,12 +247,12 @@ interface LockManagerInterface extends \Traversable
      * @throws LockException If this node does not currently hold a
      *      lock or holds a lock for which this Session does not have the
      *      correct lock token.
-     * @throws \PHPCR\AccessDeniedException if the current session does not
+     * @throws AccessDeniedException if the current session does not
      *      have permission to unlock this node.
-     * @throws \PHPCR\InvalidItemStateException if this node has pending
+     * @throws InvalidItemStateException if this node has pending
      *      unsaved changes.
-     * @throws \PHPCR\PathNotFoundException if no node is found at $absPath
-     * @throws \PHPCR\RepositoryException   if another error occurs.
+     * @throws PathNotFoundException if no node is found at $absPath
+     * @throws RepositoryException   if another error occurs.
      *
      * @api
      */

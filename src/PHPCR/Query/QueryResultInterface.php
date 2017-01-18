@@ -2,6 +2,9 @@
 
 namespace PHPCR\Query;
 
+use Iterator;
+use PHPCR\RepositoryException;
+
 /**
  * A QueryResult object. Returned by Query->execute().
  *
@@ -26,7 +29,7 @@ interface QueryResultInterface extends \Traversable
      *
      * @return array A list holding the column names.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      * @api
      */
     public function getColumnNames();
@@ -36,10 +39,10 @@ interface QueryResultInterface extends \Traversable
      *
      * The rows are returned according to the ordering specified in the query.
      *
-     * @return \Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>.
+     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>.
      *                   Keys are the row position in this result set, Values are the RowInterface instances.
-     * @throws \PHPCR\RepositoryException if this call is the second time either getRows() or getNodes()
-     *                                    has been called on the same QueryResult object or if another error occurs.
+     * @throws RepositoryException if this call is the second time either getRows() or getNodes()
+     *                             has been called on the same QueryResult object or if another error occurs.
      * @api
     */
     public function getRows();
@@ -51,12 +54,12 @@ interface QueryResultInterface extends \Traversable
      *
      * @param bool|int $prefetch Whether to prefetch or not. int < 0/true means all,
      *                           0/false means none, int > 0 means the prefetch chunk size or none
-     * @return \Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>.
-     *                   Keys are the paths, Values the given Node instances.
+     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>.
+     *                  Keys are the paths, Values the given Node instances.
      *
-     * @throws \PHPCR\RepositoryException if the query contains more than one selector, if this call is
-     *                                    the second time either getRows() or getNodes() has been called on the
-     *                                    same QueryResult object or if another error occurs.
+     * @throws RepositoryException if the query contains more than one selector, if this call is
+     *                             the second time either getRows() or getNodes() has been called on the
+     *                             same QueryResult object or if another error occurs.
      * @api
      */
     public function getNodes($prefetch = false);
@@ -69,7 +72,7 @@ interface QueryResultInterface extends \Traversable
      *
      * @return array A String array holding the selector names.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      * @api
      */
     public function getSelectorNames();

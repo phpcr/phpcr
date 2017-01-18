@@ -2,6 +2,9 @@
 
 namespace PHPCR\Lock;
 
+use PHPCR\NodeInterface;
+use PHPCR\RepositoryException;
+
 /**
  * Represents a lock placed on an item.
  *
@@ -51,7 +54,7 @@ interface LockInterface
      * locked node) will only * return $n if $n is the lock holder. If $n is in
      * the subgraph of the lock holder, $h, then this call will return $h.
      *
-     * @return \PHPCR\NodeInterface a Node
+     * @return NodeInterface a Node
      *
      * @api
      */
@@ -80,7 +83,7 @@ interface LockInterface
      *
      * @return integer the number of seconds remaining until this lock times out.
      *
-     * @throws \PHPCR\RepositoryException if the timeout is infinite or unknown
+     * @throws RepositoryException if the timeout is infinite or unknown
      *
      * @api
      */
@@ -104,7 +107,7 @@ interface LockInterface
      *
      * @return boolean True, if the lock still counts, else false.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -146,7 +149,7 @@ interface LockInterface
      *
      * @throws LockException if this Session does not hold the correct lock
      *      token for this lock.
-     * @throws \PHPCR\RepositoryException if another error occurs.
+     * @throws RepositoryException if another error occurs.
      *
      * @api
      */

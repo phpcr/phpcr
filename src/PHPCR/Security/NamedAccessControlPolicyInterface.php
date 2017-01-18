@@ -2,6 +2,8 @@
 
 namespace PHPCR\Security;
 
+use PHPCR\RepositoryException;
+
 /**
  * A NamedAccessControlPolicy is an opaque access control policy that is
  * described by a JCR name and optionally a description.
@@ -22,7 +24,7 @@ interface NamedAccessControlPolicyInterface extends AccessControlPolicyInterface
      *
      * @return string the name of the access control policy. A JCR name.
      *
-     * @throws \PHPCR\RepositoryException - if an error occurs.
+     * @throws RepositoryException - if an error occurs.
      *
      * @api
      */

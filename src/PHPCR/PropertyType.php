@@ -2,6 +2,10 @@
 
 namespace PHPCR;
 
+use DateTime;
+use Exception;
+use InvalidArgumentException;
+
 /**
  * The property types supported by the JCR standard.
  *
@@ -217,12 +221,12 @@ final class PropertyType
      * @param  integer $type type the property type
      * @return string  name of the specified type
      *
-     * @throws \InvalidArgumentException if the given type is unknown.
+     * @throws InvalidArgumentException if the given type is unknown.
      * @api
      */
     public static function nameFromValue($type)
     {
-        switch (intval($type)) {
+        switch ((int) $type) {
             case self::UNDEFINED :
                 return self::TYPENAME_UNDEFINED;
             case self::STRING :
@@ -250,7 +254,7 @@ final class PropertyType
             case self::URI :
                 return self::TYPENAME_URI;
             default:
-                throw new \InvalidArgumentException('Unknown type (' . $type . ') given.');
+                throw new InvalidArgumentException("Unknown type ($type) given.");
         }
     }
 
@@ -263,7 +267,7 @@ final class PropertyType
      *
      * @return int The numeric constant value
      *
-     * @throws \InvalidArgumentException if the given name is unknown.
+     * @throws InvalidArgumentException if the given name is unknown.
      *
      * @api
      */
@@ -297,7 +301,7 @@ final class PropertyType
             case 'decimal':
                 return self::DECIMAL;
             default:
-                throw new \InvalidArgumentException('Unknown type name (' . $name . ') given.');
+                throw new InvalidArgumentException("Unknown type name ($name) given.");
         }
     }
 
@@ -321,6 +325,8 @@ final class PropertyType
      *
      * @throws ValueFormatException if the type can not be determined
      *
+     * @throws RepositoryException
+     *
      * @api
      */
     public static function determineType($value, $weak = false)
@@ -331,10 +337,10 @@ final class PropertyType
             // check if this is a jcr formatted date: sYYYY-MM-DDThh:mm:ss.sssTZD
             if (preg_match("/^(\\+|-)?(\\d{4})-(\\d{2})-(\\d{2})T([01][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])(\\.[0-9][0-9][0-9])?.*/", $value, $matches)) {
                 try {
-                    new \DateTime($value);
+                    new DateTime($value);
 
                     return self::DATE;
-                } catch (\Exception $e) {
+                } catch (Exception $e) {
                     // ignore, fall through to the string if its not valid
                 }
             }
@@ -354,11 +360,11 @@ final class PropertyType
             return self::BOOLEAN;
         }
         if (is_object($value)) {
-            if ($value instanceof \DateTime) {
+            if ($value instanceof DateTime) {
                 return self::DATE;
             }
             if ($value instanceof NodeInterface) {
-                return ($weak) ? self::WEAKREFERENCE : self::REFERENCE;
+                return $weak ? self::WEAKREFERENCE : self::REFERENCE;
             }
             if ($value instanceof PropertyInterface) {
                 return $value->getType();

@@ -2,6 +2,8 @@
 
 namespace PHPCR\Retention;
 
+use PHPCR\RepositoryException;
+
 /**
  * A RetentionPolicy is an object with a name and an optional description.
  *
@@ -17,7 +19,7 @@ interface RetentionPolicyInterface
      *
      * @return string the name of the access control policy. A JCR name.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      * @api
      */
     public function getName();

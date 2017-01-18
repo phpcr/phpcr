@@ -264,7 +264,7 @@ interface PropertyDefinitionInterface extends ItemDefinitionInterface
      * @return array an array of query operator constants as defined in
      *      \PHPCR\Query\QueryObjectModelConstantsInterface
      *
-     * @see \PHPCR\Query\QueryObjectModelConstantsInterface
+     * @see QueryObjectModelConstantsInterface
      *
      * @api
      */

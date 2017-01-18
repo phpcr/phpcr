@@ -2,6 +2,8 @@
 
 namespace PHPCR\Observation;
 
+use SeekableIterator;
+
 /**
  * An EventJournal is an extended Iterator that provides the additional
  * method skipTo(). All elements in this iterator are of type EventInterface.
@@ -22,7 +24,7 @@ namespace PHPCR\Observation;
  *
  * @api
  */
-interface EventJournalInterface extends \SeekableIterator
+interface EventJournalInterface extends SeekableIterator
 {
     /**
      * Skip all elements of the iterator earlier than date.

@@ -2,6 +2,8 @@
 
 namespace PHPCR\Security;
 
+use Traversable;
+
 /**
  * An AccessControlEntryInterface represents the association of one or more
  * PrivilegeInterface objects with a specific principal.
@@ -17,7 +19,7 @@ namespace PHPCR\Security;
  *
  * @api
  */
-interface AccessControlEntryInterface extends \Traversable
+interface AccessControlEntryInterface extends Traversable
 {
     /**
      * Returns the principal associated with this access control entry.

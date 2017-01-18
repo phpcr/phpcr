@@ -2,6 +2,8 @@
 
 namespace PHPCR\Version;
 
+use InvalidArgumentException;
+
 /**
  * The possible actions specified by the onParentVersion attribute in a
  * property definition within a node type definition.
@@ -140,11 +142,13 @@ final class OnParentVersionAction
      *
      * @return string the name of the specified action
      *
+     * @throws InvalidArgumentException
+     *
      * @api
      */
     public static function nameFromValue($action)
     {
-        switch (intval($action)) {
+        switch ((int) $action) {
             case self::COPY :
                 return self::ACTIONNAME_COPY;
                 break;
@@ -164,7 +168,7 @@ final class OnParentVersionAction
                 return self::ACTIONNAME_ABORT;
                 break;
             default:
-                throw new \InvalidArgumentException('Unknown action (' . $action . ') given.', 1257170242);
+                throw new InvalidArgumentException("Unknown action ($action) given.", 1257170242);
         }
     }
 
@@ -175,6 +179,8 @@ final class OnParentVersionAction
      * @param string $name the name of the on-version action
      *
      * @return int the numeric constant value
+     *
+     * @throws InvalidArgumentException
      *
      * @api
      */
@@ -200,7 +206,7 @@ final class OnParentVersionAction
                 return self::ABORT;
                 break;
             default:
-                throw new \InvalidArgumentException('Unknown name (' . $name . ') given.', 1257170243);
+                throw new InvalidArgumentException("Unknown name ($name) given.", 1257170243);
         }
     }
 }

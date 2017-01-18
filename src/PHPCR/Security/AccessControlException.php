@@ -2,6 +2,8 @@
 
 namespace PHPCR\Security;
 
+use PHPCR\RepositoryException;
+
 /**
  * Exception thrown by access control related methods of AccessControlManager.
  *
@@ -10,6 +12,6 @@ namespace PHPCR\Security;
  *
  * @api
  */
-class AccessControlException extends \PHPCR\RepositoryException
+class AccessControlException extends RepositoryException
 {
 }

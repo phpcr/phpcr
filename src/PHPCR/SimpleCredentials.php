@@ -2,6 +2,8 @@
 
 namespace PHPCR;
 
+use InvalidArgumentException;
+
 /**
  * SimpleCredentials implements the Credentials interface and represents simple
  * user ID/password credentials.
@@ -81,12 +83,14 @@ final class SimpleCredentials implements CredentialsInterface
      * @param string $name  the name of the attribute
      * @param mixed  $value the value to be stored
      *
+     * @throws InvalidArgumentException
+     *
      * @api
      */
     public function setAttribute($name, $value)
     {
         if (null === $name) {
-            throw new \InvalidArgumentException('$name cannot be null', 1212580046);
+            throw new InvalidArgumentException('$name cannot be null', 1212580046);
         }
 
         if (null === $value) {

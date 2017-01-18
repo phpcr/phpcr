@@ -2,6 +2,10 @@
 
 namespace PHPCR\Version;
 
+use DateTime;
+use PHPCR\NodeInterface;
+use PHPCR\RepositoryException;
+
 /**
  * A Version object wraps an nt:version node. It provides convenient access to
  * version information.
@@ -11,7 +15,7 @@ namespace PHPCR\Version;
  *
  * @api
  */
-interface VersionInterface extends \PHPCR\NodeInterface
+interface VersionInterface extends NodeInterface
 {
     /**
      * Returns the VersionHistory that contains this Version
@@ -19,7 +23,7 @@ interface VersionInterface extends \PHPCR\NodeInterface
      * @return VersionHistoryInterface the VersionHistory that
      *      contains this Version
      *
-     * @throws \PHPCR\RepositoryException if an error occurs
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -30,9 +34,9 @@ interface VersionInterface extends \PHPCR\NodeInterface
      * value of the jcr:created property in the nt:version node that represents
      * this version.
      *
-     * @return \DateTime the creation date
+     * @return DateTime the creation date
      *
-     * @throws \PHPCR\RepositoryException if an error occurs
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -52,7 +56,7 @@ interface VersionInterface extends \PHPCR\NodeInterface
      * @return VersionInterface a Version or null if no linear successor
      *      exists.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      *
      * @see VersionHistory::getAllLinearVersions()
      *
@@ -69,7 +73,7 @@ interface VersionInterface extends \PHPCR\NodeInterface
      *
      * @return VersionInterface[] an array of Versions
      *
-     * @throws \PHPCR\RepositoryException if an error occurs
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -89,7 +93,7 @@ interface VersionInterface extends \PHPCR\NodeInterface
      * @return VersionInterface a Version or null if no linear
      *      predecessor exists.
      *
-     * @throws \PHPCR\RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs.
      *
      * @see VersionHistory::getAllLinearVersions()
      *
@@ -107,7 +111,7 @@ interface VersionInterface extends \PHPCR\NodeInterface
      *
      * @return VersionInterface[] an array of Versions
      *
-     * @throws \PHPCR\RepositoryException if an error occurs
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -121,9 +125,9 @@ interface VersionInterface extends \PHPCR\NodeInterface
      * type nt:frozenNode. The original values at the time of the snapshots are
      * provided as jcr:frozenUuid, jcr:frozenPrimaryType, jcr:frozenMixinTypes
      *
-     * @return \PHPCR\NodeInterface a Node object
+     * @return NodeInterface a Node object
      *
-     * @throws \PHPCR\RepositoryException if an error occurs
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
