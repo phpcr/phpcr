@@ -1,5 +1,6 @@
 preset: psr2
 
 enabled:
-  - long_array_syntax
+  - short_array_syntax
   - duplicate_semicolon
+  - alpha_ordered_imports

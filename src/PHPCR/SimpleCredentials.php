@@ -19,21 +19,24 @@ final class SimpleCredentials implements CredentialsInterface
 {
     /**
      * Unique identifier of a user.
+     *
      * @var string
      */
     private $userID;
 
     /**
      * Unique string used to authenticate the user.
+     *
      * @var string
      */
     private $password;
 
     /**
      * Container to store properties.
+     *
      * @var array
      */
-    private $attributes = array();
+    private $attributes = [];
 
     /**
      * The constructor creates a new SimpleCredentials object, given a user ID

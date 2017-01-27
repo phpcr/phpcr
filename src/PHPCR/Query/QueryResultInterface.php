@@ -4,6 +4,7 @@ namespace PHPCR\Query;
 
 use Iterator;
 use PHPCR\RepositoryException;
+use Traversable;
 
 /**
  * A QueryResult object. Returned by Query->execute().
@@ -22,7 +23,7 @@ use PHPCR\RepositoryException;
  *
  * @api
  */
-interface QueryResultInterface extends \Traversable
+interface QueryResultInterface extends Traversable
 {
     /**
      * Returns an array of all the column names in the table view of this result set.

@@ -41,7 +41,7 @@ interface PropertyDefinitionTemplateInterface extends PropertyDefinitionInterfac
     /**
      * Sets the mandatory status of the property.
      *
-     * @param boolean $mandatory The mandatory status of the property.
+     * @param bool $mandatory The mandatory status of the property.
      *
      * @api
      */
@@ -59,7 +59,7 @@ interface PropertyDefinitionTemplateInterface extends PropertyDefinitionInterfac
     /**
      * Sets the protected status of the property.
      *
-     * @param boolean $protectedStatus The protection status of the property.
+     * @param bool $protectedStatus The protection status of the property.
      *
      * @api
      */
@@ -97,7 +97,7 @@ interface PropertyDefinitionTemplateInterface extends PropertyDefinitionInterfac
     /**
      * Sets the multi-value status of the property.
      *
-     * @param boolean $multiple The status of the ability to store multiple
+     * @param bool $multiple The status of the ability to store multiple
      *      values.
      *
      * @api
@@ -127,7 +127,7 @@ interface PropertyDefinitionTemplateInterface extends PropertyDefinitionInterfac
     /**
      * Sets the query-orderable status of the property.
      *
-     * @param boolean $queryOrderable The status of the ability being
+     * @param bool $queryOrderable The status of the ability being
      *      query-orderable.
      *
      * @api
