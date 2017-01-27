@@ -33,6 +33,11 @@
             "PHPCR": "src"
         }
     },
+    "autoload-dev": {
+        "psr-0": {
+            "PHPCR": "tests"
+        }
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "2.1-dev"
