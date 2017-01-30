@@ -48,8 +48,8 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      */
     public function createQuery(SourceInterface $source,
                          ConstraintInterface $constraint = null,
-                         array $orderings = array(),
-                         array $columns = array());
+                         array $orderings = [],
+                         array $columns = []);
 
     /**
      * Selects a subset of the nodes in the repository based on node type.

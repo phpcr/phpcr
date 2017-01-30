@@ -1,17 +1,21 @@
 <?php
+
 namespace PHPCR\Tests;
 
+use InvalidArgumentException;
+use PHPCR\CredentialsInterface;
 use PHPCR\SimpleCredentials;
+use PHPUnit_Framework_TestCase;
 
 /**
  * a test for the PHPCR\PropertyType class
  */
-class SimpleCredentialsTest extends \PHPUnit_Framework_TestCase
+class SimpleCredentialsTest extends PHPUnit_Framework_TestCase
 {
     public function testConstructor()
     {
         $credentials = new SimpleCredentials('user', 'password');
-        $this->assertInstanceOf('PHPCR\\CredentialsInterface', $credentials);
+        $this->assertInstanceOf(CredentialsInterface::class, $credentials);
 
         return $credentials;
     }
@@ -45,11 +49,12 @@ class SimpleCredentialsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \InvalidArgumentException
      * @depends testConstructor
      */
     public function testSetAttributeInvalid(SimpleCredentials $credentials)
     {
+        $this->expectException(InvalidArgumentException::class);
+
         $credentials->setAttribute(null, 'test');
     }
 

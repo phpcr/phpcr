@@ -12,6 +12,7 @@ use PHPCR\NodeInterface;
 use PHPCR\NoSuchWorkspaceException;
 use PHPCR\RepositoryException;
 use PHPCR\UnsupportedRepositoryOperationException;
+use Traversable;
 
 /**
  * The VersionManager object is accessed via
@@ -316,7 +317,7 @@ interface VersionManagerInterface
      *
      * @param boolean $removeExisting a boolean flag that governs what happens
      *      in case of an identifier collision
-     * @param string|array|\Traversable|VersionInterface $version a version
+     * @param string|array|Traversable|VersionInterface $version a version
      *      name, a list of Version objects or a Version object
      * @param string $absPath The absolute path to a node the privileges shall
      *      be fetched of.

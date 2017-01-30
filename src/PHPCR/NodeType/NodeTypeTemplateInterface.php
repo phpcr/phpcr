@@ -56,7 +56,7 @@ interface NodeTypeTemplateInterface extends NodeTypeDefinitionInterface
     /**
      * Sets the mixin flag of the node type.
      *
-     * @param boolean $mixin Whether this type is a mixin type (or a primary
+     * @param bool $mixin Whether this type is a mixin type (or a primary
      *      type).
      *
      * @api
@@ -66,7 +66,7 @@ interface NodeTypeTemplateInterface extends NodeTypeDefinitionInterface
     /**
      * Sets the orderable child nodes flag of the node type.
      *
-     * @param boolean $orderable Whether nodes of this type can have orderable
+     * @param bool $orderable Whether nodes of this type can have orderable
      *      children
      *
      * @api

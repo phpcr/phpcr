@@ -347,28 +347,36 @@ final class PropertyType
 
             return self::STRING;
         }
+
         if (is_resource($value)) {
             return self::BINARY;
         }
+
         if (is_int($value)) {
             return self::LONG;
         }
+
         if (is_float($value)) {
             return self::DOUBLE;
         }
+
         if (is_bool($value)) {
             return self::BOOLEAN;
         }
+
         if (is_object($value)) {
             if ($value instanceof DateTime) {
                 return self::DATE;
             }
+
             if ($value instanceof NodeInterface) {
                 return $weak ? self::WEAKREFERENCE : self::REFERENCE;
             }
+
             if ($value instanceof PropertyInterface) {
                 return $value->getType();
             }
+
             throw new ValueFormatException('Object values must implement PHPCR\NodeInterface, PHPCR\PropertyInterface or be \DateTime, supplied argument is of class: '.get_class($value));
         }
 

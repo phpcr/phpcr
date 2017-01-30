@@ -3,7 +3,7 @@
 namespace PHPCR\NodeType;
 
 use Iterator;
-use PHPCR\NamespaceRegistryInterface;
+use PHPCR\NamespaceRegistryInterface as NS;
 
 /**
  * A NodeType object represents a "live" node type that is registered in the
@@ -29,19 +29,19 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const NT_BASE = '{http://www.jcp.org/jcr/nt/1.0}base';
+    const NT_BASE = '{'.NS::NAMESPACE_NT.'}base';
 
     /**
      * A constant for the node type name nt:hierarchyNode (in extended form).
      * @api
      */
-    const NT_HIERARCHY_NODE = '{http://www.jcp.org/jcr/nt/1.0}hierarchyNode';
+    const NT_HIERARCHY_NODE = '{'.NS::NAMESPACE_NT.'}hierarchyNode';
 
     /**
      * A constant for the node type name nt:folder (in extended form).
      * @api
      */
-    const NT_FOLDER = '{http://www.jcp.org/jcr/nt/1.0}folder';
+    const NT_FOLDER = '{'.NS::NAMESPACE_NT.'}folder';
 
     /**
      * A constant for the node type name nt:file (in extended form).
@@ -50,7 +50,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const NT_FILE = '{http://www.jcp.org/jcr/nt/1.0}file';
+    const NT_FILE = '{'.NS::NAMESPACE_NT.'}file';
 
     /**
      * A constant for the node type name nt:linkedFile (in extended form).
@@ -59,7 +59,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const NT_LINKED_FILE = '{http://www.jcp.org/jcr/nt/1.0}linkedFile';
+    const NT_LINKED_FILE = '{'.NS::NAMESPACE_NT.'}linkedFile';
 
     /**
      * A constant for the node type name nt:resource (in extended form).
@@ -68,13 +68,13 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const NT_RESOURCE = '{http://www.jcp.org/jcr/nt/1.0}resource';
+    const NT_RESOURCE = '{'.NS::NAMESPACE_NT.'}resource';
 
     /**
      * A constant for the node type name nt:unstructured (in extended form).
      * @api
      */
-    const NT_UNSTRUCTURED = '{http://www.jcp.org/jcr/nt/1.0}unstructured';
+    const NT_UNSTRUCTURED = '{'.NS::NAMESPACE_NT.'}unstructured';
 
     /**
      * A constant for the node type name nt:address (in extended form).
@@ -90,7 +90,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const NT_ADDRESS = '{http://www.jcp.org/jcr/nt/1.0}address';
+    const NT_ADDRESS = '{'.NS::NAMESPACE_NT.'}address';
 
     /**
      * A constant for the node type name mix:referenceable (in extended form).
@@ -99,7 +99,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const MIX_REFERENCEABLE = '{http://www.jcp.org/mix/1.0}referenceable';
+    const MIX_REFERENCEABLE = '{'.NS::NAMESPACE_MIX.'}referenceable';
 
     /**
      * A constant for the node type name mix:title (in extended form).
@@ -110,7 +110,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const MIX_TITLE = '{http://www.jcp.org/mix/1.0}title';
+    const MIX_TITLE = '{'.NS::NAMESPACE_MIX.'}title';
 
     /**
      * A constant for the node type name mix:created (in extended form).
@@ -121,7 +121,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const MIX_CREATED = '{http://www.jcp.org/mix/1.0}created';
+    const MIX_CREATED = '{'.NS::NAMESPACE_MIX.'}created';
 
     /**
      * A constant for the node type name mix:lastModified (in extended form).
@@ -132,7 +132,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const MIX_LAST_MODIFIED = '{http://www.jcp.org/mix/1.0}lastModified';
+    const MIX_LAST_MODIFIED = '{'.NS::NAMESPACE_MIX.'}lastModified';
 
     /**
      * A constant for the node type name mix:language (in extended form).
@@ -141,7 +141,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const MIX_LANGUAGE = '{http://www.jcp.org/mix/1.0}language';
+    const MIX_LANGUAGE = '{'.NS::NAMESPACE_MIX.'}language';
 
     /**
      * A constant for the node type name mix:mimeType (in extended form).
@@ -152,7 +152,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const MIX_MIMETYPE = '{http://www.jcp.org/mix/1.0}mimeType';
+    const MIX_MIMETYPE = '{'.NS::NAMESPACE_MIX.'}mimeType';
 
     /**
      * A constant for the node type name nt:nodeType (in extended form).
@@ -169,7 +169,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const NT_NODE_TYPE = '{http://www.jcp.org/jcr/nt/1.0}nodeType';
+    const NT_NODE_TYPE = '{'.NS::NAMESPACE_NT.'}nodeType';
 
     /**
      * A constant for the node type name nt:propertyDefinition (in extended form).
@@ -187,7 +187,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const NT_PROPERTY_DEFINITION = '{http://www.jcp.org/jcr/nt/1.0}propertyDefinition';
+    const NT_PROPERTY_DEFINITION = '{'.NS::NAMESPACE_NT.'}propertyDefinition';
 
     /**
      * A constant for the node type name nt:childNodeDefinition (in extended form).
@@ -204,14 +204,14 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const NT_CHILD_NODE_DEFINITION = '{http://www.jcp.org/jcr/nt/1.0}childNodeDefinition';
+    const NT_CHILD_NODE_DEFINITION = '{'.NS::NAMESPACE_NT.'}childNodeDefinition';
 
     /**
      * A constant for the node type name mix:shareable (in extended form).
      *
      * @api
      */
-    const MIX_SHAREABLE = '{http://www.jcp.org/mix/1.0}shareable';
+    const MIX_SHAREABLE = '{'.NS::NAMESPACE_MIX.'}shareable';
 
     /**
      * A constant for the node type name mix:lockable (in extended form).
@@ -222,7 +222,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const MIX_LOCKABLE = '{http://www.jcp.org/mix/1.0}lockable';
+    const MIX_LOCKABLE = '{'.NS::NAMESPACE_MIX.'}lockable';
 
     /**
      * A constant for the node type name mix:lifecycle (in extended form).
@@ -233,7 +233,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const MIX_LIFECYCLE = '{http://www.jcp.org/mix/1.0}lifecycle';
+    const MIX_LIFECYCLE = '{'.NS::NAMESPACE_MIX.'}lifecycle';
 
     /**
      * A constant for the node type name mix:simpleVersionable (in extended form).
@@ -242,7 +242,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const MIX_SIMPLE_VERSIONABLE = '{http://www.jcp.org/mix/1.0}simpleVersionable';
+    const MIX_SIMPLE_VERSIONABLE = '{'.NS::NAMESPACE_MIX.'}simpleVersionable';
 
     /**
      * A constant for the node type name mix:versionable (in extended form).
@@ -257,7 +257,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const MIX_VERSIONABLE = '{http://www.jcp.org/mix/1.0}versionable';
+    const MIX_VERSIONABLE = '{'.NS::NAMESPACE_MIX.'}versionable';
 
     /**
      * A constant for the node type name nt:versionHistory (in extended form).
@@ -270,7 +270,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const NT_VERSION_HISTORY = '{http://www.jcp.org/jcr/nt/1.0}versionHistory';
+    const NT_VERSION_HISTORY = '{'.NS::NAMESPACE_NT.'}versionHistory';
 
     /**
      * A constant for the node type name nt:version (in extended form).
@@ -284,7 +284,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const NT_VERSION = '{http://www.jcp.org/jcr/nt/1.0}version';
+    const NT_VERSION = '{'.NS::NAMESPACE_NT.'}version';
 
     /**
      * A constant for the node type name nt:frozenNode (in extended form).
@@ -296,7 +296,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const NT_FROZEN_NODE = '{http://www.jcp.org/jcr/nt/1.0}frozenNode';
+    const NT_FROZEN_NODE = '{'.NS::NAMESPACE_NT.'}frozenNode';
 
     /**
      * A constant for the node type name nt:versionedChild (in extended form).
@@ -305,7 +305,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const NT_VERSIONED_CHILD = '{http://www.jcp.org/jcr/nt/1.0}versionedChild';
+    const NT_VERSIONED_CHILD = '{'.NS::NAMESPACE_NT.'}versionedChild';
 
     /**
      * A constant for the node type name nt:activity (in extended form).
@@ -314,7 +314,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const NT_ACTIVITY = '{http://www.jcp.org/jcr/nt/1.0}activity';
+    const NT_ACTIVITY = '{'.NS::NAMESPACE_NT.'}activity';
 
     /**
      * A constant for the node type name nt:configuration (in extended form).
@@ -323,7 +323,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const NT_CONFIGURATION = '{http://www.jcp.org/jcr/nt/1.0}configuration';
+    const NT_CONFIGURATION = '{'.NS::NAMESPACE_NT.'}configuration';
 
     /**
      * A constant for the node type name nt:query (in extended form).
@@ -334,7 +334,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const NT_QUERY = '{http://www.jcp.org/jcr/nt/1.0}query';
+    const NT_QUERY = '{'.NS::NAMESPACE_NT.'}query';
 
     /**#@-*/
 
@@ -402,7 +402,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      * hierarchy, that is, those which actually declared this node type in their
      * list of supertypes.
      *
-     * @return \Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>.
+     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>.
      *      Keys are the node type names, values the corresponding
      *      NodeTypeInterface instances.
      *
@@ -421,7 +421,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @param string $nodeTypeName the name of a node type.
      *
-     * @return boolean
+     * @return bool
      *
      * @api
      */
@@ -461,7 +461,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      * @param string $propertyName The name of the property
      * @param mixed  $value        A value or an array of values
      *
-     * @return boolean True if setting propertyName to value is allowed by this
+     * @return bool True if setting propertyName to value is allowed by this
      *      node type, else false.
      *
      * @api
@@ -482,7 +482,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      * @param string $childNodeName The name of the child node.
      * @param string $nodeTypeName  The name of the node type of the child node.
      *
-     * @return boolean True, if the node type allows the addition of a child
+     * @return bool True, if the node type allows the addition of a child
      *      node, else false.
      *
      * @api
@@ -513,7 +513,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @param string $propertyName The name of the property
      *
-     * @return boolean True, if the removal of the property is allowed, else
+     * @return bool True, if the removal of the property is allowed, else
      *      false.
      *
      * @api

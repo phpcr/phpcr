@@ -4,6 +4,7 @@ namespace PHPCR\Observation;
 
 use Iterator;
 use PHPCR\RepositoryException;
+use Traversable;
 
 /**
  * The ObservationManager object.
@@ -28,7 +29,7 @@ use PHPCR\RepositoryException;
  *
  * @api
  */
-interface ObservationManagerInterface extends \Traversable
+interface ObservationManagerInterface extends Traversable
 {
     /**
      * Adds an event listener that listens for the events specified by the
