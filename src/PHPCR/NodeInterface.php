@@ -4,7 +4,6 @@ namespace PHPCR;
 
 use InvalidArgumentException;
 use Iterator;
-use PHPCR\NamespaceRegistryInterface as NS;
 use PHPCR\Lock\LockException;
 use PHPCR\NodeType\ConstraintViolationException;
 use PHPCR\NodeType\NodeDefinitionInterface;
@@ -37,42 +36,42 @@ interface NodeInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_CONTENT = '{'.NS::NAMESPACE_JCR.'}content';
+    const JCR_CONTENT = '{http://www.jcp.org/jcr/1.0}content';
 
     /**
      * A constant for the node name jcr:propertyDefinition declared in nt:nodeType.
      *
      * @api
      */
-    const JCR_PROPERTY_DEFINITION = '{'.NS::NAMESPACE_JCR.'}propertyDefinition';
+    const JCR_PROPERTY_DEFINITION = '{http://www.jcp.org/jcr/1.0}propertyDefinition';
 
     /**
      * A constant for the node name jcr:childNodeDefinition declared in nt:nodeType.
      *
      * @api
      */
-    const JCR_CHILD_NODE_DEFINITION = '{'.NS::NAMESPACE_JCR.'}childNodeDefinition';
+    const JCR_CHILD_NODE_DEFINITION = '{http://www.jcp.org/jcr/1.0}childNodeDefinition';
 
     /**
      * A constant for the node name jcr:rootVersion declared in nt:versionHistory.
      *
      * @api
      */
-    const JCR_ROOT_VERSION = '{'.NS::NAMESPACE_JCR.'}rootVersion';
+    const JCR_ROOT_VERSION = '{http://www.jcp.org/jcr/1.0}rootVersion';
 
     /**
      * A constant for the node name jcr:versionLabels declared in nt:versionHistory.
      *
      * @api
      */
-    const JCR_VERSION_LABELS = '{'.NS::NAMESPACE_JCR.'}versionLabels';
+    const JCR_VERSION_LABELS = '{http://www.jcp.org/jcr/1.0}versionLabels';
 
     /**
      * A constant for the node name jcr:frozenNode declared in nt:version.
      *
      * @api
      */
-    const JCR_FROZEN_NODE = '{'.NS::NAMESPACE_JCR.'}frozenNode';
+    const JCR_FROZEN_NODE = '{http://www.jcp.org/jcr/1.0}frozenNode';
 
     /**
      * Creates a new node at the specified $relPath
