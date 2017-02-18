@@ -34,6 +34,11 @@ interface NamespaceRegistryInterface extends Traversable
     const PREFIX_JCR = 'jcr';
 
     /**
+     * A constant for the predefined namespace prefix "rep".
+     */
+    const PREFIX_REP = "rep";
+
+    /**
      * A constant for the predefined namespace prefix "nt".
      * @api
      */
@@ -68,6 +73,12 @@ interface NamespaceRegistryInterface extends Traversable
      * @api
      */
     const NAMESPACE_JCR = 'http://www.jcp.org/jcr/1.0';
+
+    /**
+     * A constant for the predefined namespace mapped by default to the prefix "rep"
+     * @api
+     */
+    const NAMESPACE_REP = "http://www.jcp.org/jcr/rep/1.0";
 
     /**
      * A constant for the predefined namespace mapped by default to the prefix "nt"
