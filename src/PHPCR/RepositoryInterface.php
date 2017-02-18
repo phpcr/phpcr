@@ -458,6 +458,14 @@ interface RepositoryInterface
     const NODE_TYPE_MANAGEMENT_UPDATE_IN_USE_SUPPORTED = 'node.type.management.update.in.use.supported';
 
     /**
+     * Key to boolean descriptor. Indicates that you can change node definitions
+     * that are in-use by existing nodes
+     *
+     * @api
+     */
+    const NODE_TYPE_MANAGEMENT_UPDATE_IN_USE_SUPPORTED = "node.type.management.update.in.use.supported";
+
+    /**
      * Key to a string[] descriptor. Returns an array holding the constants
      * representing the supported query languages, or a zero-length if query is
      * not supported.
@@ -473,6 +481,14 @@ interface RepositoryInterface
      * @api
      */
     const QUERY_STORED_QUERIES_SUPPORTED = 'query.stored.queries.supported';
+
+    /**
+     * Key to a boolean descriptor. Returns true if and only if SQL query language
+     * is supported
+     *
+     * @api
+     */
+    const OPTION_QUERY_SQL_SUPPORTED = "option.query.sql.supported";
 
     /**
      * Key to a boolean descriptor. Returns true if and only if full-text
@@ -527,6 +543,38 @@ interface RepositoryInterface
      * @since JCR 2.1
      */
     const QUERY_CANCEL_SUPPORTED = 'query.cancel.supported';
+
+    /**
+     * Key to boolean descriptor. Indicates that the index position notation
+     * for same-name siblings is supported within XPath queries
+     *
+     * @api
+     */
+    const QUERY_XPATH_POS_INDEX = "query.xpath.pos.index";
+
+    /**
+     * Key to boolean descriptor. Indicates that XPath queries return results
+     * in document order
+     *
+     * @api
+     */
+    const QUERY_XPATH_DOC_ORDER = "query.xpath.doc.order";
+
+    /**
+     * Key to boolean descriptor. Indicates that option.xml.export.support is true
+     * and query.languages is of non-zero length
+     *
+     * @api
+     */
+    const LEVEL_1_SUPPORTED = "level.1.supported";
+
+    /**
+     * Key to boolean descriptor. Indicates that both LEVEL_1_SUPPORTED and
+     * OPTION_XML_IMPORT_SUPPORTED are true
+     *
+     * @api
+     */
+    const LEVEL_2_SUPPORTED = "level.2.supported";
 
     /**
      * Authenticates the user using the supplied credentials.
