@@ -3,9 +3,9 @@ namespace PHPCR\Tests;
 
 use PHPCR\CredentialsInterface;
 use PHPCR\GuestCredentials;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-class GuestCredentialsTest extends PHPUnit_Framework_TestCase
+class GuestCredentialsTest extends TestCase
 {
     public function testGuestCredentials()
     {

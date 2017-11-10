@@ -3,12 +3,12 @@ namespace PHPCR\Tests\Version;
 
 use InvalidArgumentException;
 use PHPCR\Version\OnParentVersionAction;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * a test for the PHPCR\PropertyType class
  */
-class OnParentVersionActionTest extends PHPUnit_Framework_TestCase
+class OnParentVersionActionTest extends TestCase
 {
     /**
      * key = numeric type constant names as defined by api

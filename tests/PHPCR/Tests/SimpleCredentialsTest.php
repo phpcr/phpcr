@@ -5,12 +5,12 @@ namespace PHPCR\Tests;
 use InvalidArgumentException;
 use PHPCR\CredentialsInterface;
 use PHPCR\SimpleCredentials;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * a test for the PHPCR\PropertyType class
  */
-class SimpleCredentialsTest extends PHPUnit_Framework_TestCase
+class SimpleCredentialsTest extends TestCase
 {
     public function testConstructor()
     {
