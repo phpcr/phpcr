@@ -6,12 +6,12 @@ use DateTime;
 use InvalidArgumentException;
 use PHPCR\PropertyType;
 use PHPCR\ValueFormatException;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \PHPCR\PropertyType
  */
-class PropertyTypesTest extends PHPUnit_Framework_TestCase
+class PropertyTypesTest extends TestCase
 {
     /** key = numeric type constant names as defined by api
      *  value = expected value of the TYPENAME_<TYPE> constants
