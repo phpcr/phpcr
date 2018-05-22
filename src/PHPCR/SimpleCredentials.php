@@ -47,7 +47,7 @@ final class SimpleCredentials implements CredentialsInterface
      *
      * @api
      */
-    public function __construct($userID, $password)
+    public function __construct($userID = null, $password = null)
     {
         $this->userID = $userID;
         $this->password = $password;
