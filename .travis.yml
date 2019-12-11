@@ -6,10 +6,13 @@ php:
   - 7.1
   - 7.2
   - 7.3
+  - 7.4
 
 sudo: false
 
-script: phpunit -c tests/phpunit.xml.dist
+before_script: composer update --prefer-dist --no-interaction
+
+script: php vendor/bin/phpunit
 
 notifications:
   irc: "irc.freenode.org#jackalope"

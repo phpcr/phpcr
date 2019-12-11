@@ -1,6 +1,16 @@
 Changelog
 =========
 
+2.1.5
+-----
+
+* **2019-12-11**: Use namespaced phpunit classes in tests
+
+2.1.4
+-----
+
+* **2017-02-08**: fixed a regression of 2.1.3 that broke with php 5.6 (#96)
+
 2.1.3
 -----
 
