@@ -37,7 +37,6 @@ interface AccessControlManagerInterface
      *
      * Note that this method does not return the privileges held by the current
      * session, but rather the privileges supported by the repository.
-     * supports.
      *
      * @param string|null $absPath The absolute path to a node the privileges shall
      *      be fetched of.
