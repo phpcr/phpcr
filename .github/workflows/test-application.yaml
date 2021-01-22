@@ -40,7 +40,7 @@ jobs:
               uses: ramsey/composer-install@v1
               with:
                   dependency-versions: ${{ matrix.dependencies }}
-                  composer-options: --prefer-dist --no-suggest
+                  composer-options: --prefer-dist
 
             - name: Execute test cases
               run: vendor/bin/phpunit
