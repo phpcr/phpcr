@@ -1,6 +1,11 @@
 Changelog
 =========
 
+2.1.7
+-----
+
+* **2023-02-18**: Adjust documentation links in README
+
 2.1.6
 -----
 
