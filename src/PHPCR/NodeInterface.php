@@ -15,12 +15,14 @@ use Traversable;
 /**
  * The Node interface represents a node in a workspace.
  *
- * The \Traversable interface enables the implementation to be addressed with
+ * The Traversable interface enables the implementation to be addressed with
  * <b>foreach</b>. Nodes have to implement either \IteratorAggregate or
  * \Iterator.
  * The iterator is equivalent to <b>getNodes()</b> with no filter, returning
- * a list of all child nodes. Keys are the node names, values the node
+ * a list of all child nodes. Keys are the child node names, values the node
  * instances.
+ *
+ * @extends Traversable<string, NodeInterface>
  *
  * @license http://www.apache.org/licenses Apache License Version 2.0, January 2004
  * @license http://opensource.org/licenses/MIT MIT License
@@ -485,9 +487,8 @@ interface NodeInterface extends ItemInterface, Traversable
      * @param string|array $typeFilter a filter or an array of filters for the
      *      node type names to find.
      *
-     * @return Iterator over all (matching) child Nodes implementing
-     *      <b>SeekableIterator</b> and <b>Countable</b>. Keys are the Node
-     *      names, values the corresponding NodeInterface instances.
+     * @return Iterator<string, NodeInterface> over all (matching) child Nodes implementing <b>SeekableIterator</b>
+     *                                             and <b>Countable</b>. Keys are the Node names.
      *
      * @throws RepositoryException if an error occurs.
      *
@@ -522,7 +523,7 @@ interface NodeInterface extends ItemInterface, Traversable
      * @param string|array $typeFilter a filter or an array of filters for the
      *      node type names to find.
      *
-     * @return Iterator over all child node names
+     * @return Iterator<string> over all child node names
      *
      * @throws RepositoryException if an error occurs.
      *
@@ -628,9 +629,8 @@ interface NodeInterface extends ItemInterface, Traversable
      *
      * @param string|array $nameFilter a name pattern
      *
-     * @return Iterator implementing <b>SeekableIterator</b> and
-     *      <b>Countable</b>. Keys are the property names, values the
-     *      corresponding PropertyInterface instances.
+     * @return Iterator<string, PropertyInterface> implementing <b>SeekableIterator</b> and
+     *                                             <b>Countable</b>. Keys are the property names.
      *
      * @throws RepositoryException if an error occurs.
      *
@@ -651,7 +651,7 @@ interface NodeInterface extends ItemInterface, Traversable
      * @param boolean      $dereference whether to dereference REFERENCE,
      *      WEAKREFERENCE and PATH properties or just return id/path strings
      *
-     * @return array Keys are the property names, values the corresponding
+     * @return array<string, mixed> Keys are the property names, values the corresponding
      *   property value (or array of values in case of multi-valued properties)
      *   If $dereference is false, reference properties are uuid strings and
      *   path properties path strings instead of the referenced node instances.
@@ -746,9 +746,8 @@ interface NodeInterface extends ItemInterface, Traversable
      * @param string $name Name of referring REFERENCE properties to be
      *      returned; if null then all referring REFERENCEs are returned.
      *
-     * @return Iterator implementing <b>SeekableIterator</b> and
-     *      <b>Countable</b>. Keys are the property names, values the
-     *      corresponding PropertyInterface instances.
+     * @return Iterator<string, PropertyInterface> implementing <b>SeekableIterator</b> and
+     *                                             <b>Countable</b>. Keys are the property names.
      *
      * @throws RepositoryException if an error occurs
      *
@@ -781,9 +780,8 @@ interface NodeInterface extends ItemInterface, Traversable
      * @param string $name name of referring WEAKREFERENCE properties to be
      *      returned; if null then all referring WEAKREFERENCEs are returned
      *
-     * @return Iterator implementing <b>SeekableIterator</b> and
-     *      <b>Countable</b>. Keys are the property names, values the
-     *      corresponding PropertyInterface instances.
+     * @return Iterator<string, PropertyInterface> implementing <b>SeekableIterator</b> and
+     *                                             <b>Countable</b>. Keys are the property names.
      *
      * @throws RepositoryException if an error occurs
      *
@@ -1167,9 +1165,8 @@ interface NodeInterface extends ItemInterface, Traversable
      * If this node is not shared then the returned iterator contains only this
      * node.
      *
-     * @return Iterator implementing <b>SeekableIterator</b> and
-     *      <b>Countable</b>. Keys are the Node names, values the corresponding
-     *      NodeInterface instances.
+     * @return Iterator<string, NodeInterface> implementing <b>SeekableIterator</b> and
+     *                                         <b>Countable</b>. Keys are the Node names.
      *
      * @throws RepositoryException if an error occurs.
      *
@@ -1293,7 +1290,7 @@ interface NodeInterface extends ItemInterface, Traversable
     /**
      * Returns the list of valid state transitions for this node.
      *
-     * @return array a string array.
+     * @return string[]
      *
      * @throws UnsupportedRepositoryOperationException if this
      *      implementation does not support lifecycle actions or if this node

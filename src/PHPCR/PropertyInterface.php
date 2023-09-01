@@ -18,7 +18,7 @@ use Traversable;
  * and a value, or in the case of multi-value properties, a set of values all
  * of the same type.
  *
- * The \Traversable interface enables the implementation to be addressed with
+ * The Traversable interface enables the implementation to be addressed with
  * <b>foreach</b>. Properties have to implement either \IteratorAggregate or
  * \Iterator.
  * The iterator is equivalent to <b>getValue()</b> returning an iterator
@@ -33,6 +33,8 @@ use Traversable;
  * They return arrays in case of multi-valued.
  * PropertyInterface::setValue completely replaces the
  * ValueFactory::createValue method.
+ *
+ * @extends Traversable<mixed>
  *
  * @license http://www.apache.org/licenses Apache License Version 2.0, January 2004
  * @license http://opensource.org/licenses/MIT MIT License

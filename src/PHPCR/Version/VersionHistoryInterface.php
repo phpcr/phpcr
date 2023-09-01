@@ -68,9 +68,8 @@ interface VersionHistoryInterface extends NodeInterface
      * equivalent to returning all versions in the version history in order from
      * oldest to newest.
      *
-     * @return Iterator implementing <b>SeekableIterator</b> and
-     *      <b>Countable</b>. Values are the VersionInterface instances. Keys
-     *      are the version names.
+     * @return Iterator<string, VersionInterface> implementing <b>SeekableIterator</b> and <b>Countable</b>.
+     *                                            Keys are the version names.
      *
      * @throws RepositoryException if an error occurs.
      *
@@ -84,9 +83,8 @@ interface VersionHistoryInterface extends NodeInterface
      * returned in order of creation date, from oldest to newest. Otherwise the
      * order of the returned versions is implementation-dependent.
      *
-     * @return Iterator implementing <b>SeekableIterator</b> and
-     *      <b>Countable</b>. Values are the VersionInterface instances. Keys
-     *      are the version names.
+     * @return Iterator<string, VersionInterface> implementing <b>SeekableIterator</b> and
+     *                                            <b>Countable</b>. Keys are the version names.
      *
      * @throws RepositoryException if an error occurs.
      *
@@ -98,9 +96,8 @@ interface VersionHistoryInterface extends NodeInterface
      * This method returns all the frozen nodes of all the versions in this
      * version history in the same order as getAllLinearVersions().
      *
-     * @return Iterator implementing <b>SeekableIterator</b> and
-     *      <b>Countable</b>. Values are the NodeInterface instances. Keys
-     *      are the version names
+     * @return Iterator<string, NodeInterface> implementing <b>SeekableIterator</b> and
+     *                                         <b>Countable</b>. Keys are the version names
      *
      * @throws RepositoryException if an error occurs.
      *
@@ -114,9 +111,8 @@ interface VersionHistoryInterface extends NodeInterface
      * nodes will be the order of their creation. Under full versioning the
      * order is implementation-dependent.
      *
-     * @return Iterator implementing <b>SeekableIterator</b> and
-     *      <b>Countable</b>. Values are the NodeInterface instances. Keys
-     *      are the version names
+     * @return Iterator<string, NodeInterface> implementing <b>SeekableIterator</b> and
+     *                                         <b>Countable</b>. Keys are the version names
      *
      * @throws RepositoryException if an error occurs.
      *
@@ -261,8 +257,7 @@ interface VersionHistoryInterface extends NodeInterface
      *
      * @param VersionInterface $version a Version object
      *
-     * @return array a string array containing all the labels of the (given)
-     *      version (history)
+     * @return string[] all the labels of the (given) version (history)
      *
      * @throws VersionException if the specified version is not in this version
      *      history.

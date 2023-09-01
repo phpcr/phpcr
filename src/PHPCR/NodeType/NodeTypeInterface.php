@@ -361,7 +361,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      * @see getSupertypes()
      * @see NodeTypeDefinition::getDeclaredSupertypeNames()
      *
-     * @return array the names of all supertypes
+     * @return string[]
      *
      * @since JCR 2.1
      */
@@ -387,9 +387,8 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      * Returns all subtypes of this node type in the node type inheritance
      * hierarchy.
      *
-     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>.
-     *      Keys are the node type names, values the corresponding
-     *      NodeTypeInterface instances.
+     * @return Iterator<string, NodeTypeInterface> implementing <b>SeekableIterator</b> and <b>Countable</b>.
+     *                                             Keys are the node type names.
      *
      * @see getDeclaredSubtypes()
      *
@@ -402,9 +401,8 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      * hierarchy, that is, those which actually declared this node type in their
      * list of supertypes.
      *
-     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>.
-     *      Keys are the node type names, values the corresponding
-     *      NodeTypeInterface instances.
+     * @return Iterator<string, NodeTypeInterface> implementing <b>SeekableIterator</b> and <b>Countable</b>.
+     *                                             Keys are the node type names.
      *
      * @see getSubtypes()
      *

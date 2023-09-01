@@ -42,7 +42,7 @@ interface RepositoryFactoryInterface
      * implementation should throw an RepositoryException if it is the right
      * factory but has trouble connecting to the repository.
      *
-     * @param array|null $parameters string key/value pairs as repository
+     * @param array<string, mixed>|null $parameters string key/value pairs as repository
      *      arguments or null if a client wishes to connect to a default
      *      repository.
      *
@@ -64,7 +64,7 @@ interface RepositoryFactoryInterface
      * The description string should include whether the key is mandatory or
      * optional.
      *
-     * @return array hash map of configuration key => english description
+     * @return array<string, string> hash map of configuration key => english description
      *
      * @api
      */

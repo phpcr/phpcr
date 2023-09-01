@@ -578,7 +578,7 @@ interface RepositoryInterface
      * conjunction with getDescriptor($key) to query information about this
      * repository implementation.
      *
-     * @return array a string array holding all descriptor keys
+     * @return string[]
      *
      * @api
      */

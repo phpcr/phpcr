@@ -317,7 +317,7 @@ interface VersionManagerInterface
      *
      * @param boolean $removeExisting a boolean flag that governs what happens
      *      in case of an identifier collision
-     * @param string|array|Traversable|VersionInterface $version a version
+     * @param string|array<VersionInterface>|Traversable<VersionInterface>|VersionInterface $version a version
      *      name, a list of Version objects or a Version object
      * @param string $absPath The absolute path to a node the privileges shall
      *      be fetched of.
@@ -459,7 +459,7 @@ interface VersionManagerInterface
      * @param boolean $bestEffort a boolean (optional if $source is a Node)
      * @param boolean $isShallow  a boolean (optional)
      *
-     * @return Iterator implementing <b>SeekableIterator</b> and
+     * @return Iterator<string, NodeInterface> implementing <b>SeekableIterator</b> and
      *      <b>Countable</b>. Keys are the Node names, values the corresponding
      *      NodeInterface instances that received a merge result of "fail" in
      *      the course of this operation.

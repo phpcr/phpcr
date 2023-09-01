@@ -46,7 +46,7 @@ interface NodeDefinitionInterface extends ItemDefinitionInterface
      * primary types as set in that template. If that template is a newly-created
      * empty one, then this method will return null.
      *
-     * @return array the names of the required primary types
+     * @return string[]
      *
      * @api
      */

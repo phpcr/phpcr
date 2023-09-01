@@ -17,12 +17,14 @@ use Traversable;
  * implementation documentation to learn how to use event listeners.
  * Alternatively, you can simply use getEventJournal to find events.
  *
- * The \Traversable interface enables the implementation to be addressed with
+ * The Traversable interface enables the implementation to be addressed with
  * <b>foreach</b>. ObservationManager has to implement either \IteratorAggregate
  * or \Iterator.
  * The iterator is equivalent to <b>getRegisteredEventListeners()</b> returning
  * a list of all registered event listeners. The iterator keys have no
  * significant meaning.
+ *
+ * @extends Traversable<EventListenerInterface>
  *
  * @license http://www.apache.org/licenses Apache License Version 2.0, January 2004
  * @license http://opensource.org/licenses/MIT MIT License
@@ -85,8 +87,8 @@ interface ObservationManagerInterface extends Traversable
      *
      * If no listeners have been registered, an empty iterator is returned.
      *
-     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>.
-     *                  Values are the EventListenerInterface instances. Keys have no meaning.
+     * @return Iterator<EventListenerInterface> implementing <b>SeekableIterator</b> and <b>Countable</b>.
+     *                                          Keys have no meaning.
      *
      * @throws RepositoryException if an error occurs
      *

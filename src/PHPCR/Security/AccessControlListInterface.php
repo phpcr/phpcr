@@ -13,12 +13,14 @@ use Traversable;
  * consequently defines methods to read and mutate the list i.e. to get, add or
  * remove individual AccessControlEntryInterface instances.
  *
- * The \Traversable interface enables the implementation to be addressed with
+ * The Traversable interface enables the implementation to be addressed with
  * <b>foreach</b>. AccessControlList has to implement either \RecursiveIterator
  * or \Iterator.
  * The iterator is equivalent to <b>getAccessControlEntries()</b> returning
  * AccessControlEntryInterface instances. The iterator keys have no significant
  * meaning.
+ *
+ * @extends Traversable<AccessControlEntryInterface>
  *
  * @license http://www.apache.org/licenses Apache License Version 2.0, January 2004
  * @license http://opensource.org/licenses/MIT MIT License
@@ -61,7 +63,7 @@ interface AccessControlListInterface extends AccessControlPolicyInterface, Trave
      *
      * @param PrincipalInterface $principal the entity that should have this
      *      privilege
-     * @param array $privileges - an array of Privileges.
+     * @param PrivilegeInterface[] $privileges - an array of Privileges.
      *
      * @return boolean true if this policy was modify; false otherwise.
      *

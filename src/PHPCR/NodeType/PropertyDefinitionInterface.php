@@ -177,7 +177,7 @@ interface PropertyDefinitionInterface extends ItemDefinitionInterface
      * PropertyDefinition object is actually a newly-created empty
      * PropertyDefinitionTemplate, then this method will return null.
      *
-     * @return array the value constraint strings
+     * @return string[]
      *
      * @api
      */
@@ -210,7 +210,7 @@ interface PropertyDefinitionInterface extends ItemDefinitionInterface
      * PropertyDefinition object is actually a newly-created empty
      * PropertyDefinitionTemplate, then this method will return null.
      *
-     * @return array An array of mixed php values.
+     * @return array<mixed>
      *
      * @api
      */
@@ -261,8 +261,7 @@ interface PropertyDefinitionInterface extends ItemDefinitionInterface
      * comparison semantics defined in the specification document (see 3.6.5
      * Comparison of Values).
      *
-     * @return array an array of query operator constants as defined in
-     *      \PHPCR\Query\QueryObjectModelConstantsInterface
+     * @return string[] query operator constants as defined in \PHPCR\Query\QueryObjectModelConstantsInterface
      *
      * @see QueryObjectModelConstantsInterface
      *

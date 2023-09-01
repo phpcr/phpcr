@@ -10,11 +10,13 @@ use Traversable;
 /**
  * A row in the query result table.
  *
- * The \Traversable interface enables the implementation to be addressed with
+ * The Traversable interface enables the implementation to be addressed with
  * <b>foreach</b>. Rows have to implement either \RecursiveIterator or
  * \Iterator.
  * The iterator is similar to <b>getValues()</b> with keys being the column
  * names and the values the corresponding entry in that column for this row.
+ *
+ * @extends Traversable<string, mixed>
  *
  * @license http://www.apache.org/licenses Apache License Version 2.0, January 2004
  * @license http://opensource.org/licenses/MIT MIT License
@@ -27,7 +29,7 @@ interface RowInterface extends Traversable
      * Returns an array of all the values in the same order as the column names
      * returned by QueryResultInterface::getColumnNames().
      *
-     * @return array Hashmap of column name to value of each column of the
+     * @return array<string, mixed> Hashmap of column name to value of each column of the
      *      current result row.
      *
      * @throws RepositoryException if an error occurs

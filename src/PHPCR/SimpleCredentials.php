@@ -34,7 +34,7 @@ final class SimpleCredentials implements CredentialsInterface
     /**
      * Container to store properties.
      *
-     * @var array
+     * @var array<string, mixed>
      */
     private $attributes = [];
 
@@ -143,7 +143,7 @@ final class SimpleCredentials implements CredentialsInterface
      * credentials instance. This method returns an empty array
      * if the credentials instance has no attributes available to it.
      *
-     * @return array a string array containing the names of the stored attributes
+     * @return string[] names of the stored attributes
      *
      * @api
      */

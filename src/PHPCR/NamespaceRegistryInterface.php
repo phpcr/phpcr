@@ -14,11 +14,13 @@ use Traversable;
  * in repository content, and there may be repository content with namespaces
  * that are not included n the registry.
  *
- * The \Traversable interface enables the implementation to be addressed with
+ * The Traversable interface enables the implementation to be addressed with
  * <b>foreach</b>. NamespaceRegistry has to implement either \IteratorAggregate
  * or \Iterator.
  * The iterator lets you iterate over all namespaces, with the prefixes as keys
  * and corresponding url as value.
+ *
+ * @extends Traversable<string, string>
  *
  * @license http://www.apache.org/licenses Apache License Version 2.0, January 2004
  * @license http://opensource.org/licenses/MIT MIT License
@@ -173,7 +175,7 @@ interface NamespaceRegistryInterface extends Traversable
      * Returns an array with the keys being the namespace prefixes and the
      * values being the namespaces URIs.
      *
-     * @return array a hashmap of prefix => namespace uri
+     * @return array<string, string> a hashmap of prefix => namespace uri
      *
      * @since 2.1.1
      *
@@ -184,7 +186,7 @@ interface NamespaceRegistryInterface extends Traversable
     /**
      * Returns an array holding all currently registered namespace prefixes.
      *
-     * @return array a string array
+     * @return string[]
      *
      * @throws RepositoryException if an error occurs.
      *
@@ -195,7 +197,7 @@ interface NamespaceRegistryInterface extends Traversable
     /**
      * Returns an array holding all currently registered namespace URIs.
      *
-     * @return array a string array
+     * @return string[]
      *
      * @throws RepositoryException if an error occurs.
      *

@@ -163,7 +163,7 @@ interface EventInterface
      * The meaning of the map depends upon the type of the event.
      * See event type constants above.
      *
-     * @return array A list containing parameter information for instances of a NODE_MOVED event.
+     * @return array<mixed> A list containing parameter information for instances of a NODE_MOVED event.
      *
      * @throws RepositoryException if an error occurs.
      *

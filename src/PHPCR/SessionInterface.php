@@ -111,8 +111,8 @@ interface SessionInterface
      * example, SimpleCredentials does allow for them). This method returns an
      * empty array if the Credentials instance did not provide attributes.
      *
-     * @return array A string array containing the names of all attributes
-     *      passed in the credentials used to acquire this session.
+     * @return string[] The names of all attributes passed in the credentials
+     *      used to acquire this session.
      *
      * @api
      */
@@ -212,11 +212,10 @@ interface SessionInterface
      * Duplicate IDs passed to this method will be eliminated by nature of
      * using the IDs as keys.
      *
-     * @param array|\Traversable $ids A list of identifiers.
+     * @param string[]|Traversable<string> $ids A list of identifiers.
      *
-     * @return \Iterator over all (matching) child Nodes implementing
-     *      <b>SeekableIterator</b> and <b>Countable</b>. Keys are the
-     *      identifiers, values the corresponding NodeInterface instances.
+     * @return Iterator<string, NodeInterface> over all (matching) child Nodes implementing <b>SeekableIterator</b>
+     *                                         and <b>Countable</b>. Keys are the identifiers.
      *
      * @throws RepositoryException if an error occurs.
      *
@@ -306,11 +305,10 @@ interface SessionInterface
      * If none of the specified paths leads to an existing and accessible
      * node then an empty iterator is returned.
      *
-     * @param array|Traversable $absPaths A list of absolute paths.
+     * @param string[]|Traversable<string> $absPaths A list of absolute paths.
      *
-     * @return Iterator over all (matching) child Nodes implementing
-     *      <b>SeekableIterator</b> and <b>Countable</b>. Keys are the
-     *      paths, values the corresponding NodeInterface instances.
+     * @return Iterator<string, NodeInterface> over all (matching) child Nodes implementing <b>SeekableIterator</b>
+     *                                         and <b>Countable</b>. Keys are the paths.
      *
      * @throws RepositoryException if an error occurs.
      *
@@ -342,11 +340,10 @@ interface SessionInterface
      * If none of the specified paths leads to an existing and accessible
      * property then an empty iterator is returned.
      *
-     * @param array|Traversable $absPaths A list of absolute paths to properties.
+     * @param string[]|Traversable<string> $absPaths A list of absolute paths to properties.
      *
-     * @return Iterator over all (matching) child Nodes implementing
-     *      <b>SeekableIterator</b> and <b>Countable</b>. Keys are the
-     *      paths, values the corresponding NodeInterface instances.
+     * @return Iterator<string, PropertyInterface> over all (matching) child Nodes implementing <b>SeekableIterator</b>
+     *                                             and <b>Countable</b>. Keys are the paths.
      *
      * @throws RepositoryException If an error occurs.
      *
@@ -1045,7 +1042,7 @@ interface SessionInterface
     /**
      * Returns all prefixes currently mapped to URIs in this Session.
      *
-     * @return array The list of currently registered namespace prefixes.
+     * @return string[] The list of currently registered namespace prefixes.
      *
      * @throws RepositoryException if an error occurs
      *

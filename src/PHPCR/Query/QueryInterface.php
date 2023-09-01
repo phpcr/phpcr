@@ -103,7 +103,7 @@ interface QueryInterface
      *
      * If this query does not contains any bind variables then an empty array is returned.
      *
-     * @return array the names of the bind variables in this query.
+     * @return string[]
      *
      * @throws RepositoryException if an error occurs.
      *

@@ -592,7 +592,7 @@ interface WorkspaceInterface
      * another RepositoryInterface::login(), specifying the name of the desired
      * workspace, and receives a new Session object.
      *
-     * @return array string array of names of accessible workspaces.
+     * @return string[]
      *
      * @throws RepositoryException if an error occurs
      *

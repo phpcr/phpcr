@@ -11,12 +11,14 @@ use Traversable;
  * Allows for the retrieval and (in implementations that support it) the
  * registration of node types. Accessed via WorkspaceInterface::getNodeTypeManager().
  *
- * The \Traversable interface enables the implementation to be addressed with
+ * The Traversable interface enables the implementation to be addressed with
  * <b>foreach</b>. NodeTypeManager has to implement either \RecursiveIterator
  * or \Iterator.
  * The iterator is equivalent to <b>getAllNodeTypes()</b> returning a list of
- * all node types. The iterator keys have no significant meaning.
+ * all node types. The iterator keys are the node type names.
  *
+ * @extends Traversable<>
+ * 
  * @license http://www.apache.org/licenses Apache License Version 2.0, January 2004
  * @license http://opensource.org/licenses/MIT MIT License
  *
@@ -59,9 +61,8 @@ interface NodeTypeManagerInterface extends Traversable
     /**
      * Returns an iterator over all available node types (primary and mixin).
      *
-     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>.
-     *      Keys are the node type names, values the corresponding
-     *      NodeTypeInterface instances.
+     * @return Iterator<string, NodeTypeInterface> implementing <b>SeekableIterator</b> and <b>Countable</b>.
+     *                                             Keys are the node type names.
      *
      * @throws RepositoryException if an error occurs.
      *
@@ -72,9 +73,8 @@ interface NodeTypeManagerInterface extends Traversable
     /**
      * Returns an iterator over all available primary node types.
      *
-     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>.
-     *      Keys are the node type names, values the corresponding
-     *      NodeTypeInterface instances.
+     * @return Iterator<string, NodeTypeInterface> implementing <b>SeekableIterator</b> and <b>Countable</b>.
+     *                                             Keys are the node type names.
      *
      * @throws RepositoryException if an error occurs.
      *
@@ -87,9 +87,8 @@ interface NodeTypeManagerInterface extends Traversable
      *
      * If none are available, an empty iterator is returned.
      *
-     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>.
-     *      Keys are the node type names, values the corresponding
-     *      NodeTypeInterface instances.
+     * @return Iterator<string, NodeTypeInterface> implementing <b>SeekableIterator</b> and <b>Countable</b>.
+     *                                             Keys are the node type names.
      *
      * @throws RepositoryException if an error occurs.
      *
@@ -188,9 +187,8 @@ interface NodeTypeManagerInterface extends Traversable
      * @param boolean $allowUpdate whether to fail if node already exists or to
      *      update it.
      *
-     * @return Iterator over the registered node types implementing
-     *      <b>SeekableIterator</b> and <b>Countable</b>. Keys are the node
-     *      type names, values the corresponding NodeTypeInterface instances.
+     * @return Iterator<string, NodeTypeInterface> over the registered node types implementing <b>SeekableIterator</b>
+     *                                             and <b>Countable</b>. Keys are the node type names.
      *
      * @throws InvalidNodeTypeDefinitionException if a
      *      NodeTypeDefinitionInterface within the Collection is invalid or if
@@ -232,9 +230,8 @@ interface NodeTypeManagerInterface extends Traversable
      * @param boolean $allowUpdate whether existing node type definitions
      *      should be modified/updated.
      *
-     * @return Iterator over the registered node types implementing
-     *      <b>SeekableIterator</b> and <b>Countable</b>. Keys are the node
-     *      type names, values the corresponding NodeTypeInterface instances.
+     * @return Iterator<string, NodeTypeInterface> over the registered node types implementing <b>SeekableIterator</b>
+     *                                             and <b>Countable</b>. Keys are the node type names.
      *
      * @throws InvalidNodeTypeDefinitionException if a NodeTypeDefinition
      *      within the CND is invalid.

@@ -11,11 +11,13 @@ use Traversable;
 /**
  * This interface encapsulates methods for the management of locks.
  *
- * The \Traversable interface enables the implementation to be addressed with
+ * The Traversable interface enables the implementation to be addressed with
  * <b>foreach</b>. LockManager has to implement either \IteratorAggregate or
  * \Iterator.
  * The iterator is equivalent to <b>getLockTokens()</b> returning a list of all
  * locks. The iterator keys have no significant meaning.
+ * 
+ * @extends Traversable<string>
  *
  * @license http://www.apache.org/licenses Apache License Version 2.0, January 2004
  * @license http://opensource.org/licenses/MIT MIT License
@@ -70,7 +72,7 @@ interface LockManagerInterface extends Traversable
      * current Session. Note that any such tokens will represent open-scoped
      * locks, since session-scoped locks do not have tokens.
      *
-     * @return array an array of lock tokens (strings)
+     * @return string[]
      *
      * @throws RepositoryException if an error occurs.
      *

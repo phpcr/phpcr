@@ -45,7 +45,7 @@ interface NodeTypeDefinitionInterface
      * NodeTypeTemplate, then this method will return an array containing a
      * single string indicating the node type nt:base.
      *
-     * @return array the names of the declared supertypes.
+     * @return string[]
      *
      * @api
      */
