@@ -35,9 +35,9 @@ interface AccessControlListInterface extends AccessControlPolicyInterface, Trave
      * This method is only guaranteed to return an access control entry object
      * if that access control entry object has been assigned through this API.
      *
-     * @return AccessControlEntryInterface[] all AccessControlEntries present with this policy.
+     * @return AccessControlEntryInterface[] all AccessControlEntries present with this policy
      *
-     * @throws RepositoryException - if an error occurs.
+     * @throws repositoryException - if an error occurs
      *
      * @api
      */
@@ -60,16 +60,16 @@ interface AccessControlListInterface extends AccessControlPolicyInterface, Trave
      * a node by calling AccessControlManagerInterface::setPolicy() and
      * Session::save is performed.
      *
-     * @param PrincipalInterface $principal the entity that should have this
-     *      privilege
+     * @param PrincipalInterface   $principal  the entity that should have this
+     *                                         privilege
      * @param PrivilegeInterface[] $privileges
      *
-     * @return bool true if this policy was modify; false otherwise.
+     * @return bool true if this policy was modify; false otherwise
      *
      * @throws AccessControlException if the specified principal or any of the
-     *      privileges does not exist or if some other access control related
-     *      exception occurs.
-     * @throws RepositoryException - if another error occurs.
+     *                                privileges does not exist or if some other access control related
+     *                                exception occurs
+     * @throws repositoryException    - if another error occurs
      *
      * @api
      */
@@ -84,11 +84,11 @@ interface AccessControlListInterface extends AccessControlPolicyInterface, Trave
      * and save is performed.
      *
      * @param AccessControlEntryInterface $ace the access control entry to be
-     *      removed.
+     *                                         removed
      *
      * @throws AccessControlException if the specified entry is not present on
-     *      the specified node.
-     * @throws RepositoryException if another error occurs.
+     *                                the specified node
+     * @throws RepositoryException    if another error occurs
      *
      * @api
      */

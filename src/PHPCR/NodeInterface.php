@@ -2,7 +2,6 @@
 
 namespace PHPCR;
 
-use InvalidArgumentException;
 use Iterator;
 use PHPCR\Lock\LockException;
 use PHPCR\NodeType\ConstraintViolationException;
@@ -76,7 +75,7 @@ interface NodeInterface extends ItemInterface, Traversable
     const JCR_FROZEN_NODE = '{http://www.jcp.org/jcr/1.0}frozenNode';
 
     /**
-     * Creates a new node at the specified $relPath
+     * Creates a new node at the specified $relPath.
      *
      * This is session-write method, meaning that the addition of the new node
      * is dispatched upon SessionInterface::save().
@@ -95,32 +94,32 @@ interface NodeInterface extends ItemInterface, Traversable
      * transactions) or on persist (save without transactions, commit within
      * a transaction), depending on the implementation.
      *
-     * @param string $relPath             The path of the new node to be created.
+     * @param string $relPath             the path of the new node to be created
      * @param string $primaryNodeTypeName The name of the primary node type of
-     *      the new node. Optional.
+     *                                    the new node. Optional.
      *
-     * @return NodeInterface The node that was added.
+     * @return NodeInterface the node that was added
      *
-     * @throws ItemExistsException if an item at the specified path
-     *      already exists, same-name siblings are not allowed and this
-     *      implementation performs this validation immediately.
-     * @throws PathNotFoundException if the specified path implies
-     *      intermediary Nodes that do not exist or the last element of relPath
-     *      has an index, and this implementation performs this validation
-     *      immediately.
+     * @throws ItemExistsException          if an item at the specified path
+     *                                      already exists, same-name siblings are not allowed and this
+     *                                      implementation performs this validation immediately
+     * @throws PathNotFoundException        if the specified path implies
+     *                                      intermediary Nodes that do not exist or the last element of relPath
+     *                                      has an index, and this implementation performs this validation
+     *                                      immediately
      * @throws ConstraintViolationException if a node type or
-     *      implementation-specific constraint is violated or if an attempt is
-     *      made to add a node as the child of a property and this
-     *      implementation performs this validation immediately.
-     * @throws VersionException if the node to which the new
-     *      child is being added is read-only due to a checked-in node and this
-     *      implementation performs this validation immediately.
-     * @throws LockException if a lock prevents the addition of the
-     *      node and this implementation performs this validation immediately
-     *      instead of waiting until save.
-     * @throws InvalidArgumentException if $relPath is an absolute path
-     * @throws RepositoryException       if the last element of relPath has an
-     *      index or if another error occurs.
+     *                                      implementation-specific constraint is violated or if an attempt is
+     *                                      made to add a node as the child of a property and this
+     *                                      implementation performs this validation immediately
+     * @throws VersionException             if the node to which the new
+     *                                      child is being added is read-only due to a checked-in node and this
+     *                                      implementation performs this validation immediately
+     * @throws LockException                if a lock prevents the addition of the
+     *                                      node and this implementation performs this validation immediately
+     *                                      instead of waiting until save
+     * @throws \InvalidArgumentException    if $relPath is an absolute path
+     * @throws RepositoryException          if the last element of relPath has an
+     *                                      index or if another error occurs
      *
      * @api
      */
@@ -204,24 +203,24 @@ interface NodeInterface extends ItemInterface, Traversable
      * may vary across implementations.</li>
      * </ol>
      *
-     * @param string $nameHint A string to be used as the basis for the created
-     *      name or null.
-     * @param string $primaryNodeTypeName The primary node type of the new node
-     *      or null to have the type guessed.
+     * @param string $nameHint            a string to be used as the basis for the created
+     *                                    name or null
+     * @param string $primaryNodeTypeName the primary node type of the new node
+     *                                    or null to have the type guessed
      *
-     * @return NodeInterface The newly created node.
+     * @return NodeInterface the newly created node
      *
      * @throws ConstraintViolationException if this node does
-     *      not allow residual child nodes and this implementation performs
-     *      this validation immediately.
-     * @throws VersionException if this node is read-only due to
-     *      a checked-in node and this implementation performs this validation
-     *      immediately.
-     * @throws LockException if a lock prevents the addition of the
-     *      node and this implementation performs this validation immediately.
-     * @throws NamespaceException if a namespace prefix is provided in the
-     *      $nameHint which does not exist and this implementation performs
-     *      this validation immediately.
+     *                                      not allow residual child nodes and this implementation performs
+     *                                      this validation immediately
+     * @throws VersionException             if this node is read-only due to
+     *                                      a checked-in node and this implementation performs this validation
+     *                                      immediately
+     * @throws LockException                if a lock prevents the addition of the
+     *                                      node and this implementation performs this validation immediately
+     * @throws NamespaceException           if a namespace prefix is provided in the
+     *                                      $nameHint which does not exist and this implementation performs
+     *                                      this validation immediately
      *
      * @since JCR 2.1
      */
@@ -247,28 +246,28 @@ interface NodeInterface extends ItemInterface, Traversable
      * This is session-write method, meaning that a change made by this method
      * is dispatched on save.
      *
-     * @param string $srcChildRelPath the relative path to the child node (that
-     *      is, name plus possible index) to be moved in the ordering
+     * @param string $srcChildRelPath  the relative path to the child node (that
+     *                                 is, name plus possible index) to be moved in the ordering
      * @param string $destChildRelPath the the relative path to the child node
-     *      (that is, name plus possible index) before which the node
-     *      srcChildRelPath will be placed.
+     *                                 (that is, name plus possible index) before which the node
+     *                                 srcChildRelPath will be placed
      *
      * @throws UnsupportedRepositoryOperationException if ordering is
-     *      not supported on this node.
-     * @throws ConstraintViolationException if an implementation-
-     *      specific ordering restriction is violated and this implementation
-     *      performs this validation immediately instead of waiting until save.
-     * @throws ItemNotFoundException if either parameter is not the
-     *      relative path of a child node of this node.
-     * @throws VersionException if this node is read-only due to
-     *      a checked-in node and this implementation performs this validation
-     *      immediately.
-     * @throws LockException if a lock prevents the re-ordering and
-     *      this implementation performs this validation immediately.
-     * @throws InvalidArgumentException if $srcChildRelPath is an absolute path
-     *      or $destChildRelPath is non-null and any of the two paths is of
-     *      depth more than 1.
-     * @throws RepositoryException if another error occurs.
+     *                                                 not supported on this node
+     * @throws ConstraintViolationException            if an implementation-
+     *                                                 specific ordering restriction is violated and this implementation
+     *                                                 performs this validation immediately instead of waiting until save
+     * @throws ItemNotFoundException                   if either parameter is not the
+     *                                                 relative path of a child node of this node
+     * @throws VersionException                        if this node is read-only due to
+     *                                                 a checked-in node and this implementation performs this validation
+     *                                                 immediately
+     * @throws LockException                           if a lock prevents the re-ordering and
+     *                                                 this implementation performs this validation immediately
+     * @throws \InvalidArgumentException               if $srcChildRelPath is an absolute path
+     *                                                 or $destChildRelPath is non-null and any of the two paths is of
+     *                                                 depth more than 1
+     * @throws RepositoryException                     if another error occurs
      *
      * @api
      */
@@ -310,21 +309,21 @@ interface NodeInterface extends ItemInterface, Traversable
      * change of the node. Implementations may differ on when this validation
      * is performed.
      *
-     * @param string $newName The new name of this node.
+     * @param string $newName the new name of this node
      *
-     * @throws ItemExistsException if there already exists a sibling item of
-     *      this node with the specified name, same-name siblings are not
-     *      allowed and this implementation performs this validation immediately.
+     * @throws ItemExistsException          if there already exists a sibling item of
+     *                                      this node with the specified name, same-name siblings are not
+     *                                      allowed and this implementation performs this validation immediately
      * @throws ConstraintViolationException if a node type or
-     *      implementation-specific constraint is violated and this
-     *      implementation performs this validation immediately.
-     * @throws VersionException if this node is read-only due to
-     *      a checked-in node and this implementation performs this validation
-     *      immediately.
-     * @throws LockException if a lock prevents the name change and
-     *      this implementation performs this validation immediately.
-     * @throws RepositoryException If $newName has an index or if another error
-     *      occurs.
+     *                                      implementation-specific constraint is violated and this
+     *                                      implementation performs this validation immediately
+     * @throws VersionException             if this node is read-only due to
+     *                                      a checked-in node and this implementation performs this validation
+     *                                      immediately
+     * @throws LockException                if a lock prevents the name change and
+     *                                      this implementation performs this validation immediately
+     * @throws RepositoryException          if $newName has an index or if another error
+     *                                      occurs
      *
      * @since JCR 2.1
      */
@@ -370,33 +369,33 @@ interface NodeInterface extends ItemInterface, Traversable
      * on what is supposed to happen for different types of values being passed
      * to this method.
      *
-     * @param string  $name  The name of a property of this node
-     * @param mixed   $value The value to be assigned
-     * @param int $type  The type to set for the property, optional. Must be
-     *      a constant from {@link PropertyType}
+     * @param string $name  The name of a property of this node
+     * @param mixed  $value The value to be assigned
+     * @param int    $type  The type to set for the property, optional. Must be
+     *                      a constant from {@link PropertyType}
      *
      * @return PropertyInterface The new resp. updated Property object
      *
-     * @throws ValueFormatException if the specified property is a DATE
-     *      but the value cannot be expressed in the ISO 8601-based format
-     *      defined in the JCR 2.0 specification and the implementation does
-     *      not support dates incompatible with that format or if value cannot
-     *      be converted to the type of the specified property or if the
-     *      property already exists and is multi-valued.
-     * @throws VersionException if this node is versionable and
-     *      checked-in or is non-versionable but its nearest versionable
-     *      ancestor is checked-in and this implementation performs this
-     *      validation immediately instead of waiting until save.
-     * @throws LockException if a lock prevents the setting of the
-     *      property and this implementation performs this validation
-     *      immediately instead of waiting until save.
-     * @throws ConstraintViolationException if the change would violate
-     *      a node-type or other constraint and this implementation performs
-     *      this validation immediately instead of waiting until save.
+     * @throws ValueFormatException                    if the specified property is a DATE
+     *                                                 but the value cannot be expressed in the ISO 8601-based format
+     *                                                 defined in the JCR 2.0 specification and the implementation does
+     *                                                 not support dates incompatible with that format or if value cannot
+     *                                                 be converted to the type of the specified property or if the
+     *                                                 property already exists and is multi-valued.
+     * @throws VersionException                        if this node is versionable and
+     *                                                 checked-in or is non-versionable but its nearest versionable
+     *                                                 ancestor is checked-in and this implementation performs this
+     *                                                 validation immediately instead of waiting until save
+     * @throws LockException                           if a lock prevents the setting of the
+     *                                                 property and this implementation performs this validation
+     *                                                 immediately instead of waiting until save
+     * @throws ConstraintViolationException            if the change would violate
+     *                                                 a node-type or other constraint and this implementation performs
+     *                                                 this validation immediately instead of waiting until save
      * @throws UnsupportedRepositoryOperationException if the type
-     *      parameter is set and different from the current type and this
-     *      implementation does not support dynamic re-binding
-     * @throws RepositoryException if another error occurs.
+     *                                                 parameter is set and different from the current type and this
+     *                                                 implementation does not support dynamic re-binding
+     * @throws RepositoryException                     if another error occurs
      *
      * @see PropertyInterface::setValue()
      *
@@ -419,14 +418,14 @@ interface NodeInterface extends ItemInterface, Traversable
      * object. Whether this object is actually the same Node instance, or
      * simply one wrapping the same state, is up to the implementation.
      *
-     * @param string $relPath The relative path of the node to retrieve.
+     * @param string $relPath the relative path of the node to retrieve
      *
-     * @return NodeInterface The node at relPath.
+     * @return NodeInterface the node at relPath
      *
      * @throws PathNotFoundException if no node exists at the specified
-     *      path or the current Session does not read access to the node at
-     *      the specified path, or if $relPath is an absolute path
-     * @throws RepositoryException if another error occurs.
+     *                               path or the current Session does not read access to the node at
+     *                               the specified path, or if $relPath is an absolute path
+     * @throws RepositoryException   if another error occurs
      *
      * @api
      */
@@ -483,14 +482,14 @@ interface NodeInterface extends ItemInterface, Traversable
      * The same reacquisition semantics apply as with getNode($relPath).
      *
      * @param string|string[] $nameFilter a filter or an array of filters for the
-     *      node names to find.
+     *                                    node names to find
      * @param string|string[] $typeFilter a filter or an array of filters for the
-     *      node type names to find.
+     *                                    node type names to find
      *
-     * @return Iterator<string, NodeInterface> over all (matching) child Nodes implementing <b>SeekableIterator</b>
-     *                                             and <b>Countable</b>. Keys are the Node names.
+     * @return \Iterator<string, NodeInterface> over all (matching) child Nodes implementing <b>SeekableIterator</b>
+     *                                          and <b>Countable</b>. Keys are the Node names.
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -519,13 +518,13 @@ interface NodeInterface extends ItemInterface, Traversable
      * glob matches either or both of its qualified or expanded forms.
      *
      * @param string|string[] $nameFilter a filter or an array of filters for the
-     *      node names to find.
+     *                                    node names to find
      * @param string|string[] $typeFilter a filter or an array of filters for the
-     *      node type names to find.
+     *                                    node type names to find
      *
-     * @return Iterator<string> over all child node names
+     * @return \Iterator<string> over all child node names
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @since JCR 2.1
      */
@@ -536,15 +535,15 @@ interface NodeInterface extends ItemInterface, Traversable
      *
      * The same reacquisition semantics apply as with getNode(String).
      *
-     * @param string $relPath The relative path of the property to retrieve.
+     * @param string $relPath the relative path of the property to retrieve
      *
-     * @return PropertyInterface The property at relPath.
+     * @return PropertyInterface the property at relPath
      *
-     * @throws PathNotFoundException if no property exists at the
-     *      specified path or if the current Session does not have read access
-     *      to the specified property.
-     * @throws InvalidArgumentException if $relPath is an absolute path
-     * @throws RepositoryException      if another error occurs.
+     * @throws PathNotFoundException     if no property exists at the
+     *                                   specified path or if the current Session does not have read access
+     *                                   to the specified property
+     * @throws \InvalidArgumentException if $relPath is an absolute path
+     * @throws RepositoryException       if another error occurs
      *
      * @api
      */
@@ -556,22 +555,22 @@ interface NodeInterface extends ItemInterface, Traversable
      * If $type is set, attempts to convert the value to the specified type.
      * This is a shortcut for getProperty()->getXX()
      *
-     * @param string  $name Name of this property
-     * @param int $type Type conversion request, optional. Must be a
-     *      constant from {@link PropertyType}
+     * @param string $name Name of this property
+     * @param int    $type Type conversion request, optional. Must be a
+     *                     constant from {@link PropertyType}
      *
-     * @return mixed The value of the property with $name.
+     * @return mixed the value of the property with $name
      *
      * @throws PathNotFoundException if no property exists at the
-     *      specified path or if the current Session does not have read access
-     *      to the specified property.
-     * @throws ValueFormatException if the type or format of the
-     *      property can not be converted to the specified type.
-     * @throws RepositoryException if another error occurs.
+     *                               specified path or if the current Session does not have read access
+     *                               to the specified property
+     * @throws ValueFormatException  if the type or format of the
+     *                               property can not be converted to the specified type
+     * @throws RepositoryException   if another error occurs
      *
      * @api
      */
-    public function getPropertyValue($name, $type=null);
+    public function getPropertyValue($name, $type = null);
 
     /**
      * If there is a property at $relPath, this method behaves exactly as
@@ -587,7 +586,7 @@ interface NodeInterface extends ItemInterface, Traversable
      *
      * @return mixed the value of the property at $relPath or $defaultValue
      *
-     * @throws RepositoryException if an unexpected error occurs.
+     * @throws RepositoryException if an unexpected error occurs
      *
      * @since JCR 2.1
      */
@@ -629,10 +628,10 @@ interface NodeInterface extends ItemInterface, Traversable
      *
      * @param string|string[] $nameFilter a name pattern
      *
-     * @return Iterator<string, PropertyInterface> implementing <b>SeekableIterator</b> and
-     *                                             <b>Countable</b>. Keys are the property names.
+     * @return \Iterator<string, PropertyInterface> implementing <b>SeekableIterator</b> and
+     *                                              <b>Countable</b>. Keys are the property names.
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -648,21 +647,21 @@ interface NodeInterface extends ItemInterface, Traversable
      * property objects for this method
      *
      * @param string|string[] $nameFilter  a name pattern
-     * @param bool      $dereference whether to dereference REFERENCE,
-     *      WEAKREFERENCE and PATH properties or just return id/path strings
+     * @param bool            $dereference whether to dereference REFERENCE,
+     *                                     WEAKREFERENCE and PATH properties or just return id/path strings
      *
-     * @return array<string, mixed> Keys are the property names, values the corresponding
-     *   property value (or array of values in case of multi-valued properties)
-     *   If $dereference is false, reference properties are uuid strings and
-     *   path properties path strings instead of the referenced node instances.
+     * @return array<string, mixed> keys are the property names, values the corresponding
+     *                              property value (or array of values in case of multi-valued properties)
+     *                              If $dereference is false, reference properties are uuid strings and
+     *                              path properties path strings instead of the referenced node instances
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @see NodeInterface::getProperties()
      *
      * @api
      */
-    public function getPropertiesValues($nameFilter=null, $dereference=true);
+    public function getPropertiesValues($nameFilter = null, $dereference = true);
 
     /**
      * Returns the primary child item of the current node.
@@ -677,13 +676,13 @@ interface NodeInterface extends ItemInterface, Traversable
      *
      * The same reacquisition semantics apply as with getNode(String).
      *
-     * @return ItemInterface the primary child item.
+     * @return ItemInterface the primary child item
      *
      * @throws ItemNotFoundException if this node does not have a
-     *      primary child item, either because none is declared in the node
-     *      type or because a declared primary item is not present on this node
-     *      instance, or because none accessible through the current Session
-     * @throws RepositoryException if another error occurs.
+     *                               primary child item, either because none is declared in the node
+     *                               type or because a declared primary item is not present on this node
+     *                               instance, or because none accessible through the current Session
+     * @throws RepositoryException   if another error occurs
      *
      * @api
      */
@@ -696,7 +695,7 @@ interface NodeInterface extends ItemInterface, Traversable
      *
      * @return string the identifier of this node
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -712,10 +711,10 @@ interface NodeInterface extends ItemInterface, Traversable
      * nodes that do not have same-name-siblings, this method will always
      * return 1.
      *
-     * @return int The index of this node within the ordered set of its
-     *      same-name sibling nodes.
+     * @return int the index of this node within the ordered set of its
+     *             same-name sibling nodes
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -743,11 +742,11 @@ interface NodeInterface extends ItemInterface, Traversable
      * If this node has no referring properties with the specified name, an
      * empty iterator is returned.
      *
-     * @param string $name Name of referring REFERENCE properties to be
-     *      returned; if null then all referring REFERENCEs are returned.
+     * @param string $name name of referring REFERENCE properties to be
+     *                     returned; if null then all referring REFERENCEs are returned
      *
-     * @return Iterator<string, PropertyInterface> implementing <b>SeekableIterator</b> and
-     *                                             <b>Countable</b>. Keys are the property names.
+     * @return \Iterator<string, PropertyInterface> implementing <b>SeekableIterator</b> and
+     *                                              <b>Countable</b>. Keys are the property names.
      *
      * @throws RepositoryException if an error occurs
      *
@@ -778,10 +777,10 @@ interface NodeInterface extends ItemInterface, Traversable
      * empty iterator is returned.
      *
      * @param string $name name of referring WEAKREFERENCE properties to be
-     *      returned; if null then all referring WEAKREFERENCEs are returned
+     *                     returned; if null then all referring WEAKREFERENCEs are returned
      *
-     * @return Iterator<string, PropertyInterface> implementing <b>SeekableIterator</b> and
-     *                                             <b>Countable</b>. Keys are the property names.
+     * @return \Iterator<string, PropertyInterface> implementing <b>SeekableIterator</b> and
+     *                                              <b>Countable</b>. Keys are the property names.
      *
      * @throws RepositoryException if an error occurs
      *
@@ -790,17 +789,17 @@ interface NodeInterface extends ItemInterface, Traversable
     public function getWeakReferences($name = null);
 
     /**
-     * Indicates whether a node exists at relPath
+     * Indicates whether a node exists at relPath.
      *
      * Returns true if a node accessible through the current Session exists at
      * relPath and false otherwise.
      *
-     * @param string $relPath The path of a (possible) node.
+     * @param string $relPath the path of a (possible) node
      *
-     * @return bool true if a node exists at relPath; false otherwise.
+     * @return bool true if a node exists at relPath; false otherwise
      *
-     * @throws InvalidArgumentException if $relPath is an absolute path
-     * @throws RepositoryException      if an error occurs.
+     * @throws \InvalidArgumentException if $relPath is an absolute path
+     * @throws RepositoryException       if an error occurs
      *
      * @api
      */
@@ -812,12 +811,12 @@ interface NodeInterface extends ItemInterface, Traversable
      * Returns true if a property accessible through the current Session exists
      * at relPath and false otherwise.
      *
-     * @param string $relPath The path of a (possible) property.
+     * @param string $relPath the path of a (possible) property
      *
-     * @return bool true if a property exists at relPath; false otherwise.
+     * @return bool true if a property exists at relPath; false otherwise
      *
-     * @throws InvalidArgumentException if $relPath is an absolute path
-     * @throws RepositoryException      if an error occurs.
+     * @throws \InvalidArgumentException if $relPath is an absolute path
+     * @throws RepositoryException       if an error occurs
      *
      * @api
      */
@@ -830,9 +829,9 @@ interface NodeInterface extends ItemInterface, Traversable
      * the current Session; false otherwise.
      *
      * @return bool true if this node has one or more child nodes; false
-     *      otherwise.
+     *              otherwise
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -845,9 +844,9 @@ interface NodeInterface extends ItemInterface, Traversable
      * the current Session; false otherwise.
      *
      * @return bool true if this node has one or more properties; false
-     *      otherwise.
+     *              otherwise
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -859,7 +858,7 @@ interface NodeInterface extends ItemInterface, Traversable
      * Which NodeType is returned when this method is called on the root node
      * of a workspace is up to the implementation.
      *
-     * @return NodeTypeInterface a NodeType object.
+     * @return NodeTypeInterface a NodeType object
      *
      * @throws RepositoryException if an error occurs
      *
@@ -891,12 +890,12 @@ interface NodeInterface extends ItemInterface, Traversable
      * Returns false otherwise. This method respects the effective node type of
      * the node.
      *
-     * @param string $nodeTypeName the name of a node type.
+     * @param string $nodeTypeName the name of a node type
      *
      * @return bool true if this node is of the specified primary node type
-     *            or mixin type, or a subtype thereof. Returns false otherwise.
+     *              or mixin type, or a subtype thereof. Returns false otherwise.
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -912,21 +911,21 @@ interface NodeInterface extends ItemInterface, Traversable
      * addMixin() (see below) and the behavior that occurs when a node is first
      * created.
      *
-     * @param string $nodeTypeName the name of the new node type.
+     * @param string $nodeTypeName the name of the new node type
      *
      * @throws ConstraintViolationException if the specified primary
-     *      node type creates a type conflict and this implementation performs
-     *      this validation immediately.
-     * @throws NoSuchNodeTypeException if the specified
-     *      nodeTypeName is not recognized and this implementation performs
-     *      this validation immediately.
-     * @throws VersionException if this node is read-only due to
-     *      a checked-in node and this implementation performs this validation
-     *      immediately.
-     * @throws LockException if a lock prevents the change of the
-     *      primary node type and this implementation performs this validation
-     *      immediately.
-     * @throws RepositoryException if another error occurs.
+     *                                      node type creates a type conflict and this implementation performs
+     *                                      this validation immediately
+     * @throws NoSuchNodeTypeException      if the specified
+     *                                      nodeTypeName is not recognized and this implementation performs
+     *                                      this validation immediately
+     * @throws VersionException             if this node is read-only due to
+     *                                      a checked-in node and this implementation performs this validation
+     *                                      immediately
+     * @throws LockException                if a lock prevents the change of the
+     *                                      primary node type and this implementation performs this validation
+     *                                      immediately
+     * @throws RepositoryException          if another error occurs
      *
      * @api
      */
@@ -957,19 +956,19 @@ interface NodeInterface extends ItemInterface, Traversable
      *
      * @param string $mixinName the name of the mixin node type to be added
      *
-     * @throws NoSuchNodeTypeException if the specified
-     *      mixinName is not recognized and this implementation performs this
-     *      validation immediately instead of waiting until save.
+     * @throws NoSuchNodeTypeException      if the specified
+     *                                      mixinName is not recognized and this implementation performs this
+     *                                      validation immediately instead of waiting until save
      * @throws ConstraintViolationException if the specified mixin node
-     *      type is prevented from being assigned.
-     * @throws VersionException if this node is versionable and
-     *      checked-in or is non-versionable but its nearest versionable
-     *      ancestor is checked-in and this implementation performs this
-     *      validation immediately instead of waiting until save.
-     * @throws LockException if a lock prevents the addition of the
-     *      mixin and this implementation performs this validation immediately
-     *      instead of waiting until save.
-     * @throws RepositoryException if another error occurs.
+     *                                      type is prevented from being assigned
+     * @throws VersionException             if this node is versionable and
+     *                                      checked-in or is non-versionable but its nearest versionable
+     *                                      ancestor is checked-in and this implementation performs this
+     *                                      validation immediately instead of waiting until save
+     * @throws LockException                if a lock prevents the addition of the
+     *                                      mixin and this implementation performs this validation immediately
+     *                                      instead of waiting until save
+     * @throws RepositoryException          if another error occurs
      *
      * @api
      */
@@ -982,20 +981,20 @@ interface NodeInterface extends ItemInterface, Traversable
      * Both the semantic change in effective node type and the persistence of
      * the change to the jcr:mixinTypes  property occur on persist.
      *
-     * @param string $mixinName the name of the mixin node type to be removed.
+     * @param string $mixinName the name of the mixin node type to be removed
      *
-     * @throws NoSuchNodeTypeException if the specified
-     *      mixinName is not currently assigned to this node and this
-     *      implementation performs this validation immediately.
+     * @throws NoSuchNodeTypeException      if the specified
+     *                                      mixinName is not currently assigned to this node and this
+     *                                      implementation performs this validation immediately
      * @throws ConstraintViolationException if the specified mixin node
-     *      type is prevented from being removed and this implementation
-     *      performs this validation immediately.
-     * @throws VersionException if this node is read-only due to
-     *      a checked-in node and this implementation performs this validation
-     *      immediately.
-     * @throws LockException if a lock prevents the removal of the
-     *      mixin and this implementation performs this validation immediately.
-     * @throws RepositoryException if another error occurs.
+     *                                      type is prevented from being removed and this implementation
+     *                                      performs this validation immediately
+     * @throws VersionException             if this node is read-only due to
+     *                                      a checked-in node and this implementation performs this validation
+     *                                      immediately
+     * @throws LockException                if a lock prevents the removal of the
+     *                                      mixin and this implementation performs this validation immediately
+     * @throws RepositoryException          if another error occurs
      *
      * @api
      */
@@ -1040,19 +1039,19 @@ interface NodeInterface extends ItemInterface, Traversable
      *
      * @param string[] $mixinNames the names of the mixin node types to be set
      *
-     * @throws NoSuchNodeTypeException If one or more of the
-     *      specified $mixinNames are not recognized and this implementation
-     *      performs this validation immediately.
+     * @throws NoSuchNodeTypeException      if one or more of the
+     *                                      specified $mixinNames are not recognized and this implementation
+     *                                      performs this validation immediately
      * @throws ConstraintViolationException if the specified
-     *      mixin node types create a conflict and this implementation performs
-     *      this validation immediately.
-     * @throws VersionException if this node is read-only due to
-     *      a checked-in node and this implementation performs this validation
-     *      immediately.
-     * @throws LockException if a lock prevents the assignment of
-     *      the mixins and this implementation performs this validation
-     *      immediately.
-     * @throws RepositoryException if another error occurs.
+     *                                      mixin node types create a conflict and this implementation performs
+     *                                      this validation immediately
+     * @throws VersionException             if this node is read-only due to
+     *                                      a checked-in node and this implementation performs this validation
+     *                                      immediately
+     * @throws LockException                if a lock prevents the assignment of
+     *                                      the mixins and this implementation performs this validation
+     *                                      immediately
+     * @throws RepositoryException          if another error occurs
      *
      * @since JCR 2.1
      */
@@ -1076,14 +1075,14 @@ interface NodeInterface extends ItemInterface, Traversable
      * - An implementation-specific restriction would prevent the addition of
      *   the mixin.
      *
-     * @param string $mixinName The name of the mixin to be tested.
+     * @param string $mixinName the name of the mixin to be tested
      *
      * @return bool true if the specified mixin node type, mixinName, can be
-     *      added to this node; false otherwise.
+     *              added to this node; false otherwise
      *
      * @throws NoSuchNodeTypeException if the specified mixin
-     *      node type name is not recognized.
-     * @throws RepositoryException if another error occurs.
+     *                                 node type name is not recognized
+     * @throws RepositoryException     if another error occurs
      *
      * @api
      */
@@ -1102,9 +1101,9 @@ interface NodeInterface extends ItemInterface, Traversable
      * method is called on the root node of a workspace is also up to the
      * implementation.
      *
-     * @return NodeDefinitionInterface a NodeDefinition object.
+     * @return NodeDefinitionInterface a NodeDefinition object
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -1126,15 +1125,15 @@ interface NodeInterface extends ItemInterface, Traversable
      * update may change a node even if it is currently checked-in (This fact
      * is only relevant in an implementation that supports versioning).
      *
-     * @param string $srcWorkspace the name of the source workspace.
+     * @param string $srcWorkspace the name of the source workspace
      *
-     * @throws NoSuchWorkspaceException  if srcWorkspace does not exist.
+     * @throws NoSuchWorkspaceException  if srcWorkspace does not exist
      * @throws InvalidItemStateException if this Session (not
-     *      necessarily this Node) has pending unsaved changes.
-     * @throws AccessDeniedException if the current session does not
-     *      have sufficient access to perform the operation.
-     * @throws LockException if a lock prevents the update.
-     * @throws RepositoryException       if another error occurs.
+     *                                   necessarily this Node) has pending unsaved changes
+     * @throws AccessDeniedException     if the current session does not
+     *                                   have sufficient access to perform the operation
+     * @throws LockException             if a lock prevents the update
+     * @throws RepositoryException       if another error occurs
      *
      * @api
      */
@@ -1144,15 +1143,15 @@ interface NodeInterface extends ItemInterface, Traversable
      * Returns the absolute path of the node in the specified workspace that
      * corresponds to this node.
      *
-     * @param string $workspaceName the name of the workspace.
+     * @param string $workspaceName the name of the workspace
      *
-     * @return string the absolute path to the corresponding node.
+     * @return string the absolute path to the corresponding node
      *
-     * @throws ItemNotFoundException    if no corresponding node is found.
-     * @throws NoSuchWorkspaceException if the workspace is unknown.
+     * @throws ItemNotFoundException    if no corresponding node is found
+     * @throws NoSuchWorkspaceException if the workspace is unknown
      * @throws AccessDeniedException    if the current session has
-     *      insufficient access capabilities to perform this operation.
-     * @throws RepositoryException if another error occurs.
+     *                                  insufficient access capabilities to perform this operation
+     * @throws RepositoryException      if another error occurs
      *
      * @api
      */
@@ -1165,10 +1164,10 @@ interface NodeInterface extends ItemInterface, Traversable
      * If this node is not shared then the returned iterator contains only this
      * node.
      *
-     * @return Iterator<string, NodeInterface> implementing <b>SeekableIterator</b> and
-     *                                         <b>Countable</b>. Keys are the Node names.
+     * @return \Iterator<string, NodeInterface> implementing <b>SeekableIterator</b> and
+     *                                          <b>Countable</b>. Keys are the Node names.
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -1183,16 +1182,16 @@ interface NodeInterface extends ItemInterface, Traversable
      *
      * If this node is not shared this method removes only this node.
      *
-     * @throws VersionException if the parent node of this item
-     *      is versionable and checked-in or is non-versionable but its nearest
-     *      versionable ancestor is checked-in and this implementation performs
-     *      this validation immediately.
-     * @throws LockException if a lock prevents the removal of this
-     *      item and this implementation performs this validation immediately.
+     * @throws VersionException             if the parent node of this item
+     *                                      is versionable and checked-in or is non-versionable but its nearest
+     *                                      versionable ancestor is checked-in and this implementation performs
+     *                                      this validation immediately
+     * @throws LockException                if a lock prevents the removal of this
+     *                                      item and this implementation performs this validation immediately
      * @throws ConstraintViolationException if removing the
-     *      specified item would violate a node type or implementation-specific
-     *      constraint and this implementation performs this validation immediately.
-     * @throws RepositoryException if another error occurs.
+     *                                      specified item would violate a node type or implementation-specific
+     *                                      constraint and this implementation performs this validation immediately
+     * @throws RepositoryException          if another error occurs
      *
      * @see removeShare()
      * @see Item::remove()
@@ -1206,20 +1205,20 @@ interface NodeInterface extends ItemInterface, Traversable
      * Removes this node, but does not remove any other node in the shared set
      * of this node.
      *
-     * @throws VersionException if the parent node of this item
-     *      is versionable and checked-in or is non-versionable but its nearest
-     *      versionable ancestor is checked-in and this implementation performs
-     *      this validation immediately instead of waiting until save.
-     * @throws LockException if a lock prevents the removal of this
-     *      item and this implementation performs this validation immediately
-     *      instead of waiting until save.
+     * @throws VersionException             if the parent node of this item
+     *                                      is versionable and checked-in or is non-versionable but its nearest
+     *                                      versionable ancestor is checked-in and this implementation performs
+     *                                      this validation immediately instead of waiting until save
+     * @throws LockException                if a lock prevents the removal of this
+     *                                      item and this implementation performs this validation immediately
+     *                                      instead of waiting until save
      * @throws ConstraintViolationException if removing the
-     *      specified item would violate a node type or implementation-specific
-     *      constraint and this implementation performs this validation
-     *      immediately instead of waiting until save.
-     * @throws RepositoryException if this node cannot be removed
-     *      without removing another node in the shared set of this node or
-     *      another error occurs.
+     *                                      specified item would violate a node type or implementation-specific
+     *                                      constraint and this implementation performs this validation
+     *                                      immediately instead of waiting until save
+     * @throws RepositoryException          if this node cannot be removed
+     *                                      without removing another node in the shared set of this node or
+     *                                      another error occurs
      *
      * @see removeSharedSet()
      * @see Item::remove()
@@ -1241,7 +1240,7 @@ interface NodeInterface extends ItemInterface, Traversable
      *
      * @return bool
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -1255,9 +1254,9 @@ interface NodeInterface extends ItemInterface, Traversable
      * otherwise returns false. This includes the case where a repository does
      * not support locking (in which case all nodes are "unlocked" by default).
      *
-     * @return bool.
+     * @return bool
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -1277,11 +1276,11 @@ interface NodeInterface extends ItemInterface, Traversable
      * @param string $transition a state transition
      *
      * @throws UnsupportedRepositoryOperationException if this
-     *      implementation does not support lifecycle actions or if this node
-     *      does not have the mix:lifecycle mixin.
-     * @throws InvalidLifecycleTransitionException if the lifecycle
-     *      transition is not successful.
-     * @throws RepositoryException if another error occurs.
+     *                                                 implementation does not support lifecycle actions or if this node
+     *                                                 does not have the mix:lifecycle mixin
+     * @throws InvalidLifecycleTransitionException     if the lifecycle
+     *                                                 transition is not successful
+     * @throws RepositoryException                     if another error occurs
      *
      * @api
      */
@@ -1293,9 +1292,9 @@ interface NodeInterface extends ItemInterface, Traversable
      * @return string[]
      *
      * @throws UnsupportedRepositoryOperationException if this
-     *      implementation does not support lifecycle actions or if this node
-     *      does not have the mix:lifecycle mixin.
-     * @throws RepositoryException if another error occurs.
+     *                                                 implementation does not support lifecycle actions or if this node
+     *                                                 does not have the mix:lifecycle mixin
+     * @throws RepositoryException                     if another error occurs
      *
      * @api
      */

@@ -29,9 +29,9 @@ interface VersionHistoryInterface extends NodeInterface
      * version history.
      *
      * @return string the identifier of the versionable node for which this is
-     *      the version history.
+     *                the version history
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -40,9 +40,9 @@ interface VersionHistoryInterface extends NodeInterface
     /**
      * Returns the root version of this version history.
      *
-     * @return VersionInterface a Version object.
+     * @return VersionInterface a Version object
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -68,10 +68,10 @@ interface VersionHistoryInterface extends NodeInterface
      * equivalent to returning all versions in the version history in order from
      * oldest to newest.
      *
-     * @return Iterator<string, VersionInterface> implementing <b>SeekableIterator</b> and <b>Countable</b>.
-     *                                            Keys are the version names.
+     * @return \Iterator<string, VersionInterface> implementing <b>SeekableIterator</b> and <b>Countable</b>.
+     *                                             Keys are the version names.
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -83,10 +83,10 @@ interface VersionHistoryInterface extends NodeInterface
      * returned in order of creation date, from oldest to newest. Otherwise the
      * order of the returned versions is implementation-dependent.
      *
-     * @return Iterator<string, VersionInterface> implementing <b>SeekableIterator</b> and
-     *                                            <b>Countable</b>. Keys are the version names.
+     * @return \Iterator<string, VersionInterface> implementing <b>SeekableIterator</b> and
+     *                                             <b>Countable</b>. Keys are the version names.
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -96,10 +96,10 @@ interface VersionHistoryInterface extends NodeInterface
      * This method returns all the frozen nodes of all the versions in this
      * version history in the same order as getAllLinearVersions().
      *
-     * @return Iterator<string, NodeInterface> implementing <b>SeekableIterator</b> and
-     *                                         <b>Countable</b>. Keys are the version names
+     * @return \Iterator<string, NodeInterface> implementing <b>SeekableIterator</b> and
+     *                                          <b>Countable</b>. Keys are the version names
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -111,10 +111,10 @@ interface VersionHistoryInterface extends NodeInterface
      * nodes will be the order of their creation. Under full versioning the
      * order is implementation-dependent.
      *
-     * @return Iterator<string, NodeInterface> implementing <b>SeekableIterator</b> and
-     *                                         <b>Countable</b>. Keys are the version names
+     * @return \Iterator<string, NodeInterface> implementing <b>SeekableIterator</b> and
+     *                                          <b>Countable</b>. Keys are the version names
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -126,11 +126,11 @@ interface VersionHistoryInterface extends NodeInterface
      *
      * @param string $versionName a version name
      *
-     * @return VersionInterface a Version object.
+     * @return VersionInterface a Version object
      *
-     * @throws VersionException if the specified version is not in this version
-     *      history.
-     * @throws RepositoryException if an error occurs.
+     * @throws VersionException    if the specified version is not in this version
+     *                             history
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -142,11 +142,11 @@ interface VersionHistoryInterface extends NodeInterface
      *
      * @param string $label a version label
      *
-     * @return VersionInterface a Version object.
+     * @return VersionInterface a Version object
      *
-     * @throws VersionException if the specified label is not in this version
-     *      history.
-     * @throws RepositoryException if an error occurs.
+     * @throws VersionException    if the specified label is not in this version
+     *                             history
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -181,21 +181,21 @@ interface VersionHistoryInterface extends NodeInterface
      * label specified is not a valid JCR NAME.
      *
      * @param string $versionName the name of the version to which the label is
-     *      to be added.
-     * @param string $label the label to be added, a JCR name in either
-     *      extended or qualified form.
-     * @param bool $moveLabel if true, then if label is already assigned to
-     *      a version in this version history, it is moved to the new version
-     *      specified; if false, then attempting to assign an already used
-     *      label will throw a LabelExistsVersionException.
+     *                            to be added
+     * @param string $label       the label to be added, a JCR name in either
+     *                            extended or qualified form
+     * @param bool   $moveLabel   if true, then if label is already assigned to
+     *                            a version in this version history, it is moved to the new version
+     *                            specified; if false, then attempting to assign an already used
+     *                            label will throw a LabelExistsVersionException
      *
      * @throws LabelExistsVersionException if moveLabel is false, and an
-     *      attempt is made to add a label that already exists in this version
-     *      history
-     * @throws VersionException if the specified version does not exist in this
-     *      version history or if the specified version is the root version
-     *      (jcr:rootVersion).
-     * @throws RepositoryException if another error occurs.
+     *                                     attempt is made to add a label that already exists in this version
+     *                                     history
+     * @throws VersionException            if the specified version does not exist in this
+     *                                     version history or if the specified version is the root version
+     *                                     (jcr:rootVersion)
+     * @throws RepositoryException         if another error occurs
      *
      * @api
      */
@@ -213,11 +213,11 @@ interface VersionHistoryInterface extends NodeInterface
      * immediately.
      *
      * @param string $label a version label. A JCR name in either extended or
-     *      qualified form.
+     *                      qualified form.
      *
-     * @throws VersionException if the name label does not exist in this
-     *      version history.
-     * @throws RepositoryException if another error occurs.
+     * @throws VersionException    if the name label does not exist in this
+     *                             version history
+     * @throws RepositoryException if another error occurs
      *
      * @api
      */
@@ -232,15 +232,15 @@ interface VersionHistoryInterface extends NodeInterface
      * <b>PHPCR Note:</b> The Java API defines this with multiple differing
      * signatures.
      *
-     * @param string $label a version label. A JCR name in either extended or
-     *      qualified form.
+     * @param string           $label   a version label. A JCR name in either extended or
+     *                                  qualified form.
      * @param VersionInterface $version a Version object
      *
-     * @return bool a boolean.
+     * @return bool a boolean
      *
-     * @throws VersionException if the specified version is not of this version
-     *      history.
-     * @throws RepositoryException if another error occurs.
+     * @throws VersionException    if the specified version is not of this version
+     *                             history
+     * @throws RepositoryException if another error occurs
      *
      * @api
      */
@@ -259,9 +259,9 @@ interface VersionHistoryInterface extends NodeInterface
      *
      * @return string[] all the labels of the (given) version (history)
      *
-     * @throws VersionException if the specified version is not in this version
-     *      history.
-     * @throws RepositoryException if another error occurs.
+     * @throws VersionException    if the specified version is not in this version
+     *                             history
+     * @throws RepositoryException if another error occurs
      *
      * @api
      */
@@ -284,22 +284,22 @@ interface VersionHistoryInterface extends NodeInterface
      * respect to normal repository methods, save does not even function in
      * this context.
      *
-     * @param string $versionName the name of a version in this version history.
+     * @param string $versionName the name of a version in this version history
      *
-     * @throws ReferentialIntegrityException if the specified version is
-     *      currently the target of a REFERENCE property elsewhere in the
-     *      repository (not necessarily in this workspace) and the current
-     *      Session has read access to that REFERENCE property.
-     * @throws AccessDeniedException if the current Session does not
-     *      have permission to remove the specified version or if the specified
-     *      version is currently the target of a REFERENCE property elsewhere
-     *      in the repository (not just in this workspace) and the current
-     *      Session does not have read access to that REFERENCE property.
+     * @throws ReferentialIntegrityException           if the specified version is
+     *                                                 currently the target of a REFERENCE property elsewhere in the
+     *                                                 repository (not necessarily in this workspace) and the current
+     *                                                 Session has read access to that REFERENCE property
+     * @throws AccessDeniedException                   if the current Session does not
+     *                                                 have permission to remove the specified version or if the specified
+     *                                                 version is currently the target of a REFERENCE property elsewhere
+     *                                                 in the repository (not just in this workspace) and the current
+     *                                                 Session does not have read access to that REFERENCE property
      * @throws UnsupportedRepositoryOperationException if this operation
-     *      is not supported by the implementation.
-     * @throws VersionException if the named version is not in this version
-     *      history.
-     * @throws RepositoryException if another error occurs.
+     *                                                 is not supported by the implementation
+     * @throws VersionException                        if the named version is not in this version
+     *                                                 history
+     * @throws RepositoryException                     if another error occurs
      *
      * @api
      */

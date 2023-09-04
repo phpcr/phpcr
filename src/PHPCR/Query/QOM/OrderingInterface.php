@@ -51,7 +51,7 @@ interface OrderingInterface
      * Gets the order.
      *
      * @return string either QueryObjectModelConstants.JCR_ORDER_ASCENDING or
-     *      QueryObjectModelConstants.JCR_ORDER_DESCENDING
+     *                QueryObjectModelConstants.JCR_ORDER_DESCENDING
      *
      * @api
      */

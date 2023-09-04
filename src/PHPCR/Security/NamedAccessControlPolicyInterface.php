@@ -24,7 +24,7 @@ interface NamedAccessControlPolicyInterface extends AccessControlPolicyInterface
      *
      * @return string the name of the access control policy. A JCR name.
      *
-     * @throws RepositoryException - if an error occurs.
+     * @throws repositoryException - if an error occurs
      *
      * @api
      */

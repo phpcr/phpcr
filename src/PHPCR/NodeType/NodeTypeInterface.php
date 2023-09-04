@@ -2,7 +2,6 @@
 
 namespace PHPCR\NodeType;
 
-use Iterator;
 use PHPCR\NamespaceRegistryInterface as NS;
 
 /**
@@ -22,7 +21,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
 
     /**
      * A constant for the node type name nt:base (in extended form).
-     * Constants for the names of the properties declared by nt:base are:
+     * Constants for the names of the properties declared by nt:base are:.
      *
      * - PropertyInterface::JCR_PRIMARY_TYPE
      * - PropertyInterface::JCR_MIXIN_TYPES
@@ -33,12 +32,14 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
 
     /**
      * A constant for the node type name nt:hierarchyNode (in extended form).
+     *
      * @api
      */
     const NT_HIERARCHY_NODE = '{'.NS::NAMESPACE_NT.'}hierarchyNode';
 
     /**
      * A constant for the node type name nt:folder (in extended form).
+     *
      * @api
      */
     const NT_FOLDER = '{'.NS::NAMESPACE_NT.'}folder';
@@ -46,7 +47,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
     /**
      * A constant for the node type name nt:file (in extended form).
      * A constant for the name of the child node declared by nt:file is:
-     * NodeInterface::JCR_CONTENT
+     * NodeInterface::JCR_CONTENT.
      *
      * @api
      */
@@ -55,7 +56,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
     /**
      * A constant for the node type name nt:linkedFile (in extended form).
      * A constant for the name of the property declared by nt:linkedFile is:
-     * PropertyInterface::JCR_CONTENT
+     * PropertyInterface::JCR_CONTENT.
      *
      * @api
      */
@@ -64,7 +65,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
     /**
      * A constant for the node type name nt:resource (in extended form).
      * A constant for the name of the property declared by nt:resource is:
-     * PropertyInterface::JCR_DATA
+     * PropertyInterface::JCR_DATA.
      *
      * @api
      */
@@ -72,13 +73,14 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
 
     /**
      * A constant for the node type name nt:unstructured (in extended form).
+     *
      * @api
      */
     const NT_UNSTRUCTURED = '{'.NS::NAMESPACE_NT.'}unstructured';
 
     /**
      * A constant for the node type name nt:address (in extended form).
-     * Constants for the names of the properties declared by nt:base are:
+     * Constants for the names of the properties declared by nt:base are:.
      *
      * - PropertyInterface::JCR_PROTOCOL
      * - PropertyInterface::JCR_HOST
@@ -95,7 +97,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
     /**
      * A constant for the node type name mix:referenceable (in extended form).
      * A constant for the name of the property declared by mix:referenceable is:
-     * PropertyInterface::JCR_UUID
+     * PropertyInterface::JCR_UUID.
      *
      * @api
      */
@@ -103,7 +105,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
 
     /**
      * A constant for the node type name mix:title (in extended form).
-     * Constants for the names of the properties declared by mix:title are:
+     * Constants for the names of the properties declared by mix:title are:.
      *
      * - PropertyInterface::JCR_TITLE
      * - PropertyInterface::JCR_DESCRIPTION
@@ -114,7 +116,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
 
     /**
      * A constant for the node type name mix:created (in extended form).
-     * Constants for the names of the properties declared by mix:created are:
+     * Constants for the names of the properties declared by mix:created are:.
      *
      * - PropertyInterface::JCR_CREATED
      * - PropertyInterface::JCR_CREATED_BY
@@ -125,7 +127,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
 
     /**
      * A constant for the node type name mix:lastModified (in extended form).
-     * Constants for the names of the properties declared by mix:lastModified are:
+     * Constants for the names of the properties declared by mix:lastModified are:.
      *
      * - PropertyInterface::JCR_LAST_MODIFIED
      * - PropertyInterface::JCR_LAST_MODIFIED_BY
@@ -137,7 +139,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
     /**
      * A constant for the node type name mix:language (in extended form).
      * A constant for the name of the property declared by mix:language is:
-     * PropertyInterface::JCR_LANGUAGE
+     * PropertyInterface::JCR_LANGUAGE.
      *
      * @api
      */
@@ -145,7 +147,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
 
     /**
      * A constant for the node type name mix:mimeType (in extended form).
-     * Constants for the names of the properties declared by mix:mimeType are:
+     * Constants for the names of the properties declared by mix:mimeType are:.
      *
      * - PropertyInterface::JCR_MIMETYPE
      * - PropertyInterface::JCR_ENCODING
@@ -156,7 +158,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
 
     /**
      * A constant for the node type name nt:nodeType (in extended form).
-     * Constants for the names of the child items declared by nt:nodeType are:
+     * Constants for the names of the child items declared by nt:nodeType are:.
      *
      * - PropertyInterface::JCR_NODE_TYPE_NAME
      * - PropertyInterface::JCR_SUPERTYPES
@@ -173,7 +175,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
 
     /**
      * A constant for the node type name nt:propertyDefinition (in extended form).
-     * Constants for the names of the properties declared by nt:propertyDefinition are:
+     * Constants for the names of the properties declared by nt:propertyDefinition are:.
      *
      * - PropertyInterface::JCR_NAME
      * - PropertyInterface::JCR_AUTOCREATED
@@ -191,7 +193,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
 
     /**
      * A constant for the node type name nt:childNodeDefinition (in extended form).
-     * Constants for the names of the properties declared by nt:childNodeDefinition are:
+     * Constants for the names of the properties declared by nt:childNodeDefinition are:.
      *
      * - PropertyInterface::JCR_NAME
      * - PropertyInterface::JCR_AUTOCREATED
@@ -215,7 +217,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
 
     /**
      * A constant for the node type name mix:lockable (in extended form).
-     * Constants for the names of the properties declared by mix:lockable are:
+     * Constants for the names of the properties declared by mix:lockable are:.
      *
      * - PropertyInterface::JCR_LOCK_OWNER
      * - PropertyInterface::JCR_LOCK_IS_DEEP
@@ -226,7 +228,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
 
     /**
      * A constant for the node type name mix:lifecycle (in extended form).
-     * Constants for the names of the properties declared by mix:lifecycle are:
+     * Constants for the names of the properties declared by mix:lifecycle are:.
      *
      * - PropertyInterface::JCR_LIFECYCLE_POLICY
      * - PropertyInterface::JCR_CURRENT_LIFECYCLE_STATE
@@ -238,7 +240,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
     /**
      * A constant for the node type name mix:simpleVersionable (in extended form).
      * A constant for the name of the property declared by mix:simpleVersionable is:
-     * PropertyInterface::JCR_IS_CHECKED_OUT
+     * PropertyInterface::JCR_IS_CHECKED_OUT.
      *
      * @api
      */
@@ -246,7 +248,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
 
     /**
      * A constant for the node type name mix:versionable (in extended form).
-     * Constants for the names of the properties declared by mix:versionable are:
+     * Constants for the names of the properties declared by mix:versionable are:.
      *
      * - PropertyInterface::JCR_VERSION_HISTORY
      * - PropertyInterface::JCR_BASE_VERSION
@@ -261,7 +263,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
 
     /**
      * A constant for the node type name nt:versionHistory (in extended form).
-     * Constants for the names of the child items declared by nt:versionHistory are:
+     * Constants for the names of the child items declared by nt:versionHistory are:.
      *
      * - PropertyInterface::JCR_VERSIONABLE_UUID
      * - PropertyInterface::JCR_COPIED_FROM
@@ -274,7 +276,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
 
     /**
      * A constant for the node type name nt:version (in extended form).
-     * Constants for the names of the child items declared by nt:version are:
+     * Constants for the names of the child items declared by nt:version are:.
      *
      * - PropertyInterface::JCR_CREATED
      * - PropertyInterface::JCR_PREDECESSORS
@@ -288,7 +290,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
 
     /**
      * A constant for the node type name nt:frozenNode (in extended form).
-     * Constants for the names of the properties declared by nt:frozenNode are:
+     * Constants for the names of the properties declared by nt:frozenNode are:.
      *
      * - PropertyInterface::JCR_FROZEN_PRIMARY_TYPE
      * - PropertyInterface::JCR_FROZEN_MIXIN_TYPES
@@ -301,7 +303,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
     /**
      * A constant for the node type name nt:versionedChild (in extended form).
      * A constant for the name of the property declared by nt:versionedChild is:
-     * PropertyInterface::JCR_CHILD_VERSION_HISTORY
+     * PropertyInterface::JCR_CHILD_VERSION_HISTORY.
      *
      * @api
      */
@@ -310,7 +312,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
     /**
      * A constant for the node type name nt:activity (in extended form).
      * A constant for the name of the property declared by nt:activity is:
-     * PropertyInterface::JCR_TITLE
+     * PropertyInterface::JCR_TITLE.
      *
      * @api
      */
@@ -319,7 +321,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
     /**
      * A constant for the node type name nt:configuration (in extended form).
      * A constant for the name of the property declared by nt:configuration is:
-     * PropertyInterface::JCR_ROOT
+     * PropertyInterface::JCR_ROOT.
      *
      * @api
      */
@@ -327,7 +329,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
 
     /**
      * A constant for the node type name nt:query (in extended form).
-     * Constants for the names of the properties declared by nt:query are:
+     * Constants for the names of the properties declared by nt:query are:.
      *
      * - PropertyInterface::JCR_STATEMENT
      * - PropertyInterface::JCR_LANGUAGE
@@ -376,7 +378,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      * size 0 or 1. In systems that support multiple inheritance of node
      * types this array may be of size greater than 1.
      *
-     * @return NodeTypeInterface[] the direct parents of this type.
+     * @return NodeTypeInterface[] the direct parents of this type
      *
      * @api
      */
@@ -386,8 +388,8 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      * Returns all subtypes of this node type in the node type inheritance
      * hierarchy.
      *
-     * @return Iterator<string, NodeTypeInterface> implementing <b>SeekableIterator</b> and <b>Countable</b>.
-     *                                             Keys are the node type names.
+     * @return \Iterator<string, NodeTypeInterface> implementing <b>SeekableIterator</b> and <b>Countable</b>.
+     *                                              Keys are the node type names.
      *
      * @see getDeclaredSubtypes()
      *
@@ -400,8 +402,8 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      * hierarchy, that is, those which actually declared this node type in their
      * list of supertypes.
      *
-     * @return Iterator<string, NodeTypeInterface> implementing <b>SeekableIterator</b> and <b>Countable</b>.
-     *                                             Keys are the node type names.
+     * @return \Iterator<string, NodeTypeInterface> implementing <b>SeekableIterator</b> and <b>Countable</b>.
+     *                                              Keys are the node type names.
      *
      * @see getSubtypes()
      *
@@ -416,7 +418,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      * Returns true if the name of this node type or any of its direct or
      * indirect supertypes is equal to nodeTypeName, otherwise returns false.
      *
-     * @param string $nodeTypeName the name of a node type.
+     * @param string $nodeTypeName the name of a node type
      *
      * @return bool
      *
@@ -458,8 +460,8 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      * @param string $propertyName The name of the property
      * @param mixed  $value        A value or an array of values
      *
-     * @return bool True if setting propertyName to value is allowed by this
-     *      node type, else false.
+     * @return bool true if setting propertyName to value is allowed by this
+     *              node type, else false
      *
      * @api
      */
@@ -476,11 +478,11 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      * addition of a child node called childNodeName of node type nodeTypeName.
      * Returns false otherwise.
      *
-     * @param string $childNodeName The name of the child node.
-     * @param string $nodeTypeName  The name of the node type of the child node.
+     * @param string $childNodeName the name of the child node
+     * @param string $nodeTypeName  the name of the node type of the child node
      *
-     * @return bool True, if the node type allows the addition of a child
-     *      node, else false.
+     * @return bool true, if the node type allows the addition of a child
+     *              node, else false
      *
      * @api
      */
@@ -492,10 +494,10 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      * Returns true if removing the child node called nodeName is allowed by this
      * node type. Returns false otherwise.
      *
-     * @param string $nodeName The name of the child node.
+     * @param string $nodeName the name of the child node
      *
-     * @return bool True, if the node type allows to remove the passed node,
-     *      else false.
+     * @return bool true, if the node type allows to remove the passed node,
+     *              else false
      *
      * @api
      */
@@ -510,8 +512,8 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @param string $propertyName The name of the property
      *
-     * @return bool True, if the removal of the property is allowed, else
-     *      false.
+     * @return bool true, if the removal of the property is allowed, else
+     *              false
      *
      * @api
      */

@@ -31,7 +31,7 @@ interface NodeTypeDefinitionInterface
      * NodeTypeDefinition object is actually a newly-created empty
      * NodeTypeTemplate, then this method will return null.
      *
-     * @return string The name of the node type.
+     * @return string the name of the node type
      *
      * @api
      */
@@ -63,7 +63,7 @@ interface NodeTypeDefinitionInterface
      * NodeTypeDefinition object is actually a newly-created empty
      * NodeTypeTemplate, then this method will return false.
      *
-     * @return bool True, if the current type is abstract, else false.
+     * @return bool true, if the current type is abstract, else false
      *
      * @api
      */
@@ -99,8 +99,8 @@ interface NodeTypeDefinitionInterface
      * NodeTypeDefinitionInterface object is actually a newly-created empty
      * NodeTypeTemplateInterface, then this method will return false.
      *
-     * @return bool True, if nodes of this type must support orderable child
-     *      nodes, else false.
+     * @return bool true, if nodes of this type must support orderable child
+     *              nodes, else false
      *
      * @api
      */
@@ -116,7 +116,7 @@ interface NodeTypeDefinitionInterface
      * If a node type is declared non-queryable then these attributes of its
      * property definitions have no effect.
      *
-     * @return bool True, if the node type is queryable, else false.
+     * @return bool true, if the node type is queryable, else false
      *
      * @see PropertyDefinition::getAvailableQueryOperators()
      * @see PropertyDefinition::isFullTextSearchable()
@@ -137,7 +137,7 @@ interface NodeTypeDefinitionInterface
      * NodeTypeDefinitionInterface object is actually a newly-created empty
      * NodeTypeTemplateInterface, then this method will return null.
      *
-     * @return string The name of the primary item.
+     * @return string the name of the primary item
      *
      * @api
      */

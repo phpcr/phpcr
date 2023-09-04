@@ -26,14 +26,15 @@ use Traversable;
  *
  * @api
  */
-interface QueryResultInterface extends Traversable
+interface QueryResultInterface extends \Traversable
 {
     /**
      * Returns an array of all the column names in the table view of this result set.
      *
      * @return string[]
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
+     *
      * @api
      */
     public function getColumnNames();
@@ -43,12 +44,14 @@ interface QueryResultInterface extends Traversable
      *
      * The rows are returned according to the ordering specified in the query.
      *
-     * @return Iterator<RowInterface> implementing <b>SeekableIterator</b> and <b>Countable</b>.
-     *                                Keys are the row position in this result set
+     * @return \Iterator<RowInterface> implementing <b>SeekableIterator</b> and <b>Countable</b>.
+     *                                 Keys are the row position in this result set
+     *
      * @throws RepositoryException if this call is the second time either getRows() or getNodes()
-     *                             has been called on the same QueryResult object or if another error occurs.
+     *                             has been called on the same QueryResult object or if another error occurs
+     *
      * @api
-    */
+     */
     public function getRows();
 
     /**
@@ -58,12 +61,14 @@ interface QueryResultInterface extends Traversable
      *
      * @param bool|int $prefetch Whether to prefetch or not. int < 0/true means all,
      *                           0/false means none, int > 0 means the prefetch chunk size or none
-     * @return Iterator<string, NodeInterface> implementing <b>SeekableIterator</b> and <b>Countable</b>.
-     *                                         Keys are the paths.
+     *
+     * @return \Iterator<string, NodeInterface> implementing <b>SeekableIterator</b> and <b>Countable</b>.
+     *                                          Keys are the paths.
      *
      * @throws RepositoryException if the query contains more than one selector, if this call is
      *                             the second time either getRows() or getNodes() has been called on the
-     *                             same QueryResult object or if another error occurs.
+     *                             same QueryResult object or if another error occurs
+     *
      * @api
      */
     public function getNodes($prefetch = false);
@@ -76,7 +81,8 @@ interface QueryResultInterface extends Traversable
      *
      * @return string[]
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
+     *
      * @api
      */
     public function getSelectorNames();

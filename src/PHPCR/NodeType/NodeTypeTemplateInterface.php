@@ -29,7 +29,7 @@ interface NodeTypeTemplateInterface extends NodeTypeDefinitionInterface
     /**
      * Sets the name of the node type.
      *
-     * @param string $name The name of the node type to be set.
+     * @param string $name the name of the node type to be set
      *
      * @api
      */
@@ -38,7 +38,7 @@ interface NodeTypeTemplateInterface extends NodeTypeDefinitionInterface
     /**
      * Sets the names of the supertypes of the node type.
      *
-     * @param string[] $names The names of the node supertypes to be set.
+     * @param string[] $names the names of the node supertypes to be set
      *
      * @api
      */
@@ -47,7 +47,7 @@ interface NodeTypeTemplateInterface extends NodeTypeDefinitionInterface
     /**
      * Sets the abstract flag of the node type.
      *
-     * @param bool $abstractStatus Whether this type is abstract.
+     * @param bool $abstractStatus whether this type is abstract
      *
      * @api
      */
@@ -56,8 +56,8 @@ interface NodeTypeTemplateInterface extends NodeTypeDefinitionInterface
     /**
      * Sets the mixin flag of the node type.
      *
-     * @param bool $mixin Whether this type is a mixin type (or a primary
-     *      type).
+     * @param bool $mixin whether this type is a mixin type (or a primary
+     *                    type)
      *
      * @api
      */
@@ -67,7 +67,7 @@ interface NodeTypeTemplateInterface extends NodeTypeDefinitionInterface
      * Sets the orderable child nodes flag of the node type.
      *
      * @param bool $orderable Whether nodes of this type can have orderable
-     *      children
+     *                        children
      *
      * @api
      */
@@ -76,7 +76,7 @@ interface NodeTypeTemplateInterface extends NodeTypeDefinitionInterface
     /**
      * Sets the name of the primary item.
      *
-     * @param string $name The name of the primary item.
+     * @param string $name the name of the primary item
      *
      * @api
      */
@@ -85,7 +85,7 @@ interface NodeTypeTemplateInterface extends NodeTypeDefinitionInterface
     /**
      * Sets the queryable status of the node type.
      *
-     * @param bool $queryable Whether this node is queryable.
+     * @param bool $queryable whether this node is queryable
      *
      * @api
      */
@@ -99,7 +99,7 @@ interface NodeTypeTemplateInterface extends NodeTypeDefinitionInterface
      * list.
      *
      * @return object A mutable List (implementing \Traversable, \ArrayAccess,
-     *      and \Countable) of PropertyDefinitionTemplate objects
+     *                and \Countable) of PropertyDefinitionTemplate objects
      *
      * @api
      */
@@ -113,7 +113,7 @@ interface NodeTypeTemplateInterface extends NodeTypeDefinitionInterface
      * list.
      *
      * @return object A mutable List (implementing \Traversable, \ArrayAccess,
-     *      and \Countable) of NodeDefinitionTemplate objects
+     *                and \Countable) of NodeDefinitionTemplate objects
      *
      * @api
      */

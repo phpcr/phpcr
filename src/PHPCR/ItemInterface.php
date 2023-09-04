@@ -19,8 +19,10 @@ interface ItemInterface
     /**
      * Returns the normalized absolute path to this item.
      *
-     * @return string              the normalized absolute path of this Item.
-     * @throws RepositoryException if an error occurs.
+     * @return string the normalized absolute path of this Item
+     *
+     * @throws RepositoryException if an error occurs
+     *
      * @api
      */
     public function getPath();
@@ -31,9 +33,9 @@ interface ItemInterface
      * If this Item is the root node of the workspace, an empty string is returned.
      *
      * @return string the name of this Item in qualified form or an empty
-     *      string if this Item is the root node of a workspace.
+     *                string if this Item is the root node of a workspace
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -54,20 +56,17 @@ interface ItemInterface
      *      returns this Item itself.
      *
      * If this node has more than one path (i.e., if it is a descendant of a
-     * shared node) then the path used to define the ancestor is implementaion-
+     * shared node) then the path used to define the ancestor is implementation-
      * dependent.
      *
-     * @param int $depth An integer, 0 <= depth <= n where n is the depth
-     *      of this Item.
+     * @param int $depth an integer, 0 <= depth <= n where n is the depth of this Item
      *
-     * @return ItemInterface The ancestor of this Item at the specified
-     *      depth.
+     * @return ItemInterface the ancestor of this Item at the specified depth
      *
-     * @throws ItemNotFoundException if depth < 0 or depth > n
-     *      where n is the depth of this item.
-     * @throws AccessDeniedException if the current session does not
-     *      have sufficient access to retrieve the specified node.
-     * @throws RepositoryException if another error occurs.
+     * @throws ItemNotFoundException if depth < 0 or depth > n where n is the depth of this item
+     * @throws AccessDeniedException if the current session does not have sufficient access to
+     *                               retrieve the specified node
+     * @throws RepositoryException   if another error occurs
      *
      * @api
      */
@@ -76,13 +75,12 @@ interface ItemInterface
     /**
      * Returns the parent of this Item.
      *
-     * @return NodeInterface The parent of this Item.
+     * @return NodeInterface the parent of this Item
      *
-     * @throws ItemNotFoundException if this Item is the root node of a
-     *      workspace.
-     * @throws AccessDeniedException if the current session does not
-     *      have sufficient access to retrieve the parent of this item.
-     * @throws RepositoryException if another error occurs.
+     * @throws ItemNotFoundException if this Item is the root node of a workspace
+     * @throws AccessDeniedException if the current session does not have sufficient access to
+     *                               retrieve the parent of this item
+     * @throws RepositoryException   if another error occurs
      *
      * @api
      */
@@ -96,9 +94,9 @@ interface ItemInterface
      * - A property or child node of a child node of the root returns 2.
      * - And so on to this Item.
      *
-     * @return int The depth of this Item in the workspace item graph.
+     * @return int the depth of this Item in the workspace item graph
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -107,9 +105,9 @@ interface ItemInterface
     /**
      * Returns the Session through which this Item was acquired.
      *
-     * @return SessionInterface the Session through which this Item was
-     *      acquired.
-     * @throws RepositoryException if an error occurs.
+     * @return SessionInterface the Session through which this Item was acquired
+     *
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -118,10 +116,9 @@ interface ItemInterface
     /**
      * Indicates whether this Item is a Node or a Property.
      *
-     * Returns true if this Item is a Node; Returns false if this Item is a
-     * Property.
+     * Returns true if this Item is a Node; Returns false if this Item is a Property.
      *
-     * @return bool true if this Item is a Node, false if it is a Property.
+     * @return bool true if this Item is a Node, false if it is a Property
      *
      * @api
      */
@@ -142,7 +139,7 @@ interface ItemInterface
      * Note that in read-only implementations, this method will always return
      * false.
      *
-     * @return bool true if this item is new; false otherwise.
+     * @return bool true if this item is new; false otherwise
      *
      * @api
      */
@@ -162,7 +159,7 @@ interface ItemInterface
      * Note that in read-only implementations, this method will always return
      * false.
      *
-     * @return bool true if this item is modified; false otherwise.
+     * @return bool true if this item is modified; false otherwise
      *
      * @api
      */
@@ -194,12 +191,12 @@ interface ItemInterface
      * state.
      *
      * @param ItemInterface $otherItem the Item object to be tested for
-     *      identity with this Item.
+     *                                 identity with this Item
      *
      * @return bool true if this Item object and otherItem represent the
-     *      same actual repository item; false otherwise.
+     *              same actual repository item; false otherwise
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -212,10 +209,9 @@ interface ItemInterface
      * visitor). We leave it here, to allow sanity checks or other operations
      * an implementation might wants to do.
      *
-     * @param ItemVisitorInterface $visitor The ItemVisitor to be
-     *      accepted.
+     * @param ItemVisitorInterface $visitor the ItemVisitor to be accepted
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -232,10 +228,9 @@ interface ItemInterface
      * persistent storage as modified by changes that have been saved but not
      * yet committed.
      *
-     * @throws InvalidItemStateException if this <code>Item</code> object
-     *      represents a workspace item that has been removed (either by this
-     *      session or another).
-     * @throws RepositoryException if another error occurs.
+     * @throws InvalidItemStateException if this <code>Item</code> object represents a workspace item
+     *                                   that has been removed (either by this session or another)
+     * @throws RepositoryException       if another error occurs
      *
      * @since JCR 2.1
      */
@@ -253,24 +248,25 @@ interface ItemInterface
      * and causes the minimal re-numbering required to maintain the original
      * order but leave no gaps in the numbering.
      *
-     * @throws VersionException if the parent node of this item
-     *      is versionable and checked-in or is non-versionable but its nearest
-     *      versionable ancestor is checked-in and this implementation performs
-     *      this validation immediately instead of waiting until save.
-     * @throws LockException if a lock prevents the removal of this
-     *      item and this implementation performs this validation immediately
-     *      instead of waiting until save.
-     * @throws ConstraintViolationException if removing the
-     *      specified item would violate a node type or implementation-specific
-     *      constraint and this implementation performs this validation
-     *      immediately instead of waiting until save.
-     * @throws AccessDeniedException if this item or an item in its
-     *      subgraph is currently the target of a REFERENCE property located in
-     *      this workspace but outside this item's subgraph and the current
-     *      Session does not have read access to that REFERENCE property or if
-     *      the current Session does not have sufficient privileges to remove
-     *      the item.
-     * @throws RepositoryException if another error occurs.
+     * @throws VersionException             if the parent node of this item is versionable and
+     *                                      checked-in or is non-versionable but its nearest
+     *                                      versionable ancestor is checked-in and this
+     *                                      implementation performs this validation immediately
+     *                                      instead of waiting until save
+     * @throws LockException                if a lock prevents the removal of this item and this
+     *                                      implementation performs this validation immediately
+     *                                      instead of waiting until save
+     * @throws ConstraintViolationException if removing the specified item would violate a node
+     *                                      type or implementation-specific constraint and this
+     *                                      implementation performs this validation immediately
+     *                                      instead of waiting until save
+     * @throws AccessDeniedException        if this item or an item in its subgraph is currently
+     *                                      the target of a REFERENCE property located in this
+     *                                      workspace but outside this item's subgraph and the
+     *                                      current Session does not have read access to that
+     *                                      REFERENCE property or if the current Session does not
+     *                                      have sufficient privileges to remove the item
+     * @throws RepositoryException          if another error occurs
      *
      * @see SessionInterface::removeItem(String)
      *

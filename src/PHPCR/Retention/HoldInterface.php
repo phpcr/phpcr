@@ -22,9 +22,10 @@ interface HoldInterface
     /**
      * Returns true if this Hold is deep.
      *
-     * @return bool true if this Hold is deep.
+     * @return bool true if this Hold is deep
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
+     *
      * @api
      */
     public function isDeep();
@@ -34,7 +35,8 @@ interface HoldInterface
      *
      * @return string the name of this Hold. A JCR name.
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
+     *
      * @api
      */
     public function getName();

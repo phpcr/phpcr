@@ -39,15 +39,15 @@ interface AccessControlManagerInterface
      * session, but rather the privileges supported by the repository.
      * supports.
      *
-     * @param string|null $absPath The absolute path to a node the privileges shall
-     *      be fetched of.
+     * @param string|null $absPath the absolute path to a node the privileges shall
+     *                             be fetched of
      *
      * @return PrivilegeInterface[]
      *
      * @throws PathNotFoundException if $absPath is non-null and either
-     *      no node exists at that path or the session does not have sufficient
-     *      access to retrieve a node at that path.
-     * @throws RepositoryException if another error occurs.
+     *                               no node exists at that path or the session does not have sufficient
+     *                               access to retrieve a node at that path
+     * @throws RepositoryException   if another error occurs
      *
      * @api
      */
@@ -56,13 +56,13 @@ interface AccessControlManagerInterface
     /**
      * Returns the privilege with the specified privilegeName.
      *
-     * @param string $privilegeName The name of an existing privilege.
+     * @param string $privilegeName the name of an existing privilege
      *
-     * @return PrivilegeInterface the Privilege with the specified name.
+     * @return PrivilegeInterface the Privilege with the specified name
      *
      * @throws AccessControlException if no privilege with the specified name
-     *      exists.
-     * @throws RepositoryException if another error occurs.
+     *                                exists
+     * @throws RepositoryException    if another error occurs
      *
      * @api
      */
@@ -76,7 +76,7 @@ interface AccessControlManagerInterface
      * then whether the session has all the specified non-node-related
      * privileges (such as being able administer the node type registry, for
      * example).
-
+     *
      * Testing an aggregate privilege is equivalent to testing each non
      * aggregate privilege among the set returned by calling
      * PrivilegeInterface::getAggregatePrivileges() for that privilege.
@@ -88,17 +88,17 @@ interface AccessControlManagerInterface
      * SessionInterface::save() and are only then reflected in the results of
      * the privilege test methods.
      *
-     * @param string|null $absPath The absolute path to a node the privileges shall
-     *      be fetched of.
+     * @param string|null          $absPath    the absolute path to a node the privileges shall
+     *                                         be fetched of
      * @param PrivilegeInterface[] $privileges
      *
      * @return bool true if the session has the specified privileges; false
-     *      otherwise.
+     *              otherwise
      *
      * @throws PathNotFoundException if no node at $absPath exists or
-     *      the session does not have sufficient access to retrieve a node at
-     *      that location
-     * @throws RepositoryException if another error occurs.
+     *                               the session does not have sufficient access to retrieve a node at
+     *                               that location
+     * @throws RepositoryException   if another error occurs
      *
      * @api
      */
@@ -124,15 +124,15 @@ interface AccessControlManagerInterface
      * SessionInterface::save() and are only then reflected in the results of
      * the privilege test methods.
      *
-     * @param string|null $absPath The absolute path to a node the privileges shall
-     *      be fetched of or null to fetch non-node privileges.
+     * @param string|null $absPath the absolute path to a node the privileges shall
+     *                             be fetched of or null to fetch non-node privileges
      *
      * @return PrivilegeInterface[]
      *
      * @throws PathNotFoundException if $absPath is non-null and no node
-     *      at $absPath exists or the session does not have sufficient access
-     *      to retrieve a node at that location.
-     * @throws RepositoryException if another error occurs.
+     *                               at $absPath exists or the session does not have sufficient access
+     *                               to retrieve a node at that location
+     * @throws RepositoryException   if another error occurs
      *
      * @api
      */
@@ -151,17 +151,17 @@ interface AccessControlManagerInterface
      * Use {@link getEffectivePolicies()} in order to determine the policy that
      * effectively applies to $absPath.
      *
-     * @param string|null $absPath The absolute path to a node the privileges shall
-     *      be fetched of or null to fetch non-node privileges.
+     * @param string|null $absPath the absolute path to a node the privileges shall
+     *                             be fetched of or null to fetch non-node privileges
      *
-     * @return AccessControlPolicyInterface[] if no policy has been set the array is empty.
+     * @return AccessControlPolicyInterface[] if no policy has been set the array is empty
      *
      * @throws PathNotFoundException if no node at $absPath exists or
-     *      the session does not have sufficient access to retrieve a node at
-     *      that location
+     *                               the session does not have sufficient access to retrieve a node at
+     *                               that location
      * @throws AccessDeniedException if the session lacks
-     *      READ_ACCESS_CONTROL privilege for the absPath node.
-     * @throws RepositoryException if another error occurs.
+     *                               READ_ACCESS_CONTROL privilege for the absPath node
+     * @throws RepositoryException   if another error occurs
      *
      * @api
      */
@@ -178,17 +178,17 @@ interface AccessControlManagerInterface
      * The policies returned by this method may include both those set through
      * this API and implementation specific policies.
      *
-     * @param string|null $absPath The absolute path to the node of which privileges
-     *      are requested or null for non-node privileges.
+     * @param string|null $absPath the absolute path to the node of which privileges
+     *                             are requested or null for non-node privileges
      *
      * @return AccessControlPolicyInterface[]
      *
      * @throws PathNotFoundException if no node at $absPath exists or
-     *      the session does not have sufficient access to retrieve a node at
-     *      that location
+     *                               the session does not have sufficient access to retrieve a node at
+     *                               that location
      * @throws AccessDeniedException if the session lacks
-     *      READ_ACCESS_CONTROL privilege for the absPath node.
-     * @throws RepositoryException if another error occurs.
+     *                               READ_ACCESS_CONTROL privilege for the absPath node
+     * @throws RepositoryException   if another error occurs
      *
      * @api
      */
@@ -200,19 +200,19 @@ interface AccessControlManagerInterface
      * accessible node then the specified object is that node. If $absPath is
      * null then the specified object is the repository as a whole.
      *
-     * @param string|null $absPath The absolute path to the node of which
-     *      privileges are requested or null for the repository as a whole.
+     * @param string|null $absPath the absolute path to the node of which
+     *                             privileges are requested or null for the repository as a whole
      *
      * @return Iterator<AccessControlPolicyInterface> over the applicable access control policies implementing
      *                                                <b>SeekableIterator</b> and <b>Countable</b>. Keys have no
      *                                                meaning. Returns an empty iterator if no policies are applicable.
      *
      * @throws PathNotFoundException if no node at $absPath exists or
-     *      the session does not have sufficient access to retrieve a node at
-     *      that location
+     *                               the session does not have sufficient access to retrieve a node at
+     *                               that location
      * @throws AccessDeniedException if the session lacks
-     *      READ_ACCESS_CONTROL privilege for the absPath node.
-     * @throws RepositoryException if another error occurs.
+     *                               READ_ACCESS_CONTROL privilege for the absPath node
+     * @throws RepositoryException   if another error occurs
      *
      * @api
      */
@@ -240,25 +240,24 @@ interface AccessControlManagerInterface
      * assignment is only dispatched on Session::save() and will only take
      * effect upon persist.
      *
-     * @param string|null $absPath The absolute path to the node to which
-     *      privileges are to be set or null for the repository as a whole.
-
-     * @param AccessControlPolicyInterface $policy The AccessControlPolicy to
-     *      be applied.
+     * @param string|null                  $absPath the absolute path to the node to which
+     *                                              privileges are to be set or null for the repository as a whole
+     * @param AccessControlPolicyInterface $policy  the AccessControlPolicy to
+     *                                              be applied
      *
-     * @throws PathNotFoundException if no node at $absPath exists or
-     *      the session does not have sufficient access to retrieve a node at
-     *      that location
-     * @throws AccessControlException       if the policy is not applicable.
-     * @throws AccessDeniedException if the session lacks
-     *      MODIFY_ACCESS_CONTROL privilege for $absPath.
-     * @throws LockException if a lock prevents the assignment and
-     *      this implementation performs this validation immediately instead of
-     *      waiting until save.
-     * @throws VersionException if the object specified by
-     *      $absPath is a node in the read-only state (due to a checked-in)
-     *      node and this implementation performs this validation immediately.
-     * @throws RepositoryException if another error occurs.
+     * @throws PathNotFoundException  if no node at $absPath exists or
+     *                                the session does not have sufficient access to retrieve a node at
+     *                                that location
+     * @throws AccessControlException if the policy is not applicable
+     * @throws AccessDeniedException  if the session lacks
+     *                                MODIFY_ACCESS_CONTROL privilege for $absPath
+     * @throws LockException          if a lock prevents the assignment and
+     *                                this implementation performs this validation immediately instead of
+     *                                waiting until save
+     * @throws VersionException       if the object specified by
+     *                                $absPath is a node in the read-only state (due to a checked-in)
+     *                                node and this implementation performs this validation immediately
+     * @throws RepositoryException    if another error occurs
      *
      * @api
      */
@@ -276,25 +275,24 @@ interface AccessControlManagerInterface
      * default or any other effective AccessControlPolicyInterface that has not been
      * applied through this API  may never be removed using this method.
      *
-     * @param string|null $absPath The absolute path to the node from which
-     *      privileges are removed or null for the repository as a whole.
-
-     * @param AccessControlPolicyInterface $policy the policy to be removed.
+     * @param string|null                  $absPath the absolute path to the node from which
+     *                                              privileges are removed or null for the repository as a whole
+     * @param AccessControlPolicyInterface $policy  the policy to be removed
      *
-     * @throws PathNotFoundException if no node at $absPath exists or
-     *      the session does not have sufficient access to retrieve a node at
-     *      that location
+     * @throws PathNotFoundException  if no node at $absPath exists or
+     *                                the session does not have sufficient access to retrieve a node at
+     *                                that location
      * @throws AccessControlException if the policy to remove does not exist at
-     *      the node at absPath.
-     * @throws AccessDeniedException if the session lacks
-     *      MODIFY_ACCESS_CONTROL privilege for the absPath node.
-     * @throws LockException if $absPath specifies a locked node
-     *      and this implementation performs this validation immediately
-     *      instead of waiting until save.
-     * @throws VersionException if $absPath specifies a node
-     *      that is read-only due to a checked-in node and this implementation
-     *      performs this validation immediately instead of waiting until save.
-     * @throws RepositoryException if another error occurs.
+     *                                the node at absPath
+     * @throws AccessDeniedException  if the session lacks
+     *                                MODIFY_ACCESS_CONTROL privilege for the absPath node
+     * @throws LockException          if $absPath specifies a locked node
+     *                                and this implementation performs this validation immediately
+     *                                instead of waiting until save
+     * @throws VersionException       if $absPath specifies a node
+     *                                that is read-only due to a checked-in node and this implementation
+     *                                performs this validation immediately instead of waiting until save
+     * @throws RepositoryException    if another error occurs
      *
      * @api
      */

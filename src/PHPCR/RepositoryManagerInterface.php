@@ -27,11 +27,11 @@ namespace PHPCR;
 interface RepositoryManagerInterface
 {
     /**
-    * Return the Workspace object through which this repository manager was
-    * created.
-    *
-    * @return WorkspaceInterface
-    */
+     * Return the Workspace object through which this repository manager was
+     * created.
+     *
+     * @return WorkspaceInterface
+     */
     public function getWorkspace();
 
     /**
@@ -52,16 +52,16 @@ interface RepositoryManagerInterface
      * authority to do so.
      *
      * @param bool $closeSessionsImmediately true if all existing sessions
-     *      should be closed immediately, or false if they are to be allowed to
-     *      close naturally.
+     *                                       should be closed immediately, or false if they are to be allowed to
+     *                                       close naturally
      *
-     * @throws AccessDeniedException if the caller does not have authorization
-     *      to close the repository.
+     * @throws AccessDeniedException                   if the caller does not have authorization
+     *                                                 to close the repository
      * @throws UnsupportedRepositoryOperationException if the repository
-     *      implementation does not support or allow the repository to be
-     *      closed.
-     * @throws RepositoryException if an error occurred while shutting down the
-     *      repository.
+     *                                                 implementation does not support or allow the repository to be
+     *                                                 closed
+     * @throws RepositoryException                     if an error occurred while shutting down the
+     *                                                 repository
      */
     public function closeRepository($closeSessionsImmediately);
 }

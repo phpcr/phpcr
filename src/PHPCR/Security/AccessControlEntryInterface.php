@@ -21,7 +21,7 @@ use Traversable;
  *
  * @api
  */
-interface AccessControlEntryInterface extends Traversable
+interface AccessControlEntryInterface extends \Traversable
 {
     /**
      * Returns the principal associated with this access control entry.
@@ -35,7 +35,7 @@ interface AccessControlEntryInterface extends Traversable
     /**
      * Returns the privileges associated with this access control entry.
      *
-     * @return PrivilegeInterface[] an array of Privileges.
+     * @return PrivilegeInterface[] an array of Privileges
      *
      * @api
      */

@@ -37,7 +37,7 @@ interface PropertyDefinitionInterface extends ItemDefinitionInterface
      * PropertyDefinition object is actually a newly-created empty
      * PropertyDefinitionTemplate, then this method will return PropertyType::STRING.
      *
-     * @return int An integer constant member of PropertyType.
+     * @return int an integer constant member of PropertyType
      *
      * @api
      */
@@ -230,8 +230,8 @@ interface PropertyDefinitionInterface extends ItemDefinitionInterface
      * PropertyDefinition object is actually a newly-created empty
      * PropertyDefinitionTemplate, then this method will return false.
      *
-     * @return bool True, if this property may have multiple values, else
-     *      false.
+     * @return bool true, if this property may have multiple values, else
+     *              false
      *
      * @api
      */
@@ -279,7 +279,7 @@ interface PropertyDefinitionInterface extends ItemDefinitionInterface
      * This attribute only takes effect if the node type holding the
      * property definition has a queryable setting of true.
      *
-     * @return bool True, if this property is full-text searchable, else false.
+     * @return bool true, if this property is full-text searchable, else false
      *
      * @api
      */
@@ -295,7 +295,7 @@ interface PropertyDefinitionInterface extends ItemDefinitionInterface
      * This attribute only takes effect if the node type holding the
      * property definition has a queryable setting of true.
      *
-     * @return bool True, if this property is query orderable, else false.
+     * @return bool true, if this property is query orderable, else false
      *
      * @api
      */

@@ -2,7 +2,6 @@
 
 namespace PHPCR\Query;
 
-use InvalidArgumentException;
 use PHPCR\ItemExistsException;
 use PHPCR\ItemNotFoundException;
 use PHPCR\Lock\LockException;
@@ -31,24 +30,28 @@ interface QueryInterface
 
     /**
      * A string constant representing the JCR-JQOM query language.
+     *
      * @api
      */
     const JCR_JQOM = 'JCR-JQOM';
 
     /**
      * A string constant representing the JCR-SQL2 query language.
+     *
      * @api
      */
     const JCR_SQL2 = 'JCR-SQL2';
 
     /**
      * A string constant representing the (deprecated in JSR-283) XPATH query language.
+     *
      * @api
      */
     const XPATH = 'xpath';
 
     /**
      * A string constant representing the (deprecated in JSR-283) SQL query language.
+     *
      * @api
      */
     const SQL = 'sql';
@@ -60,8 +63,8 @@ interface QueryInterface
      * @param string $varName name of variable in query
      * @param mixed  $value   value to bind
      *
-     * @throws InvalidArgumentException  if $varName is not a valid variable in this query.
-     * @throws RepositoryException       if an error occurs.
+     * @throws \InvalidArgumentException if $varName is not a valid variable in this query
+     * @throws RepositoryException       if an error occurs
      *
      * @api
      */
@@ -72,7 +75,7 @@ interface QueryInterface
      *
      * @return QueryResultInterface a QueryResult object
      *
-     * @throws InvalidQueryException if the query contains an unbound variable.
+     * @throws InvalidQueryException if the query contains an unbound variable
      * @throws RepositoryException   if an error occurs
      *
      * @api
@@ -90,9 +93,9 @@ interface QueryInterface
      * $query->execute() is currently blocking.
      *
      * @return bool true if the query was executing and will be cancelled,
-     *      or false if the query cannot not be cancelled because it has either
-     *      already finished executing, it has already been cancelled, or the
-     *      implementation does not support canceling queries.
+     *              or false if the query cannot not be cancelled because it has either
+     *              already finished executing, it has already been cancelled, or the
+     *              implementation does not support canceling queries
      *
      * @since JCR 2.1
      */
@@ -105,7 +108,7 @@ interface QueryInterface
      *
      * @return string[]
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -114,7 +117,7 @@ interface QueryInterface
     /**
      * Sets the maximum size of the result set to limit.
      *
-     * @param int $limit The amount of result items to be fetched.
+     * @param int $limit the amount of result items to be fetched
      *
      * @api
      */
@@ -123,7 +126,7 @@ interface QueryInterface
     /**
      * Sets the start offset of the result set to offset.
      *
-     * @param int $offset The start point of the result set from when the item shall be fetched.
+     * @param int $offset the start point of the result set from when the item shall be fetched
      *
      * @api
      */
@@ -141,7 +144,7 @@ interface QueryInterface
      * This is the standard serialization of JCR-JQOM and is also the string stored
      * in the jcr:statement property if the query is persisted. See storeAsNode($absPath).
      *
-     * @return string The query statement.
+     * @return string the query statement
      *
      * @api
      */
@@ -153,7 +156,7 @@ interface QueryInterface
      * This will be one of the query language constants returned by
      * QueryManagerInterface::getSupportedQueryLanguages().
      *
-     * @return string The query language.
+     * @return string the query language
      *
      * @api
      */
@@ -167,10 +170,10 @@ interface QueryInterface
      * QueryManagerInterface::getQuery()), then this method returns the path
      * of the nt:query node that stores the query.
      *
-     * @return string Path of the node representing this query.
+     * @return string path of the node representing this query
      *
-     * @throws ItemNotFoundException if this query is not a stored query.
-     * @throws RepositoryException   if another error occurs.
+     * @throws ItemNotFoundException if this query is not a stored query
+     * @throws RepositoryException   if another error occurs
      *
      * @api
      */
@@ -189,26 +192,27 @@ interface QueryInterface
      *
      * @param string $absPath absolute path the query should be stored at
      *
-     * @return NodeInterface the newly created node.
+     * @return NodeInterface the newly created node
      *
-     * @throws ItemExistsException if an item at the specified path already exists,
-     *                             same-name siblings are not allowed and this implementation performs
-     *                             this validation immediately.
-     * @throws PathNotFoundException if the specified path implies intermediary Nodes that do not exist
-     *                               or the last element of relPath has an index, and this implementation
-     *                               performs this validation immediately.
-     * @throws ConstraintViolationException if a node type or implementation-specific constraint
-     *                                      is violated or if an attempt is made to add a node as
-     *                                      the child of a property and this implementation
-     *                                      performs this validation immediately.
-     * @throws VersionException if the node to which the new child is being added is read-only due to
-     *                          a checked-in node and this implementation performs this validation
-     *                          immediately.
-     * @throws LockException if a lock prevents the addition of the node and this implementation performs
-     *                       this validation immediately instead of waiting until save.
-     * @throws UnsupportedRepositoryOperationException in a level 1 implementation.
-     * @throws RepositoryException if another error occurs or if the absPath provided has an index on its final
-     *                             element.
+     * @throws ItemExistsException                     if an item at the specified path already exists,
+     *                                                 same-name siblings are not allowed and this implementation performs
+     *                                                 this validation immediately
+     * @throws PathNotFoundException                   if the specified path implies intermediary Nodes that do not exist
+     *                                                 or the last element of relPath has an index, and this implementation
+     *                                                 performs this validation immediately
+     * @throws ConstraintViolationException            if a node type or implementation-specific constraint
+     *                                                 is violated or if an attempt is made to add a node as
+     *                                                 the child of a property and this implementation
+     *                                                 performs this validation immediately
+     * @throws VersionException                        if the node to which the new child is being added is read-only due to
+     *                                                 a checked-in node and this implementation performs this validation
+     *                                                 immediately
+     * @throws LockException                           if a lock prevents the addition of the node and this implementation performs
+     *                                                 this validation immediately instead of waiting until save
+     * @throws UnsupportedRepositoryOperationException in a level 1 implementation
+     * @throws RepositoryException                     if another error occurs or if the absPath provided has an index on its final
+     *                                                 element
+     *
      * @api
      */
     public function storeAsNode($absPath);

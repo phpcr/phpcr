@@ -67,8 +67,8 @@ interface FullTextSearchInterface extends ConstraintInterface
      * Gets the name of the property.
      *
      * @return string|null the property name if the full-text search scope is a
-     *      property, otherwise null if the full-text search scope is the node
-     *      (or node subgraph, in some implementations).
+     *                     property, otherwise null if the full-text search scope is the node
+     *                     (or node subgraph, in some implementations)
      *
      * @api
      */

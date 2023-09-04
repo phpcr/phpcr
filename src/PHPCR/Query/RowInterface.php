@@ -23,14 +23,14 @@ use Traversable;
  *
  * @api
  */
-interface RowInterface extends Traversable
+interface RowInterface extends \Traversable
 {
     /**
      * Returns an array of all the values in the same order as the column names
      * returned by QueryResultInterface::getColumnNames().
      *
-     * @return array<string, mixed> Hashmap of column name to value of each column of the
-     *      current result row.
+     * @return array<string, mixed> hashmap of column name to value of each column of the
+     *                              current result row
      *
      * @throws RepositoryException if an error occurs
      *
@@ -43,11 +43,11 @@ interface RowInterface extends Traversable
      *
      * @param string $columnName name of query result table column
      *
-     * @return mixed The value of the given column of the current result row.
+     * @return mixed the value of the given column of the current result row
      *
      * @throws ItemNotFoundException if columnName s not among the
-     *      column names of the query result table.
-     * @throws RepositoryException if another error occurs.
+     *                               column names of the query result table
+     * @throws RepositoryException   if another error occurs
      *
      * @api
      */
@@ -57,13 +57,13 @@ interface RowInterface extends Traversable
      * Returns the Node corresponding to this Row and the specified selector,
      * if given.
      *
-     * @param string $selectorName The selector identifying a node within the
-     *      current result row.
+     * @param string $selectorName the selector identifying a node within the
+     *                             current result row
      *
-     * @return NodeInterface|null The result node or null on incomplete outer joins.
+     * @return NodeInterface|null the result node or null on incomplete outer joins
      *
-     * @throws RepositoryException If selectorName is not the alias of a
-     *      selector in this query or if another error occurs.
+     * @throws RepositoryException if selectorName is not the alias of a
+     *                             selector in this query or if another error occurs
      *
      * @api
      */
@@ -76,14 +76,14 @@ interface RowInterface extends Traversable
      * implementations may be able gain efficiency by not resolving the actual
      * Node.
      *
-     * @param string $selectorName The selector identifying a node within the
-     *      current result row.
+     * @param string $selectorName the selector identifying a node within the
+     *                             current result row
      *
-     * @return string|null The path representing the node identified by the given
-     *      selector or null on incomplete outer joins.
+     * @return string|null the path representing the node identified by the given
+     *                     selector or null on incomplete outer joins
      *
      * @throws RepositoryException if selectorName is not the alias of a
-     *      selector in this query or if another error occurs.
+     *                             selector in this query or if another error occurs
      *
      * @api
      */
@@ -106,15 +106,15 @@ interface RowInterface extends Traversable
      * SCORE() function. In JCR-JQOM it is represented by a PHP object of type
      * \PHPCR\Query\QOM\FullTextSearchScoreInterface.
      *
-     * @param string $selectorName The selector identifying a node within the
-     *      current result row.
+     * @param string $selectorName the selector identifying a node within the
+     *                             current result row
      *
-     * @return float The full text search score for this row.
+     * @return float the full text search score for this row
      *
      * @throws RepositoryException if selectorName is not the alias of a
-     *      selector in this query or (in case of no given selectorName) if
-     *      this query has more than one selector (and therefore, this Row
-     *      corresponds to more than one Node) or if another error occurs.
+     *                             selector in this query or (in case of no given selectorName) if
+     *                             this query has more than one selector (and therefore, this Row
+     *                             corresponds to more than one Node) or if another error occurs
      *
      * @api
      */

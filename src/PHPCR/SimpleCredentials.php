@@ -2,15 +2,12 @@
 
 namespace PHPCR;
 
-use InvalidArgumentException;
-
 /**
  * SimpleCredentials implements the Credentials interface and represents simple
  * user ID/password credentials.
  *
  * @license http://www.apache.org/licenses Apache License Version 2.0, January 2004
  * @license http://opensource.org/licenses/MIT MIT License
- *
  * @author Karsten Dambekalns <karsten@typo3.org>
  *
  * @api
@@ -68,7 +65,7 @@ final class SimpleCredentials implements CredentialsInterface
     /**
      * Returns the user ID.
      *
-     * @return string the user ID.
+     * @return string the user ID
      *
      * @api
      */
@@ -86,14 +83,14 @@ final class SimpleCredentials implements CredentialsInterface
      * @param string $name  the name of the attribute
      * @param mixed  $value the value to be stored
      *
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      *
      * @api
      */
     public function setAttribute($name, $value)
     {
         if (null === $name) {
-            throw new InvalidArgumentException('$name cannot be null', 1212580046);
+            throw new \InvalidArgumentException('$name cannot be null', 1212580046);
         }
 
         if (null === $value) {
@@ -111,7 +108,7 @@ final class SimpleCredentials implements CredentialsInterface
      * @param string $name the name of the attribute
      *
      * @return mixed the value of the attribute, or null if the attribute does
-     *      not exist
+     *               not exist
      *
      * @api
      */

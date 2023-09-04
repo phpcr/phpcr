@@ -12,7 +12,6 @@ use PHPCR\Query\QueryManagerInterface;
 use PHPCR\Transaction\UserTransactionInterface;
 use PHPCR\Version\VersionException;
 use PHPCR\Version\VersionManagerInterface;
-use RuntimeException;
 
 /**
  * Interface representing a view onto a persistent workspace within a repository.
@@ -57,7 +56,7 @@ interface WorkspaceInterface
 
     /**
      * A constant for the absolute path of the system node.
-     * This is '/' . NAME_SYSTEM_NODE
+     * This is '/' . NAME_SYSTEM_NODE.
      *
      * @api
      */
@@ -72,7 +71,7 @@ interface WorkspaceInterface
 
     /**
      * A constant for the absolute path of the node type definition storage node.
-     * This is PATH_SYSTEM_NODE . '/' . NAME_NODE_TYPES_NODE
+     * This is PATH_SYSTEM_NODE . '/' . NAME_NODE_TYPES_NODE.
      *
      * @api
      */
@@ -87,7 +86,7 @@ interface WorkspaceInterface
 
     /**
      * A constant for the absolute path of the version storage node.
-     * This is PATH_SYSTEM_NODE . '/' . NAME_VERSION_STORAGE_NODE
+     * This is PATH_SYSTEM_NODE . '/' . NAME_VERSION_STORAGE_NODE.
      *
      * @api
      */
@@ -102,7 +101,7 @@ interface WorkspaceInterface
 
     /**
      * A constant for the absolute path of the activities node.
-     * This is PATH_SYSTEM_NODE . '/' . NAME_ACTIVITIES_NODE
+     * This is PATH_SYSTEM_NODE . '/' . NAME_ACTIVITIES_NODE.
      *
      * @api
      */
@@ -117,7 +116,7 @@ interface WorkspaceInterface
 
     /**
      * A constant for the absolute path of the configurations node.
-     * This is PATH_SYSTEM_NODE . '/' . NAME_CONFIGURATIONS_NODE
+     * This is PATH_SYSTEM_NODE . '/' . NAME_CONFIGURATIONS_NODE.
      *
      * @api
      */
@@ -132,7 +131,7 @@ interface WorkspaceInterface
 
     /**
      * A constant for the absolute path of the unfiled storage node.
-     * This is PATH_SYSTEM_NODE . '/' . NAME_UNFILED_NODE
+     * This is PATH_SYSTEM_NODE . '/' . NAME_UNFILED_NODE.
      *
      * @api
      */
@@ -155,7 +154,7 @@ interface WorkspaceInterface
     /**
      * A constant for the relative path from the node representing the imported XML element of
      * the jcr:xmlcharacters property produced on importXML().
-     * This is NAME_JCR_XMLTEXT . '/' . NAME_JCR_XMLCHARACTERS
+     * This is NAME_JCR_XMLTEXT . '/' . NAME_JCR_XMLCHARACTERS.
      *
      * @api
      */
@@ -166,7 +165,8 @@ interface WorkspaceInterface
     /**
      * Returns the Session object through which this Workspace object was acquired.
      *
-     * @return SessionInterface a Session object.
+     * @return SessionInterface a Session object
+     *
      * @api
      */
     public function getSession();
@@ -176,7 +176,8 @@ interface WorkspaceInterface
      *
      * This the name used in Repository->login.
      *
-     * @return string the name of this workspace.
+     * @return string the name of this workspace
+     *
      * @api
      */
     public function getName();
@@ -247,31 +248,31 @@ interface WorkspaceInterface
      * copies an entire node and its subgraph (including, of course, any
      * properties contained therein).
      *
-     * @param string $srcAbsPath  the path of the node to be copied.
-     * @param string $destAbsPath the location to which the node at srcAbsPath
-     *      is to be copied in this workspace.
+     * @param string $srcAbsPath   the path of the node to be copied
+     * @param string $destAbsPath  the location to which the node at srcAbsPath
+     *                             is to be copied in this workspace
      * @param string $srcWorkspace the name of the workspace from which the
-     *      copy is to be made.
+     *                             copy is to be made
      *
-     * @throws NoSuchWorkspaceException if srcWorkspace does not exist
-     *      or if the current Session does not have permission to access it.
+     * @throws NoSuchWorkspaceException     if srcWorkspace does not exist
+     *                                      or if the current Session does not have permission to access it
      * @throws ConstraintViolationException if the operation
-     *      would violate a node-type or other implementation-specific
-     *      constraint.
-     * @throws VersionException if the parent node of
-     *      destAbsPath is read-only due to a checked-in node.
-     * @throws AccessDeniedException if the current session does have
-     *      access srcWorkspace but otherwise does not have sufficient access
-     *      to complete the operation.
-     * @throws PathNotFoundException if the node at srcAbsPath in
-     *      srcWorkspace or the parent of destAbsPath in this workspace does
-     *      not exist.
-     * @throws ItemExistsException if a node already exists at
-     *      destAbsPath and either same-name siblings are not allowed or update
-     *      on copy is not supported for the nodes involved.
-     * @throws LockException       if a lock prevents the copy.
-     * @throws RepositoryException if the last element of destAbsPath
-     *      has an index or if another error occurs.
+     *                                      would violate a node-type or other implementation-specific
+     *                                      constraint
+     * @throws VersionException             if the parent node of
+     *                                      destAbsPath is read-only due to a checked-in node
+     * @throws AccessDeniedException        if the current session does have
+     *                                      access srcWorkspace but otherwise does not have sufficient access
+     *                                      to complete the operation
+     * @throws PathNotFoundException        if the node at srcAbsPath in
+     *                                      srcWorkspace or the parent of destAbsPath in this workspace does
+     *                                      not exist
+     * @throws ItemExistsException          if a node already exists at
+     *                                      destAbsPath and either same-name siblings are not allowed or update
+     *                                      on copy is not supported for the nodes involved
+     * @throws LockException                if a lock prevents the copy
+     * @throws RepositoryException          if the last element of destAbsPath
+     *                                      has an index or if another error occurs
      *
      * @api
      */
@@ -313,38 +314,38 @@ interface WorkspaceInterface
      * PHP Notice: The JCR method is called clone, but that is a reserved
      * keyword in PHP, thus we named the method cloneFrom.
      *
-     * @param string $srcWorkspace The name of the workspace from which the
-     *      node is to be copied.
-     * @param string $srcAbsPath The path of the node to be copied in
-     *      srcWorkspace.
-     * @param string $destAbsPath The location to which the node at srcAbsPath
-     *      is to be copied in this workspace.
-     * @param bool $removeExisting if false then this method throws an
-     *      ItemExistsException on identifier conflict with an incoming node.
-     *      If true then a identifier conflict is resolved by removing the
-     *      existing node from its location in this workspace and cloning
-     *      (copying in) the one from srcWorkspace.
+     * @param string $srcWorkspace   the name of the workspace from which the
+     *                               node is to be copied
+     * @param string $srcAbsPath     the path of the node to be copied in
+     *                               srcWorkspace
+     * @param string $destAbsPath    the location to which the node at srcAbsPath
+     *                               is to be copied in this workspace
+     * @param bool   $removeExisting if false then this method throws an
+     *                               ItemExistsException on identifier conflict with an incoming node.
+     *                               If true then a identifier conflict is resolved by removing the
+     *                               existing node from its location in this workspace and cloning
+     *                               (copying in) the one from srcWorkspace.
      *
-     * @throws NoSuchWorkspaceException     if destWorkspace does not exist.
+     * @throws NoSuchWorkspaceException     if destWorkspace does not exist
      * @throws ConstraintViolationException if the operation
-     *      would violate a node-type or other implementation-specific
-     *      constraint.
-     * @throws VersionException if the parent node of
-     *      destAbsPath is read-only due to a checked-in node. This exception
-     *      will also be thrown if removeExisting is true, and an identifier
-     *      conflict occurs that would require the moving and/or altering of a
-     *      node that is checked-in.
-     * @throws AccessDeniedException if the current session does not
-     *      have sufficient access to complete the operation.
-     * @throws PathNotFoundException if the node at srcAbsPath in
-     *      srcWorkspace or the parent of destAbsPath in this workspace does
-     *      not exist.
-     * @throws ItemExistsException if a node already exists at
-     *      destAbsPath and same-name siblings are not allowed or if
-     *      removeExisting is false and an identifier conflict occurs.
-     * @throws \PHPCR\Lock\LockException if a lock prevents the clone.
-     * @throws RepositoryException       if the last element of destAbsPath
-     *      has an index or if another error occurs.
+     *                                      would violate a node-type or other implementation-specific
+     *                                      constraint
+     * @throws VersionException             if the parent node of
+     *                                      destAbsPath is read-only due to a checked-in node. This exception
+     *                                      will also be thrown if removeExisting is true, and an identifier
+     *                                      conflict occurs that would require the moving and/or altering of a
+     *                                      node that is checked-in.
+     * @throws AccessDeniedException        if the current session does not
+     *                                      have sufficient access to complete the operation
+     * @throws PathNotFoundException        if the node at srcAbsPath in
+     *                                      srcWorkspace or the parent of destAbsPath in this workspace does
+     *                                      not exist
+     * @throws ItemExistsException          if a node already exists at
+     *                                      destAbsPath and same-name siblings are not allowed or if
+     *                                      removeExisting is false and an identifier conflict occurs
+     * @throws \PHPCR\Lock\LockException    if a lock prevents the clone
+     * @throws RepositoryException          if the last element of destAbsPath
+     *                                      has an index or if another error occurs
      *
      * @api
      */
@@ -377,25 +378,25 @@ interface WorkspaceInterface
      * The identifiers of referenceable nodes must not be changed by a move. The
      * identifiers of non-referenceable nodes may change.
      *
-     * @param string $srcAbsPath  the path of the node to be moved.
+     * @param string $srcAbsPath  the path of the node to be moved
      * @param string $destAbsPath the location to which the node at srcAbsPath
-     *      is to be moved.
+     *                            is to be moved
      *
      * @throws ConstraintViolationException if the operation
-     *      would violate a node-type or other implementation-specific
-     *      constraint.
-     * @throws VersionException if the parent node of
-     *      destAbsPath is read-only due to a checked-in node.
-     * @throws AccessDeniedException if the current session (i.e. the
-     *      session that was used to acquire this Workspace object) does not
-     *      have sufficient access rights to complete the operation.
-     * @throws PathNotFoundException if the node at srcAbsPath or the
-     *      parent of destAbsPath does not exist.
-     * @throws ItemExistsException if a node already exists at
-     *      destAbsPath and same-name siblings are not allowed.
-     * @throws LockException       if a lock prevents the move.
-     * @throws RepositoryException if the last element of destAbsPath
-     *      has an index or if another error occurs.
+     *                                      would violate a node-type or other implementation-specific
+     *                                      constraint
+     * @throws VersionException             if the parent node of
+     *                                      destAbsPath is read-only due to a checked-in node
+     * @throws AccessDeniedException        if the current session (i.e. the
+     *                                      session that was used to acquire this Workspace object) does not
+     *                                      have sufficient access rights to complete the operation.
+     * @throws PathNotFoundException        if the node at srcAbsPath or the
+     *                                      parent of destAbsPath does not exist
+     * @throws ItemExistsException          if a node already exists at
+     *                                      destAbsPath and same-name siblings are not allowed
+     * @throws LockException                if a lock prevents the move
+     * @throws RepositoryException          if the last element of destAbsPath
+     *                                      has an index or if another error occurs
      *
      * @api
      */
@@ -442,30 +443,29 @@ interface WorkspaceInterface
      * specified item's subgraph and the current Session <i>does not</i> have
      * read access to that REFERENCE property.
      *
-     * @param string $absPath the absolute path of the item to be removed.
+     * @param string $absPath the absolute path of the item to be removed
      *
-     * @throws VersionException if the parent node of the item
-     *      at $absPath is read-only due to a checked-in node and this
-     *      implementation performs this validation immediately.
-     * @throws LockException if a lock prevents the removal of the
-     *      specified item and this implementation performs this validation
-     *      immediately.
+     * @throws VersionException             if the parent node of the item
+     *                                      at $absPath is read-only due to a checked-in node and this
+     *                                      implementation performs this validation immediately
+     * @throws LockException                if a lock prevents the removal of the
+     *                                      specified item and this implementation performs this validation
+     *                                      immediately
      * @throws ConstraintViolationException if removing the
-     *      specified item would violate a node type or implementation-specific
-     *      constraint and this implementation performs this validation
-     *      immediately.
-     * @throws PathNotFoundException if no accessible item is found at $absPath
-     *      and this implementation performs this validation immediately.
-     * @throws AccessDeniedException if the specified item or an item in its
-     *      subgraph is currently the target of a REFERENCE property located in
-     *      this workspace but outside the specified item's subgraph and the
-     *      current Session <i>does not</i> have read access to that REFERENCE
-     *      property and this implementation performs this validation
-     *      immediately.
-     * @throws RepositoryException if another error occurs.
+     *                                      specified item would violate a node type or implementation-specific
+     *                                      constraint and this implementation performs this validation
+     *                                      immediately
+     * @throws PathNotFoundException        if no accessible item is found at $absPath
+     *                                      and this implementation performs this validation immediately
+     * @throws AccessDeniedException        if the specified item or an item in its
+     *                                      subgraph is currently the target of a REFERENCE property located in
+     *                                      this workspace but outside the specified item's subgraph and the
+     *                                      current Session <i>does not</i> have read access to that REFERENCE
+     *                                      property and this implementation performs this validation
+     *                                      immediately
+     * @throws RepositoryException          if another error occurs
      *
      * @see Session::removeItem()
-     *
      * @since JCR 2.1
      *
      * @api
@@ -478,8 +478,8 @@ interface WorkspaceInterface
      * @return LockManagerInterface
      *
      * @throws UnsupportedRepositoryOperationException if the
-     *      implementation does not support locking.
-     * @throws RepositoryException if an error occurs.
+     *                                                 implementation does not support locking
+     * @throws RepositoryException                     if an error occurs
      *
      * @api
      */
@@ -488,22 +488,22 @@ interface WorkspaceInterface
     /**
      * Returns the QueryManager object, through search methods are accessed.
      *
-     * @return QueryManagerInterface the QueryManager object.
+     * @return QueryManagerInterface the QueryManager object
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
     public function getQueryManager();
 
     /**
-     * Returns the UserTransaction object associated with this session
+     * Returns the UserTransaction object associated with this session.
      *
      * @return UserTransactionInterface a UserTransaction
-     *      object.
+     *                                  object
      *
      * @throws UnsupportedRepositoryOperationException if the
-     *      implementation does not support observation.
+     *                                                 implementation does not support observation
      *
      * @api
      */
@@ -516,9 +516,9 @@ interface WorkspaceInterface
      * In level 2 repositories the NamespaceRegistry can also be used to change
      * the namespace mappings.
      *
-     * @return NamespaceRegistryInterface the NamespaceRegistry.
+     * @return NamespaceRegistryInterface the NamespaceRegistry
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -533,9 +533,9 @@ interface WorkspaceInterface
      * repository-wide set of available node types. In repositories that support it,
      * the NodeTypeManager can also be used to register new node types.
      *
-     * @return NodeTypeManagerInterface a NodeTypeManager object.
+     * @return NodeTypeManagerInterface a NodeTypeManager object
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -545,11 +545,11 @@ interface WorkspaceInterface
      * Returns the ObservationManager object.
      *
      * @return ObservationManagerInterface an
-     *      ObservationManager object.
+     *                                     ObservationManager object
      *
      * @throws UnsupportedRepositoryOperationException if the
-     *      implementation does not support observation.
-     * @throws RepositoryException if an error occurs.
+     *                                                 implementation does not support observation
+     * @throws RepositoryException                     if an error occurs
      *
      * @api
      */
@@ -562,8 +562,8 @@ interface WorkspaceInterface
      * @return RepositoryManagerInterface
      *
      * @throws AccessDeniedException if the caller does not have authorization
-     *      to obtain the manager.
-     * @throws RepositoryException if another error occurred.
+     *                               to obtain the manager
+     * @throws RepositoryException   if another error occurred
      *
      * @since JCR 2.1
      */
@@ -572,11 +572,11 @@ interface WorkspaceInterface
     /**
      * Returns the VersionManager object.
      *
-     * @return VersionManagerInterface a VersionManager object.
+     * @return VersionManagerInterface a VersionManager object
      *
      * @throws UnsupportedRepositoryOperationException if the
-     *      implementation does not support versioning.
-     * @throws RepositoryException if an error occurs.
+     *                                                 implementation does not support versioning
+     * @throws RepositoryException                     if an error occurs
      *
      * @api
      */
@@ -725,35 +725,35 @@ interface WorkspaceInterface
      *   ItemExistsException is thrown.
      *
      * @param string $parentAbsPath the absolute path of the node below which
-     *      the deserialized subgraph is added.
-     * @param string $uri Source location for the XML to be read, Can be
-     *      anything that works with fopen.
-     * @param int $uuidBehavior a four-value flag that governs how incoming
-     *      identifiers are handled.
+     *                              the deserialized subgraph is added
+     * @param string $uri           source location for the XML to be read, Can be
+     *                              anything that works with fopen
+     * @param int    $uuidBehavior  a four-value flag that governs how incoming
+     *                              identifiers are handled
      *
-     * @throws RuntimeException             if an error during an I/O operation occurs.
-     * @throws PathNotFoundException        if no node exists at parentAbsPath.
-     * @throws ConstraintViolationException if node-type or
-     *      other implementation-specific constraints prevent the addition of
-     *      the subgraph or if uuidBehavior is set to
-     *      IMPORT_UUID_COLLISION_REMOVE_EXISTING and an incoming node has the
-     *      same identifier as the node at parentAbsPath or one of its
-     *      ancestors.
-     * @throws VersionException if the node at parentAbsPath is
-     *      read-only due to a checked-in node.
+     * @throws \RuntimeException              if an error during an I/O operation occurs
+     * @throws PathNotFoundException          if no node exists at parentAbsPath
+     * @throws ConstraintViolationException   if node-type or
+     *                                        other implementation-specific constraints prevent the addition of
+     *                                        the subgraph or if uuidBehavior is set to
+     *                                        IMPORT_UUID_COLLISION_REMOVE_EXISTING and an incoming node has the
+     *                                        same identifier as the node at parentAbsPath or one of its
+     *                                        ancestors
+     * @throws VersionException               if the node at parentAbsPath is
+     *                                        read-only due to a checked-in node
      * @throws InvalidSerializedDataException if incoming stream is not
-     *      a valid XML document.
-     * @throws ItemExistsException if the top-most element of the
-     *      incoming XML would deserialize to a node with the same name as an
-     *      existing child of parentAbsPath and that child does not allow
-     *      same-name siblings, or if a uuidBehavior is set to
-     *      IMPORT_UUID_COLLISION_THROW and an identifier collision occurs.
-     * @throws LockException if a lock prevents the addition of the
-     *      subgraph.
-     * @throws AccessDeniedException if the session associated with this
-     *      Workspace object does not have sufficient access to perform the
-     *      import.
-     * @throws RepositoryException if another error occurs.
+     *                                        a valid XML document
+     * @throws ItemExistsException            if the top-most element of the
+     *                                        incoming XML would deserialize to a node with the same name as an
+     *                                        existing child of parentAbsPath and that child does not allow
+     *                                        same-name siblings, or if a uuidBehavior is set to
+     *                                        IMPORT_UUID_COLLISION_THROW and an identifier collision occurs
+     * @throws LockException                  if a lock prevents the addition of the
+     *                                        subgraph
+     * @throws AccessDeniedException          if the session associated with this
+     *                                        Workspace object does not have sufficient access to perform the
+     *                                        import
+     * @throws RepositoryException            if another error occurs
      *
      * @api
      */
@@ -773,17 +773,17 @@ interface WorkspaceInterface
      *
      * The new workspace can be accessed through a login specifying its name.
      *
-     * @param string $name         A String, the name of the new workspace.
-     * @param string $srcWorkspace The name of the workspace from which the new
-     *      workspace is to be cloned.
+     * @param string $name         a String, the name of the new workspace
+     * @param string $srcWorkspace the name of the workspace from which the new
+     *                             workspace is to be cloned
      *
-     * @throws AccessDeniedException if the session through which this
-     *      Workspace object was acquired does not have sufficient access to
-     *      create the new workspace.
+     * @throws AccessDeniedException                   if the session through which this
+     *                                                 Workspace object was acquired does not have sufficient access to
+     *                                                 create the new workspace
      * @throws UnsupportedRepositoryOperationException if the repository
-     *      does not support the creation of workspaces.
-     * @throws NoSuchWorkspaceException if $srcWorkspace does not exist.
-     * @throws RepositoryException      if another error occurs.
+     *                                                 does not support the creation of workspaces
+     * @throws NoSuchWorkspaceException                if $srcWorkspace does not exist
+     * @throws RepositoryException                     if another error occurs
      *
      * @api
      */
@@ -793,15 +793,15 @@ interface WorkspaceInterface
      * Deletes the workspace with the specified name from the repository,
      * deleting all content within it.
      *
-     * @param string $name A String, the name of the workspace to be deleted.
+     * @param string $name a String, the name of the workspace to be deleted
      *
-     * @throws AccessDeniedException if the session through which this
-     *      Workspace object was acquired does not have sufficient access to
-     *      remove the workspace.
+     * @throws AccessDeniedException                   if the session through which this
+     *                                                 Workspace object was acquired does not have sufficient access to
+     *                                                 remove the workspace
      * @throws UnsupportedRepositoryOperationException if the repository
-     *      does not support the removal of workspaces.
-     * @throws NoSuchWorkspaceException if $name does not exist.
-     * @throws RepositoryException      if another error occurs.
+     *                                                 does not support the removal of workspaces
+     * @throws NoSuchWorkspaceException                if $name does not exist
+     * @throws RepositoryException                     if another error occurs
      *
      * @api
      */

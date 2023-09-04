@@ -23,7 +23,7 @@ interface EventInterface
      * Generated on persist when a node is added.
      * - getPath() returns the absolute path of the node that was added.
      * - getIdentifier() returns the identifier of the node that was added.
-     * - getInfo() returns an empty array
+     * - getInfo() returns an empty array.
      *
      * @api
      */
@@ -33,7 +33,7 @@ interface EventInterface
      * Generated on persist when a node is removed.
      * - getPath() returns the absolute path of the node that was removed.
      * - getIdentifier() returns the identifier of the node that was removed.
-     * - getInfo() returns an empty array
+     * - getInfo() returns an empty array.
      *
      * @api
      */
@@ -43,7 +43,7 @@ interface EventInterface
      * Generated on persist when a property is added.
      * - getPath() returns the absolute path of the property that was added.
      * - getIdentifier() returns the identifier of the parent node of the property that was added.
-     * - getInfo() returns an empty array
+     * - getInfo() returns an empty array.
      *
      * @api
      */
@@ -53,7 +53,8 @@ interface EventInterface
      * Generated on persist when a property is removed.
      * - getPath() returns the absolute path of the property that was removed.
      * - getIdentifier() returns the identifier of the parent node of the property that was removed.
-     * - getInfo() returns an empty array
+     * - getInfo() returns an empty array.
+     *
      * @api
      */
     const PROPERTY_REMOVED = 0x8;
@@ -62,7 +63,7 @@ interface EventInterface
      * Generated on persist when a property is changed.
      * - getPath() returns the absolute path of the property that was changed.
      * - getIdentifier() returns the identifier of the parent node of the property that was changed.
-     * - getInfo() returns an empty array
+     * - getInfo() returns an empty array.
      *
      * @api
      */
@@ -108,9 +109,9 @@ interface EventInterface
      * - PROPERTY_REMOVED
      * - PROPERTY_CHANGED
      * - NODE_MOVED
-     * - PERSIST
+     * - PERSIST.
      *
-     * @return int the type of this event.
+     * @return int the type of this event
      *
      * @api
      */
@@ -123,9 +124,9 @@ interface EventInterface
      * The meaning of the associated path depends upon the type of the event.
      * See event type constants above.
      *
-     * @return string The absolute path associated with this event or null.
+     * @return string the absolute path associated with this event or null
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -136,7 +137,7 @@ interface EventInterface
      *
      * This is the string returned by SessionInterface::getUserID() of the session that caused the event.
      *
-     * @return string The identifier of the user connected to the event.
+     * @return string the identifier of the user connected to the event
      *
      * @api
      */
@@ -149,9 +150,9 @@ interface EventInterface
      * The meaning of the associated identifier depends upon the type of the event.
      * See event type constants above.
      *
-     * @return string The identifier associated with this event or null.
+     * @return string the identifier associated with this event or null
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -163,9 +164,9 @@ interface EventInterface
      * The meaning of the map depends upon the type of the event.
      * See event type constants above.
      *
-     * @return array<mixed> A list containing parameter information for instances of a NODE_MOVED event.
+     * @return array<mixed> a list containing parameter information for instances of a NODE_MOVED event
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -175,9 +176,9 @@ interface EventInterface
      * Returns the user data set through ObservationManagerInterface::setUserData() on the
      * ObservationManager bound to the Session that caused the event.
      *
-     * @return string The user data string.
+     * @return string the user data string
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -190,9 +191,9 @@ interface EventInterface
      * Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian). The granularity of
      * the returned value is implementation dependent.
      *
-     * @return int The date when the change was persisted that caused this event (milliseconds since epoch).
+     * @return int the date when the change was persisted that caused this event (milliseconds since epoch)
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -226,7 +227,7 @@ interface EventInterface
      *
      * @return NodeTypeInterface
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      */
     public function getPrimaryNodeType();
 
@@ -244,7 +245,7 @@ interface EventInterface
      *
      * @return NodeTypeInterface[]
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      */
     public function getMixinNodeTypes();
 }

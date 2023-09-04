@@ -30,8 +30,7 @@ interface ItemVisitorInterface
      * PHPCR Note: you need to distinguish between Node and Property objects
      * being visited in your implementation.
      *
-     * @param ItemInterface $item a node or property accepting this
-     *      visitor
+     * @param ItemInterface $item a node or property accepting this visitor
      *
      * @throws RepositoryException if an error occurs
      *

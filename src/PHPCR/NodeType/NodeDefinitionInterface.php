@@ -29,7 +29,7 @@ interface NodeDefinitionInterface extends ItemDefinitionInterface
      * object may be acquired (in the form of a NodeDefinitionTemplate) that is
      * not attached to a live NodeType. In such cases this method returns null.
      *
-     * @return NodeTypeInterface[] An array of NodeType objects.
+     * @return NodeTypeInterface[] an array of NodeType objects
      *
      * @api
      */
@@ -65,7 +65,7 @@ interface NodeDefinitionInterface extends ItemDefinitionInterface
      * object may be acquired (in the form of a NodeDefinitionTemplate) that is
      * not attached to a live NodeType. In such cases this method returns null.
      *
-     * @return NodeTypeInterface A NodeType.
+     * @return NodeTypeInterface a NodeType
      *
      * @api
      */
@@ -82,7 +82,7 @@ interface NodeDefinitionInterface extends ItemDefinitionInterface
      * primary types as set in that template. If that template is a newly-created
      * empty one, then this method will return null.
      *
-     * @return string The name of the default primary type.
+     * @return string the name of the default primary type
      *
      * @api
      */
@@ -98,7 +98,7 @@ interface NodeDefinitionInterface extends ItemDefinitionInterface
      * template. If that template is a newly-created empty one, then this
      * method will return false.
      *
-     * @return bool True, if the node my have a same-name sibling, else false.
+     * @return bool true, if the node my have a same-name sibling, else false
      *
      * @api
      */

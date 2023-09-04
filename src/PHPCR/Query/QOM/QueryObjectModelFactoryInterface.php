@@ -38,18 +38,18 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @return QueryObjectModelInterface the query
      *
      * @throws InvalidQueryException if a particular validity test
-     *      is possible on this method, the implementation chooses to perform
-     *      that test and the parameters given fail that test. See the
-     *      individual QOM factory methods for the validity criteria of each
-     *      query element.
-     * @throws RepositoryException if another error occurs.
+     *                               is possible on this method, the implementation chooses to perform
+     *                               that test and the parameters given fail that test. See the
+     *                               individual QOM factory methods for the validity criteria of each
+     *                               query element.
+     * @throws RepositoryException   if another error occurs
      *
      * @api
      */
     public function createQuery(SourceInterface $source,
-                         ConstraintInterface $constraint = null,
-                         array $orderings = [],
-                         array $columns = []);
+        ConstraintInterface $constraint = null,
+        array $orderings = [],
+        array $columns = []);
 
     /**
      * Selects a subset of the nodes in the repository based on node type.
@@ -70,10 +70,10 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @return SelectorInterface the selector
      *
      * @throws InvalidQueryException if a particular validity test
-     *      is possible on this method, the implementation chooses to perform
-     *      that test (and not leave it until later) on createQuery, and the
-     *      parameters given fail that test
-     * @throws RepositoryException if the operation otherwise fails
+     *                               is possible on this method, the implementation chooses to perform
+     *                               that test (and not leave it until later) on createQuery, and the
+     *                               parameters given fail that test
+     * @throws RepositoryException   if the operation otherwise fails
      *
      * @api
      */
@@ -92,15 +92,15 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @return JoinInterface the join
      *
      * @throws InvalidQueryException if a particular validity test
-     *      is possible on this method, the implementation chooses to perform
-     *      that test (and not leave it until later) on createQuery, and the
-     *      parameters given fail that test
-     * @throws RepositoryException if the operation otherwise fails
+     *                               is possible on this method, the implementation chooses to perform
+     *                               that test (and not leave it until later) on createQuery, and the
+     *                               parameters given fail that test
+     * @throws RepositoryException   if the operation otherwise fails
      *
      * @api
      */
     public function join(SourceInterface $left, SourceInterface $right,
-                         $joinType, JoinConditionInterface $joinCondition);
+        $joinType, JoinConditionInterface $joinCondition);
 
     /**
      * Tests whether the value of a property in a first selector is equal to
@@ -128,10 +128,10 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @return EquiJoinConditionInterface the constraint
      *
      * @throws InvalidQueryException if a particular validity test
-     *      is possible on this method, the implementation chooses to perform
-     *      that test (and not leave it until later) on createQuery, and the
-     *      parameters given fail that test
-     * @throws RepositoryException if the operation otherwise fails
+     *                               is possible on this method, the implementation chooses to perform
+     *                               that test (and not leave it until later) on createQuery, and the
+     *                               parameters given fail that test
+     * @throws RepositoryException   if the operation otherwise fails
      *
      * @api
      */
@@ -159,10 +159,10 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @return SameNodeJoinConditionInterface the constraint
      *
      * @throws InvalidQueryException if a particular validity test
-     *      is possible on this method, the implementation chooses to perform
-     *      that test (and not leave it until later) on createQuery, and the
-     *      parameters given fail that test
-     * @throws RepositoryException if the operation otherwise fails
+     *                               is possible on this method, the implementation chooses to perform
+     *                               that test (and not leave it until later) on createQuery, and the
+     *                               parameters given fail that test
+     * @throws RepositoryException   if the operation otherwise fails
      *
      * @api
      */
@@ -184,11 +184,10 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @return ChildNodeJoinConditionInterface the constraint
      *
      * @throws InvalidQueryException if a particular validity test
-     *      is possible on this method, the implementation chooses to perform
-     *      that test (and not leave it until later) on createQuery, and the
-     *      parameters given fail that test
-     *
-     * @throws RepositoryException if the operation otherwise fails
+     *                               is possible on this method, the implementation chooses to perform
+     *                               that test (and not leave it until later) on createQuery, and the
+     *                               parameters given fail that test
+     * @throws RepositoryException   if the operation otherwise fails
      *
      * @api
      */
@@ -205,16 +204,16 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * - $descendantSelector is the same as $ancestorSelector
      *
      * @param string $descendantSelectorName the name of the descendant
-     *      selector
-     * @param string $ancestorSelectorName the name of the ancestor selector
+     *                                       selector
+     * @param string $ancestorSelectorName   the name of the ancestor selector
      *
      * @return DescendantNodeJoinConditionInterface the constraint
      *
      * @throws InvalidQueryException if a particular validity test
-     *      is possible on this method, the implementation chooses to perform
-     *      that test (and not leave it until later) on createQuery, and the
-     *      parameters given fail that test
-     * @throws RepositoryException if the operation otherwise fails
+     *                               is possible on this method, the implementation chooses to perform
+     *                               that test (and not leave it until later) on createQuery, and the
+     *                               parameters given fail that test
+     * @throws RepositoryException   if the operation otherwise fails
      *
      * @api
      */
@@ -229,15 +228,15 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @return AndInterface the And constraint
      *
      * @throws InvalidQueryException if a particular validity test
-     *      is possible on this method, the implementation chooses to perform
-     *      that test (and not leave it until later) on createQuery, and the
-     *      parameters given fail that test
-     * @throws RepositoryException if the operation otherwise fails
+     *                               is possible on this method, the implementation chooses to perform
+     *                               that test (and not leave it until later) on createQuery, and the
+     *                               parameters given fail that test
+     * @throws RepositoryException   if the operation otherwise fails
      *
      * @api
      */
     public function andConstraint(ConstraintInterface $constraint1,
-                         ConstraintInterface $constraint2);
+        ConstraintInterface $constraint2);
 
     /**
      * Performs a logical disjunction of two other constraints.
@@ -248,16 +247,15 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @return OrInterface the Or constraint
      *
      * @throws InvalidQueryException if a particular validity test
-     *      is possible on this method, the implementation chooses to perform
-     *      that test (and not leave it until later) on createQuery, and the
-     *      parameters given fail that test
-     *
-     * @throws RepositoryException if the operation otherwise fails
+     *                               is possible on this method, the implementation chooses to perform
+     *                               that test (and not leave it until later) on createQuery, and the
+     *                               parameters given fail that test
+     * @throws RepositoryException   if the operation otherwise fails
      *
      * @api
      */
     public function orConstraint(ConstraintInterface $constraint1,
-                        ConstraintInterface $constraint2);
+        ConstraintInterface $constraint2);
 
     /**
      * Performs a logical negation of another constraint.
@@ -267,10 +265,10 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @return NotInterface the Not constraint
      *
      * @throws InvalidQueryException if a particular validity test
-     *      is possible on this method, the implementation chooses to perform
-     *      that test (and not leave it until later) on createQuery, and the
-     *      parameters given fail that test
-     * @throws RepositoryException if the operation otherwise fails
+     *                               is possible on this method, the implementation chooses to perform
+     *                               that test (and not leave it until later) on createQuery, and the
+     *                               parameters given fail that test
+     * @throws RepositoryException   if the operation otherwise fails
      *
      * @api
      */
@@ -286,15 +284,15 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @return ComparisonInterface the constraint
      *
      * @throws InvalidQueryException if a particular validity test
-     *      is possible on this method, the implementation chooses to perform
-     *      that test (and not leave it until later) on createQuery, and the
-     *      parameters given fail that test
-     * @throws RepositoryException if the operation otherwise fails
+     *                               is possible on this method, the implementation chooses to perform
+     *                               that test (and not leave it until later) on createQuery, and the
+     *                               parameters given fail that test
+     * @throws RepositoryException   if the operation otherwise fails
      *
      * @api
      */
     public function comparison(DynamicOperandInterface $operand1, $operator,
-                               StaticOperandInterface $operand2);
+        StaticOperandInterface $operand2);
 
     /**
      * Tests the existence of a property in the specified or default selector.
@@ -310,10 +308,10 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @return PropertyExistenceInterface the constraint
      *
      * @throws InvalidQueryException if a particular validity test
-     *      is possible on this method, the implementation chooses to perform
-     *      that test (and not leave it until later) on createQuery, and the
-     *      parameters given fail that test
-     * @throws RepositoryException if the operation otherwise fails
+     *                               is possible on this method, the implementation chooses to perform
+     *                               that test (and not leave it until later) on createQuery, and the
+     *                               parameters given fail that test
+     * @throws RepositoryException   if the operation otherwise fails
      *
      * @api
      */
@@ -333,19 +331,19 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * does not have a property named $propertyName, the query is valid but the
      * constraint is not satisfied.
      *
-     * @param string      $selectorName the selector name
-     * @param string|null $propertyName the property name, or null to search all
-     *      full-text indexed properties of the node (or node subgraph, in some
-     *      implementations);
-     * @param string $fullTextSearchExpression the full-text search expression
+     * @param string      $selectorName             the selector name
+     * @param string|null $propertyName             the property name, or null to search all
+     *                                              full-text indexed properties of the node (or node subgraph, in some
+     *                                              implementations);
+     * @param string      $fullTextSearchExpression the full-text search expression
      *
      * @return FullTextSearchInterface the constraint
      *
      * @throws InvalidQueryException if a particular validity test
-     *      is possible on this method, the implementation chooses to perform
-     *      that test (and not leave it until later) on createQuery, and the
-     *      parameters given fail that test
-     * @throws RepositoryException if the operation otherwise fails
+     *                               is possible on this method, the implementation chooses to perform
+     *                               that test (and not leave it until later) on createQuery, and the
+     *                               parameters given fail that test
+     * @throws RepositoryException   if the operation otherwise fails
      *
      * @api
      */
@@ -371,7 +369,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @return SameNodeInterface the constraint
      *
      * @throws InvalidQueryException if the query is invalid
-     * @throws RepositoryException if the operation otherwise fails
+     * @throws RepositoryException   if the operation otherwise fails
      *
      * @api
      */
@@ -397,10 +395,10 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @return ChildNodeInterface the constraint
      *
      * @throws InvalidQueryException if a particular validity test
-     *      is possible on this method, the implementation chooses to perform
-     *      that test (and not leave it until later) on createQuery, and the
-     *      parameters given fail that test
-     * @throws RepositoryException if the operation otherwise fails
+     *                               is possible on this method, the implementation chooses to perform
+     *                               that test (and not leave it until later) on createQuery, and the
+     *                               parameters given fail that test
+     * @throws RepositoryException   if the operation otherwise fails
      *
      * @api
      */
@@ -426,10 +424,10 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @return DescendantNodeInterface the constraint
      *
      * @throws InvalidQueryException if a particular validity test
-     *      is possible on this method, the implementation chooses to perform
-     *      that test (and not leave it until later) on createQuery, and the
-     *      parameters given fail that test
-     * @throws RepositoryException if the operation otherwise fails
+     *                               is possible on this method, the implementation chooses to perform
+     *                               that test (and not leave it until later) on createQuery, and the
+     *                               parameters given fail that test
+     * @throws RepositoryException   if the operation otherwise fails
      *
      * @api
      */
@@ -449,7 +447,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @return PropertyValueInterface the operand
      *
      * @throws InvalidQueryException if the query is invalid
-     * @throws RepositoryException if the operation otherwise fails
+     * @throws RepositoryException   if the operation otherwise fails
      *
      * @api
      */
@@ -459,15 +457,15 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * Evaluates to the length (or lengths, if multi-valued) of a property.
      *
      * @param PropertyValueInterface $propertyValue the property value for
-     *      which to compute the length
+     *                                              which to compute the length
      *
      * @return LengthInterface the operand
      *
      * @throws InvalidQueryException if a particular validity test
-     *      is possible on this method, the implementation chooses to perform
-     *      that test (and not leave it until later) on createQuery, and the
-     *      parameters given fail that test
-     * @throws RepositoryException if the operation otherwise fails
+     *                               is possible on this method, the implementation chooses to perform
+     *                               that test (and not leave it until later) on createQuery, and the
+     *                               parameters given fail that test
+     * @throws RepositoryException   if the operation otherwise fails
      *
      * @api
      */
@@ -485,10 +483,10 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @return NodeNameInterface the operand
      *
      * @throws InvalidQueryException if a particular validity test
-     *      is possible on this method, the implementation chooses to perform
-     *      that test (and not leave it until later) on createQuery, and the
-     *      parameters given fail that test
-     * @throws RepositoryException if the operation otherwise fails
+     *                               is possible on this method, the implementation chooses to perform
+     *                               that test (and not leave it until later) on createQuery, and the
+     *                               parameters given fail that test
+     * @throws RepositoryException   if the operation otherwise fails
      *
      * @api
      */
@@ -506,7 +504,7 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @return NodeLocalNameInterface the operand
      *
      * @throws InvalidQueryException if the query is invalid
-     * @throws RepositoryException if the operation otherwise fails
+     * @throws RepositoryException   if the operation otherwise fails
      *
      * @api
      */
@@ -524,10 +522,10 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @return FullTextSearchScoreInterface the operand
      *
      * @throws InvalidQueryException if a particular validity test
-     *      is possible on this method, the implementation chooses to perform
-     *      that test (and not leave it until later) on createQuery, and the
-     *      parameters given fail that test
-     * @throws RepositoryException if the operation otherwise fails
+     *                               is possible on this method, the implementation chooses to perform
+     *                               that test (and not leave it until later) on createQuery, and the
+     *                               parameters given fail that test
+     * @throws RepositoryException   if the operation otherwise fails
      *
      * @api
      */
@@ -538,15 +536,15 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * an operand.
      *
      * @param DynamicOperandInterface $operand the operand whose value is
-     *      converted to a lower-case string
+     *                                         converted to a lower-case string
      *
      * @return LowerCaseInterface the operand
      *
      * @throws InvalidQueryException if a particular validity test
-     *      is possible on this method, the implementation chooses to perform
-     *      that test (and not leave it until later) on createQuery, and the
-     *      parameters given fail that test
-     * @throws RepositoryException if the operation otherwise fails
+     *                               is possible on this method, the implementation chooses to perform
+     *                               that test (and not leave it until later) on createQuery, and the
+     *                               parameters given fail that test
+     * @throws RepositoryException   if the operation otherwise fails
      *
      * @api
      */
@@ -557,15 +555,15 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * an operand.
      *
      * @param DynamicOperandInterface $operand the operand whose value is
-     *      converted to a upper-case string
+     *                                         converted to a upper-case string
      *
      * @return UpperCaseInterface the operand
      *
      * @throws InvalidQueryException if a particular validity test
-     *      is possible on this method, the implementation chooses to perform
-     *      that test (and not leave it until later) on createQuery, and the
-     *      parameters given fail that test
-     * @throws RepositoryException if the operation otherwise fails
+     *                               is possible on this method, the implementation chooses to perform
+     *                               that test (and not leave it until later) on createQuery, and the
+     *                               parameters given fail that test
+     * @throws RepositoryException   if the operation otherwise fails
      *
      * @api
      */
@@ -581,10 +579,10 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @return BindVariableValueInterface the operand
      *
      * @throws InvalidQueryException if a particular validity test
-     *      is possible on this method, the implementation chooses to perform
-     *      that test (and not leave it until later) on createQuery, and the
-     *      parameters given fail that test
-     * @throws RepositoryException if the operation otherwise fails
+     *                               is possible on this method, the implementation chooses to perform
+     *                               that test (and not leave it until later) on createQuery, and the
+     *                               parameters given fail that test
+     * @throws RepositoryException   if the operation otherwise fails
      *
      * @api
      */
@@ -600,10 +598,10 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      * @return mixed the operand
      *
      * @throws InvalidQueryException if a particular validity test
-     *      is possible on this method, the implementation chooses to perform
-     *      that test (and not leave it until later) on createQuery, and the
-     *      parameters given fail that test
-     * @throws RepositoryException if the operation otherwise fails
+     *                               is possible on this method, the implementation chooses to perform
+     *                               that test (and not leave it until later) on createQuery, and the
+     *                               parameters given fail that test
+     * @throws RepositoryException   if the operation otherwise fails
      *
      * @api
      */
@@ -664,16 +662,16 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @param string      $selectorName the selector name
      * @param string|null $propertyName the property name, or null to include a
-     *      column for each single-value non-residual property of the
-     *      selector's node type
+     *                                  column for each single-value non-residual property of the
+     *                                  selector's node type
      * @param string|null $columnName   the column name; must be null if
-     *      propertyName is null, otherwise must be the the column name for
-     *      this property.
+     *                                  propertyName is null, otherwise must be the the column name for
+     *                                  this property
      *
      * @return ColumnInterface the column
      *
      * @throws InvalidQueryException if the query has no default
-     *      selector or is otherwise invalid
+     *                               selector or is otherwise invalid
      * @throws RepositoryException   if the operation otherwise fails
      *
      * @api

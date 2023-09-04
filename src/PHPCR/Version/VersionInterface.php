@@ -2,7 +2,6 @@
 
 namespace PHPCR\Version;
 
-use DateTime;
 use PHPCR\NodeInterface;
 use PHPCR\RepositoryException;
 
@@ -18,10 +17,10 @@ use PHPCR\RepositoryException;
 interface VersionInterface extends NodeInterface
 {
     /**
-     * Returns the VersionHistory that contains this Version
+     * Returns the VersionHistory that contains this Version.
      *
      * @return VersionHistoryInterface the VersionHistory that
-     *      contains this Version
+     *                                 contains this Version
      *
      * @throws RepositoryException if an error occurs
      *
@@ -34,7 +33,7 @@ interface VersionInterface extends NodeInterface
      * value of the jcr:created property in the nt:version node that represents
      * this version.
      *
-     * @return DateTime the creation date
+     * @return \DateTime the creation date
      *
      * @throws RepositoryException if an error occurs
      *
@@ -54,9 +53,9 @@ interface VersionInterface extends NodeInterface
      * equivalent to getting the unique successor (if any) of this version.
      *
      * @return VersionInterface a Version or null if no linear successor
-     *      exists.
+     *                          exists
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @see VersionHistory::getAllLinearVersions()
      *
@@ -91,9 +90,9 @@ interface VersionInterface extends NodeInterface
      * equivalent to getting the unique predecessor (if any) of this version.
      *
      * @return VersionInterface a Version or null if no linear
-     *      predecessor exists.
+     *                          predecessor exists
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @see VersionHistory::getAllLinearVersions()
      *

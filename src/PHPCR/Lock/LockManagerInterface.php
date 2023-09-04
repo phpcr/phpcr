@@ -6,7 +6,6 @@ use PHPCR\AccessDeniedException;
 use PHPCR\InvalidItemStateException;
 use PHPCR\PathNotFoundException;
 use PHPCR\RepositoryException;
-use Traversable;
 
 /**
  * This interface encapsulates methods for the management of locks.
@@ -16,15 +15,15 @@ use Traversable;
  * \Iterator.
  * The iterator is equivalent to <b>getLockTokens()</b> returning a list of all
  * locks. The iterator keys have no significant meaning.
- * 
- * @extends Traversable<string>
+ *
+ * @extends \Traversable<string>
  *
  * @license http://www.apache.org/licenses Apache License Version 2.0, January 2004
  * @license http://opensource.org/licenses/MIT MIT License
  *
  * @api
  */
-interface LockManagerInterface extends Traversable
+interface LockManagerInterface extends \Traversable
 {
     /**
      * Adds the specified lock token to the current Session.
@@ -32,34 +31,32 @@ interface LockManagerInterface extends Traversable
      * Holding a lock token makes the current Session the owner of the lock
      * specified by that particular lock token.
      *
-     * @param string $lockToken A lock token (a string).
+     * @param string $lockToken a lock token (a string)
      *
-     * @throws LockException if the specified lock token is already held by
-     *      another Session and the implementation does not support
-     *      simultaneous ownership of open-scoped locks.
-     * @throws RepositoryException if another error occurs.
+     * @throws LockException       if the specified lock token is already held by another Session
+     *                             and the implementation does not support simultaneous ownership
+     *                             of open-scoped locks
+     * @throws RepositoryException if another error occurs
      *
      * @api
      */
     public function addLockToken($lockToken);
 
     /**
-     * Returns the Lock object that applies to the node at the specified
-     * absPath.
+     * Returns the Lock object that applies to the node at the specified absPath.
      *
      * This may be either a lock on that node itself or a deep lock on a node
      * above that node.
      *
-     * @param string $absPath absolute path of node for which to obtain the
-     *      lock.
+     * @param string $absPath absolute path of node for which to obtain the lock
      *
-     * @return LockInterface The applicable Lock object.
+     * @return LockInterface the applicable Lock object
      *
-     * @throws LockException                if no lock applies to this node.
-     * @throws AccessDeniedException if the current session does not
-     *      have sufficient access to get the lock.
+     * @throws LockException         if no lock applies to this node
+     * @throws AccessDeniedException if the current session does not have sufficient access to get
+     *                               the lock
      * @throws PathNotFoundException if no node is found at $absPath
-     * @throws RepositoryException   if another error occurs.
+     * @throws RepositoryException   if another error occurs
      *
      * @api
      */
@@ -74,7 +71,7 @@ interface LockManagerInterface extends Traversable
      *
      * @return string[]
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -88,13 +85,12 @@ interface LockManagerInterface extends Traversable
      * placed on it specifically, as opposed to just having a lock apply to it
      * due to a deep lock held by a node above.
      *
-     * @param string $absPath The absolute path of node to be checked.
+     * @param string $absPath the absolute path of node to be checked
      *
-     * @return bool True, if the node identified by the given path holds a
-     *      lock, else false.
+     * @return bool true, if the node identified by the given path holds a lock, else false
      *
      * @throws PathNotFoundException if no node is found at $absPath
-     * @throws RepositoryException   if an error occurs.
+     * @throws RepositoryException   if an error occurs
      *
      * @api
      */
@@ -142,31 +138,29 @@ interface LockManagerInterface extends Traversable
      *
      * It is possible to lock a node even if it is checked-in.
      *
-     * @param string  $absPath The absolute path of node to be locked
-     * @param bool $isDeep  If true this lock will apply to this node and all
-     *      its descendants; if false, it applies only to this node.
-     * @param bool $isSessionScoped If true, this lock expires with the
-     *      current session; if false it expires when explicitly or
-     *      automatically unlocked for some other reason.
-     * @param int $timeoutHint Desired lock timeout in seconds (servers are
-     *      free to ignore this value); specify PHP_INT_MAX for no timeout. If
-     *      not specified, defaults to no timeout.
-     * @param string $ownerInfo A string containing owner information supplied
-     *      by the client; servers are free to ignore this value. If none is
-     *      specified, the implementation chooses one (i.e. user name of
-     *      current backend authentication credentials)
+     * @param string $absPath         The absolute path of node to be locked
+     * @param bool   $isDeep          if true this lock will apply to this node and all its
+     *                                descendants; if false, it applies only to this node
+     * @param bool   $isSessionScoped if true, this lock expires with the current session; if false
+     *                                it expires when explicitly or automatically unlocked for some
+     *                                other reason
+     * @param int    $timeoutHint     Desired lock timeout in seconds (servers are free to ignore
+     *                                this value); specify PHP_INT_MAX for no timeout. If not
+     *                                specified, defaults to no timeout.
+     * @param string $ownerInfo       A string containing owner information supplied by the client;
+     *                                servers are free to ignore this value. If none is specified,
+     *                                the implementation chooses one (i.e. user name of current
+     *                                backend authentication credentials)
      *
-     * @return LockInterface A Lock object containing a lock token.
+     * @return LockInterface a Lock object containing a lock token
      *
-     * @throws LockException if this node is not mix:lockable or this node is
-     *      already locked or isDeep is true and a descendant node of this node
-     *      already holds a lock.
-     * @throws AccessDeniedException if this session does not have
-     *      sufficient access to lock this node.
-     * @throws InvalidItemStateException if this node has pending
-     *      unsaved changes.
-     * @throws PathNotFoundException if no node is found at $absPath
-     * @throws RepositoryException   if another error occurs.
+     * @throws LockException             if this node is not mix:lockable or this node is already
+     *                                   locked or isDeep is true and a descendant node of this
+     *                                   node already holds a lock
+     * @throws AccessDeniedException     if this session does not have sufficient access to lock this node
+     * @throws InvalidItemStateException if this node has pending unsaved changes
+     * @throws PathNotFoundException     if no node is found at $absPath
+     * @throws RepositoryException       if another error occurs
      *
      * @api
      */
@@ -176,21 +170,17 @@ interface LockManagerInterface extends Traversable
      * Alternative method to lock with all the options in one configuration class.
      *
      * @param string            $absPath  The absolute path of node to be locked
-     * @param LockInfoInterface $lockInfo configured with the desired
-     *      characteristics for this lock.
+     * @param LockInfoInterface $lockInfo configured with the desired characteristics for this lock
      *
-     * @return LockInterface A Lock object containing a lock token.
+     * @return LockInterface a Lock object containing a lock token
      *
-     * @throws LockException if this node is not mix:lockable or this node is
-     *      already locked or isDeep is true and a descendant node of this node
-     *      already holds a lock.
-     * @throws AccessDeniedException if this session does not have
-     *      sufficient access to lock this node.
-     * @throws InvalidItemStateException if this node has pending
-     *      unsaved changes.
-     * @throws PathNotFoundException if no node is found at $absPath
-     * @throws RepositoryException   if another error occurs.
-     *
+     * @throws LockException             if this node is not mix:lockable or this node is already
+     *                                   locked or isDeep is true and a descendant node of this
+     *                                   node already holds a lock
+     * @throws AccessDeniedException     if this session does not have sufficient access to lock this node
+     * @throws InvalidItemStateException if this node has pending unsaved changes
+     * @throws PathNotFoundException     if no node is found at $absPath
+     * @throws RepositoryException       if another error occurs
      */
     public function lockWithInfo($absPath, LockInfoInterface $lockInfo);
 
@@ -201,12 +191,12 @@ interface LockManagerInterface extends Traversable
      * lock held by that node or by a deep lock on a node above that node;
      * otherwise returns false.
      *
-     * @param string $absPath The absolute path of a node to be checked.
+     * @param string $absPath the absolute path of a node to be checked
      *
-     * @return bool True, if the identified node has a lock.
+     * @return bool true, if the identified node has a lock
      *
-     * @throws PathNotFoundException if no node is found at $absPath.
-     * @throws RepositoryException   if an error occurs.
+     * @throws PathNotFoundException if no node is found at $absPath
+     * @throws RepositoryException   if an error occurs
      *
      * @api
      */
@@ -215,11 +205,10 @@ interface LockManagerInterface extends Traversable
     /**
      * Removes the specified lock token from this Session.
      *
-     * @param string $lockToken - a lock token (a string)
+     * @param string $lockToken - a lock token
      *
-     * @throws LockException if the current Session does not hold
-     *      the specified lock token.
-     * @throws RepositoryException if another error occurs.
+     * @throws LockException       if the current Session does not hold the specified lock token
+     * @throws RepositoryException if another error occurs
      *
      * @api
      */
@@ -244,17 +233,14 @@ interface LockManagerInterface extends Traversable
      * Note that it is possible to unlock a node even if it is checked-in (the
      * lock-related properties will be changed despite the checked-in status).
      *
-     * @param string $absPath The absolute path of node to be unlocked.
+     * @param string $absPath the absolute path of node to be unlocked
      *
-     * @throws LockException If this node does not currently hold a
-     *      lock or holds a lock for which this Session does not have the
-     *      correct lock token.
-     * @throws AccessDeniedException if the current session does not
-     *      have permission to unlock this node.
-     * @throws InvalidItemStateException if this node has pending
-     *      unsaved changes.
-     * @throws PathNotFoundException if no node is found at $absPath
-     * @throws RepositoryException   if another error occurs.
+     * @throws LockException             if this node does not currently hold a lock or holds a lock
+     *                                   for which this Session does not have the correct lock token
+     * @throws AccessDeniedException     if the current session does not have permission to unlock this node
+     * @throws InvalidItemStateException if this node has pending unsaved changes
+     * @throws PathNotFoundException     if no node is found at $absPath
+     * @throws RepositoryException       if another error occurs
      *
      * @api
      */
@@ -262,7 +248,7 @@ interface LockManagerInterface extends Traversable
 
     /**
      * Creates a ockInfo object that can then be configured and passed to the
-     * method lockWithInfo
+     * method lockWithInfo.
      *
      * @return LockInfoInterface the object instance to be configured
      *

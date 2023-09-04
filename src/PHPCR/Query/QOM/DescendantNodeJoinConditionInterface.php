@@ -4,7 +4,7 @@ namespace PHPCR\Query\QOM;
 
 /**
  * Tests whether the descendantSelector node is a descendant of the
- * ancestorSelector node. A node-tuple satisfies the constraint only if:
+ * ancestorSelector node. A node-tuple satisfies the constraint only if:.
  *
  *   <code>$descendantSelectorNode->getAncestor($n)->isSame($ancestorSelectorNode) && $descendantSelectorNode->getDepth() > $n</code>
  *

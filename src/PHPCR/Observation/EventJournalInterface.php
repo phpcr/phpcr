@@ -2,8 +2,6 @@
 
 namespace PHPCR\Observation;
 
-use SeekableIterator;
-
 /**
  * An EventJournal is an extended Iterator that provides the additional
  * method skipTo(). All elements in this iterator are of type EventInterface.
@@ -24,7 +22,7 @@ use SeekableIterator;
  *
  * @api
  */
-interface EventJournalInterface extends SeekableIterator
+interface EventJournalInterface extends \SeekableIterator
 {
     /**
      * Skip all elements of the iterator earlier than date.
@@ -33,8 +31,8 @@ interface EventJournalInterface extends SeekableIterator
      * exception is thrown but the subsequent next() will fail.
      *
      * @param int $date Value that represents the offset in milliseconds
-     *                      from the epoch. Keep in mind that typical PHP time
-     *                      functions will give you seconds, not milliseconds.
+     *                  from the epoch. Keep in mind that typical PHP time
+     *                  functions will give you seconds, not milliseconds.
      *
      * @api
      */

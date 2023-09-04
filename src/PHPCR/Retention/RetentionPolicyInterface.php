@@ -19,7 +19,8 @@ interface RetentionPolicyInterface
      *
      * @return string the name of the access control policy. A JCR name.
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
+     *
      * @api
      */
     public function getName();

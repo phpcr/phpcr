@@ -95,7 +95,7 @@ interface RepositoryInterface
 
     /**
      * Key to a String descriptor. Returns one of the following
-     * RepositoryInterface constants indicating the stability of identifiers:
+     * RepositoryInterface constants indicating the stability of identifiers:.
      *
      * - IDENTIFIER_STABILITY_METHOD_DURATION - Identifiers may change between
      *      method calls.
@@ -307,7 +307,7 @@ interface RepositoryInterface
     /**
      * Key to string descriptor. Returns one of the following
      * RepositoryInterface constants indicating the level of support for node
-     * type inheritance:
+     * type inheritance:.
      *
      * - NODE_TYPE_MANAGEMENT_INHERITANCE_MINIMAL Registration of primary node
      *      types is limited to those which have only nt:base as supertype.
@@ -447,7 +447,7 @@ interface RepositoryInterface
 
     /**
      * Key to boolean descriptor. Indicates that you can change node definitions
-     * that are in-use by existing nodes
+     * that are in-use by existing nodes.
      *
      * Note: JCR 2.0 had a typo with both the constant name and the value
      * (suported instead of supported). PHPCR implementations talking with legacy
@@ -485,7 +485,7 @@ interface RepositoryInterface
     /**
      * Key to String descriptor. Returns one of the following
      * RepositoryInterface constants indicating the level of support for joins
-     * in queries:
+     * in queries:.
      *
      * - QUERY_JOINS_NONE - Joins are not supported. Queries are limited to a
      *      single selector.
@@ -552,18 +552,18 @@ interface RepositoryInterface
      * <b>Note:</b> The Java API defines this method with multiple differing
      * signatures.
      *
-     * @param CredentialsInterface $credentials The credentials of the
-     *      user
-     * @param string $workspaceName the name of a workspace
+     * @param CredentialsInterface $credentials   The credentials of the
+     *                                            user
+     * @param string               $workspaceName the name of a workspace
      *
      * @return SessionInterface a valid session for the user to access
-     *      the repository
+     *                          the repository
      *
-     * @throws LoginException if authentication or authorization (for
-     *      the specified workspace) fails
+     * @throws LoginException           if authentication or authorization (for
+     *                                  the specified workspace) fails
      * @throws NoSuchWorkspaceException if the specified workspaceName
-     *      is not recognized
-     * @throws RepositoryException if another error occurs
+     *                                  is not recognized
+     * @throws RepositoryException      if another error occurs
      *
      * @api
      */
@@ -590,9 +590,9 @@ interface RepositoryInterface
      * constants in this interface and false if it is either a valid
      * implementation-specific key or not a valid key.
      *
-     * @param string $key a descriptor key.
+     * @param string $key a descriptor key
      *
-     * @return bool whether $key is a standard descriptor.
+     * @return bool whether $key is a standard descriptor
      *
      * @api
      */
@@ -604,10 +604,10 @@ interface RepositoryInterface
      * If this is documented as a boolean property, this method returns a
      * boolean, otherwise a string.
      *
-     * @param string $key a descriptor key.
+     * @param string $key a descriptor key
      *
      * @return mixed a descriptor value in string or boolean form or an array
-     *      of strings or booleans for multivalue descriptors
+     *               of strings or booleans for multivalue descriptors
      *
      * @api
      */

@@ -4,7 +4,7 @@ namespace PHPCR\Query\QOM;
 
 /**
  * Tests whether two nodes are "the same" according to
- * \PHPCR\ItemInterface::isSame()
+ * \PHPCR\ItemInterface::isSame().
  *
  * If selector2Path is omitted:
  *  Tests whether the selector1 node is the same as the selector2 node.

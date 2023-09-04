@@ -2,8 +2,6 @@
 
 namespace PHPCR\Version;
 
-use InvalidArgumentException;
-
 /**
  * The possible actions specified by the onParentVersion attribute in a
  * property definition within a node type definition.
@@ -24,7 +22,6 @@ use InvalidArgumentException;
  *
  * @license http://www.apache.org/licenses Apache License Version 2.0, January 2004
  * @license http://opensource.org/licenses/MIT MIT License
- *
  * @author Karsten Dambekalns <karsten@typo3.org>
  *
  * @api
@@ -142,7 +139,7 @@ final class OnParentVersionAction
      *
      * @return string the name of the specified action
      *
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      *
      * @api
      */
@@ -168,7 +165,7 @@ final class OnParentVersionAction
                 return self::ACTIONNAME_ABORT;
                 break;
             default:
-                throw new InvalidArgumentException("Unknown action ($action) given.", 1257170242);
+                throw new \InvalidArgumentException("Unknown action ($action) given.", 1257170242);
         }
     }
 
@@ -180,7 +177,7 @@ final class OnParentVersionAction
      *
      * @return int the numeric constant value
      *
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      *
      * @api
      */
@@ -206,7 +203,7 @@ final class OnParentVersionAction
                 return self::ABORT;
                 break;
             default:
-                throw new InvalidArgumentException("Unknown name ($name) given.", 1257170243);
+                throw new \InvalidArgumentException("Unknown name ($name) given.", 1257170243);
         }
     }
 }
