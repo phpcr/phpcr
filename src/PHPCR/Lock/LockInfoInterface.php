@@ -61,7 +61,7 @@ interface LockInfoInterface
      * Sets the <code>isDeep</code> parameter of the <code>LockInfo</code>
      * object. If left unset, this parameter defaults to <code>true</code>.
      *
-     * @param boolean $isDeep
+     * @param bool $isDeep
      *
      * @return LockInfoInterface this object with the <code>isDeep</code>
      *      parameter set.
@@ -72,7 +72,7 @@ interface LockInfoInterface
      * Returns the <code>isDeep</code> parameter of the <code>LockInfo</code>
      * object.
      *
-     * @return boolean
+     * @return bool
      */
     public function getIsDeep();
 
@@ -81,7 +81,7 @@ interface LockInfoInterface
      * <code>LockInfo</code> object. If left unset, this parameter defaults to
      * <code>false</code>.
      *
-     * @param boolean $isSessionScoped
+     * @param bool $isSessionScoped
      *
      * @return LockInfoInterface this object with the
      *      <code>isSessionScoped</code> parameter set.
@@ -92,7 +92,7 @@ interface LockInfoInterface
      * Returns the <code>isSessionScoped</code> parameter of the
      * <code>LockInfo</code> object.
      *
-     * @return boolean
+     * @return bool
      */
     public function getIsSessionScoped();
 

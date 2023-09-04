@@ -31,7 +31,7 @@ interface PropertyDefinitionTemplateInterface extends PropertyDefinitionInterfac
     /**
      * Sets the auto-create status of the property.
      *
-     * @param boolean $autoCreated Flag to set the ability to be automatically
+     * @param bool $autoCreated Flag to set the ability to be automatically
      *      created.
      *
      * @api
@@ -50,7 +50,7 @@ interface PropertyDefinitionTemplateInterface extends PropertyDefinitionInterfac
     /**
      * Sets the on-parent-version status of the property.
      *
-     * @param integer $opv an int constant member of OnParentVersionAction.
+     * @param int $opv an int constant member of OnParentVersionAction.
      *
      * @api
      */
@@ -68,7 +68,7 @@ interface PropertyDefinitionTemplateInterface extends PropertyDefinitionInterfac
     /**
      * Sets the required type of the property.
      *
-     * @param integer $type An integer constant member of PropertyType.
+     * @param int $type An integer constant member of PropertyType.
      *
      * @api
      */
@@ -77,7 +77,7 @@ interface PropertyDefinitionTemplateInterface extends PropertyDefinitionInterfac
     /**
      * Sets the value constraints of the property.
      *
-     * @param array $constraints List of constrains registered on the property.
+     * @param string[] $constraints List of constrains registered on the property.
      *
      * @api
      */
@@ -87,7 +87,7 @@ interface PropertyDefinitionTemplateInterface extends PropertyDefinitionInterfac
      * Sets the default value (or values, in the case of a multi-value property)
      * of the property.
      *
-     * @param array $defaultValues A List of values in the correct type for
+     * @param array<mixed> $defaultValues A List of values in the correct type for
      *      this property.
      *
      * @api
@@ -107,7 +107,7 @@ interface PropertyDefinitionTemplateInterface extends PropertyDefinitionInterfac
     /**
      * Sets the queryable status of the property.
      *
-     * @param array $operators An array of String constants
+     * @param string[] $operators An array of String constants
      *      {@link PropertyDefinition::getAvailableQueryOperators()}.
      *
      * @api
@@ -117,7 +117,7 @@ interface PropertyDefinitionTemplateInterface extends PropertyDefinitionInterfac
     /**
      * Sets the full-text-searchable status of the property.
      *
-     * @param boolean $fullTextSearchable The status of the ability to be
+     * @param bool $fullTextSearchable The status of the ability to be
      *      fulltext-searchable..
      *
      * @api

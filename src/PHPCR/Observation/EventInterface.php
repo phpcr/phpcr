@@ -110,7 +110,7 @@ interface EventInterface
      * - NODE_MOVED
      * - PERSIST
      *
-     * @return integer the type of this event.
+     * @return int the type of this event.
      *
      * @api
      */
@@ -190,7 +190,7 @@ interface EventInterface
      * Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian). The granularity of
      * the returned value is implementation dependent.
      *
-     * @return integer The date when the change was persisted that caused this event (milliseconds since epoch).
+     * @return int The date when the change was persisted that caused this event (milliseconds since epoch).
      *
      * @throws RepositoryException if an error occurs.
      *

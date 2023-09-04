@@ -71,7 +71,7 @@ interface VersionInterface extends NodeInterface
      * jcr:successors multi-value property in the nt:version node that
      * represents this version.
      *
-     * @return VersionInterface[] an array of Versions
+     * @return VersionInterface[]
      *
      * @throws RepositoryException if an error occurs
      *
@@ -109,7 +109,7 @@ interface VersionInterface extends NodeInterface
      * the nt:version nodes whose jcr:successors property includes a reference
      * to the nt:version node that represents this version.
      *
-     * @return VersionInterface[] an array of Versions
+     * @return VersionInterface[]
      *
      * @throws RepositoryException if an error occurs
      *

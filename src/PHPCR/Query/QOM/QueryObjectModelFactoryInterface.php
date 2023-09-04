@@ -30,8 +30,8 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @param SourceInterface          $source     the Selector or the node-tuple Source
      * @param ConstraintInterface|null $constraint the constraint, null to have no constraint
-     * @param array                    $orderings  zero (empty array) or more instances of Ordering
-     * @param array                    $columns    the array of Column definitions to return in the
+     * @param OrderingInterface[]      $orderings
+     * @param ColumnInterface[]        $columns    the array of Column definitions to return in the
      *                                             result. empty array is equivalent to the * in
      *                                             SQL2, meaning some fields.
      *

@@ -91,7 +91,7 @@ interface UserTransactionInterface
      * Obtain the status if the current session is inside of a transaction or
      * not.
      *
-     * @return boolean
+     * @return bool
      *
      * @throws RepositoryException Thrown if the transaction
      *      implementation encounters an unexpected error condition.

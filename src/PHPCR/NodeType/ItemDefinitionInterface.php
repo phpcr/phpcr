@@ -66,7 +66,7 @@ interface ItemDefinitionInterface
      * PropertyDefinitionTemplate or NodeDefinitionTemplate, then this method
      * will return false.
      *
-     * @return boolean True, if the item is automatically created when its
+     * @return bool True, if the item is automatically created when its
      *      parent node is created, else false.
      *
      * @api
@@ -92,7 +92,7 @@ interface ItemDefinitionInterface
      *
      * An item definition cannot be both residual and mandatory.
      *
-     * @return boolean True, if the item is mandatory, else false.
+     * @return bool True, if the item is mandatory, else false.
      *
      * @api
      */
@@ -116,7 +116,7 @@ interface ItemDefinitionInterface
      * PropertyDefinitionTemplateInterface or NodeDefinitionTemplateInterface,
      * then this method will return OnParentVersionAction::COPY.
      *
-     * @return integer An int constant member of OnParentVersionAction.
+     * @return int An int constant member of OnParentVersionAction.
      *
      * @api
      */
@@ -141,7 +141,7 @@ interface ItemDefinitionInterface
      * PropertyDefinitionTemplateInterface or NodeDefinitionTemplateInterface,
      * then this method will return false.
      *
-     * @return boolean True, if the child item is protected, else false.
+     * @return bool True, if the child item is protected, else false.
      * @api
      */
     public function isProtected();

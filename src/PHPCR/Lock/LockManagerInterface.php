@@ -90,7 +90,7 @@ interface LockManagerInterface extends Traversable
      *
      * @param string $absPath The absolute path of node to be checked.
      *
-     * @return boolean True, if the node identified by the given path holds a
+     * @return bool True, if the node identified by the given path holds a
      *      lock, else false.
      *
      * @throws PathNotFoundException if no node is found at $absPath
@@ -143,12 +143,12 @@ interface LockManagerInterface extends Traversable
      * It is possible to lock a node even if it is checked-in.
      *
      * @param string  $absPath The absolute path of node to be locked
-     * @param boolean $isDeep  If true this lock will apply to this node and all
+     * @param bool $isDeep  If true this lock will apply to this node and all
      *      its descendants; if false, it applies only to this node.
-     * @param boolean $isSessionScoped If true, this lock expires with the
+     * @param bool $isSessionScoped If true, this lock expires with the
      *      current session; if false it expires when explicitly or
      *      automatically unlocked for some other reason.
-     * @param integer $timeoutHint Desired lock timeout in seconds (servers are
+     * @param int $timeoutHint Desired lock timeout in seconds (servers are
      *      free to ignore this value); specify PHP_INT_MAX for no timeout. If
      *      not specified, defaults to no timeout.
      * @param string $ownerInfo A string containing owner information supplied
@@ -203,7 +203,7 @@ interface LockManagerInterface extends Traversable
      *
      * @param string $absPath The absolute path of a node to be checked.
      *
-     * @return boolean True, if the identified node has a lock.
+     * @return bool True, if the identified node has a lock.
      *
      * @throws PathNotFoundException if no node is found at $absPath.
      * @throws RepositoryException   if an error occurs.

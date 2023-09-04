@@ -38,7 +38,7 @@ interface NodeTypeTemplateInterface extends NodeTypeDefinitionInterface
     /**
      * Sets the names of the supertypes of the node type.
      *
-     * @param array $names The name of the node supertype to be set.
+     * @param string[] $names The names of the node supertypes to be set.
      *
      * @api
      */
@@ -47,7 +47,7 @@ interface NodeTypeTemplateInterface extends NodeTypeDefinitionInterface
     /**
      * Sets the abstract flag of the node type.
      *
-     * @param boolean $abstractStatus Whether this type is abstract.
+     * @param bool $abstractStatus Whether this type is abstract.
      *
      * @api
      */

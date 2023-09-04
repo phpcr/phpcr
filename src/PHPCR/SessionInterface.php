@@ -361,7 +361,7 @@ interface SessionInterface
      *
      * @param string $absPath An absolute path to an item to be found.
      *
-     * @return boolean True if the item exists, else false.
+     * @return bool True if the item exists, else false.
      *
      * @throws RepositoryException if absPath is not a well-formed
      *      absolute path.
@@ -378,7 +378,7 @@ interface SessionInterface
      *
      * @param string $absPath An absolute path to the node to be found.
      *
-     * @return boolean True if the item does esist
+     * @return bool True if the item does esist
      *
      * @throws RepositoryException if absPath is not a well-formed
      *      absolute path.
@@ -395,7 +395,7 @@ interface SessionInterface
      *
      * @param string $absPath An absolute path to the property to be found.
      *
-     * @return boolean True if the property is available.
+     * @return bool True if the property is available.
      *
      * @throws RepositoryException if absPath is not a well-formed
      *      absolute path.
@@ -567,7 +567,7 @@ interface SessionInterface
      * mark nodes as dirty and reload them from the backend only if actually
      * needed.
      *
-     * @param boolean $keepChanges Switch to override current changes kept in
+     * @param bool $keepChanges Switch to override current changes kept in
      *      the session.
      *
      * @throws RepositoryException if an error occurs.
@@ -582,7 +582,7 @@ interface SessionInterface
      * Returns true if this session holds pending (that is, unsaved) changes;
      * otherwise returns false.
      *
-     * @return boolean a boolean
+     * @return bool a boolean
      *
      * @throws RepositoryException if an error occurs
      *
@@ -625,7 +625,7 @@ interface SessionInterface
      * @param string $absPath an absolute path.
      * @param string $actions a comma separated list of action strings.
      *
-     * @return boolean true if this Session has permission to perform the
+     * @return bool true if this Session has permission to perform the
      *      specified actions at the specified absPath.
      *
      * @throws RepositoryException if an error occurs.
@@ -716,9 +716,9 @@ interface SessionInterface
      *
      * @param string $methodName the name of the method.
      * @param object $target     the target object of the operation.
-     * @param array  $arguments  the arguments of the operation.
+     * @param array<string, mixed>  $arguments  the arguments of the operation.
      *
-     * @return boolean false if the operation cannot be performed, true if the
+     * @return bool false if the operation cannot be performed, true if the
      *      operation can be performed or if the repository cannot determine
      *      whether the operation can be performed.
      *
@@ -800,7 +800,7 @@ interface SessionInterface
      *
      * @param string $parentAbsPath the absolute path of a node under which (as
      *      child) the imported subgraph will be built.
-     * @param integer $uuidBehavior a four-value flag that governs how incoming
+     * @param int $uuidBehavior a four-value flag that governs how incoming
      *      identifiers are handled.
      *
      * @return ContentHandlerInterface whose methods may be called to
@@ -889,7 +889,7 @@ interface SessionInterface
      *      the deserialized subgraph is added.
      * @param string $uri Source location for the XML to be read, Can be
      *      anything that works with fopen.
-     * @param integer $uuidBehavior a four-value flag that governs how incoming
+     * @param int $uuidBehavior a four-value flag that governs how incoming
      *      identifiers are handled.
      *
      * @throws RuntimeException     if an error during an I/O operation occurs.
@@ -953,9 +953,9 @@ interface SessionInterface
      * @param resource $stream The stream resource (i.e. acquired with fopen) to
      *      which the XML serialization of the subgraph will be output. Must
      *      support the fwrite method.
-     * @param boolean $skipBinary A boolean governing whether binary properties
+     * @param bool $skipBinary A boolean governing whether binary properties
      *      are to be serialized.
-     * @param boolean $noRecurse A boolean governing whether the subgraph at
+     * @param bool $noRecurse A boolean governing whether the subgraph at
      *      absPath is to be recursed.
      *
      * @throws PathNotFoundException if no node exists at absPath.
@@ -1001,9 +1001,9 @@ interface SessionInterface
      * @param resource $stream The stream resource (i.e. acquired with fopen) to
      *      which the XML serialization of the subgraph will be output. Must
      *      support the fwrite method.
-     * @param boolean $skipBinary A boolean governing whether binary properties
+     * @param bool $skipBinary A boolean governing whether binary properties
      *      are to be serialized.
-     * @param boolean $noRecurse A boolean governing whether the subgraph at
+     * @param bool $noRecurse A boolean governing whether the subgraph at
      *      absPath is to be recursed.
      *
      * @throws PathNotFoundException if no node exists at absPath.
@@ -1101,7 +1101,7 @@ interface SessionInterface
      * A usable Session is one that is neither logged-out, timed-out nor in
      * any other way disconnected from the repository.
      *
-     * @return boolean true if this Session is usable, false otherwise.
+     * @return bool true if this Session is usable, false otherwise.
      *
      * @api
      */

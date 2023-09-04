@@ -22,7 +22,7 @@ interface HoldInterface
     /**
      * Returns true if this Hold is deep.
      *
-     * @return boolean true if this Hold is deep.
+     * @return bool true if this Hold is deep.
      *
      * @throws RepositoryException if an error occurs.
      * @api

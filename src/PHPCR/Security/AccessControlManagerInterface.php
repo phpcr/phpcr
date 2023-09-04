@@ -42,7 +42,7 @@ interface AccessControlManagerInterface
      * @param string|null $absPath The absolute path to a node the privileges shall
      *      be fetched of.
      *
-     * @return PrivilegeInterface[] An array of Privileges.
+     * @return PrivilegeInterface[]
      *
      * @throws PathNotFoundException if $absPath is non-null and either
      *      no node exists at that path or the session does not have sufficient
@@ -90,9 +90,9 @@ interface AccessControlManagerInterface
      *
      * @param string|null $absPath The absolute path to a node the privileges shall
      *      be fetched of.
-     * @param array $privileges an array of Privileges.
+     * @param PrivilegeInterface[] $privileges
      *
-     * @return boolean true if the session has the specified privileges; false
+     * @return bool true if the session has the specified privileges; false
      *      otherwise.
      *
      * @throws PathNotFoundException if no node at $absPath exists or
@@ -127,7 +127,7 @@ interface AccessControlManagerInterface
      * @param string|null $absPath The absolute path to a node the privileges shall
      *      be fetched of or null to fetch non-node privileges.
      *
-     * @return PrivilegeInterface[] an array of Privileges.
+     * @return PrivilegeInterface[]
      *
      * @throws PathNotFoundException if $absPath is non-null and no node
      *      at $absPath exists or the session does not have sufficient access
@@ -154,8 +154,7 @@ interface AccessControlManagerInterface
      * @param string|null $absPath The absolute path to a node the privileges shall
      *      be fetched of or null to fetch non-node privileges.
      *
-     * @return AccessControlPolicyInterface[] an array of AccessControlPolicies, if
-     *      no policy has been set the array is empty.
+     * @return AccessControlPolicyInterface[] if no policy has been set the array is empty.
      *
      * @throws PathNotFoundException if no node at $absPath exists or
      *      the session does not have sufficient access to retrieve a node at
@@ -182,7 +181,7 @@ interface AccessControlManagerInterface
      * @param string|null $absPath The absolute path to the node of which privileges
      *      are requested or null for non-node privileges.
      *
-     * @return AccessControlPolicyInterface[] an array of AccessControlPolices.
+     * @return AccessControlPolicyInterface[]
      *
      * @throws PathNotFoundException if no node at $absPath exists or
      *      the session does not have sufficient access to retrieve a node at

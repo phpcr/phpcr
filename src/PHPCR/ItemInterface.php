@@ -57,7 +57,7 @@ interface ItemInterface
      * shared node) then the path used to define the ancestor is implementaion-
      * dependent.
      *
-     * @param integer $depth An integer, 0 <= depth <= n where n is the depth
+     * @param int $depth An integer, 0 <= depth <= n where n is the depth
      *      of this Item.
      *
      * @return ItemInterface The ancestor of this Item at the specified
@@ -96,7 +96,7 @@ interface ItemInterface
      * - A property or child node of a child node of the root returns 2.
      * - And so on to this Item.
      *
-     * @return integer The depth of this Item in the workspace item graph.
+     * @return int The depth of this Item in the workspace item graph.
      *
      * @throws RepositoryException if an error occurs.
      *
@@ -121,7 +121,7 @@ interface ItemInterface
      * Returns true if this Item is a Node; Returns false if this Item is a
      * Property.
      *
-     * @return boolean true if this Item is a Node, false if it is a Property.
+     * @return bool true if this Item is a Node, false if it is a Property.
      *
      * @api
      */
@@ -142,7 +142,7 @@ interface ItemInterface
      * Note that in read-only implementations, this method will always return
      * false.
      *
-     * @return boolean true if this item is new; false otherwise.
+     * @return bool true if this item is new; false otherwise.
      *
      * @api
      */
@@ -162,7 +162,7 @@ interface ItemInterface
      * Note that in read-only implementations, this method will always return
      * false.
      *
-     * @return boolean true if this item is modified; false otherwise.
+     * @return bool true if this item is modified; false otherwise.
      *
      * @api
      */
@@ -196,7 +196,7 @@ interface ItemInterface
      * @param ItemInterface $otherItem the Item object to be tested for
      *      identity with this Item.
      *
-     * @return boolean true if this Item object and otherItem represent the
+     * @return bool true if this Item object and otherItem represent the
      *      same actual repository item; false otherwise.
      *
      * @throws RepositoryException if an error occurs.

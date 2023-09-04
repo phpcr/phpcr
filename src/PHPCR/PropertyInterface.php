@@ -44,10 +44,6 @@ use Traversable;
 interface PropertyInterface extends ItemInterface, Traversable
 {
     /**
-     * @var string
-     */
-
-    /**
      * A constant for the property name jcr:primaryType (in extended form),
      * declared in node type nt:base.
      * @api
@@ -517,7 +513,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *      this method replaces ValueFactory::createValue.
      *
      * @param mixed   $value The value to set
-     * @param integer $type  Type request for the property, optional. Must be a
+     * @param int $type  Type request for the property, optional. Must be a
      *      constant from PropertyType
      *
      * @throws ValueFormatException if the type or format of the
@@ -574,7 +570,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * Returns a String representation of the value of this property.
      *
-     * @return string|array A string representation of the value of this property, or
+     * @return string|string[] A string representation of the value of this property, or
      *      an array of string for multi-valued properties.
      *
      * @throws ValueFormatException if conversion to a String is not possible
@@ -589,7 +585,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      * The Binary object in turn provides methods to access the binary data
      * itself. Uses the standard conversion to binary (see JCR specification).
      *
-     * @return resource|array A stream resource if the underlying binary
+     * @return resource|resource[] A stream resource if the underlying binary
      *
      * @throws RepositoryException if another error occurs
      * @api
@@ -599,7 +595,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * Returns an integer representation of the value of this property.
      *
-     * @return integer|array An integer representation of the value of this property,
+     * @return int|int[] An integer representation of the value of this property,
      *      or an array of integer for multi-valued properties.
      *
      * @throws ValueFormatException if conversion to integer is not
@@ -613,7 +609,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * Returns a float representation of the value of this property.
      *
-     * @return float|array A float representation of the value of this property, or
+     * @return float|float[] A float representation of the value of this property, or
      *      an array of float for multi-valued properties.
      *
      * @throws ValueFormatException if conversion to a double is not possible
@@ -630,7 +626,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      * The string must be encoded with the C locale because of
      * http://bugs.php.net/bug.php?id=16532
      *
-     * @return string|array A string representation of the value of this property, or
+     * @return string|string[] A string representation of the value of this property, or
      *      an array of strings for multi-valued properties.
      *
      * @throws ValueFormatException if conversion to a number string is
@@ -642,12 +638,12 @@ interface PropertyInterface extends ItemInterface, Traversable
     public function getDecimal();
 
     /**
-     * Returns a \DateTime representation of the value of this property.
+     * Returns a DateTime representation of the value of this property.
      *
      * The object returned is a copy of the stored value, so changes to it are
      * not reflected in internal storage.
      *
-     * @return DateTime|array A date representation of the value of this property,
+     * @return DateTime|DateTime[] A date representation of the value of this property,
      *      or an array of DateTime for multi-valued properties.
      *
      * @throws ValueFormatException if conversion to \DateTime is not
@@ -667,7 +663,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      * If you want to know if a value is empty in the PHP sense, use
      * getString() and do your checks on the string.
      *
-     * @return boolean|array A boolean representation of the value of this property,
+     * @return bool|bool[] A boolean representation of the value of this property,
      *      or an array of boolean for multi-valued properties.
      *
      * @throws ValueFormatException if conversion to a boolean is not
@@ -695,7 +691,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      * If its a PATH property, you will need the node of this property and use
      * getNodes to get the nodes with relative or absolute path.
      *
-     * @return NodeInterface|array the referenced Node, or an array of Nodes
+     * @return NodeInterface|NodeInterface[] the referenced Node, or an array of Nodes
      *      for multi-valued properties.
      *
      * @throws ValueFormatException if this property cannot be converted
@@ -728,7 +724,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      * For example, if this property is located at /a/b/c and it has a value of
      * "../d" then this method will return the property at /a/d if such exists.
      *
-     * @return PropertyInterface|array the referenced property, or an array of
+     * @return PropertyInterface|PropertyInterface[] the referenced property, or an array of
      *      properties for multi-valued properties.
      *
      * @throws ValueFormatException if this property cannot be converted
@@ -758,7 +754,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      * For multi-valuedproperties, the same rules apply, but returns an array of
      * lengths with the same order as the values have in getValue.
      *
-     * @return integer|array the length of this value, or an array of lengths
+     * @return int|int[] the length of this value, or an array of lengths
      *      for multi-valued properties
      *
      * @throws RepositoryException if an error occurs.
@@ -810,7 +806,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      * case where the latter returns UNDEFINED. The type of a property instance
      * is never UNDEFINED (it must always have some actual type).
      *
-     * @return integer The numerical representation of a property type.
+     * @return int The numerical representation of a property type.
      *
      * @throws RepositoryException if an error occurs
      *
@@ -826,7 +822,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      * Returns true if this property is multi-valued and false if this property
      * is single-valued.
      *
-     * @return boolean true if this property is multi-valued; false otherwise.
+     * @return bool true if this property is multi-valued; false otherwise.
      *
      * @throws RepositoryException if an error occurs.
      *

@@ -319,7 +319,7 @@ interface WorkspaceInterface
      *      srcWorkspace.
      * @param string $destAbsPath The location to which the node at srcAbsPath
      *      is to be copied in this workspace.
-     * @param boolean $removeExisting if false then this method throws an
+     * @param bool $removeExisting if false then this method throws an
      *      ItemExistsException on identifier conflict with an incoming node.
      *      If true then a identifier conflict is resolved by removing the
      *      existing node from its location in this workspace and cloning
@@ -728,7 +728,7 @@ interface WorkspaceInterface
      *      the deserialized subgraph is added.
      * @param string $uri Source location for the XML to be read, Can be
      *      anything that works with fopen.
-     * @param integer $uuidBehavior a four-value flag that governs how incoming
+     * @param int $uuidBehavior a four-value flag that governs how incoming
      *      identifiers are handled.
      *
      * @throws RuntimeException             if an error during an I/O operation occurs.

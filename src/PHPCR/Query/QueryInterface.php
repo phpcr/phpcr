@@ -89,7 +89,7 @@ interface QueryInterface
      * will do so by throwing a RepositoryException on the thread where
      * $query->execute() is currently blocking.
      *
-     * @return boolean true if the query was executing and will be cancelled,
+     * @return bool true if the query was executing and will be cancelled,
      *      or false if the query cannot not be cancelled because it has either
      *      already finished executing, it has already been cancelled, or the
      *      implementation does not support canceling queries.
@@ -114,7 +114,7 @@ interface QueryInterface
     /**
      * Sets the maximum size of the result set to limit.
      *
-     * @param integer $limit The amount of result items to be fetched.
+     * @param int $limit The amount of result items to be fetched.
      *
      * @api
      */
@@ -123,7 +123,7 @@ interface QueryInterface
     /**
      * Sets the start offset of the result set to offset.
      *
-     * @param integer $offset The start point of the result set from when the item shall be fetched.
+     * @param int $offset The start point of the result set from when the item shall be fetched.
      *
      * @api
      */

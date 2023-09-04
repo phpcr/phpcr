@@ -49,7 +49,7 @@ interface NodeTypeManagerInterface extends Traversable
      *
      * @param string $name The name of node type.
      *
-     * @return boolean True, if the node type identified by its name is
+     * @return bool True, if the node type identified by its name is
      *      registered, else false.
      *
      * @throws RepositoryException if an error occurs.
@@ -157,7 +157,7 @@ interface NodeTypeManagerInterface extends Traversable
      *
      * @param NodeTypeDefinitionInterface $ntd a
      *      NodeTypeDefinitionInterface instance.
-     * @param boolean $allowUpdate whether to fail if node already exists or to
+     * @param bool $allowUpdate whether to fail if node already exists or to
      *      update it.
      *
      * @return NodeTypeInterface the registered node type.
@@ -183,8 +183,8 @@ interface NodeTypeManagerInterface extends Traversable
      * The effect of the method is "all or nothing"; if an error occurs, no node
      * types are registered or updated.
      *
-     * @param array   $definitions an array of NodeTypeDefinitions.
-     * @param boolean $allowUpdate whether to fail if node already exists or to
+     * @param NodeTypeDefinitionInterface[] $definitions
+     * @param bool $allowUpdate whether to fail if node already exists or to
      *      update it.
      *
      * @return Iterator<string, NodeTypeInterface> over the registered node types implementing <b>SeekableIterator</b>
@@ -227,7 +227,7 @@ interface NodeTypeManagerInterface extends Traversable
      * method explicitly different, as we have no operator overloading in PHP.
      *
      * @param string  $cnd         containing the node type definitions in CND format
-     * @param boolean $allowUpdate whether existing node type definitions
+     * @param bool $allowUpdate whether existing node type definitions
      *      should be modified/updated.
      *
      * @return Iterator<string, NodeTypeInterface> over the registered node types implementing <b>SeekableIterator</b>
@@ -266,8 +266,7 @@ interface NodeTypeManagerInterface extends Traversable
      * Unregisters the specified set of node types. Used to unregister a set of
      * node types with mutual dependencies.
      *
-     * @param array $names List of node type names to be removed from the
-     *      registry.
+     * @param string[] $names List of node type names to be removed from the registry.
      *
      * @throws UnsupportedRepositoryOperationException if this
      *      implementation does not support node type registration.

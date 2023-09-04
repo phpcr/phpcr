@@ -161,7 +161,7 @@ interface VersionManagerInterface
      * @param string $absPath The absolute path to a node the privileges shall
      *      be fetched of.
      *
-     * @return boolean True, if the node identified by the given path is
+     * @return bool True, if the node identified by the given path is
      *      checked out, else false.
      *
      * @throws RepositoryException if an error occurs.
@@ -315,7 +315,7 @@ interface VersionManagerInterface
      * <b>Note:</b> The Java API defines this with multiple differing
      * signatures, you need to act accordingly in your implementation.
      *
-     * @param boolean $removeExisting a boolean flag that governs what happens
+     * @param bool $removeExisting a boolean flag that governs what happens
      *      in case of an identifier collision
      * @param string|array<VersionInterface>|Traversable<VersionInterface>|VersionInterface $version a version
      *      name, a list of Version objects or a Version object
@@ -369,7 +369,7 @@ interface VersionManagerInterface
      * @param string $absPath The absolute path to a node the privileges shall
      *      be fetched of.
      * @param string  $versionLabel   a String
-     * @param boolean $removeExisting a boolean flag that governs what happens
+     * @param bool $removeExisting a boolean flag that governs what happens
      *      in case of an identifier collision.
      *
      * @throws UnsupportedRepositoryOperationException
@@ -456,8 +456,8 @@ interface VersionManagerInterface
      *      nt:activity node.
      * @param string $srcWorkspace the name of the source workspace (optional
      *      if $source is a Node).
-     * @param boolean $bestEffort a boolean (optional if $source is a Node)
-     * @param boolean $isShallow  a boolean (optional)
+     * @param bool $bestEffort a boolean (optional if $source is a Node)
+     * @param bool $isShallow  a boolean (optional)
      *
      * @return Iterator<string, NodeInterface> implementing <b>SeekableIterator</b> and
      *      <b>Countable</b>. Keys are the Node names, values the corresponding

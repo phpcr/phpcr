@@ -570,8 +570,7 @@ interface RepositoryInterface
     public function login(CredentialsInterface $credentials = null, $workspaceName = null);
 
     /**
-     * Returns a string array holding all descriptor keys available for this
-     * implementation.
+     * All descriptor keys available for this implementation.
      *
      * Both, the standard descriptors defined by the string constants in this
      * interface and any implementation-specific descriptors. Used in
@@ -593,7 +592,7 @@ interface RepositoryInterface
      *
      * @param string $key a descriptor key.
      *
-     * @return boolean whether $key is a standard descriptor.
+     * @return bool whether $key is a standard descriptor.
      *
      * @api
      */

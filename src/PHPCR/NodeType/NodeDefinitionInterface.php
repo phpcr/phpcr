@@ -98,7 +98,7 @@ interface NodeDefinitionInterface extends ItemDefinitionInterface
      * template. If that template is a newly-created empty one, then this
      * method will return false.
      *
-     * @return boolean True, if the node my have a same-name sibling, else false.
+     * @return bool True, if the node my have a same-name sibling, else false.
      *
      * @api
      */

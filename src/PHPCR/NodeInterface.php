@@ -372,7 +372,7 @@ interface NodeInterface extends ItemInterface, Traversable
      *
      * @param string  $name  The name of a property of this node
      * @param mixed   $value The value to be assigned
-     * @param integer $type  The type to set for the property, optional. Must be
+     * @param int $type  The type to set for the property, optional. Must be
      *      a constant from {@link PropertyType}
      *
      * @return PropertyInterface The new resp. updated Property object
@@ -482,9 +482,9 @@ interface NodeInterface extends ItemInterface, Traversable
      *
      * The same reacquisition semantics apply as with getNode($relPath).
      *
-     * @param string|array $nameFilter a filter or an array of filters for the
+     * @param string|string[] $nameFilter a filter or an array of filters for the
      *      node names to find.
-     * @param string|array $typeFilter a filter or an array of filters for the
+     * @param string|string[] $typeFilter a filter or an array of filters for the
      *      node type names to find.
      *
      * @return Iterator<string, NodeInterface> over all (matching) child Nodes implementing <b>SeekableIterator</b>
@@ -518,9 +518,9 @@ interface NodeInterface extends ItemInterface, Traversable
      * Note that a match succeeds against a given name respectively type if a
      * glob matches either or both of its qualified or expanded forms.
      *
-     * @param string|array $nameFilter a filter or an array of filters for the
+     * @param string|string[] $nameFilter a filter or an array of filters for the
      *      node names to find.
-     * @param string|array $typeFilter a filter or an array of filters for the
+     * @param string|string[] $typeFilter a filter or an array of filters for the
      *      node type names to find.
      *
      * @return Iterator<string> over all child node names
@@ -557,7 +557,7 @@ interface NodeInterface extends ItemInterface, Traversable
      * This is a shortcut for getProperty()->getXX()
      *
      * @param string  $name Name of this property
-     * @param integer $type Type conversion request, optional. Must be a
+     * @param int $type Type conversion request, optional. Must be a
      *      constant from {@link PropertyType}
      *
      * @return mixed The value of the property with $name.
@@ -627,7 +627,7 @@ interface NodeInterface extends ItemInterface, Traversable
      *
      * The same reacquisition semantics apply as with getProperty().
      *
-     * @param string|array $nameFilter a name pattern
+     * @param string|string[] $nameFilter a name pattern
      *
      * @return Iterator<string, PropertyInterface> implementing <b>SeekableIterator</b> and
      *                                             <b>Countable</b>. Keys are the property names.
@@ -647,8 +647,8 @@ interface NodeInterface extends ItemInterface, Traversable
      * To improve performance, implementations should avoid instantiating the
      * property objects for this method
      *
-     * @param string|array $nameFilter  a name pattern
-     * @param boolean      $dereference whether to dereference REFERENCE,
+     * @param string|string[] $nameFilter  a name pattern
+     * @param bool      $dereference whether to dereference REFERENCE,
      *      WEAKREFERENCE and PATH properties or just return id/path strings
      *
      * @return array<string, mixed> Keys are the property names, values the corresponding
@@ -712,7 +712,7 @@ interface NodeInterface extends ItemInterface, Traversable
      * nodes that do not have same-name-siblings, this method will always
      * return 1.
      *
-     * @return integer The index of this node within the ordered set of its
+     * @return int The index of this node within the ordered set of its
      *      same-name sibling nodes.
      *
      * @throws RepositoryException if an error occurs.
@@ -797,7 +797,7 @@ interface NodeInterface extends ItemInterface, Traversable
      *
      * @param string $relPath The path of a (possible) node.
      *
-     * @return boolean true if a node exists at relPath; false otherwise.
+     * @return bool true if a node exists at relPath; false otherwise.
      *
      * @throws InvalidArgumentException if $relPath is an absolute path
      * @throws RepositoryException      if an error occurs.
@@ -814,7 +814,7 @@ interface NodeInterface extends ItemInterface, Traversable
      *
      * @param string $relPath The path of a (possible) property.
      *
-     * @return boolean true if a property exists at relPath; false otherwise.
+     * @return bool true if a property exists at relPath; false otherwise.
      *
      * @throws InvalidArgumentException if $relPath is an absolute path
      * @throws RepositoryException      if an error occurs.
@@ -829,7 +829,7 @@ interface NodeInterface extends ItemInterface, Traversable
      * Returns true if this node has one or more child nodes accessible through
      * the current Session; false otherwise.
      *
-     * @return boolean true if this node has one or more child nodes; false
+     * @return bool true if this node has one or more child nodes; false
      *      otherwise.
      *
      * @throws RepositoryException if an error occurs.
@@ -844,7 +844,7 @@ interface NodeInterface extends ItemInterface, Traversable
      * Returns true if this node has one or more properties accessible through
      * the current Session; false otherwise.
      *
-     * @return boolean true if this node has one or more properties; false
+     * @return bool true if this node has one or more properties; false
      *      otherwise.
      *
      * @throws RepositoryException if an error occurs.
@@ -893,7 +893,7 @@ interface NodeInterface extends ItemInterface, Traversable
      *
      * @param string $nodeTypeName the name of a node type.
      *
-     * @return boolean true if this node is of the specified primary node type
+     * @return bool true if this node is of the specified primary node type
      *            or mixin type, or a subtype thereof. Returns false otherwise.
      *
      * @throws RepositoryException if an error occurs.
@@ -1038,7 +1038,7 @@ interface NodeInterface extends ItemInterface, Traversable
      * if a lock prevents the assignment of the mixins. Implementations may
      * differ on when this validation is done.
      *
-     * @param array $mixinNames the names of the mixin node types to be set
+     * @param string[] $mixinNames the names of the mixin node types to be set
      *
      * @throws NoSuchNodeTypeException If one or more of the
      *      specified $mixinNames are not recognized and this implementation
@@ -1078,7 +1078,7 @@ interface NodeInterface extends ItemInterface, Traversable
      *
      * @param string $mixinName The name of the mixin to be tested.
      *
-     * @return boolean true if the specified mixin node type, mixinName, can be
+     * @return bool true if the specified mixin node type, mixinName, can be
      *      added to this node; false otherwise.
      *
      * @throws NoSuchNodeTypeException if the specified mixin
@@ -1239,7 +1239,7 @@ interface NodeInterface extends ItemInterface, Traversable
      * support versioning (and therefore all nodes are always "checked-out",
      * by default).
      *
-     * @return boolean
+     * @return bool
      *
      * @throws RepositoryException if an error occurs.
      *
@@ -1255,7 +1255,7 @@ interface NodeInterface extends ItemInterface, Traversable
      * otherwise returns false. This includes the case where a repository does
      * not support locking (in which case all nodes are "unlocked" by default).
      *
-     * @return boolean.
+     * @return bool.
      *
      * @throws RepositoryException if an error occurs.
      *

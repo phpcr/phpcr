@@ -184,7 +184,7 @@ interface VersionHistoryInterface extends NodeInterface
      *      to be added.
      * @param string $label the label to be added, a JCR name in either
      *      extended or qualified form.
-     * @param boolean $moveLabel if true, then if label is already assigned to
+     * @param bool $moveLabel if true, then if label is already assigned to
      *      a version in this version history, it is moved to the new version
      *      specified; if false, then attempting to assign an already used
      *      label will throw a LabelExistsVersionException.
@@ -236,7 +236,7 @@ interface VersionHistoryInterface extends NodeInterface
      *      qualified form.
      * @param VersionInterface $version a Version object
      *
-     * @return boolean a boolean.
+     * @return bool a boolean.
      *
      * @throws VersionException if the specified version is not of this version
      *      history.

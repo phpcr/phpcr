@@ -30,7 +30,7 @@ interface NodeDefinitionTemplateInterface extends NodeDefinitionInterface
     /**
      * Sets the auto-create status of the node.
      *
-     * @param boolean $autoCreated The status the autocreate attribute of the
+     * @param bool $autoCreated The status the autocreate attribute of the
      *      node shall have.
      *
      * @api
@@ -40,7 +40,7 @@ interface NodeDefinitionTemplateInterface extends NodeDefinitionInterface
     /**
      * Sets the mandatory status of the node.
      *
-     * @param boolean $mandatory The status of the mandatory attribute.
+     * @param bool $mandatory The status of the mandatory attribute.
      *
      * @api
      */
@@ -49,7 +49,7 @@ interface NodeDefinitionTemplateInterface extends NodeDefinitionInterface
     /**
      * Sets the on-parent-version status of the node.
      *
-     * @param integer $opv An integer constant member of OnParentVersionAction.
+     * @param int $opv An integer constant member of OnParentVersionAction.
      *
      * @api
      */
@@ -58,7 +58,7 @@ interface NodeDefinitionTemplateInterface extends NodeDefinitionInterface
     /**
      * Sets the protected status of the node.
      *
-     * @param boolean $protectedStatus The status of the protected attribute.
+     * @param bool $protectedStatus The status of the protected attribute.
      *
      * @api
      */
@@ -67,7 +67,7 @@ interface NodeDefinitionTemplateInterface extends NodeDefinitionInterface
     /**
      * Sets the names of the required primary types of this node.
      *
-     * @param array $requiredPrimaryTypeNames List of primary type names to be
+     * @param string[] $requiredPrimaryTypeNames List of primary type names to be
      *      registered.
      *
      * @api
@@ -87,7 +87,7 @@ interface NodeDefinitionTemplateInterface extends NodeDefinitionInterface
     /**
      * Sets the same-name sibling status of this node.
      *
-     * @param boolean $allowSameNameSiblings Whether same-name siblings of this
+     * @param bool $allowSameNameSiblings Whether same-name siblings of this
      *      node should be allowed
      *
      * @api

@@ -32,7 +32,7 @@ interface EventJournalInterface extends SeekableIterator
      * If an attempt is made to skip past the last element of the iterator, no
      * exception is thrown but the subsequent next() will fail.
      *
-     * @param integer $date Value that represents the offset in milliseconds
+     * @param int $date Value that represents the offset in milliseconds
      *                      from the epoch. Keep in mind that typical PHP time
      *                      functions will give you seconds, not milliseconds.
      *

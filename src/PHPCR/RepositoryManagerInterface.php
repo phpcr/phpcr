@@ -51,7 +51,7 @@ interface RepositoryManagerInterface
      * when the repository can be closed but the session does not have the
      * authority to do so.
      *
-     * @param boolean $closeSessionsImmediately true if all existing sessions
+     * @param bool $closeSessionsImmediately true if all existing sessions
      *      should be closed immediately, or false if they are to be allowed to
      *      close naturally.
      *

@@ -99,7 +99,7 @@ interface EventFilterInterface
      *
      * If left unset, this parameter defaults to false.
      *
-     * @param boolean $isDeep
+     * @param bool $isDeep
      *
      * @return EventFilterInterface this filter object with the absPath parameter set.
      */
@@ -108,7 +108,7 @@ interface EventFilterInterface
     /**
      * Returns the isDeep parameter of the filter.
      *
-     * @return boolean
+     * @return bool
      */
     public function getIsDeep();
 
@@ -153,7 +153,7 @@ interface EventFilterInterface
      *
      * If left unset, this parameter defaults to false.
      *
-     * @param boolean $noLocal
+     * @param bool $noLocal
      *
      * @return EventFilterInterface this filter object with the absPath parameter set.
      */
@@ -162,7 +162,7 @@ interface EventFilterInterface
     /**
      * Returns the noLocal parameter of the filter.
      *
-     * @return boolean.
+     * @return bool.
      */
     public function getNoLocal();
 }

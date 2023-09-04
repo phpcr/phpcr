@@ -35,8 +35,7 @@ interface AccessControlListInterface extends AccessControlPolicyInterface, Trave
      * This method is only guaranteed to return an access control entry object
      * if that access control entry object has been assigned through this API.
      *
-     * @return AccessControlEntryInterface[] an array of all
-     *      AccessControlEntries present with this policy.
+     * @return AccessControlEntryInterface[] all AccessControlEntries present with this policy.
      *
      * @throws RepositoryException - if an error occurs.
      *
@@ -63,9 +62,9 @@ interface AccessControlListInterface extends AccessControlPolicyInterface, Trave
      *
      * @param PrincipalInterface $principal the entity that should have this
      *      privilege
-     * @param PrivilegeInterface[] $privileges - an array of Privileges.
+     * @param PrivilegeInterface[] $privileges
      *
-     * @return boolean true if this policy was modify; false otherwise.
+     * @return bool true if this policy was modify; false otherwise.
      *
      * @throws AccessControlException if the specified principal or any of the
      *      privileges does not exist or if some other access control related

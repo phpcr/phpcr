@@ -32,7 +32,7 @@ class LockException extends RepositoryException
      * indexes.
      *
      * @param string  $message         The exception message
-     * @param integer $code            The exception error code
+     * @param int $code            The exception error code
      * @param string  $failureNodePath the absolute path of the node that caused the error or  null if the implementation
      *                                chooses not to, or cannot, return a path.
      *

@@ -345,7 +345,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      * For primary types apart from nt:base, this list will always
      * include at least nt:base. For mixin types, there is no required supertype.
      *
-     * @return NodeTypeInterface[] an array of all parent NodeTypes
+     * @return NodeTypeInterface[] all parent NodeTypes
      *
      * @api
      */
@@ -376,8 +376,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      * size 0 or 1. In systems that support multiple inheritance of node
      * types this array may be of size greater than 1.
      *
-     * @return NodeTypeInterface[] an array of NodeTypes that are direct
-     *      parents of this type.
+     * @return NodeTypeInterface[] the direct parents of this type.
      *
      * @api
      */
@@ -431,7 +430,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      * This includes both those property definitions actually declared
      * in this node type and those inherited from the supertypes of this type.
      *
-     * @return PropertyDefinitionInterface[] an array of property definitions
+     * @return PropertyDefinitionInterface[]
      *
      * @api
      */
@@ -443,7 +442,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      * This includes both those child node definitions actually declared in this
      * node type and those inherited from the supertypes of this node type.
      *
-     * @return NodeDefinitionInterface[] An array of child node definitions
+     * @return NodeDefinitionInterface[]
      *
      * @api
      */
@@ -495,7 +494,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @param string $nodeName The name of the child node.
      *
-     * @return boolean True, if the node type allows to remove the passed node,
+     * @return bool True, if the node type allows to remove the passed node,
      *      else false.
      *
      * @api

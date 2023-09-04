@@ -319,7 +319,7 @@ final class PropertyType
      * http://www.day.com/specs/jcr/2.0/3_Repository_Model.html#3.6.4.3%20From%20DATE%20To
      *
      * @param mixed   $value The variable we need to know the type of
-     * @param boolean $weak  When a Node is given as $value this can be given as true to create a WEAKREFERENCE.
+     * @param bool $weak  When a Node is given as $value this can be given as true to create a WEAKREFERENCE.
      *
      * @return int One of the type constants
      *

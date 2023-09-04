@@ -50,7 +50,7 @@ interface RetentionManagerInterface
      *
      * @param string  $absPath The absolute path to a node.
      * @param string  $name    An application-dependent string.
-     * @param boolean $isDeep  A boolean indicating if the hold applies to the
+     * @param bool $isDeep  A boolean indicating if the hold applies to the
      *      subgraph.
      *
      * @return HoldInterface The Hold applied.

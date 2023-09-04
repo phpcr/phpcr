@@ -29,7 +29,7 @@ interface PrincipalInterface
      *
      * @param mixed $object
      *
-     * @return boolean true if the principal passed to the method is the same
+     * @return bool true if the principal passed to the method is the same
      *      as this object
      */
     public function equals($object);
