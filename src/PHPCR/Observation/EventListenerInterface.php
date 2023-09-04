@@ -2,8 +2,6 @@
 
 namespace PHPCR\Observation;
 
-use Traversable;
-
 /**
  * An event listener.
  *
@@ -22,9 +20,9 @@ interface EventListenerInterface
     /**
      * This method is called when a bundle of events is dispatched.
      *
-     * @param Traversable $events The event set received.
+     * @param \Traversable<EventInterface> $events the event set received
      *
      * @api
      */
-    public function onEvent(Traversable $events);
+    public function onEvent(\Traversable $events);
 }

@@ -22,7 +22,7 @@ interface PropertyDefinitionTemplateInterface extends PropertyDefinitionInterfac
     /**
      * Sets the name of the property.
      *
-     * @param string $name The name of the property definition template.
+     * @param string $name the name of the property definition template
      *
      * @api
      */
@@ -31,8 +31,8 @@ interface PropertyDefinitionTemplateInterface extends PropertyDefinitionInterfac
     /**
      * Sets the auto-create status of the property.
      *
-     * @param boolean $autoCreated Flag to set the ability to be automatically
-     *      created.
+     * @param bool $autoCreated flag to set the ability to be automatically
+     *                          created
      *
      * @api
      */
@@ -41,7 +41,7 @@ interface PropertyDefinitionTemplateInterface extends PropertyDefinitionInterfac
     /**
      * Sets the mandatory status of the property.
      *
-     * @param bool $mandatory The mandatory status of the property.
+     * @param bool $mandatory the mandatory status of the property
      *
      * @api
      */
@@ -50,7 +50,7 @@ interface PropertyDefinitionTemplateInterface extends PropertyDefinitionInterfac
     /**
      * Sets the on-parent-version status of the property.
      *
-     * @param integer $opv an int constant member of OnParentVersionAction.
+     * @param int $opv an int constant member of OnParentVersionAction
      *
      * @api
      */
@@ -59,7 +59,7 @@ interface PropertyDefinitionTemplateInterface extends PropertyDefinitionInterfac
     /**
      * Sets the protected status of the property.
      *
-     * @param bool $protectedStatus The protection status of the property.
+     * @param bool $protectedStatus the protection status of the property
      *
      * @api
      */
@@ -68,7 +68,7 @@ interface PropertyDefinitionTemplateInterface extends PropertyDefinitionInterfac
     /**
      * Sets the required type of the property.
      *
-     * @param integer $type An integer constant member of PropertyType.
+     * @param int $type an integer constant member of PropertyType
      *
      * @api
      */
@@ -77,7 +77,7 @@ interface PropertyDefinitionTemplateInterface extends PropertyDefinitionInterfac
     /**
      * Sets the value constraints of the property.
      *
-     * @param array $constraints List of constrains registered on the property.
+     * @param string[] $constraints list of constrains registered on the property
      *
      * @api
      */
@@ -87,8 +87,8 @@ interface PropertyDefinitionTemplateInterface extends PropertyDefinitionInterfac
      * Sets the default value (or values, in the case of a multi-value property)
      * of the property.
      *
-     * @param array $defaultValues A List of values in the correct type for
-     *      this property.
+     * @param array<mixed> $defaultValues a List of values in the correct type for
+     *                                    this property
      *
      * @api
      */
@@ -97,8 +97,8 @@ interface PropertyDefinitionTemplateInterface extends PropertyDefinitionInterfac
     /**
      * Sets the multi-value status of the property.
      *
-     * @param bool $multiple The status of the ability to store multiple
-     *      values.
+     * @param bool $multiple the status of the ability to store multiple
+     *                       values
      *
      * @api
      */
@@ -107,8 +107,8 @@ interface PropertyDefinitionTemplateInterface extends PropertyDefinitionInterfac
     /**
      * Sets the queryable status of the property.
      *
-     * @param array $operators An array of String constants
-     *      {@link PropertyDefinition::getAvailableQueryOperators()}.
+     * @param string[] $operators an array of String constants
+     *                            {@link PropertyDefinition::getAvailableQueryOperators()}
      *
      * @api
      */
@@ -117,8 +117,8 @@ interface PropertyDefinitionTemplateInterface extends PropertyDefinitionInterfac
     /**
      * Sets the full-text-searchable status of the property.
      *
-     * @param boolean $fullTextSearchable The status of the ability to be
-     *      fulltext-searchable..
+     * @param bool $fullTextSearchable The status of the ability to be
+     *                                 fulltext-searchable..
      *
      * @api
      */
@@ -127,8 +127,8 @@ interface PropertyDefinitionTemplateInterface extends PropertyDefinitionInterfac
     /**
      * Sets the query-orderable status of the property.
      *
-     * @param bool $queryOrderable The status of the ability being
-     *      query-orderable.
+     * @param bool $queryOrderable the status of the ability being
+     *                             query-orderable
      *
      * @api
      */

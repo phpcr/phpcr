@@ -3,8 +3,6 @@
 namespace PHPCR;
 
 use DateTime;
-use Exception;
-use InvalidArgumentException;
 
 /**
  * The property types supported by the JCR standard.
@@ -40,7 +38,6 @@ use InvalidArgumentException;
  *
  * @license http://www.apache.org/licenses Apache License Version 2.0, January 2004
  * @license http://opensource.org/licenses/MIT MIT License
- *
  * @author Sebastian Kurfürst <sebastian@typo3.org>
  * @author Karsten Dambekalns <karsten@typo3.org>
  * @author David Buchmann <mail@davidbu.ch>
@@ -197,7 +194,7 @@ final class PropertyType
     /**
      * String constant for type name as used in serialization.
      */
-    const TYPENAME_URI= 'URI';
+    const TYPENAME_URI = 'URI';
 
     /**
      * String constant for type name as used in serialization.
@@ -218,10 +215,12 @@ final class PropertyType
     /**
      * Returns the name of the specified type, as used in serialization.
      *
-     * @param  integer $type type the property type
-     * @return string  name of the specified type
+     * @param int $type type the property type
      *
-     * @throws InvalidArgumentException if the given type is unknown.
+     * @return string name of the specified type
+     *
+     * @throws \InvalidArgumentException if the given type is unknown
+     *
      * @api
      */
     public static function nameFromValue($type)
@@ -254,7 +253,7 @@ final class PropertyType
             case self::URI :
                 return self::TYPENAME_URI;
             default:
-                throw new InvalidArgumentException("Unknown type ($type) given.");
+                throw new \InvalidArgumentException("Unknown type ($type) given.");
         }
     }
 
@@ -267,7 +266,7 @@ final class PropertyType
      *
      * @return int The numeric constant value
      *
-     * @throws InvalidArgumentException if the given name is unknown.
+     * @throws \InvalidArgumentException if the given name is unknown
      *
      * @api
      */
@@ -301,7 +300,7 @@ final class PropertyType
             case 'decimal':
                 return self::DECIMAL;
             default:
-                throw new InvalidArgumentException("Unknown type name ($name) given.");
+                throw new \InvalidArgumentException("Unknown type name ($name) given.");
         }
     }
 
@@ -318,13 +317,12 @@ final class PropertyType
      * formatting spec for dates (sYYYY-MM-DDThh:mm:ss.sssTZD) according to
      * http://www.day.com/specs/jcr/2.0/3_Repository_Model.html#3.6.4.3%20From%20DATE%20To
      *
-     * @param mixed   $value The variable we need to know the type of
-     * @param boolean $weak  When a Node is given as $value this can be given as true to create a WEAKREFERENCE.
+     * @param mixed $value The variable we need to know the type of
+     * @param bool  $weak  when a Node is given as $value this can be given as true to create a WEAKREFERENCE
      *
      * @return int One of the type constants
      *
      * @throws ValueFormatException if the type can not be determined
-     *
      * @throws RepositoryException
      *
      * @api
@@ -335,12 +333,12 @@ final class PropertyType
         // decimal is handled as string, explicitly specify type if you need
         if (is_string($value)) {
             // check if this is a jcr formatted date: sYYYY-MM-DDThh:mm:ss.sssTZD
-            if (preg_match("/^(\\+|-)?(\\d{4})-(\\d{2})-(\\d{2})T([01][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])(\\.[0-9][0-9][0-9])?.*/", $value, $matches)) {
+            if (preg_match('/^(\\+|-)?(\\d{4})-(\\d{2})-(\\d{2})T([01][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])(\\.[0-9][0-9][0-9])?.*/', $value, $matches)) {
                 try {
-                    new DateTime($value);
+                    new \DateTime($value);
 
                     return self::DATE;
-                } catch (Exception $e) {
+                } catch (\Exception $e) {
                     // ignore, fall through to the string if its not valid
                 }
             }
@@ -365,7 +363,7 @@ final class PropertyType
         }
 
         if (is_object($value)) {
-            if ($value instanceof DateTime) {
+            if ($value instanceof \DateTime) {
                 return self::DATE;
             }
 

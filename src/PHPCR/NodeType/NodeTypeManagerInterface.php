@@ -11,29 +11,31 @@ use Traversable;
  * Allows for the retrieval and (in implementations that support it) the
  * registration of node types. Accessed via WorkspaceInterface::getNodeTypeManager().
  *
- * The \Traversable interface enables the implementation to be addressed with
+ * The Traversable interface enables the implementation to be addressed with
  * <b>foreach</b>. NodeTypeManager has to implement either \RecursiveIterator
  * or \Iterator.
  * The iterator is equivalent to <b>getAllNodeTypes()</b> returning a list of
- * all node types. The iterator keys have no significant meaning.
+ * all node types. The iterator keys are the node type names.
+ *
+ * @extends Traversable<>
  *
  * @license http://www.apache.org/licenses Apache License Version 2.0, January 2004
  * @license http://opensource.org/licenses/MIT MIT License
  *
  * @api
  */
-interface NodeTypeManagerInterface extends Traversable
+interface NodeTypeManagerInterface extends \Traversable
 {
     /**
      * Returns the named node type.
      *
-     * @param string $nodeTypeName the name of an existing node type.
+     * @param string $nodeTypeName the name of an existing node type
      *
-     * @return NodeTypeInterface A NodeType object.
+     * @return NodeTypeInterface a NodeType object
      *
      * @throws NoSuchNodeTypeException if no node type of the
-     *      given name exists.
-     * @throws RepositoryException if another error occurs.
+     *                                 given name exists
+     * @throws RepositoryException     if another error occurs
      *
      * @api
      */
@@ -45,12 +47,12 @@ interface NodeTypeManagerInterface extends Traversable
      * Returns true if a node type with the specified name is registered.
      * Returns false otherwise.
      *
-     * @param string $name The name of node type.
+     * @param string $name the name of node type
      *
-     * @return boolean True, if the node type identified by its name is
-     *      registered, else false.
+     * @return bool true, if the node type identified by its name is
+     *              registered, else false
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -59,11 +61,10 @@ interface NodeTypeManagerInterface extends Traversable
     /**
      * Returns an iterator over all available node types (primary and mixin).
      *
-     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>.
-     *      Keys are the node type names, values the corresponding
-     *      NodeTypeInterface instances.
+     * @return \Iterator<string, NodeTypeInterface> implementing <b>SeekableIterator</b> and <b>Countable</b>.
+     *                                              Keys are the node type names.
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -72,11 +73,10 @@ interface NodeTypeManagerInterface extends Traversable
     /**
      * Returns an iterator over all available primary node types.
      *
-     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>.
-     *      Keys are the node type names, values the corresponding
-     *      NodeTypeInterface instances.
+     * @return \Iterator<string, NodeTypeInterface> implementing <b>SeekableIterator</b> and <b>Countable</b>.
+     *                                              Keys are the node type names.
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -87,11 +87,10 @@ interface NodeTypeManagerInterface extends Traversable
      *
      * If none are available, an empty iterator is returned.
      *
-     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>.
-     *      Keys are the node type names, values the corresponding
-     *      NodeTypeInterface instances.
+     * @return \Iterator<string, NodeTypeInterface> implementing <b>SeekableIterator</b> and <b>Countable</b>.
+     *                                              Keys are the node type names.
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -106,13 +105,13 @@ interface NodeTypeManagerInterface extends Traversable
      * specified node type definition. This template can then be altered and
      * passed to NodeTypeManagerInterface::registerNodeType().
      *
-     * @param NodeTypeDefinitionInterface $ntd a NodeTypeDefinition.
+     * @param NodeTypeDefinitionInterface $ntd a NodeTypeDefinition
      *
-     * @return NodeTypeTemplateInterface A NodeTypeTemplate.
+     * @return NodeTypeTemplateInterface a NodeTypeTemplate
      *
      * @throws UnsupportedRepositoryOperationException if this
-     *      implementation does not support node type registration.
-     * @throws RepositoryException if another error occurs.
+     *                                                 implementation does not support node type registration
+     * @throws RepositoryException                     if another error occurs
      *
      * @api
      */
@@ -122,11 +121,12 @@ interface NodeTypeManagerInterface extends Traversable
      * Returns an empty NodeDefinitionTemplate which can then be used to create
      * a child node definition and attached to a NodeTypeTemplate.
      *
-     * @return NodeDefinitionTemplateInterface A NodeDefinitionTemplate.
+     * @return NodeDefinitionTemplateInterface a NodeDefinitionTemplate
      *
      * @throws UnsupportedRepositoryOperationException if this
-     *      implementation does not support node type registration.
-     * @throws RepositoryException if another error occurs.
+     *                                                 implementation does not support node type registration
+     * @throws RepositoryException                     if another error occurs
+     *
      * @api
      */
     public function createNodeDefinitionTemplate();
@@ -136,12 +136,12 @@ interface NodeTypeManagerInterface extends Traversable
      * used to create a property definition and attached to a
      * NodeTypeTemplateInterface.
      *
-     * @return PropertyDefinitionTemplateInterface An empty
-     *      PropertyDefinitionTemplateInterface instance.
+     * @return PropertyDefinitionTemplateInterface an empty
+     *                                             PropertyDefinitionTemplateInterface instance
      *
      * @throws UnsupportedRepositoryOperationException if this
-     *      implementation does not support node type registration.
-     * @throws RepositoryException if another error occurs.
+     *                                                 implementation does not support node type registration
+     * @throws RepositoryException                     if another error occurs
      *
      * @api
      */
@@ -156,21 +156,21 @@ interface NodeTypeManagerInterface extends Traversable
      * acquired from NodeTypeManagerInterface::createNodeTypeTemplate()
      * and then filled-in with definition information.
      *
-     * @param NodeTypeDefinitionInterface $ntd a
-     *      NodeTypeDefinitionInterface instance.
-     * @param boolean $allowUpdate whether to fail if node already exists or to
-     *      update it.
+     * @param NodeTypeDefinitionInterface $ntd         a
+     *                                                 NodeTypeDefinitionInterface instance
+     * @param bool                        $allowUpdate whether to fail if node already exists or to
+     *                                                 update it
      *
-     * @return NodeTypeInterface the registered node type.
+     * @return NodeTypeInterface the registered node type
      *
-     * @throws InvalidNodeTypeDefinitionException if the
-     *      NodeTypeDefinitionInterface is invalid.
-     * @throws NodeTypeExistsException if allowUpdate is false and the
-     *      NodeTypeDefinition specifies a node type name that is already
-     *      registered.
+     * @throws InvalidNodeTypeDefinitionException      if the
+     *                                                 NodeTypeDefinitionInterface is invalid
+     * @throws NodeTypeExistsException                 if allowUpdate is false and the
+     *                                                 NodeTypeDefinition specifies a node type name that is already
+     *                                                 registered
      * @throws UnsupportedRepositoryOperationException if this
-     *      implementation does not support node type registration.
-     * @throws RepositoryException if another error occurs.
+     *                                                 implementation does not support node type registration
+     * @throws RepositoryException                     if another error occurs
      *
      * @api
      */
@@ -184,24 +184,23 @@ interface NodeTypeManagerInterface extends Traversable
      * The effect of the method is "all or nothing"; if an error occurs, no node
      * types are registered or updated.
      *
-     * @param array   $definitions an array of NodeTypeDefinitions.
-     * @param boolean $allowUpdate whether to fail if node already exists or to
-     *      update it.
+     * @param NodeTypeDefinitionInterface[] $definitions
+     * @param bool                          $allowUpdate whether to fail if node already exists or to
+     *                                                   update it
      *
-     * @return Iterator over the registered node types implementing
-     *      <b>SeekableIterator</b> and <b>Countable</b>. Keys are the node
-     *      type names, values the corresponding NodeTypeInterface instances.
+     * @return \Iterator<string, NodeTypeInterface> over the registered node types implementing <b>SeekableIterator</b>
+     *                                              and <b>Countable</b>. Keys are the node type names.
      *
-     * @throws InvalidNodeTypeDefinitionException if a
-     *      NodeTypeDefinitionInterface within the Collection is invalid or if
-     *      the Collection contains an object of a type other than
-     *      NodeTypeDefinitionInterface.
-     * @throws NodeTypeExistsException if allowUpdate is false and a
-     *      NodeTypeDefinition within the Collection specifies a node type name
-     *      that is already registered.
+     * @throws InvalidNodeTypeDefinitionException      if a
+     *                                                 NodeTypeDefinitionInterface within the Collection is invalid or if
+     *                                                 the Collection contains an object of a type other than
+     *                                                 NodeTypeDefinitionInterface
+     * @throws NodeTypeExistsException                 if allowUpdate is false and a
+     *                                                 NodeTypeDefinition within the Collection specifies a node type name
+     *                                                 that is already registered
      * @throws UnsupportedRepositoryOperationException if this
-     *      implementation does not support node type registration.
-     * @throws RepositoryException if another error occurs.
+     *                                                 implementation does not support node type registration
+     * @throws RepositoryException                     if another error occurs
      *
      * @api
      */
@@ -228,22 +227,21 @@ interface NodeTypeManagerInterface extends Traversable
      * PHPCR Note: Rather than doing mixed arguments we decided to name this
      * method explicitly different, as we have no operator overloading in PHP.
      *
-     * @param string  $cnd         containing the node type definitions in CND format
-     * @param boolean $allowUpdate whether existing node type definitions
-     *      should be modified/updated.
+     * @param string $cnd         containing the node type definitions in CND format
+     * @param bool   $allowUpdate whether existing node type definitions
+     *                            should be modified/updated
      *
-     * @return Iterator over the registered node types implementing
-     *      <b>SeekableIterator</b> and <b>Countable</b>. Keys are the node
-     *      type names, values the corresponding NodeTypeInterface instances.
+     * @return \Iterator<string, NodeTypeInterface> over the registered node types implementing <b>SeekableIterator</b>
+     *                                              and <b>Countable</b>. Keys are the node type names.
      *
-     * @throws InvalidNodeTypeDefinitionException if a NodeTypeDefinition
-     *      within the CND is invalid.
-     * @throws NodeTypeExistsException if allowUpdate is false and a the
-     *      NodeTypeDefinition within the CND string specifies a node type name
-     *      that is already registered.
+     * @throws InvalidNodeTypeDefinitionException      if a NodeTypeDefinition
+     *                                                 within the CND is invalid
+     * @throws NodeTypeExistsException                 if allowUpdate is false and a the
+     *                                                 NodeTypeDefinition within the CND string specifies a node type name
+     *                                                 that is already registered
      * @throws UnsupportedRepositoryOperationException if this
-     *      implementation does not support node type registration.
-     * @throws RepositoryException if another error occurs.
+     *                                                 implementation does not support node type registration
+     * @throws RepositoryException                     if another error occurs
      *
      * @since JCR 2.1
      */
@@ -252,14 +250,14 @@ interface NodeTypeManagerInterface extends Traversable
     /**
      * Unregisters the specified node type.
      *
-     * @param string $name The name of the node type to be removed from the
-     *      registry.
+     * @param string $name the name of the node type to be removed from the
+     *                     registry
      *
      * @throws UnsupportedRepositoryOperationException if this
-     *      implementation does not support node type registration.
-     * @throws NoSuchNodeTypeException if no registered node type exists with
-     *      the specified name.
-     * @throws RepositoryException if another error occurs.
+     *                                                 implementation does not support node type registration
+     * @throws NoSuchNodeTypeException                 if no registered node type exists with
+     *                                                 the specified name
+     * @throws RepositoryException                     if another error occurs
      *
      * @api
      */
@@ -269,14 +267,13 @@ interface NodeTypeManagerInterface extends Traversable
      * Unregisters the specified set of node types. Used to unregister a set of
      * node types with mutual dependencies.
      *
-     * @param array $names List of node type names to be removed from the
-     *      registry.
+     * @param string[] $names list of node type names to be removed from the registry
      *
      * @throws UnsupportedRepositoryOperationException if this
-     *      implementation does not support node type registration.
-     * @throws NoSuchNodeTypeException if one of the names listed is not a
-     *      registered node type.
-     * @throws RepositoryException if another error occurs.
+     *                                                 implementation does not support node type registration
+     * @throws NoSuchNodeTypeException                 if one of the names listed is not a
+     *                                                 registered node type
+     * @throws RepositoryException                     if another error occurs
      *
      * @api
      */

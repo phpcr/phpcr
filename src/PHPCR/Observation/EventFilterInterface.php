@@ -54,7 +54,6 @@ namespace PHPCR\Observation;
  * @api
  *
  * @since JCR 2.1
- *
  */
 interface EventFilterInterface
 {
@@ -63,16 +62,16 @@ interface EventFilterInterface
      *
      * If left unset, this parameter defaults to null.
      *
-     * @param int $eventTypes an int.
+     * @param int $eventTypes an int
      *
-     * @return EventFilterInterface this filter object with the eventTypes parameter set.
+     * @return EventFilterInterface this filter object with the eventTypes parameter set
      */
     public function setEventTypes($eventTypes);
 
     /**
      * Returns the eventTypes parameter of the filter.
      *
-     * @return int.
+     * @return int
      */
     public function getEventTypes();
 
@@ -81,9 +80,9 @@ interface EventFilterInterface
      *
      * If left unset, this parameter defaults to null.
      *
-     * @param string $absPath an absolute path String.
+     * @param string $absPath an absolute path String
      *
-     * @return EventFilterInterface this filter object with the absPath parameter set.
+     * @return EventFilterInterface this filter object with the absPath parameter set
      */
     public function setAbsPath($absPath);
 
@@ -99,16 +98,16 @@ interface EventFilterInterface
      *
      * If left unset, this parameter defaults to false.
      *
-     * @param boolean $isDeep
+     * @param bool $isDeep
      *
-     * @return EventFilterInterface this filter object with the absPath parameter set.
+     * @return EventFilterInterface this filter object with the absPath parameter set
      */
     public function setIsDeep($isDeep);
 
     /**
      * Returns the isDeep parameter of the filter.
      *
-     * @return boolean
+     * @return bool
      */
     public function getIsDeep();
 
@@ -119,7 +118,7 @@ interface EventFilterInterface
      *
      * @param string[] $identifiers
      *
-     * @return EventFilterInterface this filter object with the absPath parameter set.
+     * @return EventFilterInterface this filter object with the absPath parameter set
      */
     public function setIdentifiers(array $identifiers);
 
@@ -137,7 +136,7 @@ interface EventFilterInterface
      *
      * @param string[] $nodeTypes names of the node types to filter on
      *
-     * @return EventFilterInterface this filter object with the absPath parameter set.
+     * @return EventFilterInterface this filter object with the absPath parameter set
      */
     public function setNodeTypes(array $nodeTypes);
 
@@ -153,16 +152,16 @@ interface EventFilterInterface
      *
      * If left unset, this parameter defaults to false.
      *
-     * @param boolean $noLocal
+     * @param bool $noLocal
      *
-     * @return EventFilterInterface this filter object with the absPath parameter set.
+     * @return EventFilterInterface this filter object with the absPath parameter set
      */
     public function setNoLocal($noLocal);
 
     /**
      * Returns the noLocal parameter of the filter.
      *
-     * @return boolean.
+     * @return bool
      */
     public function getNoLocal();
 }

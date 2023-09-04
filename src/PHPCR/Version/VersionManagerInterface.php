@@ -12,11 +12,10 @@ use PHPCR\NodeInterface;
 use PHPCR\NoSuchWorkspaceException;
 use PHPCR\RepositoryException;
 use PHPCR\UnsupportedRepositoryOperationException;
-use Traversable;
 
 /**
  * The VersionManager object is accessed via
- * WorkspaceInterface::getVersionManager(). It provides methods for:
+ * WorkspaceInterface::getVersionManager(). It provides methods for:.
  *
  * - Version graph functionality (version history, base version, successors
  *      predecessors)
@@ -62,23 +61,23 @@ interface VersionManagerInterface
      * If checkin succeeds, the change to the jcr:isCheckedOut property is
      * dispatched immediately.
      *
-     * @param string $absPath an absolute path.
+     * @param string $absPath an absolute path
      *
-     * @return VersionInterface the created version.
+     * @return VersionInterface the created version
      *
-     * @throws VersionException if jcr:predecessors does not contain at least
-     *      one value or if a child item of the node at absPath has an
-     *      OnParentVersion status of ABORT. This includes the case where an
-     *      unresolved merge failure exists on the node, as indicated by the
-     *      presence of a jcr:mergeFailed property.
-     * @throws UnsupportedRepositoryOperationException
-     *      if the node at $absPath is not versionable.
-     * @throws InvalidItemStateException
-     *      if unsaved changes exist on the node at $absPath.
-     * @throws LockException
-     *      if a lock prevents the operation.
-     * @throws RepositoryException
-     *      if another error occurs.
+     * @throws VersionException                        if jcr:predecessors does not contain at least
+     *                                                 one value or if a child item of the node at absPath has an
+     *                                                 OnParentVersion status of ABORT. This includes the case where an
+     *                                                 unresolved merge failure exists on the node, as indicated by the
+     *                                                 presence of a jcr:mergeFailed property.
+     * @throws unsupportedRepositoryOperationException
+     *                                                 if the node at $absPath is not versionable
+     * @throws invalidItemStateException
+     *                                                 if unsaved changes exist on the node at $absPath
+     * @throws lockException
+     *                                                 if a lock prevents the operation
+     * @throws repositoryException
+     *                                                 if another error occurs
      *
      * @api
      */
@@ -100,17 +99,17 @@ interface VersionManagerInterface
      *
      * If this node is already checked-out, this method has no effect.
      *
-     * @param string $absPath an absolute path.
+     * @param string $absPath an absolute path
      *
-     * @throws UnsupportedRepositoryOperationException
-     *      if the node at absPath is not versionable.
-     * @throws LockException
-     *      if a lock prevents the checkout.
-     * @throws ActivityViolationException
-     *      if the checkout conflicts with the activity present on the current
-     *      session.
-     * @throws RepositoryException
-     *      if another error occurs.
+     * @throws unsupportedRepositoryOperationException
+     *                                                 if the node at absPath is not versionable
+     * @throws lockException
+     *                                                 if a lock prevents the checkout
+     * @throws activityViolationException
+     *                                                 if the checkout conflicts with the activity present on the current
+     *                                                 session
+     * @throws repositoryException
+     *                                                 if another error occurs
      *
      * @api
      */
@@ -122,23 +121,23 @@ interface VersionManagerInterface
      *
      * If this node is already checked-in, this method is equivalent to checkout().
      *
-     * @param string $absPath an absolute path.
+     * @param string $absPath an absolute path
      *
-     * @return VersionInterface the created version.
+     * @return VersionInterface the created version
      *
      * @throws VersionException
-     *      if a child item of the node at absPath has an OnParentVersion of
-     *      ABORT. This includes the case where an unresolved merge failure
-     *      exists on the node, as indicated by the presence of the
-     *      jcr:mergeFailed.
-     * @throws UnsupportedRepositoryOperationException
-     *      if the node at absPath is not versionable.
-     * @throws InvalidItemStateException
-     *      if there are unsaved changes pending on the node at absPath.
-     * @throws LockException
-     *      if a lock prevents the operation.
-     * @throws RepositoryException
-     *      if another error occurs.
+     *                                                 if a child item of the node at absPath has an OnParentVersion of
+     *                                                 ABORT. This includes the case where an unresolved merge failure
+     *                                                 exists on the node, as indicated by the presence of the
+     *                                                 jcr:mergeFailed.
+     * @throws unsupportedRepositoryOperationException
+     *                                                 if the node at absPath is not versionable
+     * @throws invalidItemStateException
+     *                                                 if there are unsaved changes pending on the node at absPath
+     * @throws lockException
+     *                                                 if a lock prevents the operation
+     * @throws repositoryException
+     *                                                 if another error occurs
      *
      * @api
      */
@@ -158,13 +157,13 @@ interface VersionManagerInterface
      * - versionable (full or simple) and currently checked-in or
      * - non-versionable and its nearest versionable ancestor is checked-in.
      *
-     * @param string $absPath The absolute path to a node the privileges shall
-     *      be fetched of.
+     * @param string $absPath the absolute path to a node the privileges shall
+     *                        be fetched of
      *
-     * @return boolean True, if the node identified by the given path is
-     *      checked out, else false.
+     * @return bool true, if the node identified by the given path is
+     *              checked out, else false
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -185,15 +184,15 @@ interface VersionManagerInterface
      * via that node's identifier, thus ensuring continued access. Note that
      * the application is responsible for saving the identifier in such cases.
      *
-     * @param string $absPath The absolute path to a node the privileges shall
-     *      be fetched of.
+     * @param string $absPath the absolute path to a node the privileges shall
+     *                        be fetched of
      *
      * @return VersionHistoryInterface a VersionHistory object
      *
-     * @throws UnsupportedRepositoryOperationException
-     *      if the node at absPath is not versionable.
-     * @throws RepositoryException
-     *      if another error occurs.
+     * @throws unsupportedRepositoryOperationException
+     *                                                 if the node at absPath is not versionable
+     * @throws repositoryException
+     *                                                 if another error occurs
      *
      * @api
      */
@@ -202,15 +201,15 @@ interface VersionManagerInterface
     /**
      * Returns the current base version of the versionable node at absPath.
      *
-     * @param string $absPath The absolute path to a node the privileges shall
-     *      be fetched of.
+     * @param string $absPath the absolute path to a node the privileges shall
+     *                        be fetched of
      *
-     * @return VersionInterface a Version object.
+     * @return VersionInterface a Version object
      *
-     * @throws UnsupportedRepositoryOperationException
-     *      if the node at absPath is not versionable.
-     * @throws RepositoryException
-     *      if another error occurs.
+     * @throws unsupportedRepositoryOperationException
+     *                                                 if the node at absPath is not versionable
+     * @throws repositoryException
+     *                                                 if another error occurs
      *
      * @api
      */
@@ -232,13 +231,13 @@ interface VersionManagerInterface
      *
      * This change is a workspace-write; there is no need to call save.
      *
-     * @param string $absPath an absolute path.
+     * @param string $absPath an absolute path
      *
-     * @throws VersionException if the version history has an existing
-     *      corresponding versionable node in some workspace.
+     * @throws VersionException                        if the version history has an existing
+     *                                                 corresponding versionable node in some workspace
      * @throws UnsupportedRepositoryOperationException if the operation
-     *      is not supported by this implementation.
-     * @throws RepositoryException If another error occurs.
+     *                                                 is not supported by this implementation
+     * @throws RepositoryException                     if another error occurs
      *
      * @since JCR 2.1
      */
@@ -315,28 +314,28 @@ interface VersionManagerInterface
      * <b>Note:</b> The Java API defines this with multiple differing
      * signatures, you need to act accordingly in your implementation.
      *
-     * @param boolean $removeExisting a boolean flag that governs what happens
-     *      in case of an identifier collision
-     * @param string|array|Traversable|VersionInterface $version a version
-     *      name, a list of Version objects or a Version object
-     * @param string $absPath The absolute path to a node the privileges shall
-     *      be fetched of.
+     * @param bool                                                                           $removeExisting a boolean flag that governs what happens
+     *                                                                                                       in case of an identifier collision
+     * @param string|array<VersionInterface>|\Traversable<VersionInterface>|VersionInterface $version        a version
+     *                                                                                                       name, a list of Version objects or a Version object
+     * @param string                                                                         $absPath        the absolute path to a node the privileges shall
+     *                                                                                                       be fetched of
      *
-     * @throws VersionException
-     *      if the specified version does not have a corresponding node in the
-     *      workspace this VersionManager has been created for or if an
-     *      attempt is made to restore the root version (jcr:rootVersion).
-     * @throws ItemExistsException
-     *      if $removeExisting is false and an identifier collision occurs or
-     *      a node exists at $absPath.
-     * @throws InvalidItemStateException
-     *      if this Session has pending unsaved changes.
-     * @throws UnsupportedRepositoryOperationException
-     *      if versioning is not supported.
-     * @throws LockException
-     *      if a lock prevents the restore.
-     * @throws RepositoryException
-     *      if another error occurs.
+     * @throws versionException
+     *                                                 if the specified version does not have a corresponding node in the
+     *                                                 workspace this VersionManager has been created for or if an
+     *                                                 attempt is made to restore the root version (jcr:rootVersion)
+     * @throws itemExistsException
+     *                                                 if $removeExisting is false and an identifier collision occurs or
+     *                                                 a node exists at $absPath
+     * @throws invalidItemStateException
+     *                                                 if this Session has pending unsaved changes
+     * @throws unsupportedRepositoryOperationException
+     *                                                 if versioning is not supported
+     * @throws lockException
+     *                                                 if a lock prevents the restore
+     * @throws repositoryException
+     *                                                 if another error occurs
      *
      * @api
      */
@@ -366,33 +365,33 @@ interface VersionManagerInterface
      * OnParentVersion settings of COPY or VERSION are also governed by the
      * removeExisting flag.
      *
-     * @param string $absPath The absolute path to a node the privileges shall
-     *      be fetched of.
-     * @param string  $versionLabel   a String
-     * @param boolean $removeExisting a boolean flag that governs what happens
-     *      in case of an identifier collision.
+     * @param string $absPath        the absolute path to a node the privileges shall
+     *                               be fetched of
+     * @param string $versionLabel   a String
+     * @param bool   $removeExisting a boolean flag that governs what happens
+     *                               in case of an identifier collision
      *
-     * @throws UnsupportedRepositoryOperationException
-     *      if the node at absPath is not versionable.
-     * @throws VersionException
-     *      if the specified versionLabel does not exist in this node's version
-     *      history.
-     * @throws ItemExistsException
-     *      if removeExisting is false and an identifier collision occurs.
-     * @throws LockException
-     *      if a lock prevents the restore.
-     * @throws InvalidItemStateException
-     *      if this Session (not necessarily the Node at absPath) has pending
-     *      unsaved changes.
-     * @throws RepositoryException
-     *      if another error occurs.
+     * @throws unsupportedRepositoryOperationException
+     *                                                 if the node at absPath is not versionable
+     * @throws versionException
+     *                                                 if the specified versionLabel does not exist in this node's version
+     *                                                 history
+     * @throws itemExistsException
+     *                                                 if removeExisting is false and an identifier collision occurs
+     * @throws lockException
+     *                                                 if a lock prevents the restore
+     * @throws invalidItemStateException
+     *                                                 if this Session (not necessarily the Node at absPath) has pending
+     *                                                 unsaved changes
+     * @throws repositoryException
+     *                                                 if another error occurs
      *
      * @api
      */
     public function restoreByLabel($absPath, $versionLabel, $removeExisting);
 
     /**
-     * If an nt:activity Node is given:
+     * If an nt:activity Node is given:.
      *
      * This method merges the changes that were made under the specified
      * activity into the current workspace.
@@ -452,36 +451,36 @@ interface VersionManagerInterface
      *
      * Note: The Java API defines this with multiple differing signatures.
      *
-     * @param string|NodeInterface $source an absolute path or an
-     *      nt:activity node.
-     * @param string $srcWorkspace the name of the source workspace (optional
-     *      if $source is a Node).
-     * @param boolean $bestEffort a boolean (optional if $source is a Node)
-     * @param boolean $isShallow  a boolean (optional)
+     * @param string|NodeInterface $source       an absolute path or an
+     *                                           nt:activity node
+     * @param string               $srcWorkspace the name of the source workspace (optional
+     *                                           if $source is a Node)
+     * @param bool                 $bestEffort   a boolean (optional if $source is a Node)
+     * @param bool                 $isShallow    a boolean (optional)
      *
-     * @return Iterator implementing <b>SeekableIterator</b> and
-     *      <b>Countable</b>. Keys are the Node names, values the corresponding
-     *      NodeInterface instances that received a merge result of "fail" in
-     *      the course of this operation.
+     * @return \Iterator<string, NodeInterface> implementing <b>SeekableIterator</b> and
+     *                                          <b>Countable</b>. Keys are the Node names, values the corresponding
+     *                                          NodeInterface instances that received a merge result of "fail" in
+     *                                          the course of this operation.
      *
-     * @throws MergeException
-     *      if bestEffort is false and a failed merge result is encountered.
-     * @throws InvalidItemStateException
-     *      if this session (not necessarily the node at absPath) has pending
-     *      unsaved changes.
-     * @throws NoSuchWorkspaceException
-     *      if srcWorkspace does not exist.
-     * @throws AccessDeniedException
-     *      if the current session does not have sufficient rights to perform
-     *      the operation.
-     * @throws LockException
-     *      if a lock prevents the merge.
-     * @throws VersionException
-     *      if the specified node is not an nt:activity node.
-     * @throws UnsupportedRepositoryOperationException
-     *      if this operation is not supported by this implementation.
-     * @throws RepositoryException
-     *      if another error occurs.
+     * @throws mergeException
+     *                                                 if bestEffort is false and a failed merge result is encountered
+     * @throws invalidItemStateException
+     *                                                 if this session (not necessarily the node at absPath) has pending
+     *                                                 unsaved changes
+     * @throws noSuchWorkspaceException
+     *                                                 if srcWorkspace does not exist
+     * @throws accessDeniedException
+     *                                                 if the current session does not have sufficient rights to perform
+     *                                                 the operation
+     * @throws lockException
+     *                                                 if a lock prevents the merge
+     * @throws versionException
+     *                                                 if the specified node is not an nt:activity node
+     * @throws unsupportedRepositoryOperationException
+     *                                                 if this operation is not supported by this implementation
+     * @throws repositoryException
+     *                                                 if another error occurs
      *
      * @api
      */
@@ -551,20 +550,20 @@ interface VersionManagerInterface
      * If successful, these changes are dispatched immediately, there is no need
      * to call save.
      *
-     * @param string $absPath The absolute path to a node the privileges shall
-     *      be fetched of.
+     * @param string           $absPath the absolute path to a node the privileges shall
+     *                                  be fetched of
      * @param VersionInterface $version a version referred to by the
-     *      jcr:mergeFailed  property of the node at absPath.
+     *                                  jcr:mergeFailed  property of the node at absPath
      *
-     * @throws VersionException
-     *      if the version specified is not among those referenced in this
-     *      node's jcr:mergeFailed or if the node is currently checked-in.
-     * @throws InvalidItemStateException
-     *      if there are unsaved changes pending on the node at absPath.
-     * @throws UnsupportedRepositoryOperationException
-     *      if the node at absPath is not versionable.
-     * @throws RepositoryException
-     *      if another error occurs.
+     * @throws versionException
+     *                                                 if the version specified is not among those referenced in this
+     *                                                 node's jcr:mergeFailed or if the node is currently checked-in
+     * @throws invalidItemStateException
+     *                                                 if there are unsaved changes pending on the node at absPath
+     * @throws unsupportedRepositoryOperationException
+     *                                                 if the node at absPath is not versionable
+     * @throws repositoryException
+     *                                                 if another error occurs
      *
      * @api
      */
@@ -580,21 +579,21 @@ interface VersionManagerInterface
      * If successful, these changes are dispatched immediately, there is no
      * need to call save.
      *
-     * @param string $absPath The absolute path to a node the privileges shall
-     *      be fetched of.
+     * @param string           $absPath the absolute path to a node the privileges shall
+     *                                  be fetched of
      * @param VersionInterface $version a version referred to by the
-     *      jcr:mergeFailed  property of the node at absPath.
+     *                                  jcr:mergeFailed  property of the node at absPath
      *
-     * @throws VersionException
-     *      if the version specified is not among those referenced in the
-     *      jcr:mergeFailed  property of the node at absPath  or if the node is
-     *      currently checked-in.
-     * @throws InvalidItemStateException
-     *      if there are unsaved changes pending on the node at absPath.
-     * @throws UnsupportedRepositoryOperationException
-     *      if the node at absPath is not versionable.
-     * @throws RepositoryException
-     *      if another error occurs.
+     * @throws versionException
+     *                                                 if the version specified is not among those referenced in the
+     *                                                 jcr:mergeFailed  property of the node at absPath  or if the node is
+     *                                                 currently checked-in
+     * @throws invalidItemStateException
+     *                                                 if there are unsaved changes pending on the node at absPath
+     * @throws unsupportedRepositoryOperationException
+     *                                                 if the node at absPath is not versionable
+     * @throws repositoryException
+     *                                                 if another error occurs
      *
      * @api
      */
@@ -615,16 +614,16 @@ interface VersionManagerInterface
      *
      * The changes are persisted immediately, a save is not required.
      *
-     * @param string $absPath The absolute path to a node the privileges shall
-     *      be fetched of.
+     * @param string           $absPath  the absolute path to a node the privileges shall
+     *                                   be fetched of
      * @param VersionInterface $baseline a Version
      *
      * @return NodeInterface a new nt:configuration node
      *
-     * @throws UnsupportedRepositoryOperationException
-     *      if N is not versionable.
-     * @throws RepositoryException
-     *      if another error occurs.
+     * @throws unsupportedRepositoryOperationException
+     *                                                 if N is not versionable
+     * @throws repositoryException
+     *                                                 if another error occurs
      *
      * @api
      */
@@ -641,11 +640,11 @@ interface VersionManagerInterface
      *
      * @return NodeInterface the activity node
      *
-     * @throws UnsupportedRepositoryOperationException
-     *      if the repository does not support activities or if activity is not
-     *      a nt:activity node.
-     * @throws RepositoryException
-     *      if another error occurs.
+     * @throws unsupportedRepositoryOperationException
+     *                                                 if the repository does not support activities or if activity is not
+     *                                                 a nt:activity node
+     * @throws repositoryException
+     *                                                 if another error occurs
      *
      * @api
      */
@@ -655,12 +654,12 @@ interface VersionManagerInterface
      * Returns the node representing the current activity or null if there is no
      * current activity.
      *
-     * @return NodeInterface An nt:activity node or null.
+     * @return NodeInterface an nt:activity node or null
      *
-     * @throws UnsupportedRepositoryOperationException
-     *      if the repository does not support activities.
-     * @throws RepositoryException
-     *      if another error occurs.
+     * @throws unsupportedRepositoryOperationException
+     *                                                 if the repository does not support activities
+     * @throws repositoryException
+     *                                                 if another error occurs
      *
      * @api
      */
@@ -675,14 +674,14 @@ interface VersionManagerInterface
      *
      * The new node is dispatched immediately and does not require a save.
      *
-     * @param string $title The title of the activity to be created.
+     * @param string $title the title of the activity to be created
      *
-     * @return NodeInterface the new activity Node.
+     * @return NodeInterface the new activity Node
      *
-     * @throws UnsupportedRepositoryOperationException
-     *      if the repository does not support activities.
-     * @throws RepositoryException
-     *      if another error occurs.
+     * @throws unsupportedRepositoryOperationException
+     *                                                 if the repository does not support activities
+     * @throws repositoryException
+     *                                                 if another error occurs
      *
      * @api
      */
@@ -695,10 +694,10 @@ interface VersionManagerInterface
      *
      * @param NodeInterface $activityNode an activity Node
      *
-     * @throws UnsupportedRepositoryOperationException
-     *      if the repository does not support activities.
-     * @throws RepositoryException
-     *      if another error occurs.
+     * @throws unsupportedRepositoryOperationException
+     *                                                 if the repository does not support activities
+     * @throws repositoryException
+     *                                                 if another error occurs
      *
      * @api
      */

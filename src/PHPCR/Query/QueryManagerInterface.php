@@ -25,14 +25,14 @@ interface QueryManagerInterface
      * The $language must be a string from among those returned by
      * QueryManagerInterface::getSupportedQueryLanguages().
      *
-     * @param string $statement The query statement to be executed.
-     * @param string $language  The language of the query to be created.
+     * @param string $statement the query statement to be executed
+     * @param string $language  the language of the query to be created
      *
      * @return QueryInterface a Query object
      *
      * @throws InvalidQueryException if the query statement is syntactically
-     *      invalid or the specified language is not supported
-     * @throws RepositoryException if another error occurs
+     *                               invalid or the specified language is not supported
+     * @throws RepositoryException   if another error occurs
      *
      * @api
      */
@@ -43,7 +43,7 @@ interface QueryManagerInterface
      * built programmatically.
      *
      * @return QueryObjectModelFactoryInterface a
-     *      QueryObjectModelFactory object
+     *                                          QueryObjectModelFactory object
      *
      * @api
      */
@@ -58,13 +58,13 @@ interface QueryManagerInterface
      * workspace.
      *
      * @param NodeInterface $node a persisted query (that is, a node of
-     *      type nt:query).
+     *                            type nt:query)
      *
-     * @return QueryInterface a Query object.
+     * @return QueryInterface a Query object
      *
-     * @throws InvalidQueryException If node is not a valid persisted query
-     *      (that is, a node of type nt:query).
-     * @throws RepositoryException if another error occurs
+     * @throws InvalidQueryException if node is not a valid persisted query
+     *                               (that is, a node of type nt:query)
+     * @throws RepositoryException   if another error occurs
      *
      * @api
      */
@@ -79,9 +79,9 @@ interface QueryManagerInterface
      * may also support other languages including the deprecated languages of
      * JCR 1.0: QueryInterface::XPATH and QueryInterface::SQL.
      *
-     * @return array A list of query languages supported by this repository.
+     * @return string[]
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */

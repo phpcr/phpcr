@@ -48,7 +48,7 @@ namespace PHPCR\Lock;
  * <code>Session.getUserID</code> of the owning session or an
  * implementation-specific string identifying the owner.
  * </li>
- * </ul>
+ * </ul>.
  *
  * @license http://www.apache.org/licenses Apache License Version 2.0, January 2004
  * @license http://opensource.org/licenses/MIT MIT License
@@ -61,10 +61,9 @@ interface LockInfoInterface
      * Sets the <code>isDeep</code> parameter of the <code>LockInfo</code>
      * object. If left unset, this parameter defaults to <code>true</code>.
      *
-     * @param boolean $isDeep
+     * @param bool $isDeep
      *
-     * @return LockInfoInterface this object with the <code>isDeep</code>
-     *      parameter set.
+     * @return LockInfoInterface this object with the <code>isDeep</code> parameter set
      */
     public function setIsDeep($isDeep);
 
@@ -72,7 +71,7 @@ interface LockInfoInterface
      * Returns the <code>isDeep</code> parameter of the <code>LockInfo</code>
      * object.
      *
-     * @return boolean
+     * @return bool
      */
     public function getIsDeep();
 
@@ -81,10 +80,9 @@ interface LockInfoInterface
      * <code>LockInfo</code> object. If left unset, this parameter defaults to
      * <code>false</code>.
      *
-     * @param boolean $isSessionScoped
+     * @param bool $isSessionScoped
      *
-     * @return LockInfoInterface this object with the
-     *      <code>isSessionScoped</code> parameter set.
+     * @return LockInfoInterface this object with the <code>isSessionScoped</code> parameter set
      */
     public function setIsSessionScoped($isSessionScoped);
 
@@ -92,7 +90,7 @@ interface LockInfoInterface
      * Returns the <code>isSessionScoped</code> parameter of the
      * <code>LockInfo</code> object.
      *
-     * @return boolean
+     * @return bool
      */
     public function getIsSessionScoped();
 
@@ -103,8 +101,7 @@ interface LockInfoInterface
      *
      * @param int $timeoutHint
      *
-     * @return LockInfoInterface this code> object with the
-     *      <code>timeoutHint</code> parameter set.
+     * @return LockInfoInterface this code> object with the <code>timeoutHint</code> parameter set
      */
     public function setTimeoutHint($timeoutHint);
 
@@ -123,8 +120,7 @@ interface LockInfoInterface
      *
      * @param string $ownerInfo
      *
-     * @return LockInfoInterface this object with the <code>ownerInfo</code>
-     *      parameter set.
+     * @return LockInfoInterface this object with the <code>ownerInfo</code> parameter set
      */
     public function setOwnerInfo($ownerInfo);
 

@@ -91,7 +91,7 @@ interface PrivilegeInterface
 
     /**
      * A constant representing jcr:write (in extended form), an aggregate
-     * privilege that contains:
+     * privilege that contains:.
      *
      * - jcr:modifyProperties
      * - jcr:addChildNodes
@@ -204,7 +204,7 @@ interface PrivilegeInterface
     /**
      * Returns the name of this privilege.
      *
-     * @return string the name of this privilege.
+     * @return string the name of this privilege
      *
      * @api
      */
@@ -213,8 +213,8 @@ interface PrivilegeInterface
     /**
      * Returns whether this privilege is an abstract privilege.
      *
-     * @return boolean true if this privilege is an abstract privilege; false
-     *      otherwise.
+     * @return bool true if this privilege is an abstract privilege; false
+     *              otherwise
      *
      * @api
      */
@@ -223,8 +223,8 @@ interface PrivilegeInterface
     /**
      * Returns whether this privilege is an aggregate privilege.
      *
-     * @return boolean true if this privilege is an aggregate privilege; false
-     *      otherwise.
+     * @return bool true if this privilege is an aggregate privilege; false
+     *              otherwise
      *
      * @api
      */
@@ -235,7 +235,7 @@ interface PrivilegeInterface
      * directly contained by the aggregate privilege. Otherwise returns an empty
      * array.
      *
-     * @return PrivilegeInterface[] an array of Privileges
+     * @return PrivilegeInterface[]
      *
      * @api
      */
@@ -247,7 +247,7 @@ interface PrivilegeInterface
      * those, and so on (the transitive closure of privileges contained by this
      * privilege). Otherwise returns an empty array.
      *
-     * @return PrivilegeInterface[] an array of Privileges
+     * @return PrivilegeInterface[]
      *
      * @api
      */

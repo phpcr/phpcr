@@ -2,13 +2,12 @@
 
 namespace PHPCR\Tests;
 
-use InvalidArgumentException;
 use PHPCR\CredentialsInterface;
 use PHPCR\SimpleCredentials;
 use PHPUnit\Framework\TestCase;
 
 /**
- * a test for the PHPCR\PropertyType class
+ * a test for the PHPCR\PropertyType class.
  */
 class SimpleCredentialsTest extends TestCase
 {
@@ -53,7 +52,7 @@ class SimpleCredentialsTest extends TestCase
      */
     public function testSetAttributeInvalid(SimpleCredentials $credentials)
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(\InvalidArgumentException::class);
 
         $credentials->setAttribute(null, 'test');
     }
@@ -64,6 +63,6 @@ class SimpleCredentialsTest extends TestCase
     public function testGetAttributeNames(SimpleCredentials $credentials)
     {
         $credentials->setAttribute('other', 'test');
-        $this->assertEquals(array('other'), $credentials->getAttributeNames());
+        $this->assertEquals(['other'], $credentials->getAttributeNames());
     }
 }

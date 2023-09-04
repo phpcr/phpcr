@@ -17,19 +17,21 @@ use Traversable;
  * implementation documentation to learn how to use event listeners.
  * Alternatively, you can simply use getEventJournal to find events.
  *
- * The \Traversable interface enables the implementation to be addressed with
+ * The Traversable interface enables the implementation to be addressed with
  * <b>foreach</b>. ObservationManager has to implement either \IteratorAggregate
  * or \Iterator.
  * The iterator is equivalent to <b>getRegisteredEventListeners()</b> returning
  * a list of all registered event listeners. The iterator keys have no
  * significant meaning.
  *
+ * @extends Traversable<EventListenerInterface>
+ *
  * @license http://www.apache.org/licenses Apache License Version 2.0, January 2004
  * @license http://opensource.org/licenses/MIT MIT License
  *
  * @api
  */
-interface ObservationManagerInterface extends Traversable
+interface ObservationManagerInterface extends \Traversable
 {
     /**
      * Adds an event listener that listens for the events specified by the
@@ -52,10 +54,7 @@ interface ObservationManagerInterface extends Traversable
      * For example, in some repositories observation of changes in the
      * jcr:system subgraph may not be supported.
      *
-     * @param EventListenerInterface $listener
-     * @param EventFilterInterface   $filter
-     *
-     * @throws RepositoryException If an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @since JCR 2.1
      *
@@ -72,9 +71,9 @@ interface ObservationManagerInterface extends Traversable
      * method. In this case, the deregistration method returns immediately, but
      * deregistration will effectively be delayed until the listener completes.
      *
-     * @param EventListenerInterface $listener The listener to deregister.
+     * @param EventListenerInterface $listener the listener to deregister
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -85,8 +84,8 @@ interface ObservationManagerInterface extends Traversable
      *
      * If no listeners have been registered, an empty iterator is returned.
      *
-     * @return Iterator implementing <b>SeekableIterator</b> and <b>Countable</b>.
-     *                  Values are the EventListenerInterface instances. Keys have no meaning.
+     * @return \Iterator<EventListenerInterface> implementing <b>SeekableIterator</b> and <b>Countable</b>.
+     *                                           Keys have no meaning.
      *
      * @throws RepositoryException if an error occurs
      *
@@ -118,9 +117,7 @@ interface ObservationManagerInterface extends Traversable
      * additional restrictions specified through implementation-specific
      * configuration will also affect the set of returned events.
      *
-     * @param EventFilterInterface $filter
-     *
-     * @return EventJournalInterface an EventJournal (or null).
+     * @return EventJournalInterface an EventJournal (or null)
      *
      * @throws RepositoryException if an error occurs
      *

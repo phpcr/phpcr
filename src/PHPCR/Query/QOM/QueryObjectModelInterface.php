@@ -49,36 +49,36 @@ interface QueryObjectModelInterface extends QueryInterface
      * @return SourceInterface the node-tuple source
      *
      * @api
-    */
+     */
     public function getSource();
 
     /**
      * Gets the constraint for this query.
      *
      * @return ConstraintInterface|null the constraint, or null if there is no
-     *      constraint
+     *                                  constraint
      *
      * @api
-    */
+     */
     public function getConstraint();
 
     /**
      * Gets the orderings for this query.
      *
      * @return OrderingInterface[] an array of the orderings. If no orderings
-     *      defined an empty array is returned.
+     *                             defined an empty array is returned.
      *
      * @api
-    */
+     */
     public function getOrderings();
 
     /**
      * Gets the columns for this query.
      *
      * @return ColumnInterface[] an array of the columns to get. If none
-     *      specified an empty array is returned.
+     *                           specified an empty array is returned.
      *
      * @api
-    */
+     */
     public function getColumns();
 }

@@ -3,7 +3,6 @@
 namespace PHPCR;
 
 use DateTime;
-use InvalidArgumentException;
 use PHPCR\Lock\LockException;
 use PHPCR\NodeType\ConstraintViolationException;
 use PHPCR\NodeType\PropertyDefinitionInterface;
@@ -18,7 +17,7 @@ use Traversable;
  * and a value, or in the case of multi-value properties, a set of values all
  * of the same type.
  *
- * The \Traversable interface enables the implementation to be addressed with
+ * The Traversable interface enables the implementation to be addressed with
  * <b>foreach</b>. Properties have to implement either \IteratorAggregate or
  * \Iterator.
  * The iterator is equivalent to <b>getValue()</b> returning an iterator
@@ -34,6 +33,8 @@ use Traversable;
  * PropertyInterface::setValue completely replaces the
  * ValueFactory::createValue method.
  *
+ * @extends Traversable<mixed>
+ *
  * @license http://www.apache.org/licenses Apache License Version 2.0, January 2004
  * @license http://opensource.org/licenses/MIT MIT License
  *
@@ -42,12 +43,9 @@ use Traversable;
 interface PropertyInterface extends ItemInterface, Traversable
 {
     /**
-     * @var string
-     */
-
-    /**
      * A constant for the property name jcr:primaryType (in extended form),
      * declared in node type nt:base.
+     *
      * @api
      */
     const JCR_PRIMARY_TYPE = '{http://www.jcp.org/jcr/1.0}primaryType';
@@ -55,6 +53,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:mixinTypes (in extended form),
      * declared in node type nt:base.
+     *
      * @api
      */
     const JCR_MIXIN_TYPES = '{http://www.jcp.org/jcr/1.0}mixinTypes';
@@ -64,6 +63,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      * declared in node type nt:linkedFile.
      *
      * <b>Note:</b> jcr:content is also the name of a child node declared in nt:file.
+     *
      * @api
      */
     const JCR_CONTENT = '{http://www.jcp.org/jcr/1.0}content';
@@ -71,6 +71,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:data (in extended form),
      * declared in node type nt:resource.
+     *
      * @api
      */
     const JCR_DATA = '{http://www.jcp.org/jcr/1.0}data';
@@ -78,6 +79,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:protocol (in extended form),
      * declared in node type nt:address.
+     *
      * @api
      */
     const JCR_PROTOCOL = '{http://www.jcp.org/jcr/1.0}protocol';
@@ -85,6 +87,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:host (in extended form),
      * declared in node type nt:address.
+     *
      * @api
      */
     const JCR_HOST = '{http://www.jcp.org/jcr/1.0}host';
@@ -92,6 +95,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:port (in extended form),
      * declared in node type nt:address.
+     *
      * @api
      */
     const JCR_PORT = '{http://www.jcp.org/jcr/1.0}port';
@@ -99,6 +103,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:repository (in extended form),
      * declared in node type nt:address.
+     *
      * @api
      */
     const JCR_REPOSITORY = '{http://www.jcp.org/jcr/1.0repository';
@@ -106,6 +111,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:workspace (in extended form),
      * declared in node type nt:address.
+     *
      * @api
      */
     const JCR_WORKSPACE = '{http://www.jcp.org/jcr/1.0}workspace';
@@ -113,6 +119,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:path (in extended form),
      * declared in node type nt:address.
+     *
      * @api
      */
     const JCR_PATH = '{http://www.jcp.org/jcr/1.0}path';
@@ -120,6 +127,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:id (in extended form),
      * declared in node type nt:address.
+     *
      * @api
      */
     const JCR_ID = '{http://www.jcp.org/jcr/1.0}id';
@@ -127,6 +135,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:uuid (in extended form),
      * declared in node type mix:referenceable.
+     *
      * @api
      */
     const JCR_UUID = '{http://www.jcp.org/jcr/1.0}uuid';
@@ -134,6 +143,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:title (in extended form),
      * declared in node types mix:title and nt:activity.
+     *
      * @api
      */
     const JCR_TITLE = '{http://www.jcp.org/jcr/1.0}title';
@@ -141,6 +151,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:description (in extended form),
      * declared in node type mix:title.
+     *
      * @api
      */
     const JCR_DESCRIPTION = '{http://www.jcp.org/jcr/1.0}description';
@@ -148,6 +159,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:created (in extended form),
      * declared in node types mix:created and nt:version.
+     *
      * @api
      */
     const JCR_CREATED = '{http://www.jcp.org/jcr/1.0}created';
@@ -155,6 +167,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:createdBy (in extended form),
      * declared in node type mix:created.
+     *
      * @api
      */
     const JCR_CREATED_BY = '{http://www.jcp.org/jcr/1.0}createdBy';
@@ -162,6 +175,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:lastModified (in extended form),
      * declared in node type mix:lastModified.
+     *
      * @api
      */
     const JCR_LAST_MODIFIED = '{http://www.jcp.org/jcr/1.0}lastModified';
@@ -169,6 +183,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:lastModifiedBy (in extended form),
      * declared in node type mix:lastModified.
+     *
      * @api
      */
     const JCR_LAST_MODIFIED_BY = '{http://www.jcp.org/jcr/1.0}lastModifiedBy';
@@ -176,6 +191,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:language (in extended form),
      * declared in node types mix:language and nt:query.
+     *
      * @api
      */
     const JCR_LANGUAGE = '{http://www.jcp.org/jcr/1.0}language';
@@ -183,6 +199,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:mimeType (in extended form),
      * declared in node type mix:mimeType.
+     *
      * @api
      */
     const JCR_MIMETYPE = '{http://www.jcp.org/jcr/1.0}mimeType';
@@ -190,6 +207,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:encoding (in extended form),
      * declared in node type mix:mimeType.
+     *
      * @api
      */
     const JCR_ENCODING = '{http://www.jcp.org/jcr/1.0}encoding';
@@ -197,6 +215,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:nodeTypeName (in extended form),
      * declared in node type nt:nodeType.
+     *
      * @api
      */
     const JCR_NODE_TYPE_NAME = '{http://www.jcp.org/jcr/1.0}nodeTypeName';
@@ -204,6 +223,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:supertypes (in extended form),
      * declared in node type nt:nodeType.
+     *
      * @api
      */
     const JCR_SUPERTYPES = '{http://www.jcp.org/jcr/1.0}supertypes';
@@ -211,6 +231,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:isAbstract (in extended form),
      * declared in node type nt:nodeType.
+     *
      * @api
      */
     const JCR_IS_ABSTRACT = '{http://www.jcp.org/jcr/1.0}isAbstract';
@@ -218,6 +239,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:isMixin (in extended form),
      * declared in node type nt:nodeType.
+     *
      * @api
      */
     const JCR_IS_MIXIN = '{http://www.jcp.org/jcr/1.0}isMixin';
@@ -225,6 +247,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:hasOrderableChildNodes (in extended form),
      * declared in node type nt:nodeType.
+     *
      * @api
      */
     const JCR_HAS_ORDERABLE_CHILD_NODES = '{http://www.jcp.org/jcr/1.0}hasOrderableChildNodes';
@@ -232,6 +255,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:primaryItemName (in extended form),
      * declared in node type nt:nodeType.
+     *
      * @api
      */
     const JCR_PRIMARY_ITEM_NAME = '{http://www.jcp.org/jcr/1.0}primaryItemName';
@@ -239,6 +263,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:name (in extended form),
      * declared in node types nt:propertyDefinition and nt:childNodeDefinition.
+     *
      * @api
      */
     const JCR_NAME = '{http://www.jcp.org/jcr/1.0}name';
@@ -246,6 +271,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:autoCreated (in extended form),
      * declared in node types nt:propertyDefinition and nt:childNodeDefinition.
+     *
      * @api
      */
     const JCR_AUTOCREATED = '{http://www.jcp.org/jcr/1.0}autoCreated';
@@ -253,6 +279,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:mandatory (in extended form),
      * declared in node types nt:propertyDefinition and nt:childNodeDefinition.
+     *
      * @api
      */
     const JCR_MANDATORY = '{http://www.jcp.org/jcr/1.0}mandatory';
@@ -260,6 +287,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:protected (in extended form),
      * declared in node types nt:propertyDefinition and nt:childNodeDefinition.
+     *
      * @api
      */
     const JCR_PROTECTED = '{http://www.jcp.org/jcr/1.0}protected';
@@ -267,6 +295,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:onParentVersion (in extended form),
      * declared in node types nt:propertyDefinition and nt:childNodeDefinition.
+     *
      * @api
      */
     const JCR_ON_PARENT_VERSION = '{http://www.jcp.org/jcr/1.0}onParentVersion';
@@ -274,6 +303,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:requiredType (in extended form),
      * declared in node type nt:propertyDefinition.
+     *
      * @api
      */
     const JCR_REQUIRED_TYPE = '{http://www.jcp.org/jcr/1.0}requiredType';
@@ -281,6 +311,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:valueConstraints (in extended form),
      * declared in node type nt:propertyDefinition.
+     *
      * @api
      */
     const JCR_VALUE_CONSTRAINTS = '{http://www.jcp.org/jcr/1.0}valueConstraints';
@@ -288,6 +319,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:defaultValues (in extended form),
      * declared in node type nt:propertyDefinition.
+     *
      * @api
      */
     const JCR_DEFAULT_VALUES = '{http://www.jcp.org/jcr/1.0}defaultValues';
@@ -295,6 +327,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:multiple (in extended form),
      * declared in node type nt:propertyDefinition.
+     *
      * @api
      */
     const JCR_MULTIPLE = '{http://www.jcp.org/jcr/1.0}multiple';
@@ -302,6 +335,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:requiredPrimaryTypes (in extended form),
      * declared in node type nt:childNodeDefinition.
+     *
      * @api
      */
     const JCR_REQUIRED_PRIMARY_TYPES = '{http://www.jcp.org/jcr/1.0}requiredPrimaryTypes';
@@ -309,6 +343,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:defaultPrimaryType (in extended form),
      * declared in node type nt:childNodeDefinition.
+     *
      * @api
      */
     const JCR_DEFAULT_PRIMARY_TYPE = '{http://www.jcp.org/jcr/1.0}defaultPrimaryType';
@@ -316,6 +351,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:sameNameSiblings (in extended form),
      * declared in node type nt:childNodeDefinition.
+     *
      * @api
      */
     const JCR_SAME_NAME_SIBLINGS = '{http://www.jcp.org/jcr/1.0}sameNameSiblings';
@@ -323,6 +359,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:lockOwner (in extended form),
      * declared in node type mix:lockable.
+     *
      * @api
      */
     const JCR_LOCK_OWNER = '{http://www.jcp.org/jcr/1.0}lockOwner';
@@ -330,6 +367,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:lockIsDeep (in extended form),
      * declared in node type mix:lockable.
+     *
      * @api
      */
     const JCR_LOCK_IS_DEEP = '{http://www.jcp.org/jcr/1.0}lockIsDeep';
@@ -337,6 +375,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:lifecyclePolicy (in extended form),
      * declared in node type mix:lifecycle.
+     *
      * @api
      */
     const JCR_LIFECYCLE_POLICY = '{http://www.jcp.org/jcr/1.0}lifecyclePolicy';
@@ -344,6 +383,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:currentLifecycleState (in extended form),
      * declared in node type mix:lifecycle.
+     *
      * @api
      */
     const JCR_CURRENT_LIFECYCLE_STATE = '{http://www.jcp.org/jcr/1.0}currentLifecycleState';
@@ -351,6 +391,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:isCheckedOut (in extended form),
      * declared in node type mix:simpleVersionable.
+     *
      * @api
      */
     const JCR_IS_CHECKED_OUT = '{http://www.jcp.org/jcr/1.0}isCheckedOut';
@@ -358,6 +399,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:frozenPrimaryType (in extended form),
      * declared in node type nt:frozenNode.
+     *
      * @api
      */
     const JCR_FROZEN_PRIMARY_TYPE = '{http://www.jcp.org/jcr/1.0}frozenPrimaryType';
@@ -365,6 +407,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:frozenMixinTypes (in extended form),
      * declared in node type nt:frozenNode.
+     *
      * @api
      */
     const JCR_FROZEN_MIXIN_TYPES = '{http://www.jcp.org/jcr/1.0}frozenMixinTypes';
@@ -372,6 +415,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:frozenUuid (in extended form),
      * declared in node type nt:frozenNode.
+     *
      * @api
      */
     const JCR_FROZEN_UUID = '{http://www.jcp.org/jcr/1.0}frozenUuid';
@@ -379,6 +423,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:versionHistory (in extended form),
      * declared in node type mix:versionable.
+     *
      * @api
      */
     const JCR_VERSION_HISTORY = '{http://www.jcp.org/jcr/1.0}versionHistory';
@@ -386,6 +431,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:baseVersion (in extended form),
      * declared in node type mix:versionable.
+     *
      * @api
      */
     const JCR_BASE_VERSION = '{http://www.jcp.org/jcr/1.0}baseVersion';
@@ -393,6 +439,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:predecessors (in extended form),
      * declared in node types mix:versionable and nt:version.
+     *
      * @api
      */
     const JCR_PREDECESSORS = '{http://www.jcp.org/jcr/1.0}predecessors';
@@ -400,6 +447,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:mergeFailed (in extended form),
      * declared in node type mix:versionable.
+     *
      * @api
      */
     const JCR_MERGE_FAILED = '{http://www.jcp.org/jcr/1.0}mergeFailed';
@@ -407,6 +455,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:activity (in extended form),
      * declared in node types mix:versionable and nt:version.
+     *
      * @api
      */
     const JCR_ACTIVITY = '{http://www.jcp.org/jcr/1.0}activity';
@@ -414,6 +463,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:configuration (in extended form),
      * declared in node type mix:versionable.
+     *
      * @api
      */
     const JCR_CONFIGURATION = '{http://www.jcp.org/jcr/1.0}configuration';
@@ -421,6 +471,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:versionableUuid (in extended form),
      * declared in node type nt:version.
+     *
      * @api
      */
     const JCR_VERSIONABLE_UUID = '{http://www.jcp.org/jcr/1.0}versionableUuid';
@@ -428,6 +479,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:copiedFrom (in extended form),
      * declared in node type nt:version.
+     *
      * @api
      */
     const JCR_COPIED_FROM = '{http://www.jcp.org/jcr/1.0}copiedFrom';
@@ -435,6 +487,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:successors (in extended form),
      * declared in node type nt:version.
+     *
      * @api
      */
     const JCR_SUCCESSORS = '{http://www.jcp.org/jcr/1.0}successors';
@@ -442,6 +495,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:childVersionHistory (in extended form),
      * declared in node type nt:versionedChild.
+     *
      * @api
      */
     const JCR_CHILD_VERSION_HISTORY = '{http://www.jcp.org/jcr/1.0}childVersionHistory';
@@ -449,6 +503,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:root (in extended form),
      * declared in node type nt:configuration.
+     *
      * @api
      */
     const JCR_ROOT = '{http://www.jcp.org/jcr/1.0}root';
@@ -456,6 +511,7 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * A constant for the property name jcr:statement (in extended form),
      * declared in node type nt:query.
+     *
      * @api
      */
     const JCR_STATEMENT = '{http://www.jcp.org/jcr/1.0}statement';
@@ -514,28 +570,29 @@ interface PropertyInterface extends ItemInterface, Traversable
      * <strong>PHPCR Note:</strong> Because we removed the Value interface,
      *      this method replaces ValueFactory::createValue.
      *
-     * @param mixed   $value The value to set
-     * @param integer $type  Type request for the property, optional. Must be a
-     *      constant from PropertyType
+     * @param mixed $value The value to set
+     * @param int   $type  Type request for the property, optional. Must be a
+     *                     constant from PropertyType
      *
-     * @throws ValueFormatException if the type or format of the
-     *      specified value is incompatible with the type of this property.
-     * @throws VersionException if this property belongs to a
-     *      node that is read-only due to a checked-in node and this
-     *      implementation performs this validation immediately.
-     * @throws LockException if a lock prevents the setting of the
-     *      value and this implementation performs this validation immediately.
-     * @throws ConstraintViolationException if the change would
-     *      violate a node-type or other constraint and this implementation
-     *      performs this validation immediately.
+     * @throws ValueFormatException                    if the type or format of the
+     *                                                 specified value is incompatible with the type of this property
+     * @throws VersionException                        if this property belongs to a
+     *                                                 node that is read-only due to a checked-in node and this
+     *                                                 implementation performs this validation immediately
+     * @throws LockException                           if a lock prevents the setting of the
+     *                                                 value and this implementation performs this validation immediately
+     * @throws ConstraintViolationException            if the change would
+     *                                                 violate a node-type or other constraint and this implementation
+     *                                                 performs this validation immediately
      * @throws UnsupportedRepositoryOperationException if the type
-     *      parameter is set and different from the current type and this
-     *      implementation does not support dynamic re-binding
-     * @throws InvalidArgumentException if the specified DateTime value
-     *      cannot be expressed in the ISO 8601-based format defined in the JCR
-     *      2.0 specification and the implementation does not support dates
-     *      incompatible with that format.
-     * @throws RepositoryException if another error occurs.
+     *                                                 parameter is set and different from the current type and this
+     *                                                 implementation does not support dynamic re-binding
+     * @throws \InvalidArgumentException               if the specified DateTime value
+     *                                                 cannot be expressed in the ISO 8601-based format defined in the JCR
+     *                                                 2.0 specification and the implementation does not support dates
+     *                                                 incompatible with that format.
+     * @throws RepositoryException                     if another error occurs
+     *
      * @api
      */
     public function setValue($value, $type = null);
@@ -548,9 +605,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      * In PHP appending to strings is easy and this is more convenient than
      * getting the property and appending to the array and setting again.
      *
-     * @param mixed $value
-     *
-     * @throws ValueFormatException if the property is not multi-value.
+     * @throws ValueFormatException if the property is not multi-value
      */
     public function addValue($value);
 
@@ -565,18 +620,19 @@ interface PropertyInterface extends ItemInterface, Traversable
      * <b>PHPCR Note:</b> We dropped the Value interface as its unnecessary
      * with weak typing.
      *
-     * @return mixed value of this property, or array in case of multi-value.
+     * @return mixed value of this property, or array in case of multi-value
      */
     public function getValue();
 
     /**
      * Returns a String representation of the value of this property.
      *
-     * @return string|array A string representation of the value of this property, or
-     *      an array of string for multi-valued properties.
+     * @return string|string[] a string representation of the value of this property, or
+     *                         an array of string for multi-valued properties
      *
      * @throws ValueFormatException if conversion to a String is not possible
-     * @throws RepositoryException  if another error occurs.
+     * @throws RepositoryException  if another error occurs
+     *
      * @api
      */
     public function getString();
@@ -587,9 +643,10 @@ interface PropertyInterface extends ItemInterface, Traversable
      * The Binary object in turn provides methods to access the binary data
      * itself. Uses the standard conversion to binary (see JCR specification).
      *
-     * @return resource|array A stream resource if the underlying binary
+     * @return resource|resource[] A stream resource if the underlying binary
      *
      * @throws RepositoryException if another error occurs
+     *
      * @api
      */
     public function getBinary();
@@ -597,12 +654,12 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * Returns an integer representation of the value of this property.
      *
-     * @return integer|array An integer representation of the value of this property,
-     *      or an array of integer for multi-valued properties.
+     * @return int|int[] an integer representation of the value of this property,
+     *                   or an array of integer for multi-valued properties
      *
      * @throws ValueFormatException if conversion to integer is not
-     *      possible
-     * @throws RepositoryException if another error occurs
+     *                              possible
+     * @throws RepositoryException  if another error occurs
      *
      * @api
      */
@@ -611,12 +668,12 @@ interface PropertyInterface extends ItemInterface, Traversable
     /**
      * Returns a float representation of the value of this property.
      *
-     * @return float|array A float representation of the value of this property, or
-     *      an array of float for multi-valued properties.
+     * @return float|float[] a float representation of the value of this property, or
+     *                       an array of float for multi-valued properties
      *
      * @throws ValueFormatException if conversion to a double is not possible
+     * @throws RepositoryException  if another error occurs
      *
-     * @throws RepositoryException if another error occurs
      * @api
      */
     public function getDouble();
@@ -628,29 +685,29 @@ interface PropertyInterface extends ItemInterface, Traversable
      * The string must be encoded with the C locale because of
      * http://bugs.php.net/bug.php?id=16532
      *
-     * @return string|array A string representation of the value of this property, or
-     *      an array of strings for multi-valued properties.
+     * @return string|string[] a string representation of the value of this property, or
+     *                         an array of strings for multi-valued properties
      *
      * @throws ValueFormatException if conversion to a number string is
-     *      not possible
-     * @throws RepositoryException if another error occurs
+     *                              not possible
+     * @throws RepositoryException  if another error occurs
      *
      * @api
      */
     public function getDecimal();
 
     /**
-     * Returns a \DateTime representation of the value of this property.
+     * Returns a DateTime representation of the value of this property.
      *
      * The object returned is a copy of the stored value, so changes to it are
      * not reflected in internal storage.
      *
-     * @return DateTime|array A date representation of the value of this property,
-     *      or an array of DateTime for multi-valued properties.
+     * @return \DateTime|\DateTime[] a date representation of the value of this property,
+     *                               or an array of DateTime for multi-valued properties
      *
      * @throws ValueFormatException if conversion to \DateTime is not
-     *      possible
-     * @throws RepositoryException if another error occurs
+     *                              possible
+     * @throws RepositoryException  if another error occurs
      *
      * @api
      */
@@ -665,12 +722,12 @@ interface PropertyInterface extends ItemInterface, Traversable
      * If you want to know if a value is empty in the PHP sense, use
      * getString() and do your checks on the string.
      *
-     * @return boolean|array A boolean representation of the value of this property,
-     *      or an array of boolean for multi-valued properties.
+     * @return bool|bool[] a boolean representation of the value of this property,
+     *                     or an array of boolean for multi-valued properties
      *
      * @throws ValueFormatException if conversion to a boolean is not
-     *      possible
-     * @throws RepositoryException if another error occurs
+     *                              possible
+     * @throws RepositoryException  if another error occurs
      *
      * @api
      */
@@ -693,20 +750,20 @@ interface PropertyInterface extends ItemInterface, Traversable
      * If its a PATH property, you will need the node of this property and use
      * getNodes to get the nodes with relative or absolute path.
      *
-     * @return NodeInterface|array the referenced Node, or an array of Nodes
-     *      for multi-valued properties.
+     * @return NodeInterface|NodeInterface[] the referenced Node, or an array of Nodes
+     *                                       for multi-valued properties
      *
-     * @throws ValueFormatException if this property cannot be converted
-     *      to a referring type (REFERENCE, WEAKREFERENCE or PATH) or if this
-     *      property is a referring type but is currently part of the frozen
-     *      state of a version in version storage.
+     * @throws ValueFormatException  if this property cannot be converted
+     *                               to a referring type (REFERENCE, WEAKREFERENCE or PATH) or if this
+     *                               property is a referring type but is currently part of the frozen
+     *                               state of a version in version storage
      * @throws ItemNotFoundException If this property is of type PATH or
-     *      WEAKREFERENCE and no target node accessible by the current Session
-     *      exists in this workspace. Note that this applies even if the
-     *      property is a PATH and a property exists at the specified location.
-     *      To dereference to a target property (as opposed to a target node),
-     *      the method PropertyInterface::getProperty() is used.
-     * @throws RepositoryException if another error occurs.
+     *                               WEAKREFERENCE and no target node accessible by the current Session
+     *                               exists in this workspace. Note that this applies even if the
+     *                               property is a PATH and a property exists at the specified location.
+     *                               To dereference to a target property (as opposed to a target node),
+     *                               the method PropertyInterface::getProperty() is used.
+     * @throws RepositoryException   if another error occurs
      *
      * @api
      */
@@ -726,18 +783,18 @@ interface PropertyInterface extends ItemInterface, Traversable
      * For example, if this property is located at /a/b/c and it has a value of
      * "../d" then this method will return the property at /a/d if such exists.
      *
-     * @return PropertyInterface|array the referenced property, or an array of
-     *      properties for multi-valued properties.
+     * @return PropertyInterface|PropertyInterface[] the referenced property, or an array of
+     *                                               properties for multi-valued properties
      *
-     * @throws ValueFormatException if this property cannot be converted
-     *      to a PATH or if this property is a referring type but is currently
-     *      part of the frozen state of a version in version storage.
+     * @throws ValueFormatException  if this property cannot be converted
+     *                               to a PATH or if this property is a referring type but is currently
+     *                               part of the frozen state of a version in version storage
      * @throws ItemNotFoundException If no property accessible by the
-     *      current Session exists in this workspace at the specified path.
-     *      Note that this applies even if a node exists at the specified
-     *      location. To dereference to a target node, the method
-     *      PropertyInterface::getNode() is used.
-     * @throws RepositoryException if another error occurs
+     *                               current Session exists in this workspace at the specified path.
+     *                               Note that this applies even if a node exists at the specified
+     *                               location. To dereference to a target node, the method
+     *                               PropertyInterface::getNode() is used.
+     * @throws RepositoryException   if another error occurs
      *
      * @api
      */
@@ -756,10 +813,10 @@ interface PropertyInterface extends ItemInterface, Traversable
      * For multi-valuedproperties, the same rules apply, but returns an array of
      * lengths with the same order as the values have in getValue.
      *
-     * @return integer|array the length of this value, or an array of lengths
-     *      for multi-valued properties
+     * @return int|int[] the length of this value, or an array of lengths
+     *                   for multi-valued properties
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -777,9 +834,9 @@ interface PropertyInterface extends ItemInterface, Traversable
      * and is not covered by this specification.
      *
      * @return PropertyDefinitionInterface a PropertyDefinition
-     *      object.
+     *                                     object
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -808,7 +865,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      * case where the latter returns UNDEFINED. The type of a property instance
      * is never UNDEFINED (it must always have some actual type).
      *
-     * @return integer The numerical representation of a property type.
+     * @return int the numerical representation of a property type
      *
      * @throws RepositoryException if an error occurs
      *
@@ -824,9 +881,9 @@ interface PropertyInterface extends ItemInterface, Traversable
      * Returns true if this property is multi-valued and false if this property
      * is single-valued.
      *
-     * @return boolean true if this property is multi-valued; false otherwise.
+     * @return bool true if this property is multi-valued; false otherwise
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */

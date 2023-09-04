@@ -56,7 +56,6 @@ namespace PHPCR\Query\QOM;
 interface ComparisonInterface extends ConstraintInterface
 {
     /**
-     *
      * Gets the first operand.
      *
      * @return DynamicOperandInterface the operand

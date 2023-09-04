@@ -1,4 +1,5 @@
 <?php
+
 namespace PHPCR\Tests;
 
 use PHPCR\CredentialsInterface;
@@ -9,7 +10,7 @@ class GuestCredentialsTest extends TestCase
 {
     public function testGuestCredentials()
     {
-        $credentials = new GuestCredentials;
+        $credentials = new GuestCredentials();
         $this->assertInstanceOf(CredentialsInterface::class, $credentials);
     }
 }

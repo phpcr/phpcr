@@ -2,8 +2,6 @@
 
 namespace PHPCR;
 
-use RuntimeException;
-
 /**
  * Main exception thrown by classes in this package.
  *
@@ -14,6 +12,6 @@ use RuntimeException;
  *
  * @api
  */
-class RepositoryException extends RuntimeException
+class RepositoryException extends \RuntimeException
 {
 }

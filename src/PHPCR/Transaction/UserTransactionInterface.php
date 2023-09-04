@@ -2,7 +2,6 @@
 
 namespace PHPCR\Transaction;
 
-use LogicException;
 use PHPCR\AccessDeniedException;
 use PHPCR\RepositoryException;
 use PHPCR\UnsupportedRepositoryOperationException;
@@ -11,7 +10,7 @@ use PHPCR\UnsupportedRepositoryOperationException;
  * As there is no transaction standard in PHP this interface provides a
  * transaction interface similar to the
  * <a href="http://en.wikipedia.org/wiki/Java_Transaction_API">Java Transaction
- * API (JTA)</a>
+ * API (JTA)</a>.
  *
  * You can acquire the transaction manager from a session supporting
  * transactions with \PHPCR\SessionInterface::getTransactionManager()
@@ -52,7 +51,6 @@ use PHPCR\UnsupportedRepositoryOperationException;
  * @see SessionInterface::getTransactionManager()
  *
  * @author Johannes Stark <starkj@gmx.de>
- *
  * @license http://www.apache.org/licenses Apache License Version 2.0, January 2004
  * @license http://opensource.org/licenses/MIT MIT License
  *
@@ -63,12 +61,11 @@ interface UserTransactionInterface
     /**
      * Begin new transaction associated with current session.
      *
-     * @throws UnsupportedRepositoryOperationException Thrown if a
-     *      transaction is already started and the transaction implementation
-     *      or backend does not support nested transactions.
-     *
-     * @throws RepositoryException Thrown if the transaction
-     *      implementation encounters an unexpected error condition.
+     * @throws UnsupportedRepositoryOperationException thrown if a
+     *                                                 transaction is already started and the transaction implementation
+     *                                                 or backend does not support nested transactions
+     * @throws RepositoryException                     thrown if the transaction
+     *                                                 implementation encounters an unexpected error condition
      */
     public function begin();
 
@@ -76,14 +73,14 @@ interface UserTransactionInterface
      * Commit the transaction associated with the current session to store it
      * persistently.
      *
-     * @throws RollbackException Thrown to indicate that the transaction has
-     *      been rolled back rather than committed.
-     * @throws AccessDeniedException Thrown to indicate that the
-     *      session is not allowed to commit the transaction.
-     * @throws LogicException Thrown if the current
-     *      session is not associated with a transaction.
-     * @throws RepositoryException Thrown if the transaction
-     *      implementation encounters an unexpected error condition.
+     * @throws RollbackException     thrown to indicate that the transaction has
+     *                               been rolled back rather than committed
+     * @throws AccessDeniedException thrown to indicate that the
+     *                               session is not allowed to commit the transaction
+     * @throws \LogicException       thrown if the current
+     *                               session is not associated with a transaction
+     * @throws RepositoryException   thrown if the transaction
+     *                               implementation encounters an unexpected error condition
      */
     public function commit();
 
@@ -91,22 +88,22 @@ interface UserTransactionInterface
      * Obtain the status if the current session is inside of a transaction or
      * not.
      *
-     * @return boolean
+     * @return bool
      *
-     * @throws RepositoryException Thrown if the transaction
-     *      implementation encounters an unexpected error condition.
+     * @throws RepositoryException thrown if the transaction
+     *                             implementation encounters an unexpected error condition
      */
     public function inTransaction();
 
     /**
      * Rollback the transaction associated with the current session.
      *
-     * @throws AccessDeniedException Thrown to indicate that the
-     *      application is not allowed to roll back the transaction.
-     * @throws LogicException Thrown if the current session is not associated
-     *      with a transaction.
-     * @throws RepositoryException Thrown if the transaction
-     *      implementation encounters an unexpected error condition.
+     * @throws AccessDeniedException thrown to indicate that the
+     *                               application is not allowed to roll back the transaction
+     * @throws \LogicException       thrown if the current session is not associated
+     *                               with a transaction
+     * @throws RepositoryException   thrown if the transaction
+     *                               implementation encounters an unexpected error condition
      */
     public function rollback();
 
@@ -119,11 +116,11 @@ interface UserTransactionInterface
      * timeout.
      *
      * @param int $seconds The value of the timeout in seconds. If the value is
-     *      zero, the transaction service restores the default value. If the
-     *      value is negative a RepositoryException is thrown.
+     *                     zero, the transaction service restores the default value. If the
+     *                     value is negative a RepositoryException is thrown.
      *
-     * @throws RepositoryException Thrown if the transaction
-     *      implementation encounters an unexpected error condition.
+     * @throws RepositoryException thrown if the transaction
+     *                             implementation encounters an unexpected error condition
      */
     public function setTransactionTimeout($seconds = 0);
 }

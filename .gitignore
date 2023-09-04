@@ -1,5 +1,7 @@
 .buildpath
 .project
 .settings/
+composer.lock
 doc/config/phpdoc.ini
 doc/html
+vendor/

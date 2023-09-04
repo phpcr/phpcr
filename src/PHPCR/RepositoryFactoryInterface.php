@@ -42,16 +42,16 @@ interface RepositoryFactoryInterface
      * implementation should throw an RepositoryException if it is the right
      * factory but has trouble connecting to the repository.
      *
-     * @param array|null $parameters string key/value pairs as repository
-     *      arguments or null if a client wishes to connect to a default
-     *      repository.
+     * @param array<string, mixed>|null $parameters string key/value pairs as repository
+     *                                              arguments or null if a client wishes to connect to a default
+     *                                              repository
      *
-     * @return RepositoryInterface The repository for these parameters.
+     * @return RepositoryInterface the repository for these parameters
      *
      * @throws ConfigurationException if a required parameter is missing from
-     *      the parameters or an unknown parameter is found in the list.
-     * @throws RepositoryException if no suitable repository is found or
-     *      another error occurs.
+     *                                the parameters or an unknown parameter is found in the list
+     * @throws RepositoryException    if no suitable repository is found or
+     *                                another error occurs
      *
      * @api
      */
@@ -59,12 +59,12 @@ interface RepositoryFactoryInterface
 
     /**
      * Get the list of configuration options that can be passed to
-     * RepositoryFactoryInterface::getRepository()
+     * RepositoryFactoryInterface::getRepository().
      *
      * The description string should include whether the key is mandatory or
      * optional.
      *
-     * @return array hash map of configuration key => english description
+     * @return array<string, string> hash map of configuration key => english description
      *
      * @api
      */

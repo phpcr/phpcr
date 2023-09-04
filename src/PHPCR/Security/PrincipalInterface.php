@@ -4,7 +4,7 @@ namespace PHPCR\Security;
 
 /**
  * As there are no ACL standard interfaces in PHP this interface provides the
- * Principal interface similar to the java.security.Principal
+ * Principal interface similar to the java.security.Principal.
  *
  * The Principal is any entity that can be assigned privileges. E.g. a person,
  * a role, a computer.
@@ -27,10 +27,8 @@ interface PrincipalInterface
      * the === operator is too strict, as there could be two instances of the
      * same principal.
      *
-     * @param mixed $object
-     *
-     * @return boolean true if the principal passed to the method is the same
-     *      as this object
+     * @return bool true if the principal passed to the method is the same
+     *              as this object
      */
     public function equals($object);
 
@@ -40,7 +38,7 @@ interface PrincipalInterface
      * However it should be unique inside your application for different
      * principals.
      *
-     * @return int a hashcode for this principal.
+     * @return int a hashcode for this principal
      */
     public function hashCode();
 

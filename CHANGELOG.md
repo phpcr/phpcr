@@ -1,6 +1,12 @@
 Changelog
 =========
 
+2.1.8
+-----
+
+* **2023-09-04**: Improve phpdoc to work nicely with static code analysers: Generics, param and return types.
+  There are no BC break because this is "only" documentation, but code analysers and other code quality tools might now report if you use the API incorrectly. 
+
 2.1.7
 -----
 

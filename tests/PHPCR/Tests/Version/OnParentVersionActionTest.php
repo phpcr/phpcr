@@ -1,26 +1,26 @@
 <?php
+
 namespace PHPCR\Tests\Version;
 
-use InvalidArgumentException;
 use PHPCR\Version\OnParentVersionAction;
 use PHPUnit\Framework\TestCase;
 
 /**
- * a test for the PHPCR\PropertyType class
+ * a test for the PHPCR\PropertyType class.
  */
 class OnParentVersionActionTest extends TestCase
 {
     /**
      * key = numeric type constant names as defined by api
-     * value = string for valueFromType
+     * value = string for valueFromType.
      */
     protected static $types = [
-        'COPY'       => 1,
-        'VERSION'    => 2,
+        'COPY' => 1,
+        'VERSION' => 2,
         'INITIALIZE' => 3,
-        'COMPUTE'    => 4,
-        'IGNORE'     => 5,
-        'ABORT'      => 6,
+        'COMPUTE' => 4,
+        'IGNORE' => 5,
+        'ABORT' => 6,
     ];
 
     public static function data()
@@ -28,7 +28,7 @@ class OnParentVersionActionTest extends TestCase
         $data = [];
 
         foreach (self::$types as $key => $value) {
-            $data[] = [$key,$value];
+            $data[] = [$key, $value];
         }
 
         return $data;
@@ -44,7 +44,7 @@ class OnParentVersionActionTest extends TestCase
 
     public function testNameFromValueInvalid()
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(\InvalidArgumentException::class);
 
         OnParentVersionAction::nameFromValue(-1);
     }
@@ -59,7 +59,7 @@ class OnParentVersionActionTest extends TestCase
 
     public function testValueFromNameInvalid()
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(\InvalidArgumentException::class);
 
         OnParentVersionAction::valueFromName('something');
     }

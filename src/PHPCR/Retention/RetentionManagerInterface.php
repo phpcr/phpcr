@@ -24,17 +24,17 @@ interface RetentionManagerInterface
      *
      * If no hold has been set before, this method returns an empty array.
      *
-     * @param string $absPath The absolute path to a node.
+     * @param string $absPath the absolute path to a node
      *
      * @return HoldInterface[] All holds that have been added to the existing
-     *      node at absPath through this API. Empty array if no hold has been
-     *      set.
+     *                         node at absPath through this API. Empty array if no hold has been
+     *                         set.
      *
      * @throws PathNotFoundException if no node at absPath exists or the
-     *      session does not have sufficient access to retrieve the node.
+     *                               session does not have sufficient access to retrieve the node
      * @throws AccessDeniedException if the current session does not
-     *      have sufficient access to retrieve the holds.
-     * @throws RepositoryException if another error occurs.
+     *                               have sufficient access to retrieve the holds
+     * @throws RepositoryException   if another error occurs
      *
      * @api
      */
@@ -48,24 +48,24 @@ interface RetentionManagerInterface
      * more than one hold. The format and interpretation of the name are not
      * specified. They are application-dependent.
      *
-     * @param string  $absPath The absolute path to a node.
-     * @param string  $name    An application-dependent string.
-     * @param boolean $isDeep  A boolean indicating if the hold applies to the
-     *      subgraph.
+     * @param string $absPath the absolute path to a node
+     * @param string $name    an application-dependent string
+     * @param bool   $isDeep  a boolean indicating if the hold applies to the
+     *                        subgraph
      *
-     * @return HoldInterface The Hold applied.
+     * @return HoldInterface the Hold applied
      *
      * @throws PathNotFoundException if no node at $absPath exists or
-     *      the session does not have sufficient access to retrieve the node.
+     *                               the session does not have sufficient access to retrieve the node
      * @throws AccessDeniedException if the current session does not
-     *      have sufficient access to perform the operation.
-     * @throws LockException if a lock applies at the node at
-     *      $absPath and this implementation performs this validation
-     *      immediately.
-     * @throws VersionException if the node at $absPath is
-     *      read-only due to a checked-in node and this implementation performs
-     *      this validation immediately.
-     * @throws RepositoryException if another error occurs.
+     *                               have sufficient access to perform the operation
+     * @throws LockException         if a lock applies at the node at
+     *                               $absPath and this implementation performs this validation
+     *                               immediately
+     * @throws VersionException      if the node at $absPath is
+     *                               read-only due to a checked-in node and this implementation performs
+     *                               this validation immediately
+     * @throws RepositoryException   if another error occurs
      *
      * @api
      */
@@ -76,20 +76,20 @@ interface RetentionManagerInterface
      *
      * The removal does not take effect until a save is performed.
      *
-     * @param string        $absPath an absolute path.
-     * @param HoldInterface $hold    the hold to be removed.
+     * @param string        $absPath an absolute path
+     * @param HoldInterface $hold    the hold to be removed
      *
      * @throws PathNotFoundException if no node at $absPath exists or
-     *      the session does not have sufficient access to retrieve the node.
+     *                               the session does not have sufficient access to retrieve the node
      * @throws AccessDeniedException if the current session does not
-     *      have sufficient access to perform the operation.
-     * @throws LockException if a lock applies at the node at
-     *      $absPath and this implementation performs this validation
-     *      immediately.
-     * @throws VersionException if the node at $absPath is
-     *      read-only due to a checked-in node and this implementation performs
-     *      this validation immediately.
-     * @throws RepositoryException if another error occurs.
+     *                               have sufficient access to perform the operation
+     * @throws LockException         if a lock applies at the node at
+     *                               $absPath and this implementation performs this validation
+     *                               immediately
+     * @throws VersionException      if the node at $absPath is
+     *                               read-only due to a checked-in node and this implementation performs
+     *                               this validation immediately
+     * @throws RepositoryException   if another error occurs
      *
      * @api
      */
@@ -102,16 +102,16 @@ interface RetentionManagerInterface
      * setRetentionPolicy() on the node at $absPath or null if no policy has
      * been set.
      *
-     * @param string $absPath an absolute path to an existing node.
+     * @param string $absPath an absolute path to an existing node
      *
-     * @return RetentionPolicyInterface The retention policy that applies to
-     *      the existing node at $absPath or null if no policy applies.
+     * @return RetentionPolicyInterface the retention policy that applies to
+     *                                  the existing node at $absPath or null if no policy applies
      *
      * @throws PathNotFoundException if no node at $absPath exists or
-     *      the session does not have sufficient access to retrieve the node.
+     *                               the session does not have sufficient access to retrieve the node
      * @throws AccessDeniedException if the current session does not
-     *      have sufficient access to retrieve the policy.
-     * @throws RepositoryException if another error occurs.
+     *                               have sufficient access to retrieve the policy
+     * @throws RepositoryException   if another error occurs
      *
      * @api
      */
@@ -125,21 +125,21 @@ interface RetentionManagerInterface
      * an implementation issue. In any case the policy does does not take
      * effect until a save is performed.
      *
-     * @param string                   $absPath         an absolute path to an existing node.
+     * @param string                   $absPath         an absolute path to an existing node
      * @param RetentionPolicyInterface $retentionPolicy a
-     *      retention policy.
+     *                                                  retention policy
      *
      * @throws PathNotFoundException if no node at $absPath exists or
-     *      the session does not have sufficient access to retrieve the node.
+     *                               the session does not have sufficient access to retrieve the node
      * @throws AccessDeniedException if the current session does not
-     *      have sufficient access to perform the operation.
-     * @throws LockException if a lock applies at the node at
-     *      $absPath and this implementation performs this validation
-     *      immediately.
-     * @throws VersionException if the node at $absPath is
-     *      read-only due to a checked-in node and this implementation performs
-     *      this validation immediately.
-     * @throws RepositoryException if another error occurs.
+     *                               have sufficient access to perform the operation
+     * @throws LockException         if a lock applies at the node at
+     *                               $absPath and this implementation performs this validation
+     *                               immediately
+     * @throws VersionException      if the node at $absPath is
+     *                               read-only due to a checked-in node and this implementation performs
+     *                               this validation immediately
+     * @throws RepositoryException   if another error occurs
      *
      * @api
      */
@@ -151,19 +151,19 @@ interface RetentionManagerInterface
      * Causes the current retention policy on the node at $absPath to no longer
      * apply. The removal does not take effect until a save is performed.
      *
-     * @param string $absPath an absolute path to an existing node.
+     * @param string $absPath an absolute path to an existing node
      *
      * @throws PathNotFoundException if no node at $absPath exists or
-     *      the session does not have sufficient access to retrieve the node.
+     *                               the session does not have sufficient access to retrieve the node
      * @throws AccessDeniedException if the current session does not
-     *      have sufficient access to perform the operation.
-     * @throws LockException if a lock applies at the node at
-     *      $absPath and this implementation performs this validation
-     *      immediately.
-     * @throws VersionException if the node at $absPath is
-     *      read-only due to a checked-in node and this implementation performs
-     *      this validation immediately.
-     * @throws RepositoryException if another error occurs.
+     *                               have sufficient access to perform the operation
+     * @throws LockException         if a lock applies at the node at
+     *                               $absPath and this implementation performs this validation
+     *                               immediately
+     * @throws VersionException      if the node at $absPath is
+     *                               read-only due to a checked-in node and this implementation performs
+     *                               this validation immediately
+     * @throws RepositoryException   if another error occurs
      *
      * @api
      */

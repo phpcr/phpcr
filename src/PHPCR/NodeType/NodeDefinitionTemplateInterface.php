@@ -21,7 +21,7 @@ interface NodeDefinitionTemplateInterface extends NodeDefinitionInterface
     /**
      * Sets the name of the node.
      *
-     * @param string $name The name of the node.
+     * @param string $name the name of the node
      *
      * @api
      */
@@ -30,8 +30,8 @@ interface NodeDefinitionTemplateInterface extends NodeDefinitionInterface
     /**
      * Sets the auto-create status of the node.
      *
-     * @param boolean $autoCreated The status the autocreate attribute of the
-     *      node shall have.
+     * @param bool $autoCreated the status the autocreate attribute of the
+     *                          node shall have
      *
      * @api
      */
@@ -40,7 +40,7 @@ interface NodeDefinitionTemplateInterface extends NodeDefinitionInterface
     /**
      * Sets the mandatory status of the node.
      *
-     * @param boolean $mandatory The status of the mandatory attribute.
+     * @param bool $mandatory the status of the mandatory attribute
      *
      * @api
      */
@@ -49,7 +49,7 @@ interface NodeDefinitionTemplateInterface extends NodeDefinitionInterface
     /**
      * Sets the on-parent-version status of the node.
      *
-     * @param integer $opv An integer constant member of OnParentVersionAction.
+     * @param int $opv an integer constant member of OnParentVersionAction
      *
      * @api
      */
@@ -58,7 +58,7 @@ interface NodeDefinitionTemplateInterface extends NodeDefinitionInterface
     /**
      * Sets the protected status of the node.
      *
-     * @param boolean $protectedStatus The status of the protected attribute.
+     * @param bool $protectedStatus the status of the protected attribute
      *
      * @api
      */
@@ -67,8 +67,8 @@ interface NodeDefinitionTemplateInterface extends NodeDefinitionInterface
     /**
      * Sets the names of the required primary types of this node.
      *
-     * @param array $requiredPrimaryTypeNames List of primary type names to be
-     *      registered.
+     * @param string[] $requiredPrimaryTypeNames list of primary type names to be
+     *                                           registered
      *
      * @api
      */
@@ -77,8 +77,8 @@ interface NodeDefinitionTemplateInterface extends NodeDefinitionInterface
     /**
      * Sets the name of the default primary type of this node.
      *
-     * @param string $defaultPrimaryTypeName The name of a primary type name to
-     *      be registered.
+     * @param string $defaultPrimaryTypeName the name of a primary type name to
+     *                                       be registered
      *
      * @api
      */
@@ -87,8 +87,8 @@ interface NodeDefinitionTemplateInterface extends NodeDefinitionInterface
     /**
      * Sets the same-name sibling status of this node.
      *
-     * @param boolean $allowSameNameSiblings Whether same-name siblings of this
-     *      node should be allowed
+     * @param bool $allowSameNameSiblings Whether same-name siblings of this
+     *                                    node should be allowed
      *
      * @api
      */

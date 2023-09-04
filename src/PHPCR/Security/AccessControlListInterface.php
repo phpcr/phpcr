@@ -13,12 +13,14 @@ use Traversable;
  * consequently defines methods to read and mutate the list i.e. to get, add or
  * remove individual AccessControlEntryInterface instances.
  *
- * The \Traversable interface enables the implementation to be addressed with
+ * The Traversable interface enables the implementation to be addressed with
  * <b>foreach</b>. AccessControlList has to implement either \RecursiveIterator
  * or \Iterator.
  * The iterator is equivalent to <b>getAccessControlEntries()</b> returning
  * AccessControlEntryInterface instances. The iterator keys have no significant
  * meaning.
+ *
+ * @extends Traversable<AccessControlEntryInterface>
  *
  * @license http://www.apache.org/licenses Apache License Version 2.0, January 2004
  * @license http://opensource.org/licenses/MIT MIT License
@@ -33,10 +35,9 @@ interface AccessControlListInterface extends AccessControlPolicyInterface, Trave
      * This method is only guaranteed to return an access control entry object
      * if that access control entry object has been assigned through this API.
      *
-     * @return AccessControlEntryInterface[] an array of all
-     *      AccessControlEntries present with this policy.
+     * @return AccessControlEntryInterface[] all AccessControlEntries present with this policy
      *
-     * @throws RepositoryException - if an error occurs.
+     * @throws repositoryException - if an error occurs
      *
      * @api
      */
@@ -59,16 +60,16 @@ interface AccessControlListInterface extends AccessControlPolicyInterface, Trave
      * a node by calling AccessControlManagerInterface::setPolicy() and
      * Session::save is performed.
      *
-     * @param PrincipalInterface $principal the entity that should have this
-     *      privilege
-     * @param array $privileges - an array of Privileges.
+     * @param PrincipalInterface   $principal  the entity that should have this
+     *                                         privilege
+     * @param PrivilegeInterface[] $privileges
      *
-     * @return boolean true if this policy was modify; false otherwise.
+     * @return bool true if this policy was modify; false otherwise
      *
      * @throws AccessControlException if the specified principal or any of the
-     *      privileges does not exist or if some other access control related
-     *      exception occurs.
-     * @throws RepositoryException - if another error occurs.
+     *                                privileges does not exist or if some other access control related
+     *                                exception occurs
+     * @throws repositoryException    - if another error occurs
      *
      * @api
      */
@@ -83,11 +84,11 @@ interface AccessControlListInterface extends AccessControlPolicyInterface, Trave
      * and save is performed.
      *
      * @param AccessControlEntryInterface $ace the access control entry to be
-     *      removed.
+     *                                         removed
      *
      * @throws AccessControlException if the specified entry is not present on
-     *      the specified node.
-     * @throws RepositoryException if another error occurs.
+     *                                the specified node
+     * @throws RepositoryException    if another error occurs
      *
      * @api
      */

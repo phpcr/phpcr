@@ -3,7 +3,7 @@
 namespace PHPCR;
 
 /**
- * The possible actions specified by the uuidBehavior parameter in
+ * The possible actions specified by the uuidBehavior parameter in.
  *
  * - WorkspaceInterface::importXML()
  * - SessionInterface::importXML()

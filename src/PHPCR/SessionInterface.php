@@ -10,8 +10,6 @@ use PHPCR\Retention\RetentionManagerInterface;
 use PHPCR\Security\AccessControlException;
 use PHPCR\Security\AccessControlManagerInterface;
 use PHPCR\Version\VersionException;
-use RuntimeException;
-use Traversable;
 
 /**
  * Describes the implementation of a session class.
@@ -83,7 +81,7 @@ interface SessionInterface
     /**
      * Returns the Repository object through which this session was acquired.
      *
-     * @return RepositoryInterface a Repository object.
+     * @return RepositoryInterface a Repository object
      *
      * @api
      */
@@ -97,7 +95,7 @@ interface SessionInterface
      * some other way. This method is free to return an "anonymous user ID" or
      * null.
      *
-     * @return string The user id associated with this Session.
+     * @return string the user id associated with this Session
      *
      * @api
      */
@@ -111,8 +109,8 @@ interface SessionInterface
      * example, SimpleCredentials does allow for them). This method returns an
      * empty array if the Credentials instance did not provide attributes.
      *
-     * @return array A string array containing the names of all attributes
-     *      passed in the credentials used to acquire this session.
+     * @return string[] the names of all attributes passed in the credentials
+     *                  used to acquire this session
      *
      * @api
      */
@@ -122,11 +120,11 @@ interface SessionInterface
      * Returns the value of the named attribute, or null if no
      * attribute of the given name exists. See getAttributeNames().
      *
-     * @param string $name The name of an attribute passed in the credentials
-     *      used to acquire this session.
+     * @param string $name the name of an attribute passed in the credentials
+     *                     used to acquire this session
      *
-     * @return mixed The value of the attribute or null if no attribute of the
-     *      given name exists.
+     * @return mixed the value of the attribute or null if no attribute of the
+     *               given name exists
      *
      * @api
      */
@@ -135,7 +133,7 @@ interface SessionInterface
     /**
      * Returns the Workspace attached to this Session.
      *
-     * @return WorkspaceInterface a Workspace object.
+     * @return WorkspaceInterface a Workspace object
      *
      * @api
      */
@@ -146,9 +144,9 @@ interface SessionInterface
      *
      * This node is the main access point to the content of the workspace.
      *
-     * @return NodeInterface The root node of the workspace: a Node object.
+     * @return NodeInterface the root node of the workspace: a Node object
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -175,9 +173,9 @@ interface SessionInterface
      *
      * @return SessionInterface a Session object
      *
-     * @throws LoginException if the current session does not have
-     *      sufficient access to perform the operation.
-     * @throws RepositoryException if another error occurs.
+     * @throws LoginException      if the current session does not have
+     *                             sufficient access to perform the operation
+     * @throws RepositoryException if another error occurs
      *
      * @api
      */
@@ -188,14 +186,14 @@ interface SessionInterface
      *
      * Applies to both referenceable and non-referenceable nodes.
      *
-     * @param string $id An identifier.
+     * @param string $id an identifier
      *
-     * @return NodeInterface A Node.
+     * @return NodeInterface a Node
      *
      * @throws ItemNotFoundException if no node with the specified
-     *      identifier exists or if this Session does not have read access to
-     *      the node with the specified identifier.
-     * @throws RepositoryException if another error occurs.
+     *                               identifier exists or if this Session does not have read access to
+     *                               the node with the specified identifier
+     * @throws RepositoryException   if another error occurs
      *
      * @api
      */
@@ -212,13 +210,12 @@ interface SessionInterface
      * Duplicate IDs passed to this method will be eliminated by nature of
      * using the IDs as keys.
      *
-     * @param array|\Traversable $ids A list of identifiers.
+     * @param string[]|\Traversable<string> $ids a list of identifiers
      *
-     * @return \Iterator over all (matching) child Nodes implementing
-     *      <b>SeekableIterator</b> and <b>Countable</b>. Keys are the
-     *      identifiers, values the corresponding NodeInterface instances.
+     * @return \Iterator<string, NodeInterface> over all (matching) child Nodes implementing <b>SeekableIterator</b>
+     *                                          and <b>Countable</b>. Keys are the identifiers.
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @since JCR 2.1
      *
@@ -237,13 +234,13 @@ interface SessionInterface
      * repository implementations the node and property-specific methods are
      * likely to be more efficient than getItem.
      *
-     * @param string $absPath An absolute path.
+     * @param string $absPath an absolute path
      *
      * @return ItemInterface
      *
      * @throws PathNotFoundException if no accessible item is found at
-     *      the specified path.
-     * @throws RepositoryException if another error occurs.
+     *                               the specified path
+     * @throws RepositoryException   if another error occurs
      *
      * @api
      */
@@ -284,13 +281,13 @@ interface SessionInterface
      * large. In order to guarantee a retrieval to the maximum depth possible,
      * the client can set $depthHint to PHP_INT_MAX.
      *
-     * @param string $absPath   An absolute path.
+     * @param string $absPath   an absolute path
      * @param int    $depthHint The requested caching depth
      *
      * @return NodeInterface A node
      *
-     * @throws PathNotFoundException if no accessible node is found at the specified path.
-     * @throws RepositoryException   if another error occurs.
+     * @throws PathNotFoundException if no accessible node is found at the specified path
+     * @throws RepositoryException   if another error occurs
      *
      * @api
      */
@@ -306,13 +303,12 @@ interface SessionInterface
      * If none of the specified paths leads to an existing and accessible
      * node then an empty iterator is returned.
      *
-     * @param array|Traversable $absPaths A list of absolute paths.
+     * @param string[]|\Traversable<string> $absPaths a list of absolute paths
      *
-     * @return Iterator over all (matching) child Nodes implementing
-     *      <b>SeekableIterator</b> and <b>Countable</b>. Keys are the
-     *      paths, values the corresponding NodeInterface instances.
+     * @return \Iterator<string, NodeInterface> over all (matching) child Nodes implementing <b>SeekableIterator</b>
+     *                                          and <b>Countable</b>. Keys are the paths.
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @since JCR 2.1
      *
@@ -323,13 +319,13 @@ interface SessionInterface
     /**
      * Returns the property at the specified absolute path in the workspace.
      *
-     * @param string $absPath An absolute path.
+     * @param string $absPath an absolute path
      *
      * @return PropertyInterface A property
      *
      * @throws PathNotFoundException if no accessible property is found
-     *      at the specified path.
-     * @throws RepositoryException if another error occurs.
+     *                               at the specified path
+     * @throws RepositoryException   if another error occurs
      *
      * @api
      */
@@ -342,13 +338,12 @@ interface SessionInterface
      * If none of the specified paths leads to an existing and accessible
      * property then an empty iterator is returned.
      *
-     * @param array|Traversable $absPaths A list of absolute paths to properties.
+     * @param string[]|\Traversable<string> $absPaths a list of absolute paths to properties
      *
-     * @return Iterator over all (matching) child Nodes implementing
-     *      <b>SeekableIterator</b> and <b>Countable</b>. Keys are the
-     *      paths, values the corresponding NodeInterface instances.
+     * @return \Iterator<string, PropertyInterface> over all (matching) child Nodes implementing <b>SeekableIterator</b>
+     *                                              and <b>Countable</b>. Keys are the paths.
      *
-     * @throws RepositoryException If an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @since JCR 2.1
      *
@@ -362,12 +357,12 @@ interface SessionInterface
      * Returns true if an item exists at absPath and this Session has read
      * access to it; otherwise returns false.
      *
-     * @param string $absPath An absolute path to an item to be found.
+     * @param string $absPath an absolute path to an item to be found
      *
-     * @return boolean True if the item exists, else false.
+     * @return bool true if the item exists, else false
      *
      * @throws RepositoryException if absPath is not a well-formed
-     *      absolute path.
+     *                             absolute path
      *
      * @api
      */
@@ -379,12 +374,12 @@ interface SessionInterface
      * Returns true if a node exists at absPath and this Session has read
      * access to it; otherwise returns false.
      *
-     * @param string $absPath An absolute path to the node to be found.
+     * @param string $absPath an absolute path to the node to be found
      *
-     * @return boolean True if the item does esist
+     * @return bool True if the item does esist
      *
      * @throws RepositoryException if absPath is not a well-formed
-     *      absolute path.
+     *                             absolute path
      *
      * @api
      */
@@ -396,12 +391,12 @@ interface SessionInterface
      * Returns true if a property exists at absPath and this Session has read
      * access to it; otherwise returns false.
      *
-     * @param string $absPath An absolute path to the property to be found.
+     * @param string $absPath an absolute path to the property to be found
      *
-     * @return boolean True if the property is available.
+     * @return bool true if the property is available
      *
      * @throws RepositoryException if absPath is not a well-formed
-     *      absolute path.
+     *                             absolute path
      *
      * @api
      */
@@ -438,27 +433,27 @@ interface SessionInterface
      * This method cannot be used to move an individual property by itself. It
      * moves an entire node and its subgraph.
      *
-     * @param string $srcAbsPath  the root of the subgraph to be moved.
+     * @param string $srcAbsPath  the root of the subgraph to be moved
      * @param string $destAbsPath the location to which the subgraph is to be
-     *      moved.
+     *                            moved
      *
-     * @throws ItemExistsException if a node already exists at
-     *      destAbsPath and same-name siblings are not allowed.
-     * @throws PathNotFoundException if either srcAbsPath or destAbsPath
-     *      cannot be found and this implementation performs this validation
-     *      immediately.
-     * @throws VersionException if the parent node of
-     *      destAbsPath or the parent node of srcAbsPath is versionable and
-     *      checked-in, or or is non-versionable and its nearest versionable
-     *      ancestor is checked-in and this implementation performs this
-     *      validation immediately.
+     * @throws ItemExistsException          if a node already exists at
+     *                                      destAbsPath and same-name siblings are not allowed
+     * @throws PathNotFoundException        if either srcAbsPath or destAbsPath
+     *                                      cannot be found and this implementation performs this validation
+     *                                      immediately
+     * @throws VersionException             if the parent node of
+     *                                      destAbsPath or the parent node of srcAbsPath is versionable and
+     *                                      checked-in, or or is non-versionable and its nearest versionable
+     *                                      ancestor is checked-in and this implementation performs this
+     *                                      validation immediately
      * @throws ConstraintViolationException if a node-type or
-     *      other constraint violation is detected immediately and this
-     *      implementation performs this validation immediately.
-     * @throws LockException if the move operation would violate a
-     *      lock and this implementation performs this validation immediately.
-     * @throws RepositoryException if the last element of destAbsPath
-     *      has an index or if another error occurs.
+     *                                      other constraint violation is detected immediately and this
+     *                                      implementation performs this validation immediately
+     * @throws LockException                if the move operation would violate a
+     *                                      lock and this implementation performs this validation immediately
+     * @throws RepositoryException          if the last element of destAbsPath
+     *                                      has an index or if another error occurs
      *
      * @api
      */
@@ -476,25 +471,25 @@ interface SessionInterface
      * siblings and causes the minimal re-numbering required to maintain the
      * original order but leave no gaps in the numbering.
      *
-     * @param string $absPath the absolute path of the item to be removed.
+     * @param string $absPath the absolute path of the item to be removed
      *
-     * @throws VersionException if the parent node of the item
-     *      at absPath is read-only due to a checked-in node and this
-     *      implementation performs this validation immediately.
-     * @throws LockException if a lock prevents the removal of the
-     *      specified item and this implementation performs this validation
-     *      immediately instead.
+     * @throws VersionException             if the parent node of the item
+     *                                      at absPath is read-only due to a checked-in node and this
+     *                                      implementation performs this validation immediately
+     * @throws LockException                if a lock prevents the removal of the
+     *                                      specified item and this implementation performs this validation
+     *                                      immediately instead
      * @throws ConstraintViolationException if removing the
-     *      specified item would violate a node type or implementation-specific
-     *      constraint and this implementation performs this validation
-     *      immediately.
-     * @throws PathNotFoundException if no accessible item is found at
-     *      $absPath property or if the specified item or an item in its
-     *      subgraph is currently the target of a REFERENCE property located in
-     *      this workspace but outside the specified item's subgraph and the
-     *      current Session does not have read access to that REFERENCE
-     *      property.
-     * @throws RepositoryException if another error occurs.
+     *                                      specified item would violate a node type or implementation-specific
+     *                                      constraint and this implementation performs this validation
+     *                                      immediately
+     * @throws PathNotFoundException        if no accessible item is found at
+     *                                      $absPath property or if the specified item or an item in its
+     *                                      subgraph is currently the target of a REFERENCE property located in
+     *                                      this workspace but outside the specified item's subgraph and the
+     *                                      current Session does not have read access to that REFERENCE
+     *                                      property
+     * @throws RepositoryException          if another error occurs
      *
      * @see Item::remove()
      *
@@ -518,35 +513,35 @@ interface SessionInterface
      * If validation fails, then no pending changes are dispatched and they
      * remain recorded on the Session. There is no best-effort or partial save.
      *
-     * @throws AccessDeniedException if any of the changes to be
-     *      persisted would violate the access privileges of the this Session.
-     *      Also thrown if any of the changes to be persisted would cause the
-     *      removal of a node that is currently referenced by a REFERENCE
-     *      property that this Session does not have read access to.
-     * @throws ItemExistsException if any of the changes to be persisted
-     *      would be prevented by the presence of an already existing item in
-     *      the workspace.
-     * @throws ConstraintViolationException if any of the
-     *      changes to be persisted would violate a node type or restriction.
-     *      Additionally, a repository may use this exception to enforce
-     *      implementation- or configuration-dependent restrictions.
-     * @throws InvalidItemStateException if any of the changes to be
-     *      persisted conflicts with a change already persisted through another
-     *      session and the implementation is such that this conflict can only
-     *      be detected at save-time and therefore was not detected earlier, at
-     *      change-time.
+     * @throws AccessDeniedException         if any of the changes to be
+     *                                       persisted would violate the access privileges of the this Session.
+     *                                       Also thrown if any of the changes to be persisted would cause the
+     *                                       removal of a node that is currently referenced by a REFERENCE
+     *                                       property that this Session does not have read access to.
+     * @throws ItemExistsException           if any of the changes to be persisted
+     *                                       would be prevented by the presence of an already existing item in
+     *                                       the workspace
+     * @throws ConstraintViolationException  if any of the
+     *                                       changes to be persisted would violate a node type or restriction.
+     *                                       Additionally, a repository may use this exception to enforce
+     *                                       implementation- or configuration-dependent restrictions.
+     * @throws InvalidItemStateException     if any of the changes to be
+     *                                       persisted conflicts with a change already persisted through another
+     *                                       session and the implementation is such that this conflict can only
+     *                                       be detected at save-time and therefore was not detected earlier, at
+     *                                       change-time
      * @throws ReferentialIntegrityException if any of the changes to be
-     *      persisted would cause the removal of a node that is currently
-     *      referenced by a REFERENCE property that this Session has read
-     *      access to.
-     * @throws VersionException if the save would make a result
-     *      in a change to persistent storage that would violate the read-only
-     *      status of a checked-in node.
-     * @throws LockException if the save would result in a change
-     *      to persistent storage that would violate a lock.
-     * @throws NoSuchNodeTypeException if the save would result
-     *      in the addition of a node with an unrecognized node type.
-     * @throws RepositoryException if another error occurs.
+     *                                       persisted would cause the removal of a node that is currently
+     *                                       referenced by a REFERENCE property that this Session has read
+     *                                       access to
+     * @throws VersionException              if the save would make a result
+     *                                       in a change to persistent storage that would violate the read-only
+     *                                       status of a checked-in node
+     * @throws LockException                 if the save would result in a change
+     *                                       to persistent storage that would violate a lock
+     * @throws NoSuchNodeTypeException       if the save would result
+     *                                       in the addition of a node with an unrecognized node type
+     * @throws RepositoryException           if another error occurs
      *
      * @api
      */
@@ -570,10 +565,10 @@ interface SessionInterface
      * mark nodes as dirty and reload them from the backend only if actually
      * needed.
      *
-     * @param boolean $keepChanges Switch to override current changes kept in
-     *      the session.
+     * @param bool $keepChanges switch to override current changes kept in
+     *                          the session
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -585,7 +580,7 @@ interface SessionInterface
      * Returns true if this session holds pending (that is, unsaved) changes;
      * otherwise returns false.
      *
-     * @return boolean a boolean
+     * @return bool a boolean
      *
      * @throws RepositoryException if an error occurs
      *
@@ -625,13 +620,13 @@ interface SessionInterface
      * may add a property at /A/B/C, the node type of the node at /A/B may
      * prevent the addition of a property called C.
      *
-     * @param string $absPath an absolute path.
-     * @param string $actions a comma separated list of action strings.
+     * @param string $absPath an absolute path
+     * @param string $actions a comma separated list of action strings
      *
-     * @return boolean true if this Session has permission to perform the
-     *      specified actions at the specified absPath.
+     * @return bool true if this Session has permission to perform the
+     *              specified actions at the specified absPath
      *
-     * @throws RepositoryException if an error occurs.
+     * @throws RepositoryException if an error occurs
      *
      * @api
      */
@@ -672,11 +667,11 @@ interface SessionInterface
      * Session may add a property at /A/B/C, the node type of the node at /A/B
      * may prevent the addition of a property called C.
      *
-     * @param string $absPath an absolute path.
-     * @param string $actions a comma separated list of action strings.
+     * @param string $absPath an absolute path
+     * @param string $actions a comma separated list of action strings
      *
-     * @throws AccessControlException if permission is denied.
-     * @throws RepositoryException    if another error occurs.
+     * @throws AccessControlException if permission is denied
+     * @throws RepositoryException    if another error occurs
      *
      * @api
      */
@@ -684,7 +679,7 @@ interface SessionInterface
 
     /**
      * Checks whether an operation can be performed given as much context as
-     * can be determined by the repository, including:
+     * can be determined by the repository, including:.
      *
      * - Permissions granted to the current user, including access control
      *      privileges.
@@ -717,13 +712,13 @@ interface SessionInterface
      * will result in $b === false if a child node called foo cannot be added
      * to the node $n within the session $s.
      *
-     * @param string $methodName the name of the method.
-     * @param object $target     the target object of the operation.
-     * @param array  $arguments  the arguments of the operation.
+     * @param string               $methodName the name of the method
+     * @param object               $target     the target object of the operation
+     * @param array<string, mixed> $arguments  the arguments of the operation
      *
-     * @return boolean false if the operation cannot be performed, true if the
-     *      operation can be performed or if the repository cannot determine
-     *      whether the operation can be performed.
+     * @return bool false if the operation cannot be performed, true if the
+     *              operation can be performed or if the repository cannot determine
+     *              whether the operation can be performed
      *
      * @throws RepositoryException if an error occurs
      *
@@ -803,7 +798,7 @@ interface SessionInterface
      *
      * @param string $parentAbsPath the absolute path of a node under which (as
      *      child) the imported subgraph will be built.
-     * @param integer $uuidBehavior a four-value flag that governs how incoming
+     * @param int $uuidBehavior a four-value flag that governs how incoming
      *      identifiers are handled.
      *
      * @return ContentHandlerInterface whose methods may be called to
@@ -889,32 +884,32 @@ interface SessionInterface
      * is respected, and this is an implementation-specific issue.
      *
      * @param string $parentAbsPath the absolute path of the node below which
-     *      the deserialized subgraph is added.
-     * @param string $uri Source location for the XML to be read, Can be
-     *      anything that works with fopen.
-     * @param integer $uuidBehavior a four-value flag that governs how incoming
-     *      identifiers are handled.
+     *                              the deserialized subgraph is added
+     * @param string $uri           source location for the XML to be read, Can be
+     *                              anything that works with fopen
+     * @param int    $uuidBehavior  a four-value flag that governs how incoming
+     *                              identifiers are handled
      *
-     * @throws RuntimeException     if an error during an I/O operation occurs.
-     * @throws PathNotFoundException if no node exists at parentAbsPath
-     *      and this implementation performs this validation immediately.
-     * @throws ItemExistsException if deserialization would overwrite an
-     *      existing item and this implementation performs this validation
-     *      immediately.
-     * @throws ConstraintViolationException if a node type or
-     *      other implementation-specific constraint is violated that would be
-     *      checked on a session write method or if uuidBehavior is set to
-     *      IMPORT_UUID_COLLISION_REMOVE_EXISTING and an incoming node has the
-     *      same UUID as the node at parentAbsPath or one of its ancestors.
-     * @throws VersionException if the node at $parentAbsPath is
-     *      read-only due to a checked-in node and this implementation performs
-     *      this validation immediately.
+     * @throws \RuntimeException              if an error during an I/O operation occurs
+     * @throws PathNotFoundException          if no node exists at parentAbsPath
+     *                                        and this implementation performs this validation immediately
+     * @throws ItemExistsException            if deserialization would overwrite an
+     *                                        existing item and this implementation performs this validation
+     *                                        immediately
+     * @throws ConstraintViolationException   if a node type or
+     *                                        other implementation-specific constraint is violated that would be
+     *                                        checked on a session write method or if uuidBehavior is set to
+     *                                        IMPORT_UUID_COLLISION_REMOVE_EXISTING and an incoming node has the
+     *                                        same UUID as the node at parentAbsPath or one of its ancestors
+     * @throws VersionException               if the node at $parentAbsPath is
+     *                                        read-only due to a checked-in node and this implementation performs
+     *                                        this validation immediately
      * @throws InvalidSerializedDataException if incoming stream is not
-     *      a valid XML document.
-     * @throws LockException if a lock prevents the addition of the
-     *      subgraph and this implementation performs this validation
-     *      immediately.
-     * @throws RepositoryException if another error occurs.
+     *                                        a valid XML document
+     * @throws LockException                  if a lock prevents the addition of the
+     *                                        subgraph and this implementation performs this validation
+     *                                        immediately
+     * @throws RepositoryException            if another error occurs
      *
      * @api
      */
@@ -951,19 +946,19 @@ interface SessionInterface
      *
      * The output XML will be encoded in UTF-8.
      *
-     * @param string $absPath The path of the root of the subgraph to be
-     *      serialized. This must be the path to a node, not a property
-     * @param resource $stream The stream resource (i.e. acquired with fopen) to
-     *      which the XML serialization of the subgraph will be output. Must
-     *      support the fwrite method.
-     * @param boolean $skipBinary A boolean governing whether binary properties
-     *      are to be serialized.
-     * @param boolean $noRecurse A boolean governing whether the subgraph at
-     *      absPath is to be recursed.
+     * @param string   $absPath    The path of the root of the subgraph to be
+     *                             serialized. This must be the path to a node, not a property
+     * @param resource $stream     The stream resource (i.e. acquired with fopen) to
+     *                             which the XML serialization of the subgraph will be output. Must
+     *                             support the fwrite method.
+     * @param bool     $skipBinary a boolean governing whether binary properties
+     *                             are to be serialized
+     * @param bool     $noRecurse  a boolean governing whether the subgraph at
+     *                             absPath is to be recursed
      *
-     * @throws PathNotFoundException if no node exists at absPath.
-     * @throws RuntimeException      if an error during an I/O operation occurs.
-     * @throws RepositoryException   if another error occurs.
+     * @throws PathNotFoundException if no node exists at absPath
+     * @throws \RuntimeException     if an error during an I/O operation occurs
+     * @throws RepositoryException   if another error occurs
      *
      * @api
      */
@@ -999,19 +994,19 @@ interface SessionInterface
      *
      * The output XML will be encoded in UTF-8.
      *
-     * @param string $absPath The path of the root of the subgraph to be
-     *      serialized. This must be the path to a node, not a property
-     * @param resource $stream The stream resource (i.e. acquired with fopen) to
-     *      which the XML serialization of the subgraph will be output. Must
-     *      support the fwrite method.
-     * @param boolean $skipBinary A boolean governing whether binary properties
-     *      are to be serialized.
-     * @param boolean $noRecurse A boolean governing whether the subgraph at
-     *      absPath is to be recursed.
+     * @param string   $absPath    The path of the root of the subgraph to be
+     *                             serialized. This must be the path to a node, not a property
+     * @param resource $stream     The stream resource (i.e. acquired with fopen) to
+     *                             which the XML serialization of the subgraph will be output. Must
+     *                             support the fwrite method.
+     * @param bool     $skipBinary a boolean governing whether binary properties
+     *                             are to be serialized
+     * @param bool     $noRecurse  a boolean governing whether the subgraph at
+     *                             absPath is to be recursed
      *
-     * @throws PathNotFoundException if no node exists at absPath.
-     * @throws RuntimeException      if an error during an I/O operation occurs.
-     * @throws RepositoryException   if another error occurs.
+     * @throws PathNotFoundException if no node exists at absPath
+     * @throws \RuntimeException     if an error during an I/O operation occurs
+     * @throws RepositoryException   if another error occurs
      *
      * @api
      */
@@ -1027,16 +1022,16 @@ interface SessionInterface
      * the specified prefix or the specified uri are removed and the new
      * mapping is added.
      *
-     * @param string $prefix The namespace prefix to be set as identifier.
-     * @param string $uri    The location of the namespace definition (usually an
-     *      uri).
+     * @param string $prefix the namespace prefix to be set as identifier
+     * @param string $uri    the location of the namespace definition (usually an
+     *                       uri)
      *
-     * @throws NamespaceException if an attempt is made to map a
-     *      namespace URI to a prefix beginning with the characters "xml" (in
-     *      any combination of case) or if an attempt is made to map either the
-     *      empty prefix or the empty namespace (i.e., if either $prefix or
-     *      $uri are the empty string).
-     * @throws RepositoryException if another error occurs.
+     * @throws NamespaceException  if an attempt is made to map a
+     *                             namespace URI to a prefix beginning with the characters "xml" (in
+     *                             any combination of case) or if an attempt is made to map either the
+     *                             empty prefix or the empty namespace (i.e., if either $prefix or
+     *                             $uri are the empty string).
+     * @throws RepositoryException if another error occurs
      *
      * @api
      */
@@ -1045,7 +1040,7 @@ interface SessionInterface
     /**
      * Returns all prefixes currently mapped to URIs in this Session.
      *
-     * @return array The list of currently registered namespace prefixes.
+     * @return string[] the list of currently registered namespace prefixes
      *
      * @throws RepositoryException if an error occurs
      *
@@ -1057,13 +1052,13 @@ interface SessionInterface
      * Returns the URI to which the given prefix is mapped as currently set in
      * this Session.
      *
-     * @param string $prefix The identifier of the namespace location to be
-     *      returned.
+     * @param string $prefix the identifier of the namespace location to be
+     *                       returned
      *
-     * @return string The location of the namespace definition identified by
-     *      its prefix.
+     * @return string the location of the namespace definition identified by
+     *                its prefix
      *
-     * @throws NamespaceException  if the specified prefix is unknown.
+     * @throws NamespaceException  if the specified prefix is unknown
      * @throws RepositoryException if another error occurs
      *
      * @api
@@ -1074,12 +1069,12 @@ interface SessionInterface
      * Returns the prefix to which the given uri is mapped as currently set in
      * this Session.
      *
-     * @param string $uri The location of the namespace definition (usually a
-     *      uri).
+     * @param string $uri the location of the namespace definition (usually a
+     *                    uri)
      *
-     * @return string The prefix of a namespace identified by its uri.
+     * @return string the prefix of a namespace identified by its uri
      *
-     * @throws NamespaceException  if the specified uri is unknown.
+     * @throws NamespaceException  if the specified uri is unknown
      * @throws RepositoryException if another error occurs
      *
      * @api
@@ -1104,7 +1099,7 @@ interface SessionInterface
      * A usable Session is one that is neither logged-out, timed-out nor in
      * any other way disconnected from the repository.
      *
-     * @return boolean true if this Session is usable, false otherwise.
+     * @return bool true if this Session is usable, false otherwise
      *
      * @api
      */
@@ -1114,11 +1109,11 @@ interface SessionInterface
      * Returns the access control manager for this Session.
      *
      * @return AccessControlManagerInterface the access control manager
-     *      for this Session
+     *                                       for this Session
      *
      * @throws UnsupportedRepositoryOperationException if access control
-     *      is not supported.
-     * @throws RepositoryException if another error occurs.
+     *                                                 is not supported
+     * @throws RepositoryException                     if another error occurs
      *
      * @api
      */
@@ -1128,11 +1123,11 @@ interface SessionInterface
      * Returns the retention and hold manager for this Session.
      *
      * @return RetentionManagerInterface the retention manager
-     *      for this Session.
+     *                                   for this Session
      *
      * @throws UnsupportedRepositoryOperationException if retention and
-     *      hold are not supported.
-     * @throws RepositoryException if another error occurs.
+     *                                                 hold are not supported
+     * @throws RepositoryException                     if another error occurs
      *
      * @api
      */

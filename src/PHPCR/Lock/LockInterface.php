@@ -37,7 +37,7 @@ interface LockInterface
     /**
      * Returns true if this is a deep lock; false otherwise.
      *
-     * @return boolean
+     * @return bool
      *
      * @api
      */
@@ -81,7 +81,7 @@ interface LockInterface
      * number of seconds remaining is infinite or unknown, PHP_INT_MAX is
      * returned.
      *
-     * @return integer the number of seconds remaining until this lock times out.
+     * @return int the number of seconds remaining until this lock times out
      *
      * @throws RepositoryException if the timeout is infinite or unknown
      *
@@ -105,7 +105,7 @@ interface LockInterface
      * corresponding to that lock may still exist, and in that case its isLive
      * method will return false.
      *
-     * @return boolean True, if the lock still counts, else false.
+     * @return bool true, if the lock still counts, else false
      *
      * @throws RepositoryException if an error occurs
      *
@@ -119,7 +119,7 @@ interface LockInterface
      * Returns true if this is a session-scoped lock and the scope is bound to
      * the current session. Returns false otherwise.
      *
-     * @return boolean True, if the lock current session is locked, else false.
+     * @return bool true, if the lock current session is locked, else false
      *
      * @api
      */
@@ -133,8 +133,7 @@ interface LockInterface
      * and this session currently holds the token for this lock. Returns false
      * otherwise.
      *
-     * @return boolean True, if the the current session is the owner of the
-     *      lock, else false.
+     * @return bool true, if the the current session is the owner of the lock, else false
      *
      * @api
      */
@@ -147,9 +146,9 @@ interface LockInterface
      * If this lock's time-to-live is not governed by a timer, then this method
      * has no effect.
      *
-     * @throws LockException if this Session does not hold the correct lock
-     *      token for this lock.
-     * @throws RepositoryException if another error occurs.
+     * @throws LockException       if this Session does not hold the correct lock
+     *                             token for this lock
+     * @throws RepositoryException if another error occurs
      *
      * @api
      */

@@ -37,7 +37,7 @@ interface PropertyDefinitionInterface extends ItemDefinitionInterface
      * PropertyDefinition object is actually a newly-created empty
      * PropertyDefinitionTemplate, then this method will return PropertyType::STRING.
      *
-     * @return integer An integer constant member of PropertyType.
+     * @return int an integer constant member of PropertyType
      *
      * @api
      */
@@ -177,7 +177,7 @@ interface PropertyDefinitionInterface extends ItemDefinitionInterface
      * PropertyDefinition object is actually a newly-created empty
      * PropertyDefinitionTemplate, then this method will return null.
      *
-     * @return array the value constraint strings
+     * @return string[]
      *
      * @api
      */
@@ -210,7 +210,7 @@ interface PropertyDefinitionInterface extends ItemDefinitionInterface
      * PropertyDefinition object is actually a newly-created empty
      * PropertyDefinitionTemplate, then this method will return null.
      *
-     * @return array An array of mixed php values.
+     * @return array<mixed>
      *
      * @api
      */
@@ -230,8 +230,8 @@ interface PropertyDefinitionInterface extends ItemDefinitionInterface
      * PropertyDefinition object is actually a newly-created empty
      * PropertyDefinitionTemplate, then this method will return false.
      *
-     * @return boolean True, if this property may have multiple values, else
-     *      false.
+     * @return bool true, if this property may have multiple values, else
+     *              false
      *
      * @api
      */
@@ -261,8 +261,7 @@ interface PropertyDefinitionInterface extends ItemDefinitionInterface
      * comparison semantics defined in the specification document (see 3.6.5
      * Comparison of Values).
      *
-     * @return array an array of query operator constants as defined in
-     *      \PHPCR\Query\QueryObjectModelConstantsInterface
+     * @return string[] query operator constants as defined in \PHPCR\Query\QueryObjectModelConstantsInterface
      *
      * @see QueryObjectModelConstantsInterface
      *
@@ -280,7 +279,7 @@ interface PropertyDefinitionInterface extends ItemDefinitionInterface
      * This attribute only takes effect if the node type holding the
      * property definition has a queryable setting of true.
      *
-     * @return boolean True, if this property is full-text searchable, else false.
+     * @return bool true, if this property is full-text searchable, else false
      *
      * @api
      */
@@ -296,7 +295,7 @@ interface PropertyDefinitionInterface extends ItemDefinitionInterface
      * This attribute only takes effect if the node type holding the
      * property definition has a queryable setting of true.
      *
-     * @return boolean True, if this property is query orderable, else false.
+     * @return bool true, if this property is query orderable, else false
      *
      * @api
      */
