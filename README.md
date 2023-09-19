@@ -1,4 +1,4 @@
-# PHP Content Repository PHPCR [![Build Status](https://secure.travis-ci.org/phpcr/phpcr.png)](http://travis-ci.org/phpcr/phpcr)
+# PHP Content Repository PHPCR [![Test application](https://github.com/phpcr/phpcr/actions/workflows/test-application.yaml/badge.svg?branch=2.1.x)](https://github.com/phpcr/phpcr/actions/workflows/test-application.yaml)
 
 This repository contains interfaces for the PHPCR standard.
 
