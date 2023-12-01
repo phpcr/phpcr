@@ -1,6 +1,11 @@
 Changelog
 =========
 
+2.1.9
+-----
+
+* **2023-12-01**: Fix test class name to match the filename as phpunit 10 no longer accepts the mismatch.
+
 2.1.8
 -----
 
