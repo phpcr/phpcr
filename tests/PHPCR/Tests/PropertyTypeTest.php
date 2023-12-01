@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \PHPCR\PropertyType
  */
-class PropertyTypesTest extends TestCase
+class PropertyTypeTest extends TestCase
 {
     /** key = numeric type constant names as defined by api
      *  value = expected value of the TYPENAME_<TYPE> constants.
