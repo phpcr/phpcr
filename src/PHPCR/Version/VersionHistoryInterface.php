@@ -189,6 +189,8 @@ interface VersionHistoryInterface extends NodeInterface
      *                            specified; if false, then attempting to assign an already used
      *                            label will throw a LabelExistsVersionException
      *
+     * @return void
+     *
      * @throws LabelExistsVersionException if moveLabel is false, and an
      *                                     attempt is made to add a label that already exists in this version
      *                                     history
@@ -214,6 +216,8 @@ interface VersionHistoryInterface extends NodeInterface
      *
      * @param string $label a version label. A JCR name in either extended or
      *                      qualified form.
+     *
+     * @return void
      *
      * @throws VersionException    if the name label does not exist in this
      *                             version history
@@ -285,6 +289,8 @@ interface VersionHistoryInterface extends NodeInterface
      * this context.
      *
      * @param string $versionName the name of a version in this version history
+     *
+     * @return void
      *
      * @throws ReferentialIntegrityException           if the specified version is
      *                                                 currently the target of a REFERENCE property elsewhere in the

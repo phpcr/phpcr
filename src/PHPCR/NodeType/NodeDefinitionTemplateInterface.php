@@ -23,6 +23,8 @@ interface NodeDefinitionTemplateInterface extends NodeDefinitionInterface
      *
      * @param string $name the name of the node
      *
+     * @return void
+     *
      * @api
      */
     public function setName($name);
@@ -33,6 +35,8 @@ interface NodeDefinitionTemplateInterface extends NodeDefinitionInterface
      * @param bool $autoCreated the status the autocreate attribute of the
      *                          node shall have
      *
+     * @return void
+     *
      * @api
      */
     public function setAutoCreated($autoCreated);
@@ -41,6 +45,8 @@ interface NodeDefinitionTemplateInterface extends NodeDefinitionInterface
      * Sets the mandatory status of the node.
      *
      * @param bool $mandatory the status of the mandatory attribute
+     *
+     * @return void
      *
      * @api
      */
@@ -51,6 +57,8 @@ interface NodeDefinitionTemplateInterface extends NodeDefinitionInterface
      *
      * @param int $opv an integer constant member of OnParentVersionAction
      *
+     * @return void
+     *
      * @api
      */
     public function setOnParentVersion($opv);
@@ -59,6 +67,8 @@ interface NodeDefinitionTemplateInterface extends NodeDefinitionInterface
      * Sets the protected status of the node.
      *
      * @param bool $protectedStatus the status of the protected attribute
+     *
+     * @return void
      *
      * @api
      */
@@ -70,6 +80,8 @@ interface NodeDefinitionTemplateInterface extends NodeDefinitionInterface
      * @param string[] $requiredPrimaryTypeNames list of primary type names to be
      *                                           registered
      *
+     * @return void
+     *
      * @api
      */
     public function setRequiredPrimaryTypeNames(array $requiredPrimaryTypeNames);
@@ -80,6 +92,8 @@ interface NodeDefinitionTemplateInterface extends NodeDefinitionInterface
      * @param string $defaultPrimaryTypeName the name of a primary type name to
      *                                       be registered
      *
+     * @return void
+     *
      * @api
      */
     public function setDefaultPrimaryTypeName($defaultPrimaryTypeName);
@@ -89,6 +103,8 @@ interface NodeDefinitionTemplateInterface extends NodeDefinitionInterface
      *
      * @param bool $allowSameNameSiblings Whether same-name siblings of this
      *                                    node should be allowed
+     *
+     * @return void
      *
      * @api
      */

@@ -63,6 +63,8 @@ interface QueryInterface
      * @param string $varName name of variable in query
      * @param mixed  $value   value to bind
      *
+     * @return void
+     *
      * @throws \InvalidArgumentException if $varName is not a valid variable in this query
      * @throws RepositoryException       if an error occurs
      *
@@ -119,6 +121,8 @@ interface QueryInterface
      *
      * @param int $limit the amount of result items to be fetched
      *
+     * @return void
+     *
      * @api
      */
     public function setLimit($limit);
@@ -127,6 +131,8 @@ interface QueryInterface
      * Sets the start offset of the result set to offset.
      *
      * @param int $offset the start point of the result set from when the item shall be fetched
+     *
+     * @return void
      *
      * @api
      */

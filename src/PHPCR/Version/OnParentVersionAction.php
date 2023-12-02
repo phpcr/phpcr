@@ -148,22 +148,16 @@ final class OnParentVersionAction
         switch ((int) $action) {
             case self::COPY :
                 return self::ACTIONNAME_COPY;
-                break;
             case self::VERSION :
                 return self::ACTIONNAME_VERSION;
-                break;
             case self::INITIALIZE :
                 return self::ACTIONNAME_INITIALIZE;
-                break;
             case self::COMPUTE :
                 return self::ACTIONNAME_COMPUTE;
-                break;
             case self::IGNORE :
                 return self::ACTIONNAME_IGNORE;
-                break;
             case self::ABORT :
                 return self::ACTIONNAME_ABORT;
-                break;
             default:
                 throw new \InvalidArgumentException("Unknown action ($action) given.", 1257170242);
         }
@@ -186,22 +180,16 @@ final class OnParentVersionAction
         switch ($name) {
             case self::ACTIONNAME_COPY :
                 return self::COPY;
-                break;
             case self::ACTIONNAME_VERSION :
                 return self::VERSION;
-                break;
             case self::ACTIONNAME_INITIALIZE :
                 return self::INITIALIZE;
-                break;
             case self::ACTIONNAME_COMPUTE :
                 return self::COMPUTE;
-                break;
             case self::ACTIONNAME_IGNORE :
                 return self::IGNORE;
-                break;
             case self::ACTIONNAME_ABORT :
                 return self::ABORT;
-                break;
             default:
                 throw new \InvalidArgumentException("Unknown name ($name) given.", 1257170243);
         }

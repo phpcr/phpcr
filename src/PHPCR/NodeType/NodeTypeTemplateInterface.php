@@ -31,6 +31,8 @@ interface NodeTypeTemplateInterface extends NodeTypeDefinitionInterface
      *
      * @param string $name the name of the node type to be set
      *
+     * @return void
+     *
      * @api
      */
     public function setName($name);
@@ -40,6 +42,8 @@ interface NodeTypeTemplateInterface extends NodeTypeDefinitionInterface
      *
      * @param string[] $names the names of the node supertypes to be set
      *
+     * @return void
+     *
      * @api
      */
     public function setDeclaredSuperTypeNames(array $names);
@@ -48,6 +52,8 @@ interface NodeTypeTemplateInterface extends NodeTypeDefinitionInterface
      * Sets the abstract flag of the node type.
      *
      * @param bool $abstractStatus whether this type is abstract
+     *
+     * @return void
      *
      * @api
      */
@@ -59,6 +65,8 @@ interface NodeTypeTemplateInterface extends NodeTypeDefinitionInterface
      * @param bool $mixin whether this type is a mixin type (or a primary
      *                    type)
      *
+     * @return void
+     *
      * @api
      */
     public function setMixin($mixin);
@@ -69,6 +77,8 @@ interface NodeTypeTemplateInterface extends NodeTypeDefinitionInterface
      * @param bool $orderable Whether nodes of this type can have orderable
      *                        children
      *
+     * @return void
+     *
      * @api
      */
     public function setOrderableChildNodes($orderable);
@@ -78,6 +88,8 @@ interface NodeTypeTemplateInterface extends NodeTypeDefinitionInterface
      *
      * @param string $name the name of the primary item
      *
+     * @return void
+     *
      * @api
      */
     public function setPrimaryItemName($name);
@@ -86,6 +98,8 @@ interface NodeTypeTemplateInterface extends NodeTypeDefinitionInterface
      * Sets the queryable status of the node type.
      *
      * @param bool $queryable whether this node is queryable
+     *
+     * @return void
      *
      * @api
      */

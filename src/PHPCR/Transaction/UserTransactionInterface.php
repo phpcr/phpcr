@@ -61,6 +61,8 @@ interface UserTransactionInterface
     /**
      * Begin new transaction associated with current session.
      *
+     * @return void
+     *
      * @throws UnsupportedRepositoryOperationException thrown if a
      *                                                 transaction is already started and the transaction implementation
      *                                                 or backend does not support nested transactions
@@ -72,6 +74,8 @@ interface UserTransactionInterface
     /**
      * Commit the transaction associated with the current session to store it
      * persistently.
+     *
+     * @return void
      *
      * @throws RollbackException     thrown to indicate that the transaction has
      *                               been rolled back rather than committed
@@ -98,6 +102,8 @@ interface UserTransactionInterface
     /**
      * Rollback the transaction associated with the current session.
      *
+     * @return void
+     *
      * @throws AccessDeniedException thrown to indicate that the
      *                               application is not allowed to roll back the transaction
      * @throws \LogicException       thrown if the current session is not associated
@@ -118,6 +124,8 @@ interface UserTransactionInterface
      * @param int $seconds The value of the timeout in seconds. If the value is
      *                     zero, the transaction service restores the default value. If the
      *                     value is negative a RepositoryException is thrown.
+     *
+     * @return void
      *
      * @throws RepositoryException thrown if the transaction
      *                             implementation encounters an unexpected error condition

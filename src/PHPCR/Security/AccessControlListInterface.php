@@ -86,6 +86,8 @@ interface AccessControlListInterface extends AccessControlPolicyInterface, Trave
      * @param AccessControlEntryInterface $ace the access control entry to be
      *                                         removed
      *
+     * @return void
+     *
      * @throws AccessControlException if the specified entry is not present on
      *                                the specified node
      * @throws RepositoryException    if another error occurs

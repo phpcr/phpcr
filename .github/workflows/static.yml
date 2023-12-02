@@ -1,0 +1,72 @@
+name: Static analysis
+
+on:
+  push:
+    branches:
+      - '[0-9]+.x'
+      - '[0-9]+.[0-9]+'
+      - '[0-9]+.[0-9]+.x'
+  pull_request:
+
+jobs:
+  phpstan-src:
+    name: PHPStan src
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          extensions: "curl,dom,json,xml,dom"
+          coverage: none
+
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # have to install phpstan ourselves here, the phpstan-ga fails at composer install with weird errors
+      - name: Install phpstan
+        run: |
+          composer require --no-update phpstan/phpstan
+          composer update --no-dev
+
+      - name: PHPStan
+        run: vendor/bin/phpstan analyze --no-progress
+
+  phpstan-tests:
+    name: PHPStan tests
+    runs-on: ubuntu-latest
+    env:
+      REQUIRE_DEV: "true"
+
+    steps:
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          extensions: "curl,dom,json,xml,dom"
+          coverage: none
+
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install phpstan
+        run: |
+          composer require --no-update phpstan/phpstan
+          composer update
+
+      - name: PHPStan
+        run: vendor/bin/phpstan analyze --no-progress -c phpstan.tests.neon.dist
+
+  php-cs-fixer:
+    name: PHP-CS-Fixer
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: PHP-CS-Fixer
+        uses: docker://oskarstark/php-cs-fixer-ga
+        with:
+          args: --dry-run --diff

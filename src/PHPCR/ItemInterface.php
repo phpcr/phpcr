@@ -211,6 +211,8 @@ interface ItemInterface
      *
      * @param ItemVisitorInterface $visitor the ItemVisitor to be accepted
      *
+     * @return void
+     *
      * @throws RepositoryException if an error occurs
      *
      * @api
@@ -227,6 +229,8 @@ interface ItemInterface
      * persistent storage. Within a transaction, this state will reflect
      * persistent storage as modified by changes that have been saved but not
      * yet committed.
+     *
+     * @return void
      *
      * @throws InvalidItemStateException if this <code>Item</code> object represents a workspace item
      *                                   that has been removed (either by this session or another)
@@ -247,6 +251,8 @@ interface ItemInterface
      * node. In other words, a removal compacts the array of same-name siblings
      * and causes the minimal re-numbering required to maintain the original
      * order but leave no gaps in the numbering.
+     *
+     * @return void
      *
      * @throws VersionException             if the parent node of this item is versionable and
      *                                      checked-in or is non-versionable but its nearest

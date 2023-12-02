@@ -203,9 +203,9 @@ interface AccessControlManagerInterface
      * @param string|null $absPath the absolute path to the node of which
      *                             privileges are requested or null for the repository as a whole
      *
-     * @return Iterator<AccessControlPolicyInterface> over the applicable access control policies implementing
-     *                                                <b>SeekableIterator</b> and <b>Countable</b>. Keys have no
-     *                                                meaning. Returns an empty iterator if no policies are applicable.
+     * @return \Iterator<AccessControlPolicyInterface> over the applicable access control policies implementing
+     *                                                 <b>SeekableIterator</b> and <b>Countable</b>. Keys have no
+     *                                                 meaning. Returns an empty iterator if no policies are applicable.
      *
      * @throws PathNotFoundException if no node at $absPath exists or
      *                               the session does not have sufficient access to retrieve a node at
@@ -245,6 +245,8 @@ interface AccessControlManagerInterface
      * @param AccessControlPolicyInterface $policy  the AccessControlPolicy to
      *                                              be applied
      *
+     * @return void
+     *
      * @throws PathNotFoundException  if no node at $absPath exists or
      *                                the session does not have sufficient access to retrieve a node at
      *                                that location
@@ -278,6 +280,8 @@ interface AccessControlManagerInterface
      * @param string|null                  $absPath the absolute path to the node from which
      *                                              privileges are removed or null for the repository as a whole
      * @param AccessControlPolicyInterface $policy  the policy to be removed
+     *
+     * @return void
      *
      * @throws PathNotFoundException  if no node at $absPath exists or
      *                                the session does not have sufficient access to retrieve a node at

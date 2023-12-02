@@ -17,7 +17,7 @@ use Traversable;
  * The iterator is equivalent to <b>getAllNodeTypes()</b> returning a list of
  * all node types. The iterator keys are the node type names.
  *
- * @extends Traversable<>
+ * @extends Traversable<NodeTypeInterface>
  *
  * @license http://www.apache.org/licenses Apache License Version 2.0, January 2004
  * @license http://opensource.org/licenses/MIT MIT License
@@ -253,6 +253,8 @@ interface NodeTypeManagerInterface extends \Traversable
      * @param string $name the name of the node type to be removed from the
      *                     registry
      *
+     * @return void
+     *
      * @throws UnsupportedRepositoryOperationException if this
      *                                                 implementation does not support node type registration
      * @throws NoSuchNodeTypeException                 if no registered node type exists with
@@ -268,6 +270,8 @@ interface NodeTypeManagerInterface extends \Traversable
      * node types with mutual dependencies.
      *
      * @param string[] $names list of node type names to be removed from the registry
+     *
+     * @return void
      *
      * @throws UnsupportedRepositoryOperationException if this
      *                                                 implementation does not support node type registration

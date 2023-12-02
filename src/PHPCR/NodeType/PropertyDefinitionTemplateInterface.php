@@ -24,6 +24,8 @@ interface PropertyDefinitionTemplateInterface extends PropertyDefinitionInterfac
      *
      * @param string $name the name of the property definition template
      *
+     * @return void
+     *
      * @api
      */
     public function setName($name);
@@ -34,6 +36,8 @@ interface PropertyDefinitionTemplateInterface extends PropertyDefinitionInterfac
      * @param bool $autoCreated flag to set the ability to be automatically
      *                          created
      *
+     * @return void
+     *
      * @api
      */
     public function setAutoCreated($autoCreated);
@@ -42,6 +46,8 @@ interface PropertyDefinitionTemplateInterface extends PropertyDefinitionInterfac
      * Sets the mandatory status of the property.
      *
      * @param bool $mandatory the mandatory status of the property
+     *
+     * @return void
      *
      * @api
      */
@@ -52,6 +58,8 @@ interface PropertyDefinitionTemplateInterface extends PropertyDefinitionInterfac
      *
      * @param int $opv an int constant member of OnParentVersionAction
      *
+     * @return void
+     *
      * @api
      */
     public function setOnParentVersion($opv);
@@ -60,6 +68,8 @@ interface PropertyDefinitionTemplateInterface extends PropertyDefinitionInterfac
      * Sets the protected status of the property.
      *
      * @param bool $protectedStatus the protection status of the property
+     *
+     * @return void
      *
      * @api
      */
@@ -70,6 +80,8 @@ interface PropertyDefinitionTemplateInterface extends PropertyDefinitionInterfac
      *
      * @param int $type an integer constant member of PropertyType
      *
+     * @return void
+     *
      * @api
      */
     public function setRequiredType($type);
@@ -78,6 +90,8 @@ interface PropertyDefinitionTemplateInterface extends PropertyDefinitionInterfac
      * Sets the value constraints of the property.
      *
      * @param string[] $constraints list of constrains registered on the property
+     *
+     * @return void
      *
      * @api
      */
@@ -90,6 +104,8 @@ interface PropertyDefinitionTemplateInterface extends PropertyDefinitionInterfac
      * @param array<mixed> $defaultValues a List of values in the correct type for
      *                                    this property
      *
+     * @return void
+     *
      * @api
      */
     public function setDefaultValues(array $defaultValues);
@@ -99,6 +115,8 @@ interface PropertyDefinitionTemplateInterface extends PropertyDefinitionInterfac
      *
      * @param bool $multiple the status of the ability to store multiple
      *                       values
+     *
+     * @return void
      *
      * @api
      */
@@ -110,6 +128,8 @@ interface PropertyDefinitionTemplateInterface extends PropertyDefinitionInterfac
      * @param string[] $operators an array of String constants
      *                            {@link PropertyDefinition::getAvailableQueryOperators()}
      *
+     * @return void
+     *
      * @api
      */
     public function setAvailableQueryOperators(array $operators);
@@ -120,6 +140,8 @@ interface PropertyDefinitionTemplateInterface extends PropertyDefinitionInterfac
      * @param bool $fullTextSearchable The status of the ability to be
      *                                 fulltext-searchable..
      *
+     * @return void
+     *
      * @api
      */
     public function setFullTextSearchable($fullTextSearchable);
@@ -129,6 +151,8 @@ interface PropertyDefinitionTemplateInterface extends PropertyDefinitionInterfac
      *
      * @param bool $queryOrderable the status of the ability being
      *                             query-orderable
+     *
+     * @return void
      *
      * @api
      */

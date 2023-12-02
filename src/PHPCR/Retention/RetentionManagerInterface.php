@@ -79,6 +79,8 @@ interface RetentionManagerInterface
      * @param string        $absPath an absolute path
      * @param HoldInterface $hold    the hold to be removed
      *
+     * @return void
+     *
      * @throws PathNotFoundException if no node at $absPath exists or
      *                               the session does not have sufficient access to retrieve the node
      * @throws AccessDeniedException if the current session does not
@@ -126,8 +128,9 @@ interface RetentionManagerInterface
      * effect until a save is performed.
      *
      * @param string                   $absPath         an absolute path to an existing node
-     * @param RetentionPolicyInterface $retentionPolicy a
-     *                                                  retention policy
+     * @param RetentionPolicyInterface $retentionPolicy a retention policy
+     *
+     * @return void
      *
      * @throws PathNotFoundException if no node at $absPath exists or
      *                               the session does not have sufficient access to retrieve the node
@@ -152,6 +155,8 @@ interface RetentionManagerInterface
      * apply. The removal does not take effect until a save is performed.
      *
      * @param string $absPath an absolute path to an existing node
+     *
+     * @return void
      *
      * @throws PathNotFoundException if no node at $absPath exists or
      *                               the session does not have sufficient access to retrieve the node
