@@ -46,10 +46,12 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    public function createQuery(SourceInterface $source,
+    public function createQuery(
+        SourceInterface $source,
         ConstraintInterface $constraint = null,
         array $orderings = [],
-        array $columns = []);
+        array $columns = []
+    );
 
     /**
      * Selects a subset of the nodes in the repository based on node type.
@@ -99,8 +101,12 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    public function join(SourceInterface $left, SourceInterface $right,
-        $joinType, JoinConditionInterface $joinCondition);
+    public function join(
+        SourceInterface $left,
+        SourceInterface $right,
+        $joinType,
+        JoinConditionInterface $joinCondition
+    );
 
     /**
      * Tests whether the value of a property in a first selector is equal to
@@ -235,8 +241,10 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    public function andConstraint(ConstraintInterface $constraint1,
-        ConstraintInterface $constraint2);
+    public function andConstraint(
+        ConstraintInterface $constraint1,
+        ConstraintInterface $constraint2
+    );
 
     /**
      * Performs a logical disjunction of two other constraints.
@@ -254,8 +262,10 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    public function orConstraint(ConstraintInterface $constraint1,
-        ConstraintInterface $constraint2);
+    public function orConstraint(
+        ConstraintInterface $constraint1,
+        ConstraintInterface $constraint2
+    );
 
     /**
      * Performs a logical negation of another constraint.
@@ -291,8 +301,11 @@ interface QueryObjectModelFactoryInterface extends QueryObjectModelConstantsInte
      *
      * @api
      */
-    public function comparison(DynamicOperandInterface $operand1, $operator,
-        StaticOperandInterface $operand2);
+    public function comparison(
+        DynamicOperandInterface $operand1,
+        $operator,
+        StaticOperandInterface $operand2
+    );
 
     /**
      * Tests the existence of a property in the specified or default selector.

@@ -37,7 +37,7 @@ interface AccessControlListInterface extends AccessControlPolicyInterface, Trave
      *
      * @return AccessControlEntryInterface[] all AccessControlEntries present with this policy
      *
-     * @throws repositoryException - if an error occurs
+     * @throws RepositoryException - if an error occurs
      *
      * @api
      */
@@ -69,7 +69,7 @@ interface AccessControlListInterface extends AccessControlPolicyInterface, Trave
      * @throws AccessControlException if the specified principal or any of the
      *                                privileges does not exist or if some other access control related
      *                                exception occurs
-     * @throws repositoryException    - if another error occurs
+     * @throws RepositoryException    - if another error occurs
      *
      * @api
      */
@@ -85,6 +85,8 @@ interface AccessControlListInterface extends AccessControlPolicyInterface, Trave
      *
      * @param AccessControlEntryInterface $ace the access control entry to be
      *                                         removed
+     *
+     * @return void
      *
      * @throws AccessControlException if the specified entry is not present on
      *                                the specified node

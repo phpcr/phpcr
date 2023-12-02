@@ -33,6 +33,8 @@ interface LockManagerInterface extends \Traversable
      *
      * @param string $lockToken a lock token (a string)
      *
+     * @return void
+     *
      * @throws LockException       if the specified lock token is already held by another Session
      *                             and the implementation does not support simultaneous ownership
      *                             of open-scoped locks
@@ -207,6 +209,8 @@ interface LockManagerInterface extends \Traversable
      *
      * @param string $lockToken - a lock token
      *
+     * @return void
+     *
      * @throws LockException       if the current Session does not hold the specified lock token
      * @throws RepositoryException if another error occurs
      *
@@ -234,6 +238,8 @@ interface LockManagerInterface extends \Traversable
      * lock-related properties will be changed despite the checked-in status).
      *
      * @param string $absPath the absolute path of node to be unlocked
+     *
+     * @return void
      *
      * @throws LockException             if this node does not currently hold a lock or holds a lock
      *                                   for which this Session does not have the correct lock token

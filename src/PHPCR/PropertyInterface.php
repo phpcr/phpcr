@@ -574,6 +574,8 @@ interface PropertyInterface extends ItemInterface, Traversable
      * @param int   $type  Type request for the property, optional. Must be a
      *                     constant from PropertyType
      *
+     * @return void
+     *
      * @throws ValueFormatException                    if the type or format of the
      *                                                 specified value is incompatible with the type of this property
      * @throws VersionException                        if this property belongs to a
@@ -604,6 +606,10 @@ interface PropertyInterface extends ItemInterface, Traversable
      * <strong>PHPCR Note:</strong> This is a new method not found in Java JCR.
      * In PHP appending to strings is easy and this is more convenient than
      * getting the property and appending to the array and setting again.
+     *
+     * @param bool|int|float|string|\DateTimeInterface|resource $value
+     *
+     * @return void
      *
      * @throws ValueFormatException if the property is not multi-value
      */

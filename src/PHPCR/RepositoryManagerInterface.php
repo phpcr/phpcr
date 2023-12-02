@@ -55,6 +55,8 @@ interface RepositoryManagerInterface
      *                                       should be closed immediately, or false if they are to be allowed to
      *                                       close naturally
      *
+     * @return void
+     *
      * @throws AccessDeniedException                   if the caller does not have authorization
      *                                                 to close the repository
      * @throws UnsupportedRepositoryOperationException if the repository

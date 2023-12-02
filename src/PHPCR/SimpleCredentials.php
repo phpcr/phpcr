@@ -83,6 +83,8 @@ final class SimpleCredentials implements CredentialsInterface
      * @param string $name  the name of the attribute
      * @param mixed  $value the value to be stored
      *
+     * @return void
+     *
      * @throws \InvalidArgumentException
      *
      * @api
@@ -125,6 +127,8 @@ final class SimpleCredentials implements CredentialsInterface
      * Removes an attribute from this credentials instance.
      *
      * @param string $name the name of the attribute to remove
+     *
+     * @return void
      *
      * @api
      */

@@ -146,6 +146,8 @@ interface LockInterface
      * If this lock's time-to-live is not governed by a timer, then this method
      * has no effect.
      *
+     * @return void
+     *
      * @throws LockException       if this Session does not hold the correct lock
      *                             token for this lock
      * @throws RepositoryException if another error occurs

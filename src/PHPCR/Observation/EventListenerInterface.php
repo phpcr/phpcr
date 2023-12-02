@@ -22,6 +22,8 @@ interface EventListenerInterface
      *
      * @param \Traversable<EventInterface> $events the event set received
      *
+     * @return void
+     *
      * @api
      */
     public function onEvent(\Traversable $events);

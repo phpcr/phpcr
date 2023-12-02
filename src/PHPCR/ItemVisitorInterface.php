@@ -32,6 +32,8 @@ interface ItemVisitorInterface
      *
      * @param ItemInterface $item a node or property accepting this visitor
      *
+     * @return void
+     *
      * @throws RepositoryException if an error occurs
      *
      * @api

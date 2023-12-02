@@ -437,6 +437,8 @@ interface SessionInterface
      * @param string $destAbsPath the location to which the subgraph is to be
      *                            moved
      *
+     * @return void
+     *
      * @throws ItemExistsException          if a node already exists at
      *                                      destAbsPath and same-name siblings are not allowed
      * @throws PathNotFoundException        if either srcAbsPath or destAbsPath
@@ -472,6 +474,8 @@ interface SessionInterface
      * original order but leave no gaps in the numbering.
      *
      * @param string $absPath the absolute path of the item to be removed
+     *
+     * @return void
      *
      * @throws VersionException             if the parent node of the item
      *                                      at absPath is read-only due to a checked-in node and this
@@ -512,6 +516,8 @@ interface SessionInterface
      *
      * If validation fails, then no pending changes are dispatched and they
      * remain recorded on the Session. There is no best-effort or partial save.
+     *
+     * @return void
      *
      * @throws AccessDeniedException         if any of the changes to be
      *                                       persisted would violate the access privileges of the this Session.
@@ -567,6 +573,8 @@ interface SessionInterface
      *
      * @param bool $keepChanges switch to override current changes kept in
      *                          the session
+     *
+     * @return void
      *
      * @throws RepositoryException if an error occurs
      *
@@ -669,6 +677,8 @@ interface SessionInterface
      *
      * @param string $absPath an absolute path
      * @param string $actions a comma separated list of action strings
+     *
+     * @return void
      *
      * @throws AccessControlException if permission is denied
      * @throws RepositoryException    if another error occurs
@@ -890,6 +900,8 @@ interface SessionInterface
      * @param int    $uuidBehavior  a four-value flag that governs how incoming
      *                              identifiers are handled
      *
+     * @return void
+     *
      * @throws \RuntimeException              if an error during an I/O operation occurs
      * @throws PathNotFoundException          if no node exists at parentAbsPath
      *                                        and this implementation performs this validation immediately
@@ -956,6 +968,8 @@ interface SessionInterface
      * @param bool     $noRecurse  a boolean governing whether the subgraph at
      *                             absPath is to be recursed
      *
+     * @return void
+     *
      * @throws PathNotFoundException if no node exists at absPath
      * @throws \RuntimeException     if an error during an I/O operation occurs
      * @throws RepositoryException   if another error occurs
@@ -1004,6 +1018,8 @@ interface SessionInterface
      * @param bool     $noRecurse  a boolean governing whether the subgraph at
      *                             absPath is to be recursed
      *
+     * @return void
+     *
      * @throws PathNotFoundException if no node exists at absPath
      * @throws \RuntimeException     if an error during an I/O operation occurs
      * @throws RepositoryException   if another error occurs
@@ -1025,6 +1041,8 @@ interface SessionInterface
      * @param string $prefix the namespace prefix to be set as identifier
      * @param string $uri    the location of the namespace definition (usually an
      *                       uri)
+     *
+     * @return void
      *
      * @throws NamespaceException  if an attempt is made to map a
      *                             namespace URI to a prefix beginning with the characters "xml" (in
@@ -1085,6 +1103,8 @@ interface SessionInterface
      * Releases all resources associated with this Session.
      *
      * This method should be called when a Session is no longer needed.
+     *
+     * @return void
      *
      * @api
      */

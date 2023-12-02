@@ -1,6 +1,11 @@
 Changelog
 =========
 
+2.1.10
+------
+
+* **2023-12-02**: PHPDoc fixes with phpstan.
+
 2.1.9
 -----
 

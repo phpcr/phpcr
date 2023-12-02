@@ -27,6 +27,8 @@ interface PrincipalInterface
      * the === operator is too strict, as there could be two instances of the
      * same principal.
      *
+     * @param object $object
+     *
      * @return bool true if the principal passed to the method is the same
      *              as this object
      */

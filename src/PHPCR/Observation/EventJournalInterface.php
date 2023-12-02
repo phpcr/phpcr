@@ -20,6 +20,8 @@ namespace PHPCR\Observation;
  * @license http://www.apache.org/licenses Apache License Version 2.0, January 2004
  * @license http://opensource.org/licenses/MIT MIT License
  *
+ * @extends \SeekableIterator<int, EventInterface>
+ *
  * @api
  */
 interface EventJournalInterface extends \SeekableIterator
@@ -33,6 +35,8 @@ interface EventJournalInterface extends \SeekableIterator
      * @param int $date Value that represents the offset in milliseconds
      *                  from the epoch. Keep in mind that typical PHP time
      *                  functions will give you seconds, not milliseconds.
+     *
+     * @return void
      *
      * @api
      */

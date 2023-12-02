@@ -54,7 +54,7 @@ class SimpleCredentialsTest extends TestCase
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        $credentials->setAttribute(null, 'test');
+        $credentials->setAttribute(null, 'test'); /* @phpstan-ignore-line we do this wrong on purpose */
     }
 
     /**

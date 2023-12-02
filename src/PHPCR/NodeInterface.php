@@ -252,6 +252,8 @@ interface NodeInterface extends ItemInterface, Traversable
      *                                 (that is, name plus possible index) before which the node
      *                                 srcChildRelPath will be placed
      *
+     * @return void
+     *
      * @throws UnsupportedRepositoryOperationException if ordering is
      *                                                 not supported on this node
      * @throws ConstraintViolationException            if an implementation-
@@ -310,6 +312,8 @@ interface NodeInterface extends ItemInterface, Traversable
      * is performed.
      *
      * @param string $newName the new name of this node
+     *
+     * @return void
      *
      * @throws ItemExistsException          if there already exists a sibling item of
      *                                      this node with the specified name, same-name siblings are not
@@ -913,6 +917,8 @@ interface NodeInterface extends ItemInterface, Traversable
      *
      * @param string $nodeTypeName the name of the new node type
      *
+     * @return void
+     *
      * @throws ConstraintViolationException if the specified primary
      *                                      node type creates a type conflict and this implementation performs
      *                                      this validation immediately
@@ -956,6 +962,8 @@ interface NodeInterface extends ItemInterface, Traversable
      *
      * @param string $mixinName the name of the mixin node type to be added
      *
+     * @return void
+     *
      * @throws NoSuchNodeTypeException      if the specified
      *                                      mixinName is not recognized and this implementation performs this
      *                                      validation immediately instead of waiting until save
@@ -982,6 +990,8 @@ interface NodeInterface extends ItemInterface, Traversable
      * the change to the jcr:mixinTypes  property occur on persist.
      *
      * @param string $mixinName the name of the mixin node type to be removed
+     *
+     * @return void
      *
      * @throws NoSuchNodeTypeException      if the specified
      *                                      mixinName is not currently assigned to this node and this
@@ -1038,6 +1048,8 @@ interface NodeInterface extends ItemInterface, Traversable
      * differ on when this validation is done.
      *
      * @param string[] $mixinNames the names of the mixin node types to be set
+     *
+     * @return void
      *
      * @throws NoSuchNodeTypeException      if one or more of the
      *                                      specified $mixinNames are not recognized and this implementation
@@ -1127,6 +1139,8 @@ interface NodeInterface extends ItemInterface, Traversable
      *
      * @param string $srcWorkspace the name of the source workspace
      *
+     * @return void
+     *
      * @throws NoSuchWorkspaceException  if srcWorkspace does not exist
      * @throws InvalidItemStateException if this Session (not
      *                                   necessarily this Node) has pending unsaved changes
@@ -1182,6 +1196,8 @@ interface NodeInterface extends ItemInterface, Traversable
      *
      * If this node is not shared this method removes only this node.
      *
+     * @return void
+     *
      * @throws VersionException             if the parent node of this item
      *                                      is versionable and checked-in or is non-versionable but its nearest
      *                                      versionable ancestor is checked-in and this implementation performs
@@ -1204,6 +1220,8 @@ interface NodeInterface extends ItemInterface, Traversable
     /**
      * Removes this node, but does not remove any other node in the shared set
      * of this node.
+     *
+     * @return void
      *
      * @throws VersionException             if the parent node of this item
      *                                      is versionable and checked-in or is non-versionable but its nearest
@@ -1274,6 +1292,8 @@ interface NodeInterface extends ItemInterface, Traversable
      * need to call save.
      *
      * @param string $transition a state transition
+     *
+     * @return void
      *
      * @throws UnsupportedRepositoryOperationException if this
      *                                                 implementation does not support lifecycle actions or if this node
