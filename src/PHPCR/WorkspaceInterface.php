@@ -347,7 +347,7 @@ interface WorkspaceInterface
      * @throws ItemExistsException          if a node already exists at
      *                                      destAbsPath and same-name siblings are not allowed or if
      *                                      removeExisting is false and an identifier conflict occurs
-     * @throws \PHPCR\Lock\LockException    if a lock prevents the clone
+     * @throws LockException                if a lock prevents the clone
      * @throws RepositoryException          if the last element of destAbsPath
      *                                      has an index or if another error occurs
      *
