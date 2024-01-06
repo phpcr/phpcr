@@ -77,7 +77,7 @@ class PropertyTypeTest extends TestCase
 
         $property->expects($this->once())
             ->method('getType')
-            ->will($this->returnValue(PropertyType::BINARY))
+            ->willReturn(PropertyType::BINARY)
         ;
 
         return [
