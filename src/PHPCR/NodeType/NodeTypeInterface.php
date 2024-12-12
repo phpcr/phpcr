@@ -28,21 +28,21 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const NT_BASE = '{'.NS::NAMESPACE_NT.'}base';
+    public const NT_BASE = '{'.NS::NAMESPACE_NT.'}base';
 
     /**
      * A constant for the node type name nt:hierarchyNode (in extended form).
      *
      * @api
      */
-    const NT_HIERARCHY_NODE = '{'.NS::NAMESPACE_NT.'}hierarchyNode';
+    public const NT_HIERARCHY_NODE = '{'.NS::NAMESPACE_NT.'}hierarchyNode';
 
     /**
      * A constant for the node type name nt:folder (in extended form).
      *
      * @api
      */
-    const NT_FOLDER = '{'.NS::NAMESPACE_NT.'}folder';
+    public const NT_FOLDER = '{'.NS::NAMESPACE_NT.'}folder';
 
     /**
      * A constant for the node type name nt:file (in extended form).
@@ -51,7 +51,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const NT_FILE = '{'.NS::NAMESPACE_NT.'}file';
+    public const NT_FILE = '{'.NS::NAMESPACE_NT.'}file';
 
     /**
      * A constant for the node type name nt:linkedFile (in extended form).
@@ -60,7 +60,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const NT_LINKED_FILE = '{'.NS::NAMESPACE_NT.'}linkedFile';
+    public const NT_LINKED_FILE = '{'.NS::NAMESPACE_NT.'}linkedFile';
 
     /**
      * A constant for the node type name nt:resource (in extended form).
@@ -69,14 +69,14 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const NT_RESOURCE = '{'.NS::NAMESPACE_NT.'}resource';
+    public const NT_RESOURCE = '{'.NS::NAMESPACE_NT.'}resource';
 
     /**
      * A constant for the node type name nt:unstructured (in extended form).
      *
      * @api
      */
-    const NT_UNSTRUCTURED = '{'.NS::NAMESPACE_NT.'}unstructured';
+    public const NT_UNSTRUCTURED = '{'.NS::NAMESPACE_NT.'}unstructured';
 
     /**
      * A constant for the node type name nt:address (in extended form).
@@ -92,7 +92,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const NT_ADDRESS = '{'.NS::NAMESPACE_NT.'}address';
+    public const NT_ADDRESS = '{'.NS::NAMESPACE_NT.'}address';
 
     /**
      * A constant for the node type name mix:referenceable (in extended form).
@@ -101,7 +101,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const MIX_REFERENCEABLE = '{'.NS::NAMESPACE_MIX.'}referenceable';
+    public const MIX_REFERENCEABLE = '{'.NS::NAMESPACE_MIX.'}referenceable';
 
     /**
      * A constant for the node type name mix:title (in extended form).
@@ -112,7 +112,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const MIX_TITLE = '{'.NS::NAMESPACE_MIX.'}title';
+    public const MIX_TITLE = '{'.NS::NAMESPACE_MIX.'}title';
 
     /**
      * A constant for the node type name mix:created (in extended form).
@@ -123,7 +123,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const MIX_CREATED = '{'.NS::NAMESPACE_MIX.'}created';
+    public const MIX_CREATED = '{'.NS::NAMESPACE_MIX.'}created';
 
     /**
      * A constant for the node type name mix:lastModified (in extended form).
@@ -134,7 +134,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const MIX_LAST_MODIFIED = '{'.NS::NAMESPACE_MIX.'}lastModified';
+    public const MIX_LAST_MODIFIED = '{'.NS::NAMESPACE_MIX.'}lastModified';
 
     /**
      * A constant for the node type name mix:language (in extended form).
@@ -143,7 +143,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const MIX_LANGUAGE = '{'.NS::NAMESPACE_MIX.'}language';
+    public const MIX_LANGUAGE = '{'.NS::NAMESPACE_MIX.'}language';
 
     /**
      * A constant for the node type name mix:mimeType (in extended form).
@@ -154,7 +154,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const MIX_MIMETYPE = '{'.NS::NAMESPACE_MIX.'}mimeType';
+    public const MIX_MIMETYPE = '{'.NS::NAMESPACE_MIX.'}mimeType';
 
     /**
      * A constant for the node type name nt:nodeType (in extended form).
@@ -171,7 +171,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const NT_NODE_TYPE = '{'.NS::NAMESPACE_NT.'}nodeType';
+    public const NT_NODE_TYPE = '{'.NS::NAMESPACE_NT.'}nodeType';
 
     /**
      * A constant for the node type name nt:propertyDefinition (in extended form).
@@ -189,7 +189,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const NT_PROPERTY_DEFINITION = '{'.NS::NAMESPACE_NT.'}propertyDefinition';
+    public const NT_PROPERTY_DEFINITION = '{'.NS::NAMESPACE_NT.'}propertyDefinition';
 
     /**
      * A constant for the node type name nt:childNodeDefinition (in extended form).
@@ -206,14 +206,14 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const NT_CHILD_NODE_DEFINITION = '{'.NS::NAMESPACE_NT.'}childNodeDefinition';
+    public const NT_CHILD_NODE_DEFINITION = '{'.NS::NAMESPACE_NT.'}childNodeDefinition';
 
     /**
      * A constant for the node type name mix:shareable (in extended form).
      *
      * @api
      */
-    const MIX_SHAREABLE = '{'.NS::NAMESPACE_MIX.'}shareable';
+    public const MIX_SHAREABLE = '{'.NS::NAMESPACE_MIX.'}shareable';
 
     /**
      * A constant for the node type name mix:lockable (in extended form).
@@ -224,7 +224,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const MIX_LOCKABLE = '{'.NS::NAMESPACE_MIX.'}lockable';
+    public const MIX_LOCKABLE = '{'.NS::NAMESPACE_MIX.'}lockable';
 
     /**
      * A constant for the node type name mix:lifecycle (in extended form).
@@ -235,7 +235,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const MIX_LIFECYCLE = '{'.NS::NAMESPACE_MIX.'}lifecycle';
+    public const MIX_LIFECYCLE = '{'.NS::NAMESPACE_MIX.'}lifecycle';
 
     /**
      * A constant for the node type name mix:simpleVersionable (in extended form).
@@ -244,7 +244,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const MIX_SIMPLE_VERSIONABLE = '{'.NS::NAMESPACE_MIX.'}simpleVersionable';
+    public const MIX_SIMPLE_VERSIONABLE = '{'.NS::NAMESPACE_MIX.'}simpleVersionable';
 
     /**
      * A constant for the node type name mix:versionable (in extended form).
@@ -259,7 +259,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const MIX_VERSIONABLE = '{'.NS::NAMESPACE_MIX.'}versionable';
+    public const MIX_VERSIONABLE = '{'.NS::NAMESPACE_MIX.'}versionable';
 
     /**
      * A constant for the node type name nt:versionHistory (in extended form).
@@ -272,7 +272,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const NT_VERSION_HISTORY = '{'.NS::NAMESPACE_NT.'}versionHistory';
+    public const NT_VERSION_HISTORY = '{'.NS::NAMESPACE_NT.'}versionHistory';
 
     /**
      * A constant for the node type name nt:version (in extended form).
@@ -286,7 +286,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const NT_VERSION = '{'.NS::NAMESPACE_NT.'}version';
+    public const NT_VERSION = '{'.NS::NAMESPACE_NT.'}version';
 
     /**
      * A constant for the node type name nt:frozenNode (in extended form).
@@ -298,7 +298,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const NT_FROZEN_NODE = '{'.NS::NAMESPACE_NT.'}frozenNode';
+    public const NT_FROZEN_NODE = '{'.NS::NAMESPACE_NT.'}frozenNode';
 
     /**
      * A constant for the node type name nt:versionedChild (in extended form).
@@ -307,7 +307,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const NT_VERSIONED_CHILD = '{'.NS::NAMESPACE_NT.'}versionedChild';
+    public const NT_VERSIONED_CHILD = '{'.NS::NAMESPACE_NT.'}versionedChild';
 
     /**
      * A constant for the node type name nt:activity (in extended form).
@@ -316,7 +316,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const NT_ACTIVITY = '{'.NS::NAMESPACE_NT.'}activity';
+    public const NT_ACTIVITY = '{'.NS::NAMESPACE_NT.'}activity';
 
     /**
      * A constant for the node type name nt:configuration (in extended form).
@@ -325,7 +325,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const NT_CONFIGURATION = '{'.NS::NAMESPACE_NT.'}configuration';
+    public const NT_CONFIGURATION = '{'.NS::NAMESPACE_NT.'}configuration';
 
     /**
      * A constant for the node type name nt:query (in extended form).
@@ -336,7 +336,7 @@ interface NodeTypeInterface extends NodeTypeDefinitionInterface
      *
      * @api
      */
-    const NT_QUERY = '{'.NS::NAMESPACE_NT.'}query';
+    public const NT_QUERY = '{'.NS::NAMESPACE_NT.'}query';
 
     /**#@-*/
 

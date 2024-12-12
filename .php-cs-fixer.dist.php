@@ -13,7 +13,7 @@ return $config
     ->setRules([
         '@Symfony' => true,
         'single_line_throw' => false,
-        'visibility_required' => ['elements' => ['method', 'property']], // const only possible once we drop PHP 5.6 support
+        'trailing_comma_in_multiline' => ['elements' => ['arrays']], // trailing comma on parameters / arguments not compatible with PHP 7
     ])
     ->setFinder($finder)
 ;

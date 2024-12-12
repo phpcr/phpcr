@@ -48,7 +48,7 @@ interface SessionInterface
      *
      * @api
      */
-    const ACTION_ADD_NODE = 'add_node';
+    public const ACTION_ADD_NODE = 'add_node';
 
     /**
      * A constant representing the read action string, used to determine if
@@ -57,7 +57,7 @@ interface SessionInterface
      *
      * @api
      */
-    const ACTION_READ = 'read';
+    public const ACTION_READ = 'read';
 
     /**
      * A constant representing the remove action string, used to determine if
@@ -65,7 +65,7 @@ interface SessionInterface
      *
      * @api
      */
-    const ACTION_REMOVE = 'remove';
+    public const ACTION_REMOVE = 'remove';
 
     /**
      * A constant representing the set_property action string, used to
@@ -74,7 +74,7 @@ interface SessionInterface
      *
      * @api
      */
-    const ACTION_SET_PROPERTY = 'set_property';
+    public const ACTION_SET_PROPERTY = 'set_property';
 
     /**#@-*/
 

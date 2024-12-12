@@ -37,7 +37,7 @@ interface PrivilegeInterface
      *
      * @api
      */
-    const JCR_READ = '{'.NS::NAMESPACE_JCR.'}read';
+    public const JCR_READ = '{'.NS::NAMESPACE_JCR.'}read';
 
     /**
      * A constant representing jcr:modifyProperties (in extended form), the
@@ -45,7 +45,7 @@ interface PrivilegeInterface
      *
      * @api
      */
-    const JCR_MODIFY_PROPERTIES = '{'.NS::NAMESPACE_JCR.'}modifyProperties';
+    public const JCR_MODIFY_PROPERTIES = '{'.NS::NAMESPACE_JCR.'}modifyProperties';
 
     /**
      * A constant representing jcr:addChildNodes (in extended form), the
@@ -53,7 +53,7 @@ interface PrivilegeInterface
      *
      * @api
      */
-    const JCR_ADD_CHILD_NODES = '{'.NS::NAMESPACE_JCR.'}addChildNodes';
+    public const JCR_ADD_CHILD_NODES = '{'.NS::NAMESPACE_JCR.'}addChildNodes';
 
     /**
      * A constant representing jcr:removeNode (in extended form), the privilege
@@ -70,7 +70,7 @@ interface PrivilegeInterface
      *
      * @api
      */
-    const JCR_REMOVE_NODE = '{'.NS::NAMESPACE_JCR.'}removeNode';
+    public const JCR_REMOVE_NODE = '{'.NS::NAMESPACE_JCR.'}removeNode';
 
     /**
      * A constant representing jcr:removeChildNodes (in extended form), the
@@ -87,7 +87,7 @@ interface PrivilegeInterface
      *
      * @api
      */
-    const JCR_REMOVE_CHILD_NODES = '{'.NS::NAMESPACE_JCR.'}removeChildNodes';
+    public const JCR_REMOVE_CHILD_NODES = '{'.NS::NAMESPACE_JCR.'}removeChildNodes';
 
     /**
      * A constant representing jcr:write (in extended form), an aggregate
@@ -100,7 +100,7 @@ interface PrivilegeInterface
      *
      * @api
      */
-    const JCR_WRITE = '{'.NS::NAMESPACE_JCR.'}write';
+    public const JCR_WRITE = '{'.NS::NAMESPACE_JCR.'}write';
 
     /**
      * A constant representing jcr:readAccessControl (in extended form), the
@@ -108,7 +108,7 @@ interface PrivilegeInterface
      *
      * @api
      */
-    const JCR_READ_ACCESS_CONTROL = '{'.NS::NAMESPACE_JCR.'}readAccessControl';
+    public const JCR_READ_ACCESS_CONTROL = '{'.NS::NAMESPACE_JCR.'}readAccessControl';
 
     /**
      * A constant representing jcr:modifyAccessControl (in extended form), the
@@ -116,7 +116,7 @@ interface PrivilegeInterface
      *
      * @api
      */
-    const JCR_MODIFY_ACCESS_CONTROL = '{'.NS::NAMESPACE_JCR.'}modifyAccessControl';
+    public const JCR_MODIFY_ACCESS_CONTROL = '{'.NS::NAMESPACE_JCR.'}modifyAccessControl';
 
     /**
      * A constant representing jcr:lockManagement (in extended form), the
@@ -124,7 +124,7 @@ interface PrivilegeInterface
      *
      * @api
      */
-    const JCR_LOCK_MANAGEMENT = '{'.NS::NAMESPACE_JCR.'}lockManagement';
+    public const JCR_LOCK_MANAGEMENT = '{'.NS::NAMESPACE_JCR.'}lockManagement';
 
     /**
      * A constant representing jcr:versionManagement (in extended form), the
@@ -132,7 +132,7 @@ interface PrivilegeInterface
      *
      * @api
      */
-    const JCR_VERSION_MANAGEMENT = '{'.NS::NAMESPACE_JCR.'}versionManagement';
+    public const JCR_VERSION_MANAGEMENT = '{'.NS::NAMESPACE_JCR.'}versionManagement';
 
     /**
      * A constant representing jcr:nodeTypeManagement (in extended form), the
@@ -141,7 +141,7 @@ interface PrivilegeInterface
      *
      * @api
      */
-    const JCR_NODE_TYPE_MANAGEMENT = '{'.NS::NAMESPACE_JCR.'}nodeTypeManagement';
+    public const JCR_NODE_TYPE_MANAGEMENT = '{'.NS::NAMESPACE_JCR.'}nodeTypeManagement';
 
     /**
      * A constant representing jcr:retentionManagement (in extended form), the
@@ -149,7 +149,7 @@ interface PrivilegeInterface
      *
      * @api
      */
-    const JCR_RETENTION_MANAGEMENT = '{'.NS::NAMESPACE_JCR.'}retentionManagement';
+    public const JCR_RETENTION_MANAGEMENT = '{'.NS::NAMESPACE_JCR.'}retentionManagement';
 
     /**
      * A constant representing jcr:lifecycleManagement (in extended form), the
@@ -157,26 +157,26 @@ interface PrivilegeInterface
      *
      * @api
      */
-    const JCR_LIFECYCLE_MANAGEMENT = '{'.NS::NAMESPACE_JCR.'}lifecycleManagement';
+    public const JCR_LIFECYCLE_MANAGEMENT = '{'.NS::NAMESPACE_JCR.'}lifecycleManagement';
 
     /**
      * A constant representing <code>jcr:workspaceManagement</code> (in expanded
      * form), the privilege to create and remove workspaces in the repository.
      */
-    const JCR_WORKSPACE_MANAGEMENT = '{'.NS::NAMESPACE_JCR.'}workspaceManagement';
+    public const JCR_WORKSPACE_MANAGEMENT = '{'.NS::NAMESPACE_JCR.'}workspaceManagement';
 
     /**
      * A constant representing <code>jcr:nodeTypeDefinitionManagement</code> (in expanded
      * form), the privilege to register, unregister and change the definitions
      * of node type in the repository.
      */
-    const JCR_NODE_TYPE_DEFINITION_MANAGEMENT = '{'.NS::NAMESPACE_JCR.'}nodeTypeDefinitionManagement';
+    public const JCR_NODE_TYPE_DEFINITION_MANAGEMENT = '{'.NS::NAMESPACE_JCR.'}nodeTypeDefinitionManagement';
 
     /**
      * A constant representing <code>jcr:namespaceManagement</code> (in expanded
      * form), the privilege to register, unregister and modify namespace definitions.
      */
-    const JCR_NAMESPACE_MANAGEMENT = '{'.NS::NAMESPACE_JCR.'}namespaceManagement';
+    public const JCR_NAMESPACE_MANAGEMENT = '{'.NS::NAMESPACE_JCR.'}namespaceManagement';
 
     /**
      * A constant representing jcr:all (in extended form), an aggregate
@@ -199,7 +199,7 @@ interface PrivilegeInterface
      *
      * @api
      */
-    const JCR_ALL = '{'.NS::NAMESPACE_JCR.'}all';
+    public const JCR_ALL = '{'.NS::NAMESPACE_JCR.'}all';
 
     /**
      * Returns the name of this privilege.
