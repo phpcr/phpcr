@@ -33,28 +33,28 @@ interface QueryInterface
      *
      * @api
      */
-    const JCR_JQOM = 'JCR-JQOM';
+    public const JCR_JQOM = 'JCR-JQOM';
 
     /**
      * A string constant representing the JCR-SQL2 query language.
      *
      * @api
      */
-    const JCR_SQL2 = 'JCR-SQL2';
+    public const JCR_SQL2 = 'JCR-SQL2';
 
     /**
      * A string constant representing the (deprecated in JSR-283) XPATH query language.
      *
      * @api
      */
-    const XPATH = 'xpath';
+    public const XPATH = 'xpath';
 
     /**
      * A string constant representing the (deprecated in JSR-283) SQL query language.
      *
      * @api
      */
-    const SQL = 'sql';
+    public const SQL = 'sql';
     /**#@-*/
 
     /**

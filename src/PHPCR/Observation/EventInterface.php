@@ -27,7 +27,7 @@ interface EventInterface
      *
      * @api
      */
-    const NODE_ADDED = 0x1;
+    public const NODE_ADDED = 0x1;
 
     /**
      * Generated on persist when a node is removed.
@@ -37,7 +37,7 @@ interface EventInterface
      *
      * @api
      */
-    const NODE_REMOVED = 0x2;
+    public const NODE_REMOVED = 0x2;
 
     /**
      * Generated on persist when a property is added.
@@ -47,7 +47,7 @@ interface EventInterface
      *
      * @api
      */
-    const PROPERTY_ADDED = 0x4;
+    public const PROPERTY_ADDED = 0x4;
 
     /**
      * Generated on persist when a property is removed.
@@ -57,7 +57,7 @@ interface EventInterface
      *
      * @api
      */
-    const PROPERTY_REMOVED = 0x8;
+    public const PROPERTY_REMOVED = 0x8;
 
     /**
      * Generated on persist when a property is changed.
@@ -67,7 +67,7 @@ interface EventInterface
      *
      * @api
      */
-    const PROPERTY_CHANGED = 0x10;
+    public const PROPERTY_CHANGED = 0x10;
 
     /**
      * Generated on persist when a node is moved.
@@ -85,7 +85,7 @@ interface EventInterface
      *
      * @api
      */
-    const NODE_MOVED = 0x20;
+    public const NODE_MOVED = 0x20;
 
     /**
      * If event bundling is supported, this event is used to indicate a
@@ -96,7 +96,7 @@ interface EventInterface
      *
      * @api
      */
-    const PERSIST = 0x40;
+    public const PERSIST = 0x40;
 
     /**#@-*/
 

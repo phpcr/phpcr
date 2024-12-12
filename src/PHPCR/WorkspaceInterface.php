@@ -33,21 +33,21 @@ interface WorkspaceInterface
      *
      * @api
      */
-    const NAME_WORKSPACE_ROOT = '';
+    public const NAME_WORKSPACE_ROOT = '';
 
     /**
      * A constant for the absolute path of the workspace root node.
      *
      * @api
      */
-    const PATH_WORKSPACE_ROOT = '/';
+    public const PATH_WORKSPACE_ROOT = '/';
 
     /**
      * A constant for the name of the system node.
      *
      * @api
      */
-    const NAME_SYSTEM_NODE = '{'.NamespaceRegistryInterface::NAMESPACE_JCR.'}system';
+    public const NAME_SYSTEM_NODE = '{'.NamespaceRegistryInterface::NAMESPACE_JCR.'}system';
 
     /**
      * A constant for the absolute path of the system node.
@@ -55,14 +55,14 @@ interface WorkspaceInterface
      *
      * @api
      */
-    const PATH_SYSTEM_NODE = '/{'.NamespaceRegistryInterface::NAMESPACE_JCR.'}system';
+    public const PATH_SYSTEM_NODE = '/{'.NamespaceRegistryInterface::NAMESPACE_JCR.'}system';
 
     /**
      * A constant for the name of the node type definition storage node.
      *
      * @api
      */
-    const NAME_NODE_TYPES_NODE = '{'.NamespaceRegistryInterface::NAMESPACE_JCR.'}nodeTypes';
+    public const NAME_NODE_TYPES_NODE = '{'.NamespaceRegistryInterface::NAMESPACE_JCR.'}nodeTypes';
 
     /**
      * A constant for the absolute path of the node type definition storage node.
@@ -70,14 +70,14 @@ interface WorkspaceInterface
      *
      * @api
      */
-    const PATH_NODE_TYPES_NODE = '/{'.NamespaceRegistryInterface::NAMESPACE_JCR.'}system/{'.NamespaceRegistryInterface::NAMESPACE_JCR.'}nodeTypes';
+    public const PATH_NODE_TYPES_NODE = '/{'.NamespaceRegistryInterface::NAMESPACE_JCR.'}system/{'.NamespaceRegistryInterface::NAMESPACE_JCR.'}nodeTypes';
 
     /**
      * A constant for the name of the version storage node.
      *
      * @api
      */
-    const NAME_VERSION_STORAGE_NODE = '{'.NamespaceRegistryInterface::NAMESPACE_JCR.'}versionStorage';
+    public const NAME_VERSION_STORAGE_NODE = '{'.NamespaceRegistryInterface::NAMESPACE_JCR.'}versionStorage';
 
     /**
      * A constant for the absolute path of the version storage node.
@@ -85,14 +85,14 @@ interface WorkspaceInterface
      *
      * @api
      */
-    const PATH_VERSION_STORAGE_NODE = '/{'.NamespaceRegistryInterface::NAMESPACE_JCR.'}system/{'.NamespaceRegistryInterface::NAMESPACE_JCR.'}versionStorage';
+    public const PATH_VERSION_STORAGE_NODE = '/{'.NamespaceRegistryInterface::NAMESPACE_JCR.'}system/{'.NamespaceRegistryInterface::NAMESPACE_JCR.'}versionStorage';
 
     /**
      * A constant for the name of the activities node.
      *
      * @api
      */
-    const NAME_ACTIVITIES_NODE = '{'.NamespaceRegistryInterface::NAMESPACE_JCR.'}activities';
+    public const NAME_ACTIVITIES_NODE = '{'.NamespaceRegistryInterface::NAMESPACE_JCR.'}activities';
 
     /**
      * A constant for the absolute path of the activities node.
@@ -100,14 +100,14 @@ interface WorkspaceInterface
      *
      * @api
      */
-    const PATH_ACTIVITIES_NODE = '/{'.NamespaceRegistryInterface::NAMESPACE_JCR.'}system/{'.NamespaceRegistryInterface::NAMESPACE_JCR.'}activities';
+    public const PATH_ACTIVITIES_NODE = '/{'.NamespaceRegistryInterface::NAMESPACE_JCR.'}system/{'.NamespaceRegistryInterface::NAMESPACE_JCR.'}activities';
 
     /**
      * A constant for the name of the configurations node.
      *
      * @api
      */
-    const NAME_CONFIGURATIONS_NODE = '{'.NamespaceRegistryInterface::NAMESPACE_JCR.'}configurations';
+    public const NAME_CONFIGURATIONS_NODE = '{'.NamespaceRegistryInterface::NAMESPACE_JCR.'}configurations';
 
     /**
      * A constant for the absolute path of the configurations node.
@@ -115,14 +115,14 @@ interface WorkspaceInterface
      *
      * @api
      */
-    const PATH_CONFIGURATIONS_NODE = '/{'.NamespaceRegistryInterface::NAMESPACE_JCR.'}system/{http://www.jcp.org/jcr/1.0}configurations';
+    public const PATH_CONFIGURATIONS_NODE = '/{'.NamespaceRegistryInterface::NAMESPACE_JCR.'}system/{http://www.jcp.org/jcr/1.0}configurations';
 
     /**
      * A constant for the name of the unfiled storage node.
      *
      * @api
      */
-    const NAME_UNFILED_NODE = '{'.NamespaceRegistryInterface::NAMESPACE_JCR.'}unfiled';
+    public const NAME_UNFILED_NODE = '{'.NamespaceRegistryInterface::NAMESPACE_JCR.'}unfiled';
 
     /**
      * A constant for the absolute path of the unfiled storage node.
@@ -130,21 +130,21 @@ interface WorkspaceInterface
      *
      * @api
      */
-    const PATH_UNFILED_NODE = '/{'.NamespaceRegistryInterface::NAMESPACE_JCR.'}system/{'.NamespaceRegistryInterface::NAMESPACE_JCR.'}unfiled';
+    public const PATH_UNFILED_NODE = '/{'.NamespaceRegistryInterface::NAMESPACE_JCR.'}system/{'.NamespaceRegistryInterface::NAMESPACE_JCR.'}unfiled';
 
     /**
      * A constant for the name of the jcr:xmltext node produced on importXML().
      *
      * @api
      */
-    const NAME_JCR_XMLTEXT = '{'.NamespaceRegistryInterface::NAMESPACE_JCR.'}xmltext';
+    public const NAME_JCR_XMLTEXT = '{'.NamespaceRegistryInterface::NAMESPACE_JCR.'}xmltext';
 
     /**
      * A constant for the name of the jcr:xmlcharacters property produced on importXML().
      *
      * @api
      */
-    const NAME_JCR_XMLCHARACTERS = '{'.NamespaceRegistryInterface::NAMESPACE_JCR.'}xmlcharacters';
+    public const NAME_JCR_XMLCHARACTERS = '{'.NamespaceRegistryInterface::NAMESPACE_JCR.'}xmlcharacters';
 
     /**
      * A constant for the relative path from the node representing the imported XML element of
@@ -153,7 +153,7 @@ interface WorkspaceInterface
      *
      * @api
      */
-    const RELPATH_JCR_XMLCHARACTERS = '{'.NamespaceRegistryInterface::NAMESPACE_JCR.'}xmltext/{'.NamespaceRegistryInterface::NAMESPACE_JCR.'}xmlcharacters';
+    public const RELPATH_JCR_XMLCHARACTERS = '{'.NamespaceRegistryInterface::NAMESPACE_JCR.'}xmltext/{'.NamespaceRegistryInterface::NAMESPACE_JCR.'}xmlcharacters';
 
     /**#@-*/
 

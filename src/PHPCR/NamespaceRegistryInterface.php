@@ -34,84 +34,84 @@ interface NamespaceRegistryInterface extends \Traversable
      *
      * @api
      */
-    const PREFIX_JCR = 'jcr';
+    public const PREFIX_JCR = 'jcr';
 
     /**
      * A constant for the predefined namespace prefix "nt".
      *
      * @api
      */
-    const PREFIX_NT = 'nt';
+    public const PREFIX_NT = 'nt';
 
     /**
      * A constant for the predefined namespace prefix "sv".
      *
      * @api
      */
-    const PREFIX_SV = 'sv';
+    public const PREFIX_SV = 'sv';
 
     /**
      * A constant for the predefined namespace prefix "mix".
      *
      * @api
      */
-    const PREFIX_MIX = 'mix';
+    public const PREFIX_MIX = 'mix';
 
     /**
      * A constant for the predefined namespace prefix "xml".
      *
      * @api
      */
-    const PREFIX_XML = 'xml';
+    public const PREFIX_XML = 'xml';
 
     /**
      * A constant for the predefined namespace prefix "" (the empty prefix).
      *
      * @api
      */
-    const PREFIX_EMPTY = '';
+    public const PREFIX_EMPTY = '';
 
     /**
      * A constant for the predefined namespace mapped by default to the prefix "jcr".
      *
      * @api
      */
-    const NAMESPACE_JCR = 'http://www.jcp.org/jcr/1.0';
+    public const NAMESPACE_JCR = 'http://www.jcp.org/jcr/1.0';
 
     /**
      * A constant for the predefined namespace mapped by default to the prefix "nt".
      *
      * @api
      */
-    const NAMESPACE_NT = 'http://www.jcp.org/jcr/nt/1.0';
+    public const NAMESPACE_NT = 'http://www.jcp.org/jcr/nt/1.0';
 
     /**
      * A constant for the predefined namespace mapped by default to the prefix "sv".
      *
      * @api
      */
-    const NAMESPACE_SV = 'http://www.jcp.org/jcr/sv/1.0';
+    public const NAMESPACE_SV = 'http://www.jcp.org/jcr/sv/1.0';
 
     /**
      * A constant for the predefined namespace mapped by default to the prefix "mix".
      *
      * @api
      */
-    const NAMESPACE_MIX = 'http://www.jcp.org/jcr/mix/1.0';
+    public const NAMESPACE_MIX = 'http://www.jcp.org/jcr/mix/1.0';
 
     /**
      * A constant for the predefined namespace mapped by default to the prefix "xml".
      *
      * @api
      */
-    const NAMESPACE_XML = 'http://www.w3.org/XML/1998/namespace';
+    public const NAMESPACE_XML = 'http://www.w3.org/XML/1998/namespace';
 
     /**
      * A constant for the predefined namespace mapped by default to the prefix "" (the empty prefix).
      *
      * @api
      */
-    const NAMESPACE_EMPTY = '';
+    public const NAMESPACE_EMPTY = '';
 
     /**
      * Sets a one-to-one mapping between prefix and uri in the global namespace

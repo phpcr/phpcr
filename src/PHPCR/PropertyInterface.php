@@ -48,7 +48,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_PRIMARY_TYPE = '{http://www.jcp.org/jcr/1.0}primaryType';
+    public const JCR_PRIMARY_TYPE = '{http://www.jcp.org/jcr/1.0}primaryType';
 
     /**
      * A constant for the property name jcr:mixinTypes (in extended form),
@@ -56,7 +56,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_MIXIN_TYPES = '{http://www.jcp.org/jcr/1.0}mixinTypes';
+    public const JCR_MIXIN_TYPES = '{http://www.jcp.org/jcr/1.0}mixinTypes';
 
     /**
      * A constant for the property name jcr:content (in extended form),
@@ -66,7 +66,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_CONTENT = '{http://www.jcp.org/jcr/1.0}content';
+    public const JCR_CONTENT = '{http://www.jcp.org/jcr/1.0}content';
 
     /**
      * A constant for the property name jcr:data (in extended form),
@@ -74,7 +74,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_DATA = '{http://www.jcp.org/jcr/1.0}data';
+    public const JCR_DATA = '{http://www.jcp.org/jcr/1.0}data';
 
     /**
      * A constant for the property name jcr:protocol (in extended form),
@@ -82,7 +82,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_PROTOCOL = '{http://www.jcp.org/jcr/1.0}protocol';
+    public const JCR_PROTOCOL = '{http://www.jcp.org/jcr/1.0}protocol';
 
     /**
      * A constant for the property name jcr:host (in extended form),
@@ -90,7 +90,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_HOST = '{http://www.jcp.org/jcr/1.0}host';
+    public const JCR_HOST = '{http://www.jcp.org/jcr/1.0}host';
 
     /**
      * A constant for the property name jcr:port (in extended form),
@@ -98,7 +98,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_PORT = '{http://www.jcp.org/jcr/1.0}port';
+    public const JCR_PORT = '{http://www.jcp.org/jcr/1.0}port';
 
     /**
      * A constant for the property name jcr:repository (in extended form),
@@ -106,7 +106,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_REPOSITORY = '{http://www.jcp.org/jcr/1.0repository';
+    public const JCR_REPOSITORY = '{http://www.jcp.org/jcr/1.0repository';
 
     /**
      * A constant for the property name jcr:workspace (in extended form),
@@ -114,7 +114,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_WORKSPACE = '{http://www.jcp.org/jcr/1.0}workspace';
+    public const JCR_WORKSPACE = '{http://www.jcp.org/jcr/1.0}workspace';
 
     /**
      * A constant for the property name jcr:path (in extended form),
@@ -122,7 +122,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_PATH = '{http://www.jcp.org/jcr/1.0}path';
+    public const JCR_PATH = '{http://www.jcp.org/jcr/1.0}path';
 
     /**
      * A constant for the property name jcr:id (in extended form),
@@ -130,7 +130,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_ID = '{http://www.jcp.org/jcr/1.0}id';
+    public const JCR_ID = '{http://www.jcp.org/jcr/1.0}id';
 
     /**
      * A constant for the property name jcr:uuid (in extended form),
@@ -138,7 +138,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_UUID = '{http://www.jcp.org/jcr/1.0}uuid';
+    public const JCR_UUID = '{http://www.jcp.org/jcr/1.0}uuid';
 
     /**
      * A constant for the property name jcr:title (in extended form),
@@ -146,7 +146,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_TITLE = '{http://www.jcp.org/jcr/1.0}title';
+    public const JCR_TITLE = '{http://www.jcp.org/jcr/1.0}title';
 
     /**
      * A constant for the property name jcr:description (in extended form),
@@ -154,7 +154,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_DESCRIPTION = '{http://www.jcp.org/jcr/1.0}description';
+    public const JCR_DESCRIPTION = '{http://www.jcp.org/jcr/1.0}description';
 
     /**
      * A constant for the property name jcr:created (in extended form),
@@ -162,7 +162,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_CREATED = '{http://www.jcp.org/jcr/1.0}created';
+    public const JCR_CREATED = '{http://www.jcp.org/jcr/1.0}created';
 
     /**
      * A constant for the property name jcr:createdBy (in extended form),
@@ -170,7 +170,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_CREATED_BY = '{http://www.jcp.org/jcr/1.0}createdBy';
+    public const JCR_CREATED_BY = '{http://www.jcp.org/jcr/1.0}createdBy';
 
     /**
      * A constant for the property name jcr:lastModified (in extended form),
@@ -178,7 +178,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_LAST_MODIFIED = '{http://www.jcp.org/jcr/1.0}lastModified';
+    public const JCR_LAST_MODIFIED = '{http://www.jcp.org/jcr/1.0}lastModified';
 
     /**
      * A constant for the property name jcr:lastModifiedBy (in extended form),
@@ -186,7 +186,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_LAST_MODIFIED_BY = '{http://www.jcp.org/jcr/1.0}lastModifiedBy';
+    public const JCR_LAST_MODIFIED_BY = '{http://www.jcp.org/jcr/1.0}lastModifiedBy';
 
     /**
      * A constant for the property name jcr:language (in extended form),
@@ -194,7 +194,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_LANGUAGE = '{http://www.jcp.org/jcr/1.0}language';
+    public const JCR_LANGUAGE = '{http://www.jcp.org/jcr/1.0}language';
 
     /**
      * A constant for the property name jcr:mimeType (in extended form),
@@ -202,7 +202,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_MIMETYPE = '{http://www.jcp.org/jcr/1.0}mimeType';
+    public const JCR_MIMETYPE = '{http://www.jcp.org/jcr/1.0}mimeType';
 
     /**
      * A constant for the property name jcr:encoding (in extended form),
@@ -210,7 +210,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_ENCODING = '{http://www.jcp.org/jcr/1.0}encoding';
+    public const JCR_ENCODING = '{http://www.jcp.org/jcr/1.0}encoding';
 
     /**
      * A constant for the property name jcr:nodeTypeName (in extended form),
@@ -218,7 +218,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_NODE_TYPE_NAME = '{http://www.jcp.org/jcr/1.0}nodeTypeName';
+    public const JCR_NODE_TYPE_NAME = '{http://www.jcp.org/jcr/1.0}nodeTypeName';
 
     /**
      * A constant for the property name jcr:supertypes (in extended form),
@@ -226,7 +226,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_SUPERTYPES = '{http://www.jcp.org/jcr/1.0}supertypes';
+    public const JCR_SUPERTYPES = '{http://www.jcp.org/jcr/1.0}supertypes';
 
     /**
      * A constant for the property name jcr:isAbstract (in extended form),
@@ -234,7 +234,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_IS_ABSTRACT = '{http://www.jcp.org/jcr/1.0}isAbstract';
+    public const JCR_IS_ABSTRACT = '{http://www.jcp.org/jcr/1.0}isAbstract';
 
     /**
      * A constant for the property name jcr:isMixin (in extended form),
@@ -242,7 +242,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_IS_MIXIN = '{http://www.jcp.org/jcr/1.0}isMixin';
+    public const JCR_IS_MIXIN = '{http://www.jcp.org/jcr/1.0}isMixin';
 
     /**
      * A constant for the property name jcr:hasOrderableChildNodes (in extended form),
@@ -250,7 +250,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_HAS_ORDERABLE_CHILD_NODES = '{http://www.jcp.org/jcr/1.0}hasOrderableChildNodes';
+    public const JCR_HAS_ORDERABLE_CHILD_NODES = '{http://www.jcp.org/jcr/1.0}hasOrderableChildNodes';
 
     /**
      * A constant for the property name jcr:primaryItemName (in extended form),
@@ -258,7 +258,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_PRIMARY_ITEM_NAME = '{http://www.jcp.org/jcr/1.0}primaryItemName';
+    public const JCR_PRIMARY_ITEM_NAME = '{http://www.jcp.org/jcr/1.0}primaryItemName';
 
     /**
      * A constant for the property name jcr:name (in extended form),
@@ -266,7 +266,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_NAME = '{http://www.jcp.org/jcr/1.0}name';
+    public const JCR_NAME = '{http://www.jcp.org/jcr/1.0}name';
 
     /**
      * A constant for the property name jcr:autoCreated (in extended form),
@@ -274,7 +274,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_AUTOCREATED = '{http://www.jcp.org/jcr/1.0}autoCreated';
+    public const JCR_AUTOCREATED = '{http://www.jcp.org/jcr/1.0}autoCreated';
 
     /**
      * A constant for the property name jcr:mandatory (in extended form),
@@ -282,7 +282,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_MANDATORY = '{http://www.jcp.org/jcr/1.0}mandatory';
+    public const JCR_MANDATORY = '{http://www.jcp.org/jcr/1.0}mandatory';
 
     /**
      * A constant for the property name jcr:protected (in extended form),
@@ -290,7 +290,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_PROTECTED = '{http://www.jcp.org/jcr/1.0}protected';
+    public const JCR_PROTECTED = '{http://www.jcp.org/jcr/1.0}protected';
 
     /**
      * A constant for the property name jcr:onParentVersion (in extended form),
@@ -298,7 +298,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_ON_PARENT_VERSION = '{http://www.jcp.org/jcr/1.0}onParentVersion';
+    public const JCR_ON_PARENT_VERSION = '{http://www.jcp.org/jcr/1.0}onParentVersion';
 
     /**
      * A constant for the property name jcr:requiredType (in extended form),
@@ -306,7 +306,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_REQUIRED_TYPE = '{http://www.jcp.org/jcr/1.0}requiredType';
+    public const JCR_REQUIRED_TYPE = '{http://www.jcp.org/jcr/1.0}requiredType';
 
     /**
      * A constant for the property name jcr:valueConstraints (in extended form),
@@ -314,7 +314,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_VALUE_CONSTRAINTS = '{http://www.jcp.org/jcr/1.0}valueConstraints';
+    public const JCR_VALUE_CONSTRAINTS = '{http://www.jcp.org/jcr/1.0}valueConstraints';
 
     /**
      * A constant for the property name jcr:defaultValues (in extended form),
@@ -322,7 +322,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_DEFAULT_VALUES = '{http://www.jcp.org/jcr/1.0}defaultValues';
+    public const JCR_DEFAULT_VALUES = '{http://www.jcp.org/jcr/1.0}defaultValues';
 
     /**
      * A constant for the property name jcr:multiple (in extended form),
@@ -330,7 +330,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_MULTIPLE = '{http://www.jcp.org/jcr/1.0}multiple';
+    public const JCR_MULTIPLE = '{http://www.jcp.org/jcr/1.0}multiple';
 
     /**
      * A constant for the property name jcr:requiredPrimaryTypes (in extended form),
@@ -338,7 +338,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_REQUIRED_PRIMARY_TYPES = '{http://www.jcp.org/jcr/1.0}requiredPrimaryTypes';
+    public const JCR_REQUIRED_PRIMARY_TYPES = '{http://www.jcp.org/jcr/1.0}requiredPrimaryTypes';
 
     /**
      * A constant for the property name jcr:defaultPrimaryType (in extended form),
@@ -346,7 +346,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_DEFAULT_PRIMARY_TYPE = '{http://www.jcp.org/jcr/1.0}defaultPrimaryType';
+    public const JCR_DEFAULT_PRIMARY_TYPE = '{http://www.jcp.org/jcr/1.0}defaultPrimaryType';
 
     /**
      * A constant for the property name jcr:sameNameSiblings (in extended form),
@@ -354,7 +354,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_SAME_NAME_SIBLINGS = '{http://www.jcp.org/jcr/1.0}sameNameSiblings';
+    public const JCR_SAME_NAME_SIBLINGS = '{http://www.jcp.org/jcr/1.0}sameNameSiblings';
 
     /**
      * A constant for the property name jcr:lockOwner (in extended form),
@@ -362,7 +362,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_LOCK_OWNER = '{http://www.jcp.org/jcr/1.0}lockOwner';
+    public const JCR_LOCK_OWNER = '{http://www.jcp.org/jcr/1.0}lockOwner';
 
     /**
      * A constant for the property name jcr:lockIsDeep (in extended form),
@@ -370,7 +370,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_LOCK_IS_DEEP = '{http://www.jcp.org/jcr/1.0}lockIsDeep';
+    public const JCR_LOCK_IS_DEEP = '{http://www.jcp.org/jcr/1.0}lockIsDeep';
 
     /**
      * A constant for the property name jcr:lifecyclePolicy (in extended form),
@@ -378,7 +378,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_LIFECYCLE_POLICY = '{http://www.jcp.org/jcr/1.0}lifecyclePolicy';
+    public const JCR_LIFECYCLE_POLICY = '{http://www.jcp.org/jcr/1.0}lifecyclePolicy';
 
     /**
      * A constant for the property name jcr:currentLifecycleState (in extended form),
@@ -386,7 +386,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_CURRENT_LIFECYCLE_STATE = '{http://www.jcp.org/jcr/1.0}currentLifecycleState';
+    public const JCR_CURRENT_LIFECYCLE_STATE = '{http://www.jcp.org/jcr/1.0}currentLifecycleState';
 
     /**
      * A constant for the property name jcr:isCheckedOut (in extended form),
@@ -394,7 +394,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_IS_CHECKED_OUT = '{http://www.jcp.org/jcr/1.0}isCheckedOut';
+    public const JCR_IS_CHECKED_OUT = '{http://www.jcp.org/jcr/1.0}isCheckedOut';
 
     /**
      * A constant for the property name jcr:frozenPrimaryType (in extended form),
@@ -402,7 +402,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_FROZEN_PRIMARY_TYPE = '{http://www.jcp.org/jcr/1.0}frozenPrimaryType';
+    public const JCR_FROZEN_PRIMARY_TYPE = '{http://www.jcp.org/jcr/1.0}frozenPrimaryType';
 
     /**
      * A constant for the property name jcr:frozenMixinTypes (in extended form),
@@ -410,7 +410,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_FROZEN_MIXIN_TYPES = '{http://www.jcp.org/jcr/1.0}frozenMixinTypes';
+    public const JCR_FROZEN_MIXIN_TYPES = '{http://www.jcp.org/jcr/1.0}frozenMixinTypes';
 
     /**
      * A constant for the property name jcr:frozenUuid (in extended form),
@@ -418,7 +418,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_FROZEN_UUID = '{http://www.jcp.org/jcr/1.0}frozenUuid';
+    public const JCR_FROZEN_UUID = '{http://www.jcp.org/jcr/1.0}frozenUuid';
 
     /**
      * A constant for the property name jcr:versionHistory (in extended form),
@@ -426,7 +426,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_VERSION_HISTORY = '{http://www.jcp.org/jcr/1.0}versionHistory';
+    public const JCR_VERSION_HISTORY = '{http://www.jcp.org/jcr/1.0}versionHistory';
 
     /**
      * A constant for the property name jcr:baseVersion (in extended form),
@@ -434,7 +434,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_BASE_VERSION = '{http://www.jcp.org/jcr/1.0}baseVersion';
+    public const JCR_BASE_VERSION = '{http://www.jcp.org/jcr/1.0}baseVersion';
 
     /**
      * A constant for the property name jcr:predecessors (in extended form),
@@ -442,7 +442,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_PREDECESSORS = '{http://www.jcp.org/jcr/1.0}predecessors';
+    public const JCR_PREDECESSORS = '{http://www.jcp.org/jcr/1.0}predecessors';
 
     /**
      * A constant for the property name jcr:mergeFailed (in extended form),
@@ -450,7 +450,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_MERGE_FAILED = '{http://www.jcp.org/jcr/1.0}mergeFailed';
+    public const JCR_MERGE_FAILED = '{http://www.jcp.org/jcr/1.0}mergeFailed';
 
     /**
      * A constant for the property name jcr:activity (in extended form),
@@ -458,7 +458,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_ACTIVITY = '{http://www.jcp.org/jcr/1.0}activity';
+    public const JCR_ACTIVITY = '{http://www.jcp.org/jcr/1.0}activity';
 
     /**
      * A constant for the property name jcr:configuration (in extended form),
@@ -466,7 +466,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_CONFIGURATION = '{http://www.jcp.org/jcr/1.0}configuration';
+    public const JCR_CONFIGURATION = '{http://www.jcp.org/jcr/1.0}configuration';
 
     /**
      * A constant for the property name jcr:versionableUuid (in extended form),
@@ -474,7 +474,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_VERSIONABLE_UUID = '{http://www.jcp.org/jcr/1.0}versionableUuid';
+    public const JCR_VERSIONABLE_UUID = '{http://www.jcp.org/jcr/1.0}versionableUuid';
 
     /**
      * A constant for the property name jcr:copiedFrom (in extended form),
@@ -482,7 +482,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_COPIED_FROM = '{http://www.jcp.org/jcr/1.0}copiedFrom';
+    public const JCR_COPIED_FROM = '{http://www.jcp.org/jcr/1.0}copiedFrom';
 
     /**
      * A constant for the property name jcr:successors (in extended form),
@@ -490,7 +490,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_SUCCESSORS = '{http://www.jcp.org/jcr/1.0}successors';
+    public const JCR_SUCCESSORS = '{http://www.jcp.org/jcr/1.0}successors';
 
     /**
      * A constant for the property name jcr:childVersionHistory (in extended form),
@@ -498,7 +498,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_CHILD_VERSION_HISTORY = '{http://www.jcp.org/jcr/1.0}childVersionHistory';
+    public const JCR_CHILD_VERSION_HISTORY = '{http://www.jcp.org/jcr/1.0}childVersionHistory';
 
     /**
      * A constant for the property name jcr:root (in extended form),
@@ -506,7 +506,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_ROOT = '{http://www.jcp.org/jcr/1.0}root';
+    public const JCR_ROOT = '{http://www.jcp.org/jcr/1.0}root';
 
     /**
      * A constant for the property name jcr:statement (in extended form),
@@ -514,7 +514,7 @@ interface PropertyInterface extends ItemInterface, Traversable
      *
      * @api
      */
-    const JCR_STATEMENT = '{http://www.jcp.org/jcr/1.0}statement';
+    public const JCR_STATEMENT = '{http://www.jcp.org/jcr/1.0}statement';
 
     /**
      * Sets the value of this property to the value.

@@ -37,42 +37,42 @@ final class OnParentVersionAction
      *
      * @api
      */
-    const COPY = 1;
+    public const COPY = 1;
 
     /**
      * The VERSION action constant.
      *
      * @api
      */
-    const VERSION = 2;
+    public const VERSION = 2;
 
     /**
      * The INITIALIZE action constant.
      *
      * @api
      */
-    const INITIALIZE = 3;
+    public const INITIALIZE = 3;
 
     /**
      * The COMPUTE action constant.
      *
      * @api
      */
-    const COMPUTE = 4;
+    public const COMPUTE = 4;
 
     /**
      * The IGNORE action constant.
      *
      * @api
      */
-    const IGNORE = 5;
+    public const IGNORE = 5;
 
     /**
      * The ABORT action constant.
      *
      * @api
      */
-    const ABORT = 6;
+    public const ABORT = 6;
 
     /**#@-*/
     /**#@+
@@ -84,42 +84,42 @@ final class OnParentVersionAction
      *
      * @api
      */
-    const ACTIONNAME_COPY = 'COPY';
+    public const ACTIONNAME_COPY = 'COPY';
 
     /**
      * The name of the VERSION on-version action, as used in serialization.
      *
      * @api
      */
-    const ACTIONNAME_VERSION = 'VERSION';
+    public const ACTIONNAME_VERSION = 'VERSION';
 
     /**
      * The name of the INITIALIZE on-version action, as used in serialization.
      *
      * @api
      */
-    const ACTIONNAME_INITIALIZE = 'INITIALIZE';
+    public const ACTIONNAME_INITIALIZE = 'INITIALIZE';
 
     /**
      * The name of the COMPUTE on-version action, as used in serialization.
      *
      * @api
      */
-    const ACTIONNAME_COMPUTE = 'COMPUTE';
+    public const ACTIONNAME_COMPUTE = 'COMPUTE';
 
     /**
      * The name of the IGNORE on-version action, as used in serialization.
      *
      * @api
      */
-    const ACTIONNAME_IGNORE = 'IGNORE';
+    public const ACTIONNAME_IGNORE = 'IGNORE';
 
     /**
      * The name of the ABORT on-version action, as used in serialization.
      *
      * @api
      */
-    const ACTIONNAME_ABORT = 'ABORT';
+    public const ACTIONNAME_ABORT = 'ABORT';
 
     /**#@-*/
 
