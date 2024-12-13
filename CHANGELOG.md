@@ -1,6 +1,11 @@
 Changelog
 =========
 
+2.1.14
+------
+
+* **2024-12-13**: Improve PHPDoc for QueryResultInterface to specify instead of describe return types.
+
 2.1.13
 ------
 
